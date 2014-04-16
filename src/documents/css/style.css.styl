@@ -1,0 +1,19 @@
+.layout-container
+  display: flex
+  flex-flow: row
+  align-items: stretch
+  align-content: stretch
+  @media screen and (max-width: 640px)
+    flex-flow: column
+
+.layout-aside
+  flex: 1 1
+  @media screen and (max-width: 640px)
+    flex: none
+  color: #fff
+  background: #199ad5
+
+.layout-main
+  flex: 2 2
+  @media screen and (max-width: 640px)
+    flex: none
