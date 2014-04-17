@@ -1,0 +1,16 @@
+<doctype html>
+<html>
+  <head>
+    <%- @partial('meta') %>
+  </head>
+  <body>
+    <div class='layout-container'>
+      <div class='layout-aside'>
+        <%- @partial('aside') %>
+      </div>
+      <div class='layout-main'>
+        <%- @content %>
+      </div>
+    </div>
+  </body>
+</html>

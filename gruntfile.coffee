@@ -41,3 +41,4 @@ module.exports = (grunt) ->
           'out/js/app.min.js': ['out/js/app.js']
 
   grunt.registerTask 'build', ['concat', 'csscomb', 'csso', 'copy']
+  grunt.registerTask 'debug', ['concat', 'csso', 'copy']
