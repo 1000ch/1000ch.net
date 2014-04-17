@@ -1,4 +1,5 @@
-# Your [DocPad](http://docpad.org) Project
+# [1000ch.net](http://1000ch.net)
 
 ## License
-Copyright &copy; 2014+ All rights reserved.
+
+MIT

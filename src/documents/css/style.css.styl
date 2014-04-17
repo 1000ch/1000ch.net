@@ -1,4 +1,6 @@
 .layout-container
+  display: -webkit-flex
+  display: -moz-flex
   display: flex
   flex-flow: row
   align-items: stretch
@@ -10,10 +12,78 @@
   flex: 1 1
   @media screen and (max-width: 640px)
     flex: none
+  min-width: 320px
   color: #fff
-  background: #199ad5
+
+  h1
+    font-size: 48px
+  a
+    color: #fff
+    text-decoration: underline
+  a:hover,
+  a:active,
+  a.active
+    color: #fff
+    text-decoration: none
+
+.layout-aside-bricks
+  display: block
+  &.bricks--dark
+    background: rgba(47, 11, 136, 1)
+  &.bricks--normal
+    background: rgba(76, 34, 151, 1)
+  &.bricks--light
+    background: rgba(105, 57, 166, 1)
+
+.layout-aside-bricks::after
+  clear: both
+  display: table
+  content: ''
+
+.layout-aside-bricks__brick
+  display: inline-block
+  float: left
+  &.brick--left
+    text-align: left
+  &.brick--center
+    text-align: center
+  &.brick--right
+    text-align: right
+
+  &.brick--12
+    width: 100%
+  &.brick--6
+    width: 50%
+  &.brick--4
+    width: 33%
+  &.brick--3
+    width: 25%
+  &.brick--2
+    width: 12.5%
+  &.brick--1
+    width: 6.25%
+
+  &.bricks--dark
+    background: rgba(47, 11, 136, 1)
+  &.bricks--dark:hover,
+  &.bricks--dark.is-active
+    background: rgba(47, 11, 136, 0.8)
+  &.bricks--normal
+    background: rgba(76, 34, 151, 1)
+  &.bricks--normal:hover,
+  &.bricks--normal.is-active
+    background: rgba(76, 34, 151, 0.8)
+  &.bricks--light
+    background: rgba(105, 57, 166, 1)
+  &.bricks--light:hover,
+  &.bricks--light.is-active
+    background: rgba(105, 57, 166, 0.8)
+
+.layout-aside-bricks__brick-inner
+  display: block
+  padding: 10px 0
 
 .layout-main
-  flex: 2 2
+  flex: 1 1
   @media screen and (max-width: 640px)
     flex: none

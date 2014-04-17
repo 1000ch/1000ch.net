@@ -13,7 +13,7 @@ config = {
       rootPath = docpad.getConfig().rootPath
       gruntPath = path.join(rootPath, 'node_modules', '.bin', 'grunt')
 
-      command = [gruntPath, 'concat', 'csscomb', 'csso']
+      command = [gruntPath, 'build']
       safeps.spawn(command, {
         cwd: rootPath,
         output: true
