@@ -9,7 +9,9 @@
         <%- @partial('aside') %>
       </div>
       <div class='layout-main'>
-        <%- @content %>
+        <div class='layout-main-post'>
+          <%- @content %>
+        </div>
       </div>
     </div>
   </body>

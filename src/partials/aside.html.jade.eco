@@ -45,18 +45,21 @@
 .layout-aside-bricks
   .layout-aside-bricks__brick.brick--12.bricks--light
     .layout-aside-bricks__brick-inner
+      .fb-like-box(
+        data-href='https://www.facebook.com/1000ch.net'
+        data-width='300'
+        data-height='180'
+        data-show-faces='true'
+        data-header='false'
+        data-stream='false'
+        data-show-border='false'
+      )
+
+.layout-aside-bricks
+  .layout-aside-bricks__brick.brick--12.bricks--light
+    .layout-aside-bricks__brick-inner
       h2 About 1000ch
       img(src='/img/1000ch.png', width='100px', height='100px', style='float: left;')
-      渋谷で働くフロントエンドエンジニア。
-      元々はC#(.NET)でGUIの業務アプリを作ったり、Javaでサーバーサイドのプログラムを書いていたが、転職を境にフロントエンドに転身。
-      JavaScript書いたり、オープンソースのドキュメントを翻訳したり英語記事の翻訳をしたり。Web技術全般に興味あります。GitHubで趣味がバレます。
-
-.fb-like-box(
-  data-href='https://www.facebook.com/1000ch.net'
-  data-width='300'
-  data-height='180'
-  data-show-faces='true'
-  data-header='false'
-  data-stream='false'
-  data-show-border='false'
-)
+      | 渋谷で働くフロントエンドエンジニア。
+      | 元々はC#(.NET)でGUIの業務アプリを作ったり、Javaでサーバーサイドのプログラムを書いていたが、転職を境にフロントエンドに転身。
+      | JavaScript書いたり、オープンソースのドキュメントを翻訳したり英語記事の翻訳をしたり。Web技術全般に興味あります。GitHubで趣味がバレます。
