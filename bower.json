@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "normalize.css": "~3.0.1",
-    "fontawesome": "~4.0.3"
+    "fontawesome": "~4.0.3",
+    "highlight.js": "isagalaev/highlight.js#8.0"
   }
 }

@@ -11,6 +11,7 @@ module.exports = (grunt) ->
         src: [
           'bower_components/normalize.css/normalize.css',
           'bower_components/fontawesome/css/font-awesome.css',
+          'bower_components/highlight.js/src/styles/monokai.css',
           'out/css/default.css',
           'out/css/style.css'
         ]
