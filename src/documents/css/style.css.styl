@@ -1,19 +1,17 @@
 .layout-container
-  display: -webkit-flex
-  display: -moz-flex
-  display: flex
-  flex-flow: row
-  align-items: stretch
-  align-content: stretch
-  @media screen and (max-width: 640px)
-    flex-flow: column
+  display: block
+  @media screen and (min-width: 960px)
+    padding-left: 33%
 
 .layout-aside
-  flex: 1 1
-  @media screen and (max-width: 640px)
-    flex: none
-  min-width: 320px
+  display: block
   color: #fff
+  @media screen and (min-width: 960px)
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    width: 33%
 
   h1
     font-size: 48px
@@ -88,9 +86,7 @@
   padding: 10px
 
 .layout-main
-  flex: 2 2
-  @media screen and (max-width: 640px)
-    flex: none
+  display: block
 
 .layout-main-post
   p, h1, h2, h3, h4, pre
