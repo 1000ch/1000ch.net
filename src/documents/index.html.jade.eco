@@ -2,8 +2,23 @@
 layout: default
 ---
 
+h1 2012
 ul
-<% for post in @getCollection('posts').toJSON(): %>
+<% for post in @getCollection('2012').toJSON(): %>
+  li
+    a(href='<%= post.url %>') <%= post.title %>
+<% end %>
+
+h1 2013
+ul
+<% for post in @getCollection('2013').toJSON(): %>
+  li
+    a(href='<%= post.url %>') <%= post.title %>
+<% end %>
+
+h1 2014
+ul
+<% for post in @getCollection('2014').toJSON(): %>
   li
     a(href='<%= post.url %>') <%= post.title %>
 <% end %>

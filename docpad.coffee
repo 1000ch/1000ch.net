@@ -6,8 +6,12 @@ config = {
       url: 'http://1000ch.net'
       title: '1000ch.net'
   collections:
-    posts: ->
-      @getCollection('html').findAllLive({isPost: true}, [{date:-1}])
+    '2012': ->
+      @getCollection('html').findAllLive({relativeOutDirPath: 'posts/2012'}, [{date:-1}])
+    '2013': ->
+      @getCollection('html').findAllLive({relativeOutDirPath: 'posts/2013'}, [{date:-1}])
+    '2014': ->
+      @getCollection('html').findAllLive({relativeOutDirPath: 'posts/2014'}, [{date:-1}])
   events:
     writeAfter: (options, next) ->
       safeps = require('safeps')
