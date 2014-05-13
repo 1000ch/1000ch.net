@@ -2,8 +2,9 @@
 layout: post
 title: 画像の最適化をCLIだけで行うgrunt-imageを作った
 date: 2014-2-3
-isPost: true
 ---
+
+# 画像の最適化をCLIだけで行うgrunt-imageを作った
 
 ## GUI要らずを目指して
 
