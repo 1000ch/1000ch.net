@@ -6,12 +6,30 @@ config = {
       url: 'http://1000ch.net'
       title: '1000ch.net'
   collections:
+    indexes: ->
+      @getCollection('html').findAllLive({
+        relativeOutDirPath: 'posts',
+        isIndex: true
+      })
     '2012': ->
-      @getCollection('html').findAllLive({relativeOutDirPath: 'posts/2012'}, [{date:-1}])
+      @getCollection('html').findAllLive({
+        relativeOutDirPath: 'posts/2012'
+      }, [{date:-1}])
     '2013': ->
-      @getCollection('html').findAllLive({relativeOutDirPath: 'posts/2013'}, [{date:-1}])
+      @getCollection('html').findAllLive({
+        relativeOutDirPath: 'posts/2013'
+      }, [{date:-1}])
     '2014': ->
-      @getCollection('html').findAllLive({relativeOutDirPath: 'posts/2014'}, [{date:-1}])
+      @getCollection('html').findAllLive({
+        relativeOutDirPath: 'posts/2014'
+      }, [{date:-1}])
+  plugins:
+    ghpages:
+      deployRemote: 'www'
+      deployBranch: 'master'
+    cleanurls:
+      static: true
+      collectionName: 'indexes'
   events:
     writeAfter: (options, next) ->
       safeps = require('safeps')

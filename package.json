@@ -15,17 +15,20 @@
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {
-    "start": "node_modules/docpad/bin/docpad-server"
+    "start": "node_modules/docpad/bin/docpad-server",
+    "deploy": "docpad deploy-ghpages --env static"
   },
   "dependencies": {
     "docpad": "~6.64.0",
+    "docpad-plugin-cleanurls": "~2.7.0",
     "docpad-plugin-eco": "~2.0.3",
+    "docpad-plugin-ghpages": "~2.4.3",
+    "docpad-plugin-highlightjs": "~2.2.1",
     "docpad-plugin-jade": "~2.6.2",
     "docpad-plugin-marked": "~2.2.1",
     "docpad-plugin-partials": "~2.9.0",
     "docpad-plugin-stylus": "~2.6.0",
-    "safeps": "^2.2.11",
-    "docpad-plugin-highlightjs": "~2.2.1"
+    "safeps": "^2.2.11"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
