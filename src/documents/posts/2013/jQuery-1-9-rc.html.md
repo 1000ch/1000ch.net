@@ -4,7 +4,7 @@ title: jQuery1.9リリース候補版がリリースされました
 date: 2013-1-11
 ---
 
-## 2.0の方が興味津々ではあるけど
+# jQuery1.9リリース候補版がリリースされました
 
 - [JQUERY 1.9 RC1 AND MIGRATE RC1 RELEASED](http://blog.jquery.com/2013/01/09/jquery-1-9-rc1-and-migrate-rc1-released/)
 

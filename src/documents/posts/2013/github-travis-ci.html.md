@@ -4,7 +4,7 @@ title: Travis CIを使ったGitHubプロジェクトの継続的インテグレ�
 date: 2013-8-19
 ---
 
-## 継続的にテストをする
+# Travis CIを使ったGitHubプロジェクトの継続的インテグレーション
 
 今更感が否めないのですが、簡単にまとめました。  
 [Travis CI](https://travis-ci.org/)とはなんぞやという方はこちら。

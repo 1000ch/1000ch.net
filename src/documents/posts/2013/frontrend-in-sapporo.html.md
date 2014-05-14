@@ -4,7 +4,7 @@ title: SaCSS Special4 Frontrend in Sapporoに出演します
 date: 2013-11-11
 ---
 
-## SaCSS Special4 Frontrend in Sapporo
+# SaCSS Special4 Frontrend in Sapporoに出演します
 
 2013/12/7(土)に札幌でお話させていただく運びになりました！  
 

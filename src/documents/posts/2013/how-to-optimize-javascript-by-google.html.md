@@ -4,7 +4,7 @@ title: Google I/O 2012発 JavaScript高速化テクニックの日本語訳と�
 date: 2013-1-4
 ---
 
-## JavaScriptを高速化する13の方法
+# Google I/O 2012発 JavaScript高速化テクニックの日本語訳と考察
 
 + [13 JavaScript Performance Tips](http://www.jonefox.com/blog/2012/07/10/13-javascript-performance-tips/)
 + [Google I/O 2012発 JavaScript高速化Tips集の日本語訳](http://tech.a-listers.jp/2012/07/13/13-javascript-performance-tips/)

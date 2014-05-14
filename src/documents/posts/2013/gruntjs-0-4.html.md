@@ -4,7 +4,7 @@ title: Grunt ver0.4に向けての環境の再構築
 date: 2013-1-22
 ---
 
-## Grunt ver0.4に向けての環境の再構築
+# Grunt ver0.4に向けての環境の再構築
 
 [以前の記事](http://1000ch.net/2012/12/08/ReconsideringGruntJs/)が説明足らずだったので補足記事。  
 今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、  

@@ -4,7 +4,7 @@ title: jQuery2.0がリリースされました
 date: 2013-4-19
 ---
 
-## jQuery2.0がリリースされました
+# jQuery2.0がリリースされました
 
 - [jQuery 2.0 Released](http://blog.jquery.com/2013/04/18/jquery-2-0-released/)
 

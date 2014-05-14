@@ -4,7 +4,7 @@ title: Gistを簡易スライドにするGistSlideを作った
 date: 2013-7-5
 ---
 
-## Gistを簡易スライドにするGistSlideを作った
+# Gistを簡易スライドにするGistSlideを作った
 
 [gistslide](https://github.com/nzoschke/gistdeck)に影響されて、もうちょっとキレイに作れないかなと思い作成しました。
 デザインは[@hiloki](https://twitter.com/hiloki)氏に作って頂きました。ありがとうございます。

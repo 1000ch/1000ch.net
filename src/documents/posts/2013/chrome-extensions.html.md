@@ -4,7 +4,7 @@ title: ChromeのExtensionをウェブストアで公開した
 date: 2013-6-10
 ---
 
-## ChromeのExtensionをウェブストアで公開した
+# ChromeのExtensionをウェブストアで公開した
 
 [以前一度作りました](http://1000ch.net/2013/03/09/OneClickClearForGoogleChrome/)が、新しく欲しい機能が出来たので、別途作りました。ついでにChrome ウェブストアで公開しました。
 

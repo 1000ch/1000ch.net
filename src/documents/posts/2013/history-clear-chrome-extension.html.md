@@ -4,7 +4,7 @@ title: 閲覧履歴を簡単に消せるGoogleChromeの拡張機能を作った
 date: 2013-3-9
 ---
 
-## 閲覧履歴を簡単に消せるGoogleChromeの拡張機能を作った
+# 閲覧履歴を簡単に消せるGoogleChromeの拡張機能を作った
 
 [t32k](https://twitter.com/t32k/)氏に影響されてGoogleChromeの拡張機能を作ってみました。  
 アイコンのクリックで全履歴を消すという非常にシンプルな機能です。  

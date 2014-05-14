@@ -4,7 +4,7 @@ title: Gist + Reveal.js = GistReveal
 date: 2013-9-11
 ---
 
-## Reveal.jsの導入を簡単にしたい
+# Gist + Reveal.js = GistReveal
 
 以前[Gistを簡易スライドにするGistSlideを作った](http://1000ch.net/2013/07/05/GistSlide/)という記事を書きましたが、
 [Reveal.js](https://github.com/hakimel/reveal.js)で作られたスライドをたくさん見るようになってきた今日この頃、

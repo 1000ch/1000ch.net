@@ -4,7 +4,7 @@ title: ES6のシンタックスを予習復習(1) ~let, const, arrow function, g
 date: 2013-12-26
 ---
 
-## ECMAScript6
+# ES6のシンタックスを予習復習(1) ~let, const, arrow function, generators, for of~
 
 ES6のフォローについては書こうとしていたものの後手に回っていまして、ようやく書くに至ります。
 SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてますが、

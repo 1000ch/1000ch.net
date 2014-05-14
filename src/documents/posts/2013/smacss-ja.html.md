@@ -4,7 +4,7 @@ title: SMACSSが日本語に翻訳されました
 date: 2013-7-3
 ---
 
-## SMACSSが日本語に翻訳されました
+# SMACSSが日本語に翻訳されました
 
 [@cssradar](https://twitter.com/cssradar)氏翻訳によるSMACSSの日本語書籍が発売されました。
 

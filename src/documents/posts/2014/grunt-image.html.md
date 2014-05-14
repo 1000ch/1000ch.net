@@ -6,8 +6,6 @@ date: 2014-2-3
 
 # 画像の最適化をCLIだけで行うgrunt-imageを作った
 
-## GUI要らずを目指して
-
 Webにおける画像については[以前記事にしました](http://1000ch.net/2013/09/18/WebImageOptimization/)が、
 そのフローをより良くするべく最近gruntのモジュールを作ったのでその話を。
 

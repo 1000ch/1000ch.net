@@ -4,7 +4,7 @@ title: cssファイルとjsファイルを最小化してパフォーマンス�
 date: 2012-11-28
 ---
 
-## 転送量の削減
+# cssファイルとjsファイルを最小化してパフォーマンスを向上させる
 
 転送量削減のためのアプローチについてはgzipの他に  
 テキストファイル（.html/.css/.js）のoptimize（最適化）とminify（最小化）があります。  
@@ -60,7 +60,7 @@ $ java -jar compiler.jar --js=input1.js --js=input2.js --js_output_file=out.js
 $ java -jar yuicompressor-x.x.x.jar /path/jsfile.js -o /path/jsfile.min.js
 ```
 
-##UglifyJSの場合
+## UglifyJSの場合
 
 UglifyJSをインストール。
 

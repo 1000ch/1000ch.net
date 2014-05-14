@@ -4,8 +4,9 @@ title: MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた
 date: 2013-8-30
 ---
 
-## gh-pagesブランチの更新自動化がゴール
+# MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた
 
+gh-pagesブランチの更新自動化がゴールです。
 masterにpushするだけで内容を動的に取得してgh-pagesブランチにpushをします。
 今回もTravisのお力を借ります。以下がポイントになります。
 

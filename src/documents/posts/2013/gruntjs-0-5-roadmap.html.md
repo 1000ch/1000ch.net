@@ -4,7 +4,7 @@ title: Grunt ver0.5に向けてのロードマップ
 date: 2013-3-7
 ---
 
-## Grunt ver0.5に向けてのロードマップ
+# Grunt ver0.5に向けてのロードマップ
 
 + [Roadmap - gruntjs/grunt/wiki](https://github.com/gruntjs/grunt/wiki/Roadmap)
 

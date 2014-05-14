@@ -4,7 +4,7 @@ title: Pinput ~PinboardユーザーのためのChrome Extension~
 date: 2013-11-13
 ---
 
-## 軽量に動作するPinboardのChrome Extension
+# Pinput ~PinboardユーザーのためのChrome Extension~
 
 - [Pinboard](http://pinboard.in/) - 雑音の少ないブックマークサイト
 - [Pinput](https://chrome.google.com/webstore/detail/pinput/mbpijfbpahfjnlibcnikfkekdieojkcf) - Chromeストア
