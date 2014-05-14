@@ -4,12 +4,14 @@
     <%- @partial('meta') %>
   </head>
   <body>
-    <div class='layout-container'>
-      <div class='layout-aside'>
+    <div class='container'>
+      <div class='aside'>
         <%- @partial('aside') %>
       </div>
-      <div class='layout-main'>
-        <%- @content %>
+      <div class='main'>
+        <div class='main-content'>
+          <%- @content %>
+        </div>
       </div>
     </div>
   </body>

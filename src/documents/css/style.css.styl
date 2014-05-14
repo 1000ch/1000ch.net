@@ -1,11 +1,12 @@
-.layout-container
+.container
   display: block
   @media screen and (min-width: 960px)
     padding-left: 33%
 
-.layout-aside
+.aside
   display: block
   color: #fff
+  background: rgba(105, 57, 166, 1)
   @media screen and (min-width: 960px)
     position: fixed
     top: 0
@@ -28,7 +29,7 @@
     color: #fff
     text-decoration: none
 
-.layout-aside-bricks
+.aside-bricks
   display: block
   &.bricks--dark
     background: rgba(47, 11, 136, 1)
@@ -37,12 +38,12 @@
   &.bricks--light
     background: rgba(105, 57, 166, 1)
 
-.layout-aside-bricks::after
+.aside-bricks::after
   clear: both
   display: table
   content: ''
 
-.layout-aside-bricks__brick
+.aside-bricks__brick
   display: inline-block
   float: left
   &.brick--left
@@ -81,14 +82,18 @@
   &.bricks--light.is-active
     background: rgba(105, 57, 166, 0.95)
 
-.layout-aside-bricks__brick-inner
+.aside-bricks__brick-inner
   display: block
   padding: 10px
 
-.layout-main
+.main
   display: block
 
-.layout-main-post
+.main-content
+  padding: 10px
+  
+.main-post
+  padding: 10px 0
   p, h1, h2, h3, h4, pre
     padding: 0 10px
   ul, ol
