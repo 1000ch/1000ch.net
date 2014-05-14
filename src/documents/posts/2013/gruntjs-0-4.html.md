@@ -34,7 +34,7 @@ package.jsonも修正するなり、作り直すなり。
 
 ## grunt-contrib-watchのgitリポジトリをクローンする
 
-```sh
+```bash
 # 作業ディレクトリに移動する
 $ cd /Users/[UserName]/workspace/[ProjectName]/
 
@@ -95,7 +95,7 @@ module.exports = function(grunt) {
 このままだとstylusがないのでstylusだけはnpmから@0.4を付与して  
 grunt-contrib-stylus/node_modules/にローカルインストールしました。  
 
-```sh
+```bash
 # インストールするgrunt-contrib-stylusフォルダに移動
 $ cd ./grunt-contrib-stylus
 
@@ -117,7 +117,7 @@ importが引っかかってます。予約語っぽいですね。
 
 再度試す。  
 
-```sh
+```bash
 Waiting...OK
 >> File "animate.styl" changed.
 Running "stylus:compile" (stylus) task
@@ -145,7 +145,7 @@ Aborted due to warnings.
 
 試しにgithubリポジトリからstylusを入手。
 
-```sh
+```bash
 # インストールしたディレクトリに移動する
 $ cd ./node_modules/grunt-contrib-stylus
 
