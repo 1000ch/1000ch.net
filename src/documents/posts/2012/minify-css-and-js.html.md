@@ -48,7 +48,7 @@ UglifyJSはnode.js用なので、npm経由でインストールします。
 「--js=」で入力ファイルを、「--js_output_file」で出力ファイルを指定。  
 入力順にjsファイルが結合されて、minifyされます。  
 
-```sh
+```bash
 $ java -jar compiler.jar --js=input1.js --js=input2.js --js_output_file=out.js
 ```
 
@@ -56,7 +56,7 @@ $ java -jar compiler.jar --js=input1.js --js=input2.js --js_output_file=out.js
 
 こちらも入力ファイルと出力ファイルを指定して実行するだけ。
 
-```sh
+```bash
 $ java -jar yuicompressor-x.x.x.jar /path/jsfile.js -o /path/jsfile.min.js
 ```
 
@@ -64,13 +64,13 @@ $ java -jar yuicompressor-x.x.x.jar /path/jsfile.js -o /path/jsfile.min.js
 
 UglifyJSをインストール。
 
-```sh
+```bash
 $ npm install uglify-js
 ```
 
 入力ファイルと出力ファイルを指定して実行。
 
-```sh
+```bash
 $ ~/UglifyJS/binuglifyjs /path/jsfile.js /path/jsfile.min.js
 ```
 

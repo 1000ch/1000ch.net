@@ -62,13 +62,13 @@ CompositeLayerの生成に関してはあんまりこのパネルで見てなく
 
 PhantomJSとJavaのインストールはしてもらうとして、その後も、githubからcloneしてくるだけです。もちろんダウンロードでもOK。
 
-```sh
+```bash
 $ git clone https://github.com/soulgalore/sitespeed.io.git
 ```
 
 あとは、サイト名を指定して実行。
 
-```sh
+```bash
 $ cd sitespeed.io
 
 $ ./sitespeed.io -u http://1000ch.net

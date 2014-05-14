@@ -50,7 +50,7 @@ nodeをインストールするとnpmも自動でインストールされます�
 　  
 まず、nvm本体のインストール。  
 
-```sh
+```bash
 $ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 ```
 
@@ -61,7 +61,7 @@ nodeはnvmを使ってインストールし、インストールしたnodeは`~/
 　  
 あとはnodeを、バージョンを指定してインストールする。  
 
-```sh
+```bash
 # nodeの0.10.21をインストールする
 $ nvm install 0.10.21
 

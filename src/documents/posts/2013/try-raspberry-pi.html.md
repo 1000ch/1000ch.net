@@ -57,7 +57,7 @@ Linuxなら何でも動く風(?)だけど、基本の **Raspbian** をダウン�
 
 ### 挿す前
 
-```sh
+```bash
 % df -h
 Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
 /dev/disk1     233Gi  106Gi  126Gi    46% 27952569 33026246   46%   /
@@ -65,7 +65,7 @@ Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
 
 ### 挿した後
 
-```sh
+```bash
 % df -h
 Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
 /dev/disk1     233Gi  106Gi  126Gi    46% 27973543 33005272   46%   /
@@ -74,14 +74,14 @@ Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
 
 どうやら`/dev/disk2s1`がSDカードらしい。それをアンマウントする。  
 
-```sh
+```bash
 % diskutil unmount /dev/disk2s1
 ```
 
 ダウンロードしてきたイメージをSDに焼く。
 `/dev/disk2s1`の場合は`/dev/rdisk2`のように、先頭に`r`を付与し、最後の`s1`を除く。
 
-```sh
+```bash
 % sudo dd if=/path/to/2013-09-25-wheezy-raspbian.img of=/dev/rdisk2 bs=1m
 2825+0 records in
 2825+0 records out
@@ -91,7 +91,7 @@ Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
 思ったより時間かかりました。（10分かからなかったくらい？）  
 中身を確認してみる。
 
-```sh
+```bash
 % fd -h
 Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
 /dev/disk2s1    56Mi   18Mi   38Mi    33%      512        0  100%   /Volumes/boot
@@ -120,7 +120,7 @@ CUIからでも`startx`でGUIを起動できるし、GUIからでもXterminalと
 僕はGUIを少し楽しんだら、CUIをデフォルト起動にしました。  
 これでこのRaspberry PiにSSHでログイン出来るようになったはず。
 
-```sh
+```bash
 raspberrypi login:pi
 Password raspberry（デフォルトのままの場合）
 ```
@@ -141,7 +141,7 @@ LANケーブルでAirMacExpressと接続して`sudo reboot`でRaspberry Pi再起
 `ifconfig`とかでももちろん表示される。これは後ほどMacからのログインに使うので覚えておく。
 ネットワークに繋がっているかどうか、`ping`で確認。
 
-```sh
+```bash
 $ ping google.com
 64 bytes from kix01s04-in-f7.1e100.net (173.194.38.39): icmp_req=1 ttl=51 time=13.6 ms
 64 bytes from kix01s04-in-f7.1e100.net (173.194.38.39): icmp_req=2 ttl=52 time=12.7 ms
@@ -153,7 +153,7 @@ $ ping google.com
 アーカイブファイルがどうのこうのとエラーが出るので諦めてChromiumをインストール。
 （ちゃんと`.deb`パッケージが落ちてくるんだけど何故かダメだった。）
 
-```sh
+```bash
 $ sudo apt-get update
 $ sudo apt-get install chromium
 $ startx
@@ -167,7 +167,7 @@ $ startx
 
 今度は、さっきメモしておいたRaspberry PiのIPアドレスにMacからSSHしてみる。
 
-```sh
+```bash
 % ssh pi@[Raspberry PiのIPアドレス]
 ```
 
@@ -179,7 +179,7 @@ GUIは無理だけど。あと、無線LANでRaspberry Piにアクセスも[WPA�
 
 大変重いのが予想されますが、やってみます。
 
-```sh
+```bash
 $ sudo apt-get install jenkins
 ```
 

@@ -33,7 +33,7 @@ Enderはこうしたライブラリ達の依存関係の解決や結合と最小
 
 ## enderのインストール
 
-```sh
+```bash
 $ npm install -g ender
 ```
 
@@ -44,7 +44,7 @@ $ npm install -g ender
 
 Backboneをビルドしてみます。  
 
-```sh
+```bash
 $ ender build backbone
 # ender.js successfully built!
 # ender.min.js successfully built!
@@ -52,7 +52,7 @@ $ ender build backbone
 
 このパッケージに何のライブラリが含まれているかを確認します。  
 
-```sh
+```bash
 $ ender info
 # Active packages:
 # └─┬ backbone@0.9.2 - ...
@@ -65,7 +65,7 @@ $ ender info
 パッケージにライブラリを追加する場合はadd、削除する場合はremoveで。  
 Zeptoを追加してみます。  
 
-```sh
+```bash
 $ ender remove underscore
 # Nothing to uninstall.
 
@@ -84,7 +84,7 @@ Zeptoもカスタムビルド出来ますが、ここでインストールされ
 (polyfill zepto event detect fx ajax form touch)  
 Backboneはver0.9.2がダウンロードされましたが、0.9.9もインストール出来るのか確認。  
 
-```sh
+```bash
 $ ender add backbone@0.9.9
 # @の後にバージョン番号を付けることで指定出来る
 

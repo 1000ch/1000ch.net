@@ -67,7 +67,7 @@ print(object.key);
 MongoDBへのアクセスはpymongoでやってます。MongoDBを使ったアプリ書いたことありませんでしたが、これもまた楽に実装できました。
 ローカルでデバッグするときはHomebrewでインストールしたMongoを実行しておくのと、Herokuのときは環境変数からURLを得るようにする。
 
-```sh
+```bash
 # install mongodb
 $ brew install mongo
 

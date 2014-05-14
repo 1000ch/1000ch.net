@@ -23,13 +23,13 @@ jekyll使ったことのある人なら学習コストはさらに低めです�
 
 まずはmiddlemanのインストールから。
 
-```sh
+```bash
 $ gem install middleman
 ```
 
 プロジェクト名を指定し、`middleman init`します。
 
-```sh
+```bash
 $ middleman init middleman-playground
 ```
 
@@ -93,7 +93,7 @@ GitHubのトークンを設定ファイルに記述するのは良くないの�
 まずはGitHubのトークンを[Applications](https://github.com/settings/applications)から、Personal Access TokensのCreateで作成します。
 次にtravisのコマンドラインツールからsecureキーを取得します。
 
-```sh
+```bash
 $ gem install travis
 $ travis encrypt -r 1000ch/middleman-playground "GH_TOKEN=<生成したGitHubトークン>"
 ```

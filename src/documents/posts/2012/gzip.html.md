@@ -83,7 +83,7 @@ AddOutputFilterByType DEFLATE text/javascript
 
 あとはサーバーを再起動します。
 
-```sh
+```bash
 $ /etc/init.d/httpd restart
 ```
 

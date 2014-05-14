@@ -19,7 +19,7 @@ date: 2013-8-1
 スクリプトを差し込んで、実行すると、指摘事項がconsoleに出力されます。
 [githubのリポジトリ](https://github.com/philipwalton/html-inspector)からダウンロードするか、bowerで落としてくるか。
 
-```sh
+```bash
 $ bower install html-inspector
 ```
 
@@ -76,7 +76,7 @@ ChromeExtensionなら導入はそれなりに楽かと。
 
 こちらはnode.jsで実行されます。
 
-```sh
+```bash
 $ npm install -g csslint
 
 $ csslint target.css
@@ -89,7 +89,7 @@ grunt.jsなどで自動化するのが一般的です。
 
 インストールはこちら。
 
-```sh
+```bash
 $ npm install grunt-contrib-csslint --save-dev
 ```
 
@@ -109,7 +109,7 @@ grunt.jsの使い方は[ここ](http://1000ch.net/2013/01/22/ReconstructionOfGru
 
 JS Hintのインストール。
 
-```sh
+```bash
 $ npm install -g jshint
 ```
 

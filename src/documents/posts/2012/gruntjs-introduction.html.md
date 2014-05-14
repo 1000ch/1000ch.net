@@ -26,7 +26,7 @@ js(ほぼjson)の設定ファイル上に、concatやminifyといったような
 
 ## npmからgrunt-cliをインストールする
 
-```sh
+```bash
 $ npm install -g grunt-cli
 ```
 
@@ -39,7 +39,7 @@ $ npm install -g grunt-cli
 ここから先はローカルインストールして欲しいので、プロジェクトディレクトリに移動してください。  
 gruntのコアモジュールをインストールします。  
 
-```sh
+```bash
 $ cd /Users/[UserName]/workspace/[ProjectName]
 #以降ここをカレントディレクトリとして作業して下さい。
 
@@ -53,7 +53,7 @@ $ npm install grunt@0.4
 このままだと何も出来ないので、その他モジュールも試しにインストールします。  
 「複数cssファイルを1枚のcssファイルに結合し、最小化を自動で行う。」ということをしてみます。  
 
-```sh
+```bash
 $ cd /Users/[UserName]/workspace/[ProjectName]
 #[Project]ディレクトリ下にcssフォルダがある想定です。
 
