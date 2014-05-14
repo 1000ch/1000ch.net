@@ -7,5 +7,5 @@ h1 2014
 ul
 <% for post in @getCollection('2014').toJSON(): %>
   li
-    a(href='<%= post.url %>') <%= post.title %>
+    a(href='<%= post.url %>') [<%= @moment(post.date).format('MM/DD') %>] <%= post.title %>
 <% end %>
