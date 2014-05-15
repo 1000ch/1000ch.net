@@ -3,6 +3,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-csscomb'
   grunt.loadNpmTasks 'grunt-csso'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-copy'
 
   grunt.initConfig
@@ -17,7 +18,9 @@ module.exports = (grunt) ->
         ]
         dest: 'out/css/app.css'
       js:
-        src: []
+        src: [
+          'out/js/ga.js'
+        ]
         dest: 'out/js/app.js'
     csscomb:
       all:
@@ -27,6 +30,10 @@ module.exports = (grunt) ->
       all:
         files:
           'out/css/app.min.css': 'out/css/app.css'
+    uglify:
+      js:
+        files:
+          'out/js/app.min.js': ['out/js/app.js']
     copy:
       font:
         files: [{
@@ -36,10 +43,6 @@ module.exports = (grunt) ->
           dest: 'out/font',
           filter: 'isFile'
         }]
-    uglify:
-      js:
-        files:
-          'out/js/app.min.js': ['out/js/app.js']
 
   grunt.registerTask 'build', ['concat', 'csscomb', 'csso', 'copy']
   grunt.registerTask 'debug', ['concat', 'csso', 'copy']
