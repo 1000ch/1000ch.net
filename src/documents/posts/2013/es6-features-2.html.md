@@ -4,7 +4,7 @@ title: ES6のシンタックスを予習復習(2) ~default parameters, rest para
 date: 2013-12-27
 ---
 
-## ES6のシンタックスを予習復習(2) ~default parameters, rest parameters, array spread, destructuring~
+# ES6のシンタックスを予習復習(2) ~default parameters, rest parameters, array spread, destructuring~
 
 [先日の記事](http://1000ch.net/2013/12/26/ES6LetConstArrowFunction/)の続きです。
 
