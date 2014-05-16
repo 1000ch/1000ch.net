@@ -10,7 +10,9 @@
       </div>
       <div class='main'>
         <div class='main-post'>
+          <%- @partial('header') %>
           <%- @content %>
+          <%- @partial('footer') %>
         </div>
       </div>
     </div>
