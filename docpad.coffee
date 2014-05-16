@@ -5,16 +5,13 @@ config = {
     site:
       url: 'http://1000ch.net'
       title: '1000ch.net'
+      description: 'Happens on me, Happens from me.'
   collections:
     indexes: ->
       @getCollection('documents').findAllLive({
         relativeOutDirPath: 'posts',
         isIndex: true
       })
-    posts: ->
-      @getCollection('html').findAllLive({
-        relativeOutDirPath: 'posts'
-      }, [{date:-1}])
     '2012': ->
       @getCollection('html').findAllLive({
         relativeOutDirPath: 'posts/2012'
