@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title><%= @site.title %></title>
+    <description><%= @site.description %></description>
+    <link><%= @site.url %></link>
+    <atom:link href="http://1000ch.net/rss.xml" rel="self" type="application/rss+xml"/>
+    <% for post in @getCollection('html').findAllLive({layout: 'post'}, [{date: -1}]).toJSON(): %>
+      <item>
+        <title><%= post.title %></title>
+        <link><%= @site.url %><%= post.url %></link>
+        <pubDate><%= @moment(post.date).format() %></pubDate>
+      </item>
+    <% end %>
+  </channel>
+</rss>
