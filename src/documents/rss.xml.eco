@@ -4,7 +4,10 @@
     <description><%= @site.description %></description>
     <link><%= @site.url %></link>
     <atom:link href="http://1000ch.net/rss.xml" rel="self" type="application/rss+xml"/>
-    <% for post in @getCollection('html').findAllLive({layout: 'post'}, [{date: -1}]).toJSON(): %>
+    <% for post,index in @getCollection('html').findAllLive({layout: 'post'}, [{date: -1}]).toJSON(): %>
+      <% if index is 10:%>
+        <% break %>
+      <% end %>
       <item>
         <title><%= post.title %></title>
         <link><%= @site.url %><%= post.url %></link>
