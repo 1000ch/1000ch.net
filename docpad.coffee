@@ -12,6 +12,10 @@ config = {
         relativeOutDirPath: 'posts',
         isIndex: true
       })
+    posts: ->
+      @getCollection('html').findAllLive({
+        layout: 'post'
+      }, [{date: -1}])
     '2012': ->
       @getCollection('html').findAllLive({
         relativeOutDirPath: 'posts/2012'
@@ -25,10 +29,6 @@ config = {
         relativeOutDirPath: 'posts/2014'
       }, [{date:-1}])
   plugins:
-    rss:
-      default:
-        collection: 'posts'
-        url: '/rss.xml'
     ghpages:
       deployRemote: 'www'
       deployBranch: 'master'

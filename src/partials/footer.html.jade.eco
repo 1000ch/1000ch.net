@@ -1,0 +1,42 @@
+<% next = null %>
+<% prev = null %>
+<% posts = @getCollection('posts').toJSON() %>
+<% for document, documentIndex in posts: %>
+<% if @document.id is document.id: %>
+<% if documentIndex >= 1: %>
+<% next = posts[documentIndex - 1].url %>
+<% end %>
+<% if documentIndex < posts.length - 1: %>
+<% prev = posts[documentIndex + 1].url %>
+<% end %>
+<% end %>
+<% end %>
+
+footer.footer
+  nav.post-nav
+<% if next isnt null: %>    
+    .post-nav__item
+      a(href='<%= next %>')
+        i.fa.fa-arrow-left
+        span.accent next
+<% end %>
+    .post-nav__item
+      a(href='#top')
+        i.fa.fa-arrow-up
+        span.accent Top
+<% if prev isnt null: %>
+    .post-nav__item
+      a(href='<%= prev %>')
+        i.fa.fa-arrow-right
+        span.accent prev
+<% end %>
+  aside.post-share
+    .post-share__item
+      .fb-like(data-send='false', data-layout='box_count', data-width='80', data-show-faces='true')
+    .post-share__item
+      a.twitter-share-button(href='https://twitter.com/share', data-lang='ja', data-related='anywhereTheJavascriptAPI', data-count='vertical') Tweetする
+    .post-share__item
+      a.hatena-bookmark-button(href='http://b.hatena.ne.jp/entry/', data-hatena-bookmark-layout='vertical-balloon', title='このエントリーをはてなブックマークに追加')
+        img(src='http://b.st-hatena.com/images/entry-button/button-only.gif', alt='このエントリーをはてなブックマークに追加', width='20', height='20', style='border: none;')
+    .post-share__item
+      .g-plusone(data-size='tall', data-annotation='bubble')

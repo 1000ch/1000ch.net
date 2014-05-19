@@ -19,6 +19,7 @@ module.exports = (grunt) ->
         dest: 'out/css/app.css'
       js:
         src: [
+          'out/js/script.js',
           'out/js/ga.js'
         ]
         dest: 'out/js/app.js'
@@ -44,5 +45,5 @@ module.exports = (grunt) ->
           filter: 'isFile'
         }]
 
-  grunt.registerTask 'build', ['concat', 'csscomb', 'csso', 'copy']
-  grunt.registerTask 'debug', ['concat', 'csso', 'copy']
+  grunt.registerTask 'build', ['concat', 'csscomb', 'csso', 'copy', 'uglify']
+  grunt.registerTask 'debug', ['concat', 'csso', 'copy', 'uglify']
