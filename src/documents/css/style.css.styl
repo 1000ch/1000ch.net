@@ -4,7 +4,7 @@
 .container
   display: block
   @media screen and (min-width: 960px)
-    padding-left: 33%
+    padding-left: 320px
 
 .aside
   display: block
@@ -15,7 +15,7 @@
     top: 0
     left: 0
     bottom: 0
-    width: 33%
+    max-width: 320px
 
   h1
     font-size: 48px
@@ -97,10 +97,18 @@
   display: block
 
 .main-content
+  max-width: 640px
   padding: 10px
-  
+  margin: 0 auto
+  @media screen and (min-width: 960px)
+    padding: 20px 0
+
 .main-post
+  max-width: 640px
   padding: 10px 0
+  margin: 0 auto
+  @media screen and (min-width: 960px)
+    padding: 20px 0
   p, h1, h2, h3, h4, pre
     padding: 0 10px
   ul, ol
