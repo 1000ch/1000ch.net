@@ -41,7 +41,7 @@ module.exports = (grunt) ->
           expand: true,
           flatten: true,
           src: ['bower_components/fontawesome/fonts/*'],
-          dest: 'out/font',
+          dest: 'out/fonts',
           filter: 'isFile'
         }]
 
