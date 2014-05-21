@@ -6,14 +6,14 @@ date: 2014-03-12
 
 # PythonとMongoDBとPolymerでRSSリーダーを作った
 
-Pythonで何かアプリ書きたいなと思ってはいたので、RSSリーダーを作りました。
-フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいます。
-実物はHerokuにデプロイしてあります。
+Pythonで何かアプリ書きたいなと思ってはいたので、RSSリーダーを作った。
+フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。
 
-- [Cobra](http://cobra.herokuapp.com)
+- [Cobra](http://cobra.herokuapp.com) - Herokuにデプロイしてある実物
 - [1000ch/cobra](https://github.com/1000ch/cobra/tree/development)
 
-Flask + MongoDBのところまで実装して暫く放置していましたが、最近思いつきでPolymerをねじ込んだので記事にしてみる。
+Flask + MongoDBのところまで実装して暫く放置していたけど、
+最近思いつきでPolymerをねじ込んだので記事にしてみる。
 
 ## やってること
 
@@ -21,22 +21,27 @@ Flask + MongoDBのところまで実装して暫く放置していましたが�
 - トップページで50件ずつ記事の表示 & 非同期で50件づつ取得
 - 購読しているRSSで表示する記事をフィルタ
 
-Polymer入れる前はキープしてあるデータをごっそり表示してました。
-正直50件ずつ取得にしたことで使い心地が落ちた。使いたいだけ。
+**Opml(XML)のパース→記事の取得** に非常に時間が掛かるので、データストアに入れておいてそこから取得しないとRSSリーダーとして非実用的。
+この定期的に取得する処理を[Heroku Scheduler](https://addons.heroku.com/marketplace/scheduler)で実行している。
+あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Heroku良い。
 
-**Opml(XML)のパース→記事の取得** に非常に時間が掛かるので、何らかのデータストアに入れなければ話にならないのと、
-それを[Heroku Scheduler](https://addons.heroku.com/marketplace/scheduler)で定期実行し、実際にWebを見る時は何もしない。この辺はごく普通と思われる構成です。
-あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Herokuっていいですねー。
+最初は格納してあるデータを全件取得して表示していたが、
+50件ずつ表示にしたことで使い心地はやや下がった。Polymer使いたかっただけです。
 
 ## PythonとFlask
 
-これはハンズオンをやったことがあったので、実装は非常に簡単でした。
+Flaskは、軽量なWebアプリケーションフレームワーク。
+マイクロフレームワークの意味するところはシンプルなコアな機能と拡張性を持たせている点であり、
+それ自体にはデータベースレイヤへのアクセスモジュールなどはないが、様々な拡張モジュールが存在する。
+例えば、これについてはSQLAlchemyというORマッパーがある。
+日本語のハンズオンとドキュメントがあり、とても充実しているので試したい方にオススメ。
 
 - [Flask](http://flask.pocoo.org/)
 - [Flask ハンズオン](http://methane.github.io/flask-handson/)
+- [Flaskへようこそ](http://flask-docs-ja.readthedocs.org/)
 
 Pythonは、プロパティアクセスとかリテラル（配列・オブジェクト）がJavaScriptとほぼ同じだし、
-JSやってる人ならあまり違和感なくやれるのではと思ったりしました。
+JSやってる人ならあまり違和感なくやれるのではと思ったり。
 
 ```js
 // JavaScriptでのArrayとObject
@@ -58,12 +63,14 @@ object = {
 print(object.key);
 ```
 
-~~似てると思うのは俺だけかも。~~
+言語レベルでインデントを強制されるので、実装がばらつかない。
 
 ## MongoDBへのアクセス
 
-MongoDBへのアクセスはpymongoでやってます。MongoDBを使ったアプリ書いたことありませんでしたが、これもまた楽に実装できました。
-ローカルでデバッグするときはHomebrewでインストールしたMongoを実行しておくのと、Herokuのときは環境変数からURLを得るようにする。
+MongoDBへのアクセスはpymongoで実装。
+MongoDBを使ったことはなかったが、ここに関してもあまり悩まず実装できた。
+ローカルでデバッグするときはHomebrewでインストールしたMongoDBをデーモン実行しておくのと、
+Herokuのときは環境変数からURLを得るようにする。
 
 ```bash
 # install mongodb
@@ -99,15 +106,15 @@ Herokuの時はGunicornで起動。
 普通にHTMLテンプレートにデータ渡して描画させてるときは気にかけてなかったけど、
 Pythonの`list`オブジェクトを素直に`jsonify()`出来なくて、暫く中断。
 結果的にはMongoDBから取得しているために、`ObjectId()`があったのが要因だった。ので、[素直に`del`してる](https://github.com/1000ch/cobra/blob/development/cobra/api.py#l27)。
-JavaScriptでいうところのPluckとかMap的なことをしたい。これは後で書き直すと思う…
+JavaScriptでいうところのPluckとかMap的なことをしたい。これは後で書き直すと思う…。
 
 - [Flask RESTFul](http://flask-restful.readthedocs.org/en/latest/)
 
-`flask.jsonify()`はFlaskが提供するユーティリティで、組み込みの`json.dumps()`と何が違うんだろうと思ったら、
+`flask.jsonify()`はFlaskが提供するユーティリティで、組み込みの`json.dumps()`と何が違うのかと思っていたら、
 [引数周りを上手いことラップしたりmimetypeの指定をしてる](http://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify)らしい。薄めのラッパーだった。
 
-URLのマッピングは`/api/get/<int:skip>/<int:limit>`とし、`/api/get/10/10`とも出来たのですが、
-個人的にQuery Stringの方がなんかしっくりくるので`reqparse.RequestParser()`でパースしてます。
+URLのマッピングは`/api/get/<int:skip>/<int:limit>`とし、`/api/get/10/10`とも出来たけど、
+個人的にQuery Stringの方がなんかしっくりくるので`reqparse.RequestParser()`でパースしてる。
 
 ## Polymerのおまけ
 
@@ -149,7 +156,6 @@ Ajaxで取得したデータを以下に渡して描画。
 画面右のUIで表示する記事のフィルタリングをしていますが、その絞り込みがお粗末になってしまった。
 上で述べたループ定義を`repeat="{{ entry in entries | filterEntry }}"`とし、
 `filterEntry`関数を用意すれば良いような気がしたけど、どうも`ready`のタイミングだとエラーが出て参照できない模様。
-これもどうにかしたい…
 
 ### プロパティの監視
 
@@ -177,7 +183,8 @@ filterChanged: function filterChangedCallback(oldValue, newValue) {
 
 ### オブジェクトや配列の初期化は`created`でやったほうがベター
 
-らしいです。
+`Polymer()`の第二引数直下で初期化するとprototypeで紐付いてしまうそう。
+Polymer側で色々やっていそうだけど、`document.registerElement()`の第二引数のような感じなのか。
 
 ```js
 Polymer('x-foo', {
@@ -196,5 +203,5 @@ Polymer('x-foo', {
 
 ## その他感想
 
-Polymer要素が多めな割にあまりスコープの恩恵は受けていない作りになってます。
+Polymer要素が多めな割に、あまりスコープの恩恵は受けていない作り…。
 サーバー側も結構適当な作りなのでアドバイス欲しいです。
