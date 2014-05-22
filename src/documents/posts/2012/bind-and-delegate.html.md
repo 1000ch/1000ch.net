@@ -8,24 +8,23 @@ date: 2012-12-12
 
 ## この記事は、軽めのjQuery Advent Calendar 12日目の記事です。
 
-軽めのjQuery Advent Calendarに参加させて頂きました。2012/12/12担当。  
-割と曖昧な認識のまま進みそうなイベント周りについて記事か着ました。  
-軽めということですが、あまり簡潔にまとまっていないかも。  
+軽めのjQuery Advent Calendarに参加させて頂きました。2012/12/12担当。
+割と曖昧な認識のまま進みそうなイベント周りについて書きます。
+軽めということですが、あまり簡潔にまとまっていないかも。
 
 - [軽めのjQuery Advent Calendar 2012](http://www.adventar.org/calendars/29)
 
 ## jQueryのbindとdelegate
 
-現在は2つともonによってカバーされているイベントバインドですが、  
-敢えてこの2つのメソッドで説明させていただきます。  
-どちらも要素に対するイベントの定義に使用するメソッドですが、少し性質が違います。  
-bindは直接的なイベントの紐付けで、delegateは親要素に対しイベントを定義し、  
-バブリングにより発火を期待する間接的なイベントの紐付けです。  
+現在は2つともonによってカバーされているイベントバインドですが、敢えてこの2つのメソッドで説明します。  
+どちらも要素に対するイベントの定義に使用するメソッドですが、性質が異なり、
+bindは直接的なイベントの紐付けをする（いわゆる`addEventListener`とか`attachEvent`で）、
+delegateは親要素に対しイベントを定義しバブリングにより発火を期待する間接的なイベントの紐付けです。  
 用いるケースを挙げて比較します。  
 
 ## $().bind(type, callback)
 
-イベントハンドラはその要素に対して紐付き、保持されます。  
+イベントハンドラはその要素に対して紐付き、保持されます。
 
 ```html
 <body>
@@ -34,16 +33,17 @@ bindは直接的なイベントの紐付けで、delegateは親要素に対し�
 ```
 
 ```js
-//id=buttonIdの要素押下時のイベントを定義する
+// id=buttonIdの要素押下時のイベントを定義する
 $("#buttonId").bind("click", function() {
-    console.log("id=buttonIdがクリックされました。");
+    console.log("#buttonIdがクリックされました。");
 });
 ```
 
 ## $().delegate(selector, type, callback)
-イベントタイプとセレクタとイベントハンドラを渡します。  
-上の例と同様にid=buttonIdの要素押下時のイベントを定義するには、  
-id=buttonIdの要素を内包する要素に対してdelegateを実行します。  
+
+イベントの種類とセレクタとイベントハンドラを渡します。
+上の例と同様に`#buttonId`の要素押下時のイベントを定義するには、
+`#buttonId`の要素を内包する要素に対してdelegateを実行します。
 
 ```html
 <body>
@@ -52,31 +52,29 @@ id=buttonIdの要素を内包する要素に対してdelegateを実行します�
 ```
 
 ```js
-//bodyがid=buttonIdの要素を内包するため、bodyからdelegateを実行する
-//documentなどでもOK
+// bodyがid=buttonIdの要素を内包するため、bodyからdelegateを実行する
+// documentなどでもOK
 $("body").delegate("#buttonId", "click", function() {
-    console.log("id=buttonIdがクリックされました。");
+    console.log("#buttonIdがクリックされました。");
 });
 ```
 
-コールバック関数（第三引数）はbodyに対してバインドされます。  
+コールバック関数（第三引数）はbodyに対してバインドされます。
 よって、bodyの押下時に毎回コールされます。  
 
-bodyが内包する要素からclickイベントが伝播（バブリング）します。  
-このケースのdelegateのイメージとしては、  
-body要素のclick時に、内包する要素にid=buttonIdがあるかを検索して、  
-バブリング中にそれと一致する要素が場合にイベントハンドラが実行される。  
-といった流れです。  
+bodyが内包する要素からclickイベントが伝播（バブリング）します。
+このケースのdelegateのイメージとしては、body要素のclick時に、内包する要素にid=buttonIdがあるかを検索して、  
+バブリング中にそれと一致する要素が場合にイベントハンドラが実行される。といった流れです。  
 
 ## 両者の特徴と$().on()
 
-bindは直接バインドのため、コールバックの実行が即座に行われます。  
-delegateは都度CSS Selectorによる検索で要素の一致を探すため、  
-追加された要素に対してもCSS Selectorが一致すれば適用されます。  
+bindは直接バインドのため、コールバックの実行が即座に行われます。
+delegateは都度CSS Selectorによる検索で要素の一致を探すため、
+追加された要素に対してもCSS Selectorが一致すれば適用されます。
 
-`$().on()`は引数の与え方によってどのようにハンドルするかを振り分けており、  
-用意されているbindとdelegateメソッドはonメソッドへのショートカットです。  
-尚、jQueryはonを推奨しており、Zeptoもこの流れを踏襲しているようです。  
+`$().on()`は引数の与え方によってどのようにハンドルするかを振り分けており、
+用意されているbindとdelegateメソッドはonメソッドへのショートカットです。
+尚、jQueryはonを推奨しており、Zeptoもこの流れを踏襲しているようです。
 
 ## 非推奨なやつら
 
@@ -87,15 +85,16 @@ delegateは都度CSS Selectorによる検索で要素の一致を探すため、
 - `$().delegate()`
 - `$().undelegate()`
 
-bindとdelegateの方がわかりやすいのに。と思ったりします。  
-`$().live()`はdocumentからのdelegateになります。  
-ちなみにどれも内部でonを通ります。  
+bindとdelegateの方がわかりやすいのに。と思ったりします。
+`$().live()`はdocumentからのdelegateになります。ちなみにどれも内部でonを通ります。  
 
 ## まとめ
 
-便利なdelegateですが、複雑なセレクタだと実行までほんの僅かにタイムラグがあったり  
-undelegateの為にクロージャを内部的に保持しますので、bindよりはメモリを食います。  
-適切に使い分けましょう！  
+便利なdelegateですが、複雑なセレクタだと実行までほんの僅かにタイムラグがあったり
+undelegateの為にクロージャを内部的に保持しますので、bindよりはメモリを食います。
+それでも、Ajaxで動的に生成するコンテンツに対してイベントを定義する場合は
+都度bindするよりdelegateを1つ貼っておく方がブラウザに優しいでしょう。
+
 以上、[軽めのjQuery Advent Calendar 2012](http://www.adventar.org/calendars/29)でした！
 
 [@hiloki](http://twitter.com/hiloki)さんバトンタッチ。
