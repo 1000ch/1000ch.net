@@ -16,11 +16,14 @@
     left: 0
     bottom: 0
     max-width: 320px
-
+  @media screen and (max-width: 960px)
+    background: rgba(47, 11, 136, 1)
   h1
     font-size: 48px
+    margin: 0
   h2
     font-size: 36px
+    margin: 0
   h3
     font-size: 24px
   a
@@ -31,6 +34,10 @@
   a.active
     color: #fff
     text-decoration: none
+
+.aside-content
+  max-width: 640px
+  margin: 0 auto
 
 .will-hidden
   @media screen and (max-width: 960px)
@@ -120,6 +127,22 @@
     p, h1, h2, h3, h4, pre
       padding: 0 20px
 
+.header
+  max-width: 640px
+  margin: 0 auto
+  padding: 10px
+  @media screen and (min-width: 960px)
+    margin: 0
+    padding: 20px
+
+.footer
+  max-width: 640px
+  margin: 0 auto
+  padding: 10px
+  @media screen and (min-width: 960px)
+    margin: 0
+    padding: 20px
+    
 .post-share
   display: table
 

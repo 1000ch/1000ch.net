@@ -6,7 +6,9 @@
   <body>
     <div class='container'>
       <div class='aside'>
-        <%- @partial('aside') %>
+        <div class='aside-content'>
+          <%- @partial('aside') %>
+        </div>
       </div>
       <div class='main'>
         <div class='main-content'>
