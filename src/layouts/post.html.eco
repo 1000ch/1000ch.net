@@ -6,14 +6,16 @@
   <body>
     <div class='container'>
       <div class='aside'>
-        <%- @partial('aside') %>
+        <div class='aside-content'>
+          <%- @partial('aside') %>
+        </div>
       </div>
       <div class='main'>
+        <%- @partial('header') %>
         <div class='main-post'>
-          <%- @partial('header') %>
           <%- @content %>
-          <%- @partial('footer') %>
         </div>
+        <%- @partial('footer') %>
       </div>
     </div>
     <%- @partial('script') %>
