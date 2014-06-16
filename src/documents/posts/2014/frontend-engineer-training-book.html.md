@@ -10,7 +10,7 @@ date: 2014-06-16
 
 <blockquote class="twitter-tweet" lang="ja"><p>7/2発売です！ / “<a href="http://t.co/cxQm0qCTFU">http://t.co/cxQm0qCTFU</a>： フロントエンドエンジニア養成読本 [HTML、CSS、JavaScriptの基本から現場で役立つ技術まで満載! ] (Software Design plus…” <a href="http://t.co/IeOxwfY1ZY">http://t.co/IeOxwfY1ZY</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/statuses/477357597029199874">2014, 6月 13</a></blockquote>
 
-変化の激しいWeb技術ですが、その中でも最近の要所を抑えつつ、（出来るだけ）息長く今後に活かせるような内容を取り扱っています。
+変化の激しいWeb技術ですが、昨今の要所を抑えつつ、（出来るだけ）息長く今後に活かせるような内容を取り扱っています。
 カバー範囲が広い（後述）1冊になっていますが、自分に足りない、あるいは興味のある章だけ掻い摘んでもらっても、きっと何か得るものがあるかと。
 私自身、執筆にあたって勉強したのはもちろんですが、他の章を見ながらたくさん勉強させて頂きました。
 
