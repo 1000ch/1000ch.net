@@ -66,15 +66,17 @@ Android、Chrome、Go、Cloud、Designといったようなテーマ毎に開放
 
 <img src='/img/posts/google-io-2014/sandbox.jpg' width='100%'>
 
-Request questの話をしているJake Archibald
+**Request questの話をしているJake Archibald**
 
-狭いスペースにはなるけど、スピーカーとの距離は断然近いし、質問とかも適時し易い雰囲気。（Googlerと喋りたいのであれば、もしかしたらここが一番良いのではないか？）こういう形式も良いと思った。
+狭いスペースにはなるけど、スピーカーとの距離は断然近いし、質問とかも適時し易い雰囲気(Googlerと喋りたいのであれば、もしかしたらここが一番良いのではないか？)。こういう形式も良いと思った。
 
 ### Code Labs
 
 パソコンが並べてあって、用意されている課題みたいなのを自力でやっていくコーナー。Code Labsには参加しなかったけど、たぶん手厚いサポートが受けられるんだと思う。
 
 <img src='/img/posts/google-io-2014/code-labs.jpg' width='100%'>
+
+今回はAndroid Studio startup、Google Cloud Platoform、Nest API、Polymer startupの4つが用意されていた。
 
 ## Cafeスペース
 
@@ -90,7 +92,7 @@ Request questの話をしているJake Archibald
 
 <img src='/img/posts/google-io-2014/after-party.jpg' width='100%'>
 
-年齢確認のため、例によってパスポートチェックを受けた後、手にスタンプを押されてパ＝ティーの敷地内に入る。会場は見ての通り屋外で、雨降ったらどうなるんだろうと思いつつ、のんびりしてきた。皆お祭り気分で、なんとも言えない高揚感といいますか。
+年齢確認のため、例によってパスポートチェックを受けた後、手にスタンプを押されてパーティーの敷地内に入る。会場は見ての通り屋外で、雨降ったらどうなるんだろうと思いつつ、のんびりしてきた。皆お祭り気分で、なんとも言えない高揚感といいますか。これもまたGoogle I/Oの醍醐味の1つなのかも。
 
 ## アメリカ・サンフランシスコ
 
