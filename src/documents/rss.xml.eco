@@ -12,6 +12,7 @@
         <title><%= post.title %></title>
         <link><%= @site.url %><%= post.url %></link>
         <pubDate><%= @moment(post.date).format() %></pubDate>
+        <description><%= post.content %></description>
       </item>
     <% end %>
   </channel>
