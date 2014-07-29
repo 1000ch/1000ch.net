@@ -101,7 +101,7 @@ $ travis encrypt -r 1000ch/middleman-playground "GH_TOKEN=<生成したGitHubト
 
 生成されたキーを`.travis.yml`に追記します。
 
-```yaml
+```
 language: ruby
 rvm: 2.0.0
 env:

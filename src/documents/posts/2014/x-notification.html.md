@@ -15,7 +15,7 @@ XMLHttpRequest部分を抽象化している[`core-ajax`](https://github.com/Pol
 
 `npm`か`bower`でどうぞ。もちろんリポジトリをクローンでも。
 
-```sh
+```bash
 $ npm install x-notification
 $ bower install x-notification
 ```

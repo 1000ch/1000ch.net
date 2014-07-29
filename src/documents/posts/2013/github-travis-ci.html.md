@@ -46,7 +46,7 @@ Travis側に自動で認識される設定ファイルです。このファイ�
 
 こちらは`.travis.yml`のサンプルです。  
 
-```yaml
+```
 language: node_js
 node_js:
     - "0.10"
