@@ -1,6 +1,7 @@
 ---
 layout: post
 title: HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた
+description: 第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O- でWeb ComponentsとPolymerについてお話してきました。 Google I/O 2014に参加したことは前段の通りで、 今回はEric Bidelmanによる、 Polymer and Web Components change everything you know about Web development のフィードバックという形でセッションしました。
 date: 2014-07-31
 ---
 
