@@ -8,7 +8,7 @@ date: 2014-07-31
 
 [第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O-](https://atnd.org/events/53826) でWeb ComponentsとPolymerについてお話してきました。
 [Google I/O 2014に参加した](http://1000ch.net/posts/2014/google-io-2014.html)ことは前段の通りで、
-今回は[Eric Bidelmanによる、 [**Polymer and Web Components change everything you know about Web development**](http://youtu.be/8OJ7ih8EE7s) のフィードバックという形でセッションしました。
+今回はEric Bidelmanによる、 [**Polymer and Web Components change everything you know about Web development**](http://youtu.be/8OJ7ih8EE7s) のフィードバックという形でセッションしました。
 会場はグリー@六本木ヒルズで開催されましたが、そのセミナールームをほぼ埋める300人超の参加者がいまして戦々恐々の中としてました。
 
 ## 当日の資料等
@@ -19,9 +19,9 @@ date: 2014-07-31
 
 <script async class="speakerdeck-embed" data-id="68ef20c0f9bf013175412a749889ce68" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
-Google I/O 2014でのWeb Components/Polymerに関する新ネタとしては、やはりMaterial Designが色濃かったような印象で、その他は2014年の状況に合わせてアップデートされた内容でした。
+Google I/O 2014でのWeb Components/Polymerに関する新ネタとしては、やはりMaterial DesignからのPaper Elementsが色濃かったような印象で、その他は2014年の状況に合わせてアップデートされた内容でした。
 
-フォローアップも兼ねてHTML5 Experts.jpに[Web Componentsが変えるWeb開発の未来](http://html5experts.jp/1000ch/8906/)という記事も書いていますので、宜しければどうぞ。
+フォローアップも兼ねてHTML5 Experts.jpに [**Web Componentsが変えるWeb開発の未来**](http://html5experts.jp/1000ch/8906/) という記事も書いていますので、宜しければどうぞ。
 
 ## Web Components ∈ Polymer
 
