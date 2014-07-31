@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Frontrend in Fukuokaでブラウザの仕組みとComputingについて喋ってきました
+title: Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた
 date: 2014-2-2
 ---
 
-# Frontrend in Fukuokaでブラウザの仕組みとComputingについて喋ってきました
+# Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた
 
 2014年1月25日にFrontrend in Fukuokaが開催されました。
 
@@ -31,7 +31,9 @@ date: 2014-2-2
 
 私のセッションではBrowser Computing Structureということで、WebサイトのパフォーマンスをComputingの観点から攻めるべく
 ブラウザの仕組みを知り、メモリの仕組みを知り、JavaScriptを制すといったような内容でした。
-スライドは後日Speaker Deckにて公開しますので、よろしければ見てください。
+
+<script async class="speakerdeck-embed" data-id="178c76b068ca013133ba7691c1dda2be" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
 参考リンクは[こちら](https://gist.github.com/1000ch/8611733)をどうぞ。ボリューム多いですが、参考になるリンクばかりです。
 
 ## ありがとうございました
