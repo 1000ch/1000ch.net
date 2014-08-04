@@ -2,6 +2,7 @@
 layout: post
 title: Web製作者のためのCSS設計の教科書 書評
 date: 2014-08-04
+description: この本を読んで、より良いWeb開発を。
 ---
 
 # Web製作者のためのCSS設計の教科書 書評
