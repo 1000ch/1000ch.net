@@ -4,20 +4,21 @@
     <%- @partial('meta') %>
   </head>
   <body>
+    <%- @partial('header') %>
     <div class='container'>
+      <div class='main'>
+        <div class='main-content'>
+          <%- @content %>
+        </div>
+        <%- @partial('post-footer') %>
+      </div>
       <div class='aside'>
         <div class='aside-content'>
           <%- @partial('aside') %>
         </div>
       </div>
-      <div class='main'>
-        <%- @partial('header') %>
-        <div class='main-post'>
-          <%- @content %>
-        </div>
-        <%- @partial('footer') %>
-      </div>
     </div>
+    <%- @partial('footer') %>
     <%- @partial('script') %>
   </body>
 </html>

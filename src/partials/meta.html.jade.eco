@@ -4,7 +4,6 @@ title <%= if @document.title then "#{@document.title} | #{@site.title}" else @si
 link(rel='icon', href='/favicon.png')
 link(rel='shortcut icon', href='/img/favicon.png')
 link(rel='shortcut icon', type='image/svg+xml' sizes='any' href='/img/favicon.svg')
-link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Coming+Soon')
 link(rel='stylesheet', href='/css/app.min.css')
 meta(property='og:type', content='article')
 meta(property='og:url', content='<%= @site.url %><%= @document.url %>')

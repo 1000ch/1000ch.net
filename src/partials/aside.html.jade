@@ -1,41 +1,52 @@
-.aside-bricks
-  .aside-bricks__brick.brick--12.bricks--dark.brick--left
-    a.aside-bricks__brick-inner(href='http://1000ch.net')
-      h1.accent 1000ch.net
-  .aside-bricks__brick.brick--3.bricks--dark.brick--center
-    a.aside-bricks__brick-inner(href='/rss.xml')
-      i.fa.fa-rss.fa-2x
-  .aside-bricks__brick.brick--3.bricks--dark.brick--center
-    a.aside-bricks__brick-inner(href='http://twitter.com/1000ch')
-      i.fa.fa-twitter.fa-2x
-  .aside-bricks__brick.brick--3.bricks--dark.brick--center
-    a.aside-bricks__brick-inner(href='http://github.com/1000ch')
-      i.fa.fa-github.fa-2x
-  .aside-bricks__brick.brick--3.bricks--dark.brick--center
-    a.aside-bricks__brick-inner(href='/about.html')
-      i.fa.fa-star.fa-2x
+.aside-profile
+  h2 Who am I?
+  p
+    img(src='/img/1000ch.png', width='128', height='128', style='float: left;')
+    | I'm 1000ch. Engineer at CyberAgent, Inc.
+    | I worked as back-end engineer before, and now work as front-end engineer, performance evangelist, open-source geek.
+    | Particularly in recent, I write and speak about Web Components, WebRTC, MediaElements(WebAudio+WebVideo), ECMAScript 6.
+    | My little spare time is spent writing junk codes which are hosted on GitHub.
 
-.aside-bricks
-  .aside-bricks__brick.brick--12.bricks--normal
-    .aside-bricks__brick-inner.will-hidden
-      h2 Posts
-      ul
-        li
-          a(href='/posts/2014') 2014
-        li
-          a(href='/posts/2013') 2013
-        li
-          a(href='/posts/2012') 2012
+.aside-elsewehere
+  h2 Elsewhere
+  ul
+    li
+      | GitHub: 
+      a(href='http://github.com/1000ch') 1000ch
+    li
+      | Twitter: 
+      a(href='http://twitter.com/1000ch') @1000ch
+    li
+      | LinkedIn: 
+      a(href='http://www.linkedin.com/in/1000ch') in/1000ch
+    li
+      | HTML5Experts.jp: 
+      a(href='http://html5experts.jp/1000ch/') 1000ch
+    li
+      | Pinboard: 
+      a(href='https://pinboard.in/u:1000ch/') u:1000ch
+    li
+      | npm:
+      a(href='https://www.npmjs.org/~1000ch') ~1000ch
 
-.aside-bricks
-  .aside-bricks__brick.brick--12.bricks--light
-    .aside-bricks__brick-inner.will-hidden
-      .fb-like-box(
-        data-href='https://www.facebook.com/1000ch.net'
-        data-width='300'
-        data-height='180'
-        data-show-faces='true'
-        data-header='false'
-        data-stream='false'
-        data-show-border='false'
-      )
+.aside-pickup
+  h2 Pickup
+  ul
+    li
+      a(href='http://article.enja.io/articles/give-png-a-chance.html') Give PNG a chance
+    li
+      a(href='https://medium.com/@1000ch/we-should-optimize-images-8435760e0ec9') We should optimize images
+    li
+      a(href='http://html5experts.jp/1000ch/8906/') Web Componentsが変えるWeb開発の未来
+
+.aside-likebox
+  h2 Facebook
+  .fb-like-box(
+    data-href='https://www.facebook.com/1000ch.net'
+    data-width='300'
+    data-height='180'
+    data-show-faces='true'
+    data-header='false'
+    data-stream='false'
+    data-show-border='false'
+  )

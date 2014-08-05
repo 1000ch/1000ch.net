@@ -1,144 +1,40 @@
-.accent
-  font-family: 'Coming Soon', cursive
+.header
+  margin 0 auto
+  padding 10px
+  max-width 960px
 
-.large
-  font-size: 150%
+.footer
+  margin 0 auto
+  padding 10px
+  max-width 960px
 
 .container
-  display: block
-  @media screen and (min-width: 960px)
-    padding-left: 320px
+  margin 0 auto
+  max-width 960px
+  display flex
+  flex-direction row
+  @media screen and (max-width: 640px)
+    flex-direction column
 
 .aside
-  display: block
-  color: #fff
-  background: rgba(105, 57, 166, 1)
-  @media screen and (min-width: 960px)
-    position: fixed
-    top: 0
-    left: 0
-    bottom: 0
-    max-width: 320px
-  @media screen and (max-width: 960px)
-    background: rgba(47, 11, 136, 1)
-  h1
-    font-size: 48px
-    margin: 0
-  h2
-    font-size: 36px
-    margin: 0
-  h3
-    font-size: 24px
-  a
-    color: #fff
-    text-decoration: underline
-  a:hover,
-  a:active,
-  a.active
-    color: #fff
-    text-decoration: none
+  min-width 320px
+  max-width 320px
+  margin: 0 auto
+  @media screen and (max-width: 640px)
+    min-width 100%
 
 .aside-content
-  max-width: 640px
-  margin: 0 auto
-
-.will-hidden
-  @media screen and (max-width: 960px)
-    display: none !important
-
-.aside-bricks
-  display: block
-  &.bricks--dark
-    background: rgba(47, 11, 136, 1)
-  &.bricks--normal
-    background: rgba(76, 34, 151, 1)
-  &.bricks--light
-    background: rgba(105, 57, 166, 1)
-
-.aside-bricks::after
-  clear: both
-  display: table
-  content: ''
-
-.aside-bricks__brick
-  display: inline-block
-  float: left
-  &.brick--left
-    text-align: left
-  &.brick--center
-    text-align: center
-  &.brick--right
-    text-align: right
-
-  &.brick--12
-    width: 100%
-  &.brick--6
-    width: 50%
-  &.brick--4
-    width: 33%
-  &.brick--3
-    width: 25%
-  &.brick--2
-    width: 12.5%
-  &.brick--1
-    width: 6.25%
-
-  &.bricks--dark
-    background: rgba(47, 11, 136, 1)
-  &.bricks--dark:hover,
-  &.bricks--dark.is-active
-    background: rgba(47, 11, 136, 0.95)
-  &.bricks--normal
-    background: rgba(76, 34, 151, 1)
-  &.bricks--normal:hover,
-  &.bricks--normal.is-active
-    background: rgba(76, 34, 151, 0.95)
-  &.bricks--light
-    background: rgba(105, 57, 166, 1)
-  &.bricks--light:hover,
-  &.bricks--light.is-active
-    background: rgba(105, 57, 166, 0.95)
-
-.aside-bricks__brick-inner
-  display: block
-  padding: 10px
+  padding 10px
 
 .main
-  display: block
+  margin: 0 auto
+  @media screen and (max-width: 640px)
+    min-width 100%
 
 .main-content
-  max-width: 640px
-  margin: 0 auto
-  padding: 10px
-  @media screen and (min-width: 960px)
-    margin: 0
-    padding: 20px
-
-.main-post
-  max-width: 640px
-  margin: 0 auto
   padding: 10px
   ul, ol
     padding-left: 2em
-  @media screen and (min-width: 960px)
-    margin: 0
-    padding: 20px
-
-.header
-  max-width: 640px
-  margin: 0 auto
-  padding: 10px
-  @media screen and (min-width: 960px)
-    margin: 0
-    padding: 20px
-
-.footer
-  max-width: 640px
-  margin: 0 auto
-  padding: 10px
-  @media screen and (min-width: 960px)
-    margin: 0
-    padding: 20px
     
 .post-share
   display: table
