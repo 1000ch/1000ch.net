@@ -15,19 +15,19 @@
 nav.post-nav
 <% if next isnt null: %>    
   .post-nav__item
-    a(href='<%= next %>')
-      i.fa.fa-arrow-left
-      span.accent next
+    i.fa.fa-arrow-left
+    | 
+    a(href='<%= next %>') Next
 <% end %>
   .post-nav__item
-    a(href='#top')
-      i.fa.fa-arrow-up
-      span.accent Top
+    i.fa.fa-arrow-up
+    | 
+    a(href='#top') Top
 <% if prev isnt null: %>
   .post-nav__item
-    a(href='<%= prev %>')
-      i.fa.fa-arrow-right
-      span.accent prev
+    i.fa.fa-arrow-right
+    | 
+    a(href='<%= prev %>') Prev
 <% end %>
 
 aside.post-share
