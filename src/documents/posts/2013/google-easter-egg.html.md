@@ -57,11 +57,11 @@ date: 2013-5-14
 
 ## [google sphere](https://www.google.co.jp/search?q=google%20sphere)
 
-球状に回転します。[現在の置き場はこちら](http://www.mrdoob.com/projects/chromeexperiments/google-sphere/)。  
+球状に回転します。[現在の置き場はこちら](http://www.mrdoob.com/projects/chromeexperiments/google-sphere/)。
 
 ## [google pacman](https://www.google.co.jp/search?q=google%20pacman)
 
-パックマンが遊べます。[現在の置き場はこちら](http://www.google.com/doodles/30th-anniversary-of-pac-man)。  
+パックマンが遊べます。[現在の置き場はこちら](http://www.google.com/doodles/30th-anniversary-of-pac-man)。
 
 ## [google les paul](https://www.google.co.jp/search?q=google%20les%20paul)
 

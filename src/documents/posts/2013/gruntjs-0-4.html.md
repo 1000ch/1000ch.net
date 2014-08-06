@@ -17,20 +17,20 @@ date: 2013-1-22
 - **gruntfile.jsに設定を記述する**
 
 という流れはそのままです。モジュールをローカルインストールの辺りを詳しく説明します。  
-package.jsonも修正するなり、作り直すなり。  
+package.jsonも修正するなり、作り直すなり。
 
 ## grunt-contrib-xxx
 
-[公式](http://github.com/gruntjs)で配布しているモジュール群は  
+[公式](http://github.com/gruntjs)で配布しているモジュール群は
 
 - **grunt-contrib-xxx/master**
 - **grunt-contrib-xxx/grunt-3.0-stable**
 
-というように安定版ブランチと開発ブランチが切られています。  
-開発ブランチは0.4系に向けた開発が行われているので、この開発ブランチを手に入れましょう。  
-登録されていればnpm経由でも入手出来ますが、githubリポジトリから取得した方が  
-常に最新のリソースを得ることが出来ますのでオススメです。  
-（…edgeで頑張るには。）  
+というように安定版ブランチと開発ブランチが切られています。
+開発ブランチは0.4系に向けた開発が行われているので、この開発ブランチを手に入れましょう。
+登録されていればnpm経由でも入手出来ますが、githubリポジトリから取得した方が
+常に最新のリソースを得ることが出来ますのでオススメです。
+（…edgeで頑張るには。）
 
 ## grunt-contrib-watchのgitリポジトリをクローンする
 
@@ -48,16 +48,16 @@ $ cd ./node_modules/
 $ git clone https://github.com/gruntjs/grunt-contrib-watch.git
 ```
 
-npm経由でインストールされるリソースはnode_modulesに配置されるので  
-その場所にクローンしてgruntに参照してもらおうということです。  
-私の場合はconcat/mincss/uglify/watchの5つを使用していますが、動きます。  
-[package.json](http://github.com/1000ch/playground/blob/master/package.json)も作り直しましたが、前述の通りlink出来ないものもアリ。  
+npm経由でインストールされるリソースはnode_modulesに配置されるので
+その場所にクローンしてgruntに参照してもらおうということです。
+私の場合はconcat/mincss/uglify/watchの5つを使用していますが、動きます。
+[package.json](http://github.com/1000ch/playground/blob/master/package.json)も作り直しましたが、前述の通りlink出来ないものもアリ。
 
 ## grunt@0.4でstylusのコンパイルを自動化してみよう…
 
-stylusのファイルに変更がかかった場合に自動でコンパイルされるタスクを作ってみます。  
-animate.cssをフォークしてstylusから生成するという無駄なことをしながら実践したので、  
-サンプルとしてgithubに置いておきます。  
+stylusのファイルに変更がかかった場合に自動でコンパイルされるタスクを作ってみます。
+animate.cssをフォークしてstylusから生成するという無駄なことをしながら実践したので、
+サンプルとしてgithubに置いておきます。
 
 + [1000ch / animate.css](http://github.com/1000ch/animate.css)
 
@@ -92,8 +92,8 @@ module.exports = function(grunt) {
 
 ## stylusはnpmから落としてみる
 
-このままだとstylusがないのでstylusだけはnpmから@0.4を付与して  
-grunt-contrib-stylus/node_modules/にローカルインストールしました。  
+このままだとstylusがないのでstylusだけはnpmから@0.4を付与して
+`grunt-contrib-stylus/node_modules/`にローカルインストールしました。
 
 ```bash
 # インストールするgrunt-contrib-stylusフォルダに移動
@@ -109,13 +109,13 @@ $ cd ../../
 $ grunt watch
 ```
 
-で、コンパイルしてみると以下の2ファイルがエラーになるので手直し。  
-importが引っかかってます。予約語っぽいですね。  
+で、コンパイルしてみると以下の2ファイルがエラーになるので手直し。
+importが引っかかってます。予約語っぽいですね。
 
 - **grunt-contrib-stylus/node_modules/stylus/lib/visitor/compiler.js**
 - **grunt-contrib-stylus/node_modules/stylus/lib/visitor/evaluater.js**
 
-再度試す。  
+再度試す。
 
 ```bash
 Waiting...OK
@@ -137,7 +137,7 @@ Warning: Stylus failed to compile. Use --force to continue.
 Aborted due to warnings.
 ```
 
-うーん、動かない。stylファイルが変ですか？  
+うーん、動かない。stylファイルが変ですか？
 
 ## npmではなくgitからcloneしてみる
 
@@ -165,14 +165,13 @@ $ cd ../../../
 $ grunt watch
 ```
 
-色々依存関係を解決後も、相変わらず同じエラーが出ます。  
+色々依存関係を解決後も、相変わらず同じエラーが出ます。
 
 ## stylusのcompile出来ませんでした
 
-stylusとgrunt-contrib-stylusの連携がまだ駄目ってことですかね…。  
-stylファイルが間違っているのか、stylusがedgeであるからなのか、  
-はたまたgrunt-contrib-stylusがedgeであるからなのか。  
-わからない。助けて。  
+stylusと`grunt-contrib-stylus`の連携がまだ駄目ってことですかね…。
+stylファイルが間違っているのか、stylusがedgeであるからなのか、
+はたまた`grunt-contrib-stylus`がedgeであるからなのか。わからない。
 
 ## 関連リンク
 
