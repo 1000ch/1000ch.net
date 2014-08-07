@@ -1,10 +1,10 @@
 ---
 layout: post
-title: ES6のシンタックスを予習復習(1) ~let, const, arrow function, generators, for of~
+title: ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~
 date: 2013-12-26
 ---
 
-# ES6のシンタックスを予習復習(1) ~let, const, arrow function, generators, for of~
+# ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~
 
 ES6のフォローについては書こうとしていたものの後手に回っていまして、ようやく書くに至ります。
 SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてますが、
