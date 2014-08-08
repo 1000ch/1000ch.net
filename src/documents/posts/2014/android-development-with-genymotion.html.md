@@ -7,7 +7,7 @@ description: Androidはじめました。
 
 # Android Studio+GenymotionではじめるAndroid開発
 
-クライアントサイドのネイティブアプリを作れればiOSでもAndroidでも良かったのだけど、Android Wearだののプラットフォーム戦略にもやや興味あるし、Javaのリハビリもしたかったし、そんなこんなでAndroidをはじめました。
+クライアントサイドのネイティブアプリを作れればiOSでもAndroidでも良かったのだけど、プラットフォームへの興味もあるし、Javaのリハビリもしたかったし、そんなこんなでAndroidをはじめた。
 
 ## [Android Studio](https://developer.android.com/sdk/installing/studio.html) or [Eclipse](https://developer.android.com/sdk/index.html)
 
