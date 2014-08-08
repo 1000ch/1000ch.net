@@ -3,7 +3,9 @@ layout: default
 isIndex: true
 ---
 
-h1 2014
+h1
+  i.fa.fa-calendar.fa--has-margin
+  | 2014
 ul
 <% for post in @getCollection('2014').toJSON(): %>
   li
