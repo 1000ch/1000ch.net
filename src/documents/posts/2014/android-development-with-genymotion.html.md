@@ -63,10 +63,6 @@ AVDは **AVD Manager** からデバイスの種類やターゲットになるAnd
 
 GenymotionはVirtualBoxに依存しており、予めVirtualBoxをインストールしておく必要がある。仮想マシンを用意するという意味では、改めて疑問を抱く余地はない。
 
-### VirtualBoxの不具合らしき
-
-元々インストールしてあったVirtualBoxの **v4.3.12** ではGenymotionがうまく起動しなかった。最新の **v4.3.14** を再度インストールしたところ、Genymotionもとい作成した仮想Nexus 5が起動した。
-
 ### Genymotionから起動したAndroidでアプリをデバッグ
 
 Genymotionで仮想デバイスを起動したあとは、 **Choose a running device** の一覧にその端末が追加されているはずなので、それを選ぶだけ。
