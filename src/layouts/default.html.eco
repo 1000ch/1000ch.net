@@ -4,7 +4,9 @@
     <%- @partial('meta') %>
   </head>
   <body>
-    <%- @partial('header') %>
+    <div class='header-container'>
+      <%- @partial('header') %>
+    </div>
     <div class='container'>
       <div class='main'>
         <div class='main-content'>
@@ -17,7 +19,9 @@
         </div>
       </div>
     </div>
-    <%- @partial('footer') %>
+    <div class='footer-container'>
+      <%- @partial('footer') %>
+    </div>
     <%- @partial('script') %>
   </body>
 </html>
