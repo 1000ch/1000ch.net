@@ -13,13 +13,13 @@ description: Androidはじめました。
 
 まだAndroid StudioがBeta版なせいか、トップにはEclipseのダウンロードリンクが貼られていたりするけど、Android Studioを選んだ。Android Studioを推奨している雰囲気をひしひしと感じるのと、私は **『IDEといえばIntelliJかWebStormでしょ』** という属性の人間なので、IntelliJ Platformなら間違いないだろ！という偏った視点もありつつ。
 
-古いデバイスを考慮するにしても、SDKがあれば後方互換性は特に気にすることなく開発が出来るはずなので、Eclipseはアプリ開発の互換性というよりプロジェクトの開発互換性のために残されているのでは。
+古いデバイスを考慮するにしても、SDKがあれば後方互換性については特に気にすることなく開発が出来るはずなので、Eclipseはアプリ開発の互換性というよりプロジェクトの開発互換性のために残されているのでは。
 
 ## Android StudioもCanary Buildを使う
 
-これについても、もはや気持ちの問題かと思いますが、新しいビルドのものを使っておこうということで設定をする。
+もはや気持ちの問題かと思いますが、新しいビルドのものを使っておこうということで設定をする。
 
-**Preferences** (Command + `,`)を開いて、 **Updates** を選択すると、更新チェックするチャネルを選べるので、 **Canary Channel** を選択。
+**Preferences** (`cmd + ,`)を開いて、 **Updates** を選択すると、更新チェックするチャネルを選べるので、 **Canary Channel** を選択。
 
 <img src='/img/posts/android-development-with-genymotion/android-studio-preferences-updates.png' width='100%'>
 
@@ -29,9 +29,9 @@ EclipseにもAndroid StudioにもSDKは同梱されているんだけど、別�
 
 - [Installing the Stand-alone SDK Tools](https://developer.android.com/sdk/installing/index.html?pkg=tools)
 
-IDEにバンドルされているSDKでも基本的に問題は無さそうだが、気分的に別途管理したかったのと、[詳しい人](http://twitter.com/wasabeef_jp)に聞いてみると、Eclipseからも同じSDKを参照したい場合等にスタンドアロンにしておかないと面倒と言っていた。なるほど。
+IDEにバンドルされているSDKでも基本的に問題は無さそうだが、気分的に別途管理したかったのと、詳しい人に聞いてみると、Eclipseからも同じSDKを参照したい場合等にスタンドアロンにしておかないと面倒と言っていた。なるほど。
 
-Android StudioからスタンドアロンなSDKを参照するので、 **Project Structure** (Command + `;`)を開いて、 **SDK Location > Android SDK Location** にダウンロードして解凍したディレクトリルートを指定する。
+Android StudioからスタンドアロンなSDKを参照するので、 **Project Structure** (`cmd + ;`)を開いて、 **SDK Location > Android SDK Location** にダウンロードして解凍したディレクトリルートを指定する。
 
 <img src='/img/posts/android-development-with-genymotion/android-studio-project-structure.png' width='100%'>
 
@@ -41,19 +41,12 @@ Android StudioからスタンドアロンなSDKを参照するので、 **Projec
 
 自動作成されたプロジェクトは既にコンパイルして実行することが可能になっているが、 **Run** から実行しようとすると **Choose Device** という画面が表示され、どの環境で実行するかを聞かれる。最初はここが空の状態のはず。
 
-### Launch Emulator
-
-Android Studio上で仮想のAndroid環境を作ってそれを指定することが出来る。その仮想環境は **Android Virtual Device** の頭文字を取って **AVD** と呼ぶようです。
-
-AVDは **AVD Manager** からデバイスの種類やターゲットになるAndroidのバージョン等を細かく指定してイメージを作ることが出来る。
-
-### Choose a running device
-
-こっちは接続中のデバイスを使ってアプリケーションを起動する。たぶん、コードをビルドして`.apk`をアップロードしてるんだと思われる。実機でやる場合はUSBで繋げる他、USBデバッグをオンするとOK。
+1. **Launch Emulator** - Android Studio上で仮想のAndroid環境を作ってそれを指定することが出来る。その仮想環境は **Android Virtual Device** の頭文字を取って **AVD** と呼ぶみたい。 **AVD Manager** からデバイスの種類やターゲットになるAndroidのバージョン等を細かく指定してイメージを作ることが出来る。
+2. **Choose a running device** こっちは接続中のデバイスを使ってアプリケーションを起動する。たぶん、コードをビルドして`.apk`をアップロードしてるんだと思われる。実機でやる場合はUSBで繋げる他、USBデバッグをオンするとOK。
 
 ## [Genymotion](http://www.genymotion.com/)
 
-実機でのテストは必要になるものの、AVDを使って基本的な開発を行っていくことを考えると、AVDは設定が如何せん面倒な上に起動が遅い。
+実機でのテストは必要になるものの、AVDを使って基本的な開発を行っていくことを考えると、Android StudioのAVDは設定が如何せん面倒な上に起動が遅い。
 
 そこで、[Genymotion](http://www.genymotion.com/)というものを勧めてもらった。サードパーティのAndroidエミュレータだが、本家より起動が速く、軽快に動作するという特徴がある。
 
@@ -61,7 +54,7 @@ AVDは **AVD Manager** からデバイスの種類やターゲットになるAnd
 
 <img src='/img/posts/android-development-with-genymotion/genymotion.png' width='100%'>
 
-GenymotionはVirtualBoxに依存しており、予めVirtualBoxをインストールしておく必要がある。仮想マシンを用意するという意味では、改めて疑問を抱く余地はない。
+GenymotionはVirtualBoxに依存しており、予めVirtualBoxをインストールしておく必要がある。Androidの仮想環境を用意するという意味では、改めて疑問を抱く余地はない。
 
 ### Genymotionから起動したAndroidでアプリをデバッグ
 
