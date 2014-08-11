@@ -9,6 +9,8 @@ description: Androidはじめました。
 
 クライアントサイドのネイティブアプリを作れればiOSでもAndroidでも良かったのだけど、プラットフォームへの興味もあるし、Javaのリハビリもしたかったし、そんなこんなでAndroidをはじめた。
 
+今回はAndroidの開発を始めるにあたり、どんな環境を構築したかのお話。
+
 ## [Android Studio](https://developer.android.com/sdk/installing/studio.html) or [Eclipse](https://developer.android.com/sdk/index.html)
 
 まだAndroid StudioがBeta版なせいか、トップにはEclipseのダウンロードリンクが貼られていたりするけど、Android Studioを選んだ。Android Studioを推奨している雰囲気をひしひしと感じるのと、私は **『IDEといえばIntelliJかWebStormでしょ』** という属性の人間なので、IntelliJ Platformなら間違いないだろ！という偏った視点もありつつ。
