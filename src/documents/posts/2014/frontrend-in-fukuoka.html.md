@@ -2,6 +2,7 @@
 layout: post
 title: Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた
 date: 2014-2-2
+image: /img/posts/frontrend-in-fukuoka/frontrend-in-fukuoka-all.jpg
 ---
 
 # Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた

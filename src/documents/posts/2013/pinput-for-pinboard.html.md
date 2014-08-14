@@ -2,6 +2,7 @@
 layout: post
 title: Pinput ~PinboardユーザーのためのChrome Extension~
 date: 2013-11-13
+image: https://raw.github.com/1000ch/Pinput/master/screenshot/pinput.png
 ---
 
 # Pinput ~PinboardユーザーのためのChrome Extension~

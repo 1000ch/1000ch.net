@@ -2,6 +2,7 @@
 layout: post
 title: ハイパフォーマンス ブラウザネットワーキング 書評
 date: 2014-05-22
+image: /img/posts/high-performance-browser-networking/book.jpg
 ---
 
 # ハイパフォーマンス ブラウザネットワーキング 書評

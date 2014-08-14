@@ -2,6 +2,7 @@
 layout: post
 title: Google I/O 2014
 date: 2014-06-27
+image: /img/posts/google-io-2014/google-io.jpg
 ---
 
 # [Google I/O 2014](https://www.google.com/events/io)
