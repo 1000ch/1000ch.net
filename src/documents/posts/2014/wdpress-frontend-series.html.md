@@ -3,6 +3,7 @@ layout: post
 title: WEB+DB PRESS 新連載「Webフロントエンド最前線」
 date: 2014-06-19
 image: /img/posts/wdpress-frontend-series/cover.jpg
+description: 来たる6月24日に発売するWEB+DB PRESS Vol.81から「Webフロントエンド最前線」という連載を担当させていただくことになりました。
 ---
 
 # WEB+DB PRESS 新連載「Webフロントエンド最前線」
