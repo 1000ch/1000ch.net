@@ -2,11 +2,12 @@
 layout: post
 title: ChromeのExtensionをウェブストアで公開した
 date: 2013-6-10
+description: 以前一度作りましたが、新しく欲しい機能が出来たので、別途作りました。ついでにChrome ウェブストアで公開しました。
 ---
 
 # ChromeのExtensionをウェブストアで公開した
 
-[以前一度作りました](http://1000ch.net/2013/03/09/OneClickClearForGoogleChrome/)が、新しく欲しい機能が出来たので、別途作りました。ついでにChrome ウェブストアで公開しました。
+[以前一度作りました](/posts/2013/history-clear-chrome-extension.html)が、新しく欲しい機能が出来たので、別途作りました。ついでにChrome ウェブストアで公開しました。
 
 ## [OneClickClear](https://chrome.google.com/webstore/detail/oneclickclear/ohhopklkkjljpjhenigiablpgooanpjb)
 
@@ -15,8 +16,7 @@ date: 2013-6-10
 
 ## [CookieManager](https://chrome.google.com/webstore/detail/cookiemanager/ecnfgpebfncdeoomhpbfcbnamhkcmgjf)
 
-業務中にクッキーを消す場面が何回かあって、
-こちらもいちいち設定を開いてと、深い箇所にあったので作成。
+業務中にクッキーを消す場面が何回かあって、こちらもいちいち設定を開いてと、深い箇所にあったので作成。
 こちらは消すクッキーを選べます。URLで絞り込めます。
 
 ## バグってたら

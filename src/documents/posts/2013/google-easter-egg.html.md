@@ -2,6 +2,7 @@
 layout: post
 title: Googleの隠しコマンド
 date: 2013-5-14
+description: 昔のメモ書きを掘り起こしたので再度まとめる。
 ---
 
 # Googleの隠しコマンド

@@ -2,14 +2,13 @@
 layout: post
 title: 閲覧履歴を簡単に消せるGoogleChromeの拡張機能を作った
 date: 2013-3-9
+description: @t32k氏に影響されてGoogleChromeの拡張機能を作ってみました。
 ---
 
 # 閲覧履歴を簡単に消せるGoogleChromeの拡張機能を作った
 
-[t32k](https://twitter.com/t32k/)氏に影響されてGoogleChromeの拡張機能を作ってみました。
-アイコンのクリックで全履歴を消すという非常にシンプルな機能です。
-ソースも非常に小さい構成になっています。何か参考になれば。
-機能・実装がブラッシュアップされてきたらウェブストアへの登録もしてみようかな、と。
+[@t32k](https://twitter.com/t32k/)氏に影響されてGoogleChromeの拡張機能を作ってみました。アイコンのクリックで全履歴を消すという非常にシンプルな機能です。
+ソースも非常に小さい構成になっています。何か参考になれば。機能・実装がブラッシュアップされてきたらウェブストアへの登録もしてみようかな、と。
 
 - [1000ch / OneClickClear - GitHub](https://github.com/1000ch/OneClickClear)
 
@@ -22,8 +21,7 @@ date: 2013-3-9
 
 ## Extensionの構成
 
-GoogleChromeのExtensionは大まかに言って、
-`html` / `css` / `js` / `manifest.json`の4つから構成されています。
+GoogleChromeのExtensionは大まかに言って、`html` / `css` / `js` / `manifest.json`の4つから構成されています。
 
 そう、 **拡張機能といってもc++を書く訳ではない** のです。
 基本的にhtml/cssで描画されており、jsでGoogleChromeのAPIにアクセスしたり、という単純なもの。

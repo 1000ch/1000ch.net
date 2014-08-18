@@ -2,18 +2,18 @@
 layout: post
 title: Webサイトのパフォーマンスを調べる
 date: 2013-6-16
+description: 一口にWebサイトのパフォーマンスと言っても色々あります。
 ---
 
 # Webサイトのパフォーマンスを調べる
 
-一口にWebサイトのパフォーマンスと言っても色々あります。  
+一口にWebサイトのパフォーマンスと言っても色々あります。
 
 - 通信部分のパフォーマンス（Networking）
 - スクリプト部分などの実行パフォーマンス（Computing）
 - 表示に関するパフォーマンス（Rendering）
 
-などなど。  
-今回はWebサイトのどこがボトルネックになっているかなどの調べ方とか。  
+などなど。今回はWebサイトのどこがボトルネックになっているかなどの調べ方とか。
 
 ## GoogleChromeのPageSpeedを使う
 
@@ -23,9 +23,9 @@ DevTools(`command` + `option` + `i`で開くやつ)の進化が凄まじすぎ�
 - [PageSpeed Insights (by Google) - Chromeウェブストア](https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli)
 - [Using PageSpeed Insights for Google Chrome](https://developers.google.com/speed/docs/insights/using_chrome)
 
-これをインストールすると、DevToolsのパネルにPageSpeedが追加されます。あとは検証したいページを開いて、Analyzeするだけです。  
+これをインストールすると、DevToolsのパネルにPageSpeedが追加されます。あとは検証したいページを開いて、Analyzeするだけです。
 すると、そのページの何が改善可能かを教えてくれます。Gzip効かせろだとか、minifyしろだとか、`<script>`は後ろでロードせいだとか、
-リダイレクト減らせだとか、cssスプライトにしろよだとか…、手軽に色んなことを教えてくれます。まずはこのツールでScoreを伸ばすことでしょうか。  
+リダイレクト減らせだとか、cssスプライトにしろよだとか…、手軽に色んなことを教えてくれます。まずはこのツールでScoreを伸ばすことでしょうか。
 
 ## DevToolsについて
 
@@ -37,15 +37,14 @@ NetworkパネルでAjaxのタイミングとか見たり、落ちてきてる画
 あと、Timelineでペインティングコスト見たり、Profilesでcss/jsの実行コスト見たり。
 これらに関しては各パネルでレコーディングをする必要があります。
 下部の虫眼鏡の右にあるアイコンでレコーディングの開始と終了出来ます。
-それぞれ、レコーディングされている間に行われた描画や
-スクリプトの実行をプロファイルとして閲覧することができます。
+それぞれ、レコーディングされている間に行われた描画や、スクリプトの実行をプロファイルとして閲覧することができます。
 
 CompositeLayerの生成に関してはあんまりこのパネルで見てなくて、`Settings`の`General`の`Render`の
 
 - Show paint rectangles（赤がpaint rectangle）
 - Show composited layer borders（オレンジがcomposite layer）
 
-にチェックをすることで得られる視覚的なほうで確認して、リフロー多いなおい…ってこととかをTimelineパネルで見たりしてる。
+にチェックをすることで得られる視覚的なほうで確認して、リフロー多いなおい…ってこととかをTimelineパネルで見たりしてます。
 果たしてこれが常套手段なのかどうかは、不明。この辺りのもう少し突っ込んだことは、後日またまとめられれば。
 
 ## Sitespeed.ioを使って解析する
@@ -75,5 +74,4 @@ $ ./sitespeed.io -u http://1000ch.net
 ```
 
 すると、`sitespeed-result`というフォルダに解析結果が出力されます。
-ドメイン別で出力されるのと、その下は解析した日付時刻でフォルダが生成されるので、
-継続的に解析して比較するということもできそう。
+ドメイン別で出力されるのと、その下は解析した日付時刻でフォルダが生成されるので、継続的に解析して比較するということもできそう。

@@ -2,6 +2,7 @@
 layout: post
 title: 転職してから1年たった
 date: 2013-7-1
+description: 少しですが、たまには感想とか。
 ---
 
 # 転職してから1年たった

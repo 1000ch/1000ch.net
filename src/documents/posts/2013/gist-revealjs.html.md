@@ -2,11 +2,12 @@
 layout: post
 title: Gist + Reveal.js = GistReveal
 date: 2013-9-11
+description: 以前 Gistを簡易スライドにするGistSlideを作った という記事を書きましたが、Reveal.jsで作られたスライドをたくさん見るようになってきた今日この頃、GistにReveal.jsを適用出来ても中々いいんじゃないかと思ったので、ChromeExtensionで作った。
 ---
 
 # Gist + Reveal.js = GistReveal
 
-以前[Gistを簡易スライドにするGistSlideを作った](http://1000ch.net/2013/07/05/GistSlide/)という記事を書きましたが、
+以前[Gistを簡易スライドにするGistSlideを作った](/posts/2013/gist-slide.html)という記事を書きましたが、
 [Reveal.js](https://github.com/hakimel/reveal.js)で作られたスライドをたくさん見るようになってきた今日この頃、
 GistにReveal.jsを適用出来ても中々いいんじゃないかと思ったので、ChromeExtensionで作った。
 我ながらかなりの安直ネーミングなので何かいい名前のがあったら教えてください。

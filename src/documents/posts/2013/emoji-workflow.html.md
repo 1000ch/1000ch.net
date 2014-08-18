@@ -2,6 +2,7 @@
 layout: post
 title: Emojiを選べるAlfredのWorkflowを作った
 date: 2013-10-27
+description: GitHubで使える絵文字はどうやらこんなにあるらしい。とても覚えきれん。
 image: https://raw.github.com/1000ch/emoji-workflow/master/screenshot/emoji.png
 ---
 

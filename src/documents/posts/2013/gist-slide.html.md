@@ -2,6 +2,7 @@
 layout: post
 title: Gistを簡易スライドにするGistSlideを作った
 date: 2013-7-5
+description: gistslideに影響されて、もうちょっとキレイに作れないかなと思い作成しました。デザインは@hiloki氏に作って頂きました。ありがとうございます。
 ---
 
 # Gistを簡易スライドにするGistSlideを作った

@@ -2,16 +2,16 @@
 layout: post
 title: Raspberry PiにChromiumとかJenkinsを入れてみた
 date: 2013-12-2
+description: この記事はFrontrend Advent Calendar 2013 2日目の記事です。
 ---
 
 # Raspberry PiにChromiumとかJenkinsを入れてみた
 
-この記事は[Frontrend Advent Calendar 2013](http://www.adventar.org/calendars/62) 2日目の記事です。  
+この記事は[Frontrend Advent Calendar 2013](http://www.adventar.org/calendars/62) 2日目の記事です。
 
 この前フロントエンドな同僚の方々にRaspberry Piをプレゼントして頂きました（ありがとうございます｡･ﾟ･(ﾉД`)･ﾟ･｡）ので、アレコレしてみたログを晒します。
-Frontrendのアドベントカレンダーに書いていいのか些か迷ったものの、
-フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！
-<del>断じて良いネタが浮かばなかったわけではない。</del>…嘘ですごめんなさい。  
+Frontrendのアドベントカレンダーに書いて良いのか些か迷ったものの、フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！
+<del>断じて良いネタが浮かばなかったわけではない。</del>嘘ですごめんなさい。  
 
 <img src='/img/posts/raspberry-pi/raspberrypi.jpg' width='100%' class='mv10'>
 
