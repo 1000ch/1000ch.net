@@ -4,30 +4,24 @@
 <% for document, documentIndex in posts: %>
 <% if @document.id is document.id: %>
 <% if documentIndex >= 1: %>
-<% next = posts[documentIndex - 1].url %>
+<% next = posts[documentIndex - 1] %>
 <% end %>
 <% if documentIndex < posts.length - 1: %>
-<% prev = posts[documentIndex + 1].url %>
+<% prev = posts[documentIndex + 1] %>
 <% end %>
 <% end %>
 <% end %>
 
 nav.post-nav
-<% if next isnt null: %>    
-  .post-nav__item
-    i.fa.fa-arrow-left
-    | 
-    a(href='<%= next %>') Next
+<% if prev isnt null: %>    
+  .post-nav__item.post-nav__item--prev
+    i.fa.fa-arrow-left.fa--has-margin
+    a(href='<%= prev.url %>') <%= prev.title %>
 <% end %>
-  .post-nav__item
-    i.fa.fa-arrow-up
-    | 
-    a(href='#top') Top
-<% if prev isnt null: %>
-  .post-nav__item
-    i.fa.fa-arrow-right
-    | 
-    a(href='<%= prev %>') Prev
+<% if next isnt null: %>
+  .post-nav__item.post-nav__item--next
+    i.fa.fa-arrow-right.fa--has-margin
+    a(href='<%= next.url %>') <%= next.title %>
 <% end %>
 
 aside.post-share
