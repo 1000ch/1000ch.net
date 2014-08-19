@@ -51,7 +51,7 @@ stderr/stdout、もしくはビルドインのロガーを使うそうです。
 
 ## そういえば
 
-動かないと騒いでいた[grunt-contrib-stylusの記事](/2013/01/22/ReconstructionOfGrunt/)ですが、`grunt-contrib-stylus`の不具合だったようです。
+動かないと騒いでいた[grunt-contrib-stylusの記事](http://1000ch.net/posts/2013/gruntjs-0-4.html)ですが、`grunt-contrib-stylus`の不具合だったようです。
 
 - [Gruntによる継続的なビルド環境を求めて 〜 package.jsonと0.4.0のこと](http://havelog.ayumusato.com/develop/others/e539-manage_grunt_build_env.html)
 

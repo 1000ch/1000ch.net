@@ -7,7 +7,7 @@ description: 続き(?)はまた新年 と、言ったばかりですが続きを
 
 # ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~
 
-[先日の記事](http://1000ch.net/2013/12/26/ES6LetConstArrowFunction/)の続きです。
+[先日の記事](/posts/2013/es6-features-1.html)の続きです。
 
 > 続き(?)はまた新年
 
@@ -146,7 +146,3 @@ console.log(Array.isArray(array));
 あと、`Array`が拡張されるのは嬉しい。<del>あと静的型付になったらなぁ。</del>
 プラットフォームが開発側でコントロール出来ないJavaScriptを進化させるのは難しいよなぁと、今更ながら思いました。
 JavaもC#もRubyもPythonも、サーバーの環境で完結させることが出来るけど、JSはそうもいかない。
-
-あと、ES6と関係無いですが[Products](http://1000ch.net/products)のページ更新しました。
-ChromeのExtensionとか、AlfredのWorkflowとか、JSライブラリとかの置き場になってます。
-来年も継続してコードを書いて、Web Engineerとして進化していきたい。頑張ります。

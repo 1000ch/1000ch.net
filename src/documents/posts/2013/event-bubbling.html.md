@@ -132,7 +132,7 @@ window:DOMNodeInserted
 
 jQueryなどで実装されているイベントのdelegateは、このイベントの伝播する性質を利用して実装されています。
 
-+ [jQueryにおけるbindとdelegateの違い](http://1000ch.net/2012/12/12/DifferenceBetweenBindAndDelegate/)
++ [jQueryにおけるbindとdelegateの違い](/posts/2012/bind-and-delegate.html)
 
 ## でも結局・・・
 

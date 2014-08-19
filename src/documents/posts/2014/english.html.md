@@ -19,7 +19,7 @@ description: 近々、隣の席の友人が語学留学で比国に発つので�
 
 RSSリーダーに流れてくる記事を眺める他は、[enja-oss](https://github.com/enja-oss)や[html5j-english](https://github.com/html5j-english)といった場所で翻訳をしている。
 
-前者はオープンソース・ソフトウェア（OSS）のドキュメントをGitHubを使って複数人で翻訳するコミュニティ。活動停滞気味なので、活性化して欲しい。後者はhtml5jの部のひとつで、[html5rocks](http://www.html5rocks.com/en/)や[webplatform.org](webplatform.org)等を翻訳ターゲットとする(?)コミュニティ。こちらはリアルの勉強会の場で集まって翻訳をする。
+前者はオープンソース・ソフトウェア（OSS）のドキュメントをGitHubを使って複数人で翻訳するコミュニティ。活動停滞気味なので、活性化して欲しい。後者はhtml5jの部のひとつで、[html5rocks](http://www.html5rocks.com/en/)や[webplatform](http://webplatform.org)等を翻訳ターゲットとする(?)コミュニティ。こちらはリアルの勉強会の場で集まって翻訳をする。
 
 翻訳した結果は訳者のクレジットと共に何らかの形でWebに残るようになっている。フローに監訳があるので、英語が苦手な人も安心して誤訳出来る。間違えても学習すれば良いと思う。
 
