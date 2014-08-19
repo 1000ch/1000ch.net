@@ -20,8 +20,8 @@ nav.post-nav
 <% end %>
 <% if next isnt null: %>
   .post-nav__item.post-nav__item--next
-    i.fa.fa-arrow-right.fa--has-margin
     a(href='<%= next.url %>') <%= next.title %>
+    i.fa.fa-arrow-right.fa--has-margin
 <% end %>
 
 aside.post-share
