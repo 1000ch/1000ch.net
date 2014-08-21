@@ -25,8 +25,16 @@
 
 .header
   margin 0 auto
-  padding 10px
+  padding 30px 20px 20px
   max-width 960px
+  display table
+  width 100%
+
+.header__cell
+  display table-cell
+
+.header__cell--right
+  text-align right
 
 .header-title
   font-size 48px
@@ -35,10 +43,9 @@
   text-decoration none
 
 .header-menu
-  display table
 
 .header-menu__item
-  display table-cell
+  display inline-block
   padding 5px
 
 .footer-container
@@ -48,6 +55,7 @@
   margin 0 auto
   padding 10px
   max-width 960px
+  text-align right
 
 .container
   margin 0 auto
@@ -110,11 +118,11 @@
 
 .label
   border-radius 4px
-  margin 4px
-  padding 4px
+  padding 4px 8px
+  font-size 75%
 
 .label--gray
-  color #2e2e2c
+  color #666
   background #eee
 
 .label--red
