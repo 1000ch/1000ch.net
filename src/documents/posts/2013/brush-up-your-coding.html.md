@@ -94,7 +94,7 @@ grunt.jsなどで自動化するのが一般的です。
 $ npm install grunt-contrib-csslint --save-dev
 ```
 
-grunt.jsの使い方は[ここ](http://1000ch.net/2013/01/22/ReconstructionOfGrunt/)とか[ここ](http://1000ch.net/2012/12/08/ReconsideringGruntJs/)を見ていただけると！
+grunt.jsの使い方は[ここ](http://1000ch.net/posts/2013/gruntjs-0-4.html)とか[ここ](/posts/2012/gruntjs-introduction.html)を見ていただけると！
 もちろんこちらもlintの方針を指定することができますが、
 デフォルトで注意される内容を直すだけでもだいぶキレイになります。
 
