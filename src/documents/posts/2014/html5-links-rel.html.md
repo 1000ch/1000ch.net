@@ -1,8 +1,8 @@
 ---
 layout: post
-title: <link>のrelの種類と効能等
+title: linkのrelの種類と効能等
 date: 2014-09-01
-description: 
+description: Web Componentsの流れでHTMLImportsをよく見るようになったり、パフォーマンス周りでプリフェッチ系の属性がlinkで指定するようになったりしている今日この頃。
 ---
 
 # `<link>`のrelの種類と効能等
@@ -27,7 +27,7 @@ Webにおけるリンクは、`<a>`と`<link>`の2種類がある。それらに
 HTML5の方を列挙してみる。
 
 | 種類 | [`<link>`](http://www.w3.org/TR/html5/document-metadata.html#the-link-element) | [`<a>`](http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element) & [`<area>`](http://www.w3.org/TR/html5/embedded-content-0.html#the-area-element) | 説明 |
-| — | — | — | — |
+| --- | --- | --- | --- |
 | [alternate](http://www.w3.org/TR/html5/links.html#rel-alternate) | [Hyperlink](http://www.w3.org/TR/html5/links.html#hyperlink) | [Hyperlink](http://www.w3.org/TR/html5/links.html#hyperlink) | 代替となるドキュメントを指定する。 |
 | [author](http://www.w3.org/TR/html5/links.html#link-type-author) | [Hyperlink](http://www.w3.org/TR/html5/links.html#hyperlink) | [Hyperlink](http://www.w3.org/TR/html5/links.html#hyperlink) | ドキュメントや記事の著者へのリンクを指定する。 |
 | [bookmark](http://www.w3.org/TR/html5/links.html#link-type-bookmark) | _not allowed_ | Hyperlink | 最も近い先祖セクションへのパーマリンクを指定する。 |
@@ -43,7 +43,7 @@ HTML5の方を列挙してみる。
 | [stylesheet](http://www.w3.org/TR/html5/links.html#link-type-stylesheet) | [External Resource](http://www.w3.org/TR/html5/links.html#external-resource-link) | _not allowed_ | スタイルシートのインポート。 |
 | [tag](http://www.w3.org/TR/html5/links.html#link-type-tag) | _not allowed_ | [Hyperlink](http://www.w3.org/TR/html5/links.html#hyperlink) | 与えられたアドレスで特定されるタグを付与する。 |
 
-`<link rel=‘dns-prefetch’ href=‘[URL]’`とかも対応ブラウザでは動くけど、ドラフトにもない。
+`<link rel='dns-prefetch' href='[URL]'`とかも対応ブラウザでは動くけど、ドラフトにもない。
 
 ## HTML Imports
 
