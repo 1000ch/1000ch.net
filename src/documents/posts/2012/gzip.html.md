@@ -2,6 +2,7 @@
 layout: post
 title: Gzipを有効にしてサイト表示速度を向上させる
 date: 2012-12-6
+description: ファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されています。拡張子は.gzで、MIME-Typeはapplication/x-gzip。
 ---
 
 # Gzipを有効にしてサイト表示速度を向上させる

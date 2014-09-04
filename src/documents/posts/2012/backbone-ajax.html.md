@@ -2,13 +2,12 @@
 layout: post
 title: Backbone.jsのAjaxについて
 date: 2012-12-18
+description: この記事はBackbone.js Advent Calendar 18日目の記事です。
 ---
 
 # Backbone.jsのAjaxについて
 
-## この記事は、Backbone.js Advent Calendar 18日目の記事です
-
-Backbone.js Advent Calendarに参加させて頂きました。2012/12/18担当。
+Backbone.js Advent Calendarに参加させて頂きました。この記事はBackbone.js Advent Calendar 18日目の記事です。
 JavaScriptにMVCの波を巻き起こしているBackbone.jsのAjax周りについて。
 想像していたより、皆さん突っ込んだこと書いてて、どうしようと思いましたが。まぁいっか。
 

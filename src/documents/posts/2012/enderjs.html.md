@@ -2,6 +2,7 @@
 layout: post
 title: Enderの使い方のまとめ 〜必要なライブラリを必要な分だけ〜
 date: 2012-12-27
+description: 
 ---
 
 # Enderの使い方のまとめ 〜必要なライブラリを必要な分だけ〜

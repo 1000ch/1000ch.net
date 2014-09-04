@@ -2,6 +2,7 @@
 layout: post
 title: jQueryでコーディングをする際気をつけたいポイント
 date: 2012-12-2
+description: Webの開発において欠かすことのできないJavaScript。html/cssしか触った事のない人でも理解のしやすいモデルを提供するjQuery。
 ---
 
 # jQueryでコーディングをする際気をつけたいポイント
