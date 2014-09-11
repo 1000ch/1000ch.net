@@ -12,7 +12,7 @@ image: /img/posts/philips-wide-display-23inch/1.jpg
 
 <img src='/img/posts/philips-wide-display-23inch/packed.jpg' width='100%'>
 
-Apple製品が多いのでThunderbolt Displayが欲しくなるところだが、現行のThunderbolt Displayは厚みがあり、重厚感があったり、重厚 **感** というか実際に重いし、ちょっとお高いし…ということで見送った。iMacの外観を踏襲した新型もいつかは出るんだろうけど、確約もないし、例によって高いだろうしということで。
+Apple製品が多いのでThunderbolt Displayが欲しくなるところだが、現行のThunderbolt Displayは厚みがあり、重厚感があったり（というか実際に重い）、ちょっとお高いし…ということで見送った。iMacの外観を踏襲した新型もいつかは出るんだろうけど、確約もないし、例によって高いだろうしということで。
 
 ## AH-IPSパネルとはなんぞ
 
@@ -63,13 +63,13 @@ Apple製品が多いのでThunderbolt Displayが欲しくなるところだが�
 <img src='/img/posts/philips-wide-display-23inch/powered.jpg' width='100%'>
 <img src='/img/posts/philips-wide-display-23inch/display.jpg' width='100%'>
 
-付けて気づいたのが、 **ディスプレイに背後の照明が写り込まない** 。これは非常に快適なポイントかもしれない（Thunderbolt Displayはテカテカしており、映り込みが非常に鬱陶しい）。
+付けて気づいたのが、 **ディスプレイに背後の照明が写り込まない** 。これは快適なポイントのひとつかもしれない（Thunderbolt Displayはテカテカしており、映り込みが非常に鬱陶しい）。
 Retinaディスプレイではないので、目を凝らしてMacBook Pro Retinaと比べてしまえば粗さは見えるけど、十分鮮やかで綺麗かと思われる。
 iPhoneのカメラで鮮明さを伝えるのはハナから諦めているので、ご容赦頂けると。
 
 ## 感想
 
-この価格でこの品質。 **コスパ良い** 。安心のPHILIPSブランドということでデザインも中々オシャレだし、実際の表示もとても鮮やかで気に入っている。
+この価格でこの品質。 **コスパはとても良い** 。Thunderbolt Displayと比べて美しいかと言われると、解像度は **1,920 x 1,080** vs **2,560 x 1,440** だし劣るとは思われる。でも、安心のPHILIPSブランドということでデザインも中々オシャレだし、実際の表示もとても鮮やかで気に入っている。
 
 <iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00F4IETSW&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 <iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00F4IEV4O&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
