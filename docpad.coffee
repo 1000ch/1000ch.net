@@ -40,7 +40,7 @@ config = {
       safeps = require('safeps')
       path = require('path')
 
-      rootPath = docpad.getConfig().rootPath
+      rootPath = @docpad.getConfig().rootPath
       gruntPath = path.join(rootPath, 'node_modules', '.bin', 'grunt')
 
       command = [gruntPath, 'debug']
