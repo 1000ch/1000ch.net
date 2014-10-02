@@ -5,7 +5,7 @@ date: 2014-09-01
 description: Web Componentsの流れでHTMLImportsをよく見るようになったり、パフォーマンス周りでプリフェッチ系の属性がlinkで指定するようになったりしている今日この頃。
 ---
 
-# `<link>`のrelの種類と効能等
+# linkのrelの種類と効能等
 
 Web Componentsの流れでHTMLImportsをよく見るようになったり、パフォーマンス周りでプリフェッチ系の属性が`<link>`で指定するようになったりしている今日この頃。気になったのでW3Cの **Links in HTML documents** を眺めたメモ。
 
