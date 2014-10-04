@@ -1,7 +1,7 @@
 ---
 layout: post
 title: cgoでgoのコードからCの関数を利用する
-date: 2014-10-03
+date: 2014-10-05
 description: 
 ---
 
