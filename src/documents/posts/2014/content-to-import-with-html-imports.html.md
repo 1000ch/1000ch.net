@@ -48,9 +48,9 @@ description: .registerElement()するdocumentはどれでも良いのかどう�
 でも`<github-card>`ではこの例で言うところの`sample-element.html`の`document`で`registerElement()`を実行している。
 感覚的に言えばインポートする側の`document`で登録を実行するほうがしっくりくるんだけどそうでもないんだろうか。
 
-## HTMLImportsでインポートされる内容
+## HTML Importsでカスタム要素の定義もインポートされる
 
-感覚の話はさておき、HTMLImportsで何がインポートされるのかを見てみる。`<github-card>`を見る限り、`registerElement()`したカスタム要素は引き継がれるよう。
+感覚の話はさておき、`<github-card>`を見る限り`registerElement()`したカスタム要素は引き継がれるよう。
 `sample-element.html`でわざとらしく宣言した`variable`という変数も見てみる。引き継がれないだろうけど、一応。
 
 <img src='/img/posts/content-to-import-with-html-imports/console.png'>
@@ -62,6 +62,14 @@ Firefox Nightly 35.0a1でも試してみた。
 <img src='/img/posts/content-to-import-with-html-imports/scratchpad.png'>
 
 インポートしている`sample-element.html`内で宣言している`doc`が`undefined`になってしまっているんだけど、`doc`に登録している`<sample-element>`はちゃんとインポート先の`document`に登録されていた。
+
+## スタイルシートも引き継がれる
+
+`sample-element.html`内で`sample-element.css`をロードし、その`sample-element.html`をインポートするとインポート先で`sample-element.css`で定義しているクラスは利用出来る。
+
+<img src='/img/posts/content-to-import-with-html-imports/stylesheet.png'>
+
+このとき、`sample-element.css`は`doc.styleSheets`にぶら下がっているけど、当然`document.styleSheets`には属さない。
 
 ## HTML ImportsとCustom Elementsの仕様を見てみる
 
@@ -87,4 +95,6 @@ HTML Importはこんな感じでlink関係をツリー上に持つらしい。�
 
 >When creating an import, use the registry of the master document.
 
-が、HTML Importが発生した時点でインポート先のドキュメントにマージされることを意味しているような気もする。詳しい人おしえて下さい。
+先程のスタイルシートの挙動から察するに、 **HTML Importsのツリー上の子孫にいるカスタム要素のレジストリは親から参照出来る** ってことなんだと思うが、HTML Importが発生した時点でインポート先のドキュメントにマージされることを意味しているような気も。
+
+詳しい人おしえて下さい。
