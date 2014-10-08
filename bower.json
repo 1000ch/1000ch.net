@@ -1,6 +1,6 @@
 {
   "name": "1000ch.net",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "authors": [
     "1000ch <shogo.sensui@gmail.com>"
   ],
@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "normalize.css": "~3.0.1",
-    "fontawesome": "~4.0.3",
-    "highlight.js": "isagalaev/highlight.js#8.0"
+    "fontawesome": "~4.2.0",
+    "highlight.js": "isagalaev/highlight.js#8.2"
   }
 }
