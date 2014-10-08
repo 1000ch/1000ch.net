@@ -61,8 +61,7 @@ func main() {
 - https://github.com/tjko/jpegoptim
 
 本当は画像をアレするライブラリを全てまとめたものを作るという大いなる野望を持っているけど、いきなりは無理なのでまずは単一ライブラリをラップするところから。
-CとMakefileのお作法が絡みまくっているので、このラップ作業ですらさっぱりわからなくて、多方面にご教授頂きました。。
-（特に[@vitaminless](https://twitter.com/vitaminless)氏には大部分のデバッグを助けていただきましたorz）
+CとMakefileのお作法が絡みまくっているので、このラップ作業ですらさっぱりわからなくて、多方面にご教授頂きました（特に[@vitaminless](https://twitter.com/vitaminless)氏には大部分のデバッグを助けていただきましたorz）。
 
 ### アーカイブファイルを作る
 
