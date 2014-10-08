@@ -1,7 +1,7 @@
 ---
 layout: post
 title: cgoでgoのコードからCの関数を利用する
-date: 2014-10-08
+date: 2014-10-09
 description: Goの練習がてらコマンドラインツールを書いている最中に詰まったので作業ログとして残す。
 ---
 
@@ -61,7 +61,7 @@ func main() {
 - https://github.com/tjko/jpegoptim
 
 本当は画像をアレするライブラリを全てまとめたものを作るという大いなる野望を持っているけど、いきなりは無理なのでまずは単一ライブラリをラップするところから。
-CとMakefileのお作法が絡みまくっているので、このラップ作業ですらさっぱりわからなくて、多方面にご教授頂きました（特に[@vitaminless](https://twitter.com/vitaminless)氏には大部分のデバッグを助けていただきましたorz）。
+CとMakefileのお作法が絡みまくっており、このラップ作業ですらさっぱりわからなくて、多方面にご教授頂きました（特に[@vitaminless](https://twitter.com/vitaminless)氏には大部分のデバッグを助けていただきましたorz）。
 
 ### アーカイブファイルを作る
 
@@ -83,10 +83,11 @@ diff -u jpegoptim/Makefile Makefile-updated > Makefile.patch
 ```bash
 $ patch -u jpegoptim/Makefile < Makefile.patch
 ```
-### `jpegoptim.c`のmain関数のコメントアウト
+
+### `jpegoptim.c`のmain関数の削除
 
 また、今回はGoラッパーを作るので、Go側にmain関数が必要だが、そのままだとjpegoptim側のmain関数とバッティングしてコンパイルができなくなる。
-こちらもGoラッパー側のMakefileに追加しておく。
+そのため、`jpegoptim.c`のmain関数を削除する処理が必要になるが、こちらもGoラッパー側のMakefileに追加しておく。
 
 ```bash
 sed -e "287,854d" jpegoptim/jpegoptim.c
@@ -94,7 +95,13 @@ sed -e "287,854d" jpegoptim/jpegoptim.c
 
 っていう雑なことをしていたら精神衛生的に汚されてきたので、こちらもパッチを作った。
 
+```bash
+$ patch -u jpegoptim/jpegoptim.c < jpegoptim.c.patch
+```
+
 ### 出来上がったMakefile
+
+このGo側のmain関数に何も処理を書いていない時点で、ひとまずコンパイルまでは通せるようになった。
 
 ```make
 GO=go
@@ -128,11 +135,14 @@ patch: $(SRC)
 .PHONY: patch build
 ```
 
-## コメントアウトしたc側のmain関数
+## 削除した`jpegoptim.c`のmain関数
 
-最適化実行部分とコマンドラインのインターフェースがmain関数内にがっちり書かれていたので、今度はこれをどうにかしなければならならず、しばし考える。Cのmain関数で行っている処理をGoで再実装しようとも考えたけど、長いし、一部だけexternするというのも微妙かと考え、main関数をリネームしGo側のmain関数からコールすることに。それに応じて、`jpegoptim.c.patch`も作りなおす。
+コマンドラインのインターフェースと最適化実行部分がmain関数内にがっちり書かれていたので、今度はこれをどうにかしなければならならず、しばし考える。
+jpegoptimのmain関数で行っている処理をGoで再実装しようとも考えたけど、長いし、一部だけexternするというのも微妙かと考え、main関数をリネームしGo側のmain関数からコールすることに。
+それに応じて、`jpegoptim.c.patch`も、`main()`の削除ではなく`jpegoptim_main()`とリネームするように作りなおす。
 
-`jpegoptim.go`にリネームしたCのmain関数をexternして、Goで受け取るコマンドライン引数をそのまま渡す形にする。
+`jpegoptim_main()`とリネームしたCのmain関数を、`jpegoptim.go`内でexternする。
+その上で、Goで受け取るコマンドライン引数を`jpegoptim_main()`にそのまま受け渡すことに。
 
 ```go
 func main() {
@@ -149,8 +159,9 @@ func main() {
 }
 ```
 
-そのままだと渡せないので、Goの型をCの型に変換している。Goの`os.Args`のそれぞれを`*C.char`にするのは正攻法でやれば良さそうだけど、
-ポインタのポインタに変換どうすればいいのこれというところで、[Cgo の基本的な使い方とポインタ周りのTips (Go v1.2)](http://r9y9.github.io/blog/2014/03/22/cgo-tips/)というエントリに助けてもらった。ここでやりたい、「`[]*C.type`から`**type`へのキャストができる」ことがずばり書いてある。先人の力は偉大だ…。
+そのままだと渡せないので、Goの型をCの型に変換している。Goの`os.Args`のそれぞれを`*C.char`にするのは正攻法で良さそうだけど、
+ポインタのポインタに変換どうすればいいのこれというところで、[Cgo の基本的な使い方とポインタ周りのTips (Go v1.2)](http://r9y9.github.io/blog/2014/03/22/cgo-tips/)というエントリに助けてもらった。
+ここでやりたい、「`[]*C.type`から`**type`へのキャストができる」ことがずばり書いてある。先人の力は偉大だ。
 
 ## `go-jpegoptim`
 
@@ -158,9 +169,15 @@ func main() {
 
 - https://github.com/1000ch/go-jpegoptim
 
-終わってみればGoのコードは殆どなくなってしまったけど、何かの足しになればと思って記事として残す。`go-jpegoptim`はビルドはリポジトリをクローンして、`make`すれば実行可能バイナリ作成までされる。Goのv1.3.2で確認済み。
+ビルドはリポジトリをクローンして、`make`すれば実行可能バイナリ作成までされる。Goのv1.3.2で確認済み。
 
-## お世話になった資料
+## 所感
+
+終わってみればGoのコードは殆どなくなってしまったわけだけど、何かの足しになればと思って記事として残す。
+今のところはCLIツールを書くにもNode.jsのほうがお手軽感あるし、漠然とバイナリのほうが速いだろうと思っている実行速度もどこまで差が出るのかわからない。
+お手軽云々に関しては慣れの問題もあるだろうから、コレを期に、今までNode.jsで書いていたようなWebアプリもGoで書くようにしようかな。実行速度に関してはまた今度。
+
+以下お世話になった資料です。
 
 Cのmain関数をGo側に移植しようと頑張ってた最中
 
