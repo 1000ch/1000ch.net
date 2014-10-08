@@ -1,11 +1,11 @@
 ---
 layout: post
-title: cgoでgoのコードからCの関数を利用する
+title: cgoでGoのコードからCの関数を利用する
 date: 2014-10-09
 description: Goの練習がてらコマンドラインツールを書いている最中に詰まったので作業ログとして残す。
 ---
 
-# cgoでgoのコードからCの関数を利用する
+# cgoでGoのコードからCの関数を利用する
 
 Goの練習がてらコマンドラインツールを書いている最中に詰まったので作業ログとして残す。
 
@@ -54,7 +54,7 @@ func main() {
 }
 ```
 
-このくらい単純なら僕でもわかるんだけど、やりたいのは既存のcで書かれたライブラリをgo buildでコンパイル。
+このくらい単純なら僕でもわかるんだけど、やりたいのは既存のcで書かれたライブラリを`go build`でコンパイル。
 
 ## jpegoptimをGoでラップしたい
 
@@ -75,7 +75,7 @@ $(PKGLIB): $(OBJS)
 ```
 
 ```bash
-diff -u jpegoptim/Makefile Makefile-updated > Makefile.patch
+$ diff -u jpegoptim/Makefile Makefile-updated > Makefile.patch
 ```
 
 で、このパッチを適用する処理をGoラッパー側のMakefileに追加した。
@@ -90,7 +90,7 @@ $ patch -u jpegoptim/Makefile < Makefile.patch
 そのため、`jpegoptim.c`のmain関数を削除する処理が必要になるが、こちらもGoラッパー側のMakefileに追加しておく。
 
 ```bash
-sed -e "287,854d" jpegoptim/jpegoptim.c
+$ sed -e "287,854d" jpegoptim/jpegoptim.c
 ```
 
 っていう雑なことをしていたら精神衛生的に汚されてきたので、こちらもパッチを作った。
@@ -135,7 +135,7 @@ patch: $(SRC)
 .PHONY: patch build
 ```
 
-## 削除した`jpegoptim.c`のmain関数
+## 削除したC側のmain関数
 
 コマンドラインのインターフェースと最適化実行部分がmain関数内にがっちり書かれていたので、今度はこれをどうにかしなければならならず、しばし考える。
 jpegoptimのmain関数で行っている処理をGoで再実装しようとも考えたけど、長いし、一部だけexternするというのも微妙かと考え、main関数をリネームしGo側のmain関数からコールすることに。
@@ -161,9 +161,9 @@ func main() {
 
 そのままだと渡せないので、Goの型をCの型に変換している。Goの`os.Args`のそれぞれを`*C.char`にするのは正攻法で良さそうだけど、
 ポインタのポインタに変換どうすればいいのこれというところで、[Cgo の基本的な使い方とポインタ周りのTips (Go v1.2)](http://r9y9.github.io/blog/2014/03/22/cgo-tips/)というエントリに助けてもらった。
-ここでやりたい、「`[]*C.type`から`**type`へのキャストができる」ことがずばり書いてある。先人の力は偉大だ。
+ここでやりたい、**「`[]*C.type`から`**type`へのキャストができる」**ことがずばり書いてある。先人の力は偉大だ。
 
-## `go-jpegoptim`
+## go-jpegoptim
 
 一応動く形になったものがこちら。
 
