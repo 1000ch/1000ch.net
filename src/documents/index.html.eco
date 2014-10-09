@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+<h1><i class="fa fa-calendar fa--has-margin"></i>2014</h1>
+<ul class="list">
+<% for post in @getCollection('2014').toJSON(): %>
+  <li class="list__item">
+    <div>
+      <span class="label label--gray"><%= @moment(post.date).format('YYYY.MM.DD') %></span>
+    </div>
+    <div class="h2">
+      <a href='<%= post.url %>'><%= post.title %></a>
+    </div>
+    <div><%= post.description %></div>
+  </li>
+<% end %>
+</ul>
+
+
+<h1><i class="fa fa-calendar fa--has-margin"></i>2013</h1>
+<ul class="list">
+<% for post in @getCollection('2013').toJSON(): %>
+  <li class="list__item">
+    <div>
+      <span class="label label--gray"><%= @moment(post.date).format('YYYY.MM.DD') %></span>
+    </div>
+    <div class="h2">
+      <a href='<%= post.url %>'><%= post.title %></a>
+    </div>
+    <div><%= post.description %></div>
+  </li>
+<% end %>
+</ul>
+
+<h1><i class="fa fa-calendar fa--has-margin"></i>2012</h1>
+<ul class="list">
+<% for post in @getCollection('2012').toJSON(): %>
+  <li class="list__item">
+    <div>
+      <span class="label label--gray"><%= @moment(post.date).format('YYYY.MM.DD') %></span>
+    </div>
+    <div class="h2">
+      <a href='<%= post.url %>'><%= post.title %></a>
+    </div>
+    <div><%= post.description %></div>
+  </li>
+<% end %>
+</ul>

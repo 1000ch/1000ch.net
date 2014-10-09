@@ -10,6 +10,7 @@
     <div class='container'>
       <div class='main'>
         <div class='main-content'>
+          <%- @partial('post-header') %>
           <%- @content %>
         </div>
         <%- @partial('post-footer') %>
