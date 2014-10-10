@@ -10,7 +10,7 @@ description: 来たる6月24日に発売するWEB+DB PRESS Vol.81から「Webフ
 
 来たる6月24日に発売する[WEB+DB PRESS Vol.81](http://www.amazon.co.jp/gp/product/4774165069/)から「Webフロントエンド最前線」という連載を担当させていただくことになりました。巷に溢れかえっているフロントエンド技術の中でも特に注目すべきモノを、 **「流行に乗り遅れず、そして踊らされないようにキャッチアップしていく」** というコンセプトの連載です。
 
-<img src='/img/posts/wdpress-frontend-series/cover.jpg' width='100%'>
+<img src='/img/posts/wdpress-frontend-series/cover.jpg'>
 
 連載は[@ahomu](http://twitter.com/ahomu)さんと共同で執筆していくことになります。各号を交代で担当するのか、はたまた分割して執筆していくのか決まっているわけではなく、状況に応じてやっていくことになりそう。
 

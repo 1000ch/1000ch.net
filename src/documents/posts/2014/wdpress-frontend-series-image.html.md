@@ -11,6 +11,8 @@ description: 連載を担当させてもらっているWEB+DB PRESSのVol.83が1
 「Webフロントエンド最前線」という連載を担当させてもらっているWEB+DB PRESSのVol.83が10月24日に発売されます！
 連載の第3回目ということで「Webフロントエンドの画像形式と最適化」という、その名の通りWebにおける画像について執筆しました。
 
+<img src='/img/posts/wdpress-frontend-series-image/cover.jpg'>
+
 今回は[@ahomu](http://twitter.com/1000ch)氏と共同で執筆しました。各章の担当分担については良いとして、執筆後の体裁をならす作業大変そうだなと心配していましたが、お互いの校正を繰り返しつつ[@inao]([@ahomu](http://twitter.com/1000ch))さんの編集も頂きつつ（毎度ご迷惑をお掛けしておりますorz）で何とか見れる文章に収まったかなと思います。
 
 ## 記事サマリー
