@@ -1,11 +1,11 @@
 ---
 layout: post
-title: HTMLImportsするHTMLのコンテキストになるdocument
+title: HTML ImportsするHTMLのコンテキストになるdocument
 date: 2014-08-25
 description: Polymerに慣れたあとに、いざピュアなWeb Componentsでやろうとするとハマるかもしれないポイント。
 ---
 
-# HTMLImportsするHTMLのコンテキストになるdocument
+# HTML ImportsするHTMLのコンテキストになるdocument
 
 Polymerに慣れたあとに、いざピュアなWeb Componentsでやろうとするとハマるかもしれないポイント。
 `document.registerElement()`と`<template>`やらを使ってWeb Componentsを構成するときに、ライフサイクルコールバック中にそのテンプレートタグを当然参照すると思いますが、インポートをしているとコンテキストになる`document`がずれる話。
