@@ -1,6 +1,6 @@
 ---
 layout: post
-title: WEB+DB PRESS 新連載「Webフロントエンド最前線」
+title: WEB+DB PRESS Vol.83 Webフロントエンド最前線「Webフロントエンドの画像形式と最適化」
 date: 2014-10-15
 image: /img/posts/wdpress-frontend-series-image/cover.jpg
 description: 連載を担当させてもらっているWEB+DB PRESS Vol.83が10月24日に発売されます。
