@@ -10,7 +10,7 @@ description: 第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O- でWe
 [第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O-](https://atnd.org/events/53826) でWeb ComponentsとPolymerについてお話してきました。
 [Google I/O 2014に参加した](http://1000ch.net/posts/2014/google-io-2014.html)ことは前段の通りで、
 今回はEric Bidelmanによる、 [**Polymer and Web Components change everything you know about Web development**](http://youtu.be/8OJ7ih8EE7s) のフィードバックという形でセッションしました。
-会場はグリー@六本木ヒルズで開催されましたが、そのセミナールームをほぼ埋める300人超の参加者がいまして戦々恐々の中としてました。
+会場はグリー@六本木ヒルズで開催されましたが、そのセミナールームをほぼ埋める300人超の参加者がいまして戦々恐々としてました。
 
 ## 当日の資料等
 
@@ -35,6 +35,6 @@ Google I/O 2014でのWeb Components/Polymerに関する新ネタとしては、�
 
 jQueryが流行り過ぎて、あたかも **JavaScript = jQuery** のような誤解が一時期溢れていたことに非常に違和感を感じていたので、同じ道は辿ってほしくないなぁ…。
 
-あくまで、 **JavaScript ∈ jQuery** であり、 **Web Components ∈ Polymer** です。jQueryやらPolymerから学習することを止める気は更々ありませんが、jQueryをやってみたい人にはJavaScriptを勉強することをオススメするように、今からWeb Componentsをやってみたいと考えている人には、まずWeb Componentsの基礎からやってみるといいですよ！と言うでしょう。
+あくまで、 **JavaScript ∋ jQuery** であり、 **Web Components ∋ Polymer** です。jQueryやらPolymerから学習することを止める気は更々ありませんが、jQueryをやってみたい人にはJavaScriptを勉強することをオススメするように、今からWeb Componentsをやってみたいと考えている人には、まずWeb Componentsの基礎からやってみるといいですよ！と言うでしょう。
 
 Let's Web Components!
