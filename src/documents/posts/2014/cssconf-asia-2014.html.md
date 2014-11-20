@@ -60,25 +60,23 @@ SVGに関するとてもわかり易い話だった。
 
 ## Build Scalable, Automated CSS Both You and Your ’Back-End’ Coders Can Love by Christian Lilley @xmlilley
 
-- Why CSS is shit
-    - an anti-language, full of dark magic
-    - powerful, but evil
-- CSS
-    - the whole cascading thing
-    - specificity thing
-    - selector complex
-    - layout
-- Use Layout That Make Sense
-    - すべての鍵は「Stop Using Float Already」
-    - stop fighting with FLOAT
-    - inline-blockいいよ。IE8から使える。vertical-alignはバグじゃない。ああいうもんだ。text-alignも使える。
-    - ただし、whitespaceはバグだ。mix-inつかうといいんじゃないかな。
-- Make CSS Code Maintainable
-    - 読んで理解してまた読んで誤解して…とうことに時間を使っている
-    - optimise **first** for the processor inside your skull
-    - In God, we trust. All others: bring evidence
-- CSS Selectors are evaluated right-to-left
-- Code Smellとか、BEMとか、おおよそパイセンとか谷さんが喋ってきたような
+- なぜCSSはクソなのか
+    - >"an anti-language, full of dark magic"
+    - 強力とも言えるが、それが悪いところでもある
+    - 上書き前提だし、セレクタは複雑になるし、レイアウトは難しいし
+- レイアウトをする上で何に気をつければいいか
+    - すべての鍵は「`float: left|right`を使うのをやめること」
+    - `inline-block`は、`text-align`も使えるし、いいよ。`vertical-align`はバグじゃない。ああいうもんだ！
+    - whitespace問題は…プリプロセッサの **mix-in** つかうといいんじゃないかな
+- >**CSS Selectors are evaluated right-to-left**
+
+Code Smellとか、BEMとか、おおよそパイセンとか谷さんが喋ってきたような話でしたとさ。
+
+## Bullet Lunch
+
+ビュッフェ形式でランチを。美味しかった。
+
+<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="4" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://instagram.com/p/vkaOxuBp9L/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_top">Bullet Lunch at #cssconfasia</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A photo posted by 1000ch (@1000ch) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2014-11-19T05:04:25+00:00">Nov 11, 2014 at 9:04pm PST</time></p></div></blockquote>
 
 ## Inside the Airbnb brand evolution by Fiona Tay @msfionatay
 
