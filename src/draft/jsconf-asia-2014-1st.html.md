@@ -2,7 +2,7 @@
 layout: post
 title: JSConf.Asia 2014 1日目
 date: 2014-11-20
-description: 
+description: 海外でプレゼンするの巻
 ---
 
 # JSConf.Asia 2014 1日目
@@ -15,65 +15,61 @@ description:
 
 ## BUILDING ISOMORPHIC APPS by Spike Brehm, Airbnb @spikebrehm
 
-Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語聞き取りやすい。
+Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語聞き取りやすい気がした。
 
-なぜIsomorphocなのか。
-どうやってIsomorphocにするのか。
-
-「どの環境でもJavaScriptは実行されるから」
-
-
-- performance 初期表示
-    - SPA: download skelton html > download JS > evaluate JS > fetch data from API > user sees content
-    - OLD: download full html > user sees content
-    - flickerはmojitoというnodeのフレームワーク
-    - instagramはreactとdjangoらしい
+- JavaScriptはブラウザ環境でもNode.js環境でも実行される。だからこそIsomorphicにするべき
+- フロントエンドの比重は大きくなっているが、SPAなどで極端にクライアントに処理を寄せてしまうとパフォーマンスに影響する
+    - 1.Download skelton HTML
+    - 2.Download JavaScript
+    - 3.Evaluate JavaScript
+    - 4.Fetch data from API
+    - 5.User sees content
+- 従来のように、HTMLをサーバー側で構築して返却する場合はやはり手順が少ない
+    - 1.Download fill HTML
+    - 2.User sees content
+- パフォーマンスはもちろん、SEO的にも、うまく組み合わせたい。
+    - Flickerは[mojito](https://github.com/yahoo/mojito)で、Instagramは[react](https://github.com/facebook/react)と[django](https://github.com/django/django)で実現しているらしい。
     - AirbnbのモバイルWebはBackboneとExpressで作った自家製ライブラリらしい。
-    - ASANA:クライアントとサーバーで同期されているランタイムらしい。JSで統一するメリットだ。
-    - Meteor
-- seo
-- flexibility
-
-Enviroment agnostic & Shimmed per environment
-
-- Cookieとか抽象化するの難しいよね・・・
-- cookieモジュールをbrowserifyしてしまえばいいんじゃないのか
-- webpackとかもあるよ。instagramとかFacebook、Yahooでも使われている。
-
-どうやってshimmed-per-envなモジュールをつくるのか？
-- package.jsonのbrowser属性を使おう
-- https://github.com/spikebrehm/set-cookie
-
-Project例
-- Facebook/react
-- Yahoo/flux
-- Meteor/isobuild
+    - [ASANA](https://github.com/Asana) - クライアントとサーバーで同期されているランタイムらしい。Meteorも同じ類のアプローチ？
+- これらの実現のために、環境の差異を吸収する。”Enviroment agnostic & Shimmed per environment”
+    - 例えばCookieの抽象化は、[cookie](https://github.com/jshttp/cookie) + Browserifyで良いのでは？
+    - リクエストであれば[visionmedia/superagent](https://github.com/visionmedia/superagent)とか。
+    - webpackを使ったアプローチも、InstagramやFacebook、Yahooで使われている。
+- どうやってshimmed-per-environmentなモジュールをつくるのか？
+    - `package.json`の`browser`属性を使おう
+    - https://github.com/spikebrehm/set-cookie
+    - [facebook/react](https://github.com/facebook/react)
+    - [yahoo/flux-examples](https://github.com/yahoo/flux-examples)
+    - [Isobuild: why Meteor created a new package system](https://www.meteor.com/blog/2014/08/28/isobuild-why-meteor-created-a-new-package-system)
 
 ## PIXEL ART AND COMPLEX SYSTEMS by Vince Allen, Spotify @vinceallenvince
 
-- ブラウザは1pxずつ描画を繰り返している
-- 自然にある複雑な自称をピクセルで抽象化したらどうなるかのような話だった気がする
-- デモがどれも凄い
+自然にある複雑な自称をピクセルで抽象化したらどうなるかのような話だった。気がする。デモがどれも凄い。
+
+- http://www.bitshadowmachine.com/
 
 ## FUN WITH JAVASCRIPT AND SENSORS by Jan Jongboom, Telenor @janjongboom
 
-面白かった。凄くしゃべり慣れている感じ。
+面白かった。凄くしゃべり慣れている感じ。Firefox OS中心の話。
 
-- Firefox OSの話。
-- モバイルデバイスに対する入力の方法話限られていた
-- 輝度・湿気・磁力・カメラ・バッテリー・圧力などなど、色々な可能性
-- 「電波が悪くなったら（navigator.wifiManager）、ローカルモードに切り替える」
-- 「暗くなったら（window.addEventListener('devicelight')）音量を下げる（AudioContextいじる）」
+- モバイルデバイスに対する入力の方法は限られていたが、センサーの進化によって、今では色んな可能性がある。
+    - 輝度・湿気・磁力・カメラ・バッテリー・圧力等…
+- これらのセンサーを組み合わせたらアプリケーションの幅が広がる
+    - 電波が悪くなったらオフラインモードに切り替える（`navigator.wifiManager`）
+    - 暗くなったら音量を下げる（`window.addEventListener('devicelight’)` + `AudioContext`）
 - Firefox OSのアーキテクチャ
     - Linux Kernel > Gecko > HTML5 UI
-    - Geckoの部分にJSからアクセスするAPIが集約されている
-- とにかくセンサーを使ってみよう！
+    - このGeckoの部分にJSからセンサーにアクセスするAPIが集約されている
 
 <blockquote class="twitter-tweet" lang="ja"><p>Fun with JavaScript and Sensors by <a href="https://twitter.com/janjongboom">@janjongboom</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/uzgJDvrPbI">pic.twitter.com/uzgJDvrPbI</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535311304526163968">2014, 11月 20</a></blockquote>
 
 ## THE ART OF LESS by Martin Kleppe, Ubilabs @aemkei
 
 このセッションが今日のベストバウトかもしれない。プレゼンも鮮やかだったし、内容のエグさも良かった。
+
+- http://aem1k.com/
+
+恐らく、後日ビデオで公開されると思うのでJavaScript好きな人に見て欲しい。 http://aem1k.com/ に置いてあるブツが好きなら見て損はないと思う。
 
 ## We should optimize images by [@1000ch](http://twitter.com/1000ch)
 
