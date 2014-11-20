@@ -31,7 +31,11 @@ description: シンガポールの朝は早い。
     - プロジェクトにジョインする人みながバイアスをもっている
     - >"Knowledge makes everything simpler"
     - >"its easy to introduce that unnecessary complexity by adding tools that manage other tools"
-    
+
+この辺の話は最近タイムラインでも活発ですが、Gruntとかのタスクランナーは使わずに`package.json`に集約しているらしい。LevelDBのプロジェクトの`package.json`等が例示されていた。
+
+<blockquote class="twitter-tweet" lang="ja"><p>LevelDB package.json as task automation example <a href="https://t.co/5HpC1mNSJF">https://t.co/5HpC1mNSJF</a> <a href="https://twitter.com/hashtag/cssconfasia?src=hash">#cssconfasia</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/534881366148513793">2014, 11月 19</a></blockquote>
+
 ## The SVG reality by Sebastiaan Deckers @sebdeckers
 
 SVGに関するとてもわかり易い話だった。
@@ -40,6 +44,8 @@ SVGに関するとてもわかり易い話だった。
 - とても良いけど、膨大な色数を含んでいる場合はやっぱラスター画像じゃないとダメ
 - 複数のSVGを1ファイルにまとめておく、[SVG Flagment](http://www.w3.org/TR/SVG/linking.html#SVGFragmentIdentifiers)なるものがある。CSSスプライトみたいな感じ。
 - APIは豊富だけど同時に複雑でもあるので、SVGをWeb Componentsでラップするアイデアはなるほどと思った。
+
+<blockquote class="twitter-tweet" lang="ja"><p>The SVG reality by <a href="https://twitter.com/sebdeckers">@sebdeckers</a> <a href="https://twitter.com/hashtag/cssconfasia?src=hash">#cssconfasia</a> <a href="http://t.co/0dSYnX11Mh">pic.twitter.com/0dSYnX11Mh</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/534890512763723776">2014, 11月 19</a></blockquote>
 
 ## Performant UIs using CSS magic by Ryan Seddon @ryanseddon
 
@@ -56,6 +62,10 @@ SVGに関するとてもわかり易い話だった。
 - >"Flat DOM + rAF + GPU + Physics Engine = Awesome"
 - >"Performance is fragile"
 
+`order`プロパティしらなかったです…。
+
+<blockquote class="twitter-tweet" lang="ja"><p>&quot;order&quot; property <a href="https://t.co/xh0x9YjtDz">https://t.co/xh0x9YjtDz</a> <a href="https://twitter.com/hashtag/cssconfasia?src=hash">#cssconfasia</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/status/534917818198671361">2014, 11月 19</a></blockquote>
+
 [CSS Triggers](http://aerotwist.com/blog/css-triggers/)もあわせてどうぞ。
 
 ## Build Scalable, Automated CSS Both You and Your ’Back-End’ Coders Can Love by Christian Lilley @xmlilley
@@ -70,7 +80,7 @@ SVGに関するとてもわかり易い話だった。
     - whitespace問題は…プリプロセッサの **mix-in** つかうといいんじゃないかな
 - >**CSS Selectors are evaluated right-to-left**
 
-Code Smellとか、BEMとか、おおよそパイセンとか谷さんが喋ってきたような話でしたとさ。
+[Code Smell](http://article.enja.io/articles/code-smells-in-css.html)とか、[BEM](http://bem.info/)とか、おおよそパイセンとか谷さんが喋ってきたような話でしたとさ。
 
 ## Bullet Lunch
 
@@ -82,7 +92,8 @@ Code Smellとか、BEMとか、おおよそパイセンとか谷さんが喋っ�
 
 - **「サービスの急速な成長の中で、(CSSの)クオリティを維持するのはとても難しい」**
 - **「どのCSSも直にレガシーなコードとなってしまう」**
-- TwitterのBootstrapのようなコンポーネント群をまず作って、それをベースにデザインを組み立てる（**局所的に変えていくのは無理だそう**）
+
+デザインを変える時に、TwitterのBootstrapのようなコンポーネント群をまず作って、それをベースにデザインを組み立てるそう。 **局所的に変えていくのは無理** ということだと思う。
 
 ## Cascading Perspectives with THREE.CSS3DRenderer by Joshua Koo @blurspline
 
@@ -94,11 +105,11 @@ CSS3の3Dレンダラーを使ったパースペクティブについての話�
 - `vertical-align: middle;`とか`line-height: 1;`とか、ケースに応じた手段しか存在しなかった
 - **`display: flex;`がレイアウトの解である**
 
-レイアウトのサンプルは https://github.com/rstacruz/newsreader-sample-layout にある。メディアクエリも駆使して、よく出来てる。
+レイアウトのサンプルは[rstacruz/newsreader-sample-layout](https://github.com/rstacruz/newsreader-sample-layout)に。メディアクエリも駆使して、よく出来てる。
 
 ## After Party
 
-初日のアフターパーティは近くのビーチにある離れ小島のようなところで行われた。
+初日のアフターパーティは、近くのビーチにある離れ小島のようなところで行われた。
 
 <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="4" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://instagram.com/p/vk7oFSBpxI/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_top">Sunset</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A photo posted by 1000ch (@1000ch) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2014-11-19T09:56:14+00:00">Nov 11, 2014 at 1:56am PST</time></p></div></blockquote>
 
