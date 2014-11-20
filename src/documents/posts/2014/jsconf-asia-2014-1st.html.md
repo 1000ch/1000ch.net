@@ -71,9 +71,21 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 恐らく、後日ビデオで公開されると思うのでJavaScript好きな人に見て欲しい。 http://aem1k.com/ に置いてあるブツが好きなら見て損はないと思う。
 
-## We should optimize images by [@1000ch](http://twitter.com/1000ch)
+## PREPARING YOUR NODEJS APPLICATION FOR SCALE by Dexter Tan & Laurence Franslay
 
-[Your 5 minutes of fame](https://jsconfasia.wufoo.com/forms/your-5-minutes-of-fame/)という、メインセッション外の枠で発表した。
+- expressにはデフォルトだとセキュリティ的な機能はないので[Lusca](https://github.com/krakenjs/lusca)か[Helmet](https://github.com/helmetjs/helmet)を使うとだいぶ良くなる。
+- 使っていないモジュールは削除し、使っているならこまめに更新する。そして依存関係を無闇に作らないことも大事
+    - [grunt-nsp-package](https://github.com/nodesecurity/grunt-nsp-package)でモジュールの脆弱性を調べる
+    - [retire.js](http://bekk.github.io/retire.js/)で古くなったモジュールを調べる。Gruntは[grunt-retire](https://github.com/bekk/grunt-retire)
+- XSS対策として、基本的にincomingなものもoutgoingなものもエスケープする
+
+あと、ローカライズとかパフォーマンスの話もあった。
+
+## JSConf.Asia 2014でプレゼンしました
+
+[Your 5 minutes of fame](https://jsconfasia.wufoo.com/forms/your-5-minutes-of-fame/)というメインセッション外の枠で、覚束ない英語をかましてきた。
+
+<blockquote class="twitter-tweet" lang="ja"><p><a href="http://t.co/ZmBVO31saP">http://t.co/ZmBVO31saP</a> 2014でプレゼンしました。無事終わってよかった（小並感） <a href="https://t.co/phDA3K143B">https://t.co/phDA3K143B</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535347007984906240">2014, 11月 20</a></blockquote>
 
 このシンガポール遠征に発つ前に、「海外で発表がナントカカントカ…」という話をしていて、ノリでスライドを準備していたものの、その時はこういったLT枠があるとは知らない状態。
 
@@ -85,23 +97,13 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 <script async class="speakerdeck-embed" data-id="e18016304ebe01320da372c75fc688f9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
-滅多に無いチャンスだったと思うので、本当に良い経験になりました。
+滅多に無いチャンスだったと思うので、本当に良い経験になった。
 
 <blockquote class="twitter-tweet" lang="ja"><p>CyberAgent gentleman representing Japan at <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> .頑張れ！ <a href="http://t.co/7tESwlz3wm">pic.twitter.com/7tESwlz3wm</a></p>&mdash; Kristian Faeldt (@faeldtk) <a href="https://twitter.com/faeldtk/status/535340940123049984">2014, 11月 20</a></blockquote>
 
-援護射撃ありがとうございます。
+援護射撃ありがとうございます。ちなみにこのセッションの元ネタは[前にMediumに投下したもの](http://bit.ly/we-should-optimize-images)です。
 
 明日は[@yomotsu](http://twitter.com/yomotsu)さんと[@ginpei_jp](http://twitter.com/ginpei_jp)さんがやります。6人中3人が日本人ね。
-
-## PREPARING YOUR NODEJS APPLICATION FOR SCALE by Dexter Tan & Laurence Franslay
-
-- expressにはデフォルトだとセキュリティ的な機能はないので[Lusca](https://github.com/krakenjs/lusca)か[Helmet](https://github.com/helmetjs/helmet)を使うとだいぶ良くなる。
-- 使っていないモジュールは削除し、使っているならこまめに更新する。そして依存関係を無闇に作らないことも大事
-    - [grunt-nsp-package](https://github.com/nodesecurity/grunt-nsp-package)でモジュールの脆弱性を調べる
-    - [retire.js](http://bekk.github.io/retire.js/)で古くなったモジュールを調べる。Gruntは[grunt-retire](https://github.com/bekk/grunt-retire)
-- XSS対策として、基本的にincomingなものもoutgoingなものもエスケープする
-
-あと、ローカライズとかパフォーマンスの話もあった。
 
 ## 念願のチリ・クラブ
 
