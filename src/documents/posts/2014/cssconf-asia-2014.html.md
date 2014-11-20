@@ -22,17 +22,21 @@ description: シンガポールの朝は早い。
 
 - ツールっていっぱいあって、どれがベストなのかわからない…
 - **SIMPLICITY** 目的がわかりやすく、複雑でないものを選ぼう
-    - >"Complexity is a fact of the world, simplicity is in the mind."
+    - "Complexity is a fact of the world, simplicity is in the mind."
 - **AUTOMATION** 自動化がキモ
     - AutoprefixerやらCSSLintやらCode BloatやらStressCSSやらを駆使
     - 共有にはnpmもとい`package.json`を利用するのが良いかな
     - ランナーにはGruntでもGulpでもMakeでも！
 - **COLLABORATION** 皆が使うことを前提にする
     - プロジェクトにジョインする人みながバイアスをもっている
-    - >"Knowledge makes everything simpler"
-    - >"its easy to introduce that unnecessary complexity by adding tools that manage other tools"
+    - "Knowledge makes everything simpler"
 
-この辺の話は最近タイムラインでも活発ですが、Gruntとかのタスクランナーは使わずに`package.json`に集約しているらしい。LevelDBのプロジェクトの`package.json`等が例示されていた。
+>"its easy to introduce that unnecessary complexity by adding tools that manage other tools"
+
+本当にこれ。よく考えるべき。
+
+この辺の話は最近タイムラインでも活発ですが、Gruntとかのタスクランナーは使わずに`package.json`に集約しているらしい。
+LevelDBのプロジェクトの`package.json`等が例示されていた。
 
 <blockquote class="twitter-tweet" lang="ja"><p>LevelDB package.json as task automation example <a href="https://t.co/5HpC1mNSJF">https://t.co/5HpC1mNSJF</a> <a href="https://twitter.com/hashtag/cssconfasia?src=hash">#cssconfasia</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/534881366148513793">2014, 11月 19</a></blockquote>
 
@@ -59,10 +63,12 @@ SVGに関するとてもわかり易い話だった。
     - SafariならCompositing Borderを表示することが出来る
     - order属性はパフォーマンスの良いプロパティとは言えないよう
 - デバッグツールはどれもまだ過渡期だし、良いUIを作っていくのも難しい。 **でも不可能じゃない。**
-- >"Flat DOM + rAF + GPU + Physics Engine = Awesome"
-- >"Performance is fragile"
 
-`order`プロパティしらなかったです…。
+>"Performance is fragile"
+
+しみじみそう思う。壊すのは簡単、直すのは難しい。
+
+あと、`order`プロパティしらなかったです…。
 
 <blockquote class="twitter-tweet" lang="ja"><p>&quot;order&quot; property <a href="https://t.co/xh0x9YjtDz">https://t.co/xh0x9YjtDz</a> <a href="https://twitter.com/hashtag/cssconfasia?src=hash">#cssconfasia</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/status/534917818198671361">2014, 11月 19</a></blockquote>
 
@@ -71,14 +77,17 @@ SVGに関するとてもわかり易い話だった。
 ## Build Scalable, Automated CSS Both You and Your ’Back-End’ Coders Can Love by Christian Lilley @xmlilley
 
 - なぜCSSはクソなのか
-    - >"an anti-language, full of dark magic"
     - 強力とも言えるが、それが悪いところでもある
     - 上書き前提だし、セレクタは複雑になるし、レイアウトは難しいし
+
+>"an anti-language, full of dark magic"
+
 - レイアウトをする上で何に気をつければいいか
     - すべての鍵は「`float: left|right`を使うのをやめること」
     - `inline-block`は、`text-align`も使えるし、いいよ。`vertical-align`はバグじゃない。ああいうもんだ！
     - whitespace問題は…プリプロセッサの **mix-in** つかうといいんじゃないかな
-- >**CSS Selectors are evaluated right-to-left**
+
+<blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/hashtag/CSS?src=hash">#CSS</a> Selectors are evaluated right-to-left <a href="https://twitter.com/hashtag/cssconfasia?src=hash">#cssconfasia</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/status/534930278121086976">2014, 11月 19</a></blockquote>
 
 [Code Smell](http://article.enja.io/articles/code-smells-in-css.html)とか、[BEM](http://bem.info/)とか、おおよそパイセンとか谷さんが喋ってきたような話でしたとさ。
 
