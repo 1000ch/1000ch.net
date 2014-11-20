@@ -13,7 +13,7 @@ description: 海外でプレゼンするの巻
 
 昨日のCSSConfより参加者が多いようで、席が2割増。OctcatのBracketsを使ってラテを体に注入した。
 
-## BUILDING ISOMORPHIC APPS by Spike Brehm, Airbnb @spikebrehm
+## BUILDING ISOMORPHIC APPS by [@spikebrehm](https://twitter.com/spikebrehm)
 
 Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語聞き取りやすい気がした。
 
@@ -42,28 +42,30 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
     - [yahoo/flux-examples](https://github.com/yahoo/flux-examples)
     - [Isobuild: why Meteor created a new package system](https://www.meteor.com/blog/2014/08/28/isobuild-why-meteor-created-a-new-package-system)
 
-## PIXEL ART AND COMPLEX SYSTEMS by Vince Allen, Spotify @vinceallenvince
+## PIXEL ART AND COMPLEX SYSTEMS by [@vinceallenvince](https://twitter.com/vinceallenvince)
 
-自然にある複雑な自称をピクセルで抽象化したらどうなるかのような話だった。気がする。デモがどれも凄い。
+自然にある複雑な事象をピクセルで抽象化したらどうなるかのような話だった。気がする。デモがどれも凄い。
 
 - http://www.bitshadowmachine.com/
 
-## FUN WITH JAVASCRIPT AND SENSORS by Jan Jongboom, Telenor @janjongboom
+<blockquote class="twitter-tweet" lang="ja"><p>Pixel Art &amp; Complex Systems by <a href="https://twitter.com/vinceallenvince">@vinceallenvince</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/FDcilWKzTg">pic.twitter.com/FDcilWKzTg</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/status/535466005573545984">2014, 11月 20</a></blockquote>
+
+## FUN WITH JAVASCRIPT AND SENSORS by [@janjongboom](https://twitter.com/janjongboom)
 
 面白かった。凄くしゃべり慣れている感じ。Firefox OS中心の話。
 
 - モバイルデバイスに対する入力の方法は限られていたが、センサーの進化によって、今では色んな可能性がある。
     - 輝度・湿気・磁力・カメラ・バッテリー・圧力等…
 - これらのセンサーを組み合わせたらアプリケーションの幅が広がる
-    - 電波が悪くなったらオフラインモードに切り替える（`navigator.wifiManager`）
-    - 暗くなったら音量を下げる（`window.addEventListener('devicelight’)` + `AudioContext`）
+    - 電波が悪くなったらオフラインモードに切り替える（`navigator.mozWifiManager`）
+    - 暗くなったら音量を下げる（`window.addEventListener('devicelight')` + `AudioContext`）
 - Firefox OSのアーキテクチャ
     - Linux Kernel > Gecko > HTML5 UI
     - このGeckoの部分にJSからセンサーにアクセスするAPIが集約されている
 
 <blockquote class="twitter-tweet" lang="ja"><p>Fun with JavaScript and Sensors by <a href="https://twitter.com/janjongboom">@janjongboom</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/uzgJDvrPbI">pic.twitter.com/uzgJDvrPbI</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535311304526163968">2014, 11月 20</a></blockquote>
 
-## THE ART OF LESS by Martin Kleppe, Ubilabs @aemkei
+## THE ART OF LESS by [@aemkei](https://twitter.com/aemkei)
 
 このセッションが今日のベストバウトかもしれない。プレゼンも鮮やかだったし、内容のエグさも良かった。
 
@@ -81,9 +83,9 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 あと、ローカライズとかパフォーマンスの話もあった。
 
-## JSConf.Asia 2014でプレゼンしました
+## JSConf.Asia 2014でプレゼンした
 
-[Your 5 minutes of fame](https://jsconfasia.wufoo.com/forms/your-5-minutes-of-fame/)というメインセッション外の枠で、覚束ない英語をかましてきた。
+[Your 5 minutes of fame](https://jsconfasia.wufoo.com/forms/your-5-minutes-of-fame/)というメインセッション外の枠で、おぼつかない英語をかましてきた。
 
 <blockquote class="twitter-tweet" lang="ja"><p><a href="http://t.co/ZmBVO31saP">http://t.co/ZmBVO31saP</a> 2014でプレゼンしました。無事終わってよかった（小並感） <a href="https://t.co/phDA3K143B">https://t.co/phDA3K143B</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535347007984906240">2014, 11月 20</a></blockquote>
 
@@ -97,7 +99,7 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 <script async class="speakerdeck-embed" data-id="e18016304ebe01320da372c75fc688f9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
-滅多に無いチャンスだったと思うので、本当に良い経験になった。
+滅多に無いチャンスだったと思うので、良い経験になった。
 
 <blockquote class="twitter-tweet" lang="ja"><p>CyberAgent gentleman representing Japan at <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> .頑張れ！ <a href="http://t.co/7tESwlz3wm">pic.twitter.com/7tESwlz3wm</a></p>&mdash; Kristian Faeldt (@faeldtk) <a href="https://twitter.com/faeldtk/status/535340940123049984">2014, 11月 20</a></blockquote>
 
