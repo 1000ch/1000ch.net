@@ -2,12 +2,16 @@
 layout: post
 title: JSConf.Asia 2014 2日目
 date: 2014-11-21
-description: 
+description: 短かったような気もするし、長かったような気もする3日間。
 ---
 
 # JSConf.Asia 2014 2日目
 
 ## WEBTORRENT by [@feross](http://twitter.com/feross)
+
+- [feross/webtorrent](https://github.com/feross/webtorrent)
+
+BitTorrentをWebで実現しような話だった。元々PeerJSを手がけていた人っぽい？WebRTCの素のAPIは確かに使いにくいので、その隠蔽策は参考になる。
 
 ## VERSIONING, SYNCING & STREAMING LARGE DATASETS USING DAT + NODE by [@maxogden](http://twitter.com/maxogden)
 
@@ -17,20 +21,13 @@ Gitのようなデータのバージョン管理をリアルタイムに何と�
 
 - [maxogden/dat](https://github.com/maxogden/dat)
 
-データはローカルのlevelDBに保存され、blobのストア先は、Amazon S3なりローカルなり、好きに選べるぜと言っていた気がする。これだけじゃよくわからんことには変わりない。
-
-## IPCLUSTER – SCALING ZOPIM’S FRONTEND NODE SERVERS by [@zopim](http://twitter.com/zopim)
+※個人的メモ：データはローカルのlevelDBに保存され、blobのストア先は、Amazon S3なりローカルなり、好きに選べるぜと言っていた気がする。これだけじゃよくわからんことには変わりない。
 
 ## REACTIVE PROGRAMMING MADE SIMPLE by [@imslavko](http://twitter.com/imslavko)
 
-すげープレゼンうまい。
+Meteorのコアコミッターの人で、Reactive Programmingイイよねという話から、どうすれば簡単に実現出来るか。[Tracker](http://docs.meteor.com/#/basic/tracker)なるものを使うとDOM操作から、通信等、しかも依存するライブラリを問わずにいとも簡単にReactiveに出来るらしい。
 
-- シンプルなReactive Programming
-- 必要な時にだけサーバーと通信する
-- モダンなアプリケーション？いろいろある・・・
-- コンポーネント管理できる
-
-- Tracker使えばreactiveにできる
+とてもプレゼンが上手くて、Trackerのデモもかなり鮮やかだったので、後日公開されるであろうビデオを是非。
 
 ## GIBBERING AT ALGORAVES: JS IN LIVE AUDIOVISUAL PERFORMANCES by Charlie Roberts, UCLA
 
@@ -48,15 +45,15 @@ Gitのようなデータのバージョン管理をリアルタイムに何と�
 
 <blockquote class="twitter-tweet" lang="ja"><p>It&#39;s from 聖剣伝説2 ! // Let&#39;s make a game with Phaser by <a href="https://twitter.com/gabehollombe">@gabehollombe</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/sdCQqASGqd">pic.twitter.com/sdCQqASGqd</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535686482753638401">2014, 11月 21</a></blockquote>
 
-## LIGHTNING BRANCHES - A WAY TO SUPERCHARGE DELIVERY OF FEATURES by [@ringular](https://twitter.com/ringular)
-
 ## DEEP SPACE - A SIMULATION DRAMA by Simon Swain, Modus Interactive [@simon_swain](simon_swain)
 
-Quite a cool session, it was.
+[1日目](http://1000ch.net/posts/2014/jsconf-asia-2014-1st.html)の **PIXEL ART AND COMPLEX SYSTEMS** に、似た系統のセッション。
 
-## FUTURE OF NODE by [@mikeal](http://twitter.com/mikeal)
+<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="4" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://instagram.com/p/vp8r-ECco_/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_top">スターウォーズ的なデモ。かっこいい。</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A video posted by Takanashi, Ginpei (@ginpei) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2014-11-21T08:41:42+00:00">Nov 11, 2014 at 12:41am PST</time></p></div></blockquote>
 
 ## ギンペイさんとよもつさんのプレゼン
+
+昨日に続いて **Your 5 minutes of fame** の時間。今日は [@ginpei_jp](https://twitter.com/ginpei_jp)さんと[@yomotsu](https://twitter.com/yomotsu)が日本からの刺客として送り込まれた。
 
 <blockquote class="twitter-tweet" lang="ja"><p>.<a href="https://twitter.com/ginpei_jp">@ginpei_jp</a> is Sushi chef from Japan! <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/g3JCAy2PbC">pic.twitter.com/g3JCAy2PbC</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535702314753859584">2014, 11月 21</a></blockquote>
 
