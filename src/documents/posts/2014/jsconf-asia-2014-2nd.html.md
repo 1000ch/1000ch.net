@@ -47,7 +47,7 @@ Meteorのコアコミッターの人で、Reactive Programmingイイよねとい
 
 ## DEEP SPACE - A SIMULATION DRAMA by Simon Swain, Modus Interactive [@simon_swain](simon_swain)
 
-[1日目](http://1000ch.net/posts/2014/jsconf-asia-2014-1st.html)の **PIXEL ART AND COMPLEX SYSTEMS** に、似た系統のセッション。
+[1日目](http://1000ch.net/posts/2014/jsconf-asia-2014-1st.html)の **PIXEL ART AND COMPLEX SYSTEMS** に、似た系統のセッション。こちらも後日公開されるであろう動画を観てもらうほうが良さそう。
 
 <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="4" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://instagram.com/p/vp8r-ECco_/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_top">スターウォーズ的なデモ。かっこいい。</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A video posted by Takanashi, Ginpei (@ginpei) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2014-11-21T08:41:42+00:00">Nov 11, 2014 at 12:41am PST</time></p></div></blockquote>
 
@@ -58,3 +58,7 @@ Meteorのコアコミッターの人で、Reactive Programmingイイよねとい
 <blockquote class="twitter-tweet" lang="ja"><p>.<a href="https://twitter.com/ginpei_jp">@ginpei_jp</a> is Sushi chef from Japan! <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/g3JCAy2PbC">pic.twitter.com/g3JCAy2PbC</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535702314753859584">2014, 11月 21</a></blockquote>
 
 <blockquote class="twitter-tweet" lang="ja"><p>He is <a href="https://twitter.com/yomotsu">@yomotsu</a> , WebGL specialist! <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/4DX4kzFp2O">pic.twitter.com/4DX4kzFp2O</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535704084766932996">2014, 11月 21</a></blockquote>
+
+2人とも、日本でやるよりは流石に緊張した面持ちだったけど、お見事でした。
+
+自分の動画を見返してみると、カタカナ英語で恥ずかしい代物。それでも、Twitterでメンションされたり直接質問されたりしたので、言いたいことは少なからず伝えられたのかな〜とも実感している。
