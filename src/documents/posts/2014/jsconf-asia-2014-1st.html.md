@@ -13,7 +13,9 @@ description: 海外でプレゼンするの巻
 
 昨日のCSSConfより参加者が多いようで、席が2割増。OctcatのBracketsを使ってラテを体に注入した。
 
-## BUILDING ISOMORPHIC APPS by [@spikebrehm](https://twitter.com/spikebrehm)
+## Building Isomorphic Apps by [@spikebrehm](https://twitter.com/spikebrehm)
+
+- [Building Isomorphic Apps - SlideShare](http://www.slideshare.net/spikebrehm/building-isomorphic-apps-jsconfasia-2014)
 
 Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語聞き取りやすい気がした。
 
@@ -42,15 +44,18 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
     - [yahoo/flux-examples](https://github.com/yahoo/flux-examples)
     - [Isobuild: why Meteor created a new package system](https://www.meteor.com/blog/2014/08/28/isobuild-why-meteor-created-a-new-package-system)
 
-## PIXEL ART AND COMPLEX SYSTEMS by [@vinceallenvince](https://twitter.com/vinceallenvince)
+## Pixel Art and Complex Systems by [@vinceallenvince](https://twitter.com/vinceallenvince)
 
 自然にある複雑な事象をピクセルで抽象化したらどうなるかのような話だった。気がする。デモがどれも凄い。
 
+- http://vinceallenvince.github.io/jsasia2014/
 - http://www.bitshadowmachine.com/
 
 <blockquote class="twitter-tweet" lang="ja"><p>Pixel Art &amp; Complex Systems by <a href="https://twitter.com/vinceallenvince">@vinceallenvince</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/FDcilWKzTg">pic.twitter.com/FDcilWKzTg</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/status/535466005573545984">2014, 11月 20</a></blockquote>
 
-## FUN WITH JAVASCRIPT AND SENSORS by [@janjongboom](https://twitter.com/janjongboom)
+## Fun with sensors by [@janjongboom](https://twitter.com/janjongboom)
+
+- [Fun with sensors - JSConf.asia 2014 - SlideShare](http://www.slideshare.net/janjongboom/fun-with-sensors-jsconfasia-2014)
 
 面白かった。凄くしゃべり慣れている感じ。Firefox OS中心の話。
 
@@ -65,7 +70,9 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 <blockquote class="twitter-tweet" lang="ja"><p>Fun with JavaScript and Sensors by <a href="https://twitter.com/janjongboom">@janjongboom</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/uzgJDvrPbI">pic.twitter.com/uzgJDvrPbI</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535311304526163968">2014, 11月 20</a></blockquote>
 
-## THE ART OF LESS by [@aemkei](https://twitter.com/aemkei)
+## The Art of Less by [@aemkei](https://twitter.com/aemkei)
+
+- [The Art of Less - SpeakerDeck](https://speakerdeck.com/aemkei/the-art-of-less-jsconf-dot-asia)
 
 このセッションが今日のベストバウトかもしれない。プレゼンも鮮やかだったし、内容のエグさも良かった。
 
@@ -73,7 +80,7 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 恐らく、後日ビデオで公開されると思うのでJavaScript好きな人に見て欲しい。 http://aem1k.com/ に置いてあるブツが好きなら見て損はないと思う。
 
-## PREPARING YOUR NODEJS APPLICATION FOR SCALE by Dexter Tan & Laurence Franslay
+## Preparing Your NodeJS Application for Scale by Dexter Tan & Laurence Franslay
 
 - expressにはデフォルトだとセキュリティ的な機能はないので[Lusca](https://github.com/krakenjs/lusca)か[Helmet](https://github.com/helmetjs/helmet)を使うとだいぶ良くなる。
 - 使っていないモジュールは削除し、使っているならこまめに更新する。そして依存関係を無闇に作らないことも大事
