@@ -69,4 +69,10 @@ Meteorのコアコミッターの人で、Reactive Programmingイイよねとい
 
 2人とも、日本でやるよりは流石に緊張した面持ちだったけど、お見事でした。
 
-自分の動画を見返してみると、カタカナ英語で恥ずかしい代物。それでも、Twitterでメンションされたり直接質問されたりしたので、言いたいことは少なからず伝えられたのかな〜とも実感している。
+自分の動画を見返してみると、カタカナ英語で恥ずかしい代物。それでも、Twitterでメンションされたり直接質問されたりしたので、言いたいことは少なからず伝えられたのかなとも実感している。
+
+- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day.html)
+- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014.html)
+- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st.html)
+- JSConf.Asia 2014 2日目
+- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore.html)

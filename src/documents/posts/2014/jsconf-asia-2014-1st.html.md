@@ -122,4 +122,10 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 蟹2匹がほぼ丸ごと出てきた。ざっくりぶつ切りになっているだけで、分断された部位をペンチのような機器で殻を破壊し、そして手をチリソース塗れにしながら食べた。
 
-何より、自分の発表が無事終わった後のビールは格別でした。
+プレゼンが終わった後のビールは格別だ。
+
+- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day.html)
+- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014.html)
+- JSConf.Asia 2014 1日目
+- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd.html)
+- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore.html)

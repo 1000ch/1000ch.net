@@ -123,4 +123,10 @@ CSS3の3Dレンダラーを使ったパースペクティブについての話�
 <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="4" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://instagram.com/p/vk7oFSBpxI/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_top">Sunset</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A photo posted by 1000ch (@1000ch) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2014-11-19T09:56:14+00:00">Nov 11, 2014 at 1:56am PST</time></p></div></blockquote>
 
 [ギンペイさん](http://twitter.com/ginpei_jp)が海賊にビールを突然奪われたりするハプニングに見舞われながらも、他の国の人ともそれなりに交流を深めた。
-ネイティブスピーカーと話すのは、相手のストレスにもなっている気がして申し訳ない気にもなったが、英語が母国語じゃない人ならそれなりに会話出来るような気がした。
+ネイティブスピーカーと話すのは、相手のストレスにもなっている気がして申し訳なかったが、英語が母国語じゃない人ならそれなりに会話出来るような気がした。
+
+- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day.html)
+- CSSConf.Asia 2014
+- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st.html)
+- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd.html)
+- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore.html)
