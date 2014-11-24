@@ -13,9 +13,7 @@ description: 海外でプレゼンするの巻
 
 昨日のCSSConfより参加者が多いようで、席が2割増。OctcatのBracketsを使ってラテを体に注入した。
 
-## Building Isomorphic Apps by [@spikebrehm](https://twitter.com/spikebrehm)
-
-- [Building Isomorphic Apps - SlideShare](http://www.slideshare.net/spikebrehm/building-isomorphic-apps-jsconfasia-2014)
+## [Building Isomorphic Apps](http://www.slideshare.net/spikebrehm/building-isomorphic-apps-jsconfasia-2014) by [@spikebrehm](https://twitter.com/spikebrehm)
 
 Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語聞き取りやすい気がした。
 
@@ -53,9 +51,7 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 <blockquote class="twitter-tweet" lang="ja"><p>Pixel Art &amp; Complex Systems by <a href="https://twitter.com/vinceallenvince">@vinceallenvince</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/FDcilWKzTg">pic.twitter.com/FDcilWKzTg</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/status/535466005573545984">2014, 11月 20</a></blockquote>
 
-## Fun with sensors by [@janjongboom](https://twitter.com/janjongboom)
-
-- [Fun with sensors - JSConf.asia 2014 - SlideShare](http://www.slideshare.net/janjongboom/fun-with-sensors-jsconfasia-2014)
+## [Fun with sensors](http://www.slideshare.net/janjongboom/fun-with-sensors-jsconfasia-2014) by [@janjongboom](https://twitter.com/janjongboom)
 
 面白かった。凄くしゃべり慣れている感じ。Firefox OS中心の話。
 
@@ -70,9 +66,7 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 <blockquote class="twitter-tweet" lang="ja"><p>Fun with JavaScript and Sensors by <a href="https://twitter.com/janjongboom">@janjongboom</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/uzgJDvrPbI">pic.twitter.com/uzgJDvrPbI</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535311304526163968">2014, 11月 20</a></blockquote>
 
-## The Art of Less by [@aemkei](https://twitter.com/aemkei)
-
-- [The Art of Less - SpeakerDeck](https://speakerdeck.com/aemkei/the-art-of-less-jsconf-dot-asia)
+## [The Art of Less](https://speakerdeck.com/aemkei/the-art-of-less-jsconf-dot-asia) by [@aemkei](https://twitter.com/aemkei)
 
 このセッションが今日のベストバウトかもしれない。プレゼンも鮮やかだったし、内容のエグさも良かった。
 

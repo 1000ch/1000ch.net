@@ -7,16 +7,11 @@ description: 短かったような気もするし、長かったような気も�
 
 # JSConf.Asia 2014 2日目
 
-## Intro to BitTorrent & WebTorrent by [@feross](http://twitter.com/feross)
+## [Intro to BitTorrent & WebTorrent](https://speakerdeck.com/feross/intro-to-bittorrent-and-webtorrent) by [@feross](http://twitter.com/feross)
 
-- [Intro to BitTorrent & WebTorrent - SpeakerDeck](https://speakerdeck.com/feross/intro-to-bittorrent-and-webtorrent)
-- [feross/webtorrent](https://github.com/feross/webtorrent)
+BitTorrentをWebで実現するのが[WebTorrent](https://github.com/feross/webtorrent)だ的な話だった。元々PeerJSを手がけていた人っぽい？WebRTCの素のAPIは確かに使いにくいので、その隠蔽策は参考になる。
 
-BitTorrentをWebで実現しような話だった。元々PeerJSを手がけていた人っぽい？WebRTCの素のAPIは確かに使いにくいので、その隠蔽策は参考になる。
-
-## Versioning, Syncing & Streaming large datasets using DAT + Node by [@maxogden](http://twitter.com/maxogden)
-
-- [Versioning, Syncing & Streaming large datasets using DAT + Node - スライド](http://maxogden.github.io/slides/dat-intro-talk/)
+## [Versioning, Syncing & Streaming large datasets using DAT + Node](http://maxogden.github.io/slides/dat-intro-talk/) by [@maxogden](http://twitter.com/maxogden)
 
 Gitのようなデータのバージョン管理をリアルタイムに何とかかんとかするって言ってたんだけど、途中からだんだん難しくなってきて理解できなかった。内容的には気になる方面なので、要復習。
 
@@ -26,9 +21,7 @@ Gitのようなデータのバージョン管理をリアルタイムに何と�
 
 ※個人的メモ：データはローカルのlevelDBに保存され、blobのストア先は、Amazon S3なりローカルなり、好きに選べるぜと言っていた気がする。これだけじゃよくわからんことには変わりない。
 
-## Reactive Programming made simple by [@imslavko](http://twitter.com/imslavko)
-
-- [Reactive Programming made simple - Slides](http://slides.com/slavakim/tracker#/)
+## [Reactive Programming made simple](http://slides.com/slavakim/tracker#/) by [@imslavko](http://twitter.com/imslavko)
 
 Meteorのコアコミッターの人で、Reactive Programmingイイよねという話から、どうすれば簡単に実現出来るか。[Tracker](http://docs.meteor.com/#/basic/tracker)なるものを使うとDOM操作から、通信等、しかも依存するライブラリを問わずにいとも簡単にReactiveに出来るらしい。
 

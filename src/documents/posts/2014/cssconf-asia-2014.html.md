@@ -18,7 +18,7 @@ description: シンガポールの朝は早い。
 
 面白かったセッションを幾つか紹介。
 
-## NO MORE TOOLS by [@fox](https://twitter.com/fox)
+## [NO MORE TOOLS](https://speakerdeck.com/fox/no-more-tools) by [@fox](https://twitter.com/fox)
 
 - ツールっていっぱいあって、どれがベストなのかわからない…
 - **SIMPLICITY** 目的がわかりやすく、複雑でないものを選ぼう
