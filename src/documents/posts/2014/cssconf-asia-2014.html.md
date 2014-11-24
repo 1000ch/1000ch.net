@@ -51,7 +51,7 @@ SVGに関するとてもわかり易い話だった。
 
 <blockquote class="twitter-tweet" lang="ja"><p>The SVG reality by <a href="https://twitter.com/sebdeckers">@sebdeckers</a> <a href="https://twitter.com/hashtag/cssconfasia?src=hash">#cssconfasia</a> <a href="http://t.co/0dSYnX11Mh">pic.twitter.com/0dSYnX11Mh</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/534890512763723776">2014, 11月 19</a></blockquote>
 
-## Performant UIs using CSS magic by [@ryanseddon](https://twitter.com/ryanseddon)
+## [Performant UIs using CSS magic](http://ryanseddon.github.io/css_magic-talk/) by [@ryanseddon](https://twitter.com/ryanseddon)
 
 [The CSS Ninja](http://www.thecssninja.com/)の中の人。
 
@@ -74,7 +74,7 @@ SVGに関するとてもわかり易い話だった。
 
 [CSS Triggers](http://aerotwist.com/blog/css-triggers/)もあわせてどうぞ。
 
-## Build Scalable, Automated CSS Both You and Your ’Back-End’ Coders Can Love by [@xmlilley](https://twitter.com/xmlilley)
+## [Build Scalable, Automated CSS Both You and Your ’Back-End’ Coders Can Love](http://www.slideshare.net/xmlilley/css-conf-asia-2014-preso) by [@xmlilley](https://twitter.com/xmlilley)
 
 - なぜCSSはクソなのか
     - 強力とも言えるが、それが悪いところでもある
