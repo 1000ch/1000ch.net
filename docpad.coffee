@@ -35,6 +35,10 @@ config = {
     cleanurls:
       static: true
       collectionName: 'indexes'
+    rss:
+      default:
+        collection: 'posts'
+        url: '/rss.xml'
   events:
     writeAfter: (options, next) ->
       safeps = require('safeps')
