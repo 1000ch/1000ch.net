@@ -11,7 +11,7 @@ description: Lime TextはSublime Textの後継を目指したオープンソー�
 
 >Lime Text is a powerful and elegant text editor primarily developed in Go that aims to be a Free and open-source software successor to Sublime Text.
 
-最近はSublime Textの開発もあんまり活発じゃ無さそうだし…ということで使ってみたログ。
+最近はSublime Textの開発もあんまり活発じゃ無さそうだし…ということで使ってみただけの、ただの作業ログ。
 
 ## limetextのビルド
 
