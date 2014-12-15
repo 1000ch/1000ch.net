@@ -5,6 +5,8 @@ date: 2014-12-12
 description: Lime TextはSublime Textの後継を目指したオープンソースのテキストエディタ。
 ---
 
+# Sublime Textの後継を目指すオープンソースのテキストエディタLime Textを使った感想
+
 <blockquote class="twitter-tweet" lang="ja"><p>Lime Textのビルドをしてみた <a href="http://t.co/aKbm2dzOAM">http://t.co/aKbm2dzOAM</a> <a href="http://t.co/6U8Q253gkx">pic.twitter.com/6U8Q253gkx</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/543280276399337473">2014, 12月 12</a></blockquote>
 
 [Lime Text](http://limetext.org/)はSublime Textの後継を目指したオープンソースのテキストエディタ。Goで書かれており、インターフェースはSublime Textとよく似ている。
