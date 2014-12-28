@@ -17,7 +17,7 @@ Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScrip
 
 <iframe width="640" height="360" src="//www.youtube.com/embed/_yy0CDLnhMA" frameborder="0" allowfullscreen></iframe>
 
-こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。[@myakura](http://html5experts.jp/myakura/8365/)氏の解説記事もある。
+こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。[@myakura](http://twitter.com/myakura)氏による[解説記事](http://html5experts.jp/myakura/8365/)もある。
 
 ### Application Cache
 
