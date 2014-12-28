@@ -21,9 +21,11 @@ Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScrip
 
 Service WorkerはWeb Workerなんかと同じように（Web Workerの一種と言ったほうが正確なのかも）、ブラウザの表示とは別スレッドで実行されます（だから、DOMのAPIとかを叩いたりすることは出来ません）。Service Workerでは、ページから行われるリソースの要求等に対し、独自の処理を挟むことが出来ます。 **プロキシを自前で用意出来る** と言ったほうがイメージしやすいでしょうか。
 
-APIはPromise設計なので、もしかすると慣れていない人は辛いかもだけど。
+リクエストをフックし、Cache APIを介してアレコレする。あるURLへのリクエストに対するレスポンスを受け取った時にそのリソースを保持したり、はたまた再度そのリクエストが発生する時にはCache APIから保持したリソースを引っ張りだしてブラウザに返却する。といったような処理をService Workerにしてもらいます。
 
-しれっとCache APIなんて言いましたが、これも
+しれっとCache APIなんて言いましたが、これもService WorkerのAPIの一環で、Service Workerコンテキストで利用可能なキャッシュリソースを管理するためのAPI。
+
+- [4.4 Caches - Service Workers](http://www.w3.org/TR/service-workers/#cache-objects)
 
 あと、セキュアな通信を必須とするので、HTTPS環境かローカルホストである必要あり。
 
@@ -31,23 +33,21 @@ APIはPromise設計なので、もしかすると慣れていない人は辛い�
 
 1. リクエストされたリソースをキャッシュさせたり、リクエストに割り込んでキャッシュされたリソース等を返却するような処理が記述されている`service-worker.js`を用意
 2. `index.html`で`service-worker.js`をService Workerとして登録する（この時、`index.html`内の評価は行われていない）。
-3. 
-
-
+3. `service-worker.js`に定義してあるリクエストが`index.html`から行われた場合、フックする。既にキャッシュに存在している場合はそれを返却したり、キャッシュされていなければそのままサーバーへリクエストしてあげる。
 
 ## 画像をService Workerでcachesにキャッシュさせるサンプル
+
+実際のコードを動かしてもらって、デバッグしてもらう方がイメージしやすいと思います。
 
 ### ブラウザの準備
 
 [Google Chrome Canary](https://www.google.co.jp/chrome/browser/canary.html)の **Version 41.0.2259.0 canary (64-bit)** で動作確認済。フラグをonにしないと動かないので[`chrome://flags`](chrome://flags/)で、[**Enable experimental Web Platform features.**](chrome://flags/#enable-experimental-web-platform-features)と[**Enable support for ServiceWorker background sync event.**](chrome://flags/#enable-service-worker-sync)を有効にしておく。
 
-URLに対し登録されたService Workerは、[`chrome://serviceworker-internals`](chrome://serviceworker-internals)でどういう状態かを確認することが出来る。 **Opens the DevTools window for ServiceWorker on start for debugging.** のチェックをオンにしておくと、Service Workerが登録された時にワーカースレッドに対するDevToolsが自動で開くのでデバッグ時はオンにしておくと良いです。
-
 ### `index.html`
 
-5枚の画像を表示するだけの、とてもシンプルなHTML。
+5枚の画像を表示するだけの、シンプルなHTML。
 
-ブラウザキャッシュだと、URLにアクセスした時に真っ白になってしまうけど、今回はURLに対して、画像5枚とHTMLをService Workerで丸ごとキャッシュさせてインターネットに接続されていない状態でも表示させることを目指す。
+ブラウザキャッシュだと、URLにアクセスした時に真っ白になってしまうけど、今回はURLに対して、画像5枚とHTMLをService Workerで丸ごとキャッシュさせてインターネットに接続されていない状態でも表示させることを目指します。
 
 ```html
 <html>
@@ -57,13 +57,16 @@ URLに対し登録されたService Workerは、[`chrome://serviceworker-internal
     <script>
       // navigator.serviceWorkerがある場合
       if (navigator.serviceWorker) {
+
         // service-worker.jsをService Workerとして登録する
-        navigator.serviceWorker.register('service-worker.js', {
+        navigator.serviceWorker.register('./service-worker.js', {
           scope: '.'
         }).then(function onFulfilled () {
+
           // service-worker.jsがひと通り評価され、インストールが成功した場合
           console.log('Service Worker was installed.');
         }, function onRejected () {
+
           // service-worker.jsのインストールが失敗した場合
           console.log('Service Worker was not installed.');
         });
@@ -93,15 +96,16 @@ self.addEventListener('install', function (e) {
 
   e.waitUntil(
     caches.open(CACHE_KEY).then(function (cache) {
-      cache.keys().then(function (keys) {
-        return cache.addAll([
-          'img/1.jpg',
-          'img/2.jpg',
-          'img/3.jpg',
-          'img/4.jpg',
-          'img/5.jpg'
-        ]);
-      })
+
+      // cacheさせたいリクエストのキーを追加
+      return cache.addAll([
+        'index.html',
+        'img/1.jpg',
+        'img/2.jpg',
+        'img/3.jpg',
+        'img/4.jpg',
+        'img/5.jpg'
+      ]);
     })
   );
 });
@@ -113,10 +117,22 @@ self.addEventListener('fetch', function (e) {
   e.respondWith(
     caches.open(CACHE_KEY).then(function (cache) {
       return cache.match(e.request).then(function (response) {
-        return response || fetch(e.request.clone()).then(function (response) {
-          cache.put(e.request, response.clone());
+        if (response) {
+
+          // e.requestに対するキャッシュが見つかったのでそれを返却
           return response;
-        });
+        } else {
+
+          // キャッシュが見つからなかったので取得
+          fetch(e.request.clone()).then(function (response) {
+
+            // 取得したリソースをキャッシュに登録
+            cache.put(e.request, response.clone());
+
+            // 取得したリソースを返却
+            return response;
+          });
+        }
       });
     })
   );
@@ -126,6 +142,16 @@ self.addEventListener('activate', function (e) {
   console.log('ServiceWorker.onactivate: ', e);
 });
 ```
+
+Service Workerの登録（`navigator.serviceWorker.register`）時に発火する`install`イベントで、キャッシュさせたいリソースのパスをキーとして登録定義している。これは[`RequestInfo`](https://fetch.spec.whatwg.org/#requestinfo)という構造体の配列になる。
+
+`fetch`はブラウザのUIスレッドからリクエストが発生したときに発火する。ここでは、キャッシュオブジェクト（`caches`）にリクエストに対するリソースが保持されている場合に、サーバーへのリクエストを実行せずキャッシュされたリソースを返却し、キャッシュに保持されていない場合はサーバーにリソースを要求しキャッシュに保持した上でブラウザにリソースを返却している。
+
+### Service Workerのデバッグ
+
+URLに対し登録されたService Workerは、[`chrome://serviceworker-internals`](chrome://serviceworker-internals)でどういう状態かを確認することが出来る。 **Opens the DevTools window for ServiceWorker on start for debugging.** のチェックをオンにしておくと、Service Workerが登録された時にワーカースレッドに対するDevToolsが自動で開くのでデバッグ時はオンにしておくと良さげ。
+
+![Service Worker Internalsから起動するDevTools](/img/posts/service-worker-internals/service-worker-devtools.png)
 
 ## 参考リソース
 
