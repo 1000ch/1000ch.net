@@ -63,10 +63,17 @@ Service WorkerはWeb Workerなんかと同じように（Web Workerの一種と�
 
 Service Workerはセキュリティ上、HTTPS環境かローカルホストのみ実行可能になっている。ローカルでのデバッグは`python -m http.server`でOKだが、動くように作ったつもりでもホスト先がHTTPSじゃないと動かない。<del>簡単デプロイの代名詞のGitHub Pagesもダメなので、</del>お手軽に用意出来そうなHTTPS環境はDropboxのPublicっぽい。
 
+※2014/12/29追記
+
+>簡単デプロイの代名詞のGitHub Pagesもダメなので、
+
+と書いてあるところに指摘を頂きまして、修正しましたorz [@sada_h](http://twitter.com/sada_h)さんありがとうございます。
+
 <blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/1000ch">@1000ch</a> github pagesはhttpsも提供されてますよー。httpsでアクセスすれば表示されると思います。 <a href="http://t.co/327sxlRQ3R">http://t.co/327sxlRQ3R</a></p>&mdash; さだ (@sada_h) <a href="https://twitter.com/sada_h/status/549383897373356032">2014, 12月 29</a></blockquote>
 
-知らなんだ…ご指摘ありがとうございます。
+GitHub PagesのHTTPSサポートについては、以下にも情報がありました。
 
+- [What are GitHub Pages?](https://help.github.com/articles/what-are-github-pages/)
 - [GitHub Pages Now Supports HTTPS, So Use It](https://konklone.com/post/github-pages-now-supports-https-so-use-it)
 
 ### `index.html`
