@@ -61,7 +61,13 @@ Service WorkerはWeb Workerなんかと同じように（Web Workerの一種と�
 
 [Google Chrome Canary](https://www.google.co.jp/chrome/browser/canary.html)の **Version 41.0.2259.0 canary (64-bit)** で動作確認済。フラグをonにしないと動かないので[`chrome://flags`](chrome://flags/)で、[**Enable experimental Web Platform features.**](chrome://flags/#enable-experimental-web-platform-features)と[**Enable support for ServiceWorker background sync event.**](chrome://flags/#enable-service-worker-sync)を有効にしておく。
 
-Service Workerはセキュリティ上、HTTPS環境かローカルホストのみ実行可能になっている。ローカルでのデバッグは`python -m http.server`でOKだが、動くように作ったつもりでもホスト先がHTTPSじゃないと動かない。簡単デプロイの代名詞のGitHub Pagesもダメなので、お手軽に用意出来そうなHTTPS環境はDropboxのPublicっぽい。
+Service Workerはセキュリティ上、HTTPS環境かローカルホストのみ実行可能になっている。ローカルでのデバッグは`python -m http.server`でOKだが、動くように作ったつもりでもホスト先がHTTPSじゃないと動かない。<del>簡単デプロイの代名詞のGitHub Pagesもダメなので、</del>お手軽に用意出来そうなHTTPS環境はDropboxのPublicっぽい。
+
+<blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/1000ch">@1000ch</a> github pagesはhttpsも提供されてますよー。httpsでアクセスすれば表示されると思います。 <a href="http://t.co/327sxlRQ3R">http://t.co/327sxlRQ3R</a></p>&mdash; さだ (@sada_h) <a href="https://twitter.com/sada_h/status/549383897373356032">2014, 12月 29</a></blockquote>
+
+知らなんだ…ご指摘ありがとうございます。
+
+- [GitHub Pages Now Supports HTTPS, So Use It](https://konklone.com/post/github-pages-now-supports-https-so-use-it)
 
 ### `index.html`
 
