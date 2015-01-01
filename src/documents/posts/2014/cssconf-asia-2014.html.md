@@ -2,7 +2,6 @@
 layout: post
 title: CSSConf.Asia 2014
 date: 2014-11-19
-description: シンガポールの朝は早い。
 ---
 
 # [CSSConf.Asia 2014](http://2014.cssconf.asia/)

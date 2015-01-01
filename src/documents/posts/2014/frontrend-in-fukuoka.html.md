@@ -2,8 +2,6 @@
 layout: post
 title: Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた
 date: 2014-2-2
-description: 2014年1月25日にFrontrend in Fukuokaが開催されました。
-image: /img/posts/frontrend-in-fukuoka/frontrend-in-fukuoka-all.jpg
 ---
 
 # Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた

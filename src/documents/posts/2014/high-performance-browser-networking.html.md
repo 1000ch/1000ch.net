@@ -2,8 +2,6 @@
 layout: post
 title: ハイパフォーマンス ブラウザネットワーキング 書評
 date: 2014-05-22
-description: オライリー・ジャパン様より本を頂きましたので、その感想を。
-image: /img/posts/high-performance-browser-networking/book.jpg
 ---
 
 # ハイパフォーマンス ブラウザネットワーキング 書評

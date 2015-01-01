@@ -2,7 +2,6 @@
 layout: post
 title: PythonとMongoDBとPolymerでRSSリーダーを作った
 date: 2014-03-12
-description: Pythonで何かアプリ書きたいなと思ってはいたので、RSSリーダーを作った。
 ---
 
 # PythonとMongoDBとPolymerでRSSリーダーを作った
