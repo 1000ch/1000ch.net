@@ -2,7 +2,6 @@
 layout: post
 title: Backbone.jsのAjaxについて
 date: 2012-12-18
-description: この記事はBackbone.js Advent Calendar 18日目の記事です。
 ---
 
 # Backbone.jsのAjaxについて

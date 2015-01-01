@@ -2,7 +2,6 @@
 layout: post
 title: Gruntの概要と導入手順とメリット
 date: 2012-12-8
-description: もはや説明不要の可能性もありますが、gruntがコマンドラインを分離してgrunt-cliへの移行をしたこともあり、まとめてみました。
 ---
 
 # Gruntの概要と導入手順とメリット

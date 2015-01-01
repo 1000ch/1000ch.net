@@ -2,7 +2,6 @@
 layout: post
 title: jQuery1.9の変更内容をまとめてみる
 date: 2012-12-19
-description: 先日jQuery1.9beta1が公開されましたが、ロードマップは変わらないだろうし。
 ---
 
 # jQuery1.9の変更内容をまとめてみる
