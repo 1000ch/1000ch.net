@@ -2,7 +2,6 @@
 layout: post
 title: ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~
 date: 2013-12-26
-description: ES6のフォローについては書こうとしていたものの後手に回っていまして、ようやく書くに至ります。
 ---
 
 # ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~

@@ -2,7 +2,6 @@
 layout: post
 title: Travis CIを使ったGitHubプロジェクトの継続的インテグレーション
 date: 2013-8-19
-description: 今更感が否めないのですが、簡単にまとめました。
 ---
 
 # Travis CIを使ったGitHubプロジェクトの継続的インテグレーション

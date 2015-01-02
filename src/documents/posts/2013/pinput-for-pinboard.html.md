@@ -2,8 +2,6 @@
 layout: post
 title: Pinput ~PinboardユーザーのためのChrome Extension~
 date: 2013-11-13
-description: なんか、周りのPinboardユーザーに使ってもらったら思った以上に好評だた。
-image: https://raw.github.com/1000ch/Pinput/master/screenshot/pinput.png
 ---
 
 # Pinput ~PinboardユーザーのためのChrome Extension~

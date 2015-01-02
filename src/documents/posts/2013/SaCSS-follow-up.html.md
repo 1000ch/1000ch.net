@@ -2,7 +2,6 @@
 layout: post
 title: SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた
 date: 2013-12-10
-description: 人生初の北海道でした。新千歳空港降りた瞬間に「あ、これはヤバイかも」と思うほど寒かったです。
 ---
 
 # SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた

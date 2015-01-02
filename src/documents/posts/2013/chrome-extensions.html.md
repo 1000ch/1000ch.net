@@ -2,7 +2,6 @@
 layout: post
 title: ChromeのExtensionをウェブストアで公開した
 date: 2013-6-10
-description: 以前一度作りましたが、新しく欲しい機能が出来たので、別途作りました。ついでにChrome ウェブストアで公開しました。
 ---
 
 # ChromeのExtensionをウェブストアで公開した

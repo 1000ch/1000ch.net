@@ -2,7 +2,6 @@
 layout: post
 title: ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~
 date: 2013-12-27
-description: 続き(?)はまた新年 と、言ったばかりですが続きを。引き続きFirefox Nightlyで試していきます。
 ---
 
 # ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~

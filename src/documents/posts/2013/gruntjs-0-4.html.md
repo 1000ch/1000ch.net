@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Grunt ver0.4に向けての環境の再構築
-date: 2013-1-22
-description: 以前の記事が説明足らずだったので補足記事。  
+date: 2013-1-22  
 ---
 
 # Grunt ver0.4に向けての環境の再構築

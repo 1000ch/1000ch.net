@@ -2,7 +2,6 @@
 layout: post
 title: Raspberry PiにChromiumとかJenkinsを入れてみた
 date: 2013-12-2
-description: この記事はFrontrend Advent Calendar 2013 2日目の記事です。
 ---
 
 # Raspberry PiにChromiumとかJenkinsを入れてみた

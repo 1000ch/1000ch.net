@@ -2,7 +2,6 @@
 layout: post
 title: Grunt ver0.5に向けてのロードマップ
 date: 2013-3-7
-description: 先日Grunt0.4がstableになりましたが、早速0.5に向けてのロードマップが発表されていますね。
 ---
 
 # Grunt ver0.5に向けてのロードマップ

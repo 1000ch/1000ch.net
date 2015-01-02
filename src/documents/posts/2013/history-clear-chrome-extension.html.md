@@ -2,7 +2,6 @@
 layout: post
 title: 閲覧履歴を簡単に消せるGoogleChromeの拡張機能を作った
 date: 2013-3-9
-description: @t32k氏に影響されてGoogleChromeの拡張機能を作ってみました。
 ---
 
 # 閲覧履歴を簡単に消せるGoogleChromeの拡張機能を作った

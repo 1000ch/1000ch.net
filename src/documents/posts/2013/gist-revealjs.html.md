@@ -2,7 +2,6 @@
 layout: post
 title: Gist + Reveal.js = GistReveal
 date: 2013-9-11
-description: 以前 Gistを簡易スライドにするGistSlideを作った という記事を書きましたが、Reveal.jsで作られたスライドをたくさん見るようになってきた今日この頃、GistにReveal.jsを適用出来ても中々いいんじゃないかと思ったので、ChromeExtensionで作った。
 ---
 
 # Gist + Reveal.js = GistReveal

@@ -2,7 +2,6 @@
 layout: post
 title: Webサイトのパフォーマンスを調べる
 date: 2013-6-16
-description: 一口にWebサイトのパフォーマンスと言っても色々あります。
 ---
 
 # Webサイトのパフォーマンスを調べる

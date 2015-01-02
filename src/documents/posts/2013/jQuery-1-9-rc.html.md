@@ -2,7 +2,6 @@
 layout: post
 title: jQuery1.9リリース候補版がリリースされました
 date: 2013-1-11
-description: jQuery1.9のリリース候補版ver1が公開されました。beta1の続きということで、懲りずに変更とか追っかけてみます。
 ---
 
 # jQuery1.9リリース候補版がリリースされました

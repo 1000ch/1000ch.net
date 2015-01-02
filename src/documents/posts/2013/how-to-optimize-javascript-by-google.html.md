@@ -2,7 +2,6 @@
 layout: post
 title: Google I/O 2012発 JavaScript高速化テクニックの日本語訳と考察
 date: 2013-1-4
-description: Google I/O 2012で発表されたJavaScriptの高速化のテクニックについて考察してみます。
 ---
 
 # Google I/O 2012発 JavaScript高速化テクニックの日本語訳と考察
