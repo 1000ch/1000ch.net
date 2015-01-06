@@ -2,7 +2,6 @@
 layout: post
 title: Webにおけるネットワーク通信
 date: 2014-12-03
-description: この記事はFrontrend Advent Calendar 2014 3日目の記事です。
 ---
 
 # Webにおけるネットワーク通信

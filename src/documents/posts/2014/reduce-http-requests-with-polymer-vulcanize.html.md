@@ -2,7 +2,6 @@
 layout: post
 title: Vulcanizeで減らすHTML ImportsのHTTPリクエスト
 date: 2014-09-05
-description: Web Componentsの旨味はコンポーネントの再利用が出来る所にあるので、そのためにはそのリソースは断片化は避けられない。
 ---
 
 # Vulcanizeで減らすHTML ImportsのHTTPリクエスト

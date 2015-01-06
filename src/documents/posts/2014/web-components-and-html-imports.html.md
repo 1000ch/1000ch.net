@@ -2,7 +2,6 @@
 layout: post
 title: Web ComponentsをHTML Importsでロードする必要性
 date: 2014-08-30
-description: 慣例的に<link rel='import' href='x-element.html'>な感じでロードされているけど、前提として、HTMLImportsである必要はない。
 ---
 
 # Web ComponentsをHTML Importsでロードする必要性

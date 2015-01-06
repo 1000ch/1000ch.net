@@ -2,7 +2,6 @@
 layout: post
 title: JSConf.Asia 2014を振り返って
 date: 2014-11-22
-description: CSSConf.AsiaとJSConf.Asiaへの参加、シンガポールについて思ったこと等。
 ---
 
 # JSConf.Asia 2014を振り返って

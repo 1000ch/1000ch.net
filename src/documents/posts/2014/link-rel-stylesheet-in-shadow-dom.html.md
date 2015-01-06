@@ -2,7 +2,6 @@
 layout: post
 title: Shadow DOMにおけるlink[rel=stylesheet]の扱い
 date: 2014-08-27
-description: Web Componentsを構成する中でコンポーネントのスタイリングをするのは往々にしてあるけど、それに<link>は使えないので<style>にCSSを書くしかなさ気な話。
 ---
 
 # Shadow DOMにおけるlink[rel=stylesheet]の扱い

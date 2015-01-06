@@ -2,7 +2,6 @@
 layout: post
 title: HTML ImportsするHTMLのコンテキストになるdocument
 date: 2014-08-25
-description: Polymerに慣れたあとに、いざピュアなWeb Componentsでやろうとするとハマるかもしれないポイント。
 ---
 
 # HTML ImportsするHTMLのコンテキストになるdocument

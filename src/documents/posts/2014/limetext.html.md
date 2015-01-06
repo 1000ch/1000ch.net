@@ -2,7 +2,6 @@
 layout: post
 title: Sublime Textの後継を目指すオープンソースのテキストエディタLime Textを使った感想
 date: 2014-12-12
-description: Lime TextはSublime Textの後継を目指したオープンソースのテキストエディタ。
 ---
 
 # Sublime Textの後継を目指すオープンソースのテキストエディタLime Textを使った感想

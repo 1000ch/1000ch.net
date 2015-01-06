@@ -2,8 +2,6 @@
 layout: post
 title: PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った
 date: 2014-09-11
-description: コスパの高いデュアルディスプレイ生活を送るために。
-image: /img/posts/philips-wide-display-23inch/1.jpg
 ---
 
 # PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った

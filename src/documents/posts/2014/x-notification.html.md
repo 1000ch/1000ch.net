@@ -2,7 +2,6 @@
 layout: post
 title: ブラウザのNotification APIをWeb Components化した
 date: 2014-07-15
-description: 巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。
 ---
 
 # ブラウザのNotification APIをWeb Components化した

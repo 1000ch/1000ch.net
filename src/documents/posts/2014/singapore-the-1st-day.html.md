@@ -2,7 +2,6 @@
 layout: post
 title: シンガポール遠征初日
 date: 2014-11-18
-description: CSSConf.Asia + JSConf.Asia参加のためシンガポールに来ています。
 ---
 
 # シンガポール遠征初日

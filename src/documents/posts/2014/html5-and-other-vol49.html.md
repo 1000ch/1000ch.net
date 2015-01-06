@@ -2,7 +2,6 @@
 layout: post
 title: HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた
 date: 2014-07-31
-description: 第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O- でWeb ComponentsとPolymerについてお話してきました。
 ---
 
 # HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた
