@@ -28,6 +28,10 @@ config = {
       @getCollection('html').findAllLive({
         relativeOutDirPath: 'posts/2014'
       }, [{date:-1}])
+    '2015': ->
+      @getCollection('html').findAllLive({
+        relativeOutDirPath: 'posts/2015'
+      }, [{date:-1}])
   plugins:
     ghpages:
       deployRemote: 'www'
