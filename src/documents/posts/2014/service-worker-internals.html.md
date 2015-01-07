@@ -119,7 +119,12 @@ GitHub PagesのHTTPSサポートについては、以下にも情報がありま
 
 先程の`index.html`からService Workerとして登録している`service-worker.js`の中身。Service Workerコンテキストは`self`で参照し、各種イベントにハンドラを登録している。
 
+また、Chrome 40ではCache APIが一部未実装なので[coonsta/cache-polyfill](https://github.com/coonsta/cache-polyfill)をロードする。
+
 ```js
+// Cache APIが一部未実装なのでポリフィルをロード
+importScripts('serviceworker-cache-polyfill.js');
+
 // キャッシュのキーとなる文字列
 var CACHE_KEY = 'service-worker-playground-v1';
 
