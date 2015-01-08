@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CentOS 6系に対して行う最低限の設定
-date: 2015-1-8
+date: 2015-1-7
 ---
 
 # CentOS 6系に対して行う最低限の設定
