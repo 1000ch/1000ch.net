@@ -1,10 +1,10 @@
 ---
 layout: post
-title: CentOSに対して行う最低限の設定
+title: CentOS 6系に対して行う最低限の設定
 date: 2015-1-8
 ---
 
-# CentOSに対して行う最低限の設定
+# CentOS 6系に対して行う最低限の設定
 
 メモを掘り起こしたので、思い出すついでに記事にしてみる。VPSを借りて、ドメイン充ててみたり、ブログを置いてみたり、メールサーバー立ててみたりしていた当時（2年前）のメモなので、もうちょっとナウいやり方があるのかもしれないけど、とりあえず。ツッコミ歓迎です。
 
@@ -123,9 +123,7 @@ $ ssh -p [portnumber] -i ~/.ssh/hoge_rsa [username]@[hostname]
 
 ## ファイアーウォール
 
-`iptables`で最低限のファイヤーウォールを設定。`iptables`でやるの、既に古いやり方なんだろうけど。
-
-`/etc/sysconfig`配下の`iptables`ファイルを編集。なかったら作成。
+`iptables`で最低限のファイヤーウォールを設定するべく、`/etc/sysconfig`配下の`iptables`ファイルを編集。なかったら作成。
 
 ```bash
 $ cd /etc/sysconfig
@@ -153,6 +151,8 @@ COMMIT
 ```bash
 $ /etc/rc.d/init.d/iptables restart
 ```
+
+ちなみに、CentOS 7からはiptablesサービスではなく、firewalldサービスが同じ`/etc/sysconfig/iptables`ファイルの設定でパケットフィルタリングをしてくれるみたい。
 
 ## 余談
 
