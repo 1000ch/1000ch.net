@@ -1,7 +1,7 @@
 ---
 layout: post
 title: VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ
-date: 2015-1-9
+date: 2015-1-10
 ---
 
 # VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ
