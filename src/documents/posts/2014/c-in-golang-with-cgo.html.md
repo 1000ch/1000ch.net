@@ -67,7 +67,7 @@ CとMakefileのお作法が絡みまくっており、このラップ作業で�
 jpegoptimそのものはもちろんそれだけで実行可能形式にコンパイル可能だが、`.o`ファイルをくっつけた`.a`ファイルを出力するビルドが用意されていない。
 なので`libjpegoptim.a`というアーカイブファイルを生成するビルドをMakefile中に追加したい。具体的には以下の3行を然るべきところに追加するパッチファイルを作る。
 
-```make
+```
 PKGLIB = libjpegoptim.a
 $(PKGLIB): $(OBJS)
   ar crsv $(PKGLIB) $(OBJS)
@@ -102,7 +102,7 @@ $ patch -u jpegoptim/jpegoptim.c < jpegoptim.c.patch
 
 このGo側のmain関数に何も処理を書いていない時点で、ひとまずコンパイルまでは通せるようになった。
 
-```make
+```
 GO=go
 REPO=git@github.com:tjko/jpegoptim.git
 SRC=jpegoptim-src

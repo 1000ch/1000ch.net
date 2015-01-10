@@ -128,7 +128,7 @@ end
 
 `vagrant-centos6.yml`の中身は以下のようになっている。
 
-```yml
+```
 - hosts: vagrant-centos6   sudo: yes
   tasks:
     - debug: This is a message in tasks   roles:
@@ -137,7 +137,7 @@ end
 
 `hosts`は適用先のホスト名で、`sudo`は管理者実行するかどうか。設定の実行は`tasks`ないし、それらを分割管理する`roles`という属性に指定する。`tasks`には実行したいことをシェルっぽく書ける。`yum`を実行したいのであれば、以下の様な雰囲気。
 
-```yml
+```
 - name: be sure httpd is installed using yum
   yum: name=httpd state=installed
 ```
