@@ -121,7 +121,8 @@ end
 今回は`hosts`というファイル名で、以下のようにVagrantで用意した仮想環境のホスト名を指定した。
 
 ```ini
-[vagrant-centos6] 192.168.33.10
+[vagrant-centos6] 
+192.168.33.10
 ```
 
 ### プレイブック
@@ -129,7 +130,8 @@ end
 `vagrant-centos6.yml`の中身は以下のようになっている。
 
 ```
-- hosts: vagrant-centos6   sudo: yes
+- hosts: vagrant-centos6 
+  sudo: yes
   tasks:
     - debug: This is a message in tasks   roles:
     - common
@@ -142,11 +144,11 @@ end
   yum: name=httpd state=installed
 ```
 
-タスクを羅列するだけでも良いけど、項目ごとに単位化したくなるのがエンジニアの性なので、`roles`を使う。今回は`common`というロールを作った。このロールの構成には、`roles/common/tasks`というフォルダ階層が要る。その中に、実行のエントリポイントとなる`main.yml`を配置するだけ。
+タスクを羅列するだけでも良いけど、項目ごとに単位化したくなるのがエンジニアの性なので、`roles`を使う。今回は`common`というロールを作った。このロールの構成には、`roles/common/tasks`というフォルダ階層が要る。その中に、実行のエントリポイントとなる`main.yml`を配置するだけ。この`main.yml`も`tasks`と同じ要領で記述出来る。
 
 Ansibleとしては、他のタスクをインクルード出来たり、変数宣言等が可能。詳細は公式サイトを確認してください。
 
 - [Best Practices - Ansible Documentation](http://docs.ansible.com/playbooks_best_practices.html)
 - [YAML Syntax - Ansible Documentation](http://docs.ansible.com/YAMLSyntax.html)
 
-また、今回やったような最低限の連携を少し応用して、WebPageTestを仮想環境に立てるサンプルが[1000ch/webpagetest-local](https://github.com/1000ch/webpagetest-local)に置いてある。と、言っても、テストエージェントとの疎通まではしておらず、Webアプリ側だけ閲覧可能というだけですが、悪しからず。
+また、今回やったような最低限の連携を少し応用して、WebPageTestを仮想環境に立てるサンプルが[1000ch/webpagetest-local](https://github.com/1000ch/webpagetest-local)に置いてある。と、言っても、テストエージェントとの疎通まではしておらず、Webアプリ側だけ閲覧可能というだけだけど、悪しからず。
