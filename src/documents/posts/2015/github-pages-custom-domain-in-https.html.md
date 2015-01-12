@@ -6,7 +6,7 @@ date: 2015-1-12
 
 # GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる
 
-このブログはGitHub Pagesで運用している。ホスト名を書いた`CNAME`ファイルをドキュメントルートに配置してドメインを1000ch.netとしているが、これだと証明書がないせい(?)でGitHub Pagesが対応しているHTTPSを利用できない。つまり、
+このブログはGitHub Pagesで運用している。ホスト名を書いた`CNAME`ファイルをドキュメントルートに配置してドメインを1000ch.netとしているが、これだと証明書がないせいでGitHub Pagesが対応しているHTTPSを利用できない。つまり、
 
 - http://1000ch.github.io → http://1000ch.net
 - https://1000ch.github.io → http://1000ch.net
@@ -34,29 +34,25 @@ date: 2015-1-12
 
 - [なぜHTTPSはHTTPより速いのか](http://blog.kazuhooku.com/2014/12/httpshttp.html)
 
-今話題の[Service Worker](/posts/2014/service-worker-internals.html)もセキュアな環境じゃないと無効だし、パフォーマンスの観点からも2015年はHTTP→HTTPSという潮流が生まれる予感。
-
-- [HTTPからHTTPSへ - Hail2u.net](http://hail2u.net/blog/internet/http-to-https.html)
+今話題の[Service Worker](/posts/2014/service-worker-internals.html)もセキュアな環境じゃないと無効だし、パフォーマンスの観点からも2015年はHTTP→HTTPSという潮流が生まれる予感。これについては[HTTPからHTTPSへ - Hail2u.net](http://hail2u.net/blog/internet/http-to-https.html)という記事も見て欲しい。
 
 ## CloudFlareをDNSサーバーとして利用する
 
-探していると、それらしき情報があった。
+GitHub PagesにCNAMEで設定しているカスタムドメインでHTTPSを使えないか探していると、それらしき情報があった。
 
 - [GitHub Pages Now Supports HTTPS, So Use It](https://konklone.com/post/github-pages-now-supports-https-so-use-it)
 - [Configuring CloudFlare’s Universal SSL](https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/)
 
-有料プランでなくとも、出来るっぽい。
-
-- [CloudFlare](https://www.cloudflare.com/)
+[CloudFlare](https://www.cloudflare.com/)がユニーバサルSSLを提供しているのでそれを使うことで実現可能ということらしい。有料プランでなくとも良いとのこと。
 
 ### 指定ドメインのDNSサーバーをCloudFlareに向ける
 
-ドメインプロバイダだと、DNSサーバーを用意してくれていたりするが、CloudFlareの用意するDNSサーバーに向くようにする。
+ドメインプロバイダだと、プロバイダ側でDNSサーバーを用意してくれていたりするが、CloudFlareの用意するDNSサーバーに向くようにする。
 
 - `clint.ns.cloudflare.com`
 - `nia.ns.cloudflare.com`
 
-変更後に[My Websites](https://www.cloudflare.com/my-websites)で **Re-Test** を実行すると、ドメインがCloudFlareに向くようになった。めでたい。
+変更後に[My Websites](https://www.cloudflare.com/my-websites)で、ドメインプロバイダ側でDNSサーバーのアドレスを更新したドメインの、 **Re-Test** を実行すると、裏で再テストが実行される。ドメインがCloudFlareに向いて疎通が確認出来た。めでたい。
 
 ![](/img/posts/github-pages-custom-domain-in-https/ns-changed.png)
 
@@ -68,8 +64,10 @@ date: 2015-1-12
 
 ここでは指定のURLパターンに対して挙動を設定可能。ドメイン全てのURLに対してHTTPSが有効になるようにしたいので、`1000ch.net/*`というパターンに対し **Always use https** をonにする。
 
+上手く動いた(*'-')
+
 ## 結論
 
-GitHub Pagesにカスタムドメインをあてて、それをHTTPS化は可能である。むしろ、もうちょっと手が込んだことが必要なのかと思っていたところ、いとも簡単に出来てしまったので詰まったログ等も残せずに終わってしまったのでした。
+GitHub Pagesにカスタムドメインをあてて、それをHTTPS化は可能であることがわかった。もうちょっと手が込んだことが必要なのかと思っていたところ、いとも簡単に出来てしまったので、詰まったログ等も残せずに終わってしまった…。
 
-興味がある人は試してみては如何でしょうか。
+興味がある人は試してみては如何でしょう。
