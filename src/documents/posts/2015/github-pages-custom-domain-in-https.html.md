@@ -47,10 +47,7 @@ GitHub PagesにCNAMEで設定しているカスタムドメインでHTTPSを使�
 
 ### 指定ドメインのDNSサーバーをCloudFlareに向ける
 
-ドメインプロバイダだと、プロバイダ側でDNSサーバーを用意してくれていたりするが、CloudFlareの用意するDNSサーバーに向くようにする。
-
-- `clint.ns.cloudflare.com`
-- `nia.ns.cloudflare.com`
+ドメインプロバイダだと、プロバイダ側でDNSサーバーを用意してくれていたりするが、CloudFlareの用意するDNSサーバーに向くようにする。DNSサーバーは`xxx.ns.cloudflare.com`みたいなやつが2つ。
 
 変更後に[My Websites](https://www.cloudflare.com/my-websites)で、ドメインプロバイダ側でDNSサーバーのアドレスを更新したドメインの、 **Re-Test** を実行すると、裏で再テストが実行される。ドメインがCloudFlareに向いて疎通が確認出来た。めでたい。
 
