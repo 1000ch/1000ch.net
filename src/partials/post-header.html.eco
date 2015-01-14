@@ -1,3 +1,0 @@
-<div>
-  <span class="label label--gray"><%=@moment(@document.date).format('YYYY.MM.DD')%></span>
-</div>
