@@ -1,0 +1,19 @@
+---
+layout: default
+isIndex: true
+---
+
+<h1><i class="fa fa-calendar fa--has-margin"></i>2015</h1>
+<ul class="list">
+<% for post in @getCollection('2015').toJSON(): %>
+  <li class="list__item">
+    <div>
+      <span class="label label--gray"><%= @moment(post.date).format('YYYY.MM.DD') %></span>
+    </div>
+    <div class="h2">
+      <a href="<%= post.url %>"><%= post.title %></a>
+    </div>
+    <div><%= post.description %></div>
+  </li>
+<% end %>
+</ul>
