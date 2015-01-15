@@ -18,7 +18,7 @@ date: 2014-08-04
 
 [スライド](http://www.slideshare.net/hiloki)を見ると分かる通り、[CSSプリプロセッサの話](http://www.slideshare.net/hiloki/css-16247228)に始まり、[CSSの設計の話](http://www.slideshare.net/hiloki/thinking-about-css-architecture)や、最近では[Web Componentsを交えた話](http://www.slideshare.net/hiloki/css-components)もされていて、CSSと戦ってきた傷跡が生生と感じられます（大袈裟）。今回の著書は得てきたナレッジの集大成といえるのではないでしょうか。
 
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00C2ICGPU&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00C2ICGPU&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 ## 内容について
 
@@ -56,6 +56,4 @@ date: 2014-08-04
 
 この本を読んで、より良いWeb開発を。
 
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4844336355&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-※アフィリンクです
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4844336355&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>

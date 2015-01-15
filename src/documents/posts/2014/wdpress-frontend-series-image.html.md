@@ -21,6 +21,6 @@ date: 2014-10-15
 
 圧縮されたjQueryが32KBだのなんだのと言っても、未減色の画像ならそのサイズの10倍とかを平気で突破するケースも多々ありますし、iPhone 6 Plusの`device-pixel-ratio=3`も各所で報告されましたし、画像ファイルのサイズは尚の事シビアな問題として今後挙げられていくでしょう。このあたりで画像の取り扱いについて再考しておくのもきっと今後のWeb開発に役立つはずです。
 
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4774167355&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4774167355&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 是非お買い求め下さい！
