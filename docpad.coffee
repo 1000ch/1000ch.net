@@ -34,8 +34,8 @@ config = {
       }, [{date:-1}])
   plugins:
     ghpages:
-      deployRemote: 'www'
-      deployBranch: 'master'
+      deployRemote: 'origin'
+      deployBranch: 'gh-pages'
     cleanurls:
       static: true
       collectionName: 'indexes'
