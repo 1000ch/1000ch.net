@@ -49,12 +49,12 @@ NotificationのAPIが実装されていないとダメなのはもちろんの�
 HTMLImportやら`Document#registerElement()`やら、Web Components周りのAPIが無いと動きません。
 ただ、Web Components側のAPI群に関しては[Polymer/platform](https://github.com/Polymer/platform)等でPolyfillすれば動きます。
 
-<blockquote class="twitter-tweet" lang="ja"><p>Re-designed x-notification landing page with Polymer including Paper Elements. <a href="http://t.co/eASmGUMQp8">http://t.co/eASmGUMQp8</a> <a href="https://twitter.com/hashtag/Polymer?src=hash">#Polymer</a> <a href="https://twitter.com/hashtag/WebComponents?src=hash">#WebComponents</a> <a href="https://twitter.com/hashtag/PaperElements?src=hash">#PaperElements</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/statuses/484296238892720128">2014, 7月 2</a></blockquote>
+<blockquote class="twitter-tweet" lang="ja"><p>Re-designed x-notification landing page with Polymer including Paper Elements. <a href="http://1000ch.github.io/x-notification">http://1000ch.github.io/x-notification</a> <a href="https://twitter.com/hashtag/Polymer?src=hash">#Polymer</a> <a href="https://twitter.com/hashtag/WebComponents?src=hash">#WebComponents</a> <a href="https://twitter.com/hashtag/PaperElements?src=hash">#PaperElements</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/statuses/484296238892720128">2014, 7月 2</a></blockquote>
 
 `x-notification`自体はピュアなWeb Componentsだけど、デモ用に`x-notification-editor`というPolymerを使ったWeb Componentsを作った。
 `x-notification-editor`内に`x-notification`を内包し、PaperElementsを駆使して動的に`x-notification`の属性値をいじれるようにしている。
 
-- http://1000ch.net/x-notification/ - デモページ
+- http://1000ch.github.io/x-notification/ - デモページ
 - https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html - x-notification-editor要素
 
 **Customize Example** の所にソースコードを表示するようにしてあって、
