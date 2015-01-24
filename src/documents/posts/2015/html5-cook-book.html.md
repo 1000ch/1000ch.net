@@ -27,8 +27,16 @@ date: 2015-01-25
 9. `<canvas>`要素
 10. 高度なHTML5 JavaScript - ローカルストレージ・Web Worker等の新たなブラウザAPI群について
 
-### 
+HTML5という括りの本ではあるけど、あまりバージョンを意識しないようになってきているなと思う。HTMLの仕様はHTML5として捉えるべきではなく、あくまでHTMLとして捉えるべき。
 
-バージョンを明確に分けて後方互換性を保ってきた故のことだけど、ブラウザの対応状況見てると改めてIE8以前の辛さを感じる。[先日新ブラウザの発表もあった](http://www.itmedia.co.jp/news/articles/1501/22/news047.html)ので、流れは少しずつ変わってくるとは思うが、それでもエンタープライズ系では未だに足枷になっていることと思う。[normalize.css](https://github.com/necolas/normalize.css)と[Modernizr](https://github.com/Modernizr/Modernizr)の偉大さたるや。
+## HTML5におけるマークアップ
 
-もう一度自分のマークアップを見直したい。
+8章の位置情報、9章の`<canvas>`要素、10章のAPI群に加えて各所にJavaScriptからの取り扱いの解説が散りばめられているが、個人的にはHTMLに追加されたマークアップとしての機能が印象的だった。
+
+`<input>`要素に追加された新たな`type`についてだったり、フォームの必須属性は`required`としたり、`hidden`とか`<details>` + `<summary>`だったり。JavaScriptでコントロールすることが開発する中で当たり前になってしまっているので、HTMLレベルで実現される振る舞いについては知らないことばかりであった。アクセシビリティの章もあるが、本来こういった属性を適切に指定したり、ドキュメント構造を意識すべきなんだと思う。「開発者同志で齟齬が出るくらいなら全部`<div>`で！」という意見もおおよそ同意な部分もあるけど、適切に実施出来るならやっておくに越したことはないのも間違いなさそう。
+
+ブラウザの対応状況見てると改めてIE8以前の辛さを感じる。もちろん、バージョンを明確に分けて後方互換性を保ってきた故のことだけど。[先日新ブラウザの発表もあった](http://www.itmedia.co.jp/news/articles/1501/22/news047.html)ので、流れは少しずつ変わってくるとは思うが、それでもエンタープライズ等での対応を考えたりすると、未だに足枷になっていることと思う。こういった対応していないブラウザへのフォールバックについても、本書では触れている。[normalize.css](https://github.com/necolas/normalize.css)と[Modernizr](https://github.com/Modernizr/Modernizr)の偉大さたるや。
+
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4873115477&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+HTMLマークアップ技術をアップデートしたい人にオススメ。
