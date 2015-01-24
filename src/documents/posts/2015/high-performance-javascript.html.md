@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ハイパフォーマンスJavaScript 書評
-date: 2014-01-24
+date: 2015-01-24
 ---
 
 # ハイパフォーマンスJavaScript 書評
