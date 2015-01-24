@@ -33,18 +33,20 @@ JavaScript界隈では有名な人なので、前のめりな人なら知って�
 
 ### 目次
 
-1. 読み込みと実行
-2. データアクセス
-3. DOMスクリプティング
-4. アルゴリズムと処理の制御
-5. 文字列と正規表現
-6. 反応性のよいインターフェイス
-7. Ajax
-8. プログラミングの実践的手法
-9. 高パフォーマンスなJavaScriptアプリケーションのビルドと配置
-10. ツール
+1. 読み込みと実行 - JSファイルロードの妙技
+2. データアクセス - グローバルへのアクセスコストやスコープの話
+3. DOMスクリプティング - 効率的なDOM操作・イベントのハンドリングについて
+4. アルゴリズムと処理の制御 - ifや再帰等のアルゴリズムの最適化
+5. 文字列と正規表現 - 文字列処理と正規表現、及びそれらの連携
+6. 反応性のよいインターフェイス - ブラウザスレッドを邪魔しないために
+7. Ajax - XMLHttpRequestのイロハと使いどころ
+8. プログラミングの実践的手法 - 4章を発展させた話
+9. 高パフォーマンスなJavaScriptアプリケーションのビルドと配置 - デプロイする前にやっておくべき、結合・圧縮・キャッシュ等について
+10. ツール - 各ブラウザベンダーのデバッグツールについて
 
-JavaScriptのMVCがどうとか、流行り廃りのあるライブラリや思想より、Webを作っていく上で大事で必要な知識だと思う。2011年刊行で、10章のツール部分は流石に古さがあるけど、駆け出したWebエンジニアが読むべき内容が詰まっている一冊。
+実行上の最適化についてはV8をはじめとしたJavaScriptエンジンの進化が進みすぎて、何もせずともブラウザが気を利かせてしまう可能性もあるけど、知っておくに越したことはない。
 
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=487311490X&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+JavaScriptのMVCがどうとか、流行り廃りのあるライブラリや思想より、Webを作っていく上で大事で必要な知識だと思う。逆にこの本をおさえておけば、いま巷で話題の技術にも、これから現れるであろう新たな流行にも応用が効く。2011年刊行ということで、10章のツール部分は流石に古さがあるけど、駆け出したWebエンジニアが読むべき内容が詰まっている一冊。
+
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=487311490X&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
