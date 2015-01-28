@@ -9,12 +9,40 @@ date: 2015-01-28
 ## 各プロトコルの特徴
 
 ### HTTP1.1
+
+- HOSTヘッダのサポート
+- TCP接続を維持する機能が追加された（Keep-Alive）
+- リクエストヘッダー・レスポンスヘッダーがテキストフォーマット
+- ひとつのTCPコネクションにつき、ひとつのリクエストとレスポンス
+- それぞれのTCP接続が独立して[輻輳制御](http://ja.wikipedia.org/wiki/%E8%BC%BB%E8%BC%B3%E5%88%B6%E5%BE%A1)を行っている
+
 ### SPDY
+
+コンテンツの拡大に伴いリクエストが増加の一途を辿ったWebのためにネットワークにも進化が要求された。そんな中Googleが開発したのがこのSPDYで、HTTPをベースに高速化が図られている。
+
+- 接続手順やセッション管理といった部分の効率化がされた
+- HTTP1.1の作法は変わらないので互換性があり、既存環境とも共存できる
+- セッション層を使うためTLSが必須、つまりHTTPS環境において利用可能
+- TLS連携からのプロトコル自動選択や、HTTPヘッダの圧縮
+- HTTP2に継承された通信の優先度付多重化とサーバープッシュ
+
 ### HTTP2
+
+SPDYをベースに考案されたプロトコル。
+
+- リクエストヘッダー・レスポンスヘッダーがバイナリフォーマット
+- ひとつのTCPコネクションにつき、複数のリクエストとレスポンスが可能（仮想ストリームチャネルによる多重化）
+- クライアントからのリクエストがなくともレスポンスをプッシュできる（サーバープッシュ）
+- ストリームに優先度を指定可能で、後方のリクエストでも前方のリクエストより優先度が高ければそちらを優先して返却する（HTTP2プライオリティ）
+- ブラウザでは最新のChromeとFirefoxで有効であり、IEではテクニカルプレビュー
+- HTTP・HTTPS（平文でもOK）を問わず、TLS利用は必須ではない
+- chrome://net-internals/#spdy
+
+Service Workerとサーバープッシュの組み合わせ
 
 ## HTTP2の仕様策定状況
 
-IETEのHTTPワーキンググループがメンテナンスしている[HTTP2の公式サイト](http://http2.github.io/)にも、デカデカと書かれている。RFC標準化も目前のようだ。
+IETEのHTTPワーキンググループがメンテナンスしている[HTTP2の公式サイト](http://http2.github.io/)にも、デカデカと書かれている。RFC標準化も目前ぽい。
 
 >## IETF Last Call
 >HTTP/2 and HPACK are currently in IETF Last Call.
@@ -23,11 +51,11 @@ IETEのHTTPワーキンググループがメンテナンスしている[HTTP2の
 
 ## 参考資料
 
-- [Can I use SPDY?](http://caniuse.com/#feat=spdy)
+- [SPDY - The Chromium Projects](http://www.chromium.org/spdy)
 - [HTTP/2の現状とこれから](http://www.slideshare.net/shigeki_ohtsu/http2-ohtsu-html5conf2015) - SlideShare 2015年1月25日
 - [A Simple Performance Comparison of HTTPS, SPDY and HTTP/2](https://blog.httpwatch.com/2015/01/16/a-simple-performance-comparison-of-https-spdy-and-http2/) - HttpWatch 2015年1月16日
+- [HTTP/2 を追いかけて](http://blog.summerwind.jp/archives/2566) - SummerWind 2014年12月25日
+- [Service WorkerとHTTP/2が切り開く新しいWeb Pushの世界](http://d.hatena.ne.jp/jovi0608/20141204/1417697480) - 2014年12月4日
 - [HTTP/2 入門](http://techblog.yahoo.co.jp/infrastructure/http2/introduction_to_http2/) - Yahoo Developer Network 2014年6月19日
-- [新たな技術仕様・要素とは？HTTP/2.0相互接続試験参加レポート（技術解説編）](http://html5experts.jp/jovi0608/1622/) - HTML5Experts.jp 2013年8月28日
-- [次世代プロトコルはどう作られる？HTTP/2.0相互接続試験参加レポート（標準化作業編）](http://html5experts.jp/jovi0608/1585/) - HTML5Experts.jp 2013年8月27日
 - [Web表示の高速化を実現するSPDYとHTTP/2.0の標準化](http://www.iij.ad.jp/company/development/tech/activities/spdy/index.html) - IIJ 2013年8月6日
 - [変わるWebプロトコルの常識（SPDY, HTTP2.0編）](http://html5experts.jp/komasshu/404/) - HTML5Experts.jp 2013年7月9日
