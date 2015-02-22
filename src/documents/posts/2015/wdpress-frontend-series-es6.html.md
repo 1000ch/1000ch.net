@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」
-date: 2014-02-23
+date: 2015-02-23
 ---
 
 # WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」
