@@ -2,12 +2,16 @@
 baseurl: "http://yoursite.example.com/"
 title: "1000ch.net"
 footnotereturnlinkcontents: "↩"
+params:
+  title: "1000ch.net"
+  author: "1000ch"
 permalinks:
   post: /:year/:title/
 contentdir: "content"
 layoutdir: "layouts"
+staticdir: "static"
 publishdir: "public"
-builddrafts: false
 canonifyurls: true
 uglyUrls: true
+metaDataFormat: "yaml"
 ---

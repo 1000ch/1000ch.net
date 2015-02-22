@@ -15,31 +15,20 @@
   </div>
 </aside>
 
-<% next = null %>
-<% prev = null %>
-<% posts = @getCollection("posts").toJSON() %>
-<% for document, documentIndex in posts: %>
-  <% if @document.id is document.id: %>
-    <% if documentIndex >= 1: %>
-      <% next = posts[documentIndex - 1] %>
-    <% end %>
-    <% if documentIndex < posts.length - 1: %>
-      <% prev = posts[documentIndex + 1] %>
-    <% end %>
-  <% end %>
-<% end %>
-
 <nav class="post-nav">
-  <% if prev isnt null: %>    
+  {{with .Prev}}
     <div class="post-nav__item post-nav__item--prev">
       <i class="fa fa-arrow-left fa--has-margin"></i>
-      <a href="<%= prev.url %>"><%= prev.title %></a>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
     </div>
-  <% end %>
-  <% if next isnt null: %>
+  {{else}}
+  {{end}}
+
+  {{with .Next}}
     <div class="post-nav__item post-nav__item--next">
-      <a href="<%= next.url %>"><%= next.title %></a>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
       <i class="fa fa-arrow-right fa--has-margin"></i>
     </div>
-  <% end %>
+  {{else}}
+  {{end}}
 </nav>

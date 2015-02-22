@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Frontrend ConferenceでService Workerについて話してきた
-date: 2014-02-22
+date: 2015-02-22
 ---
 
 # Frontrend ConferenceでService Workerについて話してきた

@@ -8,7 +8,7 @@ gulp.task('default', function () {
 
 gulp.task('build-js', function () {
 
-  var uglify     = require('gulp-uglify');
+  var uglify = require('gulp-uglify');
 
   var files = [
     'static/js/ga.js',
@@ -24,11 +24,10 @@ gulp.task('build-js', function () {
 gulp.task('build-css', function () {
 
   var csscomb = require('gulp-csscomb');
-  var csso = require('gulp-csso');
+  var csso    = require('gulp-csso');
 
   var files = [
     'bower_components/normalize.css/normalize.css',
-    'bower_components/fontawesome/css/font-awesome.css',
     'bower_components/highlight.js/src/styles/solarized_light.css',
     'static/css/default.css',
     'static/css/style.css'
