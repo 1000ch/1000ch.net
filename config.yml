@@ -13,5 +13,6 @@ staticdir: "static"
 publishdir: "public"
 canonifyurls: true
 uglyUrls: true
+config: "config.yml"
 metaDataFormat: "yaml"
 ---
