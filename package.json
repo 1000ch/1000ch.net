@@ -19,17 +19,17 @@
     "deploy": "docpad deploy-ghpages --env static"
   },
   "dependencies": {
-    "docpad": "~6.69.1",
+    "docpad": "~6.73.2",
     "docpad-plugin-cleanurls": "~2.7.0",
     "docpad-plugin-eco": "~2.1.0",
-    "docpad-plugin-ghpages": "~2.4.3",
-    "docpad-plugin-highlightjs": "~2.2.2",
-    "docpad-plugin-marked": "~2.2.1",
+    "docpad-plugin-ghpages": "~2.4.4",
+    "docpad-plugin-highlightjs": "~2.3.0",
+    "docpad-plugin-marked": "~2.3.0",
     "docpad-plugin-moment": "~2.0.2",
     "docpad-plugin-partials": "~2.9.1",
     "docpad-plugin-rss": "~2.1.4",
-    "docpad-plugin-stylus": "~2.7.0",
-    "safeps": "^2.2.12"
+    "docpad-plugin-stylus": "~2.9.0",
+    "safeps": "^2.2.13"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
