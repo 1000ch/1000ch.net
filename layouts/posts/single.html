@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    {{ partial "meta.html" }}
+  </head>
+  <body>
+    <div class="header-container"> 
+      {{ partial "header.html" }}
+    </div>
+    <div class="container">
+      <div class="main">
+        {{ partial "post-header.html" }}
+        <div class="main-content">
+          <div>
+            <span class="label label--gray">{{ .Date.Format "YYYY.MM.DD" }}</span>
+          </div>
+          {{ .Content }}
+        </div>
+        {{ partial "post-footer.html" }}
+      </div>
+      <div class="aside">
+        <div class="aside-content">
+          {{ partial "aside.html" }}
+        </div>
+      </div>
+    </div>
+    <div class="footer-container">
+      {{ partial "footer.html" }}
+    </div>
+    {{ partial "script.html" }}
+  </body>
+</html>

@@ -1,0 +1,13 @@
+---
+baseurl: "http://yoursite.example.com/"
+title: "1000ch.net"
+footnotereturnlinkcontents: "↩"
+permalinks:
+  post: /:year/:title/
+contentdir: "content"
+layoutdir: "layouts"
+publishdir: "public"
+builddrafts: false
+canonifyurls: true
+uglyUrls: true
+---
