@@ -3,13 +3,16 @@ box: wercker/rvm
 build:
   steps:
     - arjen/hugo-build:
-        version: 0.12
+      version: 0.12
     - script:
-        name: Copy index.xml to rss.xml
-        code: cp public/index.xml public/rss.xml
+      name: Install node modules  
+      code: npm install
+    - script:
+      name: Copy index.xml to rss.xml
+      code: cp public/index.xml public/rss.xml
 
 deploy:
   steps:
     - lukevivier/gh-pages@0.2.1:
-        token: $GIT_TOKEN
-        basedir: public
+      token: $GITHUB_TOKEN
+      basedir: public
