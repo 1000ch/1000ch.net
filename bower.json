@@ -11,6 +11,7 @@
     "tests"
   ],
   "dependencies": {
-    "normalize.css": "~3.0.2"
+    "normalize.css": "~3.0.2",
+    "highlight.js": "isagalaev/highlight.js#8.4"
   }
 }
