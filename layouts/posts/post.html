@@ -5,28 +5,28 @@
   </head>
   <body>
     <div class="header-container"> 
-      {{ partial "header.html" }}
+      {{ partial "header.html" . }}
     </div>
     <div class="container">
       <div class="main">
-        {{ partial "post-header.html" }}
+        {{ partial "post-header.html" . }}
         <div class="main-content">
           <div>
             <span class="label label--gray">{{ .Date.Format "2006.01.02" }}</span>
           </div>
           {{ .Content }}
         </div>
-        {{ partial "post-footer.html" }}
+        {{ partial "post-footer.html" . }}
       </div>
       <div class="aside">
         <div class="aside-content">
-          {{ partial "aside.html" }}
+          {{ partial "aside.html" . }}
         </div>
       </div>
     </div>
     <div class="footer-container">
-      {{ partial "footer.html" }}
+      {{ partial "footer.html" . }}
     </div>
-    {{ partial "script.html" }}
+    {{ partial "script.html" . }}
   </body>
 </html>
