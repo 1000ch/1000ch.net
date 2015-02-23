@@ -7,11 +7,11 @@ build:
     - script:
         name: Build static resources
         code: npm run build
-deploy:
-  steps:
     - script:
         name: Copy index.xml to rss.xml
-        code: cp public/index.xml public/rss.xml
+        code: cp _public/index.xml _public/rss.xml
+deploy:
+  steps:
     - lukevivier/gh-pages@0.2.1:
         token: $GITHUB_TOKEN
-        basedir: public
+        basedir: _public

@@ -18,7 +18,7 @@ gulp.task('build-js', function () {
   gulp.src(files)
     .pipe(concat('app.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('static/js'));
+    .pipe(gulp.dest('_public/js'));
 });
 
 gulp.task('build-css', function () {
@@ -37,5 +37,5 @@ gulp.task('build-css', function () {
     .pipe(concat('app.min.css'))
     .pipe(csscomb())
     .pipe(csso())
-    .pipe(gulp.dest('static/css'));
+    .pipe(gulp.dest('_public/css'));
 });
