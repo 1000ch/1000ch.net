@@ -1,16 +1,16 @@
 ---
 layout: post
-title: Farewell Docpad, Hello Hugo.
+title: Farewell DocPad, Hello Hugo.
 date: 2015-02-24
 ---
 
-# Farewell Docpad, Hello Hugo.
+# Farewell DocPad, Hello Hugo.
 
 Hugoはじめました。
 
-## DocpadからHugoへ
+## DocPadからHugoへ
 
-1000ch.netというドメイン自体は2009年から持っていたけど、技術ブログを書くようになったのは2012年11月から。暫くはJekyll+GitHub Pagesでホストしていたけど、ビルドが重かったり、GitHub Flavored Markdownが使えなかったりの不満を感じて途中でDocpadに移行。
+1000ch.netというドメイン自体は2009年から持っていたけど、技術ブログを書くようになったのは2012年11月から。暫くはJekyll+GitHub Pagesでホストしていたけど、ビルドが重かったり、GitHub Flavored Markdownが使えなかったりの不満を感じて途中でDocPadに移行。
 
 ## Jekyll時代
 
