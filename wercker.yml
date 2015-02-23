@@ -6,6 +6,9 @@ build:
     - npm-install
 deploy:
   steps:
+    - script:
+        name: Copy to rss.xml
+        code: cp _public/posts.xml _public/rss.xml
     - lukevivier/gh-pages@0.2.1:
         token: $GITHUB_TOKEN
         domain: 1000ch.net
