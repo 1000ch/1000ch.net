@@ -3,12 +3,12 @@ build:
   steps:
     - arjen/hugo-build:
         version: 0.12
-    - script:
-        name: Copy index.xml to rss.xml
-        code: cp _public/index.xml _public/rss.xml
     - npm-install
 deploy:
   steps:
+    - script:
+        name: Copy RSS
+        code: cp _public/index.xml _public/rss.xml
     - lukevivier/gh-pages@0.2.1:
         token: $GITHUB_TOKEN
         basedir: _public
