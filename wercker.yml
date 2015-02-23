@@ -6,9 +6,6 @@ build:
     - npm-install
 deploy:
   steps:
-    - script:
-        name: Copy RSS
-        code: cp _public/index.xml _public/rss.xml
     - lukevivier/gh-pages@0.2.1:
         token: $GITHUB_TOKEN
         basedir: _public
