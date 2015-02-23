@@ -13,7 +13,7 @@
     "node": "0.12"
   },
   "scripts": {
-    "postinstall": "bower install && npm run build",
+    "postinstall": "bower install && gulp",
     "start": "hugo server --watch",
     "build": "gulp && hugo && cp _public/index.xml _public/rss.xml",
     "deploy": "sh ./push-gh-pages.sh _public"
