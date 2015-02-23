@@ -6,6 +6,9 @@ build:
     - npm-install
 deploy:
   steps:
+    - script:
+        name: Create CNAME
+        code: echo '1000ch.net' > _public/CNAME
     - lukevivier/gh-pages@0.2.1:
         token: $GITHUB_TOKEN
         basedir: _public
