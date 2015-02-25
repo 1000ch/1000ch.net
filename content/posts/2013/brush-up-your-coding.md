@@ -34,15 +34,15 @@ $ bower install html-inspector
 
 ```js
 {
-    useRules: null, //(Array) 解析のルールの指定
-    domRoot: "html", //(selector | element) 解析を開始するルート
-    exclude: "svg", //(selector | element | Array) 解析の対象としない要素を指定
-    excludeSubTree: ["svg", "iframe"], //(selector | element | Array) 解析の対象としないサブツリー要素を指定
-    onComplete: function(errors) {//(Function) 解析完了時のコールバック
-        errors.forEach(function(error) {
-            console.warn(error.message, error.context)
-        })
-    }
+  useRules: null, //(Array) 解析のルールの指定
+  domRoot: "html", //(selector | element) 解析を開始するルート
+  exclude: "svg", //(selector | element | Array) 解析の対象としない要素を指定
+  excludeSubTree: ["svg", "iframe"], //(selector | element | Array) 解析の対象としないサブツリー要素を指定
+  onComplete: function(errors) {//(Function) 解析完了時のコールバック
+    errors.forEach(function(error) {
+      console.warn(error.message, error.context)
+    })
+  }
 }
 ```
 
@@ -132,8 +132,7 @@ grunt.initConfig({
 - [ぼくのかんがえたさいきょうのしーえしゅえしゅ - MOL](http://t32k.me/mol/log/the-perfect-css-i-thought/)
 - [t32k/maple](https://github.com/t32k/maple)
 
-こちら[@t32k](http://twitter.com/t32k)氏が作成したフレームワークだけど、grunt周りやcssの方針など参考になる。(@t32k氏にはH:inspectorのアイコンを頂きました。ありがとうございます。)
-jshint、csslintに加えて、[grunt-imageoptim](https://github.com/JamieMason/grunt-imageoptim)や[grunt-kss](https://github.com/t32k/grunt-kss)なども一緒に導入可能になっており、画像の最適化やスタイルガイドの作成も自動化できるようになっている。
+こちら[@t32k](http://twitter.com/t32k)氏が作成したフレームワークだけど、grunt周りやcssの方針など参考になる(@t32k氏にはH:inspectorのアイコンを頂きました。ありがとうございます)。jshint、csslintに加えて、[grunt-imageoptim](https://github.com/JamieMason/grunt-imageoptim)や[grunt-kss](https://github.com/t32k/grunt-kss)なども一緒に導入可能になっており、画像の最適化やスタイルガイドの作成も自動化できるようになっている。
 
 業務でプロジェクトを幾つか経験したけど、最初の設計と継続的リファクタリングが如何に大事であるかを痛感していて、特に運用が大変なプロジェクトだと、どうしてもフロントエンドのコードが犠牲になりがち。それでも、
 
@@ -141,9 +140,7 @@ jshint、csslintに加えて、[grunt-imageoptim](https://github.com/JamieMason/
 
 と、思う。
 
-cssとかjsは短ければ短いほどいいと思うけど、コード増やすのは簡単だけど、コード削るのってやっぱり困難だなぁ、と。ましてや稼働中のサービスに一気に手を入れるのは非常に勇気のいる作業。
-
-ひとつひとつの蓄積（ある種我慢の蓄積かもしれないけど）が、
+cssとかjsは短ければ短いほどいいと思うけど、コード増やすのは簡単だけど、コード削るのってやっぱり困難だなぁ、と。ましてや稼働中のサービスに一気に手を入れるのは非常に勇気のいる作業。ひとつひとつの蓄積（ある種我慢の蓄積かもしれないけど）が、
 
 - Webのパフォーマンスにつながり
 - 運用スピードの向上
