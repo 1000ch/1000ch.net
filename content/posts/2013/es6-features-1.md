@@ -6,26 +6,22 @@ date: 2013-12-26
 
 # ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~
 
-ES6のフォローについては書こうとしていたものの後手に回っていまして、ようやく書くに至ります。
-SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてますが、
-`let`とか`const`、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておきます。
+ES6のフォローについては書こうとしていたものの後手に回っていて、ようやく書くに至る。SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてるけど、`let`とか`const`、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておく。
 
 ## この段階での実装状況はNightly > Canary
 
 - Chrome Canary 34.0.1760.0
 - Firefox Nightly 29.0a1 (2013-12-25)
 
-この2つを[ECMAScript 6 compatibility table](http://kangax.github.io/es5-compat-table/es6/)で比較するとNightlyのほうが先行実装は進んでいるのでNightlyでアレコレします。
-Canaryだと試したいシンタックス部分がまだ実装されていないので断念。
-Canaryでデバッグしたい人はES6実装を有効にするフラグをたてる必要があるので、
-`chrome://flags`にアクセスして`#enable-javascript-harmony`でページを検索すると **JavaScript の試験運用機能を有効にする** という項目があるのでそれを有効にする。
-あとはDevTool開いてConsoleでいつも通り試せます。FirefoxなのでScratchpadでやる。使い慣れてない…。
+この2つを[ECMAScript 6 compatibility table](http://kangax.github.io/es5-compat-table/es6/)で比較するとNightlyのほうが先行実装は進んでいるのでNightlyでアレコレする。Canaryだと試したいシンタックス部分がまだ実装されていないので断念。
+
+Canaryでデバッグしたい人はES6実装を有効にするフラグをたてる必要があるので、`chrome://flags`にアクセスして`#enable-javascript-harmony`でページを検索すると **JavaScript の試験運用機能を有効にする** という項目があるのでそれを有効にする。あとはDevTool開いてConsoleでいつも通り試せる。が、今回はFirefoxなのでScratchpadでやる。使い慣れてない…。
 
 ## `let`
 
-`let`を使うことでスコープが考慮された変数宣言が可能になります。
-まず、今までの`var`を使ったパターン。
-（これだとそもそもlintで怒られますが、挙動のテストということで。）
+`let`を使うことでブロックスコープの変数宣言が可能になる。
+
+まず、今までの`var`を使ったパターン。（これだとそもそもlintで怒られるけど、挙動のテストということで。）
 
 ```js
 var x = 1;
@@ -38,7 +34,7 @@ console.log('x is ' + x);
 // x is 2
 ```
 
-このケースだと最初に宣言した`x`がif内で上書きされ、2回とも2が出力されます。ここで`let`を使ってみる。
+このケースだと最初に宣言した`x`がif内で上書きされ、2回とも2が出力される。ここで`let`を使ってみる。
 
 ```js
 let x = 1;
@@ -51,7 +47,7 @@ console.log('x is ' + x);
 // x is 1
 ```
 
-期待通りの動きをしてくれます。`var`と`let`の複合はどうなるか。
+期待通りの動きをしてくれる。`var`と`let`の複合はどうなるか。
 
 ```js
 let x = 1;
@@ -77,14 +73,11 @@ console.log('x is ' + x);
 // x is 1
 ```
 
-こっちはスコープを守ってくれています。`var`の使用頻度えらく減る予感…。
-あとはおなじみのスコープ形成無名関数も減るのでしょうか。
-なんか[Firefoxの現在の実装は仕様とちょっと違うらしい](https://developer.mozilla.org/en/docs/Web/JavaScript/ECMAScript_6_support_in_Mozilla)。
+こっちはスコープを守ってくれている。`var`の使用頻度えらく減る予感…。おなじみのスコープ形成無名関数も減るのかな、と。なんか[Firefoxの現在の実装は仕様とちょっと違うらしい](https://developer.mozilla.org/en/docs/Web/JavaScript/ECMAScript_6_support_in_Mozilla)。
 
 ## `const`
 
-`const`もES6から追加される新しい変数宣言の方法で、定数値(constant value)を宣言する時に使用します。
-`const`を使って宣言された変数には値を代入できなくなります。
+`const`もES6から追加される新しい変数宣言の方法で、定数値(constant value)を宣言する時に使用する。`const`を使って宣言された変数には値を代入できなくなる。
 
 ```js
 const PI = 3.14;
@@ -93,7 +86,7 @@ console.log('PI is ' + PI);
 // PI is 3.14
 ```
 
-こういうのものOKです。
+こういうのものOK。
 
 ```js
 var x = 3;
@@ -104,8 +97,7 @@ console.log('PI is ' + PI);
 // PI is 3.14
 ```
 
-`use strict`をつけてstrictモードになっている場合は、`PI = 3;`の部分で例外が発生します。
-ちなみにこれはtry/catchでも捕捉出来なかった(?)。
+`use strict`をつけてstrictモードになっている場合は、`PI = 3;`の部分で例外が発生。ちなみにこれはtry/catchでも捕捉出来なかった(?)。
 
 ```js
 "use strict";
@@ -118,7 +110,7 @@ console.log(PI);
 
 ## 関数のアロー記法
 
-関数を、`function`の代わりに`=>`を使って表現可能になったアレです。CoffeeScriptを連想しますね。
+関数を、`function`の代わりに`=>`を使って表現可能になったアレ。CoffeeScriptを連想させられる。
 
 ```js
 const square = function(x) {
@@ -148,9 +140,7 @@ console.log(multiply(3, 4));
 // 12
 ```
 
-関数のとる引数がひとつの場合は括弧を省略出来ます。
-**`function`というキーワードを除いて、引数の括弧の後ろに`=>`をつける** という覚え方でしょうか。
-あとはイベントのコールバックにも書いたり出来そうです。
+関数のとる引数がひとつの場合は括弧を省略出来る。`this`の持ち込みには注意するとして、記法自体は **`function`というキーワードを除いて、引数の括弧の後ろに`=>`をつける** という覚え方で良いのかな。あとはイベントのコールバックにも書いたり出来そうです。
 
 ```js
 document.addEventListener('DOMContentLoaded', e => {
@@ -163,8 +153,7 @@ C#のラムダ式で妙に親しみがあるのでちょっと懐かしい。そ
 
 ## Generatorsとfor ofループ
 
-Generator Functionは実行された後も実行状態を保持し、イテレータとして使用します。
-[フィボナッチ数列](http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81%E6%95%B0)を例に説明します。
+Generator Functionは実行された後も実行状態を保持し、イテレータとして使用する。[フィボナッチ数列](http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81%E6%95%B0)を例に説明します。
 
 ```js
 const fibonacci = function* () {
@@ -201,8 +190,7 @@ console.log(seq.next()); // {value: 5, done: false}
 console.log(seq.next()); // {value: 8, done: false}
 ```
 
-実行するとイテレータオブジェクトを返却して、`next()`を実行すると値が列挙されていく。
-これを配列のイテレーションをすることが可能なfor ofループと組み合わせてみる。
+実行するとイテレータオブジェクトを返却して、`next()`を実行すると値が列挙されていく。これを配列のイテレーションをすることが可能なfor ofループと組み合わせてみる。
 
 ```js
 for (var seq of fibonacci()) {
@@ -214,8 +202,7 @@ for (var seq of fibonacci()) {
 // 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987
 ```
 
-順番が逆になってしまいましたが、for ofで配列をイテレートすることが可能です。
-今までやっていたfor in + Arrayの罠にハマることがなくなりますね。
+順番が逆になってしまいましたが、for ofで配列をイテレートすることが可能。今までやっていたfor in + Arrayの罠にハマることがなくなりそう。
 
 ```js
 var array = [1, 10, 100, 1000, 10000];
@@ -225,8 +212,7 @@ for (var item of array) {
 // 1, 10, 100, 1000, 10000
 ```
 
-オブジェクトにはイテレータ関数が明示されていないので、そのままだとfor ofは使えません。
-なので、イテレータ関数を挟んでfor ofに列挙させてみます。
+オブジェクトにはイテレータ関数が明示されていないので、そのままだと`for of`は使えない。なので、イテレータ関数を挟んで`for of`に列挙させてみる。
 
 ```js
 var data = {
@@ -248,6 +234,8 @@ for (var item of valueIterator(data)) {
 
 ## 所感
 
-一番試したかったclassが未実装で書けませんでした（ただの糖衣構文ですが）。でも実装も色々と進んできているし、試すレベルでは色々と楽しめそうです。
-ES6をES5にコンパイルしてくれる[google / traceur-compiler](https://github.com/google/traceur-compiler)とかもありますが、プロダクトで **「ES6をゴリゴリ使って後方互換にES5ソースを用意する」** みたいなことをするのはちょっとだけ早いかなとは思いました。
-今日はここまでです。続き(?)はまた新年。
+一番試したかったclassが未実装で書けなかった（ただの糖衣構文ですが）。でも実装も色々と進んできているし、試すレベルでは色々と楽しめそうな予感。
+
+ES6をES5にコンパイルしてくれる[google / traceur-compiler](https://github.com/google/traceur-compiler)とかもありますが、プロダクトで **「ES6をゴリゴリ使って後方互換にES5ソースを用意する」** みたいなことをするのはちょっとだけ早いかなとは思った。
+
+続き(?)はまた新年。
