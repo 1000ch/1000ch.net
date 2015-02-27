@@ -43,7 +43,7 @@ self.addEventListener('fetch', function (e) {
           return response;
         } else {
           // キャッシュが見つからなかったので取得
-          fetch(e.request.clone()).then(function (response) {
+          return fetch(e.request.clone()).then(function (response) {
             // 取得したリソースをキャッシュに登録
             cache.put(e.request, response.clone());
             // 取得したリソースを返却
