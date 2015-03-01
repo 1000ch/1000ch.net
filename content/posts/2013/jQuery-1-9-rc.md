@@ -1,21 +1,18 @@
 ---
 layout: post
-title: jQuery 1.9リリース候補版がリリースされました
+title: jQuery 1.9リリース候補版がリリースされた
 date: 2013-01-11
 ---
 
-# jQuery 1.9リリース候補版がリリースされました
+# jQuery 1.9リリース候補版がリリースされた
 
 - [JQUERY 1.9 RC1 AND MIGRATE RC1 RELEASED](http://blog.jquery.com/2013/01/09/jquery-1-9-rc1-and-migrate-rc1-released/)
 
-jQuery1.9のリリース候補版ver1が公開されました。[beta1の続き](/posts/2012/jQuery-1-9.html)ということで、懲りずに変更とか追っかけてみます。
+jQuery1.9のリリース候補版ver1が公開された。[beta1の続き](/posts/2012/jQuery-1-9.html)ということで、懲りずに変更とか追っかけてみる。
 
 ## Sizzleが対応するCSS3セレクタが増えた
 
-追加されたものと、簡単な解説を。
-ネイティブじゃないので相変わらずIE6でも使えるそうで。
-`:link`・`:visited`・`:hover`の3つに関してはサポートしていません。
-オーバーヘッドが大きいこともあって、実装予定はないとのこと。
+追加されたものと、簡単な解説を。ネイティブじゃないので相変わらずIE6でも使えるそうで。`:link`・`:visited`・`:hover`の3つに関してはサポートしていない。オーバーヘッドが大きいこともあって、実装予定はないとのこと。
 
 - `:nth-last-child()` - ()の条件式に該当する子要素の最後の要素。引数の形式は:nth-childと同様。
 - `:nth-of-type()` - ()の条件式に該当する同一属性要素。引数の形式は:nth-childと同様。
@@ -29,17 +26,13 @@ jQuery1.9のリリース候補版ver1が公開されました。[beta1の続き]
 
 ## finish()が追加された
 
-`.stop(Boolean, Boolean)`のように真偽値を渡すのをやめたいそうな。
-stop()の引数の渡し方で制御をするような複雑なことをしたことがないんですが、
-ほとんどの場合は`.clearQueue(a)`や`.finish()`で解決できるからだそうです。
+`.stop(Boolean, Boolean)`のように真偽値を渡すのをやめたいそうな。`stop()`の引数の渡し方で制御をするような複雑なことをしたことがないが、ほとんどの場合は`.clearQueue(a)`や`.finish()`で解決できるからだそう。
 
 - [サンプル](http://jsfiddle.net/dmethvin/AFGgJ/)
 
 ## Source Mapに対応
 
-minifyされてたら無理ということでSource Mapを用意してくれました。
-生ソースが得られてもjQueryをデバッグする気にはあまりならないけど。
-chromeでどうぞ。Source Mapについては以下のリソースが参考になります。
+minifyされてたら無理ということでSource Mapを用意してくれた。生ソースが得られてもjQueryをデバッグする気にはあまりならないけど。Source Mapについては以下のリソースが参考になる。
 
 - [Source Map Revision 3 Proposal](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit?pli=1#heading=h.9ppdoan5f016)
 - [SourceMapについて調べました。](http://maruta.be/intfloat_staff/144)
@@ -49,11 +42,8 @@ chromeでどうぞ。Source Mapについては以下のリソースが参考に�
 - `ajax.type`が`ajax.method`にリネームされた。
 - `$("some-selector")`の性能が10%~30%向上した。
 
-### Sizzleはどこまで進化するんだ。
+Sizzleはどこまで進化するんだ。
 
 ## まとめ
 
-改めてロードマップは、2.0はIE6~IE8のサポートを打ち切り、
-再設計して改良。軽量化と高速化を図るそうです。1.9は引き続きIE6~IE8をサポートを続けます。
-バグフィックスは2.0.xと1.9.xのマイナーアップデートにされるってことになるのかな。
-内部APIを色々と整理したのでたくさんテストして下さいとのことです。
+ロードマップは、2.0はIE6~IE8のサポートを打ち切り、再設計して改良。軽量化と高速化を図るそう。1.9は引き続きIE6~IE8をサポートを続ける。バグフィックスは2.0.xと1.9.xのマイナーアップデートにされるってことになるのかな。内部APIを色々と整理したのでたくさんテストして下さいとのこと。

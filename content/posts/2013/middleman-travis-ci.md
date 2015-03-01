@@ -6,8 +6,7 @@ date: 2013-08-30
 
 # MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた
 
-`gh-pages`ブランチの更新自動化がゴールです。`master`ブランチにpushするだけで内容を動的に取得して`gh-pages`ブランチにpushをします。
-今回もTravisのお力を借ります。以下がポイントになります。
+`gh-pages`ブランチの更新自動化がゴール。`master`ブランチにpushするだけで内容を動的に取得して`gh-pages`ブランチにpushする。今回もTravisの力を借りる。以下がポイント。
 
 - `gh-pages`ブランチの内容はmiddlemanによる出力
 - masterブランチにコミットしたあと、Travisからmiddlemanのビルドを実行
@@ -15,9 +14,7 @@ date: 2013-08-30
 
 ## middlemanのインストール
 
-middlemanはrubyで動く静的サイトジェネジェネレータです。  
-テンプレートをほぼhtmlで記述することが出来て、ブログ等の管理を非常に簡単にすることが出来ます。
-jekyll使ったことのある人なら学習コストはさらに低めです。詳しくはこの辺り。
+middlemanはrubyで動く静的サイトジェネジェネレータ。テンプレートをほぼhtmlで記述することが出来て、ブログ等の管理を非常に簡単にすることが可能。jekyll使ったことのある人なら学習コストはさらに低め。詳しくはこの辺りが参考になる。
 
 - [middleman - web サイトの開発をシンプルに](http://middleman-guides.e2esound.com/)
 
@@ -27,14 +24,13 @@ jekyll使ったことのある人なら学習コストはさらに低めです�
 $ gem install middleman
 ```
 
-プロジェクト名を指定し、`middleman init`します。
+プロジェクト名を指定し、`middleman init`。
 
 ```bash
 $ middleman init middleman-playground
 ```
 
-カレントディレクトリに`middleman-playground`というディレクトリが作成され、
-その配下に色々とファイルが生成されています。
+カレントディレクトリに`middleman-playground`というディレクトリが作成され、その配下に色々とファイルが生成されている。
 
 ```
 ├─ source
@@ -53,13 +49,11 @@ $ middleman init middleman-playground
 └─ Gemfile.lock
 ```
 
-`middleman build`を実行すると`source`フォルダ下を出力のリソースとし、
-`build`フォルダに静的ファイルが生成されます。この`build`配下をデプロイするものになります。
+`middleman build`を実行すると`source`フォルダ下を出力のリソースとし、`build`フォルダに静的ファイルが生成される。この`build`配下をデプロイすることになる。
 
 ## config.rb
 
-ルートディレクトリに、`config.rb`という設定ファイルがありますので、
-設定を自分好みに変えてみます。  
+ルートディレクトリに、`config.rb`という設定ファイルがあるので、設定を自分好みに変えてみる。
 
 ```ruby
 set :css_dir, 'stylesheets'
@@ -67,10 +61,7 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 ```
 
-お分かりの通り、何をCSSディレクトリとして扱うかの設定です。
-ただし、source配下のディレクトリはそのままbuildに出力されるだけで、
-システム内部で扱う変数に過ぎません。ということで、
-source配下のディレクトリ名と`config.rb`をそれぞれ以下のように編集します。
+お分かりの通り、何をCSSディレクトリとして扱うかの設定。ただし、source配下のディレクトリはそのままbuildに出力されるだけで、システム内部で扱う変数に過ぎない。ということで、source配下のディレクトリ名と`config.rb`をそれぞれ以下のように編集。
 
 ```ruby
 set :css_dir, 'css'
@@ -82,23 +73,20 @@ set :images_dir, 'img'
 
 ## middleman server
 
-`soruce`配下の変更を監視して、適時ビルドしてくれます。このあたりもjekyllと似てる。
-サイトの構築デバッグ時に使うことになりそうな感じです。
+`soruce`配下の変更を監視して、適時ビルドしてくれる。このあたりもjekyllと似てる。サイトの構築デバッグ時に使うことになりそうな感じ。
 
 ## Travis側の設定
 
-Travisからgithubにコミットするには、GitHubにOAuthトークンを利用しTravisのセキュアキーを使用する必要があります。
-GitHubのトークンを設定ファイルに記述するのは良くないので、travisコマンドラインから暗号化したものを生成します。
+Travisからgithubにコミットするには、GitHubにOAuthトークンを利用しTravisのセキュアキーを使用する必要がある。GitHubのトークンを設定ファイルに記述するのは良くないので、travisコマンドラインから暗号化する。
 
-まずはGitHubのトークンを[Applications](https://github.com/settings/applications)から、Personal Access TokensのCreateで作成します。
-次にtravisのコマンドラインツールからsecureキーを取得します。
+まずはGitHubのトークンを[Applications](https://github.com/settings/applications)から、Personal Access TokensのCreateで作成。次にtravisのコマンドラインツールからsecureキーを取得。
 
 ```bash
 $ gem install travis
 $ travis encrypt -r 1000ch/middleman-playground "GH_TOKEN=<生成したGitHubトークン>"
 ```
 
-生成されたキーを`.travis.yml`に追記します。
+生成されたキーを`.travis.yml`に追記。
 
 ```
 language: ruby
@@ -124,34 +112,23 @@ after_success:
     - '[ "$TRAVIS_BRANCH" == "master" ] && [ $GH_TOKEN ] && git push --quiet https://$GH_TOKEN@github.com/1000ch/middleman-playground.git gh-pages 2> /dev/null'
 ```
 
-`git push`時に`--quiet`をつけないと、トークンが表示されてしまうので注意してください。
+`git push`時に`--quiet`をつけないと、トークンが表示されてしまうので注意。
 
 ## 以上を踏まえたサンプル
 
 - [middleman-playground](https://github.com/1000ch/middleman-playground)
 
-gruntでsassファイルをコンパイルするというのを追加しています。
-travis上でcloneしてきたmasterブランチで、grunt周りをひと通りインストールして
-（rakeでいいじゃんというツッコミは一旦なしでお願いします。苦笑）
-grunt-contrib-sassでコンパイルされたcssをgh-pagesにコミットするという手順になっています。
+gruntでsassファイルをコンパイルするというのを追加している。travis上でcloneしてきたmasterブランチで、grunt周りをひと通りインストールして（rakeでいいじゃんというツッコミは一旦なしで）、grunt-contrib-sassでコンパイルされたcssをgh-pagesにコミットするという手順になってる。
 
-が、このままだとrubyプロジェクトなので、Travis上で`bundle install --deployment`した場合に
-Sassが`vendor/bundle`配下にインストールされて、gruntから参照出来ずにビルドがこけます。
-この辺[@koko1000ban](http://twitter.com/koko1000ban)先生に色々と助けていただきましたorz
-最初、`--binstub`をつけて解決したかと思ったんですが、
-これを付けて解決したというよりは、`--deployment`が外れたせいでした。
+が、このままだとrubyプロジェクトなので、Travis上で`bundle install --deployment`した場合に、Sassが`vendor/bundle`配下にインストールされて、gruntから参照出来ずにビルドがこける。最初、`--binstub`をつけて解決したかと思ったが、これを付けて解決したというよりは、`--deployment`が外れたせいだった。
 
 ## 所感
 
-今回やったgruntによるsassのコンパイルは正直な所微妙なやり方で、
-middlemanはcompassの機能を含んでいるので、middleman + gruntの組み合わせがそもそも。
-Sassのコンパイルをするだけならmiddleman + rakeのほうが自然です。
-あとジェネレータとしてのmiddlemanはjekyllと似ているなと思いました。
-ブログモードとかもあったり、初期設定がjekyllより気が利いているかも。
-　  
-本来の目的であるTravisからのgh-pagesブランチへの`git push`は、
-middlemanなしでももちろん出来ます。これはもしや色々と応用が効きそうなノウハウ…。
-あと、身長が伸びるかどうかは個人差がありますので、ご了承ください。
+今回やったgruntによるsassのコンパイルは正直な所微妙なやり方で、middlemanはcompassの機能を含んでいるので、middleman + gruntの組み合わせがそもそも。Sassのコンパイルをするだけならmiddleman + rakeのほうが自然ぽい。
+
+ジェネレータとしてのmiddlemanはjekyllと似ているなと思った。ブログモードとかもあったり、初期設定がjekyllより気が利いているかも。あと、本来の目的であるTravisからのgh-pagesブランチへの`git push`は、middlemanなしでももちろん出来る。
+
+身長が伸びるかどうかは個人差がありますので、ご了承ください。
 
 ## 参考
 
