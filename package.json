@@ -15,8 +15,7 @@
   "scripts": {
     "postinstall": "bower install && gulp",
     "start": "hugo server --watch",
-    "build": "gulp && hugo && cp _public/index.xml _public/rss.xml",
-    "deploy": "sh ./push-gh-pages.sh _public"
+    "build": "gulp && hugo && cp _public/index.xml _public/rss.xml"
   },
   "devDependencies": {
     "bower": "^1.3.12",
