@@ -14,7 +14,7 @@
             <i class="fa fa-calendar fa--has-margin"></i>Posts
           </h1>
           <ul class="list">
-            {{ range .Data.Pages }}
+            {{ range where .Data.Pages "Section" "posts" }}
               <li class="list__item">
                 <div>
                   <span class="label label--gray">{{ .Date.Format "2006.01.02" }}</span>
