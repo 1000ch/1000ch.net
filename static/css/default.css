@@ -35,12 +35,12 @@ h6 {
 }
 h1 {
   color: #333;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 1px solid #bbb;
   padding-bottom: 5px;
 }
 h2 {
   color: #333;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px dashed #ddd;
   padding-bottom: 5px;
 }
 li {
@@ -69,12 +69,15 @@ code {
 }
 h1 > code {
   font-size: inherit;
+  font-weight: normal;
 }
 h2 > code {
   font-size: inherit;
+  font-weight: normal;
 }
 h3 > code {
   font-size: inherit;
+  font-weight: normal;
 }
 code {
   padding: 4px;
