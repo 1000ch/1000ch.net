@@ -3,10 +3,14 @@ var concat   = require('gulp-concat');
 var sequence = require('run-sequence').use(gulp);
 
 gulp.task('default', function () {
-  sequence('build-js', 'build-css')
+  gulp.start('build');
 });
 
-gulp.task('build-js', function () {
+gulp.task('build', function () {
+  sequence('js', 'css')
+});
+
+gulp.task('js', function () {
 
   var uglify = require('gulp-uglify');
 
@@ -21,7 +25,7 @@ gulp.task('build-js', function () {
     .pipe(gulp.dest('_public/js'));
 });
 
-gulp.task('build-css', function () {
+gulp.task('css', function () {
 
   var csscomb = require('gulp-csscomb');
   var csso    = require('gulp-csso');
