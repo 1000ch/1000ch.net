@@ -6,7 +6,7 @@ date: 2015-03-23
 
 # Web Componentsに対する問題提起
 
-銀の弾丸のごとく現れたWeb Components。暫く理想を語ってきたけど、正直そう上手くいかないと思っている。
+銀の弾丸のごとく現れたWeb Components。暫く理想を語ってきたけど、正直そうは上手くいかないと思っている。
 
 - [Web Componentsが変えるWeb開発の未来](https://html5experts.jp/1000ch/8906/)
 - [Web Componentsを構成する4つの仕様 ー Web Components基礎編](https://html5experts.jp/1000ch/11142/)
