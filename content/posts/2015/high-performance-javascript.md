@@ -1,10 +1,10 @@
 ---
 layout: post
-title: ハイパフォーマンスJavaScript 書評
+title: ハイパフォーマンスJavaScript
 date: 2015-01-24
 ---
 
-# ハイパフォーマンスJavaScript 書評
+# ハイパフォーマンスJavaScript
 
 昔買ったN.Zakasの本を掘り当てたので読みなおした。
 

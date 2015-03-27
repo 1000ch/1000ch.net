@@ -1,10 +1,10 @@
 ---
 layout: post
-title: HTML5クックブック 書評
+title: HTML5クックブック
 date: 2015-01-22
 ---
 
-# HTML5クックブック 書評
+# HTML5クックブック
 
 読みなおした。
 
