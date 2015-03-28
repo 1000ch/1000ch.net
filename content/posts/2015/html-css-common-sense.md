@@ -6,7 +6,7 @@ date: 2015-03-27
 
 # 現場のプロが教えるHTML+CSSコーディングの最新常識
 
-[ギンペイさん](http://twitter.com/ginpei_jp)が本書いたらしく、恵贈頂いた。
+[ペンギン](http://twitter.com/ginpei_jp)が本書いたらしく、恵贈頂いた。
 
 ![](/img/posts/html-css-common-sense/cover.jpg)
 
