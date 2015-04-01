@@ -17,7 +17,7 @@
 
 <nav class="post-nav">
   {{with .Prev}}
-    <div class="post-nav__item post-nav__item--prev">
+    <div class="post-nav__item post-nav__item--prev h3">
       <i class="fa fa-arrow-left fa--has-margin"></i>
       <a href="{{ .Permalink }}">{{ .Title }}</a>
     </div>
@@ -25,7 +25,7 @@
   {{end}}
 
   {{with .Next}}
-    <div class="post-nav__item post-nav__item--next">
+    <div class="post-nav__item post-nav__item--next h3">
       <a href="{{ .Permalink }}">{{ .Title }}</a>
       <i class="fa fa-arrow-right fa--has-margin"></i>
     </div>
