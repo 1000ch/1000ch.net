@@ -63,21 +63,21 @@ pre,
 code {
   font-size: 14px;
   font-family: Consolas, 'Source Code Pro', monospace;
-  background: #fdf6e3 !important;
-  color: #657b83 !important;
+  background: #474949 !important;
+  color: #d1d9e1 !important;
   border-radius: 4px;
 }
 h1 > code {
   font-size: inherit;
-  font-weight: normal;
+  font-weight: inherit;
 }
 h2 > code {
   font-size: inherit;
-  font-weight: normal;
+  font-weight: inherit;
 }
 h3 > code {
   font-size: inherit;
-  font-weight: normal;
+  font-weight: inherit;
 }
 code {
   padding: 4px;

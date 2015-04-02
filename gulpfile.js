@@ -32,7 +32,7 @@ gulp.task('css', function () {
 
   var files = [
     'bower_components/normalize.css/normalize.css',
-    'bower_components/highlight.js/src/styles/solarized_light.css',
+    'bower_components/highlight.js/src/styles/rainbow.css',
     'static/css/default.css',
     'static/css/style.css'
   ];
