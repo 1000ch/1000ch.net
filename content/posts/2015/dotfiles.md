@@ -1,11 +1,12 @@
 ---
+layout: post
 title: dotfilesを整理した
 date: 2015-04-05
 ---
 
 # dotfilesを整理した
 
-久々にdotfilesを整理した。黒い画面に長けているわけではないこともあって、だいぶダイエットできた。PCを新調する予定等も特に無いけど。
+久々にdotfilesを整理した。黒い画面に長けているわけではないこともあって、だいぶダイエットできた。
 
 ## Dropbox管理をやめてGitHubのリポジトリに
 
@@ -21,6 +22,13 @@ $ ln -s ~/dotfiles/.zshrc ~/.zshrc
 $ ln -s ~/dotfiles/.zprofile ~/.zprofile
 $ ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 $ ln -s ~/dotfiles/.gemrc ~/.gemrc
+```
+
+実際にこの設定を使うには、リポジトリを`~/dotfiles`にクローンして、`setup.sh`を実行するだけ。
+
+```bash
+$ git clone git@github.com:1000ch/dotfiles.git ~/dotfiles --recursive
+$ sh ~/dotfiles/setup.sh
 ```
 
 ## oh-my-zshをサブモジュール化
@@ -56,7 +64,7 @@ git clone https://github.com/creationix/nvm.git ~/.nvm
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-# install peen
+# install peenv
 git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 ```
 
@@ -78,12 +86,4 @@ eval "$(pyenv init -)"
 
 ## エイリアスとかファンクション
 
-[mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)を参考に使いそうなものを置いてあったんだけど、常用していないしので、一旦全部消した。gitもエイリアス使わずにやってる。よほど使用頻度が高いモノが出てきたらそれはまたその時に。
-
-
-実際にこの設定を使うには、リポジトリを`~/dotfiles`にクローンして、`setup.sh`を実行するだけ。
-
-```bash
-$ git clone git@github.com:1000ch/dotfiles.git ~/dotfiles --recursive
-$ sh ~/dotfiles/setup.sh
-```
+[mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)を参考に使いそうなものを置いてあったんだけど、常用していないしので、一旦全部消した。gitもエイリアス使わずにやってる。よほど使用頻度が高いモノが出てきたら、それはまたその時に。
