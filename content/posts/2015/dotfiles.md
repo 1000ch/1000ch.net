@@ -6,7 +6,7 @@ date: 2015-04-05
 
 # dotfilesを整理した
 
-久々にdotfilesを整理した。黒い画面に長けているわけではないこともあって、だいぶダイエットできた。
+久々にdotfilesを整理した。黒い画面に長けているわけではないので、然程モリモリしているというわけではないけど、だいぶダイエットできた。
 
 ## Dropbox管理をやめてGitHubのリポジトリに
 
@@ -64,7 +64,7 @@ git clone https://github.com/creationix/nvm.git ~/.nvm
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-# install peenv
+# install pyenv
 git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 ```
 
