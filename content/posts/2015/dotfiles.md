@@ -52,6 +52,10 @@ dotfilesリポジトリの`git clone`時はサブモジュールもダウンロ�
 ln -f ~/dotfiles/oh-my-zsh-powerline-theme/powerline.zsh-theme ~/dotfiles/oh-my-zsh/themes/powerline.zsh-theme
 ```
 
+## ドットファイルの更新
+
+クローンしてきた`~/dotfiles`リポジトリ内にあるファイルを更新して、そのまま変更をコミットすればOK。設定を共有している他の環境で`git pull`することでそのまま適用できる。
+
 ## 各種バージョンマネージャ
 
 Node.jsはnvm、Rubyはrbenv+ruby-build、Pythonはpyenvを使っているので、以下を`setup.sh`に追加。
