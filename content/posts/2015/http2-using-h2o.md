@@ -1,7 +1,7 @@
 ---
 layout: post
 title: H2Oで試すHTTP2
-date: 2015-03-06
+date: 2015-03-09
 draft: true
 ---
 
@@ -27,25 +27,31 @@ HTTP2で遊ぶべく、[H2O](http://github.com/h2o/h2o)をVagrantで立てたロ
 
 ## インストール作業
 
+の前に、gitのインストールとインストールされているライブラリ等をアップデートしておく。
+
+```bash
+$ sudo apt-get install git
+$ sudo apt-get update
+$ sudo apt-get upgrate
+```
+
 ### libuv
 
 ```bash
-$ sudo apt-get install git libtool automake
+# install libtool & automake
+$ sudo apt-get install libtool automake
 $ git clone https://github.com/libuv/libuv.git
-```
 
-```bash
 # export variables
-$export LANGUAGE=en_US.UTF-8
-$export LANG=en_US.UTF-8
-$export LC_ALL=en_US.UTF-8
+$ export LANGUAGE=en_US.UTF-8
+$ export LANG=en_US.UTF-8
+$ export LC_ALL=en_US.UTF-8
 
-# configure
+# configure libuv
 $ ./autogen.sh
 $ ./configure
-```
 
-```bash
+# build libuv
 $ make
 $ sudo make install
 ```
@@ -53,25 +59,44 @@ $ sudo make install
 ### wslay
 
 ```bash
-$ git clone https://github.com/tatsuhiro-t/wslay/archive/release-1.0.0.tar.gz
-$ tar xzvf release-1.0.0.tar.gz
-$ sudo apt-get pkg-config
-$ sudo apt-get update
-$ sudo apt-get upgrade
-```
+# install pkg-config
+$ sudo apt-get pkg-config libssl-dev
 
-```bash
-# configure
+# download wslay
+$ git clone https://github.com/tatsuhiro-t/wslay.git
+$ tar xzvf release-1.0.0.tar.gz
+$ cd wslay
+
+# configure wslay
 $ autoreconf -i
 $ automake
 $ autoconf
 $ ./configure
-```
 
-```bash
+# build wslay
 $ make
 $ sudo make install
 ```
 
 ### h2o
 
+```bash
+# install cmake
+$ sudo apt-get install cmake libyaml openssl
+
+# download h2o
+$ git clone https://github.com/h2o/h2o.git
+$ cd h2o
+
+# configure h2o
+$ cmake -DOPENSSL_ROOT_DIR=/usr/local/ssl -DOPENSSL_LIBRARIES=/usr/local/ssl/lib
+$ cmake -DCMAKE_INSTALL_PREFIX=/usr/local .
+
+# build h2o
+$ make
+$ sudo make install
+```
+
+## Ansibleで自動化する
+
+[1000ch/http2-sandbox](https://github.com/1000ch/http2-sandbox)に置いておいた。
