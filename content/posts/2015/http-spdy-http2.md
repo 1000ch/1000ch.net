@@ -20,7 +20,7 @@ HTTP1.0からHTTP1.1にかけてとそれ以降は、急速に進化し肥大化
 - TCP接続を維持する機能が追加された（Keep-Alive）
 - リクエストヘッダー・レスポンスヘッダーがテキストフォーマット
 - ひとつのTCPコネクションにつき、ひとつのリクエストとレスポンス
--　それぞれのTCP接続が独立して[輻輳制御](http://ja.wikipedia.org/wiki/%E8%BC%BB%E8%BC%B3%E5%88%B6%E5%BE%A1)を行っている
+- それぞれのTCP接続が独立して[輻輳制御](http://ja.wikipedia.org/wiki/%E8%BC%BB%E8%BC%B3%E5%88%B6%E5%BE%A1)を行っている
 
 ### SPDY
 
@@ -42,7 +42,7 @@ HTTP1.0からHTTP1.1にかけてとそれ以降は、急速に進化し肥大化
 - HTTP・HTTPS（平文でもOK）を問わず、TLS利用は必須ではない
 - chrome://net-internals/#spdy
 
-仕様策定については、RFC標準化目前ぽい。IETEのHTTPワーキンググループがメンテナンスしている[HTTP2の公式サイト](http://http2.github.io/)にも、デカデカと書かれている。
+仕様策定については、RFC標準化目前ぽい。IETFのHTTPワーキンググループがメンテナンスしている[HTTP2の公式サイト](http://http2.github.io/)にも、デカデカと書かれている。
 
 >## IETF Last Call
 >HTTP/2 and HPACK are currently in IETF Last Call.
