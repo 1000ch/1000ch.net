@@ -109,10 +109,10 @@
   padding: 30px 0;
 }
 .post-share {
-  display: table;
+  display: flex;
+  flex-direction: row;
 }
 .post-share__item {
-  display: table-cell;
   padding: 5px;
   font-size: 24px;
   vertical-align: top;
