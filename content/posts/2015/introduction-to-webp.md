@@ -2,18 +2,15 @@
 layout: post
 title: Introduction to WebP
 date: 2015-05-22
-draft: true
+---
+
+※この記事はMediumに投稿した[Introduction to WebP](http://bit.ly/introduction-to-webp)の日本語訳です。
+
 ---
 
 # Introduction to WebP
 
-この記事はMediumに投稿した[Introduction to WebP](https://medium.com/@1000ch/introduction-to-webp-b593dfe1d1d1)の日本語訳です。
-
-<a class="m-story" data-collapsed="true" href="https://medium.com/@1000ch/introduction-to-webp-b593dfe1d1d1">Introduction to WebP</a>
-
----
-
-以前述べたように、画像はWebにおけるネットワーク帯域の約60%~70%を占めています。これは、画像がWebパフォーマンスにおいて最も重要な因子の1つであることを意味します。そんな画像でも、WebPは他のフォーマットに比べて幾つかの点において優っています。
+[以前述べたように](http://bit.ly/we-should-optimize-images)、画像はWebにおけるネットワーク帯域の約60%~70%を占めています。これは、画像がWebパフォーマンスにおいて最も重要な因子の1つであることを意味します。そんな画像の中でも、WebPは他のフォーマットに比べて幾つかの点において優っています。
 
 ## WebPの特徴
 
@@ -38,7 +35,7 @@ WebPは次のブラウザで表示することが出来ます。
 - Chrome for Android
 - Chrome **for iOS**
 
-今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示され、WebPのデコーダを内包していることがわかります。これの意味するところは、WebPはWebPのデコーダを内包していれば、AndroidやiOSのどのアプリケーションでもWebPを利用することが出来るということです。
+今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示され、WebPのデコーダを内包していることがわかります。これの意味するところは、WebPはデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来るということです。
 
 ## 他のフォーマットへのフォールバック
 
