@@ -58,7 +58,7 @@ WebPは次のブラウザで表示することが出来ます。
 
 ### WebPJS
 
-WebPJSはJavaScriptのライブラリで、WebPの画像をdataURIの文字列にクライアントサイドで変換します。
+[WebPJS](http://webpjs.appspot.com/)はJavaScriptのライブラリで、WebPの画像をdataURIの文字列にクライアントサイドで変換します。
 
 ### サーバーサイドでAcceptヘッダのチェック
 
