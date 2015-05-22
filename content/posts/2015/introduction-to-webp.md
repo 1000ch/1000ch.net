@@ -35,7 +35,11 @@ WebPは次のブラウザで表示することが出来ます。
 - Chrome for Android
 - Chrome **for iOS**
 
-今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示され、WebPのデコーダを内包していることがわかります。これの意味するところは、WebPはデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来るということです。
+今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示されています（きっとWebPのデコーダを内包しているんでしょう）！
+
+![](/img/posts/introduction-to-webp/safari-chrome.jpg)
+
+これの意味するところは、WebPはデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来るということです。
 
 ## 他のフォーマットへのフォールバック
 
