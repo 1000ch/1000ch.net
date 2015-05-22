@@ -95,6 +95,13 @@ blockquote {
   padding-left: 15px;
   font-style: italic;
 }
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
 a {
   color: #199ad5;
   text-decoration: none;

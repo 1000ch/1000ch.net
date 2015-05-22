@@ -9,7 +9,7 @@ var sequence = require('run-sequence').use(gulp);
 
 var CSS_LIB_FILES = [
   'bower_components/normalize.css/normalize.css',
-  'bower_components/highlight.js/src/styles/rainbow.css'
+  'bower_components/highlight.js/src/styles/solarized_light.css'
 ];
 
 var CSS_APP_FILES = [
