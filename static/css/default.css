@@ -63,8 +63,8 @@ pre,
 code {
   font-size: 14px;
   font-family: Consolas, 'Source Code Pro', monospace;
-  background: #474949 !important;
-  color: #d1d9e1 !important;
+  background: #FDF6E3 !important;
+  color: #657A81 !important;
   border-radius: 4px;
 }
 h1 > code {
