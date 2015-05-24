@@ -2,7 +2,6 @@
 layout: post
 title: We should optimize images
 date: 2015-05-25
-draft: true
 ---
 
 # We should optimize images
