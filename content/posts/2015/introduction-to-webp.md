@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Introduction to WebP
+title: 【翻訳】Introduction to WebP
 date: 2015-05-22
 ---
 
-# Introduction to WebP
+# 【翻訳】Introduction to WebP
 
 **※この記事はMediumに投稿した[Introduction to WebP](http://bit.ly/introduction-to-webp)の日本語訳です。**
 
