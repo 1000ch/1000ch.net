@@ -49,11 +49,13 @@ gulp.task('css:lib', function () {
 
 gulp.task('css:app', function () {
 
-  var csscomb = require('gulp-csscomb');
-  var csso    = require('gulp-csso');
+  var autoprefixer = require('gulp-autoprefixer');
+  var csscomb      = require('gulp-csscomb');
+  var csso         = require('gulp-csso');
 
   gulp.src(CSS_APP_FILES)
     .pipe(concat('app.min.css'))
+    .pipe(autoprefixer())
     .pipe(csscomb())
     .pipe(csso())
     .pipe(gulp.dest('_public/css'));
