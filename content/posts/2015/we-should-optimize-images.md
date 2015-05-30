@@ -1,10 +1,10 @@
 ---
 layout: post
-title: We should optimize images
+title: 【翻訳】We should optimize images
 date: 2015-05-25
 ---
 
-# We should optimize images
+# 【翻訳】We should optimize images
 
 **※この記事はMediumに投稿した[We should optimize images](http://bit.ly/we-should-optimize-images)の日本語訳です。**
 
