@@ -20,6 +20,7 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   background: #fff;
+  -webkit-font-smoothing: antialiased;
 }
 ::selection {
   color: #fff;
