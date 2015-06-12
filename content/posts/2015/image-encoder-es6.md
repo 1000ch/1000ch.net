@@ -225,7 +225,7 @@ exports.ImageEncoder = ImageEncoder;
 
 Markdownは[iA Writer](http://www.iawriter.com/mac/)を使って書いているけど、このエディタ内でコードを編集して再びWebStormに貼り付けると文法ミス等が無いのに注意される。
 
-![](/img/posts/image-encoder-es6/error-1.png)
+![](/img/posts/2015/image-encoder-es6/error-1.png)
 
 所々改行位置に謎のエラーが。これ、実は違う原稿を書いている時にも時折発生していた現象だったけどスルーしていた。
 
@@ -237,6 +237,6 @@ $ nkf -Lu src/image-encoder-es6.js > test.js
 
 すると、注意されている箇所で **窶ィ** という謎の呪文が現れた。
 
-![](/img/posts/image-encoder-es6/error-2.png)
+![](/img/posts/2015/image-encoder-es6/error-2.png)
 
 ググっても有益そうな情報が中々出てこない。`cat -e`でも正体不明な記号が表示されてよくわからない…。

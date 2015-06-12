@@ -193,6 +193,6 @@ Cのmain関数をGo側に移植しようと頑張ってた最中
 
 関係ないけど、Gopherって架空マスコットかと思ったら[実在する動物](http://ejje.weblio.jp/content/Gopher)なのね…知らなかった_:(´ཀ`」 ∠):
 
-<img src='/img/posts/c-in-golang-with-cgo/gopher.jpg'>
+![](/img/posts/2014/c-in-golang-with-cgo/gopher.jpg)
 
 > via https://www.flickr.com/photos/103509254@N05/14859452109

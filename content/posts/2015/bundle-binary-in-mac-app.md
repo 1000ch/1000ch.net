@@ -75,7 +75,7 @@ $ codesign --display --entitlements - ./cwebp
 
 作成したら、プロジェクト設定の **Build Settings** → **Swift Compiler - Code Generation** → **Objective-C Bridging Header** に作成したヘッダーファイルのパスを指定。
 
-![](/img/posts/bundle-binary-in-mac-app/xcode.png)
+![](/img/posts/2015/bundle-binary-in-mac-app/xcode.png)
 
 先程のようにコマンドラインっぽく実行するわけではなく、ヘッダーファイルで定義されている構造体に沿ってWebPへの変換作業をする。
 

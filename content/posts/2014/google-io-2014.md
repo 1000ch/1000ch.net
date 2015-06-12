@@ -8,7 +8,7 @@ date: 2014-06-27
 
 サンフランシスコに来ています。
 
-<img src='/img/posts/google-io-2014/google-io.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/google-io.jpg)
 
 各セッションは後ほど公開されるものもあるし、Keynoteのサマリー等は[HTML5Experts.jp](http://html5experts.jp/iwase/7369/)を見てもらうとして、主に **初海外・初Google I/O** の感想を。
 
@@ -40,13 +40,13 @@ Keynoteは次世代のAndroid **L** を中心とした話だった。マテリ�
 
 事前にややリークされていた、Android Wear周りの話が印象的だった。スマートフォンとタブレットのプラットフォームとして進化し市場を広げてきたAndroidも、そこに留まることなく、あらゆる基盤になることを目指している。Android Wear(腕時計とか)であったり、Android Auto(自動車)、Android TV。例えばスマートフォンで見ていた料理レシピのサイトをAndroid Wearを搭載した腕時計と同期して、その情報からキッチンタイマーになったり。Androidプラットフォームを通じてあらゆるものを統合して便利にしようとするビジョンのようなものを感じる。
 
-<img src='/img/posts/google-io-2014/samsung-gear-live.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/samsung-gear-live.jpg)
 
 こちらが参加者に配布されたSamsung Gear Live。LG G watchとの選択だったけど、こっちのほうが[センサーが多くて得られるデータが多いようなので](http://pocketnow.com/2014/06/25/lg-g-watch-vs-samsung-gear-live)こちらにした。デバッグ目的。
 
 社内ではパフォーマンス改善マンという立場もあり、パフォーマンスに関するセッションをいくつか見たけど、真新しくエッジの効いた話はなかった印象。2日目にChromeのSandboxでWebPagetestに関することがあったので、「たぶんPatがやるんだろうな」と思っていたら案の定Patだった。「会社でWebPagetestのフォーク版を使っているよ！」と言いつつ画面を見せたら「Wow, Excellent!」と言われた(コレ以外にも連発で褒め言葉言われたのでウケが良かったのだと思われる)。
 
-<img src='/img/posts/google-io-2014/patrick-meenan.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/patrick-meenan.jpg)
 
 **Optimizing for the user experience with WebPagetest** by Patrick Meenan
 
@@ -58,13 +58,13 @@ Keynoteは次世代のAndroid **L** を中心とした話だった。マテリ�
 
 セッション以外には、色んなブースが用意されていた。いくつか紹介。
 
-<img src='/img/posts/google-io-2014/booth.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/booth.jpg)
 
 ### Sandbox
 
 Android、Chrome、Go、Cloud、Designといったようなテーマ毎に開放されたスペースにブースが用意されていて、そのテーマに沿って時間帯毎(約30分単位)に何かしらセッションが行われている。ステッカーとかTシャツはこの辺りでゲット出来る。
 
-<img src='/img/posts/google-io-2014/sandbox.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/sandbox.jpg)
 
 **Request questの話をしているJake Archibald**
 
@@ -74,7 +74,7 @@ Android、Chrome、Go、Cloud、Designといったようなテーマ毎に開放
 
 パソコンが並べてあって、用意されている課題みたいなのを自力でやっていくコーナー。Code Labsには参加しなかったけど、たぶん手厚いサポートが受けられるんだと思う。
 
-<img src='/img/posts/google-io-2014/code-labs.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/code-labs.jpg)
 
 今回はAndroid Studio startup、Google Cloud Platoform、Nest API、Polymer startupの4つが用意されていた。
 
@@ -82,7 +82,7 @@ Android、Chrome、Go、Cloud、Designといったようなテーマ毎に開放
 
 開催中はCafeスペースが開放されていて、休みたいときに休むことが出来た(あまり立ち寄る暇なかったけど)。朝食と昼食はここで頂いた。色んな国の人が来るので当然、宗教もイロイロ。そのために食事が何種類か用意されてた(申し込み時のアンケートにもその手の質問があった)。コーヒーはスタバのが配給されていて美味しかった。
 
-<img src='/img/posts/google-io-2014/starbucks.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/starbucks.jpg)
 
 会場のMoscone Center自体は参加者の人数が多いせいで、常に局所的に混んでいたような気がするのと、Wi-Fiがしばしば断線するのが辛かった。セッションが行われる部屋は十分に椅子が用意されていた。
 
@@ -90,7 +90,7 @@ Android、Chrome、Go、Cloud、Designといったようなテーマ毎に開放
 
 1日目のセッション後にはAfter Partyというなか打ち上げみたいなものが催されて、そちらにもお邪魔してきた。
 
-<img src='/img/posts/google-io-2014/after-party.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/after-party.jpg)
 
 年齢確認のため、例によってパスポートチェックを受けた後、手にスタンプを押されてパーティーの敷地内に入る。会場は見ての通り屋外で、雨降ったらどうなるんだろうと思いつつ、のんびりしてきた。皆お祭り気分で、なんとも言えない高揚感といいますか。これもまたGoogle I/Oの醍醐味の1つなのかも。
 
@@ -100,7 +100,7 @@ Android、Chrome、Go、Cloud、Designといったようなテーマ毎に開放
 
 宿泊したホテルはWhitcomb Hotelというところ。[1906年4月18日の大地震でも倒れなかった](http://ja.wikipedia.org/wiki/%E3%82%B5%E3%83%B3%E3%83%95%E3%83%A9%E3%83%B3%E3%82%B7%E3%82%B9%E3%82%B3%E5%9C%B0%E9%9C%87)、由緒あるホテルだそう。止まった部屋はピカピカとまではいかないまでも綺麗に保たれていて、快適に過ごせた。
 
-<img src='/img/posts/google-io-2014/whitcomb.jpg' width='100%'>
+![](/img/posts/2014/google-io-2014/whitcomb.jpg)
 
 通りを一本逸れるとやや怪しい雰囲気のあるような立地で、同行した皆となるべく団体行動をしよう(移動中は特に)と話をしていた。実際どこまで敏感になるべきかわからなかったし、実際はそこまで物騒ではないのかもしれないけど、なるべくリスクは避ける意味で。たぶん慣れの部分も大きくて、海外に不慣れな部分が、↑に対する不安を増幅していたと思う。初日よりは最終日のほうが気持ち的にも楽に過ごすことが出来た。パトカーのサイレンはひっきりなしに鳴っていた。
 

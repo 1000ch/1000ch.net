@@ -51,13 +51,13 @@ GitHub PagesにCNAMEで設定しているカスタムドメインでHTTPSを使�
 
 変更後に[My Websites](https://www.cloudflare.com/my-websites)で、ドメインプロバイダ側でDNSサーバーのアドレスを更新したドメインの、 **Re-Test** を実行すると、裏で再テストが実行される。ドメインがCloudFlareに向いて疎通が確認出来た。めでたい。
 
-![](/img/posts/github-pages-custom-domain-in-https/ns-changed.png)
+![](/img/posts/2015/github-pages-custom-domain-in-https/ns-changed.png)
 
 ### 常にHTTPSになるように
 
 ドメインの右の方にあるギアのアイコンをクリックすると、ドロップダウンメニューの中に **Page rules** という項目があるのでクリックする。
 
-![](/img/posts/github-pages-custom-domain-in-https/page-rules.png)
+![](/img/posts/2015/github-pages-custom-domain-in-https/page-rules.png)
 
 ここでは指定のURLパターンに対して挙動を設定可能。ドメイン全てのURLに対してHTTPSが有効になるようにしたいので、`1000ch.net/*`というパターンに対し **Always use https** をonにする。
 

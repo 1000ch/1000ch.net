@@ -8,7 +8,7 @@ date: 2015-02-23
 
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.85](http://gihyo.jp/magazine/wdpress/archive/2015/vol85)が2月24日に発売されます！連載5回目はECMAScript 6の概要・歴史、主要な追加機能、ブラウザサポートが不完全な今どのように取り入れるか等等を書いています。
 
-![](/img/posts/wdpress-frontend-series-es6/cover.jpg)
+![](/img/posts/2015/wdpress-frontend-series-es6/cover.jpg)
 
 ## はじめようトランスパイラ生活
 

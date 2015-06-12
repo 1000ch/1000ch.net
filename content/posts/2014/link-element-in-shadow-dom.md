@@ -145,8 +145,8 @@ var styles = {
 
 な感じで
 
-1. `<link rel='stylesheet'>`を列挙
-2. `<linl rel='stylesheet' href='style.css'>`を`<style>@import "style.css";</style>に置き換える
+1. `<link rel="stylesheet">`を列挙
+2. `<linl rel="stylesheet" href="style.css">`を`<style>@import "style.css";</style>に置き換える
 3. `style.css`がダウンロード可能ならば、`Polymer.styleResolver.loadStyles()`でCSSの文字列
 4. 取得したCSSの文字列を`<style>`の中身とする
 
@@ -154,8 +154,8 @@ var styles = {
 
 ## 実際のPolymerの例
 
-http://hiloki.github.io/su-shi/ あたりを見てみましょう。こちらはPolymerで作られている寿司のコンポーネント。
+http://hiloki.github.io/su-shi/ あたりを見てみよう。こちらはPolymerで作られている寿司のコンポーネント。
 
 [su-shi.html](https://github.com/hiloki/su-shi/blob/master/su-shi.html#l19)を見るとわかるように、`<template>`の中で`<link>`でCSSファイルを参照しているが、DevToolsでShadowDOMを見てみると、ご覧のようにCSSが`<style>`に展開されている。
 
-<img src='/img/posts/link-rel-stylesheet-in-shadow-dom/su-shi.png' width='100%'>
+![](/img/posts/2014/link-rel-stylesheet-in-shadow-dom/su-shi.png)

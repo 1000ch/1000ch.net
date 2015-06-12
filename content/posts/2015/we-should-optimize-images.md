@@ -33,19 +33,19 @@ Webサイトのパフォーマンスの多くはフロントエンドに起因�
 
 これらはGUIアプリケーションなので、簡単に利用することができます。ここにPNGを圧縮したサンプルがあります。
 
-![未圧縮のPNG画像（71,834bytes）](/img/posts/we-should-optimize-images/uncompressed.png)
+![未圧縮のPNG画像（71,834bytes）](/img/posts/2015/we-should-optimize-images/uncompressed.png)
 
 これは圧縮されていないオリジナルの画像です。24bitのPNGで、位置情報・日付・時刻といった様々なメタ情報が含まれています。
 
-![ImageAlphaとImageOptimで圧縮したPNG画像 (28,369 bytes) ](/img/posts/we-should-optimize-images/compressed.png)
+![ImageAlphaとImageOptimで圧縮したPNG画像 (28,369 bytes) ](/img/posts/2015/we-should-optimize-images/compressed.png)
 
 これはImageAlphaで8bitにダウンコンバートし、ImageOptimでメタ情報を削除するなどして最適化したPNGです。ほぼ劣化していないように見えます。
 
-![ImageOptimでメタ情報を削除したが劣化を伴う処理はされていないJPEG画像（213,171 bytes）](/img/posts/we-should-optimize-images/uncompressed.jpg)
+![ImageOptimでメタ情報を削除したが劣化を伴う処理はされていないJPEG画像（213,171 bytes）](/img/posts/2015/we-should-optimize-images/uncompressed.jpg)
 
 こちらはJPEGのサンプルです。メタ情報はImageOptimで削除済ですが、劣化を伴う減色処理はされていません。
 
-![JPEGminiで非可逆の減色処理をされたJPEG画像（71,874 bytes）](/img/posts/we-should-optimize-images/compressed.jpg)
+![JPEGminiで非可逆の減色処理をされたJPEG画像（71,874 bytes）](/img/posts/2015/we-should-optimize-images/compressed.jpg)
 
 更にJPEGminiによって減色処理を施しています。劣化は目立ちませんが、ファイルサイズはオリジナルのおよそ34%程（66%も削減されています！）になっています。写真のような画像は非常に多くの色があるため、減色処理を行った後によく確認しなくてはならないでしょう。これは面倒な作業ですが、より良いことです。
 

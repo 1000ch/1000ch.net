@@ -9,7 +9,7 @@ date: 2015-03-10
 自分用に作ってしばらく放置していたChrome Extension「[URL Opener](http://bit.ly/url-opener
 )」をアップデートした。
 
-![](/img/posts/url-opener/url-opener.png)
+![](/img/posts/2015/url-opener/url-opener.png)
 
 ## URL Openerの機能
 

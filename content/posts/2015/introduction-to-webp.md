@@ -35,7 +35,7 @@ WebPは次のブラウザで表示することが出来ます。
 
 今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示されています（きっとWebPのデコーダを内包しているんでしょう）！
 
-![](/img/posts/introduction-to-webp/safari-chrome.jpg)
+![](/img/posts/2015/introduction-to-webp/safari-chrome.jpg)
 
 これの意味するところは、WebPはデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来るということです。
 
@@ -98,6 +98,6 @@ $ npm install gulp-cwebp
 
 [WebPonize](https://webponize.github.io/)はPNGやJPEG画像をWebPへ変換するMac OS X用のアプリケーションです。もしあなたがOS X Yosemiteを使っていれば、[ダウンロード](http://bit.ly/webponize)して簡単に使うことが出来ます。ドラッグアンドドロップするだけです！
 
-![](/img/posts/introduction-to-webp/webponize.jpg)
+![](/img/posts/2015/introduction-to-webp/webponize.jpg)
 
 WebPonizeはまだ **アルファバージョン** です。皆さんの[フィードバック](https://github.com/1000ch/webponize/issues/new)をお待ちしています！

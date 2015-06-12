@@ -8,7 +8,7 @@ date: 2014-09-11
 
 良いという噂が飛び交っているPHILIPSのAH-IPSパネルディスプレイを購入した。
 
-<img src='/img/posts/philips-wide-display-23inch/packed.jpg' width='100%'>
+![](/img/posts/2014/philips-wide-display-23inch/packed.jpg)
 
 Apple製品が多いのでThunderbolt Displayが欲しくなるところだが、現行のThunderbolt Displayは厚みがあり、重厚感があったり（というか実際に重い）、ちょっとお高いし…ということで見送った。iMacの外観を踏襲した新型もいつかは出るんだろうけど、確約もないし、例によって高いだろうしということで。
 
@@ -41,15 +41,15 @@ Apple製品が多いのでThunderbolt Displayが欲しくなるところだが�
 
 見ての通り非常にスリムな体型をしている。写真だとわかりにくいが、フチ部分・ディスプレイ部分がつや消しブラックになっている。
 
-<img src='/img/posts/philips-wide-display-23inch/front.jpg' width='100%'>
-<img src='/img/posts/philips-wide-display-23inch/back.jpg' width='100%'>
+![](/img/posts/2014/philips-wide-display-23inch/front.jpg)
+![](/img/posts/2014/philips-wide-display-23inch/back.jpg)
 
 この薄さに相まって非常に軽量で、片手で持ち上げることも可能。
 机のサイズとのバランスを考慮して23型にしたものの、27型でも圧迫感は少ないかもしれない。
 
 ## 入力端子
 
-<img src='/img/posts/philips-wide-display-23inch/terminal.jpg' width='100%'>
+![](/img/posts/2014/philips-wide-display-23inch/terminal.jpg)
 
 これは背面にある各種入力端子部。入力は、HDMI・MHL-HDMI・VGAの3種類で、USBはない。とはいえ、MacにはもちろんHDMIを使うので特に不便は感じない。
 電源スイッチはディスプレイの右下のフチに目立たないように並んでいる。
@@ -58,8 +58,8 @@ Apple製品が多いのでThunderbolt Displayが欲しくなるところだが�
 
 電源を入れた感じはこんな感じ。
 
-<img src='/img/posts/philips-wide-display-23inch/powered.jpg' width='100%'>
-<img src='/img/posts/philips-wide-display-23inch/display.jpg' width='100%'>
+![](/img/posts/2014/philips-wide-display-23inch/powered.jpg)
+![](/img/posts/2014/philips-wide-display-23inch/display.jpg)
 
 付けて気づいたのが、 **ディスプレイに背後の照明が写り込まない** 。これは快適なポイントのひとつかもしれない（Thunderbolt Displayはテカテカしており、映り込みが非常に鬱陶しい）。
 Retinaディスプレイではないので、目を凝らしてMacBook Pro Retinaと比べてしまえば粗さは見えるけど、十分鮮やかで綺麗かと思われる。

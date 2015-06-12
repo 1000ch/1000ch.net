@@ -11,9 +11,9 @@ Web Componentsの旨味はコンポーネントの再利用が出来る所にあ
 実際には複数のWeb Componentsを利用したいケースは当たり前にあることなので、素直にやろうとすると以下のように。
 
 ```html
-<link rel='import' href='x-element.html'>
-<link rel='import' href='y-element.html'>
-<link rel='import' href='z-element.html'>
+<link rel="import" href="x-element.html">
+<link rel="import" href="y-element.html">
+<link rel="import" href="z-element.html">
 ```
 
 **このHTMLではこのWeb Componentsをロードしている** というのが明確ではあるけど、インポートには当然HTTPリクエストを伴うので、パフォーマンスの観点からはあまりよろしくない。
@@ -44,8 +44,8 @@ HTML Importsの仕組みを考えれば、指定しているHTMLファイルを�
 以下は、とある`<y-elements>`に依存している`<x-element>`のイメージ。
 
 ```html
-<link rel='import' href='y-element.html'>
-<template id='x-element-template'>
+<link rel="import" href="y-element.html">
+<template id="x-element-template">
   <x-element>
     <content></content>
   </x-element>
@@ -59,7 +59,7 @@ HTML Importsの仕組みを考えれば、指定しているHTMLファイルを�
 
 ```html
 <div hidden>
-  <template id='y-element-template'>
+  <template id="y-element-template">
     <div>
       <content></content>
     </div>
@@ -68,7 +68,7 @@ HTML Importsの仕組みを考えれば、指定しているHTMLファイルを�
     //...
   </script>
 </div>
-<template id='x-element-template'>
+<template id="x-element-template">
   <x-element>
     <content></content>
   </x-element>
@@ -90,11 +90,11 @@ Polymerのコアモジュールのように複数のWeb Componentsから依存�
 という前提があるので、Web Componentsをロードしてる`<link>`だけを抜き出して別ファイルに用意。
 
 ```html
-<link rel='import' href='x-element.html'>
-<link rel='import' href='y-element.html'>
-<link rel='import' href='z-element.html'>
-<link rel='import' href='twitter-button/twitter-button.html'>
-<link rel='import' href='facebook-butotn/facebook-button.html'>
+<link rel="import" href="x-element.html">
+<link rel="import" href="y-element.html">
+<link rel="import" href="z-element.html">
+<link rel="import" href="twitter-button/twitter-button.html">
+<link rel="import" href="facebook-butotn/facebook-button.html">
 ```
 
 デバッグ時にはこのHTMLをインポートし、デプロイ時にはこのHTMLをVulcanizeでビルドしたものをロードすれば良い。
@@ -113,11 +113,11 @@ Polymerのコアモジュールのように複数のWeb Componentsから依存�
 
 ### Before
 
-<img src='/img/posts/reduce-http-requests-with-polymer-vulcanize/before.png' width='100%'>
+![](/img/posts/2014/reduce-http-requests-with-polymer-vulcanize/before.png)
 
 ### After
 
-<img src='/img/posts/reduce-http-requests-with-polymer-vulcanize/after.png' width='100%'>
+![](/img/posts/2014/reduce-http-requests-with-polymer-vulcanize/after.png)
 
 ## 所感
 

@@ -8,7 +8,7 @@ date: 2014-12-15
 
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.84](http://gihyo.jp/magazine/wdpress/archive/2014/vol84)が12月23日に発売されます。
 
-<img src='/img/posts/wdpress-frontend-series-modulesystem/cover.jpg'>
+![](/img/posts/2014/wdpress-frontend-series-modulesystem/cover.jpg)
 
 今回も[@ahomu](http://twitter.com/ahomu)氏と書きました。2人で書くと分量が減る以外にも色々と捗る。
 

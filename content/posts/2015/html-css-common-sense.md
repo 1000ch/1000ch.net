@@ -8,7 +8,7 @@ date: 2015-03-27
 
 [ペンギン](http://twitter.com/ginpei_jp)が本書いたらしく、恵贈頂いた。
 
-![](/img/posts/html-css-common-sense/cover.jpg)
+![](/img/posts/2015/html-css-common-sense/cover.jpg)
 
 ## 目次
 

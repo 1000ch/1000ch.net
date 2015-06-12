@@ -10,7 +10,7 @@ date: 2014-08-04
 
 ということで[@hiloki](http://twitter.com/hiloki)さんから頂きました。ありがとうございます。
 
-<img src='/img/posts/css-architexture-textbook/book.jpg' width='100%'>
+![](/img/posts/2014/css-architexture-textbook/book.jpg)
 
 ## 著者（[@hiloki](http://twitter.com/hiloki)）について
 

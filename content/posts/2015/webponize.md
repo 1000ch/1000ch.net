@@ -12,7 +12,7 @@ date: 2015-03-11
 
 WebPonizeという命名については、名詞に~izeという接尾語をつけることで「〜らしくなる」のような形容詞になることをもじってWebP + nizeに。尚且つ、同僚のアメリカ人に発音を考慮してもらってWebPonizeになった。WebPはbを発音しないので、weapon（武器・兵器） + izeになることを想定。
 
-![](/img/posts/webponize/webponize.jpg)
+![](/img/posts/2015/webponize/webponize.jpg)
 
 見ての通り、[ImageOptim](https://imageoptim.com/)の見た目を<del>パクって</del>踏襲している。
 

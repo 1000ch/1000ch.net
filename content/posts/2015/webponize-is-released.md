@@ -45,6 +45,6 @@ App Storeで配布しないということは、アプリのアップデート�
 
 ## GitHubで公開した
 
-[![](/img/posts/webponize-is-released/webponize.png)](https://github.com/1000ch/webponize)
+[![](/img/posts/2015/webponize-is-released/webponize.png)](https://github.com/1000ch/webponize)
 
 ダラダラ書いたけど、要するに[ダウンロードしてください](https://github.com/1000ch/webponize)、そして[フィードバックください](https://github.com/1000ch/webponize/issues/new)！ってことでした。よろしくお願いします(´・ω・`)

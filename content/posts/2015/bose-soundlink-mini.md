@@ -8,13 +8,13 @@ date: 2015-03-20
 
 BOSEのSoundLink Miniがとてもオススメ。
 
-![](/img/posts/bose-soundlink-mini/soundlink-mini.jpg)
+![](/img/posts/2015/bose-soundlink-mini/soundlink-mini.jpg)
 
 ## コンパクトな本体
 
 本体は片手で掴んで持ち運べるくらいコンパクト。また、充電式になっているので、充電されていれば好みの位置において再生することができる。もちろん充電クレードルに置きっぱなしで再生することもできるので、用途に合わせて使えば良い。重さも655gと軽いので、充電させて持ち運んで、移動先で楽しむこともできそう。
 
-![](/img/posts/bose-soundlink-mini/buttons.jpg)
+![](/img/posts/2015/bose-soundlink-mini/buttons.jpg)
 
 自分はMacやらiPhoneからBluetoothで接続しているが、φ3.5mmステレオミニジャックの入力部があるのでBluetooth非対応の機器でも利用することができる。
 

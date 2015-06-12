@@ -14,7 +14,7 @@ Hugoはじめました。
 
 ## Jekyll時代
 
-![Jekyll](/img/posts/farewell-docpad-hello-hugo/jekyll.png)
+![Jekyll](/img/posts/2015/farewell-docpad-hello-hugo/jekyll.png)
 
 [Jekyll](http://jekyllrb.com/)はRuby製の静的サイトジェネレータ。GitHubの公式サポートが得られるっていうこともあったし、[@cssradar](http://twitter.com/cssradar)氏が[Jekyll | CSS Radar | Little Books For Front End Developers](http://css.studiomohawk.com/jekyll/2011/06/11/jekyll/)という記事を書いていたこともあって、スクラッチで書き始めた。それまでは、なんとなくレベルでWordPressを立てていた。
 
@@ -24,7 +24,7 @@ JekyllはGitHub製というだけでなく、GitHubの`username.github.com`と�
 
 ## DocPad時代
 
-![DocPad](/img/posts/farewell-docpad-hello-hugo/docpad.png)
+![DocPad](/img/posts/2015/farewell-docpad-hello-hugo/docpad.png)
 
 [DocPad](https://docpad.org/)はNode.js製のJekyllリプレイスとも言われる静的サイトジェネレータ。巷ではOctpressとかも流行っていたけど、DocPadを選択。Jade・Stylus・RSS出力などなど、いろんな機能がプラガブルに追加できたし、使い勝手もそこそこ良い。ちなみに自分が構築周りをやった[JS Girlsのサイト](http://jsgirls.org)では、DocPadを採用している。
 
@@ -32,7 +32,7 @@ JekyllはGitHub製というだけでなく、GitHubの`username.github.com`と�
 
 ## Hugoにした
 
-![Hugo](/img/posts/farewell-docpad-hello-hugo/hugo.png)
+![Hugo](/img/posts/2015/farewell-docpad-hello-hugo/hugo.png)
 
 [Hugo](http://gohugo.io/)自体はもっと前から知っていた（きっかけはまたもや[@cssradar](http://twitter.com/cssradar)氏なんだけど）けど、まだツールとして成熟していなくてあまり興味が向いていなかったところ、ちょろちょろと「Hugoに移行しました」という記事を見かけるようになった。
 
