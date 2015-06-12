@@ -1,7 +1,8 @@
 ---
 layout: post
 title: WEB+DB PRESS Vol.87 Webフロントエンド最前線「ユーザを待たせない高速なWebサイト」
-date: 2015-06-12
+date: 2015-06-15
+draft: true
 ---
 
 # WEB+DB PRESS Vol.87 Webフロントエンド最前線「ユーザを待たせない高速なWebサイト」
