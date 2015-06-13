@@ -159,3 +159,9 @@
   width: 20px;
   text-align: center;
 }
+.pull-left { float: left; }
+.pull-right { float: right; }
+.clearfix::after {
+  display: table;
+  content: "";
+}
