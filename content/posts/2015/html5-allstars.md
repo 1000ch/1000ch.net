@@ -6,29 +6,29 @@ date: 2015-06-15
 
 # HTML5オールスターズ勉強会
 
-2015年6月13日は[<htmlday 2015>](http://www.htmlday.jp/)ということで、因んで開催された[HTML5オールスターズ勉強会](http://eventdots.jp/event/496476)に登壇しました。[html5j](http://html5j.org/)主催・[dots.](http://eventdots.jp/)さん協力の下、自分を含めて8つのセッションが行われました。
+2015年6月13日は[htmlday 2015](http://www.htmlday.jp/)ということで、因んで開催された[HTML5オールスターズ勉強会](http://eventdots.jp/event/496476)に登壇した。[html5j](http://html5j.org/)主催・[dots.](http://eventdots.jp/)さん協力の下、自分を含めて8つのセッションが行われた。
 
 ## 当日のスライド
 
-は、こちらです。セッション時間が20分だったので枚数も少なめですが、それなりに凝縮できた気はします。
+は、こちら。セッション時間が20分だったので枚数も少なめですが、それなりに凝縮できた気はする。
 
 <script async class="speakerdeck-embed" data-id="617f2e6d9aa04843b4d27368d5f11b8c" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
 詳しいフォローアップ記事はまた後程。
 
-## 他のセッション
+## セッション
 
 ### 『いつになっても議論が終わらないパフォーマンス関連のWeb標準たち』 川田 寛氏
 
 <blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">トップバッターは川田さん！&#10;『いつになっても議論が終わらないパフォーマンス関連のWeb標準たち』川田 寛氏（<a href="https://twitter.com/_furoshiki">@_furoshiki</a>）&#10;&#10;<a href="https://twitter.com/hashtag/dotshtml5?src=hash">#dotshtml5</a> <a href="https://twitter.com/hashtag/htmlday?src=hash">#htmlday</a> <a href="http://t.co/RAgTdOQlz9">pic.twitter.com/RAgTdOQlz9</a></p>&mdash; eventdots (@eventdots) <a href="https://twitter.com/eventdots/status/609583169885483009">2015, 6月 13</a></blockquote>
 
-パフォーマンスに関する情報をまんべんなく取り扱ったセッションでした。この絵(?)はどうやって用意しているのか気になるところ。
+アニメーションについて・ネットワーク（オフライン）について・モニタリングについてと、パフォーマンスに関する情報をまんべんなく取り扱ったセッション。独特な挿絵(?)はどうやって用意しているのか気になるところ。
 
 ### 『まだまだ ServiceWorker のはなし。Background Sync も来るよ！』 安田 絹子氏
 
 <blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">お二人目です！&#10;『まだまだ ServiceWorker のはなし。Background Sync も来るよ！』安田 絹子氏（<a href="https://twitter.com/kinu">@kinu</a>）&#10;<a href="https://twitter.com/hashtag/dotshtml5?src=hash">#dotshtml5</a> <a href="https://twitter.com/hashtag/htmlday?src=hash">#htmlday</a> <a href="http://t.co/5cz7LyIu9g">pic.twitter.com/5cz7LyIu9g</a></p>&mdash; eventdots (@eventdots) <a href="https://twitter.com/eventdots/status/609591472438906880">2015, 6月 13</a></blockquote>
 
-大注目のService Workerについて、Chromeチームでまさにそれを実装している@kinuさんのセッション。Service Workerの全体図を把握できる内容でした。個人的にはもう少し踏み込んだ部分を聞きたかった気もする。
+大注目のService Workerについて、Chromeチームでまさにそれを実装している@kinuさんのセッション。Service Workerの全体図を把握できる内容だった。個人的にはもう少し踏み込んだ部分を聞きたかった気もする。
 
 ### 『オフラインWebアプリの再到来で今、再び注目されるAPIの本命　ーJavascript SQL-like database』 吉川 徹氏
 
@@ -68,11 +68,11 @@ Reactがいかに素晴らしいかが語られた20分。増井さんのセッ�
 
 ## 感想等等
 
-会場が[gloops](http://gloops.com/)さんだったんですが、広くて綺麗でオシャレでした。懇親会でご飯とお酒も出してもらって、スポンサーさんごちそうさまでした。
+[gloops](http://gloops.com/)さんの会場だったけど、広くて綺麗でオシャレだった。懇親会でご飯とお酒も出してもらって、スポンサーさんごちそうさまでした。
 
 <blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">gloops飯 <a href="https://twitter.com/hashtag/dotshtml5?src=hash">#dotshtml5</a> <a href="http://t.co/1ntb0TKWNu">pic.twitter.com/1ntb0TKWNu</a></p>&mdash; ひらり (@hiragram) <a href="https://twitter.com/hiragram/status/609645451726303234">2015, 6月 13</a></blockquote>
 
-この勉強会の後に同じ会場で連続してHTML5とか勉強会が行われたんだけど、スタッフの皆さんの段取りがテキパキ過ぎて頭上がらない。円滑な進行といい、何から何までありがとうございました。参加した皆さん、素晴らしかった旨をブログに書きましょう。
+なによりスタッフの皆さんの段取りがテキパキ過ぎて頭上がらない。円滑な進行といい、懇親会の手配といい、何から何までありがとうございました。この勉強会の後に同じ会場で連続してHTML5とか勉強会が行われたんだけど、滞りなく進んだのはスタッフさんの力があってこそです。参加した皆さん、長丁場お疲れ様でした。素晴らしかった旨をブログに書きましょう。
 
 - [HTML5オールスターズ勉強会に行ってきました！](http://shirobit.hatenablog.com/entry/2015/06/14/HTML5%E3%82%AA%E3%83%BC%E3%83%AB%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BA%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%81%AB%E8%A1%8C%E3%81%A3%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81) - ３回まわってウンと働く人のブログ
 - [HTML5オールスターズ勉強会　資料まとめ](http://dackdive.hateblo.jp/entry/2015/06/13/161143) - dackdive's blog
