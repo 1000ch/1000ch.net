@@ -33,11 +33,11 @@ WebPは次のブラウザで表示することが出来ます。
 - Chrome for Android
 - Chrome **for iOS**
 
-今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示されています（きっとWebPのデコーダを内包しているんでしょう）！
+今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示されています。きっと、WebPのデコーダを内包しているんでしょう。
 
 ![](/img/posts/2015/introduction-to-webp/safari-chrome.jpg)
 
-これの意味するところは、WebPはデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来るということです。
+これはつまり、WebPのデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来ることを意味しています。
 
 ## 他のフォーマットへのフォールバック
 
@@ -60,7 +60,7 @@ WebPは次のブラウザで表示することが出来ます。
 
 ### サーバーサイドでAcceptヘッダのチェック
 
-ブラウザは次のように、リクエストそれぞれにAcceptヘッダを付与します。
+ブラウザはリクエストの際に、リクエストそれぞれに次のようなAcceptヘッダを付与します。
 
 ```
 Accept: image/webp, image/png, image/jpeg, image/gif, image/svg+xml, image/bitmap
@@ -70,6 +70,8 @@ Accept: image/webp, image/png, image/jpeg, image/gif, image/svg+xml, image/bitma
 
 これについては次のリソースも読むことをオススメします。
 
+- [Deploying WebP via Accept Content Negotiation](https://www.igvita.com/2013/05/01/deploying-webp-via-accept-content-negotiation/) — by Ilya Grigorik
+- [Faster, smaller and more beautiful web with WebP](https://www.igvita.com/2013/03/07/faster-smaller-and-more-beautiful-web-with-webp/) — by Ilya Grigorik
 - [Deploying New Image Formats on the Web](https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/) — by Ilya Grigorik
 - [igrigorik/webp-detect](https://github.com/igrigorik/webp-detect) — WebP with Accept negotiation by Ilya Grigorik
 
@@ -96,7 +98,7 @@ $ npm install gulp-cwebp
 
 ### WebPonize
 
-[WebPonize](https://webponize.github.io/)はPNGやJPEG画像をWebPへ変換するMac OS X用のアプリケーションです。もしあなたがOS X Yosemiteを使っていれば、[ダウンロード](http://bit.ly/webponize)して簡単に使うことが出来ます。ドラッグアンドドロップするだけです！
+[WebPonize](https://webponize.github.io/)はPNGやJPEG画像をWebPへ変換するMac OS X用のアプリケーションです。もしあなたがOS X Yosemiteを使っていれば、[ダウンロード](http://bit.ly/webponize)して簡単に使うことが出来ます。画像をドラッグ＆ドロップするだけです！
 
 ![](/img/posts/2015/introduction-to-webp/webponize.jpg)
 
