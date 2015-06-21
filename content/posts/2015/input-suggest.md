@@ -1,10 +1,10 @@
 ---
 layout: post
-title: <input>や<textarea>の入力補助
+title: inputやtextareaの入力補助
 date: 2015-06-22
 ---
 
-# `<input>`や`<textarea>`の入力補助
+# inputやtextareaの入力補助
 
 `<input>`の入力補助には`<datalist>`を使ったものがある。補助候補を`<datalist>`と`<option>`を使って定義し、そのIDを適用先の`<input>`の`list`属性に付与する。以下サンプル。
 
@@ -20,4 +20,6 @@ jQueryプラグインだとチラホラ見かけるけど、jQueryナシが良�
 
 <p data-height="480" data-theme-id="0" data-slug-hash="EjwOaz" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/EjwOaz/">Input suggestion using input-suggest</a> by 1000ch (<a href='http://codepen.io/1000ch'>@1000ch</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-リポジトリは[1000ch/input-suggest](https://github.com/1000ch/input-suggest)。`datalist`を`<textarea>`でも機能させるというコンセプトにしようかとも考えたが、定義されてもいないポリフィルを実装するような感覚に陥りそうだったのでやめた。
+`<datalist>`を`<textarea>`でも機能させるというコンセプトにしようかとも考えたが、定義されてもいないポリフィルを実装するような感覚に陥りそうだったのでやめた。
+
+リポジトリは[1000ch/input-suggest](https://github.com/1000ch/input-suggest)。
