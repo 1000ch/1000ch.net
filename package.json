@@ -1,6 +1,5 @@
 {
   "name": "1000ch.net",
-  "version": "0.2.0",
   "description": "Happens on me, Happens from me.",
   "repository": {
     "type": "git",
@@ -22,10 +21,10 @@
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-concat": "^2.6.0",
-    "gulp-csscomb": "3.0.4",
+    "gulp-csscomb": "3.0.6",
     "gulp-csso": "^1.0.0",
     "gulp-uglify": "^1.2.0",
-    "run-sequence": "^1.1.0"
+    "run-sequence": "^1.1.1"
   },
   "author": {
     "name": "1000ch",
