@@ -24,7 +24,7 @@
     "gulp-csscomb": "3.0.6",
     "gulp-csso": "^1.0.0",
     "gulp-uglify": "^1.2.0",
-    "run-sequence": "^1.1.1"
+    "run-sequence": "^1.1.2"
   },
   "author": {
     "name": "1000ch",
