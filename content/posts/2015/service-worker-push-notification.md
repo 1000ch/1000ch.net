@@ -30,12 +30,20 @@ Service WorkerでブラウザにPush通知をする方法については、既�
 
 [Google Developer Console](https://console.developers.google.com/project)から「プロジェクト作成」。
 
-作成したプロジェクトを選択し、左のメニューの「APIと認証」→「API」から次の2つのAPIをプロジェクトに対して有効化する。前者は最初探しても見つからないのだが、入力エリアに「Messaging」あたりを入力すると表示される。
+![](/img/posts/2015/service-worker-push-notification/developer-console-create-project.png)
+
+作成したプロジェクトを選択し、左のメニューの「APIと認証」→「API」から次の2つのAPIをプロジェクトに対して有効化する。
 
 - Google Cloud Messaging for Chrome
 - Google Cloud Messaging for Android
 
+前者は最初探しても見つからないのだが、入力エリアに「Messaging」あたりを入力すると表示される。
+
+![](/img/posts/2015/service-worker-push-notification/developer-console-enable-api.png)
+
 次に今作成したGCMサーバーへリクエストをするために、APIキーを発行しておく必要がある。左のメニューの「APIと認証」→「認証情報」から、APIキーの認証情報（サーバーキー）を追加する。作成するとトークンが発行され、これをPush通知のPOSTリクエストを実行する際に付与することになる。
+
+![](/img/posts/2015/service-worker-push-notification/developer-console-create-api-key.png)
 
 ## Pushを受け取るWebアプリ側の準備
 
@@ -73,7 +81,7 @@ ChromeにはPushインフラとしてGCMがあるが、このあたりがどう�
 
 ### `service-worker.js`
 
-Service Workerとはそもそも話は[Service Workerに関する仕様とか機能とか - 1000ch.net](/posts/2014/service-worker-internals.html)を見てもらうとなんとなくわかるはず。
+Service Workerとはそもそも…な話は[Service Workerに関する仕様とか機能とか - 1000ch.net](/posts/2014/service-worker-internals.html)を見てもらうとなんとなくわかるはず。
 
 ```javascript
 self.addEventListener('install', e => console.log('Service Worker oninstall: ', e));
@@ -101,7 +109,7 @@ self.addEventListener('push', e => {
 });
 ```
 
-注意したいのは、Web Notification APIではなく、Service Workerコンテキストから実行するNotificationのAPIであること。
+Service Workerコンテキストで`push`イベントをハンドルし、その中でNotificationを表示している。注意したいのは、Web Notification APIではなく、Service Workerコンテキストから実行するNotificationのAPIであること。
 
 ### `manifest.json`
 
@@ -136,11 +144,14 @@ curl --header "Authorization: key=(作成したプロジェクトのAPIキー)" 
 
 エンドポイント文字列は`app.js`で`pushManager.subscribe()`して返却されるsubscriptionオブジェクトの`endpoint`の値から`https://android.googleapis.com/gcm/send/`を除いたものになる。エンドポイントアドレスとしては返却値で良いんだろうけど、GCMのリクエストインターフェースがこの仕様というだけ。
 
-ちなみに[1000ch/service-worker-push-notification](https://github.com/1000ch/service-worker-push-notification)ではfetch APIを使って同等のことをブラウザから実施しようとしたが、リクエストオリジンの制限に引っかかってNGだった。あ、APIキー晒してますが、既に破棄済のプロジェクトです。
+ちなみに[1000ch/service-worker-push-notification](https://github.com/1000ch/service-worker-push-notification)ではfetch APIを使って同等のことをブラウザから実施しようとしたが、リクエストオリジンの制限に引っかかってNGだった(
+APIキー晒してますが、既に破棄済のプロジェクトです)。
+
+先程のPOSTリクエストのリクエストBodyに入れている`registration_ids`には複数のRegistrationIdを指定できる。今回はデバッグ的にcURLでリクエストしたが、クライアントにRegistrationIdが付与されたらサーバー等に送信して集計し、Pushサーバーに配信リクエストを送る仕組みからまとめてリクエストするのが本線っぽい。
 
 ## まとめ
 
-メモ書きでした。現場からは以上です。
+ただの作業ログでした。現場からは以上です。
 
 - [ウェブのプッシュ通知、何がそんなにすごいのか？ - Tender Surrender](https://blog.agektmr.com/2015/03/mobile-web-app.html)
 - [Push Notifications on the Open Web - Google Developers](https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web)
