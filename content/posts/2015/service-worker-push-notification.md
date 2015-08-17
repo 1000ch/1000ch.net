@@ -1,13 +1,12 @@
 ---
 layout: post
 title: Service WorkerでブラウザにPush通知をする
-date: 2015-08-18
-draft: true
+date: 2015-08-17
 ---
 
 # Service WorkerでブラウザにPush通知をする
 
-Service WorkerでブラウザにPush通知をする方法については、既に解説記事が幾つかあるが、もう少しだけ掘り下げてみる。テクニカルな部分の記事になるので、概論については[ウェブのプッシュ通知、何がそんなにすごいのか？ - Tender Surrender](https://blog.agektmr.com/2015/03/mobile-web-app.html)という記事を見て欲しい。
+Service WorkerでブラウザにPush通知をする方法については、既に解説記事が幾つかあるのできっと面白くありません。ただの作業ログです。概論については[ウェブのプッシュ通知、何がそんなにすごいのか？ - Tender Surrender](https://blog.agektmr.com/2015/03/mobile-web-app.html)という記事を見てくださいませ。
 
 ## 前提と大まかな手順
 
