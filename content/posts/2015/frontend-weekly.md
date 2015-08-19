@@ -14,6 +14,8 @@ date: 2015-08-18
 
 まずは **Frontend Weeklyとは一体何なのか** を説明する必要がありそうです。Frontend Weeklyは、HTMLやCSS、JavaScriptなどのWebフロントエンド技術に関する記事・ライブラリなどの情報を中心に、週に一度水曜日に配信しているメールマガジンです。
 
+キュレータは[@cssradar](http://twitter.com/)・[@hiloki](http://twitter.com/hiloki)・[@t32k](http://twitter.com/t32k)・[@ahomu](http://twitter.com/ahomu)・[@1000ch](http://twitter.com/1000ch)の5人です。この5人で集めたリソースの中から、今後のトレンドになりそうな、あるいはキャッチアップすべきリソースをピックアップし、それぞれに日本語のサマリーを付けて配信しています。
+
 ### 英語が中心のリソース
 
 紹介するリソースの多くは英語ですが、これには理由があります。
@@ -53,6 +55,10 @@ Web界隈の技術進化は目覚ましく、今は最新と呼ばれる技術�
 
 ## 日本のWebを前に進める
 
-最後になりますが、 **Frontend Weeklyの購読は無料** です。購読していない人は、これを機に是非登録してみてください。[登録はコチラからどうぞ](http://frontendweekly.tokyo)。Frontend WeeklyがWebのメインストリームに飛び込むきっかけになれば幸いです。
+最後になりますが、 **Frontend Weeklyの購読は無料** です。購読していない人は、これを機に是非登録してみてください。[登録はコチラからどうぞ](http://frontendweekly.tokyo)。
+
+また、 **「どんなメールが来るのか気になる…！」** 、 **「過去の配信記事を見てみたい！」** という人のために、配信したメールも[バックナンバーとしてアーカイブ](https://frontendweekly.tokyo/backnumbers/)してあります。
+
+Frontend WeeklyがWebのメインストリームに飛び込むきっかけになれば幸いです。
 
 それでは、次号の配信をお楽しみに。
