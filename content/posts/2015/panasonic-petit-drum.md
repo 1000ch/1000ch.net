@@ -14,9 +14,11 @@ date: 2015-02-15
 
 ![](/img/posts/2015/panasonic-petit-drum/menu.jpg)
 
-ところがドラム式洗濯乾燥機は、洗濯した服がふっくらホカホカの状態で出てきてくれるので、あとは畳んでしまうだけ。急ぎであればそのまま着ても気持ちいい。だから、 **乾燥場を使うこともないし、雨の日に干す場所に悩むこともない。洗った洗濯物を忘れて、生乾きなんてこともない** 。
+ところがドラム式洗濯乾燥機は、洗濯した服がふっくらホカホカの状態で出てきてくれるので、あとは畳んでしまうだけ。急ぎであればそのまま着ても気持ちいい。
 
-もちろん「洗濯→乾燥」だけじゃなくて、「洗濯だけ」「乾燥だけ」のコースもあるので、洗濯・乾燥のどちらかだけやりたい場合でも大丈夫。
+だから、 **乾燥場を使うこともないし、雨の日に干す場所に悩むこともない。洗った洗濯物を忘れて、生乾きなんてこともない** 。
+
+もちろん「洗濯→乾燥」だけじゃなくて、「洗濯だけ」「乾燥だけ」のコースもあるので、洗濯・乾燥のどちらかだけやりたい場合でも大丈夫。私の場合は、シャツやボトムス類はシワにならないように洗濯までして、その他のTシャツやタオル等は乾燥しても問題なさそうなので、フルコースにしている。
 
 ## Point.2 「ヒートポンプ乾燥で衣類が縮みにくく、電気代も安い」 
 
@@ -47,11 +49,9 @@ date: 2015-02-15
 
 その他の機能としては「[エコナビ](http://panasonic.jp/wash/product/na_vh310l/econavi.html)」「[自動槽洗浄](http://panasonic.jp/wash/product/na_vh310l/auto_cleaning.html)」「[泡洗浄・ダンシング洗浄](http://panasonic.jp/wash/product/na_vh310l/dancing.html)」「[お急ぎコース](http://panasonic.jp/wash/product/na_vh310l/speedy.html)」と、至れりつくせり。
 
-場所・天気と干すことに気を遣わなくなったし、洗ったものはホカホカふっくら出てくるし、何より **洗濯という家事に対して、かける時間が減ったのに満足度がグッと上がった** 。
-
-Amazonでは中古品が定価より高額で売られていることもありますが、定価はヒートポンプ式でないモデルが **94,500円** 、ヒートポンプ式のモデルが **124,700円** になっているようです。
-
 <iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00I0OAM7E&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00I0OAR92&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+場所・天気と干すことに気を遣わなくなったし、洗ったものはホカホカふっくら出てくるし、何より **洗濯という家事に対して、かける時間が減ったのに満足度がグッと上がった** 。
 
 QoL挙がること間違いなし。
