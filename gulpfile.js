@@ -1,18 +1,17 @@
-var gulp     = require('gulp');
-var concat   = require('gulp-concat');
-var sequence = require('run-sequence').use(gulp);
+const gulp     = require('gulp');
+const concat   = require('gulp-concat');
+const sequence = require('run-sequence').use(gulp);
 
- var JS_APP_FILES = [
-  'static/js/ga.js',
-  'static/js/script.js'
+const JS_APP_FILES = [
+ 'static/js/script.js'
 ];
 
-var CSS_LIB_FILES = [
-  'bower_components/normalize.css/normalize.css',
-  'bower_components/highlight.js/src/styles/solarized_light.css'
+const CSS_LIB_FILES = [
+  'node_modules/normalize.css/normalize.css',
+  'node_modules/highlight.js/styles/solarized_light.css'
 ];
 
-var CSS_APP_FILES = [
+const CSS_APP_FILES = [
   'static/css/default.css',
   'static/css/style.css'
 ];
@@ -27,18 +26,27 @@ gulp.task('build', function () {
 
 gulp.task('js:app', function () {
 
-  var uglify = require('gulp-uglify');
+  const browserify = require('browserify');
+  const babelify   = require('babelify');
+  const source     = require('vinyl-source-stream');
+  const buffer     = require('vinyl-buffer');
+  const uglify     = require('gulp-uglify');
 
-  gulp.src(JS_APP_FILES)
-    .pipe(concat('app.min.js'))
+  browserify({
+    entries: JS_APP_FILES,
+    extensions: ['.js']
+  }).transform(babelify)
+    .bundle()
+    .pipe(source('app.min.js'))
+    .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest('_public/js'));
 });
 
 gulp.task('css:lib', function () {
 
-  var csscomb = require('gulp-csscomb');
-  var csso    = require('gulp-csso');
+  const csscomb = require('gulp-csscomb');
+  const csso    = require('gulp-csso');
 
   gulp.src(CSS_LIB_FILES)
     .pipe(concat('lib.min.css'))
@@ -49,9 +57,9 @@ gulp.task('css:lib', function () {
 
 gulp.task('css:app', function () {
 
-  var autoprefixer = require('gulp-autoprefixer');
-  var csscomb      = require('gulp-csscomb');
-  var csso         = require('gulp-csso');
+  const autoprefixer = require('gulp-autoprefixer');
+  const csscomb      = require('gulp-csscomb');
+  const csso         = require('gulp-csso');
 
   gulp.src(CSS_APP_FILES)
     .pipe(concat('app.min.css'))
