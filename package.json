@@ -12,19 +12,25 @@
     "node": "0.12"
   },
   "scripts": {
-    "postinstall": "bower install && gulp",
+    "postinstall": "gulp",
     "start": "hugo server --watch",
     "build": "gulp && hugo && cp _public/index.xml _public/rss.xml"
   },
   "devDependencies": {
-    "bower": "^1.5.2",
+    "babelify": "^6.3.0",
+    "browserify": "^11.1.0",
+    "dom-delegate": "^2.0.3",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-csscomb": "3.0.6",
     "gulp-csso": "^1.0.0",
     "gulp-uglify": "^1.4.0",
-    "run-sequence": "^1.1.2"
+    "highlight.js": "^8.8.0",
+    "normalize.css": "^3.0.3",
+    "run-sequence": "^1.1.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "author": {
     "name": "1000ch",
