@@ -16,16 +16,16 @@
 </aside>
 
 <nav class="post-nav">
-  {{with .Prev}}
-    <div class="post-nav__item post-nav__item--prev h3">
+  {{with .Next}}
+    <div class="post-nav__item post-nav__item--next h3">
       <i class="fa fa-arrow-left fa--has-margin"></i>
       <a href="{{ .Permalink }}">{{ .Title }}</a>
     </div>
   {{else}}
   {{end}}
 
-  {{with .Next}}
-    <div class="post-nav__item post-nav__item--next h3">
+  {{with .Prev}}
+    <div class="post-nav__item post-nav__item--prev h3">
       <a href="{{ .Permalink }}">{{ .Title }}</a>
       <i class="fa fa-arrow-right fa--has-margin"></i>
     </div>

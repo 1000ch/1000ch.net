@@ -149,11 +149,11 @@
   padding: 5px;
 }
 
-.post-nav__item--prev {
+.post-nav__item--next {
   text-align: left;
 }
 
-.post-nav__item--next {
+.post-nav__item--prev {
   text-align: right;
 }
 
