@@ -6,11 +6,11 @@ date: 2015-03-23
 
 # Web Componentsに対する問題提起
 
-銀の弾丸のごとく現れたWeb Components。暫く理想を語ってきたけど、正直そうは上手くいかないと思っている。
+Web Componentsについては暫く理想を語ってきたけど、正直そうは上手くいかないと思っている。
 
 - [Web Componentsが変えるWeb開発の未来](https://html5experts.jp/1000ch/8906/)
 - [Web Componentsを構成する4つの仕様 ー Web Components基礎編](https://html5experts.jp/1000ch/11142/)
-- [Web Componentsでカルーセルギャラリーを作る─Web Components実践編](https://html5experts.jp/1000ch/11626/)
+- [Web Componentsでカルーセルギャラリーを作る ー Web Components実践編](https://html5experts.jp/1000ch/11626/)
 - [Web Componentsを簡単・便利にするライブラリ「Polymer」を使いこなそう](https://html5experts.jp/1000ch/11905/)
 - [基本的な要素・機能を提供するCore ElementsとMaterial Designを実現するPaper Elements](https://html5experts.jp/1000ch/12477/)
 
