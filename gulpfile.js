@@ -1,9 +1,9 @@
-const gulp     = require('gulp');
-const concat   = require('gulp-concat');
+const gulp = require('gulp');
+const concat = require('gulp-concat');
 const sequence = require('run-sequence').use(gulp);
 
 const JS_APP_FILES = [
- 'static/js/script.js'
+  'static/js/script.js'
 ];
 
 const CSS_LIB_FILES = [
@@ -16,21 +16,21 @@ const CSS_APP_FILES = [
   'static/css/style.css'
 ];
 
-gulp.task('default', function () {
+gulp.task('default', function() {
   gulp.start('build');
 });
 
-gulp.task('build', function () {
+gulp.task('build', function() {
   sequence('js:app', 'css:lib', 'css:app');
 });
 
-gulp.task('js:app', function () {
+gulp.task('js:app', function() {
 
   const browserify = require('browserify');
-  const babelify   = require('babelify');
-  const source     = require('vinyl-source-stream');
-  const buffer     = require('vinyl-buffer');
-  const uglify     = require('gulp-uglify');
+  const babelify = require('babelify');
+  const source = require('vinyl-source-stream');
+  const buffer = require('vinyl-buffer');
+  const uglify = require('gulp-uglify');
 
   browserify({
     entries: JS_APP_FILES,
@@ -43,10 +43,10 @@ gulp.task('js:app', function () {
     .pipe(gulp.dest('_public/js'));
 });
 
-gulp.task('css:lib', function () {
+gulp.task('css:lib', function() {
 
   const csscomb = require('gulp-csscomb');
-  const csso    = require('gulp-csso');
+  const csso = require('gulp-csso');
 
   gulp.src(CSS_LIB_FILES)
     .pipe(concat('lib.min.css'))
@@ -55,11 +55,11 @@ gulp.task('css:lib', function () {
     .pipe(gulp.dest('_public/css'));
 });
 
-gulp.task('css:app', function () {
+gulp.task('css:app', function() {
 
   const autoprefixer = require('gulp-autoprefixer');
-  const csscomb      = require('gulp-csscomb');
-  const csso         = require('gulp-csso');
+  const csscomb = require('gulp-csscomb');
+  const csso = require('gulp-csso');
 
   gulp.src(CSS_APP_FILES)
     .pipe(concat('app.min.css'))
@@ -69,13 +69,13 @@ gulp.task('css:app', function () {
     .pipe(gulp.dest('_public/css'));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', function() {
 
-  gulp.watch(JS_APP_FILES, function () {
+  gulp.watch(JS_APP_FILES, function() {
     gulp.start('js:app');
   });
 
-  gulp.watch(CSS_APP_FILES, function () {
+  gulp.watch(CSS_APP_FILES, function() {
     gulp.start('css:app');
   });
 });
