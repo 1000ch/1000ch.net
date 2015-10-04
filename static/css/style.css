@@ -48,6 +48,7 @@
 
 .header-menu__item {
   display: table-cell;
+  vertical-align: middle;
   padding: 5px;
 }
 

@@ -74,7 +74,7 @@ code {
   border-radius: 4px;
   color: #657a81 !important;
   font-family: "Roboto Mono", "Source Code Pro", monospace;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 h1 > code {
@@ -93,8 +93,8 @@ h3 > code {
 }
 
 code {
-  padding: 4px;
-  vertical-align: middle;
+  padding: 2px 4px;
+  vertical-align: text-bottom;
 }
 
 pre > code {
@@ -130,4 +130,14 @@ a:hover,
 a:active,
 a.is-active {
   color: #e2007a;
+}
+
+a code {
+  color: #199ad5 !important;
+}
+
+a:hover code,
+a:active code,
+a.is-active code {
+  color: #e2007a !important;
 }
