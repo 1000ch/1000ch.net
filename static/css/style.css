@@ -90,6 +90,9 @@
 
 .aside-content {
   padding: 20px;
+  position: sticky;
+  top: 0;
+  bottom: 0;
 }
 
 @media screen and (max-width: 640px) {
@@ -208,6 +211,7 @@
 }
 
 .clearfix::after {
+  clear: both;
   content: "";
   display: table;
 }
