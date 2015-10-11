@@ -8,9 +8,6 @@
   "bugs": {
     "url": "https://github.com/1000ch/1000ch.net/issues"
   },
-  "engines": {
-    "node": "0.12"
-  },
   "scripts": {
     "postinstall": "gulp",
     "start": "hugo server --watch",
@@ -18,8 +15,8 @@
   },
   "devDependencies": {
     "babelify": "^6.3.0",
-    "browserify": "^11.1.0",
-    "dom-delegate": "^2.0.3",
+    "browserify": "^11.2.0",
+    "dom-delegate": "^3.0.2",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-concat": "^2.6.0",
@@ -28,7 +25,7 @@
     "gulp-uglify": "^1.4.1",
     "highlight.js": "^8.8.0",
     "normalize.css": "^3.0.3",
-    "run-sequence": "^1.1.2",
+    "run-sequence": "^1.1.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
