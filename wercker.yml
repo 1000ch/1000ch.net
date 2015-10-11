@@ -6,7 +6,7 @@ build:
     - npm-install
     - script:
         name: Copy to rss.xml
-        code: cp _public/posts.xml _public/rss.xml
+        code: cp _public/index.xml _public/rss.xml
 deploy:
   steps:
     - lukevivier/gh-pages@0.2.1:
