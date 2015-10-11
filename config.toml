@@ -4,7 +4,6 @@ footnotereturnlinkcontents = "↩"
 contentdir = "content"
 layoutdir = "layouts"
 staticdir = "static"
-publishdir = "_public"
 uglyUrls = true
 metaDataFormat = "yaml"
 [params]

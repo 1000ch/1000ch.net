@@ -1,13 +1,12 @@
-box:
-  id: nodesource/node
+box: node:latest
 build:
   steps:
-    - arjen/hugo-build:
-        version: 0.12
     - npm-install
+    - arjen/hugo-build:
+        version: 0.14
     - script:
         name: Copy to rss.xml
-        code: cp _public/posts.xml _public/rss.xml
+        code: cp public/index.xml public/rss.xml
 deploy:
   steps:
     - lukevivier/gh-pages@0.2.1:
