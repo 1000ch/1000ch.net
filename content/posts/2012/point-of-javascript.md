@@ -6,45 +6,9 @@ date: 2012-12-02
 
 # jQueryでコーディングをする際気をつけたいポイント
 
-Webの開発において欠かすことのできないJavaScript。html/cssしか触った事のない人でも理解のしやすいモデルを提供するjQuery。
-非常に便利なjQueryだけど、DOM操作のコスト自体が低くなる訳ではないので、実装方法によってはブラウザに大きな負荷をかける場合がある。特に、モバイルデバイス等のか弱い環境にとってはそれなりにシビアな所。端末の性能も飛躍的に向上してきてるとはいえ、最適化された実装を目指さない理由はない。
+煩雑なDOMのAPIをラップして扱いやすいインターフェースを提供するjQuery。非常に便利なjQueryだけど、DOM操作のコスト自体が低くなる訳ではないので、実装方法によってはブラウザに大きな負荷をかけてしまう。特に、モバイルデバイスのようなか弱い環境にとってはそれなりにシビアになってくる。端末の性能も飛躍的に向上してきてるとはいえ、最適化された実装を目指さない理由はない。
 
-この辺りを気をつけると良いっていうポイントを挙げてみる。jQueryと銘打ってるけどそれに限らず、ZeptoでもピュアなJavaScriptでも同じこと。
-
-## ループ文の書き方
-
-よく書かれがちなループ文。
-
-```js
-var array = ["data1", "data2", "data3", "data4", "data5"];
-for (var i = 0;i < array.length;i++) {
-    var data = "<div>" + array[i] + "</div>";
-    //any process...
-}
-```
-
-まず、forの継続条件評価式に`i < array.length`とある。継続条件評価はループの度に行われ、つまり、arrayのlengthプロパティは都度参照されることになる。また、for文の中で`var data`を定義しhtmlを受け取っていますが、特殊な理由がない限り、for文の外で定義すべき。ループの度にdataが宣言されると、ガベージコレクトの誘発に繋がる。
-
-```js
-// 上記をふまえたループ文
-var array = ['data1', 'data2', 'data3', 'data4', 'data5'];
-var i, len = array.length, data = '';
-for (i = 0;i < len;i++) {
-  data = '<div>' + array[i] + '</div>';
-  //any process...
-}
-```
-
-ちなみに、逆ループにはなりますがこれが最速かと思っています。
-
-```js
-var array = ['data1', 'data2', 'data3', 'data4', 'data5'];
-var len = array.length, data = '';
-while (len--) {
-  data = '<div>' + array[len] + '</div>';
-  // any process...
-}
-```
+jQueryでコーディングしていく上で気をつけると良いというポイントを挙げてみる。jQueryと銘打ってるけどそれに限らず、ZeptoでもピュアなJavaScriptでも同じこと。
 
 ## CSS Selectorのキャッシュ
 
@@ -69,9 +33,48 @@ hoge.show();
 
 こちらが検索結果を保持し、最適化したコード。要素検索とjQueryオブジェクトの生成が1回のみになっている。変数に格納するしない、あるいはメソッドチェーンするかどうかは、コードの見通しの善し悪しで決めれば良い。
 
+## ループ文の書き方
+
+よく書かれがちなループ文。
+
+```javascript
+var array = ['data1', 'data2', 'data3', 'data4', 'data5'];
+for (var i = 0; i < array.length; i++) {
+  var data = '<div>' + array[i] + '</div>';
+  // ...
+}
+```
+
+まず、forの継続条件評価式に`i < array.length`とある。継続条件評価はループの度に行われ、配列のlengthプロパティは都度参照されることになる。また、for文の中で`var data`を定義しhtmlを受け取っているが、特殊な理由がない限り、for文の外で定義すべき。これだとループの度にdataが宣言されることなる。
+
+```javascript
+// 上記をふまえたループ文
+var array = ['data1', 'data2', 'data3', 'data4', 'data5'];
+var i, len = array.length;
+var data = '';
+for (var i = 0, len = array.length; i < len; i++) {
+  data = '<div>' + array[i] + '</div>';
+  // ...
+}
+```
+
+ちなみに、逆ループにはなるがこれが最速かと思っている。
+
+```javascript
+var array = ['data1', 'data2', 'data3', 'data4', 'data5'];
+var len = array.length;
+var data = '';
+while (len--) {
+  data = '<div>' + array[len] + '</div>';
+  // ...
+}
+```
+
 ## ループ中のappendはしない
 
-htmlを生成し追加するケースは多々あるけど、その際の留意点。
+HTMLの文字列やDOMノード、及びそれらをラップしたjQueryインスタンスを生成し、HTMLドキュメントに追加するケースは多々あるけど、その際の留意点。先程の`for`ループ処理の最適化と合わせて実施したい。
+
+まずは、ループ中で都度HTMLドキュメントに対して追加処理をしている例。
 
 ```js
 // 都度appendしてるのはNG
@@ -83,8 +86,7 @@ for (i = 0;i < len;i++) {
 }
 ```
 
-`container`に対し、都度htmlを追加していますが、この記述だと追加の度にリフロー+リペイントが発生します。
-要素の動く先の再計算や再描画がループ中に発生しないようにしましょう。
+`container`に対し、都度HTMLを追加しているが、この記述だとループの度にリフロー+リペイント（HTMLの再レイアウトと再描画）が発生する。この再レイアウトと再描画の発生を少なくすることでちらつきを減らす。
 
 ```js
 // 最後にappendする
@@ -98,11 +100,11 @@ for (i = 0;i < len;i++) {
 container.append(html);
 ```
 
+このように追加するHTMLを蓄積して、最後にappendすることでHTMLドキュメントに対する変更処理を最小限に留めることができる。
+
 ## カスタムデータ属性の参照の仕方
 
-### 「JavaScriptでhtmlを操作することはもちろん、参照する事すら高価である。」
-
-これ、[@cssrasar](http://twitter.com/cssradar)先生の御言葉。
+### 「JavaScriptでhtmlを操作することはもちろん、参照する事すら高価である。」 by [@cssrasar](http://twitter.com/cssradar)
 
 参照の仕方はいくつかあるけど、jQueryの例も含めて、カスタムデータ属性を参照してみる。
 
@@ -119,14 +121,10 @@ $('.buttonClassName').on('click', function() {
 });
 ```
 
-後者2つに関してはjQuery内部を通るため、低速。jQueryの関数インターフェースの特徴として、参照系は内包する要素の先頭を取得しようとする（そもそもこれが好きじゃない）。このケースに関して言えば、jQueryを通す事はただの遠回りと言える。また、`$().data()`の返り値は暗黙的に型変換されるため、注意。
+後者2つに関しては、jQueryのインスタンスの生成および内部メソッドを通るため低速になる。このケースに関して言えば、jQueryを通す事はただの遠回りと言える。さらに、`.data()`の返り値は、暗黙的に型変換されるため注意したい。例えば文字列の"2"であれば`Number`に型変換される。
 
 - [jQueryの$elm.data()で取得できる値は暗黙でstringから型変換される ::ハブろぐ](http://havelog.ayumusato.com/develop/javascript/e291-jquery_data_method.html)
 - [HTML5 data attribute - dataset vs getAttribute - jsPerf](http://jsperf.com/html5-data-attribute-dataset-vs-getattribute)
 - [dataset vs jquery.data() - jsPerf](http://jsperf.com/dataset-vs-jquery-data/4)
 
-コーディングの統一感に反する恐れはありますが、個人的には`getAttribute()`を使用する事をオススメする。
-
-## まとめ
-
-もう少し言及出来る部分もありますが、今日はここまで。次はbindとdelegateの使い分けとか。
+jQueryの関数インターフェースの特徴として、参照系は内包する要素の先頭を取得しようとするので、そもそもこれが好きじゃかったりする。コーディングの統一感に反する恐れはあるが、個人的には`getAttribute()`をオススメしたい。

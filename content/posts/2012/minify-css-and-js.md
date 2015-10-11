@@ -15,21 +15,25 @@ date: 2012-11-28
 - [csso](https://github.com/css/csso) - csso@github
 - [CSSOとgrunt-csso](http://t32k.me/mol/log/csso-and-grunt-csso/) - cssoの解説とgruntツール（後述）との連携について
 
-開発中はコメントを適切に書いて、見通しの良いコードを書くべきですが、ブラウザに認識させる段階ではその必要がない。改行コードが取り払われて一行になっていたとしても認識してくれる。そして除かれた余分な文字の分、ユーザーの待ち時間は短くなる。なので、実際にサーバーに置くファイルはminifyすること。
+開発中はコメントを適切に書いて、見通しの良いコードを書くべきだが、ブラウザに認識させる段階ではその必要がない。改行コードが取り払われて一行になっていたとしても認識してくれる。そして除かれた余分な文字の分、ユーザーの待ち時間は短くなる。なので、実際にサーバーに置くファイルはminifyすること。
 
 ## ローカル環境でminifyする
 
 ここでは代表的なGoogle Closure CompilerとYUI CompressorとUglifyJSの3つを紹介。Google Closure CompilerとYUI CompressorはともにJavaで書かれており、jarファイルをダウンロードしJVMを通して実行する必要がある。UglifyJSはNode.jsで実行されるので、npm経由でインストールする。
 
-## Google Closure Compilerの場合
+- [Google Closure Compiler](https://developers.google.com/closure/compiler/?hl=ja) - Google提供のツール
+- [YUI Compressor](http://developer.yahoo.com/yui/compressor/) - Yahoo提供のツール
+- [mishoo/UglifyJS](https://github.com/mishoo/UglifyJS) - node.js用のツール
 
-「--js=」で入力ファイルを、「--js_output_file」で出力ファイルを指定。入力順にjsファイルが結合されて、minifyされる。
+### Google Closure Compilerの場合
 
-```bash
+「`--js=`」で入力ファイルを、「`--js_output_file`」で出力ファイルを指定。入力順にJSファイルが結合されて、圧縮される。
+
+```sh
 $ java -jar compiler.jar --js=input1.js --js=input2.js --js_output_file=out.js
 ```
 
-## YUIの場合
+### YUIの場合
 
 こちらも入力ファイルと出力ファイルを指定して実行するだけ。
 
@@ -37,23 +41,19 @@ $ java -jar compiler.jar --js=input1.js --js=input2.js --js_output_file=out.js
 $ java -jar yuicompressor-x.x.x.jar /path/jsfile.js -o /path/jsfile.min.js
 ```
 
-## UglifyJSの場合
+### UglifyJSの場合
 
-UglifyJSをインストール。
+UglifyJSを`npm`でインストール。
 
 ```bash
-$ npm install uglify-js
+$ npm install --global uglify-js
 ```
 
 入力ファイルと出力ファイルを指定して実行。
 
 ```bash
-$ ~/UglifyJS/binuglifyjs /path/jsfile.js /path/jsfile.min.js
+$ uglifyjs /path/jsfile.js /path/jsfile.min.js
 ```
-
-- [Google Closure Compiler](https://developers.google.com/closure/compiler/?hl=ja) - Google提供のツール
-- [YUI Compressor](http://developer.yahoo.com/yui/compressor/) - Yahoo提供のツール
-- [UglifyJS](https://github.com/mishoo/UglifyJS) - node.js用のツール
 
 ## オンラインツールでminifyする
 
@@ -64,7 +64,7 @@ $ ~/UglifyJS/binuglifyjs /path/jsfile.js /path/jsfile.min.js
 
 ## 継続的に実施していくために
 
-がっちり開発していくという場合には、いちいち手作業ではやっていられない。そういった場合はmavenを使ったり、jenkinsのジョブに組み込んだり。html/css中心で、もっと手軽なツールで自動化したい場合は[grunt.js](http://gruntjs.com/)が良い。こちらもNode.jsのツールで、バックグラウンドでファイルの更新を検知したり、そのタイミングでminifyなど様々な処理を実行させることが可能。
+開発現場で実践していくことを考えると、いちいち手作業ではやっていられない。そういった場合はGruntのようなタスクランナーを使ったり、Jenkinsのジョブに組み込むなど何らかの方法で自動化するのが現実的。GruntはNode.js製のタスクランナーで、ファイルの変更を監視してそれをトリガーにファイルを圧縮するといったような処理が簡単な設定で自動化できる。Gruntのビルド処理をJenkinsに組み込むことも可能なので、まずはローカル開発環境で整備してみると良いだろう。
 
-- [havelog - grunt](http://havelog.ayumusato.com/tag/Grunt/) - havelogのgruntタグ
+- [havelog - Grunt](http://havelog.ayumusato.com/tag/Grunt/) - havelogのGruntタグ
 - [gruntをインストールする - jekylog](http://fingaholic.github.com/posts/2012-05-01-grunt.html)

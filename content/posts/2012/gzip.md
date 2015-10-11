@@ -6,41 +6,37 @@ date: 2012-12-06
 
 # Gzipを有効にしてサイト表示速度を向上させる
 
-## そもそもGzipって？
+Gzipはファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は`.gz`で、MIME-Typeは`application/x-gzip`。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来ますがここでは割愛。
 
 - [gzip - Wikipedia](http://ja.wikipedia.org/wiki/Gzip)
 
-ファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は`.gz`で、MIME-Typeは`application/x-gzip`。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来ますがここでは割愛。
-
 ## httpサーバーのgzipを有効にしてサイト表示速度を向上させる
 
-Webサイトの表示は、ブラウザがhtml形式のデータをサーバーから受け取り、ブラウザが受け取ったhtmlを解釈し、画面に描画する事で成立する。つまり受け取るhtmlのサイズが大きければ大きい程、転送する量が増加し、必然的にロード時間が長くなる。このロード時間を短くしよう！という話。
+Webサイトの表示は、ブラウザがHTMLドキュメントをサーバーから受け取り、受け取ったHTMLを解釈し、画面に描画する事で成立する。つまり受け取るHTMLのサイズが大きければ大きい程、転送する量が増加し、必然的にロード時間が長くなる。このロード時間を短くするためにGzipでデータを圧縮しよう！という話。
 
 ## Google ChromeのPageSpeed
 
-自分のサーバーの設定がどうなっているのかわからないという人は、[PageSpeed](https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli?utm_source=chrome-ntp-icon)で調べると良いかも。PageSpeedの解析結果でGzipを有効にしましょうと言われる場合は、Gzipが効いていないということになる。
+自分のサーバーの設定がどうなっているのかわからないという人は、[PageSpeed](https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli?utm_source=chrome-ntp-icon)で調べるのがお手軽。PageSpeedの解析結果でGzipを有効にしましょうと言われる場合は、Gzipが効いていないということになる。
 
-ちなみにPageSpeedは、Gzipをチェックする以外でもパフォーマンスの改善案を挙げてくれる非常に良く出来たツール。PageSpeed周りの詳しい使い方は以下が参考になる。
+PageSpeedはGzipが有効になっているかどうかをチェックする他にも、様々なパフォーマンスの改善案を挙げてくれる非常に良く出来たツール。PageSpeed周りの詳しい使い方は以下が参考になる。
 
 - [ついに出た！Chrome版「Page Speed」の使い方 - Stocker.jp](http://stocker.jp/diary/chrome_page_speed/)
 - [Google PageSpeed Insights でパフォーマンスチューニング](http://blog.webcreativepark.net/2012/06/20-154132.html)
 
 ## もう少し詳しい仕組み
 
-サーバーがgzipしてデータを転送する前に、 **「クライアントがgzipを解凍することが出来る」** という点が保証されなければいけない訳だけど、ブラウザがgzipの解凍が出来る場合はHttpRequestの際、自動的にヘッダに **Accept-Encoding:gzip, deflate** を付与し「gzipで送ってもらっても大丈夫ですよ」という情報をサーバーに送る。なので、このヘッダが付与されたリクエストに対して、gzipしてデータを返してあげる準備をしてあげれば大丈夫という事になる。
+サーバーがGzipしてデータを転送する前に、 **「クライアントがgzipを解凍することが出来る」** という点が保証されなければいけない訳だが、ブラウザがGzipをサポートしている（Gzipされたデータの解凍ができる）場合は、サーバーにリクエストするときにリクエストヘッダに自動的で **Accept-Encoding:gzip, deflate** を付与し「Gzipで送ってもらっても大丈夫ですよ」という情報をサーバーに送る。なので、このヘッダが付与されたリクエストに対して、Gzipしてデータを返してあげる準備をしてあげれば良い。
 
-## 処理フロー
-
-ざっくり以下のような感じ。
+ざっくり以下のような処理の流れになる。
 
 - クライアントがサーバーにデータを要求する。クライアントがgzipに対応している場合はその情報をリクエストヘッダに付与する
-- サーバーが転送する前に、データをgzipで圧縮する。リクエストヘッダに*Accept-Encoding:gzip*が含まれている場合はgzipする。このときレスポンスヘッダに **Content-Encoding:gzip** を付与する
+- サーバーが転送する前に、データをgzipで圧縮する。リクエストヘッダに*Accept-Encoding:gzip*が含まれている場合はGzipする。このときレスポンスヘッダに **Content-Encoding:gzip** を付与する
 - サーバーがクライアントにデータを転送する
 - クライアントがデータを受け取る。レスポンスヘッダに **Content-Encoding:gzip** がある場合、解凍する
 
 ## Apacheの場合
 
-Apache2系は **mod_deflateモジュール** を使用してgzipします。`httpd.conf`を以下のように編集。
+Apache2系は **mod_deflateモジュール** を使用してGzipする。`httpd.conf`を以下のように編集。
 
 ```
 # /etc/httpd/conf/httpd.conf
@@ -74,9 +70,7 @@ $ /etc/init.d/httpd restart
 
 ## まとめ
 
-gzipの設定を施すことで転送量が減るため転送にかかる時間は短くなる。一方で、転送するファイルに対しgzipを行うサーバー側の負荷と、転送先がgunzipを行うクライアント側の負荷が少なからず上がるということを念頭に置く。
-
-## 関連リンク
+gzipの設定を施すことで転送量が減るため転送にかかる時間は短くなる。一方で、転送するデータに対しGzipを行うサーバー側の負荷と、転送先がGunzipで解凍するクライアント側の負荷が少なからず増えるが、殆どの場合Gzip実施によって実現する転送コストの削減のほうが得られる対価が大きい。テキストデータに対しては漏れ無く実践していくべき。
 
 - [gzip圧縮のしくみ - LPWS](http://t32k.github.com/speed/articles/gzip.html)
 - [Web高速化のために圧縮しよう - LPWS](http://t32k.github.com/speed/articles/use-compression.html)

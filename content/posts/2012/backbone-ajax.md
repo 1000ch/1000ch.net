@@ -52,4 +52,4 @@ BackboneではBackbone.syncメソッドが通信の起点になっており、�
 
 ## 追記でお詫び
 
-書ききったあとに気づいたんですが、[2日目の記事](http://blog.mitsuruog.info/2012/12/backbonelocalstoragejsbackbonesync.html)で似たような内容ちょっと言及されていました。被ってごめんなさい。(2012/12/17 22:22:22)
+書ききったあとに気づいたが、[2日目の記事](http://blog.mitsuruog.info/2012/12/backbonelocalstoragejsbackbonesync.html)で似たような内容ちょっと言及されていた。被ってごめんなさい。(2012/12/17 22:22:22)
