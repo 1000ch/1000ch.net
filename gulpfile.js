@@ -32,7 +32,7 @@ gulp.task('js:app', function() {
   const buffer = require('vinyl-buffer');
   const uglify = require('gulp-uglify');
 
-  browserify({
+  return browserify({
     entries: JS_APP_FILES,
     extensions: ['.js']
   }).transform(babelify)
@@ -48,7 +48,7 @@ gulp.task('css:lib', function() {
   const csscomb = require('gulp-csscomb');
   const csso = require('gulp-csso');
 
-  gulp.src(CSS_LIB_FILES)
+  return gulp.src(CSS_LIB_FILES)
     .pipe(concat('lib.min.css'))
     .pipe(csscomb())
     .pipe(csso())
@@ -61,7 +61,7 @@ gulp.task('css:app', function() {
   const csscomb = require('gulp-csscomb');
   const csso = require('gulp-csso');
 
-  gulp.src(CSS_APP_FILES)
+  return gulp.src(CSS_APP_FILES)
     .pipe(concat('app.min.css'))
     .pipe(autoprefixer())
     .pipe(csscomb())

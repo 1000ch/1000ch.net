@@ -2,6 +2,9 @@ box: node:latest
 build:
   steps:
     - npm-install
+    - script:
+        name: Build static files
+        code: npm run build
     - arjen/hugo-build:
         version: 0.14
     - script:
@@ -12,4 +15,4 @@ deploy:
     - lukevivier/gh-pages@0.2.1:
         token: $GITHUB_TOKEN
         domain: 1000ch.net
-        basedir: _public
+        basedir: public
