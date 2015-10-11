@@ -11,7 +11,7 @@
   "scripts": {
     "postinstall": "gulp",
     "start": "hugo server --watch",
-    "build": "gulp && hugo && cp _public/index.xml _public/rss.xml"
+    "build": "gulp && hugo && cp public/index.xml public/rss.xml"
   },
   "dependencies": {
     "dom-delegate": "^2.0.3",

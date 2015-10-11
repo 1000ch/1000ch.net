@@ -40,7 +40,7 @@ gulp.task('js:app', function() {
     .pipe(source('app.min.js'))
     .pipe(buffer())
     .pipe(uglify())
-    .pipe(gulp.dest('_public/js'));
+    .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('css:lib', function() {
@@ -52,7 +52,7 @@ gulp.task('css:lib', function() {
     .pipe(concat('lib.min.css'))
     .pipe(csscomb())
     .pipe(csso())
-    .pipe(gulp.dest('_public/css'));
+    .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('css:app', function() {
@@ -66,7 +66,7 @@ gulp.task('css:app', function() {
     .pipe(autoprefixer())
     .pipe(csscomb())
     .pipe(csso())
-    .pipe(gulp.dest('_public/css'));
+    .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('watch', function() {

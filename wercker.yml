@@ -6,7 +6,7 @@ build:
         version: 0.14
     - script:
         name: Copy to rss.xml
-        code: cp _public/index.xml _public/rss.xml
+        code: cp public/index.xml public/rss.xml
 deploy:
   steps:
     - lukevivier/gh-pages@0.2.1:
