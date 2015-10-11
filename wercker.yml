@@ -1,4 +1,5 @@
-box: nodesource/node
+box:
+  id: nodesource/node
 build:
   steps:
     - arjen/hugo-build:
