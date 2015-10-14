@@ -10,7 +10,7 @@
   },
   "scripts": {
     "postinstall": "gulp",
-    "start": "gulp watch & hugo server --watch",
+    "start": "npm run build && hugo server --watch",
     "build": "gulp build"
   },
   "dependencies": {
