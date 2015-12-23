@@ -10,7 +10,7 @@ date: 2015-06-15
 
 ## 当日のスライド
 
-は、こちら。セッション時間が20分だったので枚数も少なめですが、それなりに凝縮できた気はする。
+は、こちら。セッション時間が20分だったので枚数も少なめだが、それなりに凝縮できた気はする。
 
 <script async class="speakerdeck-embed" data-id="617f2e6d9aa04843b4d27368d5f11b8c" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 

@@ -24,19 +24,19 @@ date: 2015-12-24
 
 <blockquote class="twitter-tweet" lang="ja"><p lang="en" dir="ltr">A year ago, I asked what features made you turn to native. #1 response: push notifications. Today, they&#39;re available: <a href="http://t.co/wDOKa5qVbf">http://t.co/wDOKa5qVbf</a></p>&mdash; Paul Irish (@paul_irish) <a href="https://twitter.com/paul_irish/status/576089864514326528">2015, 3月 12</a></blockquote>
 
-こうした状況を背景に、サービスのモバイルアプリにはiOSやAndroidのネイティブがプラットフォームとして選択されてきた。Mark Zuckerberg氏が(Facebookが?)HTML5に水を差したのも少なからず原因の1つだと思うが。
+こうした状況を背景に、サービスのモバイルアプリにはiOSやAndroidのネイティブがプラットフォームとして選択されてきた。Mark Zuckerberg氏が（Facebookが？）HTML5に水を差したのも少なからず原因の1つだと思うが。
 
 ## プラットフォームとしてのWebの進化
 
-ネイティブにはないWebのメリットもたくさんある。ストアから探してインストールせずとも使えるし、見つけ出したらURLで簡単にシェアできる。リリースもよりスピーディに行うことができる。あとは、Google PlayやApp Storeといったベンダープラットフォームに縛られずに済むという点。これは見方によっては、エコシステムの恩恵を享受できない(アプリのカテゴライズ・配布されるアプリの品質担保・ストアからのプロモートなど)とも捉えられるが、大半はWebでも補うことができるだろう。
+ネイティブにはないWebのメリットもたくさんある。ストアから探してインストールせずとも使えるし、見つけ出したらURLで簡単にシェアできる。また、Google PlayやApp Storeといったベンダープラットフォームに縛られないというメリットもある。これは見方によっては、エコシステムの恩恵を享受できない（アプリのカテゴライズ・配布されるアプリの品質担保・ストアからのプロモートなど）とも捉えられるが、大半はWebでも補うことができるだろう。
 
-Webがプラットフォームとしてネイティブアプリ同等の機能を提供できれば良いということは、Webのエヴァンジェリスト達が唱え続けてきたことだ。パフォーマンスとして[RAIL](https://havelog.ayumusato.com/develop/performance/e664-rail_performance_model.html)が唱えられたり、[Service Worker](https://1000ch.net/posts/2014/service-worker-internals.html)もWebを前に進めるために生まれた。これらで実現されることをワーディングしたのがProgressive Web Appsである(と、理解している)。マーケティングのためのプロモート色が強いが、流行も技術推進のために必要なことだろう。
+Webがプラットフォームとしてネイティブアプリ同等の機能を提供できれば良いということは、Webのエヴァンジェリスト達が唱え続けてきたことだ。パフォーマンスとして[RAIL](https://havelog.ayumusato.com/develop/performance/e664-rail_performance_model.html)が唱えられたり、[Service Worker](https://1000ch.net/posts/2014/service-worker-internals.html)もWebを前に進めるために生まれた。これらで実現されることをワーディングしたのがProgressive Web Appsである（と、理解している）。マーケティングのためのプロモート色が強いが、流行も技術推進のために必要なことだろう。
 
 ## Progressive Web Appsを表す特徴
 
-では具体的にどういったことを提供すればいいかという話になるが、Alex Russell氏は先に紹介したブログの記事で以下のように挙げている。が、これらを全て満たす必要があるとかではなく、Webとしてより良い特徴が羅列されているとも捉えられる。
+では具体的にどういったことを提供すればいいかという話になるが、Alex Russell氏は先に紹介したブログの記事で以下のように挙げている。しかし、これらを全て満たす必要があるとかではなく、Webとしてより良い特徴が羅列されているとも捉えられる。
 
-  - **レスポンシブである**: どんな閲覧環境にも最適化されたレイアウトで表示されること。
+  - **レスポンシブである**: どんな閲覧環境にも最適化されたレイアウトで表示されること
   - **オンラインでもオフラインでも動作する**: オフライン時でもオンライン時に近い振る舞いをすること。[Service Workerによる通信のハンドルとCache APIによるリソースの制御](https://1000ch.net/posts/2015/service-worker-passive-cache.html)でオフライン化を実現できる
   - **ネイティブアプリのようなインタラクション**
   - **最新に更新されている**: Service WorkerのBackground Sync等で、常に最新が提供できること
@@ -58,8 +58,8 @@ Progressive Web Appsで唱えられている（もといネイティブアプリ
 
 ## パフォーマンス
 
-イニシャライズプロセスにおけるアセットのロードについては、Service WorkerとCache APIによる明示的なキャッシュコントロールによってある程度解決されると思う。その他のリソース取得に関しても、[Resource Hints](http://www.w3.org/TR/resource-hints/)や[Client Hints](http://igrigorik.github.io/http-client-hints/)などによる最適化が進んでいる。
+イニシャライズプロセスにおけるアセットのロードについては、Service WorkerとCache APIによる明示的なキャッシュコントロールによってある程度解決されるだろう。その他のリソース取得に関しても、[Resource Hints](http://www.w3.org/TR/resource-hints/)や[Client Hints](http://igrigorik.github.io/http-client-hints/)などによる最適化が進んでいる。
 
-ランタイムプロセスにおいてWebアプリのパフォーマンスがネイティブアプリのそれを超えることは性質上無理だが、デバイスと技術の進化と共に使い心地に差を感じにくくなる時は来る。デスクトップWebが良い例で、WindowsやMacのネイティブアプリでサービスを展開するケースは少なくなってきている。というより、Webアプリで機能をカバーできるケースが増えている、という方が適切かもしれない。これは、デスクトップWebでも充分にパフォーマンスが出て、ブラウザで出来る機能も拡充されてきたからだろう。ElectronやNode-webkitのようにChromiumやWebKitがデスクトップアプリの新たなプラットフォームとして再利用されていることにも表れている。
+ランタイムプロセスにおいてWebアプリのパフォーマンスがネイティブアプリのそれを超えることは性質上無理だが、デバイスと技術の進化と共に使い心地に差を感じにくくなる時は来る。デスクトップWebが良い例で、WindowsやMacのネイティブアプリでサービスを展開するケースは少なくなってきている。というより、Webアプリで機能をカバーできるケースが増えている、という方が適切かもしれない。これは、デスクトップWebでも充分にパフォーマンスが出て、ブラウザで出来る機能も拡充されてきたことが理由にある。ElectronやNode-webkitのようにChromiumやWebKitがデスクトップアプリの新たなプラットフォームとして再利用されていることにも表れている。
 
 そうなれば1つのソースコードであらゆるプラットフォームに配信できるWebの方が開発時のコストも低く、よりストアに申請することなくスピーディに配信でき、サービスの提供側にも利用側にもメリットが大きい。
