@@ -18,7 +18,7 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: normal;
-  line-height: 1.5;
+  line-height: 1.6;
   min-height: 100%;
 }
 
@@ -36,20 +36,15 @@ h6 {
   font-weight: bold;
 }
 
-h1 {
-  border-bottom: 1px solid #bbb;
+h1,
+h2,
+h3 {
   color: #333;
-  padding-bottom: 5px;
-}
-
-h2 {
-  border-bottom: 1px dashed #ddd;
-  color: #333;
-  padding-bottom: 5px;
+  margin: 1.5em 0 1em 0;
 }
 
 li {
-  padding: 3px 0;
+  padding: 0.25em 0;
 }
 
 img {
@@ -74,7 +69,7 @@ code {
   border-radius: 4px;
   color: #657a81 !important;
   font-family: "Roboto Mono", "Source Code Pro", monospace;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 h1 > code {
