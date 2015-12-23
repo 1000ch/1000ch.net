@@ -2,7 +2,6 @@
 layout: post
 title: Progressive Web Appsとは
 date: 2015-12-24
-draft: true
 ---
 
 # Progressive Web Appsとは
@@ -51,13 +50,16 @@ Webがプラットフォームとしてネイティブアプリ同等の機能�
 
 ## Service WorkerとHTTPS
 
-事実上、Service WorkerとHTTPSは必須である。Service WorkerはHTTPSが前提なのでまずHTTPSということになるが、HTTPS化の敷居が証明書の管理や取得のコストと手間のせいでどうしても高い(個人だと特に)。しかしHTTPS化の波は確実に来ており、様々な所で暗黙の前提になりつつあるので導入を避け続けることができないだろう。無料で証明書を取得できる[Let’s Encrypt](https://letsencrypt.org)のようなサービスもあるので、練習がてら積極的に利用していくべきだろう。
+事実上、Service WorkerとHTTPSは必須である。Service WorkerはHTTPSが前提なのでまずHTTPSということになるが、HTTPS化の敷居が証明書の管理や取得のコストと手間のせいでどうしても高い（個人だと特に）。しかしHTTPS化の波は確実に来ており、様々な所で暗黙の前提になりつつあるので導入を避け続けることができない。無料で証明書を取得できる[Let’s Encrypt](https://letsencrypt.org)のようなサービスもあるので、練習がてら積極的に利用していくべきだろう。
 
-Progressive Web Appsで唱えられている(もといネイティブアプリの特徴であった)、オフライン化・プッシュ通知・バックグラウンド同期は全てService Worker(+ Web App Manifest)によって成り立つものだ。しかしいずれの機能もサービスにとってクリティカルな損失になりにくく(要件次第、設計次第だが)、プログレッシブ・エンハンスメントとして導入しやすい。非機能要件として既存のWebにも追加しやすいので、現在関わっているWeb開発に組み込むことを検討できる。
+また、自身のWebをHTTPS化しても、サードパーティのHTTPのコンテンツが混在すると表示できないという問題が出てくる。そのサービスにとってクリティカルなコンテンツだとどうしようもなくなる可能性があるが、これが障壁になるとWeb全体のHTTPS化が進まないというジレンマもあるので、難しいところだ。
 
-## その他資料
+Progressive Web Appsで唱えられている（もといネイティブアプリの特徴であった）、オフライン化・プッシュ通知・バックグラウンド同期は全てService Worker（+Web App Manifest）によって成り立つものだ。しかしいずれの機能もサービスにとってクリティカルな損失になりにくく（要件次第、設計次第だが）、プログレッシブ・エンハンスメントとして導入しやすい。非機能要件として既存のWebにも追加しやすいので、現在関わっているWeb開発に組み込むことを検討できる。
 
-- [Progressive Web Appsとは - fragmentary](http://myakura.hatenablog.com/entry/2015/11/18/053939)
-- [Progressive Web Appsについて - 銀色うつ時間](http://sisidovski.hatenablog.com/entry/2015/12/04/120633)
-- [スマートフォン体験を一歩先へ 〜 プログレッシブウェブアプリの作り方 - @agektmr](https://docs.google.com/presentation/d/1VcXsKDaCUpf2SS35WNcrKslkK6PcXxWsnhcKiLfWCXs)
-- [HTML6でもCSS4でもないWeb技術のゆくえ](https://speakerdeck.com/ahomu/html6-demo-css4-demonai-web-ji-shu-falseyukue?slide=85)
+## パフォーマンス
+
+イニシャライズプロセスにおけるアセットのロードについては、Service WorkerとCache APIによる明示的なキャッシュコントロールによってある程度解決されると思う。その他のリソース取得に関しても、[Resource Hints](http://www.w3.org/TR/resource-hints/)や[Client Hints](http://igrigorik.github.io/http-client-hints/)などによる最適化が進んでいる。
+
+ランタイムプロセスにおいてWebアプリのパフォーマンスがネイティブアプリのそれを超えることは性質上無理だが、デバイスと技術の進化と共に使い心地に差を感じにくくなる時は来る。デスクトップWebが良い例で、WindowsやMacのネイティブアプリでサービスを展開するケースは少なくなってきている。というより、Webアプリで機能をカバーできるケースが増えている、という方が適切かもしれない。これは、デスクトップWebでも充分にパフォーマンスが出て、ブラウザで出来る機能も拡充されてきたからだろう。ElectronやNode-webkitのようにChromiumやWebKitがデスクトップアプリの新たなプラットフォームとして再利用されていることにも表れている。
+
+そうなれば1つのソースコードであらゆるプラットフォームに配信できるWebの方が開発時のコストも低く、よりストアに申請することなくスピーディに配信でき、サービスの提供側にも利用側にもメリットが大きい。
