@@ -27,7 +27,7 @@
 
 .header {
   margin: 0 auto;
-  padding: 0 0.5em;
+  padding: 0.5em;
   width: 100%;
   word-break: break-all;
 }
@@ -36,6 +36,7 @@
   border-bottom: none;
   font-size: 48px;
   font-weight: bold;
+  margin: 0.5em 0;
   text-decoration: none;
 }
 
@@ -45,15 +46,15 @@
 
 .header-menu__item {
   display: table-cell;
-  vertical-align: middle;
   padding: 0.5em;
+  vertical-align: middle;
 }
 
 .footer {
   margin: 0 auto;
-  padding: 0 0.5em;
-  width: 100%;
+  padding: 0.5em;
   text-align: right;
+  width: 100%;
 }
 
 .container {
@@ -65,25 +66,20 @@
 
 .aside {
   margin: 0 auto;
-  padding: 0 0.5em;
+  padding: 0.5em;
   width: 100%;
   word-break: break-all;
 }
 
 .main {
   margin: 0 auto;
-  padding: 0 0.5em;
+  padding: 0.5em;
   width: 100%;
   word-break: break-all;
 }
 
 .main > .post-date + h1 {
   margin-top: 0;
-}
-
-.main ul,
-.main ol {
-  padding-left: 2em;
 }
 
 .list {
@@ -148,7 +144,6 @@
   background: #f3df49;
   color: #2e2e2c;
 }
-
 
 .pull-left {
   float: left;

@@ -8,7 +8,7 @@ const JS_APP_FILES = [
 
 const CSS_LIB_FILES = [
   'node_modules/normalize.css/normalize.css',
-  'node_modules/highlight.js/styles/solarized_light.css'
+  'node_modules/highlight.js/styles/github.css'
 ];
 
 const CSS_APP_FILES = [
