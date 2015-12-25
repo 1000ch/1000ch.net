@@ -6,7 +6,7 @@ date: 2012-12-06
 
 # Gzipを有効にしてサイト表示速度を向上させる
 
-Gzipはファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は`.gz`で、MIME-Typeは`application/x-gzip`。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来ますがここでは割愛。
+Gzipはファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は`.gz`で、MIME-Typeは`application/x-gzip`。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来るがここでは割愛。
 
 - [gzip - Wikipedia](http://ja.wikipedia.org/wiki/Gzip)
 
@@ -16,7 +16,7 @@ Webサイトの表示は、ブラウザがHTMLドキュメントをサーバー�
 
 ## Google ChromeのPageSpeed
 
-自分のサーバーの設定がどうなっているのかわからないという人は、[PageSpeed](https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli?utm_source=chrome-ntp-icon)で調べるのがお手軽。PageSpeedの解析結果でGzipを有効にしましょうと言われる場合は、Gzipが効いていないということになる。
+自分のサーバーの設定がどうなっているのかわからないという人は、[PageSpeed](https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli?utm_source=chrome-ntp-icon)で調べるのがお手軽。例えば、解析結果でGzipを有効にしましょうと言われる場合は、Gzipが効いていないということになる。
 
 PageSpeedはGzipが有効になっているかどうかをチェックする他にも、様々なパフォーマンスの改善案を挙げてくれる非常に良く出来たツール。PageSpeed周りの詳しい使い方は以下が参考になる。
 
@@ -25,7 +25,7 @@ PageSpeedはGzipが有効になっているかどうかをチェックする他�
 
 ## もう少し詳しい仕組み
 
-サーバーがGzipしてデータを転送する前に、 **「クライアントがgzipを解凍することが出来る」** という点が保証されなければいけない訳だが、ブラウザがGzipをサポートしている（Gzipされたデータの解凍ができる）場合は、サーバーにリクエストするときにリクエストヘッダに自動的で **Accept-Encoding:gzip, deflate** を付与し「Gzipで送ってもらっても大丈夫ですよ」という情報をサーバーに送る。なので、このヘッダが付与されたリクエストに対して、Gzipしてデータを返してあげる準備をしてあげれば良い。
+サーバーがGzipしてデータを転送する前に、 **「クライアントがgzipを解凍することが出来る」** という点が保証されなければいけないが、ブラウザがGzipをサポートしている（Gzipされたデータの解凍ができる）場合は、サーバーにリクエストするときにリクエストヘッダに自動的で **Accept-Encoding:gzip, deflate** を付与し「Gzipで送ってもらっても大丈夫ですよ」という情報をサーバーに送る。なので、このヘッダが付与されたリクエストに対して、Gzipしてデータを返してあげる準備をしてあげれば良い。
 
 ざっくり以下のような処理の流れになる。
 

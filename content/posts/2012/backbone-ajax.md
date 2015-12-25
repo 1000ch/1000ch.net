@@ -8,7 +8,7 @@ date: 2012-12-18
 
 この記事は[Backbone.js Advent Calendar 2012](http://www.adventar.org/calendars/15) 18日目の記事です。
 
-JavaScriptにMVCの波を巻き起こしているBackbone.js、今回はそのAjax周りについて。想像していたより、皆さん突っ込んだこと書いててどうしようと思ったけど、まぁいっか。
+JavaScriptにMVCの波を巻き起こしているBackbone.js、今回はそのAjax周りについて。想像していたより、皆さん突っ込んだこと書いててどうしようと思ったけど、まぁいいや。
 
 ## Backbone.jsのAjax
 
@@ -49,7 +49,3 @@ BackboneではBackbone.syncメソッドが通信の起点になっており、�
 ## まとめ
 
 明確なAPIラップ関数の用意と、それ以上に`change` / `destroy` / `sync`とイベントの発行に関わっている また、underscore依存といいつつ、事実上のjQuery依存である。
-
-## 追記でお詫び
-
-書ききったあとに気づいたが、[2日目の記事](http://blog.mitsuruog.info/2012/12/backbonelocalstoragejsbackbonesync.html)で似たような内容ちょっと言及されていた。被ってごめんなさい。(2012/12/17 22:22:22)

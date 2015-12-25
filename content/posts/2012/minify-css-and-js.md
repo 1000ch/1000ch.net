@@ -27,7 +27,7 @@ date: 2012-11-28
 
 ### Google Closure Compilerの場合
 
-「`--js=`」で入力ファイルを、「`--js_output_file`」で出力ファイルを指定。入力順にJSファイルが結合されて、圧縮される。
+`--js=`で入力ファイルを、`--js_output_file`で出力ファイルを指定。入力順にJSファイルが結合されて、圧縮される。
 
 ```sh
 $ java -jar compiler.jar --js=input1.js --js=input2.js --js_output_file=out.js

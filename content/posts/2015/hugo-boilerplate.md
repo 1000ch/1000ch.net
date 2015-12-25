@@ -65,6 +65,6 @@ Gulpで静的ファイルをビルドし、staticフォルダに配置するよ�
 
 Hugoの成果物（ビルド結果）は`_public`フォルダに出力されるので、ホストサーバーにはそれを配置すれば良い。が、GitHub Pagesで運用している場合は[Wercker](http://wercker.com/)を使った運用をオススメしたい。
 
-[Automated deployments with Wercker](http://gohugo.io/tutorials/automated-deployments/)に完璧なドキュメントがあるので割愛するが、`wrecker.yml`は作ってあるのでWerckerからGitHubのリポジトリにアクセスするためにGitHubのトークンを作ってジョブに登録するだけ。
+[Automated deployments with Wercker](http://gohugo.io/tutorials/automated-deployments/)に完璧なドキュメントがあるので割愛するが、`wercker.yml`は作ってあるのでWerckerからGitHubのリポジトリにアクセスするためにGitHubのトークンを作ってジョブに登録するだけ。
 
 これで、masterブランチにpushするとビルド結果が_publicフォルダ配下がgh-pagesブランチにpushされる。
