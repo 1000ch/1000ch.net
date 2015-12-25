@@ -1,33 +1,34 @@
 <aside class="post-share">
   <div class="post-share__item">
-    <div class="fb-like" data-send="false" data-layout="box_count" data-width="80" data-show-faces="true"></div>
+     <a href="https://www.facebook.com/sharer/sharer.php?u={{.Permalink}}" title="Share on Facebook" target="_blank">
+       <i class="fa fa-facebook-square"></i>
+     </a>
   </div>
   <div class="post-share__item">
-    <a class="twitter-share-button" href="https://twitter.com/share" data-lang="ja" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweetする</a>
-  </div>
-  <div class="post-share__item">
-    <a class="hatena-bookmark-button" href="http://b.hatena.ne.jp/entry/" data-hatena-bookmark-layout="vertical-balloon" title="このエントリーをはてなブックマークに追加">
-      <img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;">
+    <a href="https://twitter.com/share?url={{.Permalink}}&text={{ .Title }}" title="Share on Twitter" target="_blank">
+      <i class="fa fa-twitter"></i>
     </a>
   </div>
   <div class="post-share__item">
-    <div class="g-plusone" data-size="tall" data-annotation="bubble"></div>
+    <a href="https://plus.google.com/share?url={{.Permalink}}" title="Share on Google+" target="_blank">
+      <i class="fa fa-google-plus"></i>
+    </a>
   </div>
 </aside>
 
 <nav class="post-nav">
   {{with .Next}}
-    <div class="post-nav__item post-nav__item--next h3">
-      <i class="fa fa-arrow-left fa--has-margin"></i>
+    <div class="post-nav__item post-nav__item--next">
+      <i class="fa fa-arrow-left"></i>
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </div>
   {{else}}
   {{end}}
 
   {{with .Prev}}
-    <div class="post-nav__item post-nav__item--prev h3">
+    <div class="post-nav__item post-nav__item--prev">
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      <i class="fa fa-arrow-right fa--has-margin"></i>
+      <i class="fa fa-arrow-right"></i>
     </div>
   {{else}}
   {{end}}

@@ -18,13 +18,6 @@
   color: #2e2e2c;
 }
 
-.logo {
-  height: 32px;
-  margin-right: 10px;
-  vertical-align: middle;
-  width: 32px;
-}
-
 .header {
   margin: 0 auto;
   padding: 0.5em;
@@ -34,7 +27,7 @@
 
 .header-title {
   border-bottom: none;
-  font-size: 48px;
+  font-size: 3em;
   font-weight: bold;
   margin: 0.5em 0;
   text-decoration: none;
@@ -61,7 +54,7 @@
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 50em;
 }
 
 .aside {
@@ -78,8 +71,9 @@
   word-break: break-all;
 }
 
-.main > .post-date + h1 {
-  margin-top: 0;
+.main p > img {
+  display: block;
+  margin: 0 auto;
 }
 
 .list {
@@ -94,35 +88,69 @@
 .post-share {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
 }
 
 .post-share__item {
-  font-size: 24px;
+  font-size: 2em;
   padding: 0.25em;
-  vertical-align: top;
+}
+
+.post-share__item a {
+  color: #666;
+}
+
+.post-share__item .fa-facebook-square {
+  color: #3b5998;
+}
+
+.post-share__item .fa-twitter {
+  color: #55acee;
+}
+
+.post-share__item .fa-google-plus {
+  color: #dc4e41;
+}
+
+.post-nav {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .post-nav__item {
-  padding: 0.25em;
+  display: flex;
+  flex-grow: 1;
+  padding: 0.5em;
 }
 
-.post-nav__item--next {
-  text-align: left;
+.post-nav__item i,
+.post-nav__item a {
+  align-self: center;
 }
 
 .post-nav__item--prev {
+  justify-content: flex-end;
   text-align: right;
 }
 
-.fb-like-box {
-  background: #fff;
+.post-nav__item--prev i {
+  margin-left: 0.5em;
+}
+
+.post-nav__item--next {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.post-nav__item--next i {
+  margin-right: 0.5em;
 }
 
 .label {
-  border-radius: 4px;
-  font-size: 0.8em;
-  margin: 4px;
-  padding: 4px;
+  border-radius: 0.25em;
+  font-size: 0.75em;
+  margin: 0.25em;
+  padding: 0.25em;
 }
 
 .label--gray {
