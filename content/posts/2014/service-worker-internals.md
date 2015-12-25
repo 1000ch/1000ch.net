@@ -34,7 +34,7 @@ Application Cacheの問題点については、[@kyo_ago](https://twitter.com/ky
 
 ホワイトアウトを減らすどころか、必要なリソースを全てService Workerでコントロールすればオフラインアプリケーションの作成も可能である（キャッシュするリソースを取得する最初のダウンロードは必要になるが）。
 
-つまりService Workerは、<del>Application Cacheの屍を超えて生まれた</del>今までにないリソースのコントロール機構であると言える。
+つまりService Workerは、~~Application Cacheの屍を超えて生まれた~~今までにないリソースのコントロール機構であると言える。
 
 ## Service WorkerのAPIと挙動
 
@@ -60,7 +60,7 @@ Service WorkerはWeb Workerなんかと同じように（Web Workerの一種と�
 
 [Google Chrome Canary](https://www.google.co.jp/chrome/browser/canary.html)の **Version 41.0.2259.0 canary (64-bit)** で動作確認済。フラグをonにしないと動かないので[`chrome://flags`](chrome://flags/)で、[**Enable experimental Web Platform features.**](chrome://flags/#enable-experimental-web-platform-features)と[**Enable support for ServiceWorker background sync event.**](chrome://flags/#enable-service-worker-sync)を有効にしておく。
 
-Service Workerはセキュリティ上、HTTPS環境かローカルホストのみ実行可能になっている。ローカルでのデバッグは`python -m http.server`でOKだが、動くように作ったつもりでもホスト先がHTTPSじゃないと動かない。<del>簡単デプロイの代名詞のGitHub Pagesもダメなので、</del>お手軽に用意出来そうなHTTPS環境はDropboxのPublicっぽい。
+Service Workerはセキュリティ上、HTTPS環境かローカルホストのみ実行可能になっている。ローカルでのデバッグは`python -m http.server`でOKだが、動くように作ったつもりでもホスト先がHTTPSじゃないと動かない。~~簡単デプロイの代名詞のGitHub Pagesもダメなので、~~お手軽に用意出来そうなHTTPS環境はDropboxのPublicっぽい。
 
 ※2014/12/29追記
 

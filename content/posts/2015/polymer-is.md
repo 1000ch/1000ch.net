@@ -50,7 +50,7 @@ via http://www.w3.org/TR/custom-elements/#extensions-to-document-interface-to-re
 
 ## やっぱり便利な付加機能
 
-とにかく強い。Web Componentsに何が補強されているかは[Polymer と Web Components の違い9選（もとい Polymer の便利機能）](http://havelog.ayumusato.com/develop/webcomponents/e603-diff_of_polymer_and_webcomponents.html)でも言及されているが、そのままでは<del>貧弱</del>シンプルな`<template>`の機能に、Mustacheみたいなテンプレート機能があったり、それがそのままJS側の変数とデータバインディングされていたりと、もはやチートレベルだ。
+とにかく強い。Web Componentsに何が補強されているかは[Polymer と Web Components の違い9選（もとい Polymer の便利機能）](http://havelog.ayumusato.com/develop/webcomponents/e603-diff_of_polymer_and_webcomponents.html)でも言及されているが、そのままでは~~貧弱~~シンプルな`<template>`の機能に、Mustacheみたいなテンプレート機能があったり、それがそのままJS側の変数とデータバインディングされていたりと、もはやチートレベルだ。
 
 ライフサイクルコールバックのエイリアスがあったり、各種便利そうなイベントが用意されていたり、カスタム要素の煩雑な定義手順が大幅に簡略化されていたりと。`attributes`による属性の定義は`Object.defineProperty()`よりずっと楽ちんだし、わかりやすい。
 

@@ -30,10 +30,10 @@ cssはOKですが、cssの中で定義されているフォント情報は相対
 そこで`chrome.extension.getURL()`でExtension内の絶対パスを使って、cssを適用させた。
 
 ```js
-var fontDefinition = 
+var fontDefinition =
   '@font-face {' +
     'font-family: "League Gothic";' +
-    'src: url("' + chrome.extension.getURL("/font/hoge.ttf") + '");' + 
+    'src: url("' + chrome.extension.getURL("/font/hoge.ttf") + '");' +
     'font-weight: normal;' +
     'font-style: normal;' +
   '}';
@@ -55,4 +55,4 @@ chrome.tabs.insertCSS(tab.id, {code: fontDefinition});
 
 ## やりたいこと
 
-<del>いくつかテーマが用意されているのでそれをExtensionから選べたら楽かな…。</del>オプションページで選択出来るように実装済。
+~~いくつかテーマが用意されているのでそれをExtensionから選べたら楽かな…。~~オプションページで選択出来るように実装済。

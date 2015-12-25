@@ -32,9 +32,9 @@ date: 2015-01-12
 
 このカラクリは[@kazuho](http://twitter.com/kazuho)さんの考察を見てもらうとわかる。
 
-- [なぜHTTPSはHTTPより速いのか](http://blog.kazuhooku.com/2014/12/httpshttp.html)
+- [なぜHTTPSはHTTPより速いのか - Kazuho's Weblog](http://blog.kazuhooku.com/2014/12/httpshttp.html)
 
-今話題の[Service Worker](/posts/2014/service-worker-internals.html)もセキュアな環境じゃないと無効だし、パフォーマンスの観点からも2015年はHTTP→HTTPSという潮流が生まれる予感。これについては[HTTPからHTTPSへ - Hail2u.net](http://hail2u.net/blog/internet/http-to-https.html)という記事も見て欲しい。
+話題の[Service Worker](/posts/2014/service-worker-internals.html)もセキュアな環境じゃないと無効だし、パフォーマンスの観点からも2015年はHTTP→HTTPSという潮流が生まれる予感。これについては[HTTPからHTTPSへ - Hail2u.net](http://hail2u.net/blog/internet/http-to-https.html)という記事も見て欲しい。
 
 ## CloudFlareをDNSサーバーとして利用する
 

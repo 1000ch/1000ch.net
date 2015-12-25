@@ -14,11 +14,10 @@ GruntはNode.js製のタスクランナー。JavaScriptで記述する設定フ�
 
 言葉だけだとイメージ湧きにくいと思うので、使ってもらうのが一番と言い張って導入手順の説明をする。
 
-## node.js+npmをインストールする
+## Node.js+npmをインストールする
 
-インストールしてある人は読み飛ばして下さい。
-
-- [node.js](http://nodejs.org)
+- インストーラからダウンロードするなら[Node.js](http://nodejs.org)
+- Node.jsのバージョンマネージャを使う場合は[creationix/nvm](https://github.com/creationix/nvm)とか[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)
 
 0.8.17で動作確認済み。安定版なら問題ないと思われる。
 
@@ -32,7 +31,7 @@ $ npm install -g grunt-cli
 
 ## gruntコアをインストールする
 
-ここから先はローカルインストールして欲しいので、プロジェクトディレクトリに移動。gruntのコアモジュールをインストールする。
+ここから先はローカルインストールするので、プロジェクトディレクトリに移動。gruntのコアモジュールをインストールする。
 
 ```bash
 $ cd /Users/[UserName]/workspace/[ProjectName]
@@ -66,7 +65,7 @@ $ npm install grunt-contrib-mincss
 
 gruntが認識する設定ファイルは **gruntfile.js** という制約がある。`v0.3`以前は`grunt.js`だったけど、これは前からアナウンスがあって命名制約が変更になった。
 
-以下設定ファイルのサンプル。CoffeeScriptで書いて`.coffee`でも大丈夫。
+以下設定ファイルのサンプル。CoffeeScriptで書いて`gruntfile.coffee`でも大丈夫。
 
 ```js
 module.exports = function (grunt) {
@@ -136,6 +135,6 @@ watchタスクを実行したいので、この設定だとデフォルトでOK�
 
 以前まではgruntをインストールするだけで、ビルドインタスクとしてconcatやらminifyやらがデフォルトで使える状態だったけど、今後はgrunt-cliをコマンドラインのインターフェースとして（名前のままだけど）タスクをgrunt-contrib-xxxといった形で配布し、必要に応じてインストールしてもらうといったスタンスっぽい。
 
-JavaScriptやCSSファイルのminifyだけではなく、今流行っているlessやらsassといったCSSプリプロセッサや、StyleDoccoのようなスタイルガイドジェネレータもgrunt向けのモジュールが既にある。つまり、 **「grunt通せば様々な作業をまとめたり、自動化出来る可能性がある。」** ということ。面倒な作業はgruntに任せてしまうべき。
+JavaScriptやCSSファイルのminifyだけではなく、今流行っているlessやらsassといったCSSプリプロセッサや、StyleDoccoのようなスタイルガイドジェネレータもgrunt向けのモジュールが既にある。つまり、 **「grunt通せば様々な作業をまとめたり、自動化出来る可能性がある。」** ということ。面倒な作業はgruntに任せるべき。
 
-とても便利なので、面倒くさがらず導入すると幸せになれるかもしれません。
+とても便利なので、面倒くさがらず導入すると幸せになれるかも。

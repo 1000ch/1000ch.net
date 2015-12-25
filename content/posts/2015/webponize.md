@@ -14,7 +14,7 @@ WebPonizeという命名については、名詞に~izeという接尾語をつ�
 
 ![](/img/posts/2015/webponize/webponize.jpg)
 
-見ての通り、[ImageOptim](https://imageoptim.com/)の見た目を<del>パクって</del>踏襲している。
+見ての通り、[ImageOptim](https://imageoptim.com/)の見た目を~~パクって~~踏襲している。
 
 ## Cocoa + Swiftの情報がネット上に少ない
 

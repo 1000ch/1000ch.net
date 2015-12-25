@@ -16,11 +16,7 @@ date: 2015-01-24
 
 ブラウザのJavaScriptと言っても、Webアプリケーションの形態も多種多様になってので、最適化の形もケースバイケースとしか言えない。最適化アプローチの選択肢を増やすための本と言える。アプリケーションが複雑化してもブラウザで何が起こっているかわかれば、自ずとすべきことが見えてくる。この本にはそういうことが書かれている。
 
-## Nicholas C. Zakas氏について
-
-- [NCZOnline](http://www.nczonline.net/) - Website
-- [@slicknet](https://twitter.com/slicknet/) - Twitter
-- [nzakas (Nicholas C. Zakas)](https://github.com/nzakas/) - GitHub
+## Nicholas C. Zakas氏 ([@slicknet](https://twitter.com/slicknet/)) について
 
 JavaScript界隈では有名な人なので、前のめりな人なら知っている人も多いと思う。Yahoo!のリードディベロッパーであり、YUIのコントリビュータも務めていた人。今は[Box](https://www.box.com/)で働いているそうで、最近はES6/ES7の仕様に口出ししたり、[ESLint](https://github.com/eslint)にコミットしてる様子。この本以外だと[メンテナブルJavaScript](http://www.amazon.co.jp/gp/product/4873116104/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4873116104&linkCode=as2&tag=1000ch-22)が有名。
 
