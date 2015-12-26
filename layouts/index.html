@@ -10,9 +10,9 @@
     <div class="container">
       <div class="main">
         <h1>Posts</h1>
-        <ul class="list">
+        <ul class="List">
           {{ range where .Data.Pages "Section" "posts" }}
-            <li class="list__item">
+            <li class="List__Item">
               <div>
                 <span class="label label--gray">{{ .Date.Format "2006.01.02" }}</span>
               </div>

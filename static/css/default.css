@@ -64,16 +64,22 @@ th {
 }
 
 code {
-  border: 1px solid #ddd;
-}
-
-pre,
-code {
   background: #f8f8f8 !important;
+  border: 1px solid #ddd;
   border-radius: 0.25em;
   color: #333 !important;
   font-family: "Roboto Mono", "Source Code Pro", monospace;
   font-size: 14px;
+  margin: 1px 2px;
+  padding: 1px 2px;
+  position: relative;
+}
+
+pre > code {
+  display: block;
+  margin: 0.5em 0;
+  overflow-x: scroll;
+  padding: 0.5em;
 }
 
 h1 > code {
@@ -89,18 +95,6 @@ h2 > code {
 h3 > code {
   font-size: inherit;
   font-weight: inherit;
-}
-
-code {
-  margin: 1px 2px;
-  padding: 1px 2px;
-  vertical-align: bottom;
-}
-
-pre > code {
-  display: block;
-  overflow-x: scroll;
-  padding: 0.5em;
 }
 
 blockquote {
