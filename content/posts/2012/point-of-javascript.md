@@ -104,7 +104,7 @@ container.append(html);
 
 ## カスタムデータ属性の参照の仕方
 
-### 「JavaScriptでhtmlを操作することはもちろん、参照する事すら高価である。」 by [@cssrasar](http://twitter.com/cssradar)
+> 「JavaScriptでhtmlを操作することはもちろん、参照する事すら高価である。」 by [@cssrasar](http://twitter.com/cssradar)
 
 参照の仕方はいくつかあるけど、jQueryの例も含めて、カスタムデータ属性を参照してみる。
 
