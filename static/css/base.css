@@ -134,8 +134,7 @@ a {
 }
 
 a:hover,
-a:active,
-a.is-active {
+a:active {
   color: #e2007a;
 }
 
@@ -144,7 +143,6 @@ a code {
 }
 
 a:hover code,
-a:active code,
-a.is-active code {
+a:active code {
   color: #e2007a !important;
 }

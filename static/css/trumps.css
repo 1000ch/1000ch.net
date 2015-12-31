@@ -1,0 +1,33 @@
+.h1 {
+  font-size: 3.2rem;
+  font-weight: bold;
+}
+
+.h2 {
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.highlight {
+  background: #f3df49;
+  color: #2e2e2c;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: table;
+}
