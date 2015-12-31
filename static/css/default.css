@@ -1,22 +1,14 @@
-div,
-span,
-header,
-footer,
-section,
-article,
-iframe {
-  box-sizing: border-box;
-}
-
 html {
-  height: 100%;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  min-height: 100%;
 }
 
 body {
-  background: #fff;
+  background: #f9f9f9;
   color: #666;
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 1.6em;
   font-weight: normal;
   line-height: 1.6;
   min-height: 100%;
@@ -40,11 +32,11 @@ h1,
 h2,
 h3 {
   color: #333;
-  margin: 1.5em 0 1em 0;
+  margin: 4.8rem 0 2.4rem 0;
 }
 
 li {
-  padding: 0.25em 0;
+  padding: 0.4rem 0;
 }
 
 img {
@@ -52,27 +44,27 @@ img {
 }
 
 table {
-  border: 1px solid #ddd;
-  border-radius: 0.25em;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.4rem;
 }
 
 td,
 th {
-  border: 1px dashed #ddd;
-  border-radius: 0.25em;
-  padding: 0.5em;
+  border: 0.1rem dashed #ddd;
+  border-radius: 0.4rem;
+  padding: 0.8rem;
 }
 
 kbd {
   background-color: #fcfcfc;
-  border: solid 1px #ccc;
+  border: solid 0.1rem #ccc;
   border-bottom-color: #bbb;
-  border-radius: 0.25em;
-  box-shadow: inset 0 -1px 0 #bbb;
+  border-radius: 0.4rem;
+  box-shadow: inset 0 -0.1rem 0 #bbb;
   display: inline-block;
-  font-size: 0.75em;
-  line-height: 1em;
-  padding: 2px 4px;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  padding: 0.2rem 0.4rem;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-touch-callout: none;
   user-select: none;
@@ -82,25 +74,25 @@ kbd {
 kbd:active {
   box-shadow: inset 0 0 0 #bbb;
   position: relative;
-  top: 1px;
+  top: 0.1rem;
 }
 
 code {
   background: #f8f8f8 !important;
-  border: 1px solid #ddd;
-  border-radius: 0.25em;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.4rem;
   color: #333 !important;
   font-family: "Roboto Mono", "Source Code Pro", monospace;
-  font-size: 0.8em;
-  margin: 1px 2px;
-  padding: 1px 2px;
+  font-size: 1.4rem;
+  margin: 0.1rem 0.2rem;
+  padding: 0.1rem 0.2rem;
 }
 
 pre > code {
   display: block;
-  margin: 0.5em 0;
+  margin: 0.8rem 0;
   overflow-x: scroll;
-  padding: 0.5em;
+  padding: 0.8rem;
 }
 
 h1 > code {
@@ -119,18 +111,18 @@ h3 > code {
 }
 
 blockquote {
-  border-left: 0.25em solid #666;
-  font-size: 1.25em;
+  border-left: 0.4rem solid #666;
+  font-size: 2rem;
   font-style: italic;
-  margin: 2em 1em;
-  padding-left: 1em;
+  margin: 3.2rem 1.6rem;
+  padding-left: 1.6rem;
 }
 
 hr {
   background-color: #e7e7e7;
   border: 0 none;
-  height: 0.25em;
-  margin: 2em 1em;
+  height: 0.4rem;
+  margin: 3.2rem 1.6rem;
   padding: 0;
 }
 

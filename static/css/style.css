@@ -1,15 +1,15 @@
 .h1 {
-  font-size: 2em;
+  font-size: 3.2rem;
   font-weight: bold;
 }
 
 .h2 {
-  font-size: 1.5em;
+  font-size: 2.4rem;
   font-weight: bold;
 }
 
 .h3 {
-  font-size: 1.17em;
+  font-size: 2rem;
   font-weight: bold;
 }
 
@@ -18,60 +18,54 @@
   color: #2e2e2c;
 }
 
-.header {
-  padding: 0.5em;
-  width: 100%;
-  word-break: break-all;
-}
-
-.header-title {
-  border-bottom: none;
-  font-size: 3em;
-  font-weight: bold;
-  margin: 0.5em 0;
-  text-decoration: none;
-}
-
-.header-menu {
-  display: flex;
-}
-
-.header-menu__item {
-  padding: 0.5em;
-}
-
-.footer {
-  margin: 0 auto;
-  padding: 0.5em;
-  text-align: right;
-  width: 100%;
-}
-
-.container {
+.Container {
+  background: #fff;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: 50em;
-  min-width: 20em;
+  max-width: 80rem;
+  min-width: 32rem;
 }
 
-.aside {
-  margin: 0 auto;
-  padding: 0.5em;
-  width: 100%;
+.Header {
+  padding: 1.6rem;
   word-break: break-all;
 }
 
-.main {
-  margin: 0 auto;
-  padding: 0.5em;
-  width: 100%;
+.Header__Title {
+  border-bottom: none;
+  font-size: 4.8rem;
+  font-weight: bold;
+  margin: 1.6rem 0;
+  text-decoration: none;
+}
+
+.Header__Menu {
+  display: flex;
+}
+
+.Header__MenuItem {
+  padding: 0.8rem;
+}
+
+.Main {
+  padding: 1.6rem;
   word-break: break-all;
 }
 
-.main p > img {
+.Main p > img {
   display: block;
   margin: 0 auto;
+}
+
+.Aside {
+  padding: 1.6rem;
+  word-break: break-all;
+}
+
+.Footer {
+  padding: 1.6rem;
+  text-align: right;
 }
 
 .List {
@@ -80,7 +74,7 @@
 }
 
 .List__Item {
-  padding: 1em 0;
+  padding: 1.6rem 0;
 }
 
 .Share {
@@ -90,8 +84,8 @@
 }
 
 .Share__Item {
-  font-size: 2em;
-  padding: 0.25em;
+  font-size: 3.2rem;
+  padding: 0.8rem;
 }
 
 .Share__Item a {
@@ -118,7 +112,7 @@
 .Pager__Item {
   display: flex;
   flex-grow: 1;
-  padding: 0.5em;
+  padding: 0.8rem;
 }
 
 .Pager__Item i,
@@ -132,7 +126,7 @@
 }
 
 .Pager__Item--prev i {
-  margin-left: 0.5em;
+  margin-left: 0.8rem;
 }
 
 .Pager__Item--next {
@@ -141,32 +135,33 @@
 }
 
 .Pager__Item--next i {
-  margin-right: 0.5em;
+  margin-right: 0.8rem;
 }
 
-.label {
-  border-radius: 0.25em;
-  font-size: 0.75em;
-  margin: 0.25em;
-  padding: 0.25em;
+.Label {
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  margin: 0.4rem;
+  padding: 0.4rem;
+  vertical-align: text-bottom;
 }
 
-.label--gray {
+.Label--gray {
   background: #eee;
   color: #666;
 }
 
-.label--red {
+.Label--red {
   background: #e2007a;
   color: #fff;
 }
 
-.label--blue {
+.Label--blue {
   background: #199ad5;
   color: #fff;
 }
 
-.label--yellow {
+.Label--yellow {
   background: #f3df49;
   color: #2e2e2c;
 }
