@@ -7,7 +7,6 @@ staticdir: "static"
 uglyUrls: true
 metaDataFormat: "yaml"
 params:
-  title: "1000ch.net"
   author: "1000ch"
 permalinks:
   post: "/:year/:title"
