@@ -6,16 +6,10 @@
   <body>
     <div class="Container">
       {{ partial "header.html" . }}
-    </div>
-    <div class="Container">
       <div class="Main">
         {{ .Content }}
       </div>
-    </div>
-    <div class="Container">
       {{ partial "aside.html" . }}
-    </div>
-    <div class="Container">
       {{ partial "footer.html" . }}
     </div>
     {{ partial "script.html" . }}

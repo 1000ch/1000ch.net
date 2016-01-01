@@ -53,21 +53,13 @@
 }
 
 .Media__body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  flex: 1;
 }
 
 .Media__title {
   color: #333;
   font-size: 2.4rem;
   font-weight: bold;
-}
-
-.Media__aside {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
 }
 
 .Banner {
