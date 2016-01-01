@@ -35,6 +35,11 @@ h3 {
   margin: 4.8rem 0 2.4rem 0;
 }
 
+ul,
+ol {
+  padding-left: 3.2rem;
+}
+
 li {
   padding: 0.4rem 0;
 }
