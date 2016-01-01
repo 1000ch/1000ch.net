@@ -8,7 +8,7 @@ date: 2013-03-07
 
 + [Roadmap - gruntjs/grunt/wiki](https://github.com/gruntjs/grunt/wiki/Roadmap)
 
-先日Grunt0.4がstableになりましたが、早速0.5に向けてのロードマップが発表されている。ロードマップもちょくちょく変わるとは思うけど、軽めになぞってみる。
+先日Grunt0.4がstableになったが、早速0.5に向けてのロードマップが発表されている。ロードマップもちょくちょく変わるとは思うけど、軽めになぞってみる。
 
 ## タスクは全てイベントとして実行される（ようになる）
 
@@ -23,11 +23,11 @@ grunt.registerTask("name", ["jshint", "concat"], { parallel:true });
 
 ## Glob展開ライブラリの更新
 
-配列形式ので指定されるGlobを解決できるようになる。って書いてある。参照パスの指定の仕方だと思われるが、サンプルがないのでよくわからない…。
+配列形式ので指定されるGlobを解決できるようになる。って書いてある。参照パスの指定の仕方だと思われるが、サンプルがないのでよくわからない。
 
 ## Gruntfileの設定がnodeのタスクの実行に準拠した形式になる
 
-node.jsということで、`require("grunt-hoge")`のような形式になるっぽい。
+node.jsということで、`require('grunt-hoge')`のような形式になるっぽい。
 
 ## loggerがeventを拾って出力するようになる
 

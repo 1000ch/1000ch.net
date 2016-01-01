@@ -16,13 +16,13 @@ date: 2013-11-13
 
 ## Simple is BEST!
 
-Bookmarkするだけの、単純なものです。削除くらいはあってもいいかなと思ったりもしますが、様子で。
+Bookmarkするだけの、単純なものです。削除くらいはあってもいいかなと思ったりもするが、様子で。
 
-<img src="https://raw.github.com/1000ch/Pinput/master/screenshot/pinput.png" width="100%" class='mv10'>
+![](https://raw.github.com/1000ch/Pinput/master/screenshot/pinput.png)
 
-`iframe`をなくしたのでPinboardに対する認証が必要になります。HTTP AuthとAPI tokenがありますが、このExtensionではAPI tokenを入力してもらうことで実現している。アイコンを右クリックか、拡張機能ページからオプションページを開くことが出来るので、そこから設定してください。PinboardのAPIトークンは、特別な設定もなく、[Setting > Password](https://pinboard.in/settings/password)から入手可能。
+`iframe`をなくしたのでPinboardに対する認証が必要になる。HTTP AuthとAPI tokenがありますが、このExtensionではAPI tokenを入力してもらうことで実現している。アイコンを右クリックか、拡張機能ページからオプションページを開くことが出来るので、そこから設定してください。PinboardのAPIトークンは、特別な設定もなく、[Setting > Password](https://pinboard.in/settings/password)から入手可能。
 
-<img src="https://raw.github.com/1000ch/Pinput/master/screenshot/settings.png" width="100%" class='mv10'>
+![](https://raw.github.com/1000ch/Pinput/master/screenshot/settings.png)
 
 ## タイプしてる最中のサジェスト
 

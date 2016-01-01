@@ -15,11 +15,3 @@ date: 2013-06-10
 ## [CookieManager](https://chrome.google.com/webstore/detail/cookiemanager/ecnfgpebfncdeoomhpbfcbnamhkcmgjf)
 
 業務中にクッキーを消す場面が何回かあって。こちらもいちいち設定を開いて…と、いう同じような動機。こちらは消すクッキーを選べるのと、URLで絞込が出来る。
-
-## バグってたら
-
-すみません。[Twitter](http://twitter.com/1000ch)とかでご報告ください。
-
-## 参考URL
-
-- [chrome.*APIs - chrome extensions](http://developer.chrome.com/extensions/api_index.html)

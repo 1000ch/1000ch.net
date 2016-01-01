@@ -6,14 +6,14 @@ date: 2013-07-05
 
 # Gistを簡易スライドにするGistSlideを作った
 
-[gistslide](https://github.com/nzoschke/gistdeck)に影響されて、もうちょっとキレイに作れないかなと思い作成した。デザインは[@hiloki](https://twitter.com/hiloki)氏に作ってもらった。ありがとうございます。
+[gistslide](https://github.com/nzoschke/gistdeck)に影響されて、もうちょっとキレイに作れないかなと思い作成した。デザインは[@hiloki](https://twitter.com/hiloki)氏に作ってもらった。
 
 - [GistSlide](http://gistslide.herokuapp.com/)
-- [gistslide / 1000ch](https://github.com/1000ch/gistslide)
+- [1000ch/gistslide](https://github.com/1000ch/gistslide)
 
 ## 使い方
 
-たぶん意識してないgistでもある程度見れますが、一応スライドで発表した前提のほうがいい。
+たぶん意識してないgistでもある程度見れるが、一応スライドで発表した前提のほうがいい。
 
 - [GistSlide](http://gistslide.herokuapp.com/)にいく
 - リンクボタンをブックマークバーにドラッグ&ドロップする

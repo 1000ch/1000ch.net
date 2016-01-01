@@ -8,9 +8,7 @@ date: 2013-12-02
 
 この記事は[Frontrend Advent Calendar 2013](http://www.adventar.org/calendars/62) 2日目の記事です。
 
-この前フロントエンドな同僚の方々にRaspberry Piをプレゼントして頂いた。ありがとうございます｡･ﾟ･(ﾉД`)･ﾟ･｡
-
-アレコレしてみたログを晒してみる。Frontrendのアドベントカレンダーに書いて良いのか些か迷ったものの、フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！
+この前フロントエンドな同僚の方々にRaspberry Piをプレゼントして頂いたので、アレコレしてみたログを晒してみる。Frontrendのアドベントカレンダーに書いて良いのか些か迷ったものの、フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！
 
 ![](/img/posts/2013/raspberry-pi/raspberrypi.jpg)
 
@@ -29,18 +27,13 @@ USBケーブルから電源を供給し、起動するようなイメージ。
 電源を供給しなければ始まらないのでMicro-USB(A-MicroB)という規格(?)のケーブルを購入。あと、OSイメージを焼くSDカードがないと話にならないのでそれも購入。  
 
 <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B003UIRIFY&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
 <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B003YC0U5G&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 USBは2口しかないけど、ハブ等駆使すればラズパイだけでそれなりに楽しめそうな。
 
 ## OSイメージをSDカードに焼く
 
-Linuxなら何でも動くっぽいけど、基本の **Raspbian** をダウンロードしてみる。
-
-- [Downloads | Raspberry Pi](http://www.raspberrypi.org/downloads)
-
-ダウンロードしてきたzipを解凍すると、`.img`拡張子のイメージファイルがある。そのイメージファイルをSDカードに焼けばRaspbianの起動ディスクの完成。ということで、MacにSDカードを挿し込む。
+Linuxなら何でも動くっぽいけど、基本の **Raspbian** を[Downloads | Raspberry Pi](http://www.raspberrypi.org/downloads)からダウンロードしてみる。ダウンロードしてきたzipを解凍すると、`.img`拡張子のイメージファイルがある。そのイメージファイルをSDカードに焼けばRaspbianの起動ディスクの完成。ということで、MacにSDカードを挿し込む。
 
 ### 挿す前
 
@@ -138,7 +131,8 @@ $ startx
 
 ちょっと重たいけど、ブラウジングを出来るところまで確認した。`.deb`パッケージがメンテナンスされていないようで、Chromium古いけど。
 
-<img src="/img/posts/2013/raspberry-pi/raspbian-chromium-1.jpg" width="50%" class="mv10"><img src="/img/posts/2013/raspberry-pi/raspbian-chromium-2.jpg" width="50%" class="mv10">
+![](/img/posts/2013/raspberry-pi/raspbian-chromium-1.jpg)
+![](/img/posts/2013/raspberry-pi/raspbian-chromium-2.jpg)
 
 ## SSHの確認
 
@@ -168,6 +162,4 @@ OK!!!
 
 ## まとめ
 
-ここまで出来れば、あとはある程度自由に遊べそう。node.jsでアプリサーバーたてるもよし、Jenkinsサーバーにするもよし、Chromiumで海外記事を読み漁るもよし。
-
-Raspberry Piとパトランプ的な何かを繋げて、 **Jenkinsのビルド成功をトリガーにパトランプを光らせる** なんてことも。
+ここまで出来れば、あとはある程度自由に遊べそう。node.jsでアプリサーバーたてるもよし、Jenkinsサーバーにするもよし、Chromiumで海外記事を読み漁るもよし。Raspberry Piとパトランプ的な何かを繋げて、 **Jenkinsのビルド成功をトリガーにパトランプを光らせる** なんてことも。

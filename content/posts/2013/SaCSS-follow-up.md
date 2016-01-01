@@ -10,7 +10,7 @@ date: 2013-12-10
 
 ## Simuraiに会ったよ
 
-そう、あの世界のUI/UX Designer、[@simurai](http://simurai.com/)氏にお会いしてきました。[BonBon Button](http://archive.simurai.com/lab/buttons/)が有名でしょうか。氏が札幌にいるということは知ってたので、誘ってみようということで谷さんが誘ったら来てくれました！
+そう、あの世界のUI/UX Designer、[@simurai](http://simurai.com/)氏にお会いしてきた。[BonBon Button](http://archive.simurai.com/lab/buttons/)が有名でしょうか。氏が札幌にいるということは知ってたので、誘ってみようということで谷さんが誘ったら来てくれた。
 
 <blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/hiloki">@hiloki</a> Is it <a href="http://t.co/Ueod5YFkwX">http://t.co/Ueod5YFkwX</a>? I won’t understand much since my Japanese is not that good. But sure, I’ll come anyways. ;-)</p>&mdash; simurai (@simurai) <a href="https://twitter.com/simurai/statuses/402398182136479744">2013, 11月 18</a></blockquote>
 

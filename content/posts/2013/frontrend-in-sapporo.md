@@ -6,7 +6,7 @@ date: 2013-11-11
 
 # SaCSS Special4 Frontrend in Sapporoに出演します
 
-2013/12/7(土)に札幌でお話させていただく運びになりました！
+2013/12/7(土)に札幌でお話させていただきます！
 
 - [Frontrend in Sapporo 開催します!](http://frontrend.github.io/blog/hello-sapporo/)
 - [SaCSS Special4 Frontrend in Sapporo](http://sacss.net/special04/) - イベントページ
@@ -15,7 +15,7 @@ date: 2013-11-11
 
 私は **Brush up your Coding 2013 Winter** というタイトルで、HTML/CSS/JavaScriptそれぞれの最適化について発表させていただきます。メンテンナンス性、そしてパフォーマンスにフォーカスする内容になってます。
 
-他の3セッションにつきましては、弊社の変態ディベロッパーがCSS3、jQuery、黒い画面についてそれぞれセッションします。
+他の3セッションにつきましては、弊社のディベロッパーがCSS3、jQuery、黒い画面についてそれぞれセッションします。
 
 ## 早割は今日まで！
 
@@ -23,5 +23,4 @@ date: 2013-11-11
 
 - [SaCSS Special4 Frontrend in Sapporo](http://sacss-sp4.peatix.com/) - 申し込みページ
 
-私は北海道初上陸ということもあり、とても楽しみにしております。
-少しでも良い情報をお届け出来るよう頑張りますので、札幌近郊の皆様宜しくお願い致します！  
+私は北海道初上陸ということもあり、とても楽しみにしております。少しでも良い情報をお届け出来るよう頑張りますので、札幌近郊の皆様宜しくお願い致します(´・ω・`)

@@ -6,7 +6,7 @@ date: 2013-01-22
 
 # Grunt ver0.4に向けての環境の再構築
 
-[以前の記事](/posts/2012/gruntjs-introduction.html)が説明足らずだったので補足記事。今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、0.4系と混在すると、うまく動きません。0.4系で整備していく方が今後のために良いと思うのでその説明。**rcなので、あまり文句は言えません。**ということだけ断っておくとして…。
+[以前の記事](/posts/2012/gruntjs-introduction.html)が説明足らずだったので補足記事。今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、0.4系と混在すると、うまく動かない。0.4系で整備していく方が今後のために良いと思うのでその説明。**rcなので、あまり文句は言えない。** ということだけあらかじめ断っておくとして。
 
 - **grunt-cliをグローバルインストール**
 - **gruntコアをローカルインストール**
@@ -22,7 +22,7 @@ date: 2013-01-22
 - **grunt-contrib-xxx/master**
 - **grunt-contrib-xxx/grunt-3.0-stable**
 
-というように安定版ブランチと開発ブランチが切られている。開発ブランチは0.4系に向けた開発が行われているので、この開発ブランチを手に入れる。登録されていればnpm経由でも入手出来るが、githubリポジトリから取得した方が、常に最新のリソースを得ることが出来るのでオススメです。edgeで頑張るには。
+というように安定版ブランチと開発ブランチが切られている。開発ブランチは0.4系に向けた開発が行われているので、この開発ブランチを手に入れる。登録されていればnpm経由でもインストールできるが、GitHubのリポジトリからであれば、常に最新のものを入手できる。
 
 ## grunt-contrib-watchのgitリポジトリをクローンする
 
@@ -40,7 +40,7 @@ $ cd ./node_modules/
 $ git clone https://github.com/gruntjs/grunt-contrib-watch.git
 ```
 
-npm経由でインストールされるリソースはnode_modulesに配置されるので、その場所にクローンしてgruntに参照してもらう。私の場合はconcat/mincss/uglify/watchの5つを使用しているが、問題なく動いている。[package.json](http://github.com/1000ch/playground/blob/master/package.json)も作り直しましたけど、前述の通りlink出来ないものもアリ。
+npm経由でインストールされるリソースはnode_modulesに配置されるので、その場所にクローンしてgruntに参照してもらう。私の場合はconcat/mincss/uglify/watchの5つを使用しているが、問題なく動いている。[package.json](http://github.com/1000ch/playground/blob/master/package.json)も作り直したけど、前述の通りlink出来ないものもアリ。
 
 ## grunt@0.4でstylusのコンパイルを自動化してみよう
 
@@ -95,7 +95,7 @@ $ cd ../../
 $ grunt watch
 ```
 
-で、コンパイルしてみると以下の2ファイルがエラーになるので手直し。importが引っかかってます。予約語っぽい。
+で、コンパイルしてみると以下の2ファイルがエラーになるので手直し。importが引っかかっている。予約語っぽい。
 
 - **grunt-contrib-stylus/node_modules/stylus/lib/visitor/compiler.js**
 - **grunt-contrib-stylus/node_modules/stylus/lib/visitor/evaluater.js**
@@ -107,15 +107,15 @@ Waiting...OK
 >> File "animate.styl" changed.
 Running "stylus:compile" (stylus) task
 >> TypeError: animate.styl:70
->>    66| 
+>>    66|
 >>    67| .animated.delay
 >>    68|   animation-delay(1s)
->>    69| 
+>>    69|
 >>  > 70| @keyframes flash
 >>    71|   0%, 50%, 100%
 >>    72|     opacity: 1
 >>    73|   25%, 75%
->> 
+>>
 >> Cannot read property 'nodes' of undefined
 Warning: Stylus failed to compile. Use --force to continue.
 
@@ -152,12 +152,11 @@ $ grunt watch
 
 色々依存関係を解決後も、相変わらず同じエラーが出る。
 
-## stylusのcompile出来ませんでした
+## stylusのcompile出来なかった
 
-stylusと`grunt-contrib-stylus`の連携がまだ駄目ってことなのか…。stylファイルが間違っているのか、stylusがedgeであるからなのか、はたまた`grunt-contrib-stylus`がedgeであるからなのか。わからない。
+stylファイルが間違っているのか、stylusがedgeであるからなのか、はたまた`grunt-contrib-stylus`がedgeであるからなのか。わからない。
 
 ## 関連リンク
 
-- [Stylus](http://learnboost.github.com/stylus/) - stylus
-- [LearnBoost/stylus](http://github.com/learnboost/stylus) - stylus github repository
-- [gruntjs](http://github.com/gruntjs) - gruntjs github repository
+- [gruntjs](http://github.com/gruntjs) - Grunt
+- [LearnBoost/stylus](http://github.com/learnboost/stylus) - Stylus

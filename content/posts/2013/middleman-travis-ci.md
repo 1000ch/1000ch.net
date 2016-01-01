@@ -14,7 +14,7 @@ date: 2013-08-30
 
 ## middlemanのインストール
 
-middlemanはrubyで動く静的サイトジェネジェネレータ。テンプレートをほぼhtmlで記述することが出来て、ブログ等の管理を非常に簡単にすることが可能。jekyll使ったことのある人なら学習コストはさらに低め。詳しくはこの辺りが参考になる。
+middlemanはrubyで動く静的サイトジェネジェネレータ。テンプレートをほぼHTMLで記述することが出来て、ブログ等の管理を非常に簡単にすることが可能。jekyll使ったことのある人なら学習コストはさらに低め。詳しくはこの辺りが参考になる。
 
 - [middleman - web サイトの開発をシンプルに](http://middleman-guides.e2esound.com/)
 
@@ -118,17 +118,17 @@ after_success:
 
 - [middleman-playground](https://github.com/1000ch/middleman-playground)
 
-gruntでsassファイルをコンパイルするというのを追加している。travis上でcloneしてきたmasterブランチで、grunt周りをひと通りインストールして（rakeでいいじゃんというツッコミは一旦なしで）、grunt-contrib-sassでコンパイルされたcssをgh-pagesにコミットするという手順になってる。
+Gruntでsassファイルをコンパイルするというのを追加している。Travis上でcloneしてきた`master`ブランチで、Grunt周りをひと通りインストールして（rakeでいいじゃんというツッコミは一旦なしで）、`grunt-contrib-sass`でコンパイルされたcssをgh-pagesにコミットするという手順になってる。
 
 が、このままだとrubyプロジェクトなので、Travis上で`bundle install --deployment`した場合に、Sassが`vendor/bundle`配下にインストールされて、gruntから参照出来ずにビルドがこける。最初、`--binstub`をつけて解決したかと思ったが、これを付けて解決したというよりは、`--deployment`が外れたせいだった。
 
 ## 所感
 
-今回やったgruntによるsassのコンパイルは正直な所微妙なやり方で、middlemanはcompassの機能を含んでいるので、middleman + gruntの組み合わせがそもそも。Sassのコンパイルをするだけならmiddleman + rakeのほうが自然ぽい。
+今回やったGruntによるsassのコンパイルは正直な所微妙なやり方で、middlemanはcompassの機能を含んでいるので、middleman + Gruntの組み合わせがそもそも。Sassのコンパイルをするだけならmiddleman + rakeのほうが自然ぽい。
 
-ジェネレータとしてのmiddlemanはjekyllと似ているなと思った。ブログモードとかもあったり、初期設定がjekyllより気が利いているかも。あと、本来の目的であるTravisからのgh-pagesブランチへの`git push`は、middlemanなしでももちろん出来る。
+ジェネレータとしてのmiddlemanはjekyllと似ている。ブログモードとかもあったり、初期設定がjekyllより気が利いているかもしれない。あと、本来の目的であるTravisからの`gh-pages`ブランチへの`git push`は、middlemanなしでももちろん出来る。
 
-身長が伸びるかどうかは個人差がありますので、ご了承ください。
+尚、身長が伸びるかどうかは個人差がある。
 
 ## 参考
 

@@ -8,7 +8,7 @@ date: 2013-08-19
 
 今更感が否めないけど、簡単にまとめた。[Travis CI](https://travis-ci.org/)とはなんぞやという方はこちら。[継続的インテグレーション](http://ja.wikipedia.org/wiki/%E7%B6%99%E7%B6%9A%E7%9A%84%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3)とはなんぞやという方はこちら。
 
-例えばテストの自動化をして、リファクタリングのしやすい環境を作って、コードの品質向上を継続的に行っていくサイクル。というイメージ。今回はGitHubとTravis CIで自動化を測るけど、Jenkinsでビルド環境を整えて、継続的にデプロイをしていくのもひとつのCI。
+例えばテストの自動化をして、リファクタリングのしやすい環境を作って、コードの品質向上を継続的に行っていくサイクル。というイメージ。今回はGitHubとTravis CIで自動化を測るけど、Jenkinsでビルド環境を整えて、継続的にデプロイをしていくのもひとつのCIである。
 
 ## テスト周りの環境とか
 
@@ -48,12 +48,12 @@ script:
     - "npm test"
 ```
 
-特に指定なくても、`npm test`がデフォルトで実行される。gruntとかにテストタスクを書いてある場合はそれをscript:の箇所に記述すれば良い。
+特に指定なくても、`npm test`がデフォルトで実行される。Gruntとかにテストタスクを書いてある場合はそれをscript:の箇所に記述すれば良い。
 
 ## `bower.json`
 
 `before_script`はお分かりの通りscriptの前に実行されるコマンドだが、ここではテストライブラリのインストールをbower経由で行うべく、事前にbower自体のインストールと、`bower.json`に定義したテストライブラリをダウンロードしている。npm経由だとnodeとしてパックされたものが落ちてきてしまうので。
-  
+
 また、sinonについてはbowerでもnode用でダウンロードされてしまうようなので、直接指定している。（サンプルリポジトリの[bower.json](https://github.com/1000ch/travis-ci-scaffold/blob/master/bower.json)参照）
 
 ## `package.json`
@@ -66,7 +66,7 @@ script:
 - [require.js 環境で mocha + expect + testem を使った JavaScript テスト](http://d.hatena.ne.jp/naoya/20130509/1368085935)
 
 `npm install`されて、`package.json`に定義されている`npm test`されて、`./node_modules/testem/testem.js -l PhantomJS ci`が実行されるところまで出来た。testemの設定は`testem.json`に指定する。
-  
+
 なお、testemはrunnerページを作成したりテストライブラリをダウンロードせず（今回bowerで落としてるmochaとかchaiとか）`testem.json`だけの指定でアレコレできるのだけど、sinon等のテストヘルパーが結局必要になったりするなど、カスタムで設定してしまうほうが後々楽だと思う。
 
 ```json
@@ -101,16 +101,14 @@ $ npm install .
 $ ./node_modules/testem/testem.js
 ```
 
-実行されただろうか。localhostにもサーバーが立ち上がって、mochaの実行結果ページにアクセスできるようになるはず。一度実行されると、ファイルの変更を検知してテストの再実行も自動的に行われるようになる。  
+実行されただろうか。localhostにもサーバーが立ち上がって、mochaの実行結果ページにアクセスできるようになるはず。一度実行されると、ファイルの変更を検知してテストの再実行も自動的に行われるようになる。
 
 ## Travis CIの設定をonにする
 
-[ここ](https://travis-ci.org/profile)にアクセスして、travisのCI対象にしたいGitHubリポジトリを`on`にする。あとは、GitHubに対してpushするだけで、その度に`.travis.yml`の設定に沿って処理が実行される。また、PullRequestされた場合にも自動的にテストが行われる。素晴らしい。
+[ここ](https://travis-ci.org/profile)にアクセスして、travisのCI対象にしたいGitHubリポジトリを **on** にする。あとは、GitHubに対してpushするだけで、その度に`.travis.yml`の設定に沿って処理が実行される。また、Pull Requestされた場合にも自動的にテストが行われる。素晴らしい。
 
 ## 所感
 
-今回は`npm test`経由でtestemを実行させているけど、前述のとおりgruntにテストタスクを書いてそちらを実行させても構わない。
+今回は`npm test`経由でtestemを実行させているけど、前述のとおりGruntにテストタスクを書いてそちらを実行させても構わない。
 
 ローカルでもテストは実行するけど、TravisみたいなCIと連携させて、漏れ無く自動的にテストできるのは良い。[Testable JavaScript](https://speakerdeck.com/studiomohawk/testable-javascript)の中で触れられていますが、リファクタリングを前提に考えることで躊躇なくソースコードを直すことが出来る。もちろん、テストが網羅されている前提の話ではあるけど。
-  
-ということで、テストしましょう。

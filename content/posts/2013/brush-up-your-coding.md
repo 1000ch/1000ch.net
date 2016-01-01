@@ -46,7 +46,7 @@ $ bower install html-inspector
 }
 ```
 
-HTMLInspectorをgruntで実行出来たらいいのかなとか、むしろなぜそうなってないのか一瞬考えたけど、js側でテンプレート持ってたら無理（phantomjsはさむとか？）かとか、サーバーサイドで動的にHTMLを返していると面倒くさいな、むしろそれでこういうスクリプト埋め込んでもらう形式なんだろうな、と。
+HTMLInspectorをGruntで実行出来たらいいのかなとか、むしろなぜそうなってないのか一瞬考えたけど、JavaScript側でテンプレート持ってたら無理（PhantomJSはさむとか？）かとか、サーバーサイドで動的にHTMLを返していると面倒くさいな、むしろそれでこういうスクリプト埋め込んでもらう形式なんだろうな、と。
 
 それでも開発時にしか必要のない2行なので、ChromeのExtensionにしてみた。
 
@@ -63,7 +63,7 @@ HTMLInspectorをgruntで実行出来たらいいのかなとか、むしろな�
 - [stubbornella/csslint](https://github.com/stubbornella/csslint)
 - [stubbornella/csslint - wiki](https://github.com/stubbornella/csslint/wiki)
 
-Node.jsで実行される。
+Node.jsで実行する。
 
 ```bash
 $ npm install -g csslint
@@ -71,7 +71,7 @@ $ npm install -g csslint
 $ csslint target.css
 ```
 
-都度ターミナルから実行するのもアレなので、grunt.jsなどで自動化するのが一般的かと思う。
+都度ターミナルから実行するのもアレなので、Gruntなどで自動化するのが一般的かと思う。
 
 - [gruntjs/grunt-contrib-csslint](https://github.com/gruntjs/grunt-contrib-csslint)
 
@@ -81,24 +81,24 @@ $ csslint target.css
 $ npm install grunt-contrib-csslint --save-dev
 ```
 
-grunt.jsの使い方は[ここ](http://1000ch.net/posts/2013/gruntjs-0-4.html)とか[ここ](/posts/2012/gruntjs-introduction.html)を見ていただけると。こちらもlintの方針を指定することができるけど、デフォルトで注意される内容を直すだけでもだいぶキレイになる。
+Gruntの使い方は[ここ](http://1000ch.net/posts/2013/gruntjs-0-4.html)とか[ここ](/posts/2012/gruntjs-introduction.html)を見ていただけると。こちらもlintの方針を指定することができるけど、デフォルトで注意される内容を直すだけでもだいぶキレイになる。
 
 ## JSHint
 
-最後にjsのチェックツール。こちらも前述のcsslintと同様のことが言えるので、grunt.jsと一緒に紹介してしまう。
+最後にJavaScriptのチェックツール。こちらも前述のCSSLintと同様のことが言えるので、Gruntと一緒に紹介してしまう。
 
 - [JS Hint](http://www.jshint.com/)
 - [Documentation](http://www.jshint.com/docs/)
 - [jshint/jshint](https://github.com/jshint/jshint)
 - [gruntjs/grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)
 
-JS Hintのインストール。
+JSHintのインストール。
 
 ```bash
 $ npm install -g jshint
 ```
 
-「非推奨プロパティを使うな！」とか比較演算子の使い方のあたりを指摘してくれる。何をチェックするしないの指定はコマンドライン引数でもできるが、`.jshintrc`という設定ファイルで一括指定可能。さらにこの`.jshintrc`をgrunt.jsと連携させるなりするのがいいかと。gruntjsが公式で配布しているモジュールのインストールはこちら。
+「非推奨プロパティを使うな！」とか比較演算子の使い方のあたりを指摘してくれる。何をチェックするしないの指定はコマンドライン引数でもできるが、`.jshintrc`という設定ファイルで一括指定可能。さらにこの`.jshintrc`をGruntと連携させるなりするのがいいかと。Gruntが公式で配布しているモジュールのインストールはこちら。
 
 ```bash
 $ npm install grunt-contrib-jshint --save-dev
@@ -127,20 +127,16 @@ grunt.initConfig({
 
 ## 意義とか
 
-テストなどにも同じ事が言えますが、こういったこと継続的にやることが重要かと思っている。その点、メンテナビリティとポータビリティなどを考えて`package.json`だけで済むgrunt.jsが最有力候補になるかと。  
+テストなどにも同じ事が言えるが、こういったこと継続的にやることが重要かと思っている。その点、メンテナビリティとポータビリティなどを考えて`package.json`だけで済むGruntが最有力候補になるかと。
 
 - [ぼくのかんがえたさいきょうのしーえしゅえしゅ - MOL](http://t32k.me/mol/log/the-perfect-css-i-thought/)
 - [t32k/maple](https://github.com/t32k/maple)
 
-こちら[@t32k](http://twitter.com/t32k)氏が作成したフレームワークだけど、grunt周りやcssの方針など参考になる(@t32k氏にはH:inspectorのアイコンを頂きました。ありがとうございます)。jshint、csslintに加えて、[grunt-imageoptim](https://github.com/JamieMason/grunt-imageoptim)や[grunt-kss](https://github.com/t32k/grunt-kss)なども一緒に導入可能になっており、画像の最適化やスタイルガイドの作成も自動化できるようになっている。
+こちら[@t32k](http://twitter.com/t32k)氏が作成したフレームワークだけど、Grunt周りやcssの方針など参考になる（@t32k氏にはH:inspectorのアイコンを頂いた）。JSHint、CSSLintに加えて、[grunt-imageoptim](https://github.com/JamieMason/grunt-imageoptim)や[grunt-kss](https://github.com/t32k/grunt-kss)なども一緒に導入可能になっており、画像の最適化やスタイルガイドの作成も自動化できるようになっている。
 
-業務でプロジェクトを幾つか経験したけど、最初の設計と継続的リファクタリングが如何に大事であるかを痛感していて、特に運用が大変なプロジェクトだと、どうしてもフロントエンドのコードが犠牲になりがち。それでも、
+業務でプロジェクトを幾つか経験したけど、最初の設計と継続的リファクタリングが如何に大事であるかを痛感していて、特に運用が大変なプロジェクトだと、どうしてもフロントエンドのコードが犠牲になりがち。それでも、 **ディベロッパーは理性を保ってコードを清潔に保つ努力をしていかなければならない** と、思う。
 
-### ディベロッパーは理性を保ってコードを清潔に保つ努力をしていかなければならない
-
-と、思う。
-
-cssとかjsは短ければ短いほどいいと思うけど、コード増やすのは簡単だけど、コード削るのってやっぱり困難だなぁ、と。ましてや稼働中のサービスに一気に手を入れるのは非常に勇気のいる作業。ひとつひとつの蓄積（ある種我慢の蓄積かもしれないけど）が、
+リファクタリングしてコードを修正するのは、スクラッチで開発していくこととは比較にならないくらい難しい。ましてや稼働中のサービスに一気に手を入れるのは非常に勇気のいる作業。ひとつひとつの蓄積（ある種我慢の蓄積かもしれないけど）が、
 
 - Webのパフォーマンスにつながり
 - 運用スピードの向上

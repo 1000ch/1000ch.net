@@ -12,7 +12,7 @@ GitHubで使える絵文字はどうやらこんなにあるらしい。とて�
 
 - [EMOJI CHEAT SHEET](http://www.emoji-cheat-sheet.com/)
 
-更にGitHubだけじゃなくて、TrelloやQiita、Kippt等のいろんなサービスでこの絵文字が使えるそう。知らなかった。  
+更にGitHubだけじゃなくて、TrelloやQiita、Kippt等のいろんなサービスでこの絵文字が使えるそう。知らなかった。
 
 ## いちいちWebサイトで絵文字調べるの面倒臭い
 
@@ -21,17 +21,15 @@ GitHubは`:`を入れると候補が表示されるからまだいいけど、�
 - [ダウンロード](https://github.com/1000ch/emoji-workflow/raw/master/Emoji.alfredworkflow)
 - [1000ch/emoji-workflow](https://github.com/1000ch/emoji-workflow)
 
-使い方はAlfredを開いて、キーワードは`emoji`です。  
+使い方はAlfredを開いて、キーワードは`emoji`。
 
-<img src="https://raw.github.com/1000ch/emoji-workflow/master/screenshot/emoji.png" width="100%">
+![](https://raw.github.com/1000ch/emoji-workflow/master/screenshot/emoji.png)
 
 スペースに続けて、キーワードを打ち込むと、絞り込みが出来る。
 
 ## 紹介してもらった
 
 <blockquote class="twitter-tweet"><p>Just added another useful Alfred workflow for quickly Emoji lookup ~ <a href="https://t.co/H3b6584mAc">https://t.co/H3b6584mAc</a> <a href="http://t.co/nL02B6Mhgq">pic.twitter.com/nL02B6Mhgq</a></p>&mdash; Zeno Rocha (@zenorocha) <a href="https://twitter.com/zenorocha/statuses/398224734900350976">November 6, 2013</a></blockquote>
-
-ありがとうございます！
 
 ## 所感
 
