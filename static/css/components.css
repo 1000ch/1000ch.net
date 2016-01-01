@@ -43,9 +43,40 @@
   word-break: break-all;
 }
 
-.Footer {
-  padding: 0 3.2rem;
-  text-align: right;
+.Media {
+  align-items: flex-start;
+  display: flex;
+}
+
+.Media__figure {
+  margin-right: 1rem;
+}
+
+.Media__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.Media__title {
+  color: #333;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.Media__aside {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.Banner {
+  display: flex;
+  justify-content: center;
+}
+
+.Banner__Item {
+  padding: 0.8rem;
 }
 
 @media (max-width: 320px) {
