@@ -11,7 +11,7 @@
 .Main,
 .Aside,
 .Footer {
-  padding: 0 4rem;
+  padding: 0 5%;
 }
 
 .Header__Title {
@@ -61,33 +61,6 @@
 
 .Banner__Item {
   padding: 0.8rem;
-}
-
-@media (max-width: 320px) {
-  .Header,
-  .Main,
-  .Aside,
-  .Footer {
-    padding: 0 1.6rem;
-  }
-}
-
-@media (min-width: 321px) and (max-width: 480px) {
-  .Header,
-  .Main,
-  .Aside,
-  .Footer {
-    padding: 0 2.4rem;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 640px) {
-  .Header,
-  .Main,
-  .Aside,
-  .Footer {
-    padding: 0 3.2rem;
-  }
 }
 
 .List {
