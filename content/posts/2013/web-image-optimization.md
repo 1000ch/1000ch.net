@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Webにおける画像の最適化について考える
+title: Webにおける画像の最適化
 date: 2013-09-18
 ---
 
-# Webにおける画像の最適化について考える
+# Webにおける画像の最適化
 
 デリケートと言っても常に最高画質でやるべきなんてことを言うわけではなくて、『こういう場合にはこういう画像』ということをしていくことが必要になってきている。
 
@@ -24,23 +24,20 @@ Webのパフォーマンスにおいて、コスパが高いのはネットワ�
 
 これらは比較的簡単に行うことが出来る上に、効果も大きい。しかし、CSSとJSの結合やら圧縮やらを行っても、画像が1ファイル300KBあったり、更にそれが何ファイルもあったりしたらCSSやJSの最適化も効果が小さいものになってしまうわけで、漏れ無く実施することが重要と言える。中でも、画像はテキストファイルに比べて、少し手を加えればファイルサイズが大幅に減らせるので、今回はそちらにフォーカスしてみる。
 
-## PNGとJPG
-
-- [Portable Network Graphics](http://ja.wikipedia.org/wiki/Portable_Network_Graphics)
-- [JPEG](http://ja.wikipedia.org/wiki/JPEG)
+## [PNG](http://ja.wikipedia.org/wiki/Portable_Network_Graphics)と[JPG](http://ja.wikipedia.org/wiki/JPEG)
 
 PNGは現代のWebにおけるグラフィックの主流フォーマットと言って良い。透過できるし、JPGよりジャギらないし、圧縮率もGIFより高いケースがほとんど。拡張データ等は多いのでGIFよりファイルサイズは大きくなりがちだが）。
 
 ## 圧縮率をどうするか
 
-PNG24は非圧縮だとファイルサイズが大変なことになるので、まず、PNGはPNG24ではなくPNG8で保存することを検討する。PNG24は、1677万色という膨大な色（JPGと同じ）を表現できますが、当然その分情報量は大きい。8bitは256色+アルファチャネルなので24bitに比べてかなり小さい情報量になる。
+PNG24は非圧縮だとファイルサイズが大変なことになるので、まず、PNGはPNG24ではなくPNG8で保存することを検討する。PNG24は、1677万色という膨大な色（JPGと同じ）を表現できるが、当然その分情報量は大きい。8bitは256色+アルファチャネルなので24bitに比べてかなり小さい情報量になる。
 
-PNGとJPGの圧縮レベルを比較したものを用意したので以下を参考に。
+PNGとJPGの圧縮レベルを比較したものを用意したので以下参考。
 
 - [1000ch/compress-image/compress-png](https://github.com/1000ch/compress-image/tree/master/compress-png)
 - [1000ch/compress-image/compress-jpg](https://github.com/1000ch/compress-image/tree/master/compress-jpg)
 
-PNGについては、PNG24bitからPNG8bitに変えただけで58KB→14KBと、ファイルサイズが四分の一程になっている。表現できる色が少なくなっているので、若干の劣化はもちろん見られるが、許容できる場合も多々あると思う。
+PNGについては、PNG24bitからPNG8bitに変えただけで58KB→14KBと、ファイルサイズが四分の一程になっている。表現できる色が少なくなっているので、若干の劣化はもちろん見られるが、許容できる場合も多々あるはずだ。
 
 JPGについてはPhotoshopの圧縮レベルを10~100で用意した。こちらも100→90にするだけでファイルサイズが大幅にダイエットされていることがわかる。画像のそのものの重要度によるけど、表示サイズが小さかったり、jpg10でも劣化が目立たなければ差し支えないケースもあるはず。
 
@@ -50,15 +47,9 @@ JPGについてはPhotoshopの圧縮レベルを10~100で用意した。こち�
 
 ## ImageAlphaとImageOptim
 
-24bitで保存されたPNGの8bit化はImageAlphaというツールが有名で優秀。またImageOptimという、こちらも様々な最適化機能を備えたツールがあるが、併用すると更に効果的。ちなみに作者は同じ。
-
-- [ImageAlpha](http://pngmini.com/)
-- [ImageOptim](http://imageoptim.com/)
+24bitで保存されたPNGの8bit化は[ImageAlpha](http://pngmini.com/)というツールが有名で優秀。また[ImageOptim](http://imageoptim.com/)という、こちらも様々な最適化機能を備えたツールがあるが、併用すると更に効果的。ちなみに作者は同じ。
 
 ImageAlphaは[pngquant](http://pngquant.org/)という24bitのPNGに8bitコンバートを行ってくれるライブラリのGUIラッパー。ImageOptimも画像の様々な最適化を行ってくれるアプリケーション。画像には撮影日時やた場所やら、表示には関係のない情報が付与されているが、ImageOptimはそういったメタ情報を削除してファイルサイズを削減してくれる。
-
-- [pornel/ImageAlpha](https://github.com/pornel/ImageAlpha)
-- [pornel/ImageOptim](https://github.com/pornel/ImageOptim)
 
 ## 例によって自動化
 
@@ -82,9 +73,7 @@ JPEG形式にはプログレッシブとベースラインという2種類の保
 
 結論から言うと自分は推奨しない。バイナリデータに比べてサイズが1.3倍とかそのくらい大きくなる。あと、HTMLやらCSSに含めることになるので可視化されず、わかりにくい。そして管理しにくい。
 
-さらに、dataURI使いまくってHTMLやCSSファイルが膨らむと、[もっと根本的なレンダリングブロックに繋がる](http://t32k.me/mol/log/sprite-image-vs-inline-image/)傾向にある。あとは、CSSのキャッシュは効いても、毎回デコードしなきゃいけないよね、とかとか。
-
-- [HTTPリクエストを減らすために【DataURI編】遅延ロードでレンダリングブロックを回避](http://t32k.me/mol/log/reduce-http-requests-datauri/)
+さらに、dataURI使いまくってHTMLやCSSファイルが膨らむと、[もっと根本的なレンダリングブロックに繋がる](http://t32k.me/mol/log/sprite-image-vs-inline-image/)傾向にある。あとは、[CSSのキャッシュは効いても、毎回デコードしなきゃいけない](http://t32k.me/mol/log/reduce-http-requests-datauri/)よね、とかとか。
 
 DataURI化する目的としてはリクエストを減らすことがゴールだけど、それと引き換えになるデメリットが大きく映ることが多いうことで非推奨。
 
@@ -96,7 +85,7 @@ DataURI化する目的としてはリクエストを減らすことがゴール�
 
 ## 追記1
 
-途中dataURIについての言及をしましたが以下の様なご指摘を受けた。
+途中dataURIについての言及をしましたが以下の様な指摘を受けた。
 
 <blockquote class="twitter-tweet"><p>|-`) 隅だけどDataURIはgzip効くから1.3倍まるまる大きくはならないよーな / Webにおける画像の最適化について考える | <a href="http://t.co/aeV3vAZQzF">http://t.co/aeV3vAZQzF</a> <a href="http://t.co/1y49VC9bd4">http://t.co/1y49VC9bd4</a></p>&mdash; あほむ (@ahomu) <a href="https://twitter.com/ahomu/statuses/380482694032785408">September 19, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
