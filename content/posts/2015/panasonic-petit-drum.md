@@ -33,8 +33,6 @@ date: 2015-02-15
 
 縮みにくいとはいえ、高価な服だったり、シャツみたいにシワを付けたくない部類の洋服は乾燥までしないほうが無難そう。大事をとって洗濯だけのコースにして、今までどおりハンガーで干す方が安全かと思う。
 
-ちなみに[ヒートポンプ式ではないモデル](http://amzn.to/1C01DgY)もあって、こちらはもう少し廉価になっている。初のドラム式洗濯乾燥機がヒートポンプ方式だったので比較できないけど、使い分け出来ればこちらでも良いかもしれない。
-
 ## Point.3 「コンパクトでスペースを取らない」
 
 ドラム式乾燥洗濯機というと、かなり大型なイメージがあったけど、各メーカーが一人暮らし向けのドラム式のラインナップを出しているそうで、これもその中のひとつになる。
@@ -49,7 +47,7 @@ date: 2015-02-15
 
 その他の機能としては「[エコナビ](http://panasonic.jp/wash/product/na_vh310l/econavi.html)」「[自動槽洗浄](http://panasonic.jp/wash/product/na_vh310l/auto_cleaning.html)」「[泡洗浄・ダンシング洗浄](http://panasonic.jp/wash/product/na_vh310l/dancing.html)」「[お急ぎコース](http://panasonic.jp/wash/product/na_vh310l/speedy.html)」と、至れりつくせり。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00I0OAM7E&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00U2569GW&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00I0OAR92&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
 
 場所・天気と干すことに気を遣わなくなったし、洗ったものはホカホカふっくら出てくるし、何より **洗濯という家事に対して、かける時間が減ったのに満足度がグッと上がった** 。
