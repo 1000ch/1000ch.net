@@ -24,26 +24,19 @@ date: 2015-01-12
 
 <iframe width="100%" height="338" src="//www.youtube.com/embed/cBhZ6S0PFCY" frameborder="0" allowfullscreen></iframe>
 
-ネットワークレイヤ疎い自分は、SSLのオーバーヘッドの方が大きいんジャマイカと薄っすら妄想してしまったけど、ことはそう簡単ではないらしい。
+ネットワークレイヤ疎い自分は、SSLのオーバーヘッドの方が大きいのではと薄っすら妄想してしまったけど、事はそう簡単ではないらしい。
 
-- [HTTP vs HTTPS Test](http://www.httpvshttps.com/)
+[HTTP vs HTTPS Test](http://www.httpvshttps.com/)はHTTPとHTTPS通信化において、Webサイトのパフォーマンスがどうなるかを検証するサイトだけど、見ての通りHTTPSの方が高速という驚くべき結果になっている。
 
-これはHTTPとHTTPS通信化において、Webサイトのパフォーマンスがどうなるかを検証するサイトだけど、見ての通りHTTPSの方が高速という驚くべき結果になっている。
-
-このカラクリは[@kazuho](http://twitter.com/kazuho)さんの考察を見てもらうとわかる。
-
-- [なぜHTTPSはHTTPより速いのか - Kazuho's Weblog](http://blog.kazuhooku.com/2014/12/httpshttp.html)
+このカラクリは[@kazuho](http://twitter.com/kazuho)さんの[なぜHTTPSはHTTPより速いのか - Kazuho's Weblog](http://blog.kazuhooku.com/2014/12/httpshttp.html)という記事にある考察を見てもらうとわかる。
 
 話題の[Service Worker](/posts/2014/service-worker-internals.html)もセキュアな環境じゃないと無効だし、パフォーマンスの観点からも2015年はHTTP→HTTPSという潮流が生まれる予感。これについては[HTTPからHTTPSへ - Hail2u.net](http://hail2u.net/blog/internet/http-to-https.html)という記事も見て欲しい。
 
 ## CloudFlareをDNSサーバーとして利用する
 
-GitHub PagesにCNAMEで設定しているカスタムドメインでHTTPSを使えないか探していると、それらしき情報があった。
+GitHub PagesにCNAMEで設定しているカスタムドメインでHTTPSを使えないか探していると、それらしき情報が[GitHub Pages Now Supports HTTPS, So Use It](https://konklone.com/post/github-pages-now-supports-https-so-use-it)という記事にあった。
 
-- [GitHub Pages Now Supports HTTPS, So Use It](https://konklone.com/post/github-pages-now-supports-https-so-use-it)
-- [Configuring CloudFlare’s Universal SSL](https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/)
-
-[CloudFlare](https://www.cloudflare.com/)がユニーバサルSSLを提供しているのでそれを使うことで実現可能ということらしい。有料プランでなくとも良いとのこと。
+[CloudFlare](https://www.cloudflare.com/)が[ユニーバサルSSLを提供している](https://www.benburwell.com/posts/configuring-cloudflare-universal-ssl/)のでそれを使うことで実現可能ということらしい。有料プランでなくとも良いとのこと。
 
 ### 指定ドメインのDNSサーバーをCloudFlareに向ける
 

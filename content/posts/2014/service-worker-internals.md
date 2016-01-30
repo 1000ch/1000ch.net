@@ -28,7 +28,7 @@ Application Cacheの問題点については、[@kyo_ago](https://twitter.com/ky
 
 ブラウザキャッシュもパフォーマンスを向上させる上で非常に重要な存在であることには間違いなさそうだが、JavaScriptからコントロールすることは不能だし、ブラウザによって挙動もまちまちである。なんせ、ブラウザキャッシュはW3Cに載っているような仕様の類ではなく、ブラウザベンダーが気を利かせて実装している機能に過ぎないからである。
 
-ブラウザキャッシュと言えば、[Nicholas Zakas](https://twitter.com/slicknet)氏による[The changing role of the browser cache](http://calendar.perfplanet.com/2014/the-changing-role-of-the-browser-cache/)という記事も興味深い。ブラウザキャッシュの役目の移り変わりについて。興味ある方は一読を。
+ブラウザキャッシュと言えば、[Nicholas Zakas](https://twitter.com/slicknet)氏による[The changing role of the browser cache](http://calendar.perfplanet.com/2014/the-changing-role-of-the-browser-cache/)というブラウザキャッシュの役目の移り変わりについての記事も興味深い。
 
 ### オフラインアプリケーションの夢
 
@@ -42,9 +42,7 @@ Service WorkerはWeb Workerなんかと同じように（Web Workerの一種と�
 
 リクエストをフックし、Cache APIを介してアレコレする。あるURLへのリクエストに対するレスポンスを受け取った時にそのリソースを保持したり、はたまた再度そのリクエストが発生する時にはCache APIから保持したリソースを引っ張りだしてブラウザに返却する。といったような処理をService Workerにしてもらうことになる。
 
-しれっとCache APIなんて言ったが、これもService WorkerのAPIの一環で、Service Workerコンテキストで利用可能なキャッシュリソースを管理するためのAPI。
-
-- [4.4 Caches - Service Workers](http://www.w3.org/TR/service-workers/#cache-objects)
+しれっと[Cache API](http://www.w3.org/TR/service-workers/#cache-objects)が出てきたが、これもService WorkerのAPIの一環で、Service Workerコンテキストで利用可能なキャッシュリソースを管理するためのAPIである。
 
 ### もうちょっと実際の処理に近い説明
 
@@ -66,11 +64,11 @@ Service Workerはセキュリティ上、HTTPS環境かローカルホストの�
 
 >簡単デプロイの代名詞のGitHub Pagesもダメなので、
 
-と書いてあるところに指摘を頂きまして、修正しましたorz [@sada_h](http://twitter.com/sada_h)さんありがとうございます。
+と書いてあるところに指摘を頂きまして、修正しました。
 
 <blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/1000ch">@1000ch</a> github pagesはhttpsも提供されてますよー。httpsでアクセスすれば表示されると思います。 <a href="http://t.co/327sxlRQ3R">http://t.co/327sxlRQ3R</a></p>&mdash; さだ (@sada_h) <a href="https://twitter.com/sada_h/status/549383897373356032">2014, 12月 29</a></blockquote>
 
-GitHub PagesのHTTPSサポートについては、以下にも情報がありました。
+GitHub PagesのHTTPSサポートについては、以下にも情報があった。
 
 - [What are GitHub Pages?](https://help.github.com/articles/what-are-github-pages/)
 - [GitHub Pages Now Supports HTTPS, So Use It](https://konklone.com/post/github-pages-now-supports-https-so-use-it)

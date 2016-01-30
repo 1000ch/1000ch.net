@@ -19,9 +19,7 @@ Vagrantは今更説明するまでもないけど、仮想環境の作成や起�
 
 ### CentOS 6のBoxファイルをダウンロード
 
-今度はどのOSで仮想化するか決める。VagrantではOSイメージをBoxと呼ばれる形式で管理する。有志で配布されているBoxの一覧は以下にあるので、違うOSで試したい場合はそちらを。
-
-- [Vagrantbox.es](http://www.vagrantbox.es/)
+今度はどのOSで仮想化するか決める。VagrantではOSイメージをBoxと呼ばれる形式で管理する。有志で配布されているBoxの一覧は[Vagrantbox.es](http://www.vagrantbox.es/)にあるので、違うOSで試したい場合はそちらを。
 
 ```bash
 # boxファイルのダウンロード

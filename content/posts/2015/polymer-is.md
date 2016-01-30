@@ -6,11 +6,7 @@ date: 2015-01-30
 
 # Polymerについての所感
 
-Polymerを使ったWeb Componentsに`<twitter-button>`、`<facebook-button>`、`<gplus-one>`、`<gplus-follow>`がある。Polymerのバージョンが古かったのでプルリクエストを送ったんだけど、修正しながら考えてたことを書いてみた。
-
-- https://github.com/zenorocha/twitter-button
-- https://github.com/zenorocha/facebook-button
-- https://github.com/zenorocha/gplus-elements
+Polymerを使ったWeb Componentsに[`<twitter-button>`](https://github.com/zenorocha/twitter-button)、[`<facebook-button>`](https://github.com/zenorocha/facebook-button)、[`<gplus-one>`・`<gplus-follow>`](https://github.com/zenorocha/gplus-elements)がある。Polymerのバージョンが古かったのでプルリクエストを送ったんだけど、修正しながら考えてたことを書いてみた。
 
 ## Polymerに依存するWeb Components
 

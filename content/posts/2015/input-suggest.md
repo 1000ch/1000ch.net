@@ -16,10 +16,8 @@ Chromeだと領域の右端に▼が表示されているし、候補のドロ�
 
 ## input-suggest
 
-jQueryプラグインだとチラホラ見かけるけど、jQueryナシが良いし、自分の勉強も兼ねて実装してみたのがこちら。`InputSuggest`コンストラクタに`<textarea>`要素・`<input type="text">`要素、ないしそれらを参照するセレクタを渡すと実行される。また、ポップアップはそのままだとスタイルが当たっていないので各自でCSSを書いてもらう必要がある。
+jQueryプラグインだとチラホラ見かけるけど、jQueryナシが良いし、自分の勉強も兼ねて[実装してみた](https://github.com/1000ch/input-suggest)。`InputSuggest`コンストラクタに`<textarea>`要素・`<input type="text">`要素、ないしそれらを参照するセレクタを渡すと実行される。また、ポップアップはそのままだとスタイルが当たっていないので各自でCSSを書いてもらう必要がある。
 
 <p data-height="480" data-theme-id="0" data-slug-hash="EjwOaz" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/EjwOaz/">Input suggestion using input-suggest</a> by 1000ch (<a href='http://codepen.io/1000ch'>@1000ch</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 `<datalist>`を`<textarea>`でも機能させるというコンセプトにしようかとも考えたが、定義されてもいないポリフィルを実装するような感覚に陥りそうだったのでやめた。
-
-リポジトリは[1000ch/input-suggest](https://github.com/1000ch/input-suggest)。
