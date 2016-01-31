@@ -6,9 +6,7 @@ date: 2012-12-08
 
 # Gruntの概要と導入手順とメリット
 
-- [grunt: a task-based command line build tool for JavaScript projects](http://gruntjs.com/)
-
-もはや説明不要の可能性もあるけど、gruntがコマンドラインのインターフェースを分離して`grunt-cli`への移行をしたこともあり、まとめてみた。
+もはや説明不要の可能性もあるけど、[grunt](http://gruntjs.com/)がコマンドラインのインターフェースを分離して`grunt-cli`への移行をしたこともあり、まとめてみた。
 
 GruntはNode.js製のタスクランナー。JavaScriptで記述する設定ファイルに、ファイルの結合（concat）や最小化minifyといったようなタスクを定義し、コマンドラインから実行する。
 

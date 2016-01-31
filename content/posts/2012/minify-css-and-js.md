@@ -10,20 +10,13 @@ date: 2012-11-28
 
 ## 最小化・最適化
 
-使っていない関数や余分な変数宣言を削除したり、共通化をしっかり行い、冗長なコードを除くこと。cssに関しては構造の最適化までしてくれるcssoというツールがある。ホワイトスペースの除去など一般的な圧縮の他に、ショートハンドで書けるところをショートハンドに変換してくれる。素晴らしい。
-
-- [csso](https://github.com/css/csso) - csso@github
-- [CSSOとgrunt-csso](http://t32k.me/mol/log/csso-and-grunt-csso/) - cssoの解説とgruntツール（後述）との連携について
+使っていない関数や余分な変数宣言を削除したり、共通化をしっかり行い、冗長なコードを除くこと。cssに関しては構造の最適化までしてくれる[csso](https://github.com/css/csso)というツールがある。ホワイトスペースの除去など一般的な圧縮の他に、ショートハンドで書けるところをショートハンドに変換してくれる。素晴らしい。[Gruntのプラグインもある](http://t32k.me/mol/log/csso-and-grunt-csso/)。
 
 開発中はコメントを適切に書いて、見通しの良いコードを書くべきだが、ブラウザに認識させる段階ではその必要がない。改行コードが取り払われて一行になっていたとしても認識してくれる。そして除かれた余分な文字の分、ユーザーの待ち時間は短くなる。なので、実際にサーバーに置くファイルはminifyすること。
 
 ## ローカル環境でminifyする
 
-ここでは代表的なGoogle Closure CompilerとYUI CompressorとUglifyJSの3つを紹介。Google Closure CompilerとYUI CompressorはともにJavaで書かれており、jarファイルをダウンロードしJVMを通して実行する必要がある。UglifyJSはNode.jsで実行されるので、npm経由でインストールする。
-
-- [Google Closure Compiler](https://developers.google.com/closure/compiler/?hl=ja) - Google提供のツール
-- [YUI Compressor](http://developer.yahoo.com/yui/compressor/) - Yahoo提供のツール
-- [mishoo/UglifyJS](https://github.com/mishoo/UglifyJS) - node.js用のツール
+ここでは代表的な[Google Closure Compiler](https://developers.google.com/closure/compiler/?hl=ja)と[YUI Compressor](http://developer.yahoo.com/yui/compressor/)と[UglifyJS](https://github.com/mishoo/UglifyJS)の3つを紹介。Google Closure CompilerとYUI CompressorはともにJavaで書かれており、jarファイルをダウンロードしJVMを通して実行する必要がある。UglifyJSはNode.jsで実行されるので、npm経由でインストールする。
 
 ### Google Closure Compilerの場合
 
@@ -57,10 +50,7 @@ $ uglifyjs /path/jsfile.js /path/jsfile.min.js
 
 ## オンラインツールでminifyする
 
-もっと手軽にやりたい場合は、オンラインツールを使用するのも良い。
-
-- [Closure Compiler](http://closure-compiler.appspot.com/) - Google Closure Compilerのオンライン版
-- [Online JavaScript/CSS Compression Using YUI Compressor](http://refresh-sf.com/yui/) - YUI Compressorのオンライン版
+もっと手軽にやりたい場合は、オンラインツールを使用するのも良い。[Google Closure Compiler](http://closure-compiler.appspot.com/)も[YUI Compressor](http://refresh-sf.com/yui/)もオンライン版がある。
 
 ## 継続的に実施していくために
 

@@ -6,9 +6,7 @@ date: 2012-12-06
 
 # Gzipを有効にしてサイト表示速度を向上させる
 
-Gzipはファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は`.gz`で、MIME-Typeは`application/x-gzip`。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来るがここでは割愛。
-
-- [gzip - Wikipedia](http://ja.wikipedia.org/wiki/Gzip)
+[Gzip](http://ja.wikipedia.org/wiki/Gzip)はファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は`.gz`で、MIME-Typeは`application/x-gzip`。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来るがここでは割愛。
 
 ## httpサーバーのgzipを有効にしてサイト表示速度を向上させる
 

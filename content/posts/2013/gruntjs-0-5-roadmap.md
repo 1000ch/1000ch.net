@@ -6,9 +6,7 @@ date: 2013-03-07
 
 # Grunt ver0.5に向けてのロードマップ
 
-+ [Roadmap - gruntjs/grunt/wiki](https://github.com/gruntjs/grunt/wiki/Roadmap)
-
-先日Grunt0.4がstableになったが、早速0.5に向けてのロードマップが発表されている。ロードマップもちょくちょく変わるとは思うけど、軽めになぞってみる。
+先日Grunt0.4がstableになったが、早速[0.5に向けてのロードマップ](https://github.com/gruntjs/grunt/wiki/Roadmap)が発表されている。ロードマップもちょくちょく変わるとは思うけど、軽めになぞってみる。
 
 ## タスクは全てイベントとして実行される（ようになる）
 

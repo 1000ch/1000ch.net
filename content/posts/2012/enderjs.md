@@ -6,10 +6,8 @@ date: 2012-12-27
 
 # Enderの使い方のまとめ 〜必要なライブラリを必要な分だけ〜
 
-Enderはnode.jsで動くJavaScriptのパッケージビルド管理システム。
+[Ender](http://ender.jit.su/)はnode.jsで動くJavaScriptのパッケージビルド管理システム。
 JavaScriptのライブラリは非常にたくさんあって、その中から複数選んで使いたいケースはたくさん有る。まとめて使うときに欲しいものをダウンロードして、使いたいライブラリが増えたらまたビルドして…というのはとても面倒な作業。Enderはこういった問題を解決してくれる。
-
-- [Ender - the no-library JavaScript library](http://ender.jit.su/)
 
 ## Ender.jsの薦め
 
@@ -19,9 +17,7 @@ jQueryはとても良く出来たライブラリだけど、闇雲にjQueryを�
 
 ## 具体的な導入方法
 
-- [ender-js/Ender Github](https://github.com/ender-js/Ender)
-
-リンク先を見てもらえるとわかるが、コマンドラインからの操作。
+[ender-js/Ender](https://github.com/ender-js/Ender)を見てもらえるとわかるが、コマンドラインからの操作。
 
 ## enderのインストール
 

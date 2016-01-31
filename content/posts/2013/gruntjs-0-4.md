@@ -155,8 +155,3 @@ $ grunt watch
 ## stylusのcompile出来なかった
 
 stylファイルが間違っているのか、stylusがedgeであるからなのか、はたまた`grunt-contrib-stylus`がedgeであるからなのか。わからない。
-
-## 関連リンク
-
-- [gruntjs](http://github.com/gruntjs) - Grunt
-- [LearnBoost/stylus](http://github.com/learnboost/stylus) - Stylus

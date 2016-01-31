@@ -6,9 +6,7 @@ date: 2013-03-09
 
 # 閲覧履歴を簡単に消せるGoogle Chromeの拡張機能を作った
 
-[@t32k](https://twitter.com/t32k/)氏に影響されてGoogleChromeの拡張機能を作った。アイコンのクリックで全履歴を消すという非常にシンプルな機能。ソースも非常に小さい構成になっている。機能・実装がブラッシュアップされてきたらウェブストアへの登録もしてみようかな、と。
-
-- [1000ch/one-click-clear](https://github.com/1000ch/one-click-clear)
+[@t32k](https://twitter.com/t32k/)氏に影響されて[Chromeの拡張機能を作った](https://github.com/1000ch/one-click-clear)。アイコンのクリックで全履歴を消すという非常にシンプルな機能。ソースも非常に小さい構成になっている。機能・実装がブラッシュアップされてきたらウェブストアへの登録もしてみようかな、と。
 
 以下の手順でも使える。
 
@@ -33,17 +31,17 @@ Extensionにも実行されるタイミングが色々ある。**特定のURLを
 
 ```json
 {
-  "name": "OneClickClear",			//拡張機能の名前（必須）
-  "version": "0.0.1",						//拡張機能のバージョン（必須）
-  "manifest_version": 2,				//マニフェストファイルのバージョン（必須）
-  "description": "",						//拡張機能の説明（推奨）
-  "permissions": ["history"],		//historyオブジェクトにアクセスするための許可
+  "name": "OneClickClear",      // 拡張機能の名前（必須）
+  "version": "0.0.1",           // 拡張機能のバージョン（必須）
+  "manifest_version": 2,        // マニフェストファイルのバージョン（必須）
+  "description": "",            // 拡張機能の説明（推奨）
+  "permissions": ["history"],   // historyオブジェクトにアクセスするための許可
   "background": {
-    "scripts": ["js/main.js"]		//バックグラウンドで実行するjsファイル
+    "scripts": ["js/main.js"]   // バックグラウンドで実行するjsファイル
   },
-  "browser_action": {						//アイコンをGoogleChromeのツールバーに置くのでその設定
-    "default_icon": "img/trash.ico",	//配置されるアイコン
-    "default_title": "OneClickClear"	//タイトル
+  "browser_action": {           // Chromeのツールバーに配置されるアイコン
+    "default_icon": "img/trash.ico",  // 配置されるアイコン
+    "default_title": "OneClickClear"  // タイトル
   }
 }
 ```
