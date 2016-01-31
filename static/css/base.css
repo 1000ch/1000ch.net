@@ -96,6 +96,11 @@ kbd:active {
   top: 0.1rem;
 }
 
+pre {
+  word-wrap: normal;
+  overflow-wrap: normal;
+}
+
 code {
   background: #f8f8f8 !important;
   border: 0.1rem solid #ddd;
