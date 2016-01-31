@@ -10,23 +10,23 @@ date: 2013-12-10
 
 ## Simuraiに会ったよ
 
-そう、あの世界のUI/UX Designer、[@simurai](http://simurai.com/)氏にお会いしてきた。[BonBon Button](http://archive.simurai.com/lab/buttons/)が有名でしょうか。氏が札幌にいるということは知ってたので、誘ってみようということで谷さんが誘ったら来てくれた。
+そう、あの世界のUI/UX Designer、[@simurai](http://simurai.com/)氏にお会いしてきた。[BonBon Button](http://archive.simurai.com/lab/buttons/)あたりが有名だろうか。氏が札幌にいるということは知ってたので、誘ってみようということで@hilokiさんが誘ったら来てくれた。
 
 <blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/hiloki">@hiloki</a> Is it <a href="http://t.co/Ueod5YFkwX">http://t.co/Ueod5YFkwX</a>? I won’t understand much since my Japanese is not that good. But sure, I’ll come anyways. ;-)</p>&mdash; simurai (@simurai) <a href="https://twitter.com/simurai/statuses/402398182136479744">2013, 11月 18</a></blockquote>
 
-セッション後の懇親会にも来てくれて、話もしてきた（英語喋れないけど、片言でなんとか）。すごい気さくでいい人だったし、何と言ってもイケメン。
+セッション後の懇親会にも来てくれて、話もしてきた（英語喋れないけど、片言でなんとか）。すごい気さくでいい人だった。
 
 <blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/1000ch">@1000ch</a> <a href="https://twitter.com/hiloki">@hiloki</a> <a href="https://twitter.com/pocotan001">@pocotan001</a> Thanks for coming. That was great. Enjoy Otaru.</p>&mdash; simurai (@simurai) <a href="https://twitter.com/simurai/statuses/409520557915267072">2013, 12月 8</a></blockquote>
 
 ## フォローアップ
 
-さて、本題です。セッションの後半でのデモで（デモになってなかったけど）HTMLInspector、CSSLint、JSHintのエラーサンプルを解説しましたが、コードと紐付けて説明が出来ていなかったので、HTMLInspector、CSSLint、JSHintを実際に試すあたりを[1000ch/brushup-sample](http://github.com/1000ch/brushup-sample)に詳しく書いた。
+さて、本題。セッションの後半でのデモで（デモになってなかったけど）HTMLInspector、CSSLint、JSHintのエラーサンプルを解説したが、コードと紐付けて説明が出来ていなかったので、HTMLInspector、CSSLint、JSHintを実際に試すあたりを[1000ch/brushup-sample](http://github.com/1000ch/brushup-sample)に詳しく書いた。
 
 <script async class="speakerdeck-embed" data-id="1b318f5058b0013149ef66d2f27aad89" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
 ## SaCSSはとても素敵なコミュニティ
 
-滞在期間は2.5日ほどでしたが、かなり濃かったです。参加者の皆さん、とても勉強熱心で温かい人達ばかりで、とても楽しかったです。また機会があれば是非行きたい。札幌の皆さんありがとうございました！
+滞在期間は2.5日ほどでしたが、かなり濃かった。参加者の皆さん、とても勉強熱心で温かい人達ばかりで、とても楽しかった。また機会があれば是非行きたい。札幌の皆さんありがとうございました！
 
 ![](/img/posts/2013/frontrend-in-sapporo/sacss-sp4-portrait.jpg)
 
@@ -34,7 +34,7 @@ date: 2013-12-10
 
 ![](/img/posts/2013/frontrend-in-sapporo/sacss-sp4-frontrend.jpg)
 
-こちらじまぐさんより。いい写真！
+こちら@nakajmgさんより。いい写真！
 
 ## 参加者の皆様のブログ（随時更新）
 

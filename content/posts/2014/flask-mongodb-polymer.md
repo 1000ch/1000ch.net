@@ -6,14 +6,9 @@ date: 2014-03-12
 
 # PythonとMongoDBとPolymerでRSSリーダーを作った
 
-Pythonで何かアプリ書きたいなと思ってはいたので、RSSリーダーを作った。
-フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。
+Pythonで何かアプリ書きたいなと思ってはいたので、[RSSリーダー](http://cobra.herokuapp.com)を作った。フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。
 
-- [Cobra](http://cobra.herokuapp.com) - Herokuにデプロイしてある実物
-- [1000ch/cobra](https://github.com/1000ch/cobra/tree/development)
-
-Flask + MongoDBのところまで実装して暫く放置していたけど、
-最近思いつきでPolymerをねじ込んだので記事にしてみる。
+Flask + MongoDBのところまで実装して暫く放置していたけど、最近思いつきでPolymerをねじ込んだので記事にしてみる。
 
 ## やってること
 
@@ -21,27 +16,15 @@ Flask + MongoDBのところまで実装して暫く放置していたけど、
 - トップページで50件ずつ記事の表示 & 非同期で50件づつ取得
 - 購読しているRSSで表示する記事をフィルタ
 
-**Opml(XML)のパース→記事の取得** に非常に時間が掛かるので、データストアに入れておいてそこから取得しないとRSSリーダーとして非実用的。
-この定期的に取得する処理を[Heroku Scheduler](https://addons.heroku.com/marketplace/scheduler)で実行している。
-あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Heroku良い。
+**Opml(XML)のパース→記事の取得** に非常に時間が掛かるので、データストアに入れておいてそこから取得しないとRSSリーダーとして非実用的。この定期的な取得処理を[Heroku Scheduler](https://addons.heroku.com/marketplace/scheduler)で実行している。あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Heroku良い。
 
-最初は格納してあるデータを全件取得して表示していたが、
-50件ずつ表示にしたことで使い心地はやや下がった。Polymer使いたかっただけです。
+最初は格納してあるデータを全件取得して表示していたが、50件ずつ表示にしたことで使い心地はやや下がった。Polymerを使いたかっただけ。
 
 ## PythonとFlask
 
-Flaskは、軽量なWebアプリケーションフレームワーク。
-マイクロフレームワークの意味するところはシンプルなコアな機能と拡張性を持たせている点であり、
-それ自体にはデータベースレイヤへのアクセスモジュールなどはないが、様々な拡張モジュールが存在する。
-例えば、これについてはSQLAlchemyというORマッパーがある。
-日本語のハンズオンとドキュメントがあり、とても充実しているので試したい方にオススメ。
+[Flask](http://flask.pocoo.org/)は、軽量なWebアプリケーションフレームワーク。マイクロフレームワークの意味するところはシンプルなコアな機能と拡張性を持たせている点であり、それ自体にはデータベースレイヤへのアクセスモジュールなどはないが、様々な拡張モジュールが存在する。例えば、これについてはSQLAlchemyというORマッパーがある。[日本語のハンズオン](http://methane.github.io/flask-handson/)と[ドキュメント](http://flask-docs-ja.readthedocs.org/)も充実している。
 
-- [Flask](http://flask.pocoo.org/)
-- [Flask ハンズオン](http://methane.github.io/flask-handson/)
-- [Flaskへようこそ](http://flask-docs-ja.readthedocs.org/)
-
-Pythonは、プロパティアクセスとかリテラル（配列・オブジェクト）がJavaScriptとほぼ同じだし、
-JSやってる人ならあまり違和感なくやれるのではと思ったり。
+Pythonは、プロパティアクセスとかリテラル（配列・オブジェクト）がJavaScriptとほぼ同じだし、JavaScriptやってる人ならあまり違和感なくやれるのではと思ったり。
 
 ```js
 // JavaScriptでのArrayとObject
@@ -67,10 +50,7 @@ print(object.key);
 
 ## MongoDBへのアクセス
 
-MongoDBへのアクセスはpymongoで実装。
-MongoDBを使ったことはなかったが、ここに関してもあまり悩まず実装できた。
-ローカルでデバッグするときはHomebrewでインストールしたMongoDBをデーモン実行しておくのと、
-Herokuのときは環境変数からURLを得るようにする。
+MongoDBへのアクセスは`pymongo`で実装。MongoDBを使ったことはなかったが、ここに関してもあまり悩まず実装できた。ローカルでデバッグするときはHomebrewでインストールしたMongoDBをデーモン実行しておくのと、Herokuのときは環境変数からURLを得るようにする。
 
 ```bash
 # install mongodb
@@ -102,31 +82,23 @@ Herokuの時はGunicornで起動。
 
 ## [Flask RESTFul](http://flask-restful.readthedocs.org/en/latest/)
 
-最初はMongoDBに入れておいたデータを全て返して表示しておくだけだったが、[RESTなAPIも用意](https://github.com/1000ch/cobra/blob/development/cobra/api.py)してみた。
-普通にHTMLテンプレートにデータ渡して描画させてるときは気にかけてなかったけど、
-Pythonの`list`オブジェクトを素直に`jsonify()`出来なくて、暫く中断。
-結果的にはMongoDBから取得しているために、`ObjectId()`があったのが要因だった。ので、[素直に`del`してる](https://github.com/1000ch/cobra/blob/development/cobra/api.py#l27)。
-JavaScriptでいうところのPluckとかMap的なことをしたい。これは後で書き直すと思う…。
+最初はMongoDBに入れておいたデータを全て返して表示しておくだけだったが、[RESTなAPIも用意](https://github.com/1000ch/cobra/blob/development/cobra/api.py)してみた。普通にHTMLテンプレートにデータ渡して描画させてるときは気にかけてなかったけど、Pythonの`list`オブジェクトを素直に`jsonify()`出来なくて、暫く中断。
 
-- [Flask RESTFul](http://flask-restful.readthedocs.org/en/latest/)
+結果的にはMongoDBから取得しているために、`ObjectId()`があったのが要因だった。ので、[素直に`del`してる](https://github.com/1000ch/cobra/blob/development/cobra/api.py#l27)。JavaScriptでいうところのPluckとかMap的なことをしたい。
 
-`flask.jsonify()`はFlaskが提供するユーティリティで、組み込みの`json.dumps()`と何が違うのかと思っていたら、
-[引数周りを上手いことラップしたりmimetypeの指定をしてる](http://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify)らしい。薄めのラッパーだった。
+`flask.jsonify()`はFlaskが提供するユーティリティで、組み込みの`json.dumps()`と何が違うのかと思っていたら、[引数周りを上手いことラップしたりmimetypeの指定をしてる](http://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify)らしい。
 
-URLのマッピングは`/api/get/<int:skip>/<int:limit>`とし、`/api/get/10/10`とも出来たけど、
-個人的にQuery Stringの方がなんかしっくりくるので`reqparse.RequestParser()`でパースしてる。
+URLのマッピングは`/api/get/<int:skip>/<int:limit>`とし、`/api/get/10/10`とも出来たけど、個人的にクエリの方がなんかしっくりくるので`reqparse.RequestParser()`でパースしてる。
 
 ## Polymerのおまけ
 
-繰り返しですが、これは完全に使いたかっただけ。とりあえずレベルで`<polymer-ajax>`を試したあとに
-いくつかの課題を残しつつ、記事の一覧（画面左）を`<x-entry>`というカスタムエレメント化。
+繰り返しだが、これは完全に使いたかっただけ。とりあえずレベルで`<polymer-ajax>`を試したあとにいくつかの課題を残しつつ、記事の一覧（画面左）を`<x-entry>`というカスタムエレメント化。
 
 ### `<polymer-ajax>`
 
-リクエストURLに`"/api/get?skip={{skip}}&limit={{limit}}"`という形で変数を埋め、
-Ajaxで取得する毎にskipと書き換えているので、ささやかながら2way-bindingの恩恵を受けている。以下課題とメモ。
+リクエストURLに`"/api/get?skip={{skip}}&limit={{limit}}"`という形で変数を埋め、Ajaxで取得する毎にskipを書き換えている。ささやかながら2way-bindingの恩恵を受けている。以下課題とメモ。
 
-### テンプレートオブジェクトが残る…
+### テンプレートオブジェクトが残る
 
 Ajaxで取得したデータを以下に渡して描画。
 
@@ -147,15 +119,11 @@ Ajaxで取得したデータを以下に渡して描画。
 </polymer-element>
 ```
 
-`repeat="{{ entry in entries }}"`で記事の数だけループさせたはまではよかったのだが、
-`<template>`がデータとして残るので、CSSが意図しない適用になった。（例えば`:first-child`のところとか）
-これはテンプレート側では回避不可能なんでしょうか？
+`repeat="{{ entry in entries }}"`で記事の数だけループさせたはまではよかったのだが、`<template>`がデータとして残るので、CSSが意図しない適用になった（例えば`:first-child`のところとか）。
 
 ### `ready`でフィルタシンタックスが参照出来ない？
 
-画面右のUIで表示する記事のフィルタリングをしていますが、その絞り込みがお粗末になってしまった。
-上で述べたループ定義を`repeat="{{ entry in entries | filterEntry }}"`とし、
-`filterEntry`関数を用意すれば良いような気がしたけど、どうも`ready`のタイミングだとエラーが出て参照できない模様。
+画面右のUIで表示する記事のフィルタリングをしているが、その絞り込みがお粗末になってしまった。上で述べたループ定義を`repeat="{{ entry in entries | filterEntry }}"`とし、`filterEntry`関数を用意すれば良いような気がしたけど、どうも`ready`のタイミングだとエラーが出て参照できない模様。
 
 ### プロパティの監視
 
@@ -171,7 +139,7 @@ attributeChanged: function attributeChangedCallback(changedAttr) {
 },
 ```
 
-と書いていたのは以下のように書き換え可能。ダイナミックだ。
+と書いていたのは、以下のように[書き換え可能](http://www.polymer-project.org/docs/polymer/polymer.html#observeprops)。ダイナミックだ。
 
 ```js
 filterChanged: function filterChangedCallback(oldValue, newValue) {
@@ -179,12 +147,9 @@ filterChanged: function filterChangedCallback(oldValue, newValue) {
 },
 ```
 
-- [Observing properties](http://www.polymer-project.org/docs/polymer/polymer.html#observeprops)
-
 ### オブジェクトや配列の初期化は`created`でやったほうがベター
 
-`Polymer()`の第二引数直下で初期化するとprototypeで紐付いてしまうそう。
-Polymer側で色々やっていそうだけど、`document.registerElement()`の第二引数のような感じなのか。
+`Polymer()`の第二引数直下で初期化するとprototypeで紐付いてしまうそう。Polymer側で色々やっていそうだけど、`document.registerElement()`の第二引数のような感じなのか。
 
 ```js
 Polymer('x-foo', {
@@ -203,5 +168,4 @@ Polymer('x-foo', {
 
 ## その他感想
 
-Polymer要素が多めな割に、あまりスコープの恩恵は受けていない作り…。
-サーバー側も結構適当な作りなのでアドバイス欲しいです。
+Polymer要素が多めな割に、あまりスコープの恩恵は受けていない作りだが、普段触らない技術を試してみるのは良いもの。
