@@ -64,10 +64,7 @@ docomoを含めてauやSoftbankなどの大手プロバイダはもれなく2年
 
 ### みおふぉん紹介コード
 
-せっかくなので紹介コード載せておきます。紹介リンクを踏んで登録してもらうか、コードを直接入力してもらえるとバンドルクーポンの10%増量という特典があります。
-
-- [紹介リンク](https://www.iijmio.jp/campaign/mgm/invite/?id=964059390599448&sns=0)
-- **964 0593 9059 9448**
+せっかくなので紹介コード載せておきます。これを使ってもらうとバンドルクーポンの10%増量という特典があります。[紹介リンク](https://www.iijmio.jp/campaign/mgm/invite/?id=964059390599448&sns=0)を踏んで登録してもらうか、コード（ **964 0593 9059 9448** ）を直接入力してもらうと適用されます。
 
 ## iPhone 5sからiPhone 6sへの乗り換え
 
@@ -94,8 +91,6 @@ iPhone 5sが不要になるわけだが、Macの買い取りとかでいつも�
 ### Nexus 5xとも迷った
 
 iPhoneの巨大化が止まらないので、Androidも検討した。AndroidだったらNexusだよなーとずっと考えていたが、サイズが手頃な[Nexus 5x](https://store.google.com/product/nexus_5x)の発売が不明で、結局iPhone 6sを買ってしまったわけだけど。
-
-<div class="g-post" data-href="https://plus.google.com/+PaulIrish/posts/g8KQ6CBD7tk"></div>
 
 Nexus 5xが欲しくなっても、買ってSIMを差し替えれば使えるので、いいか。
 
