@@ -14,9 +14,7 @@ date: 2013-08-30
 
 ## middlemanのインストール
 
-middlemanはrubyで動く静的サイトジェネジェネレータ。テンプレートをほぼHTMLで記述することが出来て、ブログ等の管理を非常に簡単にすることが可能。jekyll使ったことのある人なら学習コストはさらに低め。詳しくはこの辺りが参考になる。
-
-- [middleman - web サイトの開発をシンプルに](http://middleman-guides.e2esound.com/)
+middlemanはrubyで動く静的サイトジェネジェネレータ。テンプレートをほぼHTMLで記述することが出来て、ブログ等の管理を非常に簡単にすることが可能。jekyll使ったことのある人なら学習コストはさらに低め。詳しくは[この辺りが参考になる](http://middleman-guides.e2esound.com/)。
 
 まずはmiddlemanのインストールから。
 
@@ -94,9 +92,9 @@ rvm: 2.0.0
 env:
   global:
     - GIT_COMMITTER_NAME=1000ch
-    - GIT_COMMITTER_EMAIL=orz1000ch@gmail.com
+    - GIT_COMMITTER_EMAIL=shogo.sensui@gmail.com
     - GIT_AUTHOR_NAME=1000ch
-    - GIT_AUTHOR_EMAIL=orz1000ch@gmail.com
+    - GIT_AUTHOR_EMAIL=shogo.sensui@gmail.com
     - secure: [トークン]
 before_script:
     - git clone --quiet https://github.com/1000ch/middleman-playground.git build
@@ -116,22 +114,19 @@ after_success:
 
 ## 以上を踏まえたサンプル
 
-- [middleman-playground](https://github.com/1000ch/middleman-playground)
-
-Gruntでsassファイルをコンパイルするというのを追加している。Travis上でcloneしてきた`master`ブランチで、Grunt周りをひと通りインストールして（rakeでいいじゃんというツッコミは一旦なしで）、`grunt-contrib-sass`でコンパイルされたcssをgh-pagesにコミットするという手順になってる。
+[1000ch/middleman-playground](https://github.com/1000ch/middleman-playground)に成果物を置いた。Gruntでsassファイルをコンパイルするというのを追加している。Travis上でcloneしてきた`master`ブランチで、Grunt周りをひと通りインストールして（rakeでいいじゃんというツッコミは一旦なしで）、`grunt-contrib-sass`でコンパイルされたcssをgh-pagesにコミットするという手順になってる。
 
 が、このままだとrubyプロジェクトなので、Travis上で`bundle install --deployment`した場合に、Sassが`vendor/bundle`配下にインストールされて、gruntから参照出来ずにビルドがこける。最初、`--binstub`をつけて解決したかと思ったが、これを付けて解決したというよりは、`--deployment`が外れたせいだった。
 
 ## 所感
 
-今回やったGruntによるsassのコンパイルは正直な所微妙なやり方で、middlemanはcompassの機能を含んでいるので、middleman + Gruntの組み合わせがそもそも。Sassのコンパイルをするだけならmiddleman + rakeのほうが自然ぽい。
+今回やったGruntによるsassのコンパイルは正直な所微妙なやり方で、middlemanはcompassの機能を含んでいるので、middleman + Gruntの組み合わせがそもそもという話がある。Sassのコンパイルをするだけならmiddleman + rakeのほうが自然ぽい。
 
 ジェネレータとしてのmiddlemanはjekyllと似ている。ブログモードとかもあったり、初期設定がjekyllより気が利いているかもしれない。あと、本来の目的であるTravisからの`gh-pages`ブランチへの`git push`は、middlemanなしでももちろん出来る。
 
-尚、身長が伸びるかどうかは個人差がある。
+尚、身長が伸びるかどうかは個人差があります。
 
 ## 参考
 
 - [Creating an access token for command-line use](https://help.github.com/articles/creating-an-access-token-for-command-line-use)
 - [Middleman で作った web サイトを Travis + GitHub pages でお手軽に運用する](http://tricknotes.hateblo.jp/entry/2013/06/17/020229)
-- [http://middleman-guides.e2esound.com/](http://middleman-guides.e2esound.com/)
