@@ -1,6 +1,7 @@
 {
   "name": "1000ch.net",
   "description": "Happens on me, Happens from me.",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/1000ch/1000ch.net.git"
