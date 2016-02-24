@@ -14,8 +14,8 @@
 }
 
 .highlight {
-  background: #f3df49;
   color: #2e2e2c;
+  background: #f3df49;
 }
 
 .pull-left {
@@ -27,7 +27,7 @@
 }
 
 .clearfix::after {
+  display: table;
   clear: both;
   content: "";
-  display: table;
 }

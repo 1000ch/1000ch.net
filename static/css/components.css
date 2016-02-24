@@ -1,10 +1,10 @@
 .Container {
-  background: #fff;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  max-width: 80rem;
   min-width: 32rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  background: #fff;
 }
 
 .Header,
@@ -15,11 +15,11 @@
 }
 
 .Header__Title {
-  border-bottom: none;
   font-size: 4.8rem;
   font-weight: bold;
   margin: 1.6rem 0;
   text-decoration: none;
+  border-bottom: none;
 }
 
 .Header__Menu {
@@ -36,8 +36,8 @@
 }
 
 .Media {
-  align-items: flex-start;
   display: flex;
+  align-items: flex-start;
 }
 
 .Media__figure {
@@ -49,9 +49,9 @@
 }
 
 .Media__title {
-  color: #333;
   font-size: 2.4rem;
   font-weight: bold;
+  color: #333;
 }
 
 .Banner {
@@ -65,8 +65,8 @@
 }
 
 .List {
-  list-style-type: none;
   padding-left: 0 !important;
+  list-style-type: none;
 }
 
 .List__Item {
@@ -107,8 +107,8 @@
 
 .Pager__Item {
   display: flex;
-  flex-grow: 1;
   padding: 0.8rem;
+  flex-grow: 1;
 }
 
 .Pager__Item i,
@@ -117,8 +117,8 @@
 }
 
 .Pager__Item--prev {
-  justify-content: flex-end;
   text-align: right;
+  justify-content: flex-end;
 }
 
 .Pager__Item--prev i {
@@ -126,8 +126,8 @@
 }
 
 .Pager__Item--next {
-  justify-content: flex-start;
   text-align: left;
+  justify-content: flex-start;
 }
 
 .Pager__Item--next i {

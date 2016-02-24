@@ -1,27 +1,27 @@
 .Label {
-  border-radius: 0.4rem;
   font-size: 1.2rem;
   margin: 0.4rem;
   padding: 0.4rem;
   vertical-align: text-bottom;
+  border-radius: 0.4rem;
 }
 
 .Label--gray {
-  background: #eee;
   color: #666;
+  background: #eee;
 }
 
 .Label--red {
-  background: #e2007a;
   color: #fff;
+  background: #e2007a;
 }
 
 .Label--blue {
-  background: #199ad5;
   color: #fff;
+  background: #199ad5;
 }
 
 .Label--yellow {
-  background: #f3df49;
   color: #2e2e2c;
+  background: #f3df49;
 }
