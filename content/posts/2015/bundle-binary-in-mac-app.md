@@ -18,19 +18,17 @@ date: 2015-03-21
 func execute() -> String {
     let task = NSTask()
     let pipe = NSPipe()
-      
+
     task.launchPath = bundle.pathForResource("cwebp", ofType: "")
     task.currentDirectoryPath = "~"
     task.arguments = "-q 80 input.png -o output.webp"
     task.standardOutput = pipe
     task.launch()
-        
+
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
     return NSString(data: data, encoding: NSUTF8StringEncoding)!
 }
 ```
-
-これは汎用的に使えるように[1000ch/BinaryWrapper](http://github.com/1000ch/BinaryWrapper)として切り出してみた。
 
 ## iTunes Connectにsubmitできない
 
@@ -85,7 +83,7 @@ $ codesign --display --entitlements - ./cwebp
 let image: CGImage? = getCGImage(image)
 let provider: CGDataProviderRef = CGImageGetDataProvider(image)
 let bitmap: CFDataRef = CGDataProviderCopyData(provider)
-    
+
 let rgb: UnsafePointer<UInt8> = CFDataGetBytePtr(bitmap)
 let width: Int32 = Int32(image.size.width)
 let height: Int32 = Int32(image.size.height)
@@ -95,7 +93,7 @@ let qualityFactor: Float = Float(80)
 var webp: NSData
 var output: UnsafeMutablePointer<UInt8> = nil
 var size: size_t = WebPEncodeRGBA(rgb, width, height, stride, qualityFactor, &output)
-        
+
 webp = NSData(bytes: output, length: Int(size))
 webp.writeToFile(self.saveFilePath, atomically: true)
 free(output)
