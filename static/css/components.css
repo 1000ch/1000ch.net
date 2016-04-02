@@ -81,8 +81,8 @@
 }
 
 .Share__Item {
-  font-size: 3.2rem;
   padding: 0.8rem;
+  font-size: 3.2rem;
 }
 
 .Share__Item a {
@@ -117,20 +117,18 @@
   align-self: center;
 }
 
-.Pager__Item--prev {
-  text-align: right;
-  justify-content: flex-end;
-}
-
-.Pager__Item--prev i {
-  margin-left: 0.8rem;
-}
-
-.Pager__Item--next {
-  text-align: left;
+.Pager__Item--left {
   justify-content: flex-start;
 }
 
-.Pager__Item--next i {
+.Pager__Item--left i {
   margin-right: 0.8rem;
+}
+
+.Pager__Item--right {
+  justify-content: flex-end;
+}
+
+.Pager__Item--right i {
+  margin-left: 0.8rem;
 }

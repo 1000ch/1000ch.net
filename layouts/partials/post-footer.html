@@ -17,19 +17,19 @@
 </aside>
 
 <nav class="Pager">
-  {{with .Next}}
-    <div class="Pager__Item Pager__Item--next">
+  {{ with .Next }}
+    <div class="Pager__Item Pager__Item--left">
       <i class="fa fa-arrow-left"></i>
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </div>
-  {{else}}
-  {{end}}
+  {{ else }}
+  {{ end }}
 
-  {{with .Prev}}
-    <div class="Pager__Item Pager__Item--prev">
+  {{ with .Prev }}
+    <div class="Pager__Item Pager__Item--right">
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
       <i class="fa fa-arrow-right"></i>
     </div>
-  {{else}}
-  {{end}}
+  {{ else }}
+  {{ end }}
 </nav>
