@@ -10,8 +10,7 @@
     "url": "https://github.com/1000ch/1000ch.net/issues"
   },
   "scripts": {
-    "postinstall": "gulp build",
-    "start": "npm run build && hugo server --watch",
+    "start": "gulp watch & hugo server --watch",
     "build": "gulp build"
   },
   "devDependencies": {
