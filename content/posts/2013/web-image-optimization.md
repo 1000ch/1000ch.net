@@ -77,29 +77,14 @@ JPEG形式にはプログレッシブとベースラインという2種類の保
 
 DataURI化する目的としてはリクエストを減らすことがゴールだけど、それと引き換えになるデメリットが大きく映ることが多いうことで非推奨。
 
-## 所感
-
-長々と書いたが、その手法もその時その場合に応じて適切な方法を選べることが重要。それでも、PNGの8bitコンバートとJPGの圧縮、メタカットは最低限やっておきたいところ。
-
-その画質が必要なのか。その画像にRetina対応が要るのか。頻繁に更新される画像なのにスプライト化しなければいけないのか。みなさんも再考してみてはいかがでしょう。
-
-## 追記1
-
-途中dataURIについての言及をしましたが以下の様な指摘を受けた。
+### ※追記
 
 <blockquote class="twitter-tweet"><p>|-`) 隅だけどDataURIはgzip効くから1.3倍まるまる大きくはならないよーな / Webにおける画像の最適化について考える | <a href="http://t.co/aeV3vAZQzF">http://t.co/aeV3vAZQzF</a> <a href="http://t.co/1y49VC9bd4">http://t.co/1y49VC9bd4</a></p>&mdash; あほむ (@ahomu) <a href="https://twitter.com/ahomu/statuses/380482694032785408">September 19, 2013</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 gzipの言及足りていなかった。一応全部画像サイズ検証して[リポジトリに追記したが](https://github.com/1000ch/compress-image/tree/master/compress-png)、まるまる大きくならないどころかgzipしたdataURIとPNGデータはほとんどサイズが変わらなかった。デコードの実施コストはあることは変わらない。
 
-## 追記2
+## 所感
 
-各所でカラーパレットという言葉を使ったが、以下の様な指摘を受けた（現在は修正済）。
+長々と書いたが、その手法もその時その場合に応じて適切な方法を選べることが重要。メタ情報の削除は最低限、PNGの減色(8bitコンバート)およびJPGの減色も可能な限り実施したいところ。
 
-<blockquote class="twitter-tweet"><p><a href="https://twitter.com/1000ch">@1000ch</a> <a href="https://twitter.com/ahomu">@ahomu</a> ていうか「パレット」という用語がわかってないですよ</p>&mdash; はぇ～ (@haxe) <a href="https://twitter.com/haxe/statuses/380483481148461056">September 19, 2013</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-PNGにおいてパレットは基本チャンクに含まれるRGBの3バイトからなる1~256のエントリ。ビットマップにおいて色はピクセルごとに指定されるが、インデックスカラーを定義し、ピクセルからそのインデックスを参照することでデータ量が減る。パレットはインデックスカラーとして作用し、8bitのPNGはこっちのモードになる。たぶん。colorタイプが3の時は必須、2~6の時は任意。と書いてありましたがこの辺りはよくわからなかった。
-
-- [4. Chunk Specifications](http://www.libpng.org/pub/png/spec/1.2/PNG-Chunks.html)
-- [PNG that works](http://calendar.perfplanet.com/2010/png-that-works/)
+その画質が必要なのか。その画像にRetina対応が要るのか。頻繁に更新される画像なのにスプライト化しなければいけないのか。みなさんも再考してみてください。
