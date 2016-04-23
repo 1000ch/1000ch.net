@@ -108,7 +108,6 @@
 
 .Pager__Item {
   display: flex;
-  padding: 0.8rem;
   flex-grow: 1;
 }
 
