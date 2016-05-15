@@ -43,6 +43,8 @@
 
 .Media__figure {
   margin-right: 1rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .Media__body {
