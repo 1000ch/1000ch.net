@@ -2,6 +2,7 @@
 layout: post
 title: WEB+DB PRESS Vol.90 Webフロントエンド最前線「SVG … マルチデバイスに強く、アニメーションもできる画像フォーマット」
 date: 2015-12-23
+image: /img/posts/2015/wdpress-frontend-series-svg/cover.jpg
 ---
 
 # WEB+DB PRESS Vol.90 Webフロントエンド最前線「SVG … マルチデバイスに強く、アニメーションもできる画像フォーマット」

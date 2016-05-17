@@ -2,6 +2,7 @@
 layout: post
 title: WEB+DB PRESS Vol.88 Webフロントエンド最前線「スムーズなUIを実現するレンダリング速度の改善ノウハウ」
 date: 2015-08-14
+image: /img/posts/2015/wdpress-frontend-series-render/cover.jpg
 ---
 
 # WEB+DB PRESS Vol.88 Webフロントエンド最前線「スムーズなUIを実現するレンダリング速度の改善ノウハウ」

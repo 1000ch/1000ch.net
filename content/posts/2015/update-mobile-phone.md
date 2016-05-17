@@ -2,6 +2,7 @@
 layout: post
 title: docomoからみおふぉんへ、iPhone 5sからiPhone 6sへ
 date: 2015-10-17
+image: /img/posts/2015/update-mobile-phone/iijmio.jpg
 ---
 
 # docomoからみおふぉんへ、iPhone 5sからiPhone 6sへ

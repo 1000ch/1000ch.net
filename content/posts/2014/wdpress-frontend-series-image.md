@@ -2,6 +2,7 @@
 layout: post
 title: WEB+DB PRESS Vol.83 Webフロントエンド最前線「Webフロントエンドの画像形式と最適化」
 date: 2014-10-15
+image: /img/posts/2014/wdpress-frontend-series-image/cover.jpg
 ---
 
 # WEB+DB PRESS Vol.83 Webフロントエンド最前線「Webフロントエンドの画像形式と最適化」

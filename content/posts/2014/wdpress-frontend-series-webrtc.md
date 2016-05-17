@@ -2,6 +2,7 @@
 layout: post
 title: WEB+DB PRESS 新連載「Webフロントエンド最前線」
 date: 2014-06-19
+image: /img/posts/2014/wdpress-frontend-series-webrtc/cover.jpg
 ---
 
 # WEB+DB PRESS 新連載「Webフロントエンド最前線」
