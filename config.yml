@@ -9,5 +9,6 @@ uglyUrls: true
 metaDataFormat: "yaml"
 params:
   author: "1000ch"
+  description: "Happens on me, happens from me."
 permalinks:
   post: "/:year/:title"
