@@ -68,6 +68,20 @@ console.log(
 
 ここから`PerformanceEntry`などのインターフェースに対応するNavigation Timing Level 2という仕様の策定が進んでいる。これは後述の`PerformanceObserver`に必要なインターフェースとなっている。
 
+`DOMContentLoaded`や`load`、`document.readyState`との対応関係は次のようになりそう。
+
+|  Browser lifecycle   | `document.readyState` | Navigation Timing API   |
+|----------------------|-----------------------|-------------------------|
+|                      |                       | `timing.domLoading`     |
+|                      | `loading`             |                         |
+|                      |                       | `timing.domInteractive` |
+|                      | `interactive`         |                         |
+| `DOMContentLoaded`   |                       | `timing.domContentLoadedEventStart` |
+|                      |                       | `timing.domContentLoadedEventEnd` |
+|                      |                       | `timing.domComplete`    |
+|                      | `complete`            |                         |
+| `load`               |                       | `timing.loadEvent`      |
+
 ## Resource Timing API
 
 [Resource Timing API](https://w3c.github.io/resource-timing/)はページ内でロードされたリソースに関する情報を取得するAPI。雑に言えばNavigation Timing APIのサブリソース版。
