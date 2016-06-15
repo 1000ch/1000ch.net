@@ -12,7 +12,6 @@ body {
   line-height: 1.6;
   color: #666;
   background: #f9f9f9;
-  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
@@ -62,15 +61,18 @@ img {
 }
 
 table {
-  border: 0.1rem solid #ddd;
-  border-radius: 0.4rem;
+  display: block;
+  overflow: auto;
+}
+
+th {
+  background-color: #f8f8f8;
 }
 
 td,
 th {
   padding: 0.8rem;
-  border: 0.1rem dashed #ddd;
-  border-radius: 0.4rem;
+  border: 0.1rem solid #ddd;
 }
 
 kbd {
