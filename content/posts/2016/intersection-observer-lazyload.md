@@ -13,7 +13,7 @@ image: /img/posts/2016/intersection-observer-lazyload/demo.gif
 
 リライトする前までは、要素それぞれに`scroll`イベントのリスナを発行して、その中で画面内に要素が表れているかを判定していた。throttleしているとはいえ、それぞれのリスナで以下の処理を行っていたのでややパフォーマンスが気になっていた。
 
-1. `getBoundingClinetRect()`で要素の矩形を取得する
+1. `getBoundingClientRect()`で要素の矩形を取得する
 2. `document.documentElement.scrollTop`と`document.documentElement.clientHeight`で画面の上下端を取得する
 3. 要素が可視領域と交差しているかどうかを判定し、交差していたらオリジナルの画像パスを`src`に指定する
 
@@ -41,7 +41,7 @@ observer.observe(document.querySelector('#target'));
 
 ルートは`IntersectionObserver`のコンストラクタの第二引数のオプションの`root`属性で指定可能で、省略するとブラウザのビューポートとの交差判定が行われる。これがあれば、`scroll`イベントを監視して要素同士の重なり具合を地道に判定して…ということがなくなる。やったね！
 
-パフォーマンスに関して言えば、スクロールイベントの大量発行以上に`getBoundingClinetRect()`の実行や`document.documentElement.scrollTop`と`document.documentElement.clientHeight`へのアクセスのほうが気になっていたので、これがなくなるのは大変良い。
+パフォーマンスに関して言えば、スクロールイベントの大量発行以上に`getBoundingClientRect()`の実行や`document.documentElement.scrollTop`と`document.documentElement.clientHeight`へのアクセスのほうが気になっていたので、これがなくなるのは大変良い。
 
 ## `<lazyload-image>`のブラウザ互換性
 
