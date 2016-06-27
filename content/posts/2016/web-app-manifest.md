@@ -2,6 +2,7 @@
 layout: post
 title: Web App Manifest
 date: 2016-06-23
+image: /img/posts/2016/web-app-manifest/devtools.png
 ---
 
 # Web App Manifest
@@ -31,8 +32,6 @@ Webページの振る舞いを直接制御する機能は持ちあわせてお�
 
 具体的には、AndroidのChromeでWeb App Manifestが配信されているページを複数回訪問すると、バナーが表示されモバイルデスクトップへのインストールを促される。iOS Safariで実装が進んだ時にどのように機能するか不明だが、Progressive Web Appsの流れが進めば近い振る舞いが予想できる。が、Appleの場合はiOSのマーケットの事情もあると思うのでなんとも…。
 
-デバッグにはChrome Canary（53台）のDevToolsには搭載されているApplicationタブが便利で、ApplicationセクションのManifest項目に詳細が表示される。ホームスクリーンへの追加もここでエミュレートできる。
-
 ## Web App Manifestに定義されている属性
 
 - `dir`: テキストの向きを表す属性。`ltr`（左から右）・`rtl`（右から左）・`auto`（自動判定）のいずれか
@@ -45,10 +44,10 @@ Webページの振る舞いを直接制御する機能は持ちあわせてお�
 - `display`: Webアプリ起動時の表示モード。`fullscreen`・`standalone`・`minimal-ui`・`browser`のいずれか
 - `orientation`: Webアプリ起動時の画面の向き。`any`・`natural`・`landscape`・`portrait`・`portrait-primary`・`portrait-secondary`・`landscape-primary`・`landscape-secondary`のいずれか
 - `start_url`: Webアプリ起動時のURL
-- `theme_color`: Webアプリのテーマ色。実装に依ってブラウザUIに適用される
+- `theme_color`: Webアプリのテーマ色。実装に依ってブラウザUIに適用され、Chromeではアドレスバーに適用される模様
 - `related_applications`: 関連するアプリケーションのURL。詳細を後述
 - `prefer_related_applications`: `related_applications`で指定された関連するアプリケーションを推奨するか否か。`true`・`false`のいずれか
-- `background_color`: Webアプリの背景色。起動時にあらかじめ適用されたり
+- `background_color`: Webアプリの背景色。起動時のスプラッシュに使われたり、プレースホルダー色になったり
 
 ### `icons`
 
@@ -83,3 +82,17 @@ Webページの振る舞いを直接制御する機能は持ちあわせてお�
   }]
 }
 ```
+
+## Web App Manifestのデバッグ
+
+JSONがWeb App Manifestとして妥当かどうかは[Web Manifest Validator](https://manifest-validator.appspot.com/)を使ってチェックできる。ファイルのアップロードでも、テキストのペーストでも、配信されているURLでもOK。
+
+Webページで配信されているWeb App Manifestのデバッグには、DevToolsに搭載されているApplicationタブが便利で、ApplicationセクションのManifest項目に詳細が表示される。ホームスクリーンへの追加もここでエミュレートできる。
+
+![](/img/posts/2016/web-app-manifest/devtools.png)
+
+## 参考資料
+
+最後に、Totally Tooling Tipsでの紹介動画と[Google Developersの記事](https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android)を。
+
+<iframe width="100%" height="320" src="https://www.youtube.com/embed/yQhFmPExcbs" frameborder="0" allowfullscreen></iframe>
