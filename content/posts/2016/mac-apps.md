@@ -6,7 +6,7 @@ date: 2016-06-21
 
 # 重用しているMacのアプリ
 
-実際にはもう少し色々なアプリがインストールされているが、多用しているものだけピックアップした自分用リスト。
+実際にはもう少し色々なアプリをインストールしているが、多用しているものだけピックアップしたリスト（自分用）。
 
 ## テキストエディタ（IDE）
 
@@ -38,8 +38,9 @@ date: 2016-06-21
 - [Alfred](https://www.alfredapp.com/): 言わずと知れたランチャーアプリ。Powerpackがあると尚良し
 - [AppCleaner](http://appcleaner.softonic.jp/mac): アプリを削除するときに、設定などのゴミファイルも一緒に消してくれる
 - [Bartender](https://www.macbartender.com/): メニューバーに常駐するアプリのアイコンをしまっておける
-- BitBar
+- [BitBar](https://github.com/matryer/bitbar): 任意のスクリプトを定期的に実行し、その結果をメニューバーに表示する
 - [Caffeine](https://itunes.apple.com/jp/app/caffeine/id411246225): オンにするとMacがスリープに入るのを防ぐ
 - [LICEcap](http://www.cockos.com/licecap/): スクリーンを録画してGIFアニメにする。アイコンがダサいので[t32k/licecap-icon](https://github.com/t32k/licecap-icon)に変えている
-- [Reeder](http://reederapp.com/mac/): RSSリーダー。Feedbinのアカウントで使っているが、Feedlyとの連携やRSSを直に登録することも可能
-- [Spectacle](https://www.spectacleapp.com/): アプリのウィンドウサイズをショートカットキーで調整する。個人用途ではこれがあれば[Divvy](http://mizage.com/divvy/)は要らない
+- [PopClip](https://pilotmoon.com/popclip/): テキスト選択時にポップアップを表示し、コピーやカットなどのアクションを提供する。Chromeの拡張等とは異なり、Macであればアプリを選ばないのが良い
+- [Reeder](http://reederapp.com/mac/): RSSリーダー。Feedbinのアカウントを連携して使っているが、FeedlyアカウントやRSSの直登録も可能
+- [Spectacle](https://www.spectacleapp.com/): アプリのウィンドウサイズをショートカットキーで調整する。個人的にはこれがあれば[Divvy](http://mizage.com/divvy/)は要らない
