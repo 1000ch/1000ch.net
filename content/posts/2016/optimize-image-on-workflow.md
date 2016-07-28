@@ -12,13 +12,13 @@ date: 2016-07-26
 
 ビルドプロセスに画像の最適化を行うことはしばしばある。 Gulp や Grunt のプラグインとしては [sindresorhus/gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) や [gruntjs/grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin) があったり、追加プラグインのインストールやオプションの設定が面倒な人のために、拙作の [gulp-image](https://github.com/1000ch/gulp-image) と [grunt-image](https://github.com/1000ch/grunt-image) などもある。その他の CSS や JavaScript といったアセットのビルドと併せて、こうしたツールを実行するのが一般的である。
 
-### Pros 👍
+### 👍 Pros
 
 - 最適化し忘れのリスクを防げる
   - 大抵の場合は glob でパス指定してあるはず?だし、少なくとも手作業よりは抜け漏れは少ない
 - 手動で行うという作業の手間が発生しない
 
-### Cons 👎
+### 👎 Cons
 
 - 画像それぞれの特徴に併せた細やかな最適化処理を施せない
   - 問答無用に png を 8bit ダウンコンバートしている場合に、透過でフルカラーな png があると　**意図せず** 劣化する（本来的にはこういった画像を運用上作らない努力をすべきだし、大抵の場合選ばずに済む）
@@ -31,12 +31,12 @@ date: 2016-07-26
 
 他の解決策としては、バージョン管理に含める段階で最適化をしておくというものがある。つまり、 JPEG ・ PNG ・ GIF ・ SVG ・ WebP を処理した上で`git commit`して、デプロイ時には行わないというものだ。
 
-### Pros 👍
+### 👍 Pros
 
 - ビルド時に最適化処理を行わないのでビルドにかかる時間が短く済む（実際には成果物フォルダへのコピーなどはあるかもしれないが、それでも最適化に比べれば微細である）
 - 軽いファイルを扱うので、 git への負担が少ない（`git clone`時や`git push`時のコストが小さく済む）
 
-### Cons 👎
+### 👎 Cons
 
 - 最適化処理の手間が発生する
 - 作業漏れにより、最適化されていないファイルがリリースされてしまう恐れがある
@@ -53,10 +53,10 @@ date: 2016-07-26
 # to use, save this file as .git/hooks/pre-commit in your git repo
 # make sure to add execute permissions using: chmod +x .git/hooks/pre-commit
 command -v imgo >/dev/null 2>&1 || {
-    echo "\033[1mPlease install imgo to reduce images size before commit\033[0m"
-    echo "Install imgo with the following:"
-    echo "\t \033[1mnpm install -g imgo\033[0m"
-    exit 1;
+  echo "\033[1mPlease install imgo to reduce images size before commit\033[0m"
+  echo "Install imgo with the following:"
+  echo "\t \033[1mnpm install -g imgo\033[0m"
+  exit 1;
 }
 
 for file in `git diff --cached --name-status | awk '$1 ~ /[AM]/ && tolower($2) ~ /\.png$/ {print $2}'`
@@ -100,8 +100,8 @@ done
 
 両方のメリットを享受したいところだが、単に両方で実施すると、
 
-> - 👎 画像それぞれの特徴に併せた細やかな最適化処理を施せない
-> - 👎 **対象の画像が多くなると処理にかかる時間が長くなる**
+> - 画像それぞれの特徴に併せた細やかな最適化処理を施せない
+> - **対象の画像が多くなると処理にかかる時間が長くなる**
 
 の問題が残る。
 
