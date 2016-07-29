@@ -20,30 +20,21 @@
 
 {{if .IsPage }}
   {{ if .Summary }}
-    <meta name="description" content="{{ .Summary }}">
     <meta property="og:description" content="{{ .Summary }}">
-    <meta name="twitter:description" content="{{ .Summary }}">
   {{ else }}
-    <meta name="description" content="{{ .Site.Params.description }}">
     <meta property="og:description" content="{{ .Site.Params.description }}">
-    <meta name="twitter:description" content="{{ .Site.Params.description }}">
   {{ end }}
 
   {{ if .Params.image }}
     <meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.image }}">
-    <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.image }}">
     <meta name="twitter:card" content="summary_large_image">
   {{ else }}
     <meta property="og:image" content="{{ .Site.BaseURL }}/favicon.svg">
-    <meta name="twitter:image" content="{{ .Site.BaseURL }}/favicon.svg">
     <meta name="twitter:card" content="summary">
   {{ end }}
 {{ else }}
-  <meta name="description" content="{{ .Site.Params.description }}">
   <meta property="og:description" content="{{ .Site.Params.description }}">
-  <meta name="twitter:description" content="{{ .Site.Params.description }}">
   <meta property="og:image" content="{{ .Site.BaseURL }}/favicon.svg">
-  <meta name="twitter:image" content="{{ .Site.BaseURL }}/favicon.svg">
   <meta name="twitter:card" content="summary">
 {{ end }}
 
