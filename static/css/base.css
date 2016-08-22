@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-family: YuMincho, serif;
   font-size: 1.6em;
   font-weight: normal;
   line-height: 1.6;
@@ -25,6 +25,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
 
@@ -103,7 +104,7 @@ pre {
 }
 
 code {
-  font-family: "Roboto Mono", "Source Code Pro", monospace;
+  font-family: "Roboto Mono", "Source Code Pro", "Consolas", "Courier New", monospace;
   font-size: 1.4rem;
   margin: 0.1rem 0.2rem;
   padding: 0.1rem 0.2rem;
