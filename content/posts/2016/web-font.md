@@ -10,7 +10,7 @@ date: 2016-08-22
 
 ## プログレッシブな適用とOS共通フォントの選択
 
-まず、テキストのベースフォントとして明朝（ `serif` ）を、 `<h1>` ~ `<h6>` の見出しにはゴシック（ `sans-serif` ）を、コードには等幅（ `monospace` ）を適用する前提方針がある。明朝・ゴシック・等幅の中から自分の好みに近く、尚且つ Mac と Windows にインストールされているものを優先的に選ぶようにした。
+まず前提として、テキストのベースフォントとして明朝（`serif`）を、 `<h1>` ~ `<h6>` の見出しにはゴシック（`sans-serif`）を、コードには等幅（`monospace`）を適用する前提方針がある。明朝・ゴシック・等幅の中から自分の好みに近く、尚且つ Mac と Windows にインストールされているものを優先的に選ぶようにした。
 
 ```css
 body {
@@ -29,11 +29,11 @@ code {
 }
 ```
 
-最も広域になるであろう `<body>` には Mac にも Windows にもインストールされている確率が高い游明朝体（ `YuMincho` ）を指定した。游明朝体は Mac であれば OS X Mavericks (10.9)から、 Windows であれば Windows 8.1 から標準搭載されているので、大半の環境でこちらが適用される。
+最も広域になるであろう `<body>` には Mac にも Windows にもインストールされている可能性が高い游明朝体（`YuMincho`）を指定した。游明朝体は Mac であれば OS X Mavericks (10.9)から、 Windows であれば Windows 8.1 から標準搭載されているので、大半の環境でこちらが適用される。
 
-Roboto と Roboto Mono も指定は残しておいて、閲覧者の環境にインストールされている場合は優先するようにしている。 Roboto と Helvetica はそこそこ近い見た目なので Mac ユーザーであれば Roboto をインストールしてなくともソツのない見た目になるはず。あとは高シェアの Arial でフォールバックさせている。
+個人的に好きな Roboto と Roboto Mono の指定も残しておいて、閲覧者の環境にインストールされている場合は優先するようにしている。 Roboto と Helvetica はそこそこ近い見た目なので Mac ユーザーであれば Roboto をインストールしてなくともソツのない見た目になるはず。あとはシェアの大きい Arial でフォールバックさせている。
 
-等幅フォントは職業柄多少の拘りがあって、 [Roboto Mono](https://fonts.google.com/specimen/Roboto) と [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) と [Consolas](https://en.wikipedia.org/wiki/Consolas) はそのせい。 Source Code Pro は Adobe 製で視認性の高い等幅フォントとして一時期流行ったので、インストールしている人も多そう。 Consolas は Windows 発の等幅フォントで Mac でも Office 製品のインストールと共に漏れ無くついてくる。個人的にはイチオシの等幅フォント。どれもない人には Courier New が適用されるようにしている。
+等幅フォントにも多少のこだわりがあって、 [Roboto Mono](https://fonts.google.com/specimen/Roboto) と [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) と [Consolas](https://en.wikipedia.org/wiki/Consolas) が並んでいるのはそのせい。 Source Code Pro は Adobe 製で視認性の高い等幅フォントとして一時期流行ったので、インストールしている人も多そう。 Consolas は Windows 発の等幅フォントで Mac でも Office 製品のインストールと共にもれなくインストールされる、個人的にはイチオシの等幅フォント。どれもない人には Courier New が適用されるようにしている。
 
 ## Flash of Unstyled Text
 
@@ -51,11 +51,26 @@ FOUT は、テキストに指定されている `font-family` のフォントが
 
 このように実装がブラウザによってまちまちなのも Web 開発者にとって悩ましいところ。これを見る限りは Internet Explorer の「ダウンロード完了まで代替フォントで表示する」のがパフォーマンス（ATF）の観点から言えば一番良さそうに見える。特にブログのようにテキストが主なサイトであれば、いち早く文字を表示しておきたいところだし、フォントのダウンロードに失敗したときに真っ白で終わるリスクが少ない。
 
-問題は、ダウンロードが完了しフォントを切り替えるタイミングでレイアウトが発生する点である。フォント間でサイズギャップが大きいと、読んでいる最中にガタつきが発生してユーザーにとってのストレスは大きい。 Chrome と Firefox はこれを避けるために3秒間の保留を選んでいるのだろう。
+問題は、ダウンロードが完了しフォントを切り替えるタイミングでレイアウトが発生する点である。フォント間でサイズギャップが大きいと読んでいる最中にガタつきが発生して、ユーザーにとってのストレスは大きい。 Chrome と Firefox はこれを避けるために3秒間の保留を選んでいるのだろう。
 
 ## Font Loading API
 
-この3秒間の保留をできる限り短くしたいとすれば、読み込むフォントのそのものを軽量化するのはもちろんのこと、フォントのリクエストからダウンロードまで早めることが重要である。 Web フォントは通常 CSS で定義するので、 CSS のダウンロードと評価に依存するが、これを打破するために JavaScript で命令的にフォントのロードをコントロールする [Font Loading API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API) というものがある。必要になるのがわかっているフォントはなるべく早いタイミングで Font Loading API を駆使ししてロード開始を早めておくと良い。
+この3秒間の保留をできる限り短くしたいとすれば、読み込むフォントのそのものを軽量化するのはもちろんのこと、フォントのリクエストからダウンロードまで早めることが重要である。 Web フォントは通常 CSS で定義するので、 CSS のダウンロードと評価に依存するが、これを打破するために JavaScript で命令的にフォントのロードをコントロールする [Font Loading API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API) というものがある。必要になるのがわかっているフォントはなるべく早いタイミングで Font Loading API を駆使してロード開始を早めておくと良い。
+
+```javascript
+let font = new FontFace('Font Name', 'url(/font-name.woff2)', {
+  style        : 'normal',
+  unicodeRange : 'U+000-5FF',
+  weight       : '400'
+});
+
+font.load();
+font.ready().then(() => {
+  document.fonts.add(font);
+});
+```
+
+Font Loading API には [bramstein/fontloader](https://github.com/bramstein/fontloader) というポリフィルがあるので、ブラウザの実装が進むまではそちらを使うのも手。
 
 ## font-displayプロパティ
 
@@ -82,6 +97,4 @@ FOUT は、テキストに指定されている `font-family` のフォントが
 
 ## Webフォントを使わない選択
 
-Font Loading API や font-display を駆使すると共に、 Cache API などを使ってフォントファイルを完全にキャッシュさせればバンドルフォントの参照に近い振る舞いを期待できそうではあるが、このブログでは冒頭の **プログレッシブな適用とOS共通フォントの選択** で充分だったし、管理コストも考えて Web フォントを使わない選択をとった。自分は必要性に駆られなかったが、Webフォントを使いたい場合は[Noto Sans の Web Font 対応とサブセットによる最適化](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html)の内容を理解した上で利用すべきだろう。
-
-アルファベットはいいなとつくづく思わされる。
+Font Loading API や font-display を駆使すると共に、 Cache API などを使ってフォントファイルを完全にキャッシュさせればバンドルフォントの参照に近い振る舞いを期待できそうではあるが、このブログでは冒頭の **プログレッシブな適用とOS共通フォントの選択** で充分だったし、管理コストも考えて Web フォントを使わない選択をとった。自分は必要性に駆られなかったが、 Web フォントを使いたい場合は [Noto Sans の Web Font 対応とサブセットによる最適化](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) の内容を理解した上で利用すべきだろう。
