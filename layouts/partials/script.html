@@ -3,4 +3,11 @@
 <script async src="//platform.instagram.com/en_US/embeds.js"></script>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
-<script src="/js/app.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var blocks = document.querySelectorAll('pre code');
+  for (var i = 0, l = blocks.length; i < l; i++) {
+    hljs.highlightBlock(blocks[i]);
+  }
+});
+</script>
