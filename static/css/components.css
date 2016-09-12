@@ -1,3 +1,7 @@
+/**
+ * Components............Designed components, chunks of UI.
+ */
+
 .Container {
   display: flex;
   flex-direction: column;

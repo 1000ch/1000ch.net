@@ -9,16 +9,22 @@
   "bugs": {
     "url": "https://github.com/1000ch/1000ch.net/issues"
   },
+  "config": {
+    "postcss": "--use postcss-import --use autoprefixer --use cssnano"
+  },
   "scripts": {
-    "start": "gulp watch & hugo server --watch",
-    "build": "gulp build"
+    "start": "hugo server --watch",
+    "postcss": "postcss $npm_package_config_postcss --output public/css/app.min.css static/css/app.css",
+    "build": "npm run postcss"
+  },
+  "dependencies": {
+    "normalize.css": "^4.2.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-csscomb": "3.0.7",
-    "gulp-csso": "^2.0.0"
+    "autoprefixer": "^6.4.1",
+    "cssnano": "^3.7.4",
+    "postcss-cli": "^2.6.0",
+    "postcss-import": "^8.1.2"
   },
   "author": {
     "name": "1000ch",
