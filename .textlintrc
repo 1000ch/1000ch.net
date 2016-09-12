@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "spellcheck-tech-word": false,
+    "no-mix-dearu-desumasu": true,
+    "max-ten": {
+      "max": 5
+    }
+  }
+}
