@@ -48,4 +48,4 @@ BackboneではBackbone.syncメソッドが通信の起点になっており、�
 
 ## まとめ
 
-明確なAPIラップ関数の用意と、それ以上に`change` / `destroy` / `sync`とイベントの発行に関わっている また、underscore依存といいつつ、事実上のjQuery依存である。
+明確なAPIラップ関数の用意と、それ以上に`change` / `destroy` / `sync`とイベントの発行に関わっている。また、underscore依存といいつつ、事実上jQueryに依存している。
