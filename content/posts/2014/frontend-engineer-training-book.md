@@ -57,6 +57,14 @@ Gitを使ったバージョン管理や・テスト・セキュリティを含�
 
 興味のある方、どうぞお手にとって見てください！
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4774165786&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51A%2B-kjo8gL._SX323_BO1,204,203,200_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/4774165786/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">フロントエンドエンジニア養成読本 [HTML、CSS、JavaScriptの基本から現場で役立つ技術まで満載! ] (Software Design plus)</h4>
+    </a>
+    <p>斉藤 祐也  (著), 石本 光司  (著), 加藤 賢一  (著), 水野 隼登  (著), 谷 拓樹  (著), 泉水 翔吾 (著), 原 一成 (著), 平木 聡  (著), 佐藤 歩  (著), 杉本吉章 (著)</p>
+  </div>
+</div>
 
-7月2日に発売です！（アフィリンク）
+7月2日に発売です！

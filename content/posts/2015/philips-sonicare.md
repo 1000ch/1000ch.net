@@ -20,15 +20,42 @@ date: 2015-07-01
 
 本体は充電式で半永久的に使えるが、ブラシ部分は3ヶ月おきに交換することが推奨されている。替えブラシは4本入りで約3000円なので、約1年で3000円ということになる。1日に換算すると約8円。普通の歯ブラシも1ヶ月~2ヶ月で交換することを考えれば、ほぼトントンということになるだろう。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00EZERQ4A&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00EI7DEV8&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/5162-tk4AbL._SX425_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/B00EZERQ4A/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">フィリップス 電動歯ブラシ用 替ブラシ ソニッケアー プロリザルツ ブラシヘッド 【スタンダード タイプ4本組】HX6014/01</h4>
+    </a>
+    <p>
+      サイズ:1.9×1.9×8.6<br>
+      本体重量:34g<br>
+      素材:ポリプロピレン<br>
+      生産国:アメリカ<br>
+      保障期間:0年<br>
+    </p>
+  </div>
+</div>
 
 ## お試しください
 
 「電動歯ブラシ要る？普通ので良くね？」という人も、安いモデルであれば6000円程度の初期コストだし、騙されたつもりで試してほしい。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00C905644&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00M9Z29T4&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00N5EMWJK&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61l2V4sGnoL._SY679_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/B00C905644/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">フィリップス 電動歯ブラシ ソニッケアー イージークリーン HX6520/50</h4>
+    </a>
+    <p>
+      サイズ:34×34×252mm<br>
+      本体重量:127g<br>
+      素材・材質:ABS<br>
+      生産国:中国<br>
+      電源:AC100~240V 50/60Hz<br>
+      消費電力:1.4W 充電式(約24時間充電<br>
+      保障期間:2年<br>
+    </p>
+  </div>
+</div>
 
 高いものだと~20000円弱まであるようだけど、こちらは使ったことがないのでわからん。何が違うんだろう。

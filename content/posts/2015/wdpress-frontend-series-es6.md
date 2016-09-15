@@ -26,6 +26,14 @@ iojsも[`--harmony`フラグなしでES6のシンタックスが使える](https
 
 記事内で紹介しているES6→ES5のトランスパイラである6to5が、原稿が入稿された後に[babel](https://github.com/babel/babel)に名前が変わるという悲劇が起こってしまったのでご注意ください。こちらは別途アナウンスがあると思います。どこかから。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4774171417&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/611JK2E4TZL._SX352_BO1,204,203,200_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/4774171417/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">WEB+DB PRESS Vol.85</h4>
+    </a>
+    <p>菅原 元気 (著), 磯辺 和彦 (著), 山口 与力 (著), 澤登 亨彦 (著), 濱田 章吾 (著), 宮田 淳平 (著), 松本 亮介 (著), 海野 弘成 (著), 佐藤 歩  (著), 泉水 翔吾  (著), 佐藤 太一 (著), hide_o_55 (著), 青木 良樹 (著), 武本 将英 (著), 道井 俊介  (著), 伊藤 直也 (著), 橋本 翔 (著), 渡邊 恵太 (著), 舘野 祐一 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 牧 大輔 (著), 工藤 春奈 (著), WEB+DB PRESS編集部 (編集)</p>
+  </div>
+</div>
 
 よろしくお願いします(´・ω・`)

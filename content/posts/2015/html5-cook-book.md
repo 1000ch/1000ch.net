@@ -41,6 +41,14 @@ date: 2015-01-22
 
 アクセシビリティの章もあるが、本来こういった属性を適切に指定したり、ドキュメント構造を意識すべきなんだと思う。「開発者同志で齟齬が出るくらいなら全部`<div>`で！」という意見もおおよそ同意な部分もあるけど、適切に実施出来るならやっておくに越したことはないのも間違いなさそう。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4873115477&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51MGrl%2BdO1L._SX389_BO1,204,203,200_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/4873115477/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">HTML5クックブック</h4>
+    </a>
+    <p>Christopher Schmitt (著), Kyle Simpson (著), 株式会社クイープ (翻訳)</p>
+  </div>
+</div>
 
 HTML5は、既にバズワードではなく当たり前になってきている。HTMLの知識をアップデートしたい人にオススメ。

@@ -16,4 +16,20 @@ date: 2016-08-08
 
 テレビ要らない族なので、 PC やゲームなどの出力先ディスプレイとして全てを賄っている。かなり大きなディスプレイなので PS Vita TV や MacBook Pro の出力が追いつくかどうか心配だったが、今のところ問題無い様子。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B01D9FP20A&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51cWvwM7alL._SX425_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/B01D9FP20A/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">Philips 43型ワイド液晶ディスプレイ (4K対応/IPSパネル/5年間フル保証) BDM4350UC/11</h4>
+    </a>
+    <p>
+      画面サイズ: 42.5インチ<br>
+      液晶パネル: IPS、ノングレア(反射防止)<br>
+      解像度: 3840×2160<br>
+      輝度: 300 cd/m²<br>
+      入力端子: D-Sub15 ×1、HDMI2.0(MHL) ×2、DisplayPort1.2 ×2<br>
+      USBポート: USB 3.0 ×4<br>
+      保証期間: パネル、バックライトを含む5年間フル保証(センドバック対応)<br>
+    </p>
+  </div>
+</div>

@@ -44,4 +44,12 @@ ElementパネルとConsoleパネルを使ったWebページのデバッグには
 
 ブラウザの開発者ツールの登場によってWeb開発は比較にならない程効率化されました。今回はその中でもGoogle ChromeのDevToolsにフォーカスしていますが、その進化は留まることを知らず、機能も使い切れないほど豊富なので、この特集を読んでもらってDevToolsを使いこなすきっかけにしてもらえると嬉しいです。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4774176389&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61aoxzmo9OL._SX352_BO1,204,203,200_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/4774176389/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">WEB+DB PRESS Vol.89</h4>
+    </a>
+    <p>佐藤 歩 (著), 泉水 翔吾  (著), 村田 賢太 (著), 門田 芳典 (著), 多賀 千夏 (著), 奥 一穂 (著), 伊藤 直也 (著), 鍛治 匠一 (著), 中山 裕司 (著), 高山 温 (著), 佐藤 太一 (著), 西尾 泰和 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 青木 大祐 (著), WEB+DB PRESS編集部 (編集)</p>
+  </div>
+</div>

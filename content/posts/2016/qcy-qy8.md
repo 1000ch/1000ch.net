@@ -17,4 +17,11 @@ date: 2016-03-24
 
 音周りも不満はない。流石にParrot Zik2.0と比べると劣る気がするけど、このワイヤレスイヤホンで余程音質にこだわる利用シーンも浮かばないので、大半の人は大丈夫だと思われる。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B013U094TY&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/71b3QJjv9ML._SX425_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/B013U094TY/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">【日本正規品】メーカー1年保証 ／ QCY QY8　白黒2色 Bluetooth イヤホン BT ver 4.1 ワイヤレスイヤホン マイク内蔵 ハンズフリー 通話 APT-X CSR 8645 CVC6.0 ノイズキャンセリング搭載 防水 / 防汗 高音質スポーツイヤホン 技適認証済 (ブラック)</h4>
+    </a>
+  </div>
+</div>

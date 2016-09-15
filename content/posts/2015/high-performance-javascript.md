@@ -43,4 +43,12 @@ JavaScript界隈では有名な人なので、前のめりな人なら知って�
 
 JavaScriptのMVCがどうとか、流行り廃りのあるライブラリや思想より、Webを作っていく上で大事で必要な知識だと思う。逆にこの本をおさえておけば、いま巷で話題の技術にも、これから現れるであろう新たな流行にも応用が効く。2011年刊行ということで、10章のツール部分は流石に古さがあるけど、駆け出しWebエンジニアが読むべき内容が詰まっている。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=487311490X&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51tXtsUtw0L._SX389_BO1,204,203,200_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/487311490X/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">ハイパフォーマンスJavaScript</h4>
+    </a>
+    <p>Nicholas C. Zakas  (著), 水野 貴明 (翻訳)</p>
+  </div>
+</div>

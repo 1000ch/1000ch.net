@@ -16,7 +16,15 @@ date: 2015-02-04
 
 プログラマーに、あるいはそれを志す人に一読して欲しい。プログラマーとしてのスタンスを考えさせられる内容。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4274065979&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/511SV9NXW2L._SX351_BO1,204,203,200_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/4274065979/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">ハッカーと画家 コンピュータ時代の創造者たち</h4>
+    </a>
+    <p>ポール グレアム (著), Paul Graham (原著), 川合 史朗 (翻訳)</p>
+  </div>
+</div>
 
 ポール・グレアムについてはLisperというよりは[Y Combinator](https://www.ycombinator.com/)の創始者としての印象が強い。Y Combinatorはスタートアップへの投資を行うベンチャーキャピタルだ。
 

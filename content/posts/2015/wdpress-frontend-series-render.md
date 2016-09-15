@@ -17,10 +17,18 @@ image: /img/posts/2015/wdpress-frontend-series-render/cover.jpg
 
 <script async class="speakerdeck-embed" data-slide="9" data-id="6c6285903bcf0131b1062e4c06c0e983" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
-これは[@ahomu](http://twitter.com/ahomu)さんがHTML5 Conferenceでセッションした**Web Frontend Rendering Performance Knowledge & Tips**というセッションの資料です。この辺の内容をアップデートしてまとめたのが今回の内容になります。
+これは[@ahomu](http://twitter.com/ahomu)さんがHTML5 Conferenceでセッションした**Web Frontend Rendering Performance Knowledge & Tips**というセッションの資料です。この辺の内容をアップデートしてまとめたのが今回の内容です。
 
 ## よろしくおねがいします(´・ω・`)
 
 是非お買い求めください。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4774174882&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61sv1Mse%2BxL._SX352_BO1,204,203,200_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/4774174882/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">WEB+DB PRESS Vol.88</h4>
+    </a>
+    <p>佐々木 拓郎  (著), 高柳 怜士  (著), 鶴原 翔夢 (著), 小野 侑一 (著), 中村 俊介 (著), 佐藤 春旗 (著), 長野 雅広 (著), 佐々木 健一 (著), 久保 達彦 (著), 若山 史郎 (著), 佐藤 太一 (著), 伊藤 直也 (著), 道井 俊介 (著), 佐藤 歩 (著), 泉水 翔吾  (著), 坪内 佑樹 (著), 海野 弘成 (著), 西尾 泰和 (著), 中島 聡 (著), はまちや2 (著), WEB+DB PRESS編集部 (編集)</p>
+  </div>
+</div>

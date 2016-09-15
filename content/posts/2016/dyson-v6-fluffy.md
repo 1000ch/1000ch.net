@@ -26,4 +26,18 @@ date: 2016-03-26
 
 安い買い物ではないけど、数回の使用で既に値段分の対価は得られている実感がある。[ドラム式洗濯乾燥機](/posts/2015/panasonic-petit-drum.html)を買った時も思ったけど、文明の利器に頼るのも中々良いものだ。物理で殴るとはたぶんこういうことだろう。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00XHCML9G&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61dE16m97YL._SX425_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/B00XHCML9G/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">Dyson V6 Fluffy SV09MH SV09MH</h4>
+    </a>
+    <p>
+      本体サイズ:W250 x D1211 x H208mm[バッテリー、パイプ、クリーナーヘッド含む]<br>
+      製品重量:2.34kg<br>
+      使用時間:20分間[モーター駆動のヘッドで16分間、強モードで6分間の使用が可能。]<br>
+      メーカー保証:2年間<br>
+      付属品:ソフトローラークリーナーヘッド、ミニモーターヘッド、コンビネーションノズル、隙間ノズル、充電器、収納用ブラケット
+    </p>
+  </div>
+</div>

@@ -21,6 +21,14 @@ Progressive Web Appsとは一体何なのかについては、既に日本語の
 
 そんなProgressive Web Appsを詳細に取り扱っています。Webフロントエンド最前線は今回で最終回ということで、これからのWebを占うラストを飾るに相応しい内容だったのではと思います。
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=4774178993&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<div class="Media Media--affiliate">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61s%2Bdy0QmjL._SX352_BO1,204,203,200_.jpg">
+  <div class="Media__Body">
+    <a href="https://www.amazon.co.jp/dp/4774178993/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">WEB+DB PRESS Vol.91</h4>
+    </a>
+    <p>丸山 晋平 (著), 清水 雅人 (著), 舘野 祐一 (著), 小野 将之  (著), 佐藤 歩 (著), 泉水 翔吾  (著), 伊藤 直也 (著), 佐藤 太一 (著), 海野 弘成 (著), 福本 貴之 (著), うさみ けんた (著), 西尾 泰和 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), WEB+DB PRESS編集部 (編集)</p>
+  </div>
+</div>
 
 よろしくお願いします(´・ω・`)
