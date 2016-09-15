@@ -63,21 +63,28 @@
   align-items: flex-start;
 }
 
-.Media__figure {
+.Media.Media--affiliate {
+  padding: 1rem;
+  border: 1px solid #ddd;
+}
+
+.Media__Figure {
   margin-right: 2rem;
-  border-radius: 50%;
+  min-width: 80px;
+  max-width: 20%;
   object-fit: cover;
 }
 
-.Media__body {
+.Media__Figure.Media__Figure--oval {
+  border-radius: 50%;
+}
+
+.Media__Body {
   flex: 1;
 }
 
-.Media__title {
-  font-size: 2.4rem;
-  font-weight: bold;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  color: #333;
+.Media__Title {
+  margin: 0 0 0.5rem;
 }
 
 .Banner {
