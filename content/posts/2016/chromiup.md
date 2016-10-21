@@ -21,6 +21,6 @@ $ chromiup
 
 ![chromiup で Chromium をインストールする](/img/posts/2016/chromiup/chromiup.gif)
 
-## Chromum の自動アップデート自動がないのは何故？
+## Chromum に自動アップデートがないのは何故？
 
 Chrome や Chrome Canary については自動アップデートの機能があるが Chromium にはない。正確な情報か不明だが、[Why is Chromium not updated automatically as Firefox is?](http://askubuntu.com/questions/166931/why-is-chromium-not-updated-automatically-as-firefox-is) にかかれているような Multi Distribution も関係していそうではある。まぁ大抵の場合は Canary で事が足りるのでここまでして Chromium を最新に保つ必要はない気がする。
