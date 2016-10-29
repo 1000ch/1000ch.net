@@ -80,11 +80,15 @@
 }
 
 .Media__Body {
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  font-size: 1.4rem;
 }
 
 .Media__Title {
   margin: 0 0 0.5rem;
+  font-size: 1.6rem;
 }
 
 .Banner {
