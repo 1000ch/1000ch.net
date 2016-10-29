@@ -1,9 +1,12 @@
 {
   "rules": {
-    "spellcheck-tech-word": false,
-    "no-mix-dearu-desumasu": true,
     "max-ten": {
       "max": 5
-    }
+    },
+    "no-double-negative-ja": true,
+    "no-dropping-the-ra": true,
+    "no-mix-dearu-desumasu": true,
+    "no-start-duplicated-conjunction": true,
+    "spellcheck-tech-word": true
   }
 }
