@@ -2,6 +2,7 @@
 layout: post
 title: Chromium をインストールする手間を減らしたい
 date: 2016-10-12
+image: /img/posts/2016/chromiup/chromiup.gif
 ---
 
 # Chromium をインストールする手間を減らしたい
