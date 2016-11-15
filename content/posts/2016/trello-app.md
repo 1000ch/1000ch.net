@@ -11,7 +11,7 @@ image: /img/posts/2016/trello-app/demo.png
 
 ![Whale](/img/posts/2016/trello-app/demo.png)
 
-インストールするには [1000ch/whale/releases](https://github.com/1000ch/whale/releases) からアーカイブファイルをダウンロードしてもらって、アプリケーションファイルを任意の場所に配置してもらうだけ。
+インストールするには [1000ch/whale/releases](https://github.com/1000ch/whale/releases) からアーカイブファイルをダウンロードして、アプリケーションファイルを任意の場所に配置してもらうだけ。
 
 ## Electron でラップする理由
 
