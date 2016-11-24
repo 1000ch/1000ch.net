@@ -1,10 +1,10 @@
 ---
 layout: post
-title: DevFest Tokyo 2016 で Web Components の話をしました
+title: DevFest Tokyo 2016でWeb Componentsの話をした
 date: 2016-10-10
 ---
 
-# DevFest Tokyo 2016 で Web Components の話をしました
+# DevFest Tokyo 2016でWeb Componentsの話をした
 
 10月9日に開催された [DevFest Tokyo 2016](http://gdg-tokyo.connpass.com/event/38927/) に出演しました。
 

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Trello を Electron でラップしてアプリにした
+title: TrelloをElectronでラップしてアプリにした
 date: 2016-11-15
 image: /img/posts/2016/trello-app/demo.png
 ---
 
-# Trello を Electron でラップしてアプリにした
+# TrelloをElectronでラップしてアプリにした
 
 [Trello](https://trello.com/) を Electron でラップしただけの単純なアプリケーション、[Whale](https://github.com/1000ch/whale) をリリースした。 Trello という名前が付けられないので色から安直に連想して Whale とした。こちらは Mac で起動している様子。
 
@@ -13,7 +13,7 @@ image: /img/posts/2016/trello-app/demo.png
 
 インストールするには [1000ch/whale/releases](https://github.com/1000ch/whale/releases) からアーカイブファイルをダウンロードして、アプリケーションファイルを任意の場所に配置してもらうだけ。
 
-## Electron でラップする理由
+## Electronでラップする理由
 
 Web 版の Trello はよくできていて、 Electron でラップしないと実現できない機能は思い当たらない。
 

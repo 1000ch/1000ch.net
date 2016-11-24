@@ -4,7 +4,7 @@ title: Swift 3 における非同期処理
 date: 2016-10-22
 ---
 
-# Swift 3 における非同期処理
+# Swift 3における非同期処理
 
 自作の [iOS クライアント](https://itunes.apple.com/app/id1090705533)のコードを [Swift 3 に移行した](https://github.com/1000ch/PinFeed/commit/d3332b09f3613867502d851fd0d337284d1c2b16)。その時に非同期処理について色々調べたのでメモ。
 
@@ -28,7 +28,7 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
 
 Swift の GCD については[Swift GCD入門](http://qiita.com/ShoichiKuraoka/items/bb2a280688d29de3ff18)という記事により詳しく書かれている。
 
-## DispatchQueue クラスが追加された
+## DispatchQueueクラスが追加された
 
 これを[iOS+Swiftの非同期処理のヘルパークラス](/posts/2016/swift-async-dispatcher.html)のような形でラップしていたが、 Swift 3 からは [`DispatchQueue`](https://developer.apple.com/reference/dispatch/dispatchqueue) というクラスが追加されている。これを使うと非同期処理は次のように書ける。
 

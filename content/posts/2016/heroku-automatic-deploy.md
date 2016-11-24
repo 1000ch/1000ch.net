@@ -1,14 +1,14 @@
 ---
 layout: post
-title: GitHub のリポジトリを Heroku に自動でデプロイする
+title: GitHubのリポジトリをHerokuに自動でデプロイする
 date: 2016-10-21
 ---
 
-# GitHub のリポジトリを Heroku に自動でデプロイする
+# GitHubのリポジトリをHerokuに自動でデプロイする
 
 何事も自動が大事という前置きはさておき、GitHub のリポジトリへのコミットを契機に Heroku へ自動でデプロイを行いたい話。機能が存在していることは認識していたが、実際に使ってみたら便利だったのでメモ。といっても、難しいことはないので、詰まることもなかったが。
 
-## Heroku Git によるデプロイ
+## Heroku Gitによるデプロイ
 
 Heroku にある Git リポジトリに変更をプッシュすると、それが `Procfile` に沿ってデプロイされる。最も一般的というか基本的？だと思われる。
 
@@ -23,7 +23,7 @@ $ git push heroku master
 
 プッシュすると、それを検知して Heroku 側でデプロイが行われる。
 
-## Heroku と GitHub を連携する
+## HerokuとGitHubを連携する
 
 Heroku に GitHub へのアクセス権を与えると、 GitHub リポジトリと Heroku アプリとの連携が可能になる。その後 [Personal Apps](https://dashboard.heroku.com/apps) から対象アプリを選び、 Deploy タブを選択すると Deployment method というデプロイ方法を選ぶセクションが見つかる。
 
