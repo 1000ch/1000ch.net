@@ -11,6 +11,7 @@ html {
 
 body {
   font-family: YuMincho, serif;
+  font-feature-settings: "palt";
   font-size: 1.6em;
   font-weight: normal;
   line-height: 1.6;
@@ -36,7 +37,7 @@ h6 {
 h1,
 h2,
 h3 {
-  margin: 4.8rem 0 2.4rem 0;
+  margin: 4.8rem 0 2.4rem;
   color: #333;
 }
 
