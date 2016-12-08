@@ -13,6 +13,8 @@ date: 2016-10-10
 2016年現在の Web Components と、来週に迫った Polymer Summit 2016 で発表されるであろう Polymer v2 の
 話をしました。改めて文字起こしをする予定なので詳細は割愛しますが、[スライドは既に公開してある](https://1000ch.github.io/slide/webcomponents-2016/)（実は当日の一週間前からしてあったけど）ので、v0からの変更点は感じ取れるかと思います。
 
+<script async class="speakerdeck-embed" data-id="281fd0b34e4043bea8bf8389f78dc93c" data-ratio="1.6" src="//speakerdeck.com/assets/embed.js"></script>
+
 当日は [FRESH!](https://abemafresh.tv/) でリアルタイム配信があったようなので、興味のある人はそちらもどうぞ。
 
 <iframe width="560" height="315" src="https://abemafresh.tv/embed/45509" frameborder="0" allowfullscreen></iframe>
