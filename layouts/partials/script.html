@@ -10,4 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
     hljs.highlightBlock(blocks[i]);
   }
 });
+
+window.addEventListener('load', function () {
+  if (window.performance && window.performance.timing) {
+    var domInteractive = performance.timing.domInteractive - performance.timing.navigationStart;
+    ga('send', {
+      hitType: 'timing',
+      timingCategory: 'performance',
+      timingVar: 'domInteractive',
+      timingValue: domInteractive
+    });
+  }
+});
 </script>
