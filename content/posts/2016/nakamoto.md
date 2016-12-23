@@ -17,7 +17,7 @@ image: /img/posts/2016/nakamoto/misoranmen.jpg
 
 ![完食](/img/posts/2016/nakamoto/completed.jpg)
 
-今年は、年間何杯食べているのかを数えるために Instagram に毎度アップロードするようにした。数えてみたところ2016年は31杯だった。
+今年は、年間何杯食べているのかを数えるために Instagram に毎度アップロードするようにした。数えてみたところ2016年は32杯だった。
 
 - https://www.instagram.com/p/BN1y-gxjsTa/
 - https://www.instagram.com/p/BNnzO8TDu9W/
@@ -50,3 +50,4 @@ image: /img/posts/2016/nakamoto/misoranmen.jpg
 - https://www.instagram.com/p/BDpRKjUhp-y/
 - https://www.instagram.com/p/BC0Iq99Bpwm/
 - https://www.instagram.com/p/BAWm7UBhpyt/
+- https://www.instagram.com/p/BOCIeQKDQmv/
