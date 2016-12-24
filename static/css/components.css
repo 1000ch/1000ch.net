@@ -53,6 +53,11 @@
   padding: 0.8rem;
 }
 
+.Header__MenuItem img {
+  width: 1.6rem;
+  vertical-align: text-bottom;
+}
+
 .Main p > img {
   display: block;
   margin: 0 auto;
@@ -118,23 +123,11 @@
 
 .Share__Item {
   padding: 0.8rem;
-  font-size: 3.2rem;
 }
 
-.Share__Item a {
-  color: #666;
-}
-
-.Share__Item .fa-facebook-square {
-  color: #3b5998;
-}
-
-.Share__Item .fa-twitter-square {
-  color: #55acee;
-}
-
-.Share__Item .fa-google-plus-square {
-  color: #dc4e41;
+.Share__Item img {
+  width: 3.2rem;
+  vertical-align: text-bottom;
 }
 
 .Pager {

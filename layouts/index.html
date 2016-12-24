@@ -24,16 +24,14 @@
         <nav class="Pager">
           {{ if .Paginator.HasPrev }}
             <div class="Pager__Item Pager__Item--left">
-              <i class="fa fa-arrow-left"></i>
-              <a href="{{ .Paginator.Prev.URL }}">Prev</a>
+              <a href="{{ .Paginator.Prev.URL }}">👈 Prev</a>
             </div>
           {{ else }}
           {{ end }}
 
           {{ if .Paginator.HasNext }}
             <div class="Pager__Item Pager__Item--right">
-              <a href="{{ .Paginator.Next.URL }}">Next</a>
-              <i class="fa fa-arrow-right"></i>
+              <a href="{{ .Paginator.Next.URL }}">Next 👉</a>
             </div>
           {{ else }}
           {{ end }}
