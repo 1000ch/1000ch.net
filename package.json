@@ -20,13 +20,13 @@
     "normalize.css": "^5.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.4.1",
-    "cssnano": "^3.7.4",
+    "autoprefixer": "^6.6.0",
+    "cssnano": "^3.9.1",
     "postcss-cli": "^2.6.0",
     "postcss-import": "^9.0.0",
-    "stylelint": "^7.6.0",
+    "stylelint": "^7.7.0",
     "stylelint-config-standard": "^15.0.0",
-    "textlint": "^7.1.1",
+    "textlint": "^7.2.1",
     "textlint-rule-max-ten": "^2.0.1",
     "textlint-rule-no-double-negative-ja": "^1.0.4",
     "textlint-rule-no-dropping-the-ra": "^1.0.3",
