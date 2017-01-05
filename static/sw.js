@@ -16,10 +16,12 @@ self.addEventListener('fetch', e => {
   const response = caches.match(e.request).then(response => {
     return response || fetch(e.request.clone()).then(response => {
       if (e.request.url.endsWith('.html')) {
-        caches.open(cacheKey).then(cache => cache.put(e.request, response.clone()));
+        return caches.open(cacheKey).then(cache => {
+          return cache.put(e.request, response.clone());
+        }).then(() => response);
+      } else {
+        return response;
       }
-
-      return response;
     });
   });
 
