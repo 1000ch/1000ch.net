@@ -50,12 +50,12 @@ reachableUrls('https://github.com https://foobarbaz.com').then(result => {
 設定に、以下のような WebSocket 要の定義を追加すれば動きそうだが、[Service Name and Transport Protocol Port Number Registry](http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) を元に記述しているようで WebSocket の定義追加を憚られている。
 
 ```json
-"http": {
+"ws": {
   "ports": [
     "80/tcp"
   ]
 },
-"https": {
+"wss": {
   "ports": [
     "443/tcp"
   ]
