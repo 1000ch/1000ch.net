@@ -1,4 +1,4 @@
-const cacheKey = '20161229';
+const cacheKey = '20170227';
 
 self.addEventListener('activate', e => {
   const deletion = caches.keys().then(keys => {
