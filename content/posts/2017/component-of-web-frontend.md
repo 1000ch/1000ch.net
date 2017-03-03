@@ -53,3 +53,7 @@ date: 2017-02-26
 - [Inside Frontend #1 に参加して](http://horicdesign.com/event/inside-frontend.html)
 - [Inside Frontend #1に参加したメモ](http://dackdive.hateblo.jp/entry/2017/02/25/180924)
 - [Inside Frontend #1に参加しました](http://y-nakahira.hatenablog.com/entry/2017/02/26/225830)
+- [InsideFrontEnd 参加レポート1(コンポーネント化って？)](http://takahiro-fujii.hatenablog.com/entry/2017/02/28/222958)
+- [InsideFrontEnd 参加レポート2(JsonSchema編)](http://takahiro-fujii.hatenablog.com/entry/2017/03/02/021339)
+- [制作者が自分の価値や課題を伝える方法](http://www.yasuhisa.com/could/article/understand-mindset/)
+- [Inside Frontend #1 参加レポート #insideFE](http://codenote.net/study/3542.html)
