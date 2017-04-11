@@ -2,11 +2,11 @@ box: node:latest
 build:
   steps:
     - npm-install
+    - arjen/hugo-build:
+        version: "0.17"
     - script:
         name: Build static files
         code: npm run build
-    - arjen/hugo-build:
-        version: "0.17"
     - script:
         name: Copy to rss.xml
         code: cp public/index.xml public/rss.xml
