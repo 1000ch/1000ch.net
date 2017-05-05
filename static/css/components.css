@@ -58,11 +58,6 @@
   vertical-align: text-bottom;
 }
 
-.Main p > img {
-  display: block;
-  margin: 0 auto;
-}
-
 .Media {
   display: flex;
   align-items: flex-start;
