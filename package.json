@@ -1,8 +1,14 @@
 {
   "name": "1000ch.net",
-  "description": "Happens on me, Happens from me.",
   "private": true,
+  "description": "Happens on me, Happens from me.",
+  "license": "MIT",
   "repository": "1000ch/1000ch.net",
+  "author": {
+    "name": "1000ch",
+    "email": "shogo.sensui@gmail.com",
+    "web": "http://github.com/1000ch"
+  },
   "bugs": {
     "url": "https://github.com/1000ch/1000ch.net/issues"
   },
@@ -24,20 +30,7 @@
     "cssnano": "^3.10.0",
     "postcss-cli": "^4.0.0",
     "postcss-import": "^10.0.0",
-    "stylelint": "^7.9.0",
-    "stylelint-config-standard": "^16.0.0",
-    "textlint": "^7.3.0",
-    "textlint-rule-max-ten": "^2.0.1",
-    "textlint-rule-no-double-negative-ja": "^1.0.4",
-    "textlint-rule-no-dropping-the-ra": "^1.0.3",
-    "textlint-rule-no-mix-dearu-desumasu": "^3.0.2",
-    "textlint-rule-no-start-duplicated-conjunction": "^1.1.3",
-    "textlint-rule-spellcheck-tech-word": "^5.0.0"
-  },
-  "author": {
-    "name": "1000ch",
-    "email": "shogo.sensui@gmail.com",
-    "web": "http://github.com/1000ch"
-  },
-  "license": "MIT"
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0"
+  }
 }
