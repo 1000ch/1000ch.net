@@ -17,13 +17,13 @@
     "build": "npm run postcss"
   },
   "dependencies": {
-    "normalize.css": "^5.0.0"
+    "normalize.css": "^7.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
-    "cssnano": "^3.9.1",
-    "postcss-cli": "^3.0.0",
-    "postcss-import": "^9.1.0",
+    "autoprefixer": "^7.1.0",
+    "cssnano": "^3.10.0",
+    "postcss-cli": "^4.0.0",
+    "postcss-import": "^10.0.0",
     "stylelint": "^7.9.0",
     "stylelint-config-standard": "^16.0.0",
     "textlint": "^7.3.0",
