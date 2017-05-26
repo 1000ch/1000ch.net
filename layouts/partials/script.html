@@ -22,4 +22,18 @@ window.addEventListener('load', function () {
     });
   }
 });
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    registrations.forEach(function (registration) {
+      registration.unregister();
+    });
+  });
+
+  caches.keys().then(function (keys) {
+    keys.forEach(function (cacheName) {
+      caches.delete(cacheName);
+    });
+  });
+}
 </script>
