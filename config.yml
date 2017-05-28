@@ -2,7 +2,7 @@ baseurl: "https://1000ch.net"
 title: "1000ch.net"
 footnotereturnlinkcontents: "↩"
 contentdir: "content"
-layoutdir: "layouts"
+layoutdir: "layout"
 staticdir: "static"
 publishdir: "public"
 uglyUrls: true
