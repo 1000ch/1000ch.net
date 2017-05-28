@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: YuMincho, serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-feature-settings: "palt";
   font-size: 1.6em;
   font-weight: normal;
@@ -22,16 +22,6 @@ body {
 ::selection {
   color: #fff;
   background-color: #e2007a;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: bold;
 }
 
 h1,
@@ -110,7 +100,7 @@ pre {
 }
 
 code {
-  font-family: "Roboto Mono", "Source Code Pro", "Consolas", monospace;
+  font-family: "Roboto Mono", monospace;
   font-size: 1.4rem;
   margin: 0.1rem 0.2rem;
   padding: 0.1rem 0.2rem;
