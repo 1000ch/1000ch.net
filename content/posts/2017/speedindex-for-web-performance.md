@@ -58,3 +58,9 @@ speedline は DevTools のフレームキャプチャ付きのタイムライン
 RUM-SpeedIndex は、ブラウザが Web ページにアクセスしたときのリソースのロード状況を取得する [Resource Timing API](https://developers.google.com/web/tools/chrome-devtools/network-performance/understanding-resource-timing?hl=ja) を用いて Speed Index を計算している。WebPageTest の作者である [Patrick Meenan](https://github.com/pmeenan) 謹製のツールで、ブラウザスクリプトで完結するので実際のユーザー環境での Speed Index を算出可能な、今のところ最も現実的な手段である（名前の通り Real User Monitoring にフォーカスしている）。
 
 この RUM Speed Index の値、つまりリアルユーザーが体験しているパフォーマンスのスコアを、例えばプロジェクトで使用している Google Analytics に送信すれば、パフォーマンスと離脱率や Page Views/Session 、そしてプロジェクトの重要 KPI との相関を可視化できる。WebPageTest や SpeedCurve のような Synthetic Monitoring と併用していくと良さそうだ。
+
+### 余談
+
+この手の計算された値は、標準化されるイメージが沸かないが、気持ちとして…。
+
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">Performance API あたりで Speed Index 取得できるようになりますように🙏 <a href="https://t.co/IVTMlbeEkf">https://t.co/IVTMlbeEkf</a>  は、良いんだけど DevTools 頼みなのでモバイルでアレ</p>&mdash; 煎茶 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/868853133857837056">2017年5月28日</a></blockquote>
