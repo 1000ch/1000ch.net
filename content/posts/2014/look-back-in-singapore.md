@@ -20,7 +20,7 @@ date: 2014-11-22
 
 CSSConfもJSConfも、良かった。技術の先端を取り扱っているというよりは、各シーンにおけるWebの立ち振舞のようなセッションだった。最先端技術のキャッチアップなら[Chrome Dev Summit](https://developer.chrome.com/devsummit/)、パフォーマンスに関することなら[Velocity](http://velocityconf.com/)、プラットフォーム云々なら[Fluent](http://fluentconf.com)に参加するのが良いのだろう。カンファレンス毎のコンセプトがあるんだなというのを体感した。
 
-[日本で開催されないかなと初日に呟いた](http://1000ch.net/posts/2014/singapore-the-1st-day.html)が、同じアジアの日本で開催するには何が障壁になるのだろう。
+[日本で開催されないかなと初日に呟いた](/posts/2014/singapore-the-1st-day.html)が、同じアジアの日本で開催するには何が障壁になるのだろう。
 
 アクセス的な話は飛行機が前提になると思うので、マニラ（JSConf.Asia 2013）だろうとシンガポールだろうと、そして日本だろうと差はないような気がしている。幸い、日本は地下鉄も充実しているし。
 

@@ -9,7 +9,7 @@ date: 2014-10-07
 > https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html
 > これってなんで`doc.registerElement`になってるんだろう・・
 
-っていう質問をされたので調べたメモ。内容的には[HTML ImportsするHTMLのコンテキストになるdocument](http://1000ch.net/posts/2014/html-imports-context.html)の続きにあたるかも。
+っていう質問をされたので調べたメモ。内容的には[HTML ImportsするHTMLのコンテキストになるdocument](/posts/2014/html-imports-context.html)の続きにあたるかも。
 
 ## registerElementの実行者とカスタム要素の登録先
 

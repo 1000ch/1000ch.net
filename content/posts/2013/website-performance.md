@@ -58,7 +58,7 @@ $ git clone https://github.com/soulgalore/sitespeed.io.git
 ```bash
 $ cd sitespeed.io
 
-$ ./sitespeed.io -u http://1000ch.net
+$ ./sitespeed.io -u https://1000ch.net
 ```
 
 すると、`sitespeed-result`というフォルダに解析結果が出力される。ドメイン別で出力されるのと、その下は解析した日付時刻でフォルダが生成されるので、継続的に解析して比較するということもできそう。

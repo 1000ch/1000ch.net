@@ -13,7 +13,7 @@ image: /img/posts/2015/wdpress-frontend-series-serviceworker/cover.jpg
 
 ## Service Workerで変わるWebアプリの常識
 
-Service Workerで実現されるのWebページのオフライン化に限りません。これは[Frontrend Conference](https://1000ch.net/posts/2015/frontrend-conference.html)のときに話した通り。
+Service Workerで実現されるのWebページのオフライン化に限りません。これは[Frontrend Conference](/posts/2015/frontrend-conference.html)のときに話した通り。
 
 - ブラウザスレッドのリクエスト検知と操作
 - プッシュサーバからのプッシュデータの受信

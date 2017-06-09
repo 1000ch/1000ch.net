@@ -8,9 +8,9 @@ date: 2015-12-25
 
 個別で記事を書いているものもあるが、改めて紹介。
 
-- [PHILIPS ソニッケアーで快適歯磨き生活](https://1000ch.net/posts/2015/philips-sonicare.html)
-- [BOSE SoundLink Mini](https://1000ch.net/posts/2015/bose-soundlink-mini.html)
-- [ドラム式洗濯乾燥機「プチドラム」で快適洗濯生活](https://1000ch.net/posts/2015/panasonic-petit-drum.html)
+- [PHILIPS ソニッケアーで快適歯磨き生活](/posts/2015/philips-sonicare.html)
+- [BOSE SoundLink Mini](/posts/2015/bose-soundlink-mini.html)
+- [ドラム式洗濯乾燥機「プチドラム」で快適洗濯生活](/posts/2015/panasonic-petit-drum.html)
 
 ## ドラム式洗濯乾燥機「プチドラム」
 
@@ -93,6 +93,6 @@ Bluetoothでノイズキャンセリングなヘッドフォン。v1からのア
 
 ## docomoからみおふぉんへの乗り換え
 
-買い物とはちょっと違うけど、携帯電話のキャリアを[docomoからみおふぉんへ乗り換えた](https://1000ch.net/posts/2015/update-mobile-phone.html)。iPhone 5sからSIMフリーの端末に乗り換えようと思ったのがきっかけで（結局iPhone 6sにした）、端末キャッシュバックをもらうために携帯キャリアホッパーするのも面倒なので、月々の料金が格安になる mvno にした。
+買い物とはちょっと違うけど、携帯電話のキャリアを[docomoからみおふぉんへ乗り換えた](/posts/2015/update-mobile-phone.html)。iPhone 5sからSIMフリーの端末に乗り換えようと思ったのがきっかけで（結局iPhone 6sにした）、端末キャッシュバックをもらうために携帯キャリアホッパーするのも面倒なので、月々の料金が格安になる mvno にした。
 
 キャリアは乗り代わったが回線自体はdocomoだし、何も不満はない。そもそも家と会社にいる時間が大部分を占め、Wi-Fiにつないでいる時間がほとんどということを考えれば、最大限無駄を省くための選択になった。

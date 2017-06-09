@@ -16,7 +16,7 @@ ES5と言っておきながらPromiseを使っている点には突っ込まな�
 
 ```javascript
 (function (window) {
-  
+
   function ImageEncoder(path, width, height) {
     this.path = path || '';
     this.width = width || 1;
@@ -30,7 +30,7 @@ ES5と言っておきながらPromiseを使っている点には突っ込まな�
     var that = this;
 
     return new Promise(function (resolve, reject) {
-      
+
       var image = new Image();
       image.setAttribute('crossOrigin','anonymous');
 
@@ -62,9 +62,9 @@ ES5と言っておきながらPromiseを使っている点には突っ込まな�
       image.src = that.path;
     });
   };
-  
+
   window.ImageEncoder = ImageEncoder;
-  
+
 })(window);
 ```
 
@@ -82,8 +82,8 @@ new ImageEncoder('image.png').getDataURI().then(function onFulfilled(dataURI) {
 
 やや古いポストだけど、ES6の各種機能等は以下の記事が参考になるかも。
 
-- [ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~](http://1000ch.net/posts/2013/es6-features-1.html)
-- [ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~](http://1000ch.net/posts/2013/es6-features-2.html)
+- [ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~](/posts/2013/es6-features-1.html)
+- [ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~](/posts/2013/es6-features-2.html)
 
 以下がES6で書き直したコード。
 

@@ -19,7 +19,7 @@ JSerならES6を聞いたこと無いっていう人は流石にいないと思�
 
 iojsも[`--harmony`フラグなしでES6のシンタックスが使える](https://iojs.org/en/es6.html)し、 Node.js 0.12向けでもブラウザ向けでもトランスパイル前提で書いていくとか、いくらでもやりようはある。
 
-- [画像をdataURIに変換するライブラリをES6で書きなおす](https://1000ch.net/posts/2015/image-encoder-es6.html)
+- [画像をdataURIに変換するライブラリをES6で書きなおす](/posts/2015/image-encoder-es6.html)
 - [もうES6 (ES2015) でいいんじゃないか](http://havelog.ayumusato.com/develop/javascript/e651-es2015.html)
 
 ## 6to5がbabelに
