@@ -6,23 +6,17 @@
   "repository": "1000ch/1000ch.net",
   "author": {
     "name": "1000ch",
-    "email": "shogo.sensui@gmail.com",
-    "web": "http://github.com/1000ch"
-  },
-  "bugs": {
-    "url": "https://github.com/1000ch/1000ch.net/issues"
+    "email": "shogosensui@gmail.com",
+    "web": "https://github.com/1000ch"
   },
   "config": {
     "postcss": "--use postcss-import --use autoprefixer --use cssnano"
   },
   "scripts": {
-    "start": "npm run build && npm run css -- --watch & hugo server",
+    "start": "npm run css -- --watch & hugo server",
     "lint": "stylelint static/css/*.css",
-    "css": "postcss $npm_package_config_postcss --output public/css/app.css static/css/app.css",
+    "css": "postcss $npm_package_config_postcss --no-map --output public/css/app.css static/css/app.css",
     "build": "npm run css"
-  },
-  "dependencies": {
-    "normalize.css": "^7.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.0",
