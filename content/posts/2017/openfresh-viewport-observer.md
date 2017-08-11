@@ -10,7 +10,7 @@ Intersection Observer を使った要素の検出については、[過去に記
 
 ## ViewportObserver
 
-元々付けていたものや目ぼしい名前空間は軒並み取られていて、結局 `ViewportObserver` というコンポーネント名に着した。[`openfresh/viewport-observer`](https://github.com/openfresh/viewport-observer) にて公開されている。
+元々付けていたものや目ぼしい名前空間は軒並み取られていて、結局 `ViewportObserver` というコンポーネント名に着地した。[`openfresh/viewport-observer`](https://github.com/openfresh/viewport-observer) にて公開されている。
 
 ```bash
 $ npm install --save viewport-observer
