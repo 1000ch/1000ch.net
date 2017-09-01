@@ -16,7 +16,8 @@
     "start": "npm run css -- --watch & hugo server",
     "lint": "stylelint static/css/*.css",
     "css": "postcss $npm_package_config_postcss --no-map --output public/css/app.css static/css/app.css",
-    "build": "npm run css"
+    "brotli": "ls public/css/app.min.css | xargs -I{} bro --quality 10 --input {} --output {}.br",
+    "build": "npm run css && npm run brotli"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.0",
