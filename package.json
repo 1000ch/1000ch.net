@@ -23,7 +23,7 @@
     "autoprefixer": "^7.1.0",
     "cssnano": "^3.10.0",
     "postcss-cli": "^4.0.0",
-    "postcss-import": "^10.0.0",
+    "postcss-import": "^11.0.0",
     "stylelint": "^8.0.0",
     "stylelint-config-standard": "^17.0.0"
   }
