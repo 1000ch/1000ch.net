@@ -95,4 +95,10 @@ Webページで配信されているWeb App Manifestのデバッグには、DevT
 
 最後に、Totally Tooling Tipsでの紹介動画と[Google Developersの記事](https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android)を。
 
-<iframe width="100%" height="320" src="https://www.youtube.com/embed/yQhFmPExcbs" frameborder="0" allowfullscreen></iframe>
+<div class="YouTube">
+  <iframe 
+    src="https://www.youtube.com/embed/yQhFmPExcbs" 
+    frameborder="0" 
+    allowfullscreen>
+  </iframe>
+</div>
