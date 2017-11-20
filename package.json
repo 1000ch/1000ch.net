@@ -10,20 +10,32 @@
     "web": "https://github.com/1000ch"
   },
   "scripts": {
-    "start": "run-p serve css:watch",
+    "start": "run-p serve watch:css",
     "serve": "hugo server",
     "lint": "stylelint static/css/*.css",
-    "css": "postcss --no-map --output public/css/app.css static/css/app.css",
-    "css:watch": "npm run css -- --watch",
-    "brotli": "ls public/css/app.min.css | xargs -I{} bro --quality 10 --input {} --output {}.br",
-    "build": "npm run css && npm run brotli"
+    "css": "run-p css:*",
+    "css:base": "postcss --output public/css/base.css static/css/base.css",
+    "css:components": "postcss --output public/css/components.css static/css/components.css",
+    "css:generic": "postcss --output public/css/generic.css static/css/generic.css",
+    "css:objects": "postcss --output public/css/objects.css static/css/objects.css",
+    "css:settings": "postcss --output public/css/settings.css static/css/settings.css",
+    "css:tools": "postcss --output public/css/tools.css static/css/tools.css",
+    "css:trumps": "postcss --output public/css/trumps.css static/css/trumps.css",
+    "watch:css": "run-p watch:css:*",
+    "watch:css:base": "npm run css:base -- --watch",
+    "watch:css:components": "npm run css:components -- --watch",
+    "watch:css:generic": "npm run css:generic -- --watch",
+    "watch:css:objects": "npm run css:objects -- --watch",
+    "watch:css:settings": "npm run css:settings -- --watch",
+    "watch:css:tools": "npm run css:tools -- --watch",
+    "watch:css:trumps": "npm run css:trumps -- --watch",
+    "build": "npm run css"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.0",
     "cssnano": "^3.10.0",
     "npm-run-all": "^4.1.1",
     "postcss-cli": "^4.1.0",
-    "postcss-import": "^11.0.0",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0"
   }
