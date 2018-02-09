@@ -6,11 +6,11 @@
   <body>
     <div class="Container">
       {{ partial "header.html" . }}
-      <div class="Main">
+      <main class="Main">
         {{ partial "post-header.html" . }}
         {{ .Content }}
         {{ partial "post-footer.html" . }}
-      </div>
+      </main>
       {{ partial "aside.html" . }}
       {{ partial "footer.html" . }}
     </div>
