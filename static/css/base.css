@@ -10,8 +10,7 @@ html {
 }
 
 body {
-  font-family: Lato, Helvetica, Arial, sans-serif;
-  font-feature-settings: "palt";
+  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-1000ch", sans-serif;
   font-size: 1.6rem;
   font-weight: normal;
   line-height: 1.6;
