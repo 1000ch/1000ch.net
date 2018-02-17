@@ -11,29 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-window.addEventListener('load', function () {
-  if (window.performance && window.performance.timing) {
-    var domInteractive = performance.timing.domInteractive - performance.timing.navigationStart;
-    ga('send', {
-      hitType: 'timing',
-      timingCategory: 'Navigation',
-      timingVar: 'domInteractive',
-      timingValue: domInteractive
-    });
-  }
-});
-
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.getRegistrations().then(function (registrations) {
-    registrations.forEach(function (registration) {
-      registration.unregister();
-    });
-  });
-
-  caches.keys().then(function (keys) {
-    keys.forEach(function (cacheName) {
-      caches.delete(cacheName);
-    });
-  });
+  navigator.serviceWorker.register('/sw.js');
 }
 </script>
