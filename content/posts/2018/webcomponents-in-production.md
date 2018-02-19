@@ -6,7 +6,7 @@ date: 2018-02-16
 
 # Web Components を本番投入する（2018年春）
 
-とあるプロジェクトの技術監修をして、大まかに Web Components + Payments Request API な構成で進めてみたのでその話を思い出しながら書く。ちなみに FRESH! ではないです。
+とあるプロジェクトの技術監修をして、大まかに Web Components + Payment Request API な構成で進めてみたのでその話を思い出しながら書く。ちなみに FRESH! ではないです。
 
 ## 決済基盤をサービスで使うための SDK
 
