@@ -51,11 +51,13 @@
 
 .Header__MenuItem {
   padding: 0.8rem;
+  display: inline-flex;
+  align-items: center;
 }
 
 .Header__MenuItem img {
   width: 1.6rem;
-  vertical-align: text-bottom;
+  margin-right: 0.4rem;
 }
 
 .Media {
@@ -86,7 +88,13 @@
 
 .Media__Title {
   margin: 0 0 0.5rem;
-  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.Media__Title iframe {
+  margin-left: 0.8rem;
 }
 
 .Banner {
