@@ -17,14 +17,14 @@
 </aside>
 
 <nav class="Pager">
-  {{ with .Next }}
+  {{ with .PrevPage }}
     <div class="Pager__Item Pager__Item--left">
       <a href="{{ .RelPermalink }}">👈 {{ .Title }}</a>
     </div>
   {{ else }}
   {{ end }}
 
-  {{ with .Prev }}
+  {{ with .NextPage }}
     <div class="Pager__Item Pager__Item--right">
       <a href="{{ .RelPermalink }}">{{ .Title }} 👉</a>
     </div>
