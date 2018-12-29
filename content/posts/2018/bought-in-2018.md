@@ -17,20 +17,14 @@ date: 2018-12-24
 珪藻土マットがあればバスマットが不要になる話は、過去にブログに書いた。どんなに速乾のタイプでも使用後のバスマットは濡れていて、ウッとなることも多かったが、珪藻土マットにしてからは、すぐ乾くし洗う手間もない。価格も安いので、バスマットを使っている人は騙されたと思って試して欲しい。
 
 <div class="Media Media--affiliate">
-  <img
-    class="Media__Figure"
-    src="https://images-na.ssl-images-amazon.com/images/I/71bKmNGmqcL._SX522_.jpg">
+  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/81kODTIPNdL._AC_UL75_SR75,75_.jpg">
   <div class="Media__Body">
-    <a
-      href="https://www.amazon.co.jp/dp/B016BP854A/?tag=1000ch-22"
-      target="_blank">
-      <h4 class="Media__Title">ROOMMATE 珪藻土バスマット 約60cm×39cm EB-RM5000BM</h4>
+    <a href="https://www.amazon.co.jp/dp/B01LXMAO21/?tag=1000ch-22" target="_blank">
+      <h4 class="Media__Title">Tenswall 珪藻土バスマット 風呂マット 足ふきマット 消臭 速乾 防カビ 防ダニ 抗菌 約60cm×39cm JD001W グレー</h4>
     </a>
     <p>
-      乗った瞬間すぐ乾く 驚きの吸水力! 毎日のお洗濯は不要、消臭効果もあり衛星的で手間いらず! 半永久的に繰り返し使える足拭きマット<br>
-      素材・成分：珪藻土・植物繊維・その他　・パッケージ：化粧箱入り<br>
-      商品サイズ：約60cm×39cm ・生産地：中国<br>
-      カラー：ホワイト ・付属品：お手入用サンドペーパー付<br>
+      Tenswall 珪藻土速乾バスマットは太古の植物性プランクトン(珪藻)が原材料です。「驚異の吸水力」「脱臭湿度調整効果」「カビやダニの発生を抑制」「洗濯不要でいつでも快適」と多機能が特徴のバスマットです。<br>					 
+			寸法：横60cm*縦39cm*厚さ1cm 重さ：約2.70ｋｇ。シンプルな薄型設計で、室内利用に最適です。立てかけておけば場所も取りません。メーカー直営店、購入する時に販売元Tenswall JPをお確認してください。他のは偽物です。ご了承ください。
     </p>
   </div>
 </div>
