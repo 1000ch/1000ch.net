@@ -14,8 +14,15 @@ body {
   font-size: 1.6rem;
   font-weight: normal;
   line-height: 1.6;
-  color: #666;
-  background-color: var(--bgcolor-light);
+  color: var(--light-color);
+  background-color: var(--light-bgcolor-backdrop);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--dark-color);
+    background-color: var(--dark-bgcolor-backdrop);
+  }
 }
 
 ::selection {
@@ -27,7 +34,15 @@ h1,
 h2,
 h3 {
   margin: 4.8rem 0 2.4rem;
-  color: #333;
+  color: var(--light-color-heading);
+}
+
+@media (prefers-color-scheme: dark) {
+  h1,
+  h2,
+  h3 {
+    color: var(--dark-color-heading);
+  }
 }
 
 h1 {
@@ -61,10 +76,6 @@ table {
   overflow: auto;
 }
 
-th {
-  background-color: var(--bgcolor-light);
-}
-
 td,
 th {
   padding: 0.8rem;
@@ -84,7 +95,6 @@ kbd {
   background-color: #fcfcfc;
   box-shadow: inset 0 -0.1rem 0 #bbb;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none;
 }
 
 kbd:active {
@@ -106,7 +116,14 @@ code {
   color: #c25;
   border: 0.1rem solid #ddd;
   border-radius: 0.4rem;
-  background-color: var(--bgcolor-light) !important;
+  background-color: var(--light-bgcolor);
+}
+
+@media (prefers-color-scheme: dark) {
+  code {
+    color: var(--dark-color) !important;
+    background-color: var(--dark-bgcolor);
+  }
 }
 
 pre > code {
@@ -114,6 +131,13 @@ pre > code {
   overflow-x: scroll;
   margin: 0.8rem 0;
   padding: 0.8rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  pre > code {
+    color: var(--dark-color) !important;
+    background-color: var(--dark-bgcolor) !important;
+  }
 }
 
 h1 > code {
@@ -150,7 +174,6 @@ a {
   text-decoration: none;
   color: #199ad5;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none;
 }
 
 a:hover,
@@ -171,6 +194,13 @@ input {
   padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  outline: none;
-  background-color: var(--bgcolor-light);
+  color: var(--light-color);
+  background-color: var(--light-bgcolor-backdrop);
+}
+
+@media (prefers-color-scheme: dark) {
+  input {
+    color: var(--dark-color);
+    background-color: var(--dark-bgcolor-backdrop);
+  }
 }
