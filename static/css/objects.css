@@ -11,23 +11,15 @@
 }
 
 .Label--gray {
-  color: #666;
-  background: #eee;
+  color: var(--light-color);
+  background: var(--light-bgcolor-backdrop);
 }
 
-.Label--red {
-  color: #fff;
-  background: #e2007a;
-}
-
-.Label--blue {
-  color: #fff;
-  background: #199ad5;
-}
-
-.Label--yellow {
-  color: #2e2e2c;
-  background: #f3df49;
+@media (prefers-color-scheme: dark) {
+  .Label--gray {
+    color: var(--dark-color);
+    background-color: var(--dark-bgcolor-backdrop);
+  }
 }
 
 .YouTube {

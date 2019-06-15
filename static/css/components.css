@@ -9,7 +9,14 @@
   max-width: 80rem;
   min-height: 100vh;
   margin: 0 auto;
-  background: #fff;
+  background-color: var(--light-bgcolor);
+}
+
+@media (prefers-color-scheme: dark) {
+  .Container {
+    color: var(--dark-color);
+    background-color: var(--dark-bgcolor);
+  }
 }
 
 .Header,
