@@ -3,5 +3,12 @@
  */
 
 :root {
-  --bgcolor-light: #f8f8f8;
+  --light-color-heading: #333;
+  --light-color: #666;
+  --light-bgcolor: #fff;
+  --light-bgcolor-backdrop: #eee;
+  --dark-color-heading: #ccc;
+  --dark-color: #999;
+  --dark-bgcolor: #111;
+  --dark-bgcolor-backdrop: #222;
 }
