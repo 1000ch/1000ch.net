@@ -12,3 +12,7 @@ params:
   description: "Happens on me, happens from me."
 permalinks:
   post: "/:year/:title"
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
