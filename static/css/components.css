@@ -79,8 +79,7 @@
 
 .Media__Figure {
   margin-right: 2rem;
-  min-width: 80px;
-  max-width: 20%;
+  width: 120px;
   object-fit: cover;
 }
 
