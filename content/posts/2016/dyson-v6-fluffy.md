@@ -27,18 +27,10 @@ image: /img/posts/2016/dyson-v6-fluffy/dyson-v6-fluffy.jpg
 
 安い買い物ではないけど、数回の使用で既に値段分の対価は得られている実感がある。[ドラム式洗濯乾燥機](/posts/2015/panasonic-petit-drum.html)を買った時も思ったけど、文明の利器に頼るのも中々良いものだ。物理で殴るとはたぶんこういうことだろう。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61dE16m97YL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00XHCML9G/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Dyson V6 Fluffy SV09MH SV09MH</h4>
-    </a>
-    <p>
-      本体サイズ:W250 x D1211 x H208mm[バッテリー、パイプ、クリーナーヘッド含む]<br>
-      製品重量:2.34kg<br>
-      使用時間:20分間[モーター駆動のヘッドで16分間、強モードで6分間の使用が可能。]<br>
-      メーカー保証:2年間<br>
-      付属品:ソフトローラークリーナーヘッド、ミニモーターヘッド、コンビネーションノズル、隙間ノズル、充電器、収納用ブラケット
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61dE16m97YL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B00XHCML9G/"
+  tag="1000ch-22"
+  title="Dyson V6 Fluffy SV09MH SV09MH">
+  本体サイズ:W250 x D1211 x H208mm[バッテリー、パイプ、クリーナーヘッド含む]。製品重量:2.34kg。使用時間:20分間[モーター駆動のヘッドで16分間、強モードで6分間の使用が可能。]。メーカー保証:2年間。付属品:ソフトローラークリーナーヘッド、ミニモーターヘッド、コンビネーションノズル、隙間ノズル、充電器、収納用ブラケット
+</affiliate-link>

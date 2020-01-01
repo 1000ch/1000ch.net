@@ -29,15 +29,13 @@ Webサイトのパフォーマンスの重要性についてはもとより、�
 
 約360ページで内容も非常に濃いものになっており、お手軽とは言えませんが、4000円と時間を投じて消化する価値があります。フロントエンドのエンジニアにとっても、バックエンドのエンジニアにとっても、双方のレイヤを理解するきっかけになる、抑えておくべき一冊です。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51x2sA8N%2BTL._SX389_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4873116767/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">ハイパフォーマンス ブラウザネットワーキング ―ネットワークアプリケーションのためのパフォーマンス最適化</h4>
-    </a>
-    <p>Ilya Grigorik (著), 和田 祐一郎  (翻訳), 株式会社プログラミングシステム社 (翻訳)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51x2sA8N%2BTL._SX389_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4873116767/"
+  tag="1000ch-22"
+  title="ハイパフォーマンス ブラウザネットワーキング ―ネットワークアプリケーションのためのパフォーマンス最適化">
+  Ilya Grigorik (著), 和田 祐一郎  (翻訳), 株式会社プログラミングシステム社 (翻訳)
+</affiliate-link>
 
 [英語版であればWeb上で閲覧可能](http://chimera.labs.oreilly.com/books/1230000000545/index.html)ですが、ボリュームもありますし、日本語訳を読めるのはやはりありがたいです。
 
@@ -53,22 +51,18 @@ Webサイトのパフォーマンスの重要性についてはもとより、�
 
 余談ですが、本書の冒頭で、現在FastlyでChief Performance Officerを務める[Steve Souders](http://www.stevesouders.com/)氏（以前までGoogleでHead Performance Engineerとして働いていた）は、著者のIlya Grigorick氏を「ネットワークの神様」と称賛しています。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51hIDIWHmYL._SX389_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/487311361X/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">ハイパフォーマンスWebサイト ―高速サイトを実現する14のルール</h4>
-    </a>
-    <p>Steve Souders (著), 武舎 広幸  (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51hIDIWHmYL._SX389_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/487311361X/"
+  tag="1000ch-22"
+  title="ハイパフォーマンスWebサイト ―高速サイトを実現する14のルール">
+  Steve Souders (著), 武舎 広幸  (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)
+</affiliate-link>
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51GQNCMJsZL._SX383_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4873114462/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">続・ハイパフォーマンスWebサイト ―ウェブ高速化のベストプラクティス</h4>
-    </a>
-    <p>Steve Souders (著), 武舎 広幸  (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51GQNCMJsZL._SX383_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4873114462/"
+  tag="1000ch-22"
+  title="続・ハイパフォーマンスWebサイト ―ウェブ高速化のベストプラクティス">
+  Steve Souders (著), 武舎 広幸  (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)
+</affiliate-link>

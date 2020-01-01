@@ -59,20 +59,12 @@ BOSEのSoundLink Miniがとてもオススメ。
 
 気軽に買える価格ではないかもしれないが、コンパクトすぎる本体とパワフルな音質出力を考えれば、コストパフォーマンスはとても良いと思う。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61qlhFddcFL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00D89H1NO/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Bose SoundLink Mini ポータブルワイヤレススピーカー Bluetooth対応 シルバー SLink Mini</h4>
-    </a>
-    <p>
-      ウルトラコンパクトな本格サウンド<br>
-      音楽をどこにでも持ち運べます<br>
-      Bluetooth 対応機器の音楽をワイヤレス接続で楽しめる<br>
-      サイズからは想像もつかない本格サウンド<br>
-      高いデザイン性と簡単な操作性<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61qlhFddcFL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B00D89H1NO/"
+  tag="1000ch-22"
+  title="Bose SoundLink Mini ポータブルワイヤレススピーカー Bluetooth対応 シルバー SLink Mini">
+  ウルトラコンパクトな本格サウンド。音楽をどこにでも持ち運べます。Bluetooth 対応機器の音楽をワイヤレス接続で楽しめる。サイズからは想像もつかない本格サウンド。高いデザイン性と簡単な操作性
+</affiliate-link>
 
 コンパクトスピーカーでは最強かも。

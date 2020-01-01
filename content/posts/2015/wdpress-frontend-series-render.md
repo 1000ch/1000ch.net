@@ -23,12 +23,10 @@ image: /img/posts/2015/wdpress-frontend-series-render/cover.jpg
 
 是非お買い求めください。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61sv1Mse%2BxL._SX352_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4774174882/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">WEB+DB PRESS Vol.88</h4>
-    </a>
-    <p>佐々木 拓郎  (著), 高柳 怜士  (著), 鶴原 翔夢 (著), 小野 侑一 (著), 中村 俊介 (著), 佐藤 春旗 (著), 長野 雅広 (著), 佐々木 健一 (著), 久保 達彦 (著), 若山 史郎 (著), 佐藤 太一 (著), 伊藤 直也 (著), 道井 俊介 (著), 佐藤 歩 (著), 泉水 翔吾  (著), 坪内 佑樹 (著), 海野 弘成 (著), 西尾 泰和 (著), 中島 聡 (著), はまちや2 (著), WEB+DB PRESS編集部 (編集)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61sv1Mse%2BxL._SX352_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4774174882/"
+  tag="1000ch-22"
+  title="WEB+DB PRESS Vol.88">
+  佐々木 拓郎  (著), 高柳 怜士  (著), 鶴原 翔夢 (著), 小野 侑一 (著), 中村 俊介 (著), 佐藤 春旗 (著), 長野 雅広 (著), 佐々木 健一 (著), 久保 達彦 (著), 若山 史郎 (著), 佐藤 太一 (著), 伊藤 直也 (著), 道井 俊介 (著), 佐藤 歩 (著), 泉水 翔吾  (著), 坪内 佑樹 (著), 海野 弘成 (著), 西尾 泰和 (著), 中島 聡 (著), はまちや2 (著), WEB+DB PRESS編集部 (編集)
+</affiliate-link>

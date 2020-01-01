@@ -29,23 +29,13 @@ image: /img/posts/2016/bought-in-2016/apple-watch-series-2.jpg
 
 [Magic Keyboard - US](http://www.apple.com/jp/shop/product/MLA22LL/A/magic-keyboard-us) と [Magic Trackpad 2](http://www.apple.com/jp/shop/product/MJ2R2J/A/magic-trackpad-2) を合わせて購入したので、実際にはもう少し高く付いたとも言えるが、快適に使っている。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51cWvwM7alL.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B01D9FP20A/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Philips 43型ワイド液晶ディスプレイ (4K対応/IPSパネル/5年間フル保証) BDM4350UC/11</h4>
-    </a>
-    <p>
-      画面サイズ: 42.5インチ<br>
-      液晶パネル: IPS、ノングレア(反射防止)<br>
-      解像度: 3840×2160<br>
-      輝度: 300 cd/m²<br>
-      入力端子: D-Sub15 ×1、HDMI2.0(MHL) ×2、DisplayPort1.2 ×2<br>
-      USBポート: USB 3.0 ×4<br>
-      保証期間: パネル、バックライトを含む5年間フル保証(センドバック対応)<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51cWvwM7alL.jpg"
+  href="https://www.amazon.co.jp/dp/B01D9FP20A/"
+  tag="1000ch-22"
+  title="Philips 43型ワイド液晶ディスプレイ (4K対応/IPSパネル/5年間フル保証) BDM4350UC/11">
+  画面サイズ: 42.5インチ、液晶パネル: IPS、ノングレア(反射防止)、解像度: 3840×2160、輝度: 300 cd/m²、入力端子: D-Sub15 ×1、HDMI2.0(MHL) ×2、DisplayPort1.2 ×2、USBポート: USB 3.0 ×4、保証期間: パネル、バックライトを含む5年間フル保証(センドバック対応)
+</affiliate-link>
 
 詳細は[Philips 43型 4K ワイドディスプレイ](/posts/2016/philips-display-43inch-4k.html)にて。
 
@@ -57,14 +47,12 @@ BOSE の QC シリーズとしては最新の [Bose QuietControl 30 wireless hea
 
 QC 30 や AirPods に比べれば遥かに手頃な割に、音質やノイズキャンセリングのパフォーマンスも中々良いので、ワイヤレスイヤホンの入門モデルとしてはとてもオススメ。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/71b3QJjv9ML._SX522_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B013U094TY/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">【日本正規品】メーカー1年保証 ／ QCY QY8　白黒2色 Bluetooth イヤホン BT ver 4.1 ワイヤレスイヤホン マイク内蔵 ハンズフリー 通話 APT-X CSR 8645 CVC6.0 ノイズキャンセリング搭載 防水 / 防汗 高音質スポーツイヤホン 技適認証済 (ブラック)</h4>
-    </a>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/71b3QJjv9ML._SX522_.jpg"
+  href="https://www.amazon.co.jp/dp/B013U094TY/"
+  tag="1000ch-22"
+  title="【日本正規品】メーカー1年保証 ／ QCY QY8　白黒2色 Bluetooth イヤホン BT ver 4.1 ワイヤレスイヤホン マイク内蔵 ハンズフリー 通話 APT-X CSR 8645 CVC6.0 ノイズキャンセリング搭載 防水 / 防汗 高音質スポーツイヤホン 技適認証済 (ブラック)">
+</affiliate-link>
 
 ## 珪藻土バスマット
 
@@ -72,17 +60,10 @@ QC 30 や AirPods に比べれば遥かに手頃な割に、音質やノイズ�
 
 ![珪藻土バスマット](/img/posts/2016/bought-in-2016/keisodo-bath-mat.jpg)
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/71bKmNGmqcL._SX522_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B016BP854A/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">ROOMMATE 珪藻土バスマット 約60cm×39cm EB-RM5000BM</h4>
-    </a>
-    <p>
-      乗った瞬間すぐ乾く 驚きの吸水力! 毎日のお洗濯は不要、消臭効果もあり衛星的で手間いらず! 半永久的に繰り返し使える足拭きマット<br>
-      素材・成分：珪藻土・植物繊維・その他　・パッケージ：化粧箱入り<br>
-      商品サイズ：約60cm×39cm ・生産地：中国<br>
-      カラー：ホワイト ・付属品：お手入用サンドペーパー付<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/71bKmNGmqcL._SX522_.jpg"
+  href="https://www.amazon.co.jp/dp/B016BP854A/"
+  tag="1000ch-22"
+  title="ROOMMATE 珪藻土バスマット 約60cm×39cm EB-RM5000BM">
+  乗った瞬間すぐ乾く 驚きの吸水力! 毎日のお洗濯は不要、消臭効果もあり衛星的で手間いらず! 半永久的に繰り返し使える足拭きマット。素材・成分：珪藻土・植物繊維・その他　・パッケージ：化粧箱入り。商品サイズ：約60cm×39cm ・生産地：中国。カラー：ホワイト ・付属品：お手入用サンドペーパー付
+</affiliate-link>

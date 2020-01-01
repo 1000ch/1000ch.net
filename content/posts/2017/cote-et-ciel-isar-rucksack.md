@@ -37,18 +37,14 @@ image: img/posts/2017/cote-et-ciel-isar-rucksack/front.jpg
 
 背中側の口を開けるとノート PC を収めるスペースがあり、ここに MacBook Pro 13inch を入れている。構造上ショルダーストラップの後ろなので、若干開けにくい。生地の硬さや新品ファスナーの開けにくさも相まっている気がするので、使いながら緩和されるのを待ちたい。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/71iB19awurL._UY575_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B016ZE96F4/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">COTE&CIEL/コートエシエル/コートシエル Isar Rucksack M/ラックサック/リュックサック/バックパック/カバン/鞄 メンズ/レディース [並行輸入品]</h4>
-    </a>
-    <p>
-      外側収納：ファスナーポケット×2/固定バンド×2<br>
-      前面収納：PC収納ポケット×1/ファスナーポケット×1/仕切りありオープンポケット×1<br>
-      サイズ：縦×横×厚：約55×32×21.5cm/ショルダーストラップ：約53～88cm<br>
-      素材：エコヤーン/カーゴキャンバス<br>
-      カラー：Black Melange(27711)
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/71iB19awurL._UY575_.jpg"
+  href="https://www.amazon.co.jp/dp/B016ZE96F4/"
+  tag="1000ch-22"
+  title="COTE&CIEL/コートエシエル/コートシエル Isar Rucksack M[並行輸入品]">
+  外側収納：ファスナーポケット×2/固定バンド×2<br>
+  前面収納：PC収納ポケット×1/ファスナーポケット×1/仕切りありオープンポケット×1<br>
+  サイズ：縦×横×厚：約55×32×21.5cm/ショルダーストラップ：約53～88cm<br>
+  素材：エコヤーン/カーゴキャンバス<br>
+  カラー：Black Melange(27711)
+</affiliate-link>

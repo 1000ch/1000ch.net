@@ -37,12 +37,10 @@ Service Workerで実現されるのWebページのオフライン化に限りま
 
 Service Workerはオプトインの機能として取り入れやすい技術でもあります。今から積極的に試しておきたいところです。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-fe.ssl-images-amazon.com/images/I/61d9LxmjvRL._SL75_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4774172480/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">WEB+DB PRESS Vol.86</h4>
-    </a>
-    <p>結城 洋志 (著), 沖元 謙治 (著), 足永 拓郎 (著), 林 健太郎 (著), 大竹 智也  (著), 内田 誠悟 (著), 伊藤 直也 (著), 中山 裕司 (著), hiroki.o (著), 泉水 翔吾  (著), 佐藤 太一 (著), 高橋 俊幸 (著), 西尾 泰和 (著), 舘野 祐一 (著), 中島 聡 (著), 橋本 翔 (著), はまちや2 (著), 竹原 (著), 麻植 泰輔 (著), WEB+DB PRESS編集部 (編集)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-fe.ssl-images-amazon.com/images/I/61d9LxmjvRL._SL75_.jpg"
+  href="https://www.amazon.co.jp/dp/4774172480/"
+  tag="1000ch-22"
+  title="WEB+DB PRESS Vol.86">
+  結城 洋志 (著), 沖元 謙治 (著), 足永 拓郎 (著), 林 健太郎 (著), 大竹 智也  (著), 内田 誠悟 (著), 伊藤 直也 (著), 中山 裕司 (著), hiroki.o (著), 泉水 翔吾  (著), 佐藤 太一 (著), 高橋 俊幸 (著), 西尾 泰和 (著), 舘野 祐一 (著), 中島 聡 (著), 橋本 翔 (著), はまちや2 (著), 竹原 (著), 麻植 泰輔 (著), WEB+DB PRESS編集部 (編集)
+</affiliate-link>

@@ -43,12 +43,10 @@ date: 2015-06-28
 
 Web開発に関わる人なら、職種を問わず読んでおきたい一冊。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51GQNCMJsZL._SX383_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4873114462/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">続・ハイパフォーマンスWebサイト ―ウェブ高速化のベストプラクティス</h4>
-    </a>
-    <p>Steve Souders (著), 武舎 広幸  (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51GQNCMJsZL._SX383_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4873114462/"
+  tag="1000ch-22"
+  title="続・ハイパフォーマンスWebサイト ―ウェブ高速化のベストプラクティス">
+  Steve Souders (著), 武舎 広幸  (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)
+</affiliate-link>

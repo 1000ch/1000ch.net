@@ -73,15 +73,13 @@ Gitや仮想環境、Node.js等を使った最近の開発環境・HTMLとCSSの
 
 [フロントエンドエンジニア養成読本](/posts/2014/frontend-engineer-training-book.html)と被るのかなと思いきや、こちらの本は、 **現場で実践しやすい知識を取り揃えている** ような印象を受けた。かと言ってTip集というわけでもなく、これからのWeb開発者にとって必要になる前提知識をしっかりと踏まえながら解説されている。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/517t9k6ta1L._SX352_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4844364936/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">現場のプロが教えるHTML+CSSコーディングの最新常識 知らないと困るWebデザインの新ルール4</h4>
-    </a>
-    <p>大竹孔明 (著), 小川裕之 (著), 高梨ギンペイ (著), 中江 亮 (著), 株式会社まぼろし (その他)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/517t9k6ta1L._SX352_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4844364936/"
+  tag="1000ch-22"
+  title="現場のプロが教えるHTML+CSSコーディングの最新常識 知らないと困るWebデザインの新ルール4">
+  大竹孔明 (著), 小川裕之 (著), 高梨ギンペイ (著), 中江 亮 (著), 株式会社まぼろし (その他)
+</affiliate-link>
 
 趣味の問題かもしれないが、個人的には **CHAPTER4　最適化・検証** の項をオススメしたい。Web開発の現場において今後必須（というか前提）になるであろう色々な作業の自動化と、ページを組み上げてオシマイではなくユーザービリティの最大化に欠かせないWebパフォーマンスのチューニングの項は是非とも身につけておきたいところ。
 

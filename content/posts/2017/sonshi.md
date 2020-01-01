@@ -10,14 +10,12 @@ date: 2017-12-29
 
 兵法書ということで、戦乱の世をどのように戦い抜くかが記述されている。といっても、特段変わった戦法や戦術が示されているわけではなく、戦に勝つための要素が13篇に分解されて書かれている。戦の勝敗は天運に左右されるわけではなく、事前にしっかり準備し、臨機応変に行動し、軍勢から勝機を判断し…といったような、然るべき次項を着実にやるというもの。ので、基準が戦争になっているが、普段の行動に反映できるものばかりである（戦争→日常生活だとジャンプが大きい気もするが）。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-fe.ssl-images-amazon.com/images/I/51aWtYqKn4L.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00QT9X9EK/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">新訂 孫子 (岩波文庫)</h4>
-    </a>
-    <p>金谷 治(著)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-fe.ssl-images-amazon.com/images/I/51aWtYqKn4L.jpg"
+  href="https://www.amazon.co.jp/dp/B00QT9X9EK/"
+  tag="1000ch-22"
+  title="新訂 孫子 (岩波文庫)">
+  金谷 治(著)
+</affiliate-link>
 
 孫子は色んな出版社から出版されているが、岩波文庫の本書は1篇毎に「漢文（白文）」「書き下し文」「日本語訳」の三段構成になっている。自分は日本語訳しか読まなかった。

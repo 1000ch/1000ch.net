@@ -10,35 +10,26 @@ date: 2017-12-27
 
 マイクについては [Audio-Technica ATR2100-USB ダイナミック USB/XLR マイク](https://www.amazon.co.jp/dp/B004QJOZS4/?tag=1000ch-22)を購入して使っていた。音質はかなりクリアで流石マイクといったところだが、感度が低くパソコンにインプットされたデータはソフトウェアによる増幅が必要で、そのためホワイトノイズが入りがちなのが気になっていた。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/8160UKobBcL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B004QJOZS4/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Audio-Technica ATR2100-USB Cardioid Dynamic USB/XLR Microphone by Audio-Technica</h4>
-    </a>
-    <p>
-      Handheld dynamic microphone with USB digital output and XLR analog output<br>
-      USB output connects to your computer for digital recording, while the XLR output connects with your sound system conventional microphone input for use in live performance<br>
-      Smooth, extended frequency response ideally suited for podcasting, home studio recording, field recording, voiceover, and on-stage use<br>
-      Built-in headphone jack allows you to directly monitor your microphone output without audible delay
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/8160UKobBcL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B004QJOZS4/"
+  tag="1000ch-22"
+  title="Audio-Technica ATR2100-USB Cardioid Dynamic USB/XLR Microphone by Audio-Technica">
+  Handheld dynamic microphone with USB digital output and XLR analog output<br>
+  USB output connects to your computer for digital recording, while the XLR output connects with your sound system conventional microphone input for use in live performance<br>
+  Smooth, extended frequency response ideally suited for podcasting, home studio recording, field recording, voiceover, and on-stage use<br>
+  Built-in headphone jack allows you to directly monitor your microphone output without audible delay
+</affiliate-link>
 
 そこで、物は試しということで [Steinberg オーディオインターフェース UR22mkII](https://www.amazon.co.jp/dp/B017MVUAHM/?tag=1000ch-22) を購入してみた。オーディオインターフェースはマイクなどの入力機器に繋いで、音量などの調節を行う機器である。これを中継して調節した上でパソコンに入力するのだが、こんなにもクリアな音質のまま増幅できるものなのか、というレベルで改善された。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/71zIPCk8IuL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B017MVUAHM/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Steinberg スタインバーグ 2x2 USB2.0 24bit/192kHz オーディオインターフェース UR22mkII</h4>
-    </a>
-    <p>
-      コンボジャックにより高感度マイクや大出力のライン機器など幅広い入力ソースに対応<br>
-      ストリーミング配信に便利なループバック機能
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/71zIPCk8IuL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B017MVUAHM/"
+  tag="1000ch-22"
+  title="Steinberg スタインバーグ 2x2 USB2.0 24bit/192kHz オーディオインターフェース UR22mkII">
+  コンボジャックにより高感度マイクや大出力のライン機器など幅広い入力ソースに対応。ストリーミング配信に便利なループバック機能
+</affiliate-link>
 
 サイズも小さく見た目もかわいくて気に入っている。値段もそこそこ手頃な割に性能も良く、レビューにある通り入門モデルとして間違いないオーディオインターフェースなんだと思われる。この手の機器に関して無知だが、満足できる買い物だった。
 

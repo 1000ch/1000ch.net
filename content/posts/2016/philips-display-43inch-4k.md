@@ -16,20 +16,10 @@ date: 2016-08-08
 
 テレビ要らない族なので、 PC やゲームなどの出力先ディスプレイとして全てを賄っている。かなり大きなディスプレイなので PS Vita TV や MacBook Pro の出力が追いつくかどうか心配だったが、今のところ問題無い様子。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51cWvwM7alL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B01D9FP20A/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Philips 43型ワイド液晶ディスプレイ (4K対応/IPSパネル/5年間フル保証) BDM4350UC/11</h4>
-    </a>
-    <p>
-      画面サイズ: 42.5インチ<br>
-      液晶パネル: IPS、ノングレア(反射防止)<br>
-      解像度: 3840×2160<br>
-      輝度: 300 cd/m²<br>
-      入力端子: D-Sub15 ×1、HDMI2.0(MHL) ×2、DisplayPort1.2 ×2<br>
-      USBポート: USB 3.0 ×4<br>
-      保証期間: パネル、バックライトを含む5年間フル保証(センドバック対応)<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51cWvwM7alL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B01D9FP20A/"
+  tag="1000ch-22"
+  title="Philips 43型ワイド液晶ディスプレイ (4K対応/IPSパネル/5年間フル保証) BDM4350UC/11">
+  画面サイズ: 42.5インチ。液晶パネル: IPS、ノングレア(反射防止)。解像度: 3840×2160。輝度: 300 cd/m²。入力端子: D-Sub15 ×1、HDMI2.0(MHL) ×2、DisplayPort1.2 ×2。USBポート: USB 3.0 ×4。保証期間: パネル、バックライトを含む5年間フル保証(センドバック対応)
+</affiliate-link>
