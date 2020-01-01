@@ -10,11 +10,7 @@ date: 2017-04-30
 
 当日の様子は FRESH! で生配信され、[アーカイブも残っている](https://freshlive.tv/tech-conference/109133)ので見逃した方は是非どうぞ。
 
-<div class="YouTube">
-  <iframe 
-    title="Frontrend Vol.9 - 春の新人歓迎 マークアップ/アクセシビリティのキホン | FRESH!（フレッシュ） - 生放送がログイン不要・高画質で見放題" 
-    src="https://freshlive.tv/embed/109133" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe
+  title="Frontrend Vol.9 - 春の新人歓迎 マークアップ/アクセシビリティのキホン | FRESH!（フレッシュ） - 生放送がログイン不要・高画質で見放題" 
+  src="https://freshlive.tv/embed/109133">
+</responsive-iframe>

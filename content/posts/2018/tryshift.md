@@ -20,15 +20,7 @@ date: 2018-08-21
 
 まずはこちらのトレーラーを見てもらうのが早い。
 
-<div class="YouTube">
-  <iframe
-    src="https://player.vimeo.com/video/260278352?title=0&byline=0"
-    width="640" 
-    height="360" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://player.vimeo.com/video/260278352?title=0&byline=0"></responsive-iframe>
 
 Web サイトには
 
