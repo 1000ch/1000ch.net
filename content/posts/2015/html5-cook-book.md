@@ -41,14 +41,12 @@ date: 2015-01-22
 
 アクセシビリティの章もあるが、本来こういった属性を適切に指定したり、ドキュメント構造を意識すべきなんだと思う。「開発者同志で齟齬が出るくらいなら全部`<div>`で！」という意見もおおよそ同意な部分もあるけど、適切に実施出来るならやっておくに越したことはないのも間違いなさそう。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51MGrl%2BdO1L._SX389_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4873115477/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">HTML5クックブック</h4>
-    </a>
-    <p>Christopher Schmitt (著), Kyle Simpson (著), 株式会社クイープ (翻訳)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51MGrl%2BdO1L._SX389_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4873115477/"
+  tag="1000ch-22"
+  title="HTML5クックブック">
+  Christopher Schmitt (著), Kyle Simpson (著), 株式会社クイープ (翻訳)
+</affiliate-link>
 
 HTML5は、既にバズワードではなく当たり前になってきている。HTMLの知識をアップデートしたい人にオススメ。

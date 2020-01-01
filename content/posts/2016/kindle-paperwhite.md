@@ -24,36 +24,18 @@ Oasis を使えば「こちらのほうが良い」と確実になるだろう�
 
 店舗等で実際に両者を比較できなかったのもある。最近 Amazon は店舗での販売をやめたようで家電量販店では順次撤退が進んでいるので、手にとって試す機会は今後もないかもしれない。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51ch0nsLq3L._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00QJDQM9U/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Kindle Paperwhite Wi-Fi 、ブラック、キャンペーン情報つき</h4>
-    </a>
-    <p>
-      カラーは定番のブラックに新色のホワイト<br>
-      小さな文字もくっきりキレイ。300ppiの高解像度で今まで以上に美しく<br>
-      直接目を照らさないフロントライト方式で、目に優しい<br>
-      紙のように読みやすいEインクで長時間の読書も疲れにくい<br>
-      軽くて持ちやすいから、通勤・通学中も片手で読書<br>
-      本棚のスペースに困らない。数千冊がこの一台に(一般的な書籍の場合)<br>
-      最新のベストセラーなど豊富な品ぞろえを低価格で。無料で読める名作も<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/618RnCYy2IL._SY355_.jpg"
+  href="https://www.amazon.co.jp/dp/B07HCSQ48P/"
+  tag="1000ch-22"
+  title="Kindle Paperwhite 防水機能搭載 Wi-Fi 8GB 広告つき 電子書籍リーダー">
+  読書のための専用端末 - E Ink(イーインク)ディスプレイで、紙のように読みやすい。直接目を照らさないフロントライト方式だから、目に優しく、長時間の読書でも疲れにくい。本数千冊(一般的な書籍の場合)がこの一台に。これまでのKindle Paperwhiteの中で最も薄く、最も軽い。ベゼルがフラットになったモダンなデザイン。300ppiの高解像度で、小さな文字もくっきりキレイ。反射しないディスプレイだから、明るい陽射しの下でもまぶしくない。防水機能搭載(IPX8等級)。ビーチでも、プールでも、お風呂でも快適に読める。長時間バッテリー。一度の充電で数週間利用可能。明るさ調節により、屋外でも室内でも、昼も夜も、快適に読書。700万冊以上の本、マンガ、雑誌、洋書を低価格で。日替わりセールほかお得なタイトルも。プライム会員なら、追加料金なしで対象のタイトルが好きなだけ読み放題(Prime Reading)
+</affiliate-link>
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/710l%2BPakGvL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B010EJWHUC/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Kindle Oasis Wi-Fi バッテリー内蔵レザーカバー付属 ブラック キャンペーン情報つきモデル</h4>
-    </a>
-    <p>
-      Kindle史上、最も薄く、最も軽い - 長時間の読書もこれまでにないほど快適に<br>
-      ボタンのひとつにいたるまで人間工学に基づいて刷新されたデザイン<br>
-      Kindleシリーズ最長のバッテリー駆動時間。付属のバッテリー内蔵レザーカバーで、数か月充電不要(*)<br>
-      300 ppiの高解像度で文字はくっきり美しく。明るい日差しの下でも光の反射を気にせず本物の紙のように読みやすい<br>
-      目に優しい「フロントライト」がさらに進化。LEDを60%多く使用し、さらにスクリーンの明るさが均一に<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/616LpttqgUL._SY355_.jpg"
+  href="https://www.amazon.co.jp/dp/B07L5GH2YP/"
+  tag="1000ch-22"
+  title="Kindle Oasis 色調調節ライト搭載 Wi-Fi 8GB 広告つき 電子書籍リーダー">
+  Kindle史上最高のPaperwhiteディスプレイ。7インチ、フラットベゼル、300ppi。色調調節ライトを初搭載。ホワイトからアンバーに色の暖かさを調節可能。防水機能搭載(IPX8等級)でお風呂でもプールでも読書を。薄く、軽い、人間工学に基づいたデザイン。ページ送りボタン搭載。本物の紙のような読み心地。最新のe-ink技術採用でページ送りもスラスラ。700万冊以上の本、マンガ、雑誌、洋書を低価格で
+</affiliate-link>

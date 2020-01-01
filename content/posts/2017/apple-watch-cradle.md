@@ -19,39 +19,31 @@ image: /img/posts/2017/apple-watch-cradle/unpacked.jpg
 
 充電ケーブルは別売りだが、 iPhone や Apple Watch に付属してきた充電ケーブル群をまとめる目的も果たしている。アルミニウム製でスタイリッシュな見た目もなかなか気に入っている。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61Zwe4gZz3L._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B01M6UZOSO/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">iVAPO Apple Watch / iPhone 充電スタンド アルミニウム製 充電クレードル 2in1充電スタンド Apple Watch Series 2/Series 1/Nike+/iPhone 7/iPhone 7 Plus/iPhone 6 Plus/iPhone 6s plus/iPhone 6/iPhone 6s/iPhone 5s/Samsung/Sony等のスマホ 全3色（シルバー）</h4>
-    </a>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61Zwe4gZz3L._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B01M6UZOSO/"
+  tag="1000ch-22"
+  title="iVAPO Apple Watch / iPhone 充電スタンド アルミニウム製 充電クレードル 2in1充電スタンド Apple Watch Series 2/Series 1/Nike+/iPhone 7/iPhone 7 Plus/iPhone 6 Plus/iPhone 6s plus/iPhone 6/iPhone 6s/iPhone 5s/Samsung/Sony等のスマホ 全3色（シルバー）">
+</affiliate-link>
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/510KnSD3EKL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B012RL32H2/?tag=1000ch" target="_blank">
-      <h4 class="Media__Title">エレコム USB急速充電器 iPhone&Android対応 USB2ポート 2.4A出力 折畳式プラグ ホワイト MPA-ACUEN000WH</h4>
-    </a>
-    <p>
-      2つのUSBポートを搭載し、家庭用コンセントから2台のスマートフォンを同時に充電可能です。<br>
-      スマートフォンを約2.5時間でフル充電できる急速充電タイプです。<br>
-      コンパクトなキューブ型で、急速充電できる高出力タイプとして国内最小クラスを実現しています。<br>
-      未使用時は電源プラグを折りたたんで充電器本体に収納可能です。<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/510KnSD3EKL._SX425_.jpg"
+  href="エレコム USB急速充電器 iPhone&Android対応 USB2ポート 2.4A出力 折畳式プラグ ホワイト MPA-ACUEN000WH"
+  tag="1000ch-22"
+  title="">
+  2つのUSBポートを搭載し、家庭用コンセントから2台のスマートフォンを同時に充電可能です。<br>
+  スマートフォンを約2.5時間でフル充電できる急速充電タイプです。<br>
+  コンパクトなキューブ型で、急速充電できる高出力タイプとして国内最小クラスを実現しています。<br>
+  未使用時は電源プラグを折りたたんで充電器本体に収納可能です。<br>
+</affiliate-link>
 
 ## Poweradd Apple Watch専用磁気ワイヤレス充電ケーブル 充電スタンド付き
 
 [Poweradd Apple Watch専用磁気ワイヤレス充電ケーブル 充電スタンド付き](https://www.amazon.co.jp/dp/B01FD6HC2Y/?tag=1000ch-22)は、携帯用の充電ケーブル・会社に置いておく用のクレードルとして購入した。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61bpU9BpbKL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B01FD6HC2Y/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Poweradd Apple Watch専用磁気ワイヤレス充電ケーブル 充電スタンド付き</h4>
-    </a>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61bpU9BpbKL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B01FD6HC2Y/"
+  tag="1000ch-22"
+  title="Poweradd Apple Watch専用磁気ワイヤレス充電ケーブル 充電スタンド付き">
+</affiliate-link>

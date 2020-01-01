@@ -18,15 +18,13 @@ date: 2014-08-04
 
 [スライド](http://www.slideshare.net/hiloki)を見ると分かる通り、[CSSプリプロセッサの話](http://www.slideshare.net/hiloki/css-16247228)に始まり、[CSSの設計の話](http://www.slideshare.net/hiloki/thinking-about-css-architecture)や、最近では[Web Componentsを交えた話](http://www.slideshare.net/hiloki/css-components)もされていて、CSSと戦ってきた傷跡が生生と感じられます（大袈裟）。今回の著書は得てきたナレッジの集大成といえるのではないでしょうか。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-fe.ssl-images-amazon.com/images/I/51UN5EPk3oL.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00C2ICGPU/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">HTML5+CSS3で作る魅せるiPhoneサイト 　 iPhone / iPad　/　iPod touch対応</h4>
-    </a>
-    <p>谷 拓樹  (著)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-fe.ssl-images-amazon.com/images/I/51UN5EPk3oL.jpg"
+  href="https://www.amazon.co.jp/dp/B00C2ICGPU/"
+  tag="1000ch-22"
+  title="HTML5+CSS3で作る魅せるiPhoneサイト 　 iPhone / iPad　/　iPod touch対応">
+  谷 拓樹  (著)
+</affiliate-link>
 
 ## 内容について
 
@@ -64,12 +62,10 @@ date: 2014-08-04
 
 この本を読んで、より良いWeb開発を。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51rsbQOrZ0L._SX390_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4844336355/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Web制作者のためのCSS設計の教科書 モダンWeb開発に欠かせない「修正しやすいCSS」の設計手法</h4>
-    </a>
-    <p>谷 拓樹  (著)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51rsbQOrZ0L._SX390_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4844336355/"
+  tag="1000ch-22"
+  title="Web制作者のためのCSS設計の教科書 モダンWeb開発に欠かせない「修正しやすいCSS」の設計手法">
+  谷 拓樹  (著)
+</affiliate-link>

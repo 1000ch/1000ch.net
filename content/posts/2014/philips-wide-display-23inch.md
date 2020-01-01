@@ -31,20 +31,13 @@ Apple製品が多いのでThunderbolt Displayが欲しくなるところだが�
 
 ディスプレイのサイズは、21.5型・23型・27型の3種類あるが、僕はタイトルの通り23型モデルを購入した。21.5型が16,080円、23型が17,898円、27型28,188円で、Thunderbolt Displayと同じサイズにあたる27型は比較的高めとはいえ、非常に廉価な印象。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/41m17C%2BgBPL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00F4IEV4O/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">PHILIPS 23型AH-IPSパネル採用ワイドディスプレイ 5年保証付 234E5QHSB/11</h4>
-    </a>
-    <p>
-      HDMI端子入数:2 [HDMI 1、HDMIMHL1]<br>
-      USB機能:なし<br>
-      スピーカ無し<br>
-      TV機能無し<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/41m17C%2BgBPL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B00F4IEV4O/"
+  tag="1000ch-22"
+  title="PHILIPS 23型AH-IPSパネル採用ワイドディスプレイ 5年保証付 234E5QHSB/11">
+  HDMI端子入数:2 [HDMI 1、HDMIMHL1]。USB機能:なし。スピーカ無し。TV機能無し
+</affiliate-link>
 
 詳しいスペックについては公式サイトをどうぞ。
 

@@ -11,20 +11,13 @@ image: /img/posts/2017/omron-weight-scale/omron.jpg
 
 ![オムロンの体重計](/img/posts/2017/omron-weight-scale/omron.jpg)
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/81DHIyoFcWL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B005JVBDG0/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">オムロン 体重・体組成計 カラダスキャン ホワイト HBF-214-W</h4>
-    </a>
-    <p>
-      サイズ:約幅285×高さ28×奥行280mm<br>
-	  本体重量:約1.6kg(電池含む)<br>
-	  素材・材質:ABSガラス、ABS樹脂<br>
-	  体重:0～100kgまで/100g単位、100～135kgまで/200g単位
-	</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/81DHIyoFcWL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B005JVBDG0/"
+  tag="1000ch-22"
+  title="オムロン 体重・体組成計 カラダスキャン ホワイト HBF-214-W">
+  サイズ:約幅285×高さ28×奥行280mm。本体重量:約1.6kg(電池含む)。素材・材質:ABSガラス、ABS樹脂。体重:0～100kgまで/100g単位、100～135kgまで/200g単位
+</affiliate-link>
 
 どうせなら Wi-Fi で接続して、計測したら自動で集計して…みたいな機能付きのものを探して買っても良かったのだが、安くて安心のオムロンに着地した。自分の基礎データ（年齢と身長と性別）を登録して測ると、体組成データも出力できるっぽい。
 

@@ -25,12 +25,10 @@ image: /img/posts/2014/wdpress-frontend-series-modulesystem/cover.jpg
 
 宜しくお願い致しますm(_ _)m
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61GuZ%2B7U5IL._SX352_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4774169552/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">WEB+DB PRESS Vol.84</h4>
-    </a>
-    <p>藤 吾郎 (著), 桑野 章弘  (著), 福永 亘 (著), 谷井 靖史 (著), 野村 晋之介 (著), 蛭川 皓平 (著), 岡田 友輔 (著), 藤本 真樹 (著), 伊藤 直也 (著), 宮崎 靖彦 (著), 佐藤 健太 (著), 高橋 俊幸 (著), 佐藤 太一 (著), 海野 弘成 (著), 佐藤 歩  (著), 泉水 翔吾  (著), 渡邊 恵太 (著), 舘野 祐一 (著), 中島 聡 (著), 橋本 翔 (著), はまちや2 (著), 竹原 (著), 伊賀敏樹 (著), WEB+DB PRESS編集部 (編集)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61GuZ%2B7U5IL._SX352_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4774169552/"
+  tag="1000ch-22"
+  title="WEB+DB PRESS Vol.84">
+  藤 吾郎 (著), 桑野 章弘  (著), 福永 亘 (著), 谷井 靖史 (著), 野村 晋之介 (著), 蛭川 皓平 (著), 岡田 友輔 (著), 藤本 真樹 (著), 伊藤 直也 (著), 宮崎 靖彦 (著), 佐藤 健太 (著), 高橋 俊幸 (著), 佐藤 太一 (著), 海野 弘成 (著), 佐藤 歩  (著), 泉水 翔吾  (著), 渡邊 恵太 (著), 舘野 祐一 (著), 中島 聡 (著), 橋本 翔 (著), はまちや2 (著), 竹原 (著), 伊賀敏樹 (著), WEB+DB PRESS編集部 (編集)
+</affiliate-link>

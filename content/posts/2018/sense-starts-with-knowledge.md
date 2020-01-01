@@ -12,12 +12,10 @@ date: 2018-07-10
 
 終盤の、物事の客観的評価の話では、「論理性のない好き嫌いで決定している限り、マスの心を掴むことは出来ない」というメッセージをどことなく感じる。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-fe.ssl-images-amazon.com/images/I/31Gs261nTEL.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00LIQMVLQ/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">センスは知識からはじまる</h4>
-    </a>
-    <p>水野 学</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-fe.ssl-images-amazon.com/images/I/31Gs261nTEL.jpg"
+  href="https://www.amazon.co.jp/dp/B00LIQMVLQ/"
+  tag="1000ch-22"
+  title="センスは知識からはじまる">
+  水野 学
+</affiliate-link>

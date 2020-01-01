@@ -29,12 +29,10 @@ SVGと聞いて真っ先に思い浮かぶのは **ベクター形式** とい�
 
 ディベロッパーはもちろんのこと、デザインに関わる人も抑えておくべき技術です。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61Yy-mVlHdL._SX352_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4774177873/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">WEB+DB PRESS Vol.90</h4>
-    </a>
-    <p>江口 和宏 (著), 吉田 太一郎 (著), 内田 優一 (著), 青山 公士 (著), 石本 光司  (著), まつもと ゆきひろ (著), おにたま (著), 田籠 聡 (著), 竹内 郁雄 (著), 南川 毅文 (著), 伊藤 直也 (著), 佐藤 太一 (著), 髙橋 侑久 (著), Magnolia.K (著), 佐藤 歩 (著), 泉水 翔吾  (著), 西尾 泰和 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 宮崎 亮輔 (著), 安藤 祐介 (著), WEB+DB PRESS編集部 (編集)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61Yy-mVlHdL._SX352_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4774177873/"
+  tag="1000ch-22"
+  title="WEB+DB PRESS Vol.90">
+  江口 和宏 (著), 吉田 太一郎 (著), 内田 優一 (著), 青山 公士 (著), 石本 光司  (著), まつもと ゆきひろ (著), おにたま (著), 田籠 聡 (著), 竹内 郁雄 (著), 南川 毅文 (著), 伊藤 直也 (著), 佐藤 太一 (著), 髙橋 侑久 (著), Magnolia.K (著), 佐藤 歩 (著), 泉水 翔吾  (著), 西尾 泰和 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 宮崎 亮輔 (著), 安藤 祐介 (著), WEB+DB PRESS編集部 (編集)
+</affiliate-link>

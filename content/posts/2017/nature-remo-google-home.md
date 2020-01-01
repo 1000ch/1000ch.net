@@ -32,35 +32,27 @@ Nature Remo は赤外線を発信できるようになっており、これに�
 
 あとは天井の照明を Nature Remo で操作できるようにしてみよう。もともと家に備え付けのライトはなく、無印良品のペンダントライトに LED 電球を付けて使っていた。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61k9jX3DGYL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B0716KGVFM/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">ボンコシ　LED電球 E26口金 100W形相当 1100lm 昼光色相当(13W) 一般電球・ボール電球タイプ・95mm径…</h4>
-    </a>
-    <p>
-      口金：E26 演色指数(CRI)：80Ra以上<br>
-      入力電圧：AC100－240V　50/60HZ 入力電流：0.11A<br>
-      定格消費電力:13W　全光束：1100lm<br>
-      ビーム角：270°　色温度：6000K　サイズ：Φ95*138mm
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61k9jX3DGYL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B0716KGVFM/"
+  tag="1000ch-22"
+  title="ボンコシ　LED電球 E26口金 100W形相当 1100lm 昼光色相当(13W) 一般電球・ボール電球タイプ・95mm径">
+  口金：E26 演色指数(CRI)：80Ra以上<br>
+  入力電圧：AC100－240V　50/60HZ 入力電流：0.11A<br>
+  定格消費電力:13W　全光束：1100lm<br>
+  ビーム角：270°　色温度：6000K　サイズ：Φ95*138mm
+</affiliate-link>
 
 そのため照明のオンオフを切り替えるには壁にあるスイッチを押すしかなかったのだが、これについては [@horimislime](https://twitter.com/horimislime) に教えてもらった天井とペンダントライトの間に装着するリモコンスイッチを中継することで、まずは赤外線リモコンで操作できるようにした。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/710j2hSaJcL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B01ABMGF1Y/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">天井照明器具専用 リモコンスイッチ [品番]07-8250 OCR-04W</h4>
-    </a>
-    <p>
-      サイズ:8.3×9.6×4.5cm<br>
-      本体重量(kg):0.115
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/710j2hSaJcL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B01ABMGF1Y/"
+  tag="1000ch-22"
+  title="天井照明器具専用 リモコンスイッチ [品番]07-8250 OCR-04W">
+  サイズ:8.3×9.6×4.5cm<br>
+  本体重量(kg):0.115
+</affiliate-link>
 
 1. Nature Remo アプリの Control タブから+ボタンをクリックし、新たなコントロールを追加する
 2. Nature Remo 本体に向けて登録したいリモコンの操作を実行する

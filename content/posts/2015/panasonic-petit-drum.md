@@ -47,14 +47,12 @@ date: 2015-02-15
 
 その他の機能としては「[エコナビ](http://panasonic.jp/wash/product/na_vh310l/econavi.html)」「[自動槽洗浄](http://panasonic.jp/wash/product/na_vh310l/auto_cleaning.html)」「[泡洗浄・ダンシング洗浄](http://panasonic.jp/wash/product/na_vh310l/dancing.html)」「[お急ぎコース](http://panasonic.jp/wash/product/na_vh310l/speedy.html)」と、至れりつくせり。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/41W13dzl4dL.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00I0OAR92/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">パナソニック 7.0kg ドラム式洗濯乾燥機【左開き】クリスタルホワイトPanasonic　プチドラム　エコナビ NA-VH310L-W</h4>
-    </a>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/41W13dzl4dL.jpg"
+  href="https://www.amazon.co.jp/dp/B00I0OAR92/"
+  tag="1000ch-22"
+  title="パナソニック 7.0kg ドラム式洗濯乾燥機【左開き】クリスタルホワイトPanasonic　プチドラム　エコナビ NA-VH310L-W">
+</affiliate-link>
 
 場所・天気と干すことに気を遣わなくなったし、洗ったものはホカホカふっくら出てくるし、何より **洗濯という家事に対して、かける時間が減ったのに満足度がグッと上がった** 。
 

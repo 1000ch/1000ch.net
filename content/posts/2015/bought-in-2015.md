@@ -16,14 +16,12 @@ date: 2015-12-25
 
 これはとても良い買い物だった。これのおかげで、雨の日も風の日もなんのその、干し忘れの生乾き臭に悩むことが無くなった。洗濯機の買い替えを考えている人は、是非御検討を。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/41W13dzl4dL.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00I0OAR92/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">パナソニック 7.0kg ドラム式洗濯乾燥機【左開き】クリスタルホワイトPanasonic　プチドラム　エコナビ NA-VH310L-W</h4>
-    </a>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/41W13dzl4dL.jpg"
+  href="https://www.amazon.co.jp/dp/B00I0OAR92/"
+  tag="1000ch-22"
+  title="パナソニック 7.0kg ドラム式洗濯乾燥機【左開き】クリスタルホワイトPanasonic　プチドラム　エコナビ NA-VH310L-W">
+</affiliate-link>
 
 ## BOSE SoundLink Mini
 
@@ -31,43 +29,25 @@ date: 2015-12-25
 
 自分が持っているのはv1だけど、新しいバージョンも出ているので、そちらに買い換えたい。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/613oOsVXF8L._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00YMCA3V8/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">Bose SoundLink Mini II Bluetoothスピーカー ポータブル/ワイヤレス対応/通話可能 カーボン SLink Mini II CBN【国内正規品】</h4>
-    </a>
-    <p>
-      大きなサウンドと深みのある低音でフルレンジのリスニング体験<br>
-      ワイヤレス、超コンパクトサイズで、どんな場所へでもBoseサウンドを持って行くことが可能<br>
-      内蔵スピーカーフォンにより、明瞭な通話音声の出力が可能<br>
-      音声ガイドによるBluetoothペアリング手順案内で、非常に簡単に設定可能<br>
-      充電式バッテリーで最大10時間の連続再生が可能<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/613oOsVXF8L._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B00YMCA3V8/"
+  tag="1000ch-22"
+  title="Bose SoundLink Mini II Bluetoothスピーカー ポータブル/ワイヤレス対応/通話可能 カーボン SLink Mini II CBN【国内正規品】">
+  大きなサウンドと深みのある低音でフルレンジのリスニング体験。ワイヤレス、超コンパクトサイズで、どんな場所へでもBoseサウンドを持って行くことが可能。内蔵スピーカーフォンにより、明瞭な通話音声の出力が可能。音声ガイドによるBluetoothペアリング手順案内で、非常に簡単に設定可能。充電式バッテリーで最大10時間の連続再生が可能
+</affiliate-link>
 
 ## PHILIPS ソニッケアー
 
 手で磨いていたことがアホらしくなるくらいツルツルになる。お手頃だし、買って損はないと思う。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/61l2V4sGnoL._SY679_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00C905644/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">フィリップス 電動歯ブラシ ソニッケアー イージークリーン HX6520/50</h4>
-    </a>
-    <p>
-      サイズ:34×34×252mm<br>
-      本体重量:127g<br>
-      素材・材質:ABS<br>
-      生産国:中国<br>
-      電源:AC100~240V 50/60Hz<br>
-      消費電力:1.4W 充電式(約24時間充電<br>
-      保障期間:2年<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/61l2V4sGnoL._SY679_.jpg"
+  href="https://www.amazon.co.jp/dp/B00C905644/"
+  tag="1000ch-22"
+  title="フィリップス 電動歯ブラシ ソニッケアー イージークリーン HX6520/50">
+  サイズ:34×34×252mm。本体重量:127g。素材・材質:ABS。生産国:中国。電源:AC100~240V 50/60Hz。消費電力:1.4W 充電式(約24時間充電。保障期間:2年
+</affiliate-link>
 
 ## Parrot Zik 2.0
 
@@ -75,21 +55,13 @@ Bluetoothでノイズキャンセリングなヘッドフォン。v1からのア
 
 少々値が張ったが重宝している。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/41ugw1cA1UL._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B00Q8KG49W/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">【国内正規品】Parrot Zik2.0(ブラック) Bluetooth ワイヤレスヘッドフォン PF561030 PF561030(ZIK2BLACK)</h4>
-    </a>
-    <p>
-      フィリップ・スタルクがデザインした密閉型Bluetooth対応ノイズキャンセリングヘッドホン<br>
-      Bluetooth/NFC接続対応<br>
-      曲送り、音量調整等を行える本体側面のタッチ方式のコマンドパネル<br>
-      環境に自動適応する強力なアクティブ・ノイズキャンセラー<br>
-      アプリで様々な設定をコントロール<br>
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/41ugw1cA1UL._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B00Q8KG49W/"
+  tag="1000ch-22"
+  title="【国内正規品】Parrot Zik2.0(ブラック) Bluetooth ワイヤレスヘッドフォン PF561030 PF561030(ZIK2BLACK)">
+  フィリップ・スタルクがデザインした密閉型Bluetooth対応ノイズキャンセリングヘッドホン。Bluetooth/NFC接続対応。曲送り、音量調整等を行える本体側面のタッチ方式のコマンドパネル。環境に自動適応する強力なアクティブ・ノイズキャンセラー。アプリで様々な設定をコントロール
+</affiliate-link>
 
 ## docomoからみおふぉんへの乗り換え
 

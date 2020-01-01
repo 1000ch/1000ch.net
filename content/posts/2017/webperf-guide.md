@@ -60,14 +60,12 @@ image: /img/posts/2017/webperf-guide/cover.png
 
 宜しくお願い致します。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51KTTrbtbTL._SX350_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/477419400X/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">超速!  Webページ速度改善ガイド ── 使いやすさは「速さ」から始まる (WEB+DB PRESS plus)</h4>
-    </a>
-    <p>佐藤 歩 (著), 泉水 翔吾 (著)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51KTTrbtbTL._SX350_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/477419400X/"
+  tag="1000ch-22"
+  title="超速!  Webページ速度改善ガイド ── 使いやすさは「速さ」から始まる (WEB+DB PRESS plus)">
+  佐藤 歩 (著), 泉水 翔吾 (著)
+</affiliate-link>
 
 **超速!** ということで、当初予定していたハッシュタグは [#超速本](https://twitter.com/hashtag/超速本?src=hash) ですが、とあるツイートによって [#チョッパヤ本](https://twitter.com/hashtag/チョッパヤ本?src=hash) というハッシュタグが追加されたようです。使いやすい方をお使いください。

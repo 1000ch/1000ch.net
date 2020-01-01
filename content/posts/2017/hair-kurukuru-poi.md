@@ -12,17 +12,13 @@ date: 2017-11-25
 
 安かったので買ってみたところ、期待以上の働きをしてくれている。同じ問題にお悩みの人は、試してみてほしい。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/81q-bt0I%2B0L._SX425_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/B009PDG7UK/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">髪の毛くるくるポイ 新型Cタイプ(ユニットバス用)</h4>
-    </a>
-    <p>
-      サイズ:(約)外径寸法 直径120mm 厚さ45mm<br>
-			本体重量:35g<br>
-			素材:本体/ポリプロピレン<br>
-		  原産国:日本
-    </p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/81q-bt0I%2B0L._SX425_.jpg"
+  href="https://www.amazon.co.jp/dp/B009PDG7UK/"
+  tag="1000ch-22"
+  title="髪の毛くるくるポイ 新型Cタイプ(ユニットバス用)">
+  サイズ:(約)外径寸法 直径120mm 厚さ45mm<br>
+  本体重量:35g<br>
+  素材:本体/ポリプロピレン<br>
+  原産国:日本
+</affiliate-link>

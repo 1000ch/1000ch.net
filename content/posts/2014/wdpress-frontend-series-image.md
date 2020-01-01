@@ -22,14 +22,12 @@ image: /img/posts/2014/wdpress-frontend-series-image/cover.jpg
 
 圧縮されたjQueryが32KBだのなんだのと言っても、未減色の画像ならそのサイズの10倍とかを平気で突破するケースも多々ありますし、iPhone 6 Plusの`device-pixel-ratio=3`も各所で報告されましたし、画像ファイルのサイズは尚の事シビアな問題として今後挙げられていくでしょう。このあたりで画像の取り扱いについて再考しておくのもきっと今後のWeb開発に役立つはずです。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/619A10DdrnL._SX352_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4774167355/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">WEB+DB PRESS Vol.83</h4>
-    </a>
-    <p>原田 騎郎  (著), 吉羽 龍太郎 (著), 山口 陽平 (著), 青木 雅弥 (著), 松下 誠太 (著), 三宅 英明 (著), 高橋 征義 (著), 南川 毅文  (著), 伊藤 直也 (著), 海野 弘成 (著), 高安 洋輝 (著), 佐藤 歩  (著), 泉水 翔吾 (著), 佐藤 太一 (著), 横江 直輔 (著), 舘野 祐一 (著), 橋本 翔 (著), 渡邊 恵太 (著), 中島 聡 (著), はまちや2 (著), 小沢 邦雄 (著), 長沢 智治 (著), WEB+DB PRESS編集部 (編集)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/619A10DdrnL._SX352_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4774167355/"
+  tag="1000ch-22"
+  title="WEB+DB PRESS Vol.83">
+  原田 騎郎  (著), 吉羽 龍太郎 (著), 山口 陽平 (著), 青木 雅弥 (著), 松下 誠太 (著), 三宅 英明 (著), 高橋 征義 (著), 南川 毅文  (著), 伊藤 直也 (著), 海野 弘成 (著), 高安 洋輝 (著), 佐藤 歩  (著), 泉水 翔吾 (著), 佐藤 太一 (著), 横江 直輔 (著), 舘野 祐一 (著), 橋本 翔 (著), 渡邊 恵太 (著), 中島 聡 (著), はまちや2 (著), 小沢 邦雄 (著), 長沢 智治 (著), WEB+DB PRESS編集部 (編集)
+</affiliate-link>
 
 是非お買い求め下さい！

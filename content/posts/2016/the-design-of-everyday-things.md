@@ -14,12 +14,10 @@ date: 2016-03-02
 
 Kindle版〜。
 
-<div class="Media Media--affiliate">
-  <img class="Media__Figure" src="https://images-na.ssl-images-amazon.com/images/I/51uEWA1B3EL._SX340_BO1,204,203,200_.jpg">
-  <div class="Media__Body">
-    <a href="https://www.amazon.co.jp/dp/4788514346/?tag=1000ch-22" target="_blank">
-      <h4 class="Media__Title">誰のためのデザイン？　増補・改訂版　―認知科学者のデザイン原論</h4>
-    </a>
-    <p>D. A. ノーマン (著), 岡本明 (翻訳), 安村通晃 (翻訳), 伊賀聡一郎 (翻訳), 野島久雄 (翻訳)</p>
-  </div>
-</div>
+<affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51uEWA1B3EL._SX340_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4788514346/"
+  tag="1000ch-22"
+  title="誰のためのデザイン？　増補・改訂版　―認知科学者のデザイン原論">
+  D. A. ノーマン (著), 岡本明 (翻訳), 安村通晃 (翻訳), 伊賀聡一郎 (翻訳), 野島久雄 (翻訳)
+</affiliate-link>
