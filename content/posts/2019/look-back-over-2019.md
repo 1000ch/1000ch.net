@@ -14,13 +14,7 @@ date: 2019-12-17
 
 公開されたスペースで60分間議論しっぱなしというのは初体験で新鮮そのものだった。登壇者で開催された懇親会のほうが議論が盛り上がったのはここだけの秘密である。
 
-<div class="YouTube">
-  <iframe 
-    src="https://www.youtube.com/embed/nXvHsb3uCIw" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://www.youtube.com/embed/nXvHsb3uCIw"></responsive-iframe>
 
 ## 2.19 [Chrome Tech Talk Night #12](https://events.withgoogle.com/chrome-tech-talk-night-12/) で登壇した
 
@@ -32,13 +26,7 @@ Google で Web パフォーマンスについて取り組んでいる [@katiehem
 
 スギモトリガーに誘われて [NES BAND](http://nesband.com/) のライブに行ってきた。NES BAND はファミコン実機を音源として1人1チャンネルずつ、4人で生演奏するバンドである。演奏者がキーボードを操作して入力し、接続されたファミコンやスーパーファミコンなどから出力するというもの。実機から音が出力されるのでゲーム音楽そのままだし、バンドメンバーの息もピッタリだし、スーパーファミコン世代に突き刺さる選曲で非常に良かった。
 
-<div class="YouTube">
-  <iframe 
-    src="https://www.youtube.com/embed/JPs8yL1ptw4" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://www.youtube.com/embed/JPs8yL1ptw4"></responsive-iframe>
 
 ライブの様子は YouTube にて公開されている。是非とも聴いて欲しい。
 
@@ -52,13 +40,7 @@ Google で Web パフォーマンスについて取り組んでいる [@katiehem
 
 JAGMO の公演には事あるごとにスギモトリガーと参加している。例によってお目当ては MOTHER シリーズの音楽である（もちろん他の演目も素晴らしいけど）。オフィシャルで公開されている動画があったので貼っておく。
 
-<div class="YouTube">
-  <iframe 
-    src="https://www.youtube.com/embed/b6oVG_jI6OI" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://www.youtube.com/embed/b6oVG_jI6OI"></responsive-iframe>
 
 ## 5.6 [Code Chrysalis](https://www.codechrysalis.io/?lng=jp) の英語強化プログラムに参加した
 
@@ -121,13 +103,7 @@ Frontend Conference Fukuoka 2019 にお呼ばれして、登壇してきた。
 
 イベントは九州産業大学で開催された。博多駅からおよそ15分程電車に揺られていると、到着する。このカンファレンスで一番ありがたかったのはトップバッターだったことで、自分の発表が終わったあとは他の人の発表を見たり、ゆっくりしたりするなどで楽しむことができた。発表の機会があれば、是非また福岡に行きたい。
 
-<div class="YouTube">
-  <iframe 
-    src="https://www.youtube.com/embed/AfqCwgG2pus" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://www.youtube.com/embed/AfqCwgG2pus"></responsive-iframe>
 
 <script async class="speakerdeck-embed" data-id="d33f506a2ee348eaaaca0af3a8adbbe0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 

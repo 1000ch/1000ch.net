@@ -8,13 +8,7 @@ date: 2015-12-24
 
 今年の Chrome Dev Summit でもセッションにあった [Progressive Web Apps](https://www.youtube.com/watch?v=MyQ8mtR9WxI) について。Progressive Web Apps 自体は特定の技術を指す言葉ではなく、 **Webの進化していくべき姿** を提唱しているものだ。Alex Russell 氏が[自身のブログで綴った](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/)のが事の始まりで、Chrome Dev Summit でも初日は Progressive Web Apps をテーマにセッションが組まれたそう。
 
-<div class="YouTube">
-  <iframe 
-    src="https://www.youtube.com/embed/MyQ8mtR9WxI" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://www.youtube.com/embed/MyQ8mtR9WxI"></responsive-iframe>
 
 ## Webアプリとネイティブアプリ
 

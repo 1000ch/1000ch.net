@@ -16,15 +16,7 @@ date: 2017-12-24
 
 Nature Remo は赤外線を発信できるようになっており、これによってエアコンやライトなどの赤外線リモコンで操作する家電を操作できる、という理屈である。Nature Remo はインターネットを通してアプリなどから操作できるので、家にいるときはもちろんのこと、外出中でも Nature Remo を操作し、家電の管理が可能である。赤外線で操作できるデバイスならなんでも良いので、抜群に汎用性が高い。
 
-<div class="YouTube">
-  <iframe 
-    src="https://www.youtube.com/embed/U0jAX-hKW3A" 
-    frameborder="0" 
-    gesture="media" 
-    allow="encrypted-media" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://www.youtube.com/embed/U0jAX-hKW3A"></responsive-iframe>
 
 ## Nature Remo でエアコンやライトを操作する
 

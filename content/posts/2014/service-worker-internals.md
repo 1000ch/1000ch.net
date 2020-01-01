@@ -14,13 +14,7 @@ Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScrip
 
 更新性のあるコンテンツでも、回線が不安定な時はローカルに変更を保持して、サーバーに対してデータを遅延で同期するみたいなテクニックは既に存在している。ので、こういったテクニックと組み合わせて、よりクライアントの画面がホワイトアウトすることを減らしていける。はず。
 
-<div class="YouTube">
-  <iframe 
-    src="//www.youtube.com/embed/_yy0CDLnhMA" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://www.youtube.com/embed/_yy0CDLnhMA"></responsive-iframe>
 
 こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。[@myakura](http://twitter.com/myakura)氏による[解説記事](http://html5experts.jp/myakura/8365/)もある。
 

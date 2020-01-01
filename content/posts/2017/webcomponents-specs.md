@@ -110,13 +110,7 @@ HTML Imports は ES Modules を見越して見送られていたが、ブラウ�
 
 それに合わせて Polymer も v3 から、ES Modules に沿った実装にしていくことを [Polymer Summit 2017](https://summit.polymer-project.org/) で発表している。
 
-<div class="YouTube">
-  <iframe 
-    src="https://www.youtube.com/embed/JH6jEcLxJEI?rel=0" 
-    frameborder="0" 
-    allowfullscreen>
-  </iframe>
-</div>
+<responsive-iframe src="https://www.youtube.com/embed/JH6jEcLxJEI"></responsive-iframe>
 
 先程の `FooElement` を `foo-element.js` で `export default` しているとすると、次のようなイメージになる。
 
