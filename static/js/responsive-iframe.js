@@ -7,7 +7,8 @@ import {
 export default class ResponsiveIframe extends LitElement {
   static get properties() {
     return {
-      src: String
+      src: String,
+      title: String
     };
   }
 
@@ -34,6 +35,7 @@ export default class ResponsiveIframe extends LitElement {
       <div class="ResponsiveIframe">
         <iframe
           src="${this.src}"
+          title="${this.title}"
           frameborder="0"
           allowfullscreen>
         </iframe>
