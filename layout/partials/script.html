@@ -4,11 +4,9 @@
 <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
 <script type="module">
 import AffiliateLink from '/js/affiliate-link.js';
-import ResponsiveIframe from '/js/responsive-iframe.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
 customElements.define('affiliate-link', AffiliateLink);
-customElements.define('responsive-iframe', ResponsiveIframe);
 customElements.define('fluid-iframe', FluidIframe);
 
 document.querySelectorAll('pre code').forEach(block => {
