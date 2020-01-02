@@ -35,7 +35,7 @@ image: /img/posts/2017/webperf-guide/cover.png
 
 今まさに業務で Web の品質を啓蒙する立場にあり、そのひとつとしてパフォーマンスにも取り組んでいますが、思い返してみると Web パフォーマンスに関して勉強しはじめたのはサイバーエージェントに転職して間もないころに、[Fluid User Interface with Hardware Acceleration](https://www.youtube.com/watch?v=gTHAn-nkQnI) という動画をパイセンの逐次翻訳+解説付きで見たのがきっかけでした。どちらかというとブラウザ内部のレンダリングの仕組みそのものについて解説されていて、当時の自分にとっては非常に衝撃だったのを覚えています。
 
-<responsive-iframe src="https://www.youtube.com/embed/gTHAn-nkQnI"></responsive-iframe>
+<fluid-iframe src="https://www.youtube.com/embed/gTHAn-nkQnI"></fluid-iframe>
 
 そこから Web パフォーマンスという分野に没頭していったわけですが、自分のアクティビティを漁ってみると Web パフォーマンスに関するアウトプットが思いの外ありました。
 

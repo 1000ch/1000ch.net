@@ -17,7 +17,7 @@ date: 2016-10-10
 
 当日は [FRESH!](https://freshlive.tv/) でリアルタイム配信があったようなので、興味のある人はそちらもどうぞ。
 
-<responsive-iframe src="https://freshlive.tv/embed/45509"></responsive-iframe>
+<fluid-iframe src="https://freshlive.tv/embed/45509"></fluid-iframe>
 
 ## 参考リソース
 
