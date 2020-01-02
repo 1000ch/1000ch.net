@@ -56,7 +56,7 @@ MacBook Pro とあるが、底面が凸凹していなければ他のノート�
 
 CARRY saKASA の凄さはこの動画が一番わかりやすい。
 
-<responsive-iframe src="https://www.youtube.com/embed/6QINHrq1vyw?start=180"></responsive-iframe>
+<fluid-iframe src="https://www.youtube.com/embed/6QINHrq1vyw?start=180"></fluid-iframe>
 
 従来の傘では車に乗り込む時にギリギリまで指していると乗りにくいが、CARRY saKASA であれば動画のように全く濡れずに乗り込める。車を持っていずとも、タクシーに乗り込むときなどにかなり有用である。
 
