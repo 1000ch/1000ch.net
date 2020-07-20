@@ -1,298 +1,80 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ 先日の記事で、
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ 先日の記事で、
  続き(?)はまた新年
  と、言ったばかりだけど、続きを。引き続きFirefox Nightlyで試していく。
 Default Parameters 関数の引数にデフォルト値を与えることが出来る。今まではこのような形で引数のチェックをする必要があった。
-function fn(arg1, arg2) { arg1 = arg1 || 0; arg2 = arg2 || 1; console.log(&#39;arg1 is &#39; &#43; arg1); console.log(&#39;arg2 is &#39; &#43; arg2); } fn(10); // arg1 is 10 // arg2 is 1 fn(undefined, 5); // arg1 is 0 // arg2 is 5  Default Parameterを使うと、
-function fn(arg1 = 0, arg2 = 1) { console.">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2013/es6-features-2.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2013/es6-features-2.html">
-<meta name="twitter:title" content="ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2013.12.27</span>
-
-        
-
-<h1 id="es6のシンタックスを予習復習-2-default-parameters-rest-parameters-array-spread-destructuring">ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~</h1>
-
-<p><a href="/posts/2013/es6-features-1.html">先日の記事</a>で、</p>
-
-<blockquote>
-<p>続き(?)はまた新年</p>
-</blockquote>
-
-<p>と、言ったばかりだけど、続きを。引き続き<a href="http://nightly.mozilla.org/">Firefox Nightly</a>で試していく。</p>
-
-<h2 id="default-parameters">Default Parameters</h2>
-
-<p>関数の引数にデフォルト値を与えることが出来る。今まではこのような形で引数のチェックをする必要があった。</p>
-
-<pre><code class="language-js">function fn(arg1, arg2) {
-  arg1 = arg1 || 0;
-  arg2 = arg2 || 1;
-  console.log('arg1 is ' + arg1);
-  console.log('arg2 is ' + arg2);
+function fn(arg1, arg2) { arg1 = arg1 || 0; arg2 = arg2 || 1; console.log('arg1 is ' + arg1); console.log('arg2 is ' + arg2); } fn(10); // arg1 is 10 // arg2 is 1 fn(undefined, 5); // arg1 is 0 // arg2 is 5 Default Parameterを使うと、
+function fn(arg1 = 0, arg2 = 1) { console."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/es6-features-2.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/es6-features-2.html"><meta name=twitter:title content="ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2013.12.27</span><h1 id=es6のシンタックスを予習復習2-default-parameters-rest-parameters-array-spread-destructuring>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~</h1><p><a href=/posts/2013/es6-features-1.html>先日の記事</a>で、</p><blockquote><p>続き(?)はまた新年</p></blockquote><p>と、言ったばかりだけど、続きを。引き続き<a href=http://nightly.mozilla.org/>Firefox Nightly</a>で試していく。</p><h2 id=default-parameters>Default Parameters</h2><p>関数の引数にデフォルト値を与えることが出来る。今まではこのような形で引数のチェックをする必要があった。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn</span>(<span style=color:#a6e22e>arg1</span>, <span style=color:#a6e22e>arg2</span>) {
+  <span style=color:#a6e22e>arg1</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arg1</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>0</span>;
+  <span style=color:#a6e22e>arg2</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arg2</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>1</span>;
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;arg1 is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>arg1</span>);
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;arg2 is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>arg2</span>);
 }
-fn(10);
-// arg1 is 10
-// arg2 is 1
-fn(undefined, 5);
-// arg1 is 0
-// arg2 is 5
-</code></pre>
-
-<p>Default Parameterを使うと、</p>
-
-<pre><code class="language-js">function fn(arg1 = 0, arg2 = 1) {
-  console.log('arg1 is ' + arg1);
-  console.log('arg2 is ' + arg2);
+<span style=color:#a6e22e>fn</span>(<span style=color:#ae81ff>10</span>);
+<span style=color:#75715e>// arg1 is 10
+</span><span style=color:#75715e></span><span style=color:#75715e>// arg2 is 1
+</span><span style=color:#75715e></span><span style=color:#a6e22e>fn</span>(<span style=color:#66d9ef>undefined</span>, <span style=color:#ae81ff>5</span>);
+<span style=color:#75715e>// arg1 is 0
+</span><span style=color:#75715e></span><span style=color:#75715e>// arg2 is 5
+</span></code></pre></div><p>Default Parameterを使うと、</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn</span>(<span style=color:#a6e22e>arg1</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>arg2</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>) {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;arg1 is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>arg1</span>);
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;arg2 is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>arg2</span>);
 }
-fn(10);
-// arg1 is 10
-// arg2 is 1
-fn(undefined, 5);
-// arg1 is 0
-// arg2 is 5
-</code></pre>
-
-<p>うーん、便利だ。が、厳密に言うと上下でやっていることは違っていて、例えば、<code>null</code>を入れるとデフォルト値は代入されずに評価される。<code>null</code>は<code>null</code>という値なので当たり前といえばそれまでだけど、挙動を理解した上で使ったほうが良い。<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=781422">デフォルトパラメータの挙動はアレコレやってるみたい</a>なのでこの先も要チェック。</p>
-
-<h2 id="rest-parameters">Rest Parameters</h2>
-
-<p>今まで引数を可変長っぽく評価したい場合は<code>arguments</code>オブジェクトでやっていたが、Rest Parametersシンタックスを使うことで、引数を可変長で受け取ることが可能になる。</p>
-
-<pre><code class="language-js">function rest(...r) {
-  console.log(r);
+<span style=color:#a6e22e>fn</span>(<span style=color:#ae81ff>10</span>);
+<span style=color:#75715e>// arg1 is 10
+</span><span style=color:#75715e></span><span style=color:#75715e>// arg2 is 1
+</span><span style=color:#75715e></span><span style=color:#a6e22e>fn</span>(<span style=color:#66d9ef>undefined</span>, <span style=color:#ae81ff>5</span>);
+<span style=color:#75715e>// arg1 is 0
+</span><span style=color:#75715e></span><span style=color:#75715e>// arg2 is 5
+</span></code></pre></div><p>うーん、便利だ。が、厳密に言うと上下でやっていることは違っていて、例えば、<code>null</code>を入れるとデフォルト値は代入されずに評価される。<code>null</code>は<code>null</code>という値なので当たり前といえばそれまでだけど、挙動を理解した上で使ったほうが良い。<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=781422">デフォルトパラメータの挙動はアレコレやってるみたい</a>なのでこの先も要チェック。</p><h2 id=rest-parameters>Rest Parameters</h2><p>今まで引数を可変長っぽく評価したい場合は<code>arguments</code>オブジェクトでやっていたが、Rest Parametersシンタックスを使うことで、引数を可変長で受け取ることが可能になる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>rest</span>(...<span style=color:#a6e22e>r</span>) {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>r</span>);
 }
-rest(1, 2, 3);
-// [1, 2, 3]
-rest(10, 'foo', [5, 20]);
-// [10, &quot;foo&quot;, Array[2]]
-rest('bar');
-// [&quot;bar&quot;]
-</code></pre>
-
-<p>色々気になったのが、この場合の<code>r</code>の型と何も渡さないケースだが、rは <strong>常に配列(Array LikeではなくArray)</strong> で、 <strong>パラメータを渡さない場合も長さ0の配列</strong> になった。また、Rest Parametersは引数の最後でなければならないという制約もある。</p>
-
-<pre><code class="language-js">function rest(...r, a) {
-  console.log(r);
+<span style=color:#a6e22e>rest</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>);
+<span style=color:#75715e>// [1, 2, 3]
+</span><span style=color:#75715e></span><span style=color:#a6e22e>rest</span>(<span style=color:#ae81ff>10</span>, <span style=color:#e6db74>&#39;foo&#39;</span>, [<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>20</span>]);
+<span style=color:#75715e>// [10, &#34;foo&#34;, Array[2]]
+</span><span style=color:#75715e></span><span style=color:#a6e22e>rest</span>(<span style=color:#e6db74>&#39;bar&#39;</span>);
+<span style=color:#75715e>// [&#34;bar&#34;]
+</span></code></pre></div><p>色々気になったのが、この場合の<code>r</code>の型と何も渡さないケースだが、rは <strong>常に配列(Array LikeではなくArray)</strong> で、 <strong>パラメータを渡さない場合も長さ0の配列</strong> になった。また、Rest Parametersは引数の最後でなければならないという制約もある。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>rest</span>(...<span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>a</span>) {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>r</span>);
 }
-// SyntaxError: parameter after rest parameter
-</code></pre>
-
-<p>上のように書くと、エラーが出る。以下の様な形ならOK。</p>
-
-<pre><code class="language-js">function rest(a, ...r) {
-  console.log(r);
+<span style=color:#75715e>// SyntaxError: parameter after rest parameter
+</span></code></pre></div><p>上のように書くと、エラーが出る。以下の様な形ならOK。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>rest</span>(<span style=color:#a6e22e>a</span>, ...<span style=color:#a6e22e>r</span>) {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>r</span>);
 }
-</code></pre>
-
-<h2 id="array-spread">Array Spread</h2>
-
-<p>Rest Parametersと同じように、代入時にも使用することができる。</p>
-
-<pre><code class="language-js">let array1 = [7, 8, 9];
-let array2 = [1, 2, ...array1];
-console.log(array1);
-// [1, 2, 7, 8, 9]
-
-function fn1(...r) {
-  return r;
+</code></pre></div><h2 id=array-spread>Array Spread</h2><p>Rest Parametersと同じように、代入時にも使用することができる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>array1</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>];
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>array2</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, ...<span style=color:#a6e22e>array1</span>];
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>array1</span>);
+<span style=color:#75715e>// [1, 2, 7, 8, 9]
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn1</span>(...<span style=color:#a6e22e>r</span>) {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>r</span>;
 }
-function fn2(...g) {
-  return fn1(g)
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn2</span>(...<span style=color:#a6e22e>g</span>) {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fn1</span>(<span style=color:#a6e22e>g</span>)
 }
-console.log(fn2(1, 2, 3).toString());
-// 1,2,3
-</code></pre>
-
-<h2 id="変数の分割代入">変数の分割代入</h2>
-
-<p>新しい変数代入の方法。</p>
-
-<pre><code class="language-js">var [a, b] = [1, 2];
-var {y: year, m: month} = {y: 2013, m: 12};
-console.log(a);
-// 1
-console.log(b);
-// 2
-</code></pre>
-
-<p>左辺に配列・オブジェクトがあって違和感がある。</p>
-
-<pre><code class="language-js">var array = [3, 4];
-var [c, d] = array;
-console.log(c);
-// 1
-console.log(d);
-// 2
-console.log(Array.isArray(array));
-// true
-</code></pre>
-
-<p>右辺は配列ないしオブジェクトなので、左辺だけちょっと見慣れる必要がありそう（そんなに大げさでもないけど）。</p>
-
-<h2 id="あと試したいやつ">あと試したいやつ</h2>
-
-<ul>
-<li><a href="http://wiki.ecmascript.org/doku.php?id=strawman:maximally_minimal_classes">class</a> - 個人的には待ち望んでる</li>
-<li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:modules">Modules</a> - <strong>import</strong> と <code>&lt;module&gt;</code>のやつ</li>
-<li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:quasis">Template Strings</a> - テンプレート</li>
-</ul>
-
-<p>プラットフォームが開発側でコントロール出来ないJavaScriptを進化させるのは難しいよなぁと、今更ながら思った。JavaもC#もRubyもPythonも、サーバーの環境で完結させることが出来るけど、JSはそうもいかない。</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fes6-features-2.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fes6-features-2.html&text=ES6%e3%81%ae%e3%82%b7%e3%83%b3%e3%82%bf%e3%83%83%e3%82%af%e3%82%b9%e3%82%92%e4%ba%88%e7%bf%92%e5%be%a9%e7%bf%92%282%29%20~Default%20Parameters%2c%20Rest%20Parameters%2c%20Array%20Spread%2c%20Destructuring~" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2013/es6-features-1.html">👈 ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2014/frontrend-in-fukuoka.html">Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>fn2</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>).<span style=color:#a6e22e>toString</span>());
+<span style=color:#75715e>// 1,2,3
+</span></code></pre></div><h2 id=変数の分割代入>変数の分割代入</h2><p>新しい変数代入の方法。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> [<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>] <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>];
+<span style=color:#66d9ef>var</span> {<span style=color:#a6e22e>y</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>year</span>, <span style=color:#a6e22e>m</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>month</span>} <span style=color:#f92672>=</span> {<span style=color:#a6e22e>y</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2013</span>, <span style=color:#a6e22e>m</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>12</span>};
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>a</span>);
+<span style=color:#75715e>// 1
+</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>b</span>);
+<span style=color:#75715e>// 2
+</span></code></pre></div><p>左辺に配列・オブジェクトがあって違和感がある。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>array</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>];
+<span style=color:#66d9ef>var</span> [<span style=color:#a6e22e>c</span>, <span style=color:#a6e22e>d</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>array</span>;
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>c</span>);
+<span style=color:#75715e>// 1
+</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>d</span>);
+<span style=color:#75715e>// 2
+</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(Array.<span style=color:#a6e22e>isArray</span>(<span style=color:#a6e22e>array</span>));
+<span style=color:#75715e>// true
+</span></code></pre></div><p>右辺は配列ないしオブジェクトなので、左辺だけちょっと見慣れる必要がありそう（そんなに大げさでもないけど）。</p><h2 id=あと試したいやつ>あと試したいやつ</h2><ul><li><a href="http://wiki.ecmascript.org/doku.php?id=strawman:maximally_minimal_classes">class</a> - 個人的には待ち望んでる</li><li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:modules">Modules</a> - <strong>import</strong> と <code>&lt;module></code>のやつ</li><li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:quasis">Template Strings</a> - テンプレート</li></ul><p>プラットフォームが開発側でコントロール出来ないJavaScriptを進化させるのは難しいよなぁと、今更ながら思った。JavaもC#もRubyもPythonも、サーバーの環境で完結させることが出来るけど、JSはそうもいかない。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fes6-features-2.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fes6-features-2.html&text=ES6%e3%81%ae%e3%82%b7%e3%83%b3%e3%82%bf%e3%83%83%e3%82%af%e3%82%b9%e3%82%92%e4%ba%88%e7%bf%92%e5%be%a9%e7%bf%92%282%29%20~Default%20Parameters%2c%20Rest%20Parameters%2c%20Array%20Spread%2c%20Destructuring~" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2013/es6-features-1.html>👈 ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2014/frontrend-in-fukuoka.html>Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -306,7 +88,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

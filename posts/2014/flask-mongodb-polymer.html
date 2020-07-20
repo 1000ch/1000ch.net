@@ -1,334 +1,86 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>PythonとMongoDBとPolymerでRSSリーダーを作った - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="PythonとMongoDBとPolymerでRSSリーダーを作った Pythonで何かアプリ書きたいなと思ってはいたので、RSSリーダーを作った。フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。
-Flask &#43; MongoDBのところまで実装して暫く放置していたけど、最近思いつきでPolymerをねじ込んだので記事にしてみる。
-やってること  スケジューラでopmlに登録してあるRSSから記事を取得しMongoDBに保存 トップページで50件ずつ記事の表示 &amp; 非同期で50件づつ取得 購読しているRSSで表示する記事をフィルタ  Opml(XML)のパース→記事の取得 に非常に時間が掛かるので、データストアに入れておいてそこから取得しないとRSSリーダーとして非実用的。この定期的な取得処理をHeroku Schedulerで実行している。あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Heroku良い。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>PythonとMongoDBとPolymerでRSSリーダーを作った - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="PythonとMongoDBとPolymerでRSSリーダーを作った Pythonで何かアプリ書きたいなと思ってはいたので、RSSリーダーを作った。フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。
+Flask + MongoDBのところまで実装して暫く放置していたけど、最近思いつきでPolymerをねじ込んだので記事にしてみる。
+やってること  スケジューラでopmlに登録してあるRSSから記事を取得しMongoDBに保存 トップページで50件ずつ記事の表示 & 非同期で50件づつ取得 購読しているRSSで表示する記事をフィルタ  Opml(XML)のパース→記事の取得 に非常に時間が掛かるので、データストアに入れておいてそこから取得しないとRSSリーダーとして非実用的。この定期的な取得処理をHeroku Schedulerで実行している。あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Heroku良い。
 最初は格納してあるデータを全件取得して表示していたが、50件ずつ表示にしたことで使い心地はやや下がった。Polymerを使いたかっただけ。
 PythonとFlask Flaskは、軽量なWebアプリケーションフレームワーク。マイクロフレームワークの意味するところはシンプルなコアな機能と拡張性を持たせている点であり、それ自体にはデータベースレイヤへのアクセスモジュールなどはないが、様々な拡張モジュールが存在する。例えば、これについてはSQLAlchemyというORマッパーがある。日本語のハンズオンとドキュメントも充実している。
 Pythonは、プロパティアクセスとかリテラル（配列・オブジェクト）がJavaScriptとほぼ同じだし、JavaScriptやってる人ならあまり違和感なくやれるのではと思ったり。
-// JavaScriptでのArrayとObject var array = [0, 1, 2]; var object = { key: &#39;value&#39; }; // 出力 console.log(object.key);  # PythonでのArrayとObject array = [0, 1, 2] object = { key: &#39;value&#39; } # 出力 print(object.key);  言語レベルでインデントを強制されるので、実装がばらつかない。
+// JavaScriptでのArrayとObject var array = [0, 1, 2]; var object = { key: 'value' }; // 出力 console.log(object.key); # PythonでのArrayとObject array = [0, 1, 2] object = { key: 'value' } # 出力 print(object.key); 言語レベルでインデントを強制されるので、実装がばらつかない。
 MongoDBへのアクセス MongoDBへのアクセスはpymongoで実装。MongoDBを使ったことはなかったが、ここに関してもあまり悩まず実装できた。ローカルでデバッグするときはHomebrewでインストールしたMongoDBをデーモン実行しておくのと、Herokuのときは環境変数からURLを得るようにする。
-# install mongodb $ brew install mongo # run mongo $ mongod # run application $ python run.">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2014/flask-mongodb-polymer.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="PythonとMongoDBとPolymerでRSSリーダーを作った">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2014/flask-mongodb-polymer.html">
-<meta name="twitter:title" content="PythonとMongoDBとPolymerでRSSリーダーを作った">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2014.03.12</span>
-
-        
-
-<h1 id="pythonとmongodbとpolymerでrssリーダーを作った">PythonとMongoDBとPolymerでRSSリーダーを作った</h1>
-
-<p>Pythonで何かアプリ書きたいなと思ってはいたので、<a href="http://cobra.herokuapp.com">RSSリーダー</a>を作った。フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。</p>
-
-<p>Flask + MongoDBのところまで実装して暫く放置していたけど、最近思いつきでPolymerをねじ込んだので記事にしてみる。</p>
-
-<h2 id="やってること">やってること</h2>
-
-<ul>
-<li>スケジューラでopmlに登録してあるRSSから記事を取得しMongoDBに保存</li>
-<li>トップページで50件ずつ記事の表示 &amp; 非同期で50件づつ取得</li>
-<li>購読しているRSSで表示する記事をフィルタ</li>
-</ul>
-
-<p><strong>Opml(XML)のパース→記事の取得</strong> に非常に時間が掛かるので、データストアに入れておいてそこから取得しないとRSSリーダーとして非実用的。この定期的な取得処理を<a href="https://addons.heroku.com/marketplace/scheduler">Heroku Scheduler</a>で実行している。あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Heroku良い。</p>
-
-<p>最初は格納してあるデータを全件取得して表示していたが、50件ずつ表示にしたことで使い心地はやや下がった。Polymerを使いたかっただけ。</p>
-
-<h2 id="pythonとflask">PythonとFlask</h2>
-
-<p><a href="http://flask.pocoo.org/">Flask</a>は、軽量なWebアプリケーションフレームワーク。マイクロフレームワークの意味するところはシンプルなコアな機能と拡張性を持たせている点であり、それ自体にはデータベースレイヤへのアクセスモジュールなどはないが、様々な拡張モジュールが存在する。例えば、これについてはSQLAlchemyというORマッパーがある。<a href="http://methane.github.io/flask-handson/">日本語のハンズオン</a>と<a href="http://flask-docs-ja.readthedocs.org/">ドキュメント</a>も充実している。</p>
-
-<p>Pythonは、プロパティアクセスとかリテラル（配列・オブジェクト）がJavaScriptとほぼ同じだし、JavaScriptやってる人ならあまり違和感なくやれるのではと思ったり。</p>
-
-<pre><code class="language-js">// JavaScriptでのArrayとObject
-var array = [0, 1, 2];
-var object = {
-  key: 'value'
+# install mongodb $ brew install mongo # run mongo $ mongod # run application $ python run."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/flask-mongodb-polymer.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="PythonとMongoDBとPolymerでRSSリーダーを作った"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/flask-mongodb-polymer.html"><meta name=twitter:title content="PythonとMongoDBとPolymerでRSSリーダーを作った"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2014.03.12</span><h1 id=pythonとmongodbとpolymerでrssリーダーを作った>PythonとMongoDBとPolymerでRSSリーダーを作った</h1><p>Pythonで何かアプリ書きたいなと思ってはいたので、<a href=http://cobra.herokuapp.com>RSSリーダー</a>を作った。フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。</p><p>Flask + MongoDBのところまで実装して暫く放置していたけど、最近思いつきでPolymerをねじ込んだので記事にしてみる。</p><h2 id=やってること>やってること</h2><ul><li>スケジューラでopmlに登録してあるRSSから記事を取得しMongoDBに保存</li><li>トップページで50件ずつ記事の表示 & 非同期で50件づつ取得</li><li>購読しているRSSで表示する記事をフィルタ</li></ul><p><strong>Opml(XML)のパース→記事の取得</strong> に非常に時間が掛かるので、データストアに入れておいてそこから取得しないとRSSリーダーとして非実用的。この定期的な取得処理を<a href=https://addons.heroku.com/marketplace/scheduler>Heroku Scheduler</a>で実行している。あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Heroku良い。</p><p>最初は格納してあるデータを全件取得して表示していたが、50件ずつ表示にしたことで使い心地はやや下がった。Polymerを使いたかっただけ。</p><h2 id=pythonとflask>PythonとFlask</h2><p><a href=http://flask.pocoo.org/>Flask</a>は、軽量なWebアプリケーションフレームワーク。マイクロフレームワークの意味するところはシンプルなコアな機能と拡張性を持たせている点であり、それ自体にはデータベースレイヤへのアクセスモジュールなどはないが、様々な拡張モジュールが存在する。例えば、これについてはSQLAlchemyというORマッパーがある。<a href=http://methane.github.io/flask-handson/>日本語のハンズオン</a>と<a href=http://flask-docs-ja.readthedocs.org/>ドキュメント</a>も充実している。</p><p>Pythonは、プロパティアクセスとかリテラル（配列・オブジェクト）がJavaScriptとほぼ同じだし、JavaScriptやってる人ならあまり違和感なくやれるのではと思ったり。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// JavaScriptでのArrayとObject
+</span><span style=color:#75715e></span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>array</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>];
+<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>object</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;value&#39;</span>
 };
-// 出力
-console.log(object.key);
-</code></pre>
-
-<pre><code class="language-python"># PythonでのArrayとObject
-array = [0, 1, 2]
-object = {
-  key: 'value'
+<span style=color:#75715e>// 出力
+</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>object</span>.<span style=color:#a6e22e>key</span>);
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># PythonでのArrayとObject</span>
+array <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>]
+object <span style=color:#f92672>=</span> {
+  key: <span style=color:#e6db74></span><span style=color:#e6db74>&#39;</span><span style=color:#e6db74>value</span><span style=color:#e6db74>&#39;</span>
 }
-# 出力
-print(object.key);
-</code></pre>
-
-<p>言語レベルでインデントを強制されるので、実装がばらつかない。</p>
-
-<h2 id="mongodbへのアクセス">MongoDBへのアクセス</h2>
-
-<p>MongoDBへのアクセスは<code>pymongo</code>で実装。MongoDBを使ったことはなかったが、ここに関してもあまり悩まず実装できた。ローカルでデバッグするときはHomebrewでインストールしたMongoDBをデーモン実行しておくのと、Herokuのときは環境変数からURLを得るようにする。</p>
-
-<pre><code class="language-bash"># install mongodb
+<span style=color:#75715e># 出力</span>
+<span style=color:#66d9ef>print</span>(object<span style=color:#f92672>.</span>key);
+</code></pre></div><p>言語レベルでインデントを強制されるので、実装がばらつかない。</p><h2 id=mongodbへのアクセス>MongoDBへのアクセス</h2><p>MongoDBへのアクセスは<code>pymongo</code>で実装。MongoDBを使ったことはなかったが、ここに関してもあまり悩まず実装できた。ローカルでデバッグするときはHomebrewでインストールしたMongoDBをデーモン実行しておくのと、Herokuのときは環境変数からURLを得るようにする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># install mongodb</span>
 $ brew install mongo
 
-# run mongo
+<span style=color:#75715e># run mongo</span>
 $ mongod
 
-# run application
+<span style=color:#75715e># run application</span>
 $ python run.py
-</code></pre>
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>EntryDAO</span>:
 
-<pre><code class="language-python">class EntryDAO:
+    <span style=color:#66d9ef>def</span> __init__(self):
+        <span style=color:#75715e># get url string from env</span>
+        url <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74></span><span style=color:#e6db74>&#39;</span><span style=color:#e6db74>MONGOHQ_URL</span><span style=color:#e6db74>&#39;</span>)
 
-    def __init__(self):
-        # get url string from env
-        url = os.environ.get('MONGOHQ_URL')
-
-        if url:
-            client = pymongo.MongoClient(url)
-            self.db = client[urlparse(url).path[1:]]
-        else:
-            client = pymongo.MongoClient('localhost', 27017)
-            self.db = client.db
-</code></pre>
-
-<p>Herokuの時はGunicornで起動。</p>
-
-<h2 id="flask-restful-http-flask-restful-readthedocs-org-en-latest"><a href="http://flask-restful.readthedocs.org/en/latest/">Flask RESTFul</a></h2>
-
-<p>最初はMongoDBに入れておいたデータを全て返して表示しておくだけだったが、<a href="https://github.com/1000ch/cobra/blob/development/cobra/api.py">RESTなAPIも用意</a>してみた。普通にHTMLテンプレートにデータ渡して描画させてるときは気にかけてなかったけど、Pythonの<code>list</code>オブジェクトを素直に<code>jsonify()</code>出来なくて、暫く中断。</p>
-
-<p>結果的にはMongoDBから取得しているために、<code>ObjectId()</code>があったのが要因だった。ので、<a href="https://github.com/1000ch/cobra/blob/development/cobra/api.py#l27">素直に<code>del</code>してる</a>。JavaScriptでいうところのPluckとかMap的なことをしたい。</p>
-
-<p><code>flask.jsonify()</code>はFlaskが提供するユーティリティで、組み込みの<code>json.dumps()</code>と何が違うのかと思っていたら、<a href="http://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify">引数周りを上手いことラップしたりmimetypeの指定をしてる</a>らしい。</p>
-
-<p>URLのマッピングは<code>/api/get/&lt;int:skip&gt;/&lt;int:limit&gt;</code>とし、<code>/api/get/10/10</code>とも出来たけど、個人的にクエリの方がなんかしっくりくるので<code>reqparse.RequestParser()</code>でパースしてる。</p>
-
-<h2 id="polymerのおまけ">Polymerのおまけ</h2>
-
-<p>繰り返しだが、これは完全に使いたかっただけ。とりあえずレベルで<code>&lt;polymer-ajax&gt;</code>を試したあとにいくつかの課題を残しつつ、記事の一覧（画面左）を<code>&lt;x-entry&gt;</code>というカスタムエレメント化。</p>
-
-<h3 id="polymer-ajax"><code>&lt;polymer-ajax&gt;</code></h3>
-
-<p>リクエストURLに<code>&quot;/api/get?skip={{skip}}&amp;limit={{limit}}&quot;</code>という形で変数を埋め、Ajaxで取得する毎にskipを書き換えている。ささやかながら2way-bindingの恩恵を受けている。以下課題とメモ。</p>
-
-<h3 id="テンプレートオブジェクトが残る">テンプレートオブジェクトが残る</h3>
-
-<p>Ajaxで取得したデータを以下に渡して描画。</p>
-
-<pre><code class="language-html">&lt;polymer-element name=&quot;x-entry&quot; attributes=&quot;skip limit filter&quot;&gt;
-  &lt;template&gt;
-    &lt;div class=&quot;list-group&quot;&gt;
-      &lt;template id=&quot;entries&quot; repeat=&quot;{{ entry in entries }}&quot; index=&quot;i&quot;&gt;
-        &lt;a href=&quot;{{entry.link}}&quot; target=&quot;_blank&quot; class=&quot;list-group-item&quot; data-feed=&quot;{{entry.feedTitle}}&quot;&gt;
-          &lt;h4 class=&quot;list-group-item-heading&quot;&gt;{{entry.title}}&lt;/h4&gt;
-          &lt;p class=&quot;list-group-item-text&quot;&gt;
-            &lt;date&gt;{{entry.date}}&lt;/date&gt; - {{entry.feedTitle}}
-          &lt;/p&gt;
-        &lt;/a&gt;
-      &lt;/template&gt;
-    &lt;/div&gt;
+        <span style=color:#66d9ef>if</span> url:
+            client <span style=color:#f92672>=</span> pymongo<span style=color:#f92672>.</span>MongoClient(url)
+            self<span style=color:#f92672>.</span>db <span style=color:#f92672>=</span> client[urlparse(url)<span style=color:#f92672>.</span>path[<span style=color:#ae81ff>1</span>:]]
+        <span style=color:#66d9ef>else</span>:
+            client <span style=color:#f92672>=</span> pymongo<span style=color:#f92672>.</span>MongoClient(<span style=color:#e6db74></span><span style=color:#e6db74>&#39;</span><span style=color:#e6db74>localhost</span><span style=color:#e6db74>&#39;</span>, <span style=color:#ae81ff>27017</span>)
+            self<span style=color:#f92672>.</span>db <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>db
+</code></pre></div><p>Herokuの時はGunicornで起動。</p><h2 id=flask-restfulhttpflask-restfulreadthedocsorgenlatest><a href=http://flask-restful.readthedocs.org/en/latest/>Flask RESTFul</a></h2><p>最初はMongoDBに入れておいたデータを全て返して表示しておくだけだったが、<a href=https://github.com/1000ch/cobra/blob/development/cobra/api.py>RESTなAPIも用意</a>してみた。普通にHTMLテンプレートにデータ渡して描画させてるときは気にかけてなかったけど、Pythonの<code>list</code>オブジェクトを素直に<code>jsonify()</code>出来なくて、暫く中断。</p><p>結果的にはMongoDBから取得しているために、<code>ObjectId()</code>があったのが要因だった。ので、<a href=https://github.com/1000ch/cobra/blob/development/cobra/api.py#l27>素直に<code>del</code>してる</a>。JavaScriptでいうところのPluckとかMap的なことをしたい。</p><p><code>flask.jsonify()</code>はFlaskが提供するユーティリティで、組み込みの<code>json.dumps()</code>と何が違うのかと思っていたら、<a href=http://stackoverflow.com/questions/7907596/json-dumps-vs-flask-jsonify>引数周りを上手いことラップしたりmimetypeの指定をしてる</a>らしい。</p><p>URLのマッピングは<code>/api/get/&lt;int:skip>/&lt;int:limit></code>とし、<code>/api/get/10/10</code>とも出来たけど、個人的にクエリの方がなんかしっくりくるので<code>reqparse.RequestParser()</code>でパースしてる。</p><h2 id=polymerのおまけ>Polymerのおまけ</h2><p>繰り返しだが、これは完全に使いたかっただけ。とりあえずレベルで<code>&lt;polymer-ajax></code>を試したあとにいくつかの課題を残しつつ、記事の一覧（画面左）を<code>&lt;x-entry></code>というカスタムエレメント化。</p><h3 id=polymer-ajax><code>&lt;polymer-ajax></code></h3><p>リクエストURLに<code>"/api/get?skip={{skip}}&limit={{limit}}"</code>という形で変数を埋め、Ajaxで取得する毎にskipを書き換えている。ささやかながら2way-bindingの恩恵を受けている。以下課題とメモ。</p><h3 id=テンプレートオブジェクトが残る>テンプレートオブジェクトが残る</h3><p>Ajaxで取得したデータを以下に渡して描画。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>polymer-element</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-entry&#34;</span> <span style=color:#a6e22e>attributes</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;skip limit filter&#34;</span>&gt;
+  &lt;<span style=color:#f92672>template</span>&gt;
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;list-group&#34;</span>&gt;
+      &lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;entries&#34;</span> <span style=color:#a6e22e>repeat</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ entry in entries }}&#34;</span> <span style=color:#a6e22e>index</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;i&#34;</span>&gt;
+        &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{entry.link}}&#34;</span> <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;list-group-item&#34;</span> <span style=color:#a6e22e>data-feed</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{entry.feedTitle}}&#34;</span>&gt;
+          &lt;<span style=color:#f92672>h4</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;list-group-item-heading&#34;</span>&gt;{{entry.title}}&lt;/<span style=color:#f92672>h4</span>&gt;
+          &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;list-group-item-text&#34;</span>&gt;
+            &lt;<span style=color:#f92672>date</span>&gt;{{entry.date}}&lt;/<span style=color:#f92672>date</span>&gt; - {{entry.feedTitle}}
+          &lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;/<span style=color:#f92672>a</span>&gt;
+      &lt;/<span style=color:#f92672>template</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
     ...
-&lt;/polymer-element&gt;
-</code></pre>
-
-<p><code>repeat=&quot;{{ entry in entries }}&quot;</code>で記事の数だけループさせたはまではよかったのだが、<code>&lt;template&gt;</code>がデータとして残るので、CSSが意図しない適用になった（例えば<code>:first-child</code>のところとか）。</p>
-
-<h3 id="ready-でフィルタシンタックスが参照出来ない"><code>ready</code>でフィルタシンタックスが参照出来ない？</h3>
-
-<p>画面右のUIで表示する記事のフィルタリングをしているが、その絞り込みがお粗末になってしまった。上で述べたループ定義を<code>repeat=&quot;{{ entry in entries | filterEntry }}&quot;</code>とし、<code>filterEntry</code>関数を用意すれば良いような気がしたけど、どうも<code>ready</code>のタイミングだとエラーが出て参照できない模様。</p>
-
-<h3 id="プロパティの監視">プロパティの監視</h3>
-
-<p><code>attributeChanged</code>でも取れるけど、<code>propertyNameChanged</code>でもいける。つまり<code>filter</code>というattributeがある場合に、</p>
-
-<pre><code class="language-js">attributeChanged: function attributeChangedCallback(changedAttr) {
-  switch (changedAttr) {
-    case 'filter':
-      console.log('filter property is changed.');
-      break;
+&lt;/<span style=color:#f92672>polymer-element</span>&gt;
+</code></pre></div><p><code>repeat="{{ entry in entries }}"</code>で記事の数だけループさせたはまではよかったのだが、<code>&lt;template></code>がデータとして残るので、CSSが意図しない適用になった（例えば<code>:first-child</code>のところとか）。</p><h3 id=readyでフィルタシンタックスが参照出来ない><code>ready</code>でフィルタシンタックスが参照出来ない？</h3><p>画面右のUIで表示する記事のフィルタリングをしているが、その絞り込みがお粗末になってしまった。上で述べたループ定義を<code>repeat="{{ entry in entries | filterEntry }}"</code>とし、<code>filterEntry</code>関数を用意すれば良いような気がしたけど、どうも<code>ready</code>のタイミングだとエラーが出て参照できない模様。</p><h3 id=プロパティの監視>プロパティの監視</h3><p><code>attributeChanged</code>でも取れるけど、<code>propertyNameChanged</code>でもいける。つまり<code>filter</code>というattributeがある場合に、</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>attributeChanged</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>attributeChangedCallback</span>(<span style=color:#a6e22e>changedAttr</span>) {
+  <span style=color:#66d9ef>switch</span> (<span style=color:#a6e22e>changedAttr</span>) {
+    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;filter&#39;</span><span style=color:#f92672>:</span>
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;filter property is changed.&#39;</span>);
+      <span style=color:#66d9ef>break</span>;
   }
 },
-</code></pre>
-
-<p>と書いていたのは、以下のように<a href="http://www.polymer-project.org/docs/polymer/polymer.html#observeprops">書き換え可能</a>。ダイナミックだ。</p>
-
-<pre><code class="language-js">filterChanged: function filterChangedCallback(oldValue, newValue) {
-  console.log('filter property is changed.');
+</code></pre></div><p>と書いていたのは、以下のように<a href=http://www.polymer-project.org/docs/polymer/polymer.html#observeprops>書き換え可能</a>。ダイナミックだ。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>filterChanged</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>filterChangedCallback</span>(<span style=color:#a6e22e>oldValue</span>, <span style=color:#a6e22e>newValue</span>) {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;filter property is changed.&#39;</span>);
 },
-</code></pre>
-
-<h3 id="オブジェクトや配列の初期化は-created-でやったほうがベター">オブジェクトや配列の初期化は<code>created</code>でやったほうがベター</h3>
-
-<p><code>Polymer()</code>の第二引数直下で初期化するとprototypeで紐付いてしまうそう。Polymer側で色々やっていそうだけど、<code>document.registerElement()</code>の第二引数のような感じなのか。</p>
-
-<pre><code class="language-js">Polymer('x-foo', {
-  // ここで初期化するとprototypeに紐付いて予期しない動作を起こす
-  //array: [],
-  //object: {},
-  created: function() {
-    // ここでやったほうが良い
-    this.array = [];
-    this.object = {};
+</code></pre></div><h3 id=オブジェクトや配列の初期化はcreatedでやったほうがベター>オブジェクトや配列の初期化は<code>created</code>でやったほうがベター</h3><p><code>Polymer()</code>の第二引数直下で初期化するとprototypeで紐付いてしまうそう。Polymer側で色々やっていそうだけど、<code>document.registerElement()</code>の第二引数のような感じなのか。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>Polymer</span>(<span style=color:#e6db74>&#39;x-foo&#39;</span>, {
+  <span style=color:#75715e>// ここで初期化するとprototypeに紐付いて予期しない動作を起こす
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//array: [],
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//object: {},
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>created</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>function</span>() {
+    <span style=color:#75715e>// ここでやったほうが良い
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>array</span> <span style=color:#f92672>=</span> [];
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>object</span> <span style=color:#f92672>=</span> {};
   }
 });
-</code></pre>
-
-<ul>
-<li><a href="http://www.polymer-project.org/docs/polymer/polymer.html#propertiesmethods">Adding public properties and methods</a></li>
-</ul>
-
-<h2 id="その他感想">その他感想</h2>
-
-<p>Polymer要素が多めな割に、あまりスコープの恩恵は受けていない作りだが、普段触らない技術を試してみるのは良いもの。</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fflask-mongodb-polymer.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fflask-mongodb-polymer.html&text=Python%e3%81%a8MongoDB%e3%81%a8Polymer%e3%81%a7RSS%e3%83%aa%e3%83%bc%e3%83%80%e3%83%bc%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%9f" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2014/grunt-image.html">👈 画像の最適化をCLIだけで行うgrunt-imageを作った</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2014/english.html">英語環境 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+</code></pre></div><ul><li><a href=http://www.polymer-project.org/docs/polymer/polymer.html#propertiesmethods>Adding public properties and methods</a></li></ul><h2 id=その他感想>その他感想</h2><p>Polymer要素が多めな割に、あまりスコープの恩恵は受けていない作りだが、普段触らない技術を試してみるのは良いもの。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fflask-mongodb-polymer.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fflask-mongodb-polymer.html&text=Python%e3%81%a8MongoDB%e3%81%a8Polymer%e3%81%a7RSS%e3%83%aa%e3%83%bc%e3%83%80%e3%83%bc%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%9f" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2014/grunt-image.html>👈 画像の最適化をCLIだけで行うgrunt-imageを作った</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2014/english.html>英語環境 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -342,7 +94,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

@@ -1,216 +1,27 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた 2014年1月25日にFrontrend in Fukuokaが開催されました。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた 2014年1月25日にFrontrend in Fukuokaが開催されました。
  Frontrend/fukuoka FRONTREND IN FUKUOKA Frontrend in Fukuoka - Togetterまとめ Frontrend in Fukuoka レポート ｜1 pixel｜サイバーエージェント公式クリエイターズブログ  今回はエンジニア向け・デザイナー向け・ハンズオンと3つのトラックで並行してセッションが行われました。 福岡のWebコミュニティFukuoka Frontend Frogs、特定非営利活動法人 AIP、弊社CyberAgentの福岡オフィスの皆さんのご協力の元、 最終的には約200名という規模の勉強会でした。
 感想とか 参加者は社会人の方の他、地元の学生さんもたくさんいたのがとても印象的でした。 専門学校でWebの勉強をしているそうで、意識高くてびっくりしました。 ここまで若い時からWebに触れていられるのはとても羨ましいです。福岡のWebの未来も明るいですね。
 職種もデザイナーさん・ディレクターさん・エンジニアさんと様々で、 初の試みだった3トラック制やハンズオンですが、参加者が興味のある部分を選ぶ形もいいなと思いました。 デザイナートラックに人が多かったところを見ると、比率的にデザイナーさんが多かったんでしょうか。
 私のセッションではBrowser Computing Structureということで、WebサイトのパフォーマンスをComputingの観点から攻めるべく ブラウザの仕組みを知り、メモリの仕組みを知り、JavaScriptを制すといったような内容でした。
  参考リンクはこちらをどうぞ。ボリューム多いですが、参考になるリンクばかりです。
 ありがとうございました 前日当日ともに皆さんとお話が出来てとても楽しかったです。 みなさん本当にお疲れ様でした。ありがとうございました！ また色んなアウトプットは続けていきますので、どうぞ宜しくお願い致します。
-P.S. 福岡に行って衝撃の鉄鍋餃子でお出迎えをしていただきましたが、 まんまとハマってしまい、皆が渋谷で鉄鍋餃子を探す日々が続いております。">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2014/frontrend-in-fukuoka.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2014/frontrend-in-fukuoka.html">
-<meta name="twitter:title" content="Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2014.02.02</span>
-
-        
-
-<h1 id="frontrend-in-fukuokaでブラウザの仕組みとcomputingについて話してきた">Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた</h1>
-
-<p>2014年1月25日にFrontrend in Fukuokaが開催されました。</p>
-
-<ul>
-<li><a href="http://frontrend.github.io/events/fukuoka/">Frontrend/fukuoka</a></li>
-<li><a href="http://frontendfrogs.org/frontrend/">FRONTREND IN FUKUOKA</a></li>
-<li><a href="http://togetter.com/li/620711">Frontrend in Fukuoka - Togetterまとめ</a></li>
-<li><a href="http://ameblo.jp/ca-1pixel/entry-11759571250.html">Frontrend in Fukuoka レポート ｜1 pixel｜サイバーエージェント公式クリエイターズブログ</a></li>
-</ul>
-
-<p>今回はエンジニア向け・デザイナー向け・ハンズオンと3つのトラックで並行してセッションが行われました。
-福岡のWebコミュニティ<a href="http://frontendfrogs.org/">Fukuoka Frontend Frogs</a>、<a href="http://www.npo-aip.or.jp/">特定非営利活動法人 AIP</a>、弊社CyberAgentの福岡オフィスの皆さんのご協力の元、
-最終的には約200名という規模の勉強会でした。</p>
-
-<p><img src="/img/posts/2014/frontrend-in-fukuoka/frontrend-in-fukuoka-all.jpg" alt="" /></p>
-
-<h2 id="感想とか">感想とか</h2>
-
-<p>参加者は社会人の方の他、地元の学生さんもたくさんいたのがとても印象的でした。
+P.S. 福岡に行って衝撃の鉄鍋餃子でお出迎えをしていただきましたが、 まんまとハマってしまい、皆が渋谷で鉄鍋餃子を探す日々が続いております。"><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/frontrend-in-fukuoka.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/frontrend-in-fukuoka.html"><meta name=twitter:title content="Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2014.02.02</span><h1 id=frontrend-in-fukuokaでブラウザの仕組みとcomputingについて話してきた>Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた</h1><p>2014年1月25日にFrontrend in Fukuokaが開催されました。</p><ul><li><a href=http://frontrend.github.io/events/fukuoka/>Frontrend/fukuoka</a></li><li><a href=http://frontendfrogs.org/frontrend/>FRONTREND IN FUKUOKA</a></li><li><a href=http://togetter.com/li/620711>Frontrend in Fukuoka - Togetterまとめ</a></li><li><a href=http://ameblo.jp/ca-1pixel/entry-11759571250.html>Frontrend in Fukuoka レポート ｜1 pixel｜サイバーエージェント公式クリエイターズブログ</a></li></ul><p>今回はエンジニア向け・デザイナー向け・ハンズオンと3つのトラックで並行してセッションが行われました。
+福岡のWebコミュニティ<a href=http://frontendfrogs.org/>Fukuoka Frontend Frogs</a>、<a href=http://www.npo-aip.or.jp/>特定非営利活動法人 AIP</a>、弊社CyberAgentの福岡オフィスの皆さんのご協力の元、
+最終的には約200名という規模の勉強会でした。</p><p><img src=/img/posts/2014/frontrend-in-fukuoka/frontrend-in-fukuoka-all.jpg alt></p><h2 id=感想とか>感想とか</h2><p>参加者は社会人の方の他、地元の学生さんもたくさんいたのがとても印象的でした。
 専門学校でWebの勉強をしているそうで、意識高くてびっくりしました。
-ここまで若い時からWebに触れていられるのはとても羨ましいです。福岡のWebの未来も明るいですね。</p>
-
-<p>職種もデザイナーさん・ディレクターさん・エンジニアさんと様々で、
+ここまで若い時からWebに触れていられるのはとても羨ましいです。福岡のWebの未来も明るいですね。</p><p>職種もデザイナーさん・ディレクターさん・エンジニアさんと様々で、
 初の試みだった3トラック制やハンズオンですが、参加者が興味のある部分を選ぶ形もいいなと思いました。
-デザイナートラックに人が多かったところを見ると、比率的にデザイナーさんが多かったんでしょうか。</p>
-
-<p>私のセッションではBrowser Computing Structureということで、WebサイトのパフォーマンスをComputingの観点から攻めるべく
-ブラウザの仕組みを知り、メモリの仕組みを知り、JavaScriptを制すといったような内容でした。</p>
-
-<script async class="speakerdeck-embed" data-id="178c76b068ca013133ba7691c1dda2be" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-<p>参考リンクは<a href="https://gist.github.com/1000ch/8611733">こちら</a>をどうぞ。ボリューム多いですが、参考になるリンクばかりです。</p>
-
-<h2 id="ありがとうございました">ありがとうございました</h2>
-
-<p>前日当日ともに皆さんとお話が出来てとても楽しかったです。
+デザイナートラックに人が多かったところを見ると、比率的にデザイナーさんが多かったんでしょうか。</p><p>私のセッションではBrowser Computing Structureということで、WebサイトのパフォーマンスをComputingの観点から攻めるべく
+ブラウザの仕組みを知り、メモリの仕組みを知り、JavaScriptを制すといったような内容でした。</p><script async class=speakerdeck-embed data-id=178c76b068ca013133ba7691c1dda2be data-ratio=1.33333333333333 src=//speakerdeck.com/assets/embed.js></script><p>参考リンクは<a href=https://gist.github.com/1000ch/8611733>こちら</a>をどうぞ。ボリューム多いですが、参考になるリンクばかりです。</p><h2 id=ありがとうございました>ありがとうございました</h2><p>前日当日ともに皆さんとお話が出来てとても楽しかったです。
 みなさん本当にお疲れ様でした。ありがとうございました！
-また色んなアウトプットは続けていきますので、どうぞ宜しくお願い致します。</p>
-
-<h2 id="p-s">P.S.</h2>
-
-<p>福岡に行って衝撃の鉄鍋餃子でお出迎えをしていただきましたが、
-まんまとハマってしまい、皆が渋谷で鉄鍋餃子を探す日々が続いております。</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2ffrontrend-in-fukuoka.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2ffrontrend-in-fukuoka.html&text=Frontrend%20in%20Fukuoka%e3%81%a7%e3%83%96%e3%83%a9%e3%82%a6%e3%82%b6%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%81%a8Computing%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%a9%b1%e3%81%97%e3%81%a6%e3%81%8d%e3%81%9f" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2013/es6-features-2.html">👈 ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2014/grunt-image.html">画像の最適化をCLIだけで行うgrunt-imageを作った 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+また色んなアウトプットは続けていきますので、どうぞ宜しくお願い致します。</p><h2 id=ps>P.S.</h2><p>福岡に行って衝撃の鉄鍋餃子でお出迎えをしていただきましたが、
+まんまとハマってしまい、皆が渋谷で鉄鍋餃子を探す日々が続いております。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2ffrontrend-in-fukuoka.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2ffrontrend-in-fukuoka.html&text=Frontrend%20in%20Fukuoka%e3%81%a7%e3%83%96%e3%83%a9%e3%82%a6%e3%82%b6%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%81%a8Computing%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%a9%b1%e3%81%97%e3%81%a6%e3%81%8d%e3%81%9f" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2013/es6-features-2.html>👈 ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2014/grunt-image.html>画像の最適化をCLIだけで行うgrunt-imageを作った 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -224,7 +35,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

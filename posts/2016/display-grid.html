@@ -1,428 +1,122 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>CSS Grid Layout Moduleについて調べたメモ - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="CSS Grid Layout Moduleについて調べたメモ CSSによるレイアウトの問題はFlexboxでほとんどが解決されたと言って良いが、複雑なグリッドレイアウトを実現するためにCSS Grid Layout Moduleの策定が進められている。display: grid;ないしdisplay: inline-grid;といったように、displayプロパティに値が追加されており、それらが指定された要素はブロック要素またはインライン要素のように振る舞い、内包されるコンテンツがグリッドモデルに従ってレイアウトされる。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CSS Grid Layout Moduleについて調べたメモ - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="CSS Grid Layout Moduleについて調べたメモ CSSによるレイアウトの問題はFlexboxでほとんどが解決されたと言って良いが、複雑なグリッドレイアウトを実現するためにCSS Grid Layout Moduleの策定が進められている。display: grid;ないしdisplay: inline-grid;といったように、displayプロパティに値が追加されており、それらが指定された要素はブロック要素またはインライン要素のように振る舞い、内包されるコンテンツがグリッドモデルに従ってレイアウトされる。
 Chromeは50から、Firefoxは46から対応しているが、Chromeは現安定バージョンの49でもchrome://flags/でExperimental Web Platform featuresを有効にすれば使える。
 そんなdisplay: grid;について調べたメモ。
 大まかな構造 display: grid;によって定義されるグリッド要素と、その子要素として配置されるセルから構成する。例えば、よくあるヘッダー・フッター・メインコンテンツ・サイドカラムがあるページ構造を作るとすると、次のようなHTMLとCSSになる。
-&lt;main&gt; &lt;header&gt;Header&lt;/header&gt; &lt;article&gt;Article&lt;/article&gt; &lt;aside&gt;Aside&lt;/aside&gt; &lt;footer&gt;Footer&lt;/footer&gt; &lt;/main&gt;  main { display: grid; grid-template-rows: 50px 1fr 50px; grid-template-columns: 100px 1fr; } header { grid-row: 1 / 2; grid-column: 1 / 3; } aside { grid-row: 2 / 3; grid-column: 1 / 2; } article { grid-row: 2 / 3; grid-column: 2 / 3; } footer { grid-row: 3 / 4; grid-column: 1 / 3; }  See the Pen oxzEBa by 1000ch (@1000ch) on CodePen.">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/posts/2016/display-grid/display-grid-positive.svg">
-    <meta name="twitter:card" content="summary_large_image">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2016/display-grid.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="CSS Grid Layout Moduleについて調べたメモ">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2016/display-grid.html">
-<meta name="twitter:title" content="CSS Grid Layout Moduleについて調べたメモ">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2016.03.12</span>
-
-        
-
-<h1 id="css-grid-layout-moduleについて調べたメモ">CSS Grid Layout Moduleについて調べたメモ</h1>
-
-<p>CSSによるレイアウトの問題はFlexboxでほとんどが解決されたと言って良いが、複雑なグリッドレイアウトを実現するために<a href="https://www.w3.org/TR/css3-grid-layout/">CSS Grid Layout Module</a>の策定が進められている。<code>display: grid;</code>ないし<code>display: inline-grid;</code>といったように、<code>display</code>プロパティに値が追加されており、それらが指定された要素はブロック要素またはインライン要素のように振る舞い、内包されるコンテンツがグリッドモデルに従ってレイアウトされる。</p>
-
-<p><a href="http://caniuse.com/#search=grid">Chromeは50から、Firefoxは46から対応している</a>が、Chromeは現安定バージョンの49でも<code>chrome://flags/</code>で<code>Experimental Web Platform features</code>を有効にすれば使える。</p>
-
-<p>そんな<code>display: grid;</code>について調べたメモ。</p>
-
-<h2 id="大まかな構造">大まかな構造</h2>
-
-<p><code>display: grid;</code>によって定義されるグリッド要素と、その子要素として配置されるセルから構成する。例えば、よくあるヘッダー・フッター・メインコンテンツ・サイドカラムがあるページ構造を作るとすると、次のようなHTMLとCSSになる。</p>
-
-<pre><code class="language-html">&lt;main&gt;
-  &lt;header&gt;Header&lt;/header&gt;
-  &lt;article&gt;Article&lt;/article&gt;
-  &lt;aside&gt;Aside&lt;/aside&gt;
-  &lt;footer&gt;Footer&lt;/footer&gt;
-&lt;/main&gt;
-</code></pre>
-
-<pre><code class="language-css">main {
-  display: grid;
-  grid-template-rows: 50px 1fr 50px;
-  grid-template-columns: 100px 1fr;
+<main> <header>Header</header> <article>Article</article> <aside>Aside</aside> <footer>Footer</footer> </main> main { display: grid; grid-template-rows: 50px 1fr 50px; grid-template-columns: 100px 1fr; } header { grid-row: 1 / 2; grid-column: 1 / 3; } aside { grid-row: 2 / 3; grid-column: 1 / 2; } article { grid-row: 2 / 3; grid-column: 2 / 3; } footer { grid-row: 3 / 4; grid-column: 1 / 3; } See the Pen oxzEBa by 1000ch (@1000ch) on CodePen."><meta property="og:image" content="https://1000ch.net/img/posts/2016/display-grid/display-grid-positive.svg"><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/display-grid.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="CSS Grid Layout Moduleについて調べたメモ"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/display-grid.html"><meta name=twitter:title content="CSS Grid Layout Moduleについて調べたメモ"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2016.03.12</span><h1 id=css-grid-layout-moduleについて調べたメモ>CSS Grid Layout Moduleについて調べたメモ</h1><p>CSSによるレイアウトの問題はFlexboxでほとんどが解決されたと言って良いが、複雑なグリッドレイアウトを実現するために<a href=https://www.w3.org/TR/css3-grid-layout/>CSS Grid Layout Module</a>の策定が進められている。<code>display: grid;</code>ないし<code>display: inline-grid;</code>といったように、<code>display</code>プロパティに値が追加されており、それらが指定された要素はブロック要素またはインライン要素のように振る舞い、内包されるコンテンツがグリッドモデルに従ってレイアウトされる。</p><p><a href="http://caniuse.com/#search=grid">Chromeは50から、Firefoxは46から対応している</a>が、Chromeは現安定バージョンの49でも<code>chrome://flags/</code>で<code>Experimental Web Platform features</code>を有効にすれば使える。</p><p>そんな<code>display: grid;</code>について調べたメモ。</p><h2 id=大まかな構造>大まかな構造</h2><p><code>display: grid;</code>によって定義されるグリッド要素と、その子要素として配置されるセルから構成する。例えば、よくあるヘッダー・フッター・メインコンテンツ・サイドカラムがあるページ構造を作るとすると、次のようなHTMLとCSSになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>main</span>&gt;
+  &lt;<span style=color:#f92672>header</span>&gt;Header&lt;/<span style=color:#f92672>header</span>&gt;
+  &lt;<span style=color:#f92672>article</span>&gt;Article&lt;/<span style=color:#f92672>article</span>&gt;
+  &lt;<span style=color:#f92672>aside</span>&gt;Aside&lt;/<span style=color:#f92672>aside</span>&gt;
+  &lt;<span style=color:#f92672>footer</span>&gt;Footer&lt;/<span style=color:#f92672>footer</span>&gt;
+&lt;/<span style=color:#f92672>main</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css><span style=color:#f92672>main</span> {
+  <span style=color:#66d9ef>display</span>: <span style=color:#66d9ef>grid</span>;
+  <span style=color:#66d9ef>grid-template-rows</span>: <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>1</span>fr <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
+  <span style=color:#66d9ef>grid-template-columns</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>1</span>fr;
 }
 
-header {
-  grid-row: 1 / 2;
-  grid-column: 1 / 3;
+<span style=color:#f92672>header</span> {
+  <span style=color:#66d9ef>grid-row</span>: <span style=color:#ae81ff>1</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+  <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>1</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
 }
 
-aside {
-  grid-row: 2 / 3;
-  grid-column: 1 / 2;
+<span style=color:#f92672>aside</span> {
+  <span style=color:#66d9ef>grid-row</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
+  <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>1</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
 }
 
-article {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
+<span style=color:#f92672>article</span> {
+  <span style=color:#66d9ef>grid-row</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
+  <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
 }
 
-footer {
-  grid-row: 3 / 4;
-  grid-column: 1 / 3;
+<span style=color:#f92672>footer</span> {
+  <span style=color:#66d9ef>grid-row</span>: <span style=color:#ae81ff>3</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>;
+  <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>1</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
 }
-</code></pre>
-
-<p data-height="200" data-theme-id="0" data-slug-hash="oxzEBa" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/oxzEBa/">oxzEBa</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<h3 id="レイアウトは子要素の順序に依存しない">レイアウトは子要素の順序に依存しない</h3>
-
-<p>見ての通り、グリッド要素下のセル要素の<code>grid-row</code>や<code>grid-column</code>によってどういった領域を占めるかが決定されるので、HTMLの記述順序は直接影響しない。</p>
-
-<h3 id="fr-とはなんぞ"><code>fr</code>とはなんぞ</h3>
-
-<p><code>1fr</code>という記述があるが、<code>display: grid;</code>が指定された要素に対して有効な単位で、要素内の可用領域のうち占める割合を表す。<a href="https://developer.mozilla.org/ja/docs/Web/CSS/flex-grow">Flexboxの<code>flex-grow</code></a>と同じような振る舞いをすると理解してもらえれば良さそう。</p>
-
-<h2 id="グリッドを定義する-grid-template-rows-grid-template-columns">グリッドを定義する - <code>grid-template-rows</code>・<code>grid-template-columns</code></h2>
-
-<p><code>display: grid;</code>を指定した要素に、行と列を定義するのが<code>grid-template-rows</code>と<code>grid-template-columns</code>で、高さおよび横幅をそれぞれスペース区切りで指定する。</p>
-
-<pre><code class="language-css">.grid {
-  display: grid;
-  grid-template-rows: 100px 50px;
-  grid-template-columns: 100px 150px 50px;
+</code></pre></div><p data-height=200 data-theme-id=0 data-slug-hash=oxzEBa data-default-tab=result data-user=1000ch class=codepen>See the Pen <a href=http://codepen.io/1000ch/pen/oxzEBa/>oxzEBa</a> by 1000ch (<a href=http://codepen.io/1000ch>@1000ch</a>) on <a href=http://codepen.io>CodePen</a>.</p><h3 id=レイアウトは子要素の順序に依存しない>レイアウトは子要素の順序に依存しない</h3><p>見ての通り、グリッド要素下のセル要素の<code>grid-row</code>や<code>grid-column</code>によってどういった領域を占めるかが決定されるので、HTMLの記述順序は直接影響しない。</p><h3 id=frとはなんぞ><code>fr</code>とはなんぞ</h3><p><code>1fr</code>という記述があるが、<code>display: grid;</code>が指定された要素に対して有効な単位で、要素内の可用領域のうち占める割合を表す。<a href=https://developer.mozilla.org/ja/docs/Web/CSS/flex-grow>Flexboxの<code>flex-grow</code></a>と同じような振る舞いをすると理解してもらえれば良さそう。</p><h2 id=グリッドを定義する---grid-template-rowsgrid-template-columns>グリッドを定義する - <code>grid-template-rows</code>・<code>grid-template-columns</code></h2><p><code>display: grid;</code>を指定した要素に、行と列を定義するのが<code>grid-template-rows</code>と<code>grid-template-columns</code>で、高さおよび横幅をそれぞれスペース区切りで指定する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>grid</span> {
+  <span style=color:#66d9ef>display</span>: <span style=color:#66d9ef>grid</span>;
+  <span style=color:#66d9ef>grid-template-rows</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
+  <span style=color:#66d9ef>grid-template-columns</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>150</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
 }
-</code></pre>
-
-<p>これで2行×3列のグリッドが定義される。</p>
-
-<h3 id="セル領域の名前-grid-template-areas">セル領域の名前 - <code>grid-template-areas</code></h3>
-
-<p><code>grid-template-rows</code>と<code>grid-template-columns</code>によってグリッドの格子が定義されるが、生成されたセルにも<code>grid-template-areas</code>プロパティで名前を付けることが可能。先程の2行×3列のグリッドのセルにそれぞれ名前をつけると以下のようになる。</p>
-
-<pre><code class="language-css">.grid {
-  display: grid;
-  grid-template-rows: 100px 50px;
-  grid-template-columns: 100px 150px 50px;
-  grid-template-areas: 'area-a area-a area-b'
-                       'area-c area-d area-d';
+</code></pre></div><p>これで2行×3列のグリッドが定義される。</p><h3 id=セル領域の名前---grid-template-areas>セル領域の名前 - <code>grid-template-areas</code></h3><p><code>grid-template-rows</code>と<code>grid-template-columns</code>によってグリッドの格子が定義されるが、生成されたセルにも<code>grid-template-areas</code>プロパティで名前を付けることが可能。先程の2行×3列のグリッドのセルにそれぞれ名前をつけると以下のようになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>grid</span> {
+  <span style=color:#66d9ef>display</span>: <span style=color:#66d9ef>grid</span>;
+  <span style=color:#66d9ef>grid-template-rows</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
+  <span style=color:#66d9ef>grid-template-columns</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>150</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
+  <span style=color:#66d9ef>grid-template-areas</span>: <span style=color:#e6db74>&#39;area-a area-a area-b&#39;</span>
+                       <span style=color:#e6db74>&#39;area-c area-d area-d&#39;</span>;
 }
-</code></pre>
-
-<p>同じ名前をつけていると1つの領域として扱われる。</p>
-
-<p><img src="/img/posts/2016/display-grid/display-grid-named-area.svg" alt="" /></p>
-
-<h3 id="grid-template-のショートハンド-grid-template"><code>grid-template-*</code>のショートハンド - <code>grid-template</code></h3>
-
-<p><code>grid-template-rows</code>・<code>grid-template-columns</code>・<code>grid-template-areas</code>は以下のようにまとめられる。</p>
-
-<pre><code class="language-css">.grid {
-  display: grid;
-  grid-template-rows: 100px 50px;
-  grid-template-columns: 100px 150px 50px;
-  grid-template-areas: 'area-a area-a area-b'
-                       'area-c area-d area-d';
+</code></pre></div><p>同じ名前をつけていると1つの領域として扱われる。</p><p><img src=/img/posts/2016/display-grid/display-grid-named-area.svg alt></p><h3 id=grid-template-のショートハンド---grid-template><code>grid-template-*</code>のショートハンド - <code>grid-template</code></h3><p><code>grid-template-rows</code>・<code>grid-template-columns</code>・<code>grid-template-areas</code>は以下のようにまとめられる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>grid</span> {
+  <span style=color:#66d9ef>display</span>: <span style=color:#66d9ef>grid</span>;
+  <span style=color:#66d9ef>grid-template-rows</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
+  <span style=color:#66d9ef>grid-template-columns</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>150</span><span style=color:#66d9ef>px</span> <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
+  <span style=color:#66d9ef>grid-template-areas</span>: <span style=color:#e6db74>&#39;area-a area-a area-b&#39;</span>
+                       <span style=color:#e6db74>&#39;area-c area-d area-d&#39;</span>;
 }
-</code></pre>
-
-<h3 id="区切り線の名前">区切り線の名前</h3>
-
-<p>ここで区切り線と言っているのはグリッドを構成するための上下左右のセル分割線のことで、セルが1つのときは上下に1本ずつ・左右に1本ずつ存在することになる。したがって、先程の2行×3列のグリッドであれば、行には3本・列には4本である。この区切り線の内包するセルの振る舞いを決める上でとても重要である。区切り線は以下のように採番される。</p>
-
-<p><img src="/img/posts/2016/display-grid/display-grid-positive.svg" alt="" /></p>
-
-<p>この区切り線には<code>[name]</code>のように名前をつけることができる。</p>
-
-<pre><code class="language-css">.grid {
-  display: grid;
-  grid-template-rows: [row-a] 100px [row-b] 50px [row-c];
-  grid-template-columns: [column-a] 100px [column-b] 150px [column-c] 50px [column-d];
-  grid-template-areas: 'area-a area-a area-b'
-                       'area-c area-d area-d';
+</code></pre></div><h3 id=区切り線の名前>区切り線の名前</h3><p>ここで区切り線と言っているのはグリッドを構成するための上下左右のセル分割線のことで、セルが1つのときは上下に1本ずつ・左右に1本ずつ存在することになる。したがって、先程の2行×3列のグリッドであれば、行には3本・列には4本である。この区切り線の内包するセルの振る舞いを決める上でとても重要である。区切り線は以下のように採番される。</p><p><img src=/img/posts/2016/display-grid/display-grid-positive.svg alt></p><p>この区切り線には<code>[name]</code>のように名前をつけることができる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>grid</span> {
+  <span style=color:#66d9ef>display</span>: <span style=color:#66d9ef>grid</span>;
+  <span style=color:#66d9ef>grid-template-rows</span>: [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>a] <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>b] <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>c];
+  <span style=color:#66d9ef>grid-template-columns</span>: [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>a] <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>b] <span style=color:#ae81ff>150</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>c] <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>d];
+  <span style=color:#66d9ef>grid-template-areas</span>: <span style=color:#e6db74>&#39;area-a area-a area-b&#39;</span>
+                       <span style=color:#e6db74>&#39;area-c area-d area-d&#39;</span>;
 }
-</code></pre>
-
-<h3 id="セルの暗黙的生成-grid-auto-rows-grid-auto-columns">セルの暗黙的生成 - <code>grid-auto-rows</code>・<code>grid-auto-columns</code></h3>
-
-<p><code>grid-template</code>を使うことでセルが明示的に定義されるが、後述の<code>grid-row</code>や<code>grid-column</code>によって、定義されていないセルを指定された場合にも暗黙的にセルが配置される。その時に、セルの縦横サイズを決定するのが<code>grid-auto-rows</code>と<code>grid-auto-columns</code>である。</p>
-
-<pre><code class="language-css">.grid {
-  display: grid;
-  grid-template-rows: [row-a] 100px [row-b] 50px [row-c];
-  grid-template-columns: [column-a] 100px [column-b] 150px [column-c] 50px [column-d];
-  grid-template-areas: 'area-a area-a area-b'
-                       'area-c area-d area-d';
-  grid-auto-rows: 50px;
-  grid-auto-columns: 50px;
+</code></pre></div><h3 id=セルの暗黙的生成---grid-auto-rowsgrid-auto-columns>セルの暗黙的生成 - <code>grid-auto-rows</code>・<code>grid-auto-columns</code></h3><p><code>grid-template</code>を使うことでセルが明示的に定義されるが、後述の<code>grid-row</code>や<code>grid-column</code>によって、定義されていないセルを指定された場合にも暗黙的にセルが配置される。その時に、セルの縦横サイズを決定するのが<code>grid-auto-rows</code>と<code>grid-auto-columns</code>である。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>grid</span> {
+  <span style=color:#66d9ef>display</span>: <span style=color:#66d9ef>grid</span>;
+  <span style=color:#66d9ef>grid-template-rows</span>: [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>a] <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>b] <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>c];
+  <span style=color:#66d9ef>grid-template-columns</span>: [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>a] <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>b] <span style=color:#ae81ff>150</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>c] <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>d];
+  <span style=color:#66d9ef>grid-template-areas</span>: <span style=color:#e6db74>&#39;area-a area-a area-b&#39;</span>
+                       <span style=color:#e6db74>&#39;area-c area-d area-d&#39;</span>;
+  <span style=color:#66d9ef>grid-auto-rows</span>: <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
+  <span style=color:#66d9ef>grid-auto-columns</span>: <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span>;
 }
-</code></pre>
-
-<h3 id="セルの自動配置-grid-auto-flow">セルの自動配置 - <code>grid-auto-flow</code></h3>
-
-<p>後述のセルのレイアウトプロパティによって、位置が決定しないグリッド配下の要素がどのように配置されるかを決定するのが<code>grid-auto-flow</code>で、行列を追加して作られた空きセル対して要素を埋めていく。セルが満タンの場合に、行追加を行うのが<code>row</code>、列追加を行うのが<code>column</code>、空きセルへの配置を試みるのが<code>dense</code>。</p>
-
-<p><code>dense</code>の使いドコロが難しそうというか、利用シーンが今のところ浮かばない。</p>
-
-<h3 id="セル同士の間隔-grid-column-gap-grid-row-gap">セル同士の間隔 - <code>grid-column-gap</code>・<code>grid-row-gap</code></h3>
-
-<p>セル同士の間隔を指定するには、グリッド要素の<code>grid-column-gap</code>・<code>grid-row-gap</code>プロパティに値を指定する。初期値は<code>0</code>になっているのでセル同士は吸着しているが、グリッドそのものにガターを明示するにはこれに任意の値を指定すれば良い。</p>
-
-<pre><code class="language-css">.grid {
-  display: grid;
-  grid-template-rows: [row-a] 100px [row-b] 50px [row-c];
-  grid-template-columns: [column-a] 100px [column-b] 150px [column-c] 50px [column-d];
-  grid-template-areas: 'area-a area-a area-b'
-                       'area-c area-d area-d';
-  grid-row-gap: 10px;
-  grid-column-gap: 20px;
+</code></pre></div><h3 id=セルの自動配置---grid-auto-flow>セルの自動配置 - <code>grid-auto-flow</code></h3><p>後述のセルのレイアウトプロパティによって、位置が決定しないグリッド配下の要素がどのように配置されるかを決定するのが<code>grid-auto-flow</code>で、行列を追加して作られた空きセル対して要素を埋めていく。セルが満タンの場合に、行追加を行うのが<code>row</code>、列追加を行うのが<code>column</code>、空きセルへの配置を試みるのが<code>dense</code>。</p><p><code>dense</code>の使いドコロが難しそうというか、利用シーンが今のところ浮かばない。</p><h3 id=セル同士の間隔---grid-column-gapgrid-row-gap>セル同士の間隔 - <code>grid-column-gap</code>・<code>grid-row-gap</code></h3><p>セル同士の間隔を指定するには、グリッド要素の<code>grid-column-gap</code>・<code>grid-row-gap</code>プロパティに値を指定する。初期値は<code>0</code>になっているのでセル同士は吸着しているが、グリッドそのものにガターを明示するにはこれに任意の値を指定すれば良い。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>grid</span> {
+  <span style=color:#66d9ef>display</span>: <span style=color:#66d9ef>grid</span>;
+  <span style=color:#66d9ef>grid-template-rows</span>: [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>a] <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>b] <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>c];
+  <span style=color:#66d9ef>grid-template-columns</span>: [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>a] <span style=color:#ae81ff>100</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>b] <span style=color:#ae81ff>150</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>c] <span style=color:#ae81ff>50</span><span style=color:#66d9ef>px</span> [<span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>d];
+  <span style=color:#66d9ef>grid-template-areas</span>: <span style=color:#e6db74>&#39;area-a area-a area-b&#39;</span>
+                       <span style=color:#e6db74>&#39;area-c area-d area-d&#39;</span>;
+  <span style=color:#66d9ef>grid-row-gap</span>: <span style=color:#ae81ff>10</span><span style=color:#66d9ef>px</span>;
+  <span style=color:#66d9ef>grid-column-gap</span>: <span style=color:#ae81ff>20</span><span style=color:#66d9ef>px</span>;
 }
-</code></pre>
-
-<h3 id="grid-gap-のショートハンド-grid-gap"><code>grid-*-gap</code>のショートハンド - <code>grid-gap</code></h3>
-
-<p><code>grid-gap</code>はショートハンドで、<code>grid-row-gap: 10px; grid-column-gap: 20px;</code>は<code>grid-gap: 10px 20px;</code>と等価になる。</p>
-
-<h3 id="grid-のショートハンド-grid"><code>grid-*</code>のショートハンド - <code>grid</code></h3>
-
-<p><code>grid-template</code>・<code>grid-auto-*</code>・<code>grid-gap</code>を一括して指定するには<code>grid</code>プロパティを使う。<code>grid: [grid-template] [grid-auto-flow] [grid-auto-rows] / [grid-auto-columns] [grid-gap];</code>の順に指定する。</p>
-
-<p><code>linear-gradient: ...;</code>みたいな空気を感じる。</p>
-
-<h2 id="セルを定義する-grid-column-start-grid-column-end-grid-row-start-grid-row-end">セルを定義する - <code>grid-column-start</code>・<code>grid-column-end</code>・<code>grid-row-start</code>・<code>grid-row-end</code></h2>
-
-<p>分割されたグリッドに要素を配置するには、要素が行列それぞれの <strong>どの区切り線からどの区切り線まで</strong> を占めるかを指定する。要素がセルとして占める範囲を、<code>grid-row-start</code>・<code>grid-row-end</code>で行方向の区切り線番号を、<code>grid-column-start</code>・<code>grid-column-end</code>で列方向の区切り線番号を指定する。</p>
-
-<pre><code class="language-css">.cell {
-  grid-row-start: 2;
-  grid-column-start: 2;
-  grid-row-end: 3;
-  grid-column-end: 4;
+</code></pre></div><h3 id=grid--gapのショートハンド---grid-gap><code>grid-*-gap</code>のショートハンド - <code>grid-gap</code></h3><p><code>grid-gap</code>はショートハンドで、<code>grid-row-gap: 10px; grid-column-gap: 20px;</code>は<code>grid-gap: 10px 20px;</code>と等価になる。</p><h3 id=grid-のショートハンド---grid><code>grid-*</code>のショートハンド - <code>grid</code></h3><p><code>grid-template</code>・<code>grid-auto-*</code>・<code>grid-gap</code>を一括して指定するには<code>grid</code>プロパティを使う。<code>grid: [grid-template] [grid-auto-flow] [grid-auto-rows] / [grid-auto-columns] [grid-gap];</code>の順に指定する。</p><p><code>linear-gradient: ...;</code>みたいな空気を感じる。</p><h2 id=セルを定義する---grid-column-startgrid-column-endgrid-row-startgrid-row-end>セルを定義する - <code>grid-column-start</code>・<code>grid-column-end</code>・<code>grid-row-start</code>・<code>grid-row-end</code></h2><p>分割されたグリッドに要素を配置するには、要素が行列それぞれの <strong>どの区切り線からどの区切り線まで</strong> を占めるかを指定する。要素がセルとして占める範囲を、<code>grid-row-start</code>・<code>grid-row-end</code>で行方向の区切り線番号を、<code>grid-column-start</code>・<code>grid-column-end</code>で列方向の区切り線番号を指定する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>cell</span> {
+  <span style=color:#66d9ef>grid-row-start</span>: <span style=color:#ae81ff>2</span>;
+  <span style=color:#66d9ef>grid-column-start</span>: <span style=color:#ae81ff>2</span>;
+  <span style=color:#66d9ef>grid-row-end</span>: <span style=color:#ae81ff>3</span>;
+  <span style=color:#66d9ef>grid-column-end</span>: <span style=color:#ae81ff>4</span>;
 }
-</code></pre>
-
-<p>これで<code>.cell</code>が指定された要素は、コンテナのグリッド要素の <strong>2行目から2行目まで</strong> と <strong>2列目から3列目まで</strong> を占めることになる。</p>
-
-<h3 id="grid-start-grid-end-のショートハンド-grid-row-grid-column-grid-area"><code>grid-*-start</code>・<code>grid-*-end</code>のショートハンド - <code>grid-row</code>・<code>grid-column</code>・<code>grid-area</code></h3>
-
-<p>開始位置と終了位置の指定は、ショートハンドの<code>grid-row</code>と<code>grid-column</code>を使ってまとめることもできる。まとめる場合は、数値をスラッシュ区切りで指定する。先程の<code>.cell</code>をこれらで書き換えると以下のようになる。</p>
-
-<pre><code class="language-css">.cell {
-  grid-row: 2 / 3;
-  grid-column: 2 / 4;
+</code></pre></div><p>これで<code>.cell</code>が指定された要素は、コンテナのグリッド要素の <strong>2行目から2行目まで</strong> と <strong>2列目から3列目まで</strong> を占めることになる。</p><h3 id=grid--startgrid--endのショートハンド---grid-rowgrid-columngrid-area><code>grid-*-start</code>・<code>grid-*-end</code>のショートハンド - <code>grid-row</code>・<code>grid-column</code>・<code>grid-area</code></h3><p>開始位置と終了位置の指定は、ショートハンドの<code>grid-row</code>と<code>grid-column</code>を使ってまとめることもできる。まとめる場合は、数値をスラッシュ区切りで指定する。先程の<code>.cell</code>をこれらで書き換えると以下のようになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>cell</span> {
+  <span style=color:#66d9ef>grid-row</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
+  <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>;
 }
-</code></pre>
-
-<p>また、開始と終了の4点を指定できればいいので、1度に指定できるように<code>grid-area</code>というプロパティも存在する。注意したいのは順序で、<code>grid-row-start</code> → <code>grid-column-start</code> → <code>grid-row-end</code> → <code>grid-column-end</code>の順に指定する。先程の<code>.cell</code>を<code>grid-area</code>で書き換えると以下のようになる。</p>
-
-<pre><code class="language-css">.cell {
-  /* grid-row-start / grid-column-start / grid-row-end / grid-column-end */
-  grid-area: 2 / 2 / 3 / 4;
+</code></pre></div><p>また、開始と終了の4点を指定できればいいので、1度に指定できるように<code>grid-area</code>というプロパティも存在する。注意したいのは順序で、<code>grid-row-start</code> → <code>grid-column-start</code> → <code>grid-row-end</code> → <code>grid-column-end</code>の順に指定する。先程の<code>.cell</code>を<code>grid-area</code>で書き換えると以下のようになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>cell</span> {
+  <span style=color:#75715e>/* grid-row-start / grid-column-start / grid-row-end / grid-column-end */</span>
+  <span style=color:#66d9ef>grid-area</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>;
 }
-</code></pre>
-
-<p data-height="200" data-theme-id="0" data-slug-hash="bpeQpa" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/bpeQpa/">display: grid; positive value</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<h3 id="区切り線番号のマイナス値">区切り線番号のマイナス値</h3>
-
-<p>区切り線番号は起点を右下にして、マイナスで指定する方法もある。2行×3列のグリッドであれば、下から数えると-1、-2、-3であり、右から数えると-1、-2、-3、-4ということになる。</p>
-
-<p><img src="/img/posts/2016/display-grid/display-grid-negative.svg" alt="" /></p>
-
-<pre><code class="language-css">.cell {
-  grid-row-start: -2;
-  grid-column-start: -3;
-  grid-row-end: -1;
-  grid-column-end: -1;
+</code></pre></div><p data-height=200 data-theme-id=0 data-slug-hash=bpeQpa data-default-tab=result data-user=1000ch class=codepen>See the Pen <a href=http://codepen.io/1000ch/pen/bpeQpa/>display: grid; positive value</a> by 1000ch (<a href=http://codepen.io/1000ch>@1000ch</a>) on <a href=http://codepen.io>CodePen</a>.</p><h3 id=区切り線番号のマイナス値>区切り線番号のマイナス値</h3><p>区切り線番号は起点を右下にして、マイナスで指定する方法もある。2行×3列のグリッドであれば、下から数えると-1、-2、-3であり、右から数えると-1、-2、-3、-4ということになる。</p><p><img src=/img/posts/2016/display-grid/display-grid-negative.svg alt></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>cell</span> {
+  <span style=color:#66d9ef>grid-row-start</span>: <span style=color:#ae81ff>-2</span>;
+  <span style=color:#66d9ef>grid-column-start</span>: <span style=color:#ae81ff>-3</span>;
+  <span style=color:#66d9ef>grid-row-end</span>: <span style=color:#ae81ff>-1</span>;
+  <span style=color:#66d9ef>grid-column-end</span>: <span style=color:#ae81ff>-1</span>;
 }
-</code></pre>
-
-<p data-height="200" data-theme-id="0" data-slug-hash="oxLrrZ" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/oxLrrZ/">display: grid; negative value</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<h3 id="命名した区切り線の指定">命名した区切り線の指定</h3>
-
-<p><code>### 区切り線とその命名</code>で<code>grid-template-rows</code>と<code>grid-template-columns</code>を使って区切り線に名前を付けたが、この名前で範囲を指定することも出来る。</p>
-
-<pre><code class="language-css">.cell {
-  grid-row-start: row-b;
-  grid-column-start: column-b;
-  grid-row-end: row-c;
-  grid-column-end: column-d;
+</code></pre></div><p data-height=200 data-theme-id=0 data-slug-hash=oxLrrZ data-default-tab=result data-user=1000ch class=codepen>See the Pen <a href=http://codepen.io/1000ch/pen/oxLrrZ/>display: grid; negative value</a> by 1000ch (<a href=http://codepen.io/1000ch>@1000ch</a>) on <a href=http://codepen.io>CodePen</a>.</p><h3 id=命名した区切り線の指定>命名した区切り線の指定</h3><p><code>### 区切り線とその命名</code>で<code>grid-template-rows</code>と<code>grid-template-columns</code>を使って区切り線に名前を付けたが、この名前で範囲を指定することも出来る。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>cell</span> {
+  <span style=color:#66d9ef>grid-row-start</span>: <span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>b;
+  <span style=color:#66d9ef>grid-column-start</span>: <span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>b;
+  <span style=color:#66d9ef>grid-row-end</span>: <span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>c;
+  <span style=color:#66d9ef>grid-column-end</span>: <span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>d;
 }
-</code></pre>
-
-<p data-height="200" data-theme-id="0" data-slug-hash="wGWVaQ" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/wGWVaQ/">display: grid; named line value</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<h3 id="命名した領域の指定">命名した領域の指定</h3>
-
-<p><code>### セル領域の命名</code>で<code>grid-template-area</code>を使ってセル領域に名前を付けたが、<code>grid-area</code>プロパティにはこの名前を指定することも出来る。</p>
-
-<pre><code class="language-css">.cell {
-  grid-area: area-d;
+</code></pre></div><p data-height=200 data-theme-id=0 data-slug-hash=wGWVaQ data-default-tab=result data-user=1000ch class=codepen>See the Pen <a href=http://codepen.io/1000ch/pen/wGWVaQ/>display: grid; named line value</a> by 1000ch (<a href=http://codepen.io/1000ch>@1000ch</a>) on <a href=http://codepen.io>CodePen</a>.</p><h3 id=命名した領域の指定>命名した領域の指定</h3><p><code>### セル領域の命名</code>で<code>grid-template-area</code>を使ってセル領域に名前を付けたが、<code>grid-area</code>プロパティにはこの名前を指定することも出来る。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>cell</span> {
+  <span style=color:#66d9ef>grid-area</span>: area-d;
 }
-</code></pre>
-
-<p data-height="200" data-theme-id="0" data-slug-hash="grMVPj" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/grMVPj/">display: grid; named area value</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<h3 id="区切り線からの長さ-スパン-で指定">区切り線からの長さ（スパン）で指定</h3>
-
-<p>セル領域は <strong>区切り線から区切り線</strong> による指定だけではなく、距離で指定可能である。昔のテーブルレイアウトの<code>rowspan</code>と<code>colspan</code>と同じようなものと思って良い。</p>
-
-<pre><code class="language-css">.cell {
-  grid-row: 2 / 3;
-  grid-column: 2 / span 2;
+</code></pre></div><p data-height=200 data-theme-id=0 data-slug-hash=grMVPj data-default-tab=result data-user=1000ch class=codepen>See the Pen <a href=http://codepen.io/1000ch/pen/grMVPj/>display: grid; named area value</a> by 1000ch (<a href=http://codepen.io/1000ch>@1000ch</a>) on <a href=http://codepen.io>CodePen</a>.</p><h3 id=区切り線からの長さスパンで指定>区切り線からの長さ（スパン）で指定</h3><p>セル領域は <strong>区切り線から区切り線</strong> による指定だけではなく、距離で指定可能である。昔のテーブルレイアウトの<code>rowspan</code>と<code>colspan</code>と同じようなものと思って良い。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>cell</span> {
+  <span style=color:#66d9ef>grid-row</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
+  <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> span <span style=color:#ae81ff>2</span>;
 }
-</code></pre>
-
-<p>このように<code>span</code>キーワードを使って、セルの数を指定可能。もちろんショートハンドプロパティだけでなく、<code>grid-row-end</code>プロパティに<code>span 2</code>と指定も出来るが、開始点と距離がペアになっている方が一見わかりやすそう。ケースバイケースだけど。</p>
-
-<p data-height="200" data-theme-id="0" data-slug-hash="dMXxOZ" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/dMXxOZ/">display: grid; spanning</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<h2 id="グリッド要素における子要素の整列">グリッド要素における子要素の整列</h2>
-
-<p>グリッド要素に対して、<a href="https://developer.mozilla.org/ja/docs/Web/CSS/justify-content"><code>justify-content</code></a>ないし<a href="https://developer.mozilla.org/ja/docs/Web/CSS/align-content"><code>align-content</code></a>を使う。Flexboxと同じ要領。</p>
-
-<h2 id="親要素に対するセル要素自身の整列">親要素に対するセル要素自身の整列</h2>
-
-<p>セル要素に対して、<a href="https://developer.mozilla.org/ja/docs/Web/CSS/justify-self"><code>justify-self</code></a>ないし<a href="https://developer.mozilla.org/ja/docs/Web/CSS/align-self"><code>align-self</code></a>を使う。こちらもFlexboxと同じ要領。</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fdisplay-grid.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fdisplay-grid.html&text=CSS%20Grid%20Layout%20Module%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%aa%bf%e3%81%b9%e3%81%9f%e3%83%a1%e3%83%a2" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2016/swift-async-dispatcher.html">👈 iOS&#43;Swiftの非同期処理のヘルパークラス</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2016/flexbox-grid.html">FlexboxでCSSのグリッドフレームワークの再発明 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+</code></pre></div><p>このように<code>span</code>キーワードを使って、セルの数を指定可能。もちろんショートハンドプロパティだけでなく、<code>grid-row-end</code>プロパティに<code>span 2</code>と指定も出来るが、開始点と距離がペアになっている方が一見わかりやすそう。ケースバイケースだけど。</p><p data-height=200 data-theme-id=0 data-slug-hash=dMXxOZ data-default-tab=result data-user=1000ch class=codepen>See the Pen <a href=http://codepen.io/1000ch/pen/dMXxOZ/>display: grid; spanning</a> by 1000ch (<a href=http://codepen.io/1000ch>@1000ch</a>) on <a href=http://codepen.io>CodePen</a>.</p><h2 id=グリッド要素における子要素の整列>グリッド要素における子要素の整列</h2><p>グリッド要素に対して、<a href=https://developer.mozilla.org/ja/docs/Web/CSS/justify-content><code>justify-content</code></a>ないし<a href=https://developer.mozilla.org/ja/docs/Web/CSS/align-content><code>align-content</code></a>を使う。Flexboxと同じ要領。</p><h2 id=親要素に対するセル要素自身の整列>親要素に対するセル要素自身の整列</h2><p>セル要素に対して、<a href=https://developer.mozilla.org/ja/docs/Web/CSS/justify-self><code>justify-self</code></a>ないし<a href=https://developer.mozilla.org/ja/docs/Web/CSS/align-self><code>align-self</code></a>を使う。こちらもFlexboxと同じ要領。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fdisplay-grid.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fdisplay-grid.html&text=CSS%20Grid%20Layout%20Module%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%aa%bf%e3%81%b9%e3%81%9f%e3%83%a1%e3%83%a2" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2016/swift-async-dispatcher.html>👈 iOS+Swiftの非同期処理のヘルパークラス</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2016/flexbox-grid.html>FlexboxでCSSのグリッドフレームワークの再発明 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -436,7 +130,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

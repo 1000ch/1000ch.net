@@ -1,314 +1,76 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ Vagrantは今更説明するまでもないけど、仮想環境の作成や起動・破棄を自動化したりするツール。VagrantはChefやAnsibleといったようなプロビジョニングツールとも連携可能なのでそれも少し。
-Vagrantで仮想環境を作る 自身には仮想化する機能を備えておらず、仮想化ソフトウェアとしてVirtualBoxやVMWareなどを使う。今回はVagrant &#43; VirtualBoxでCentOSの仮想環境を作ってみる。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ Vagrantは今更説明するまでもないけど、仮想環境の作成や起動・破棄を自動化したりするツール。VagrantはChefやAnsibleといったようなプロビジョニングツールとも連携可能なのでそれも少し。
+Vagrantで仮想環境を作る 自身には仮想化する機能を備えておらず、仮想化ソフトウェアとしてVirtualBoxやVMWareなどを使う。今回はVagrant + VirtualBoxでCentOSの仮想環境を作ってみる。
 以下のサイトに環境ごとのインストーラがあるので、ダウンロードしてインストールする。
  Vagrant Oracle VM VirtualBox  CentOS 6のBoxファイルをダウンロード 今度はどのOSで仮想化するか決める。VagrantではOSイメージをBoxと呼ばれる形式で管理する。有志で配布されているBoxの一覧はVagrantbox.esにあるので、違うOSで試したい場合はそちらを。
-# boxファイルのダウンロード $ vagrant box add centos6 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box # Vagrantに保持されてるboxのリスト $ vagrant box list # ダウンロードしてきたcentos6を使って初期化 $ vagrant init centos6  centos6というキーに対して.boxファイルが紐づいて、そのダウンロードしてきたBoxファイルでVagrantプロジェクトの初期化をしている。これでVagrantfileが作成され、仮想環境の起動の準備が完了してしまう。簡単すぎる。
+# boxファイルのダウンロード $ vagrant box add centos6 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box # Vagrantに保持されてるboxのリスト $ vagrant box list # ダウンロードしてきたcentos6を使って初期化 $ vagrant init centos6 centos6というキーに対して.boxファイルが紐づいて、そのダウンロードしてきたBoxファイルでVagrantプロジェクトの初期化をしている。これでVagrantfileが作成され、仮想環境の起動の準備が完了してしまう。簡単すぎる。
 起動と終了と削除と仮想環境へのログイン 起動と終了はupとhaltで行う。起動するとデフォルトだと2222ポートで仮想環境が立ち上がり、VirtualBoxを見るとインスタンスが追加されているのが確認できる。
-# 仮想環境の起動 $ vagrant up # 仮想環境の終了 $ vagrant halt # 仮想環境の終了と削除 $ vagrant destroy  ログインはsshコマンド。vagrantユーザーでログインし、もちろんルートにもスイッチできる。sudo su -とか。
-# 仮想環境へSSHログイン $ vagrant ssh  Vagrantfileの中身 vagrant initで作成されたファイルは設定可能な箇所が色々とコメントアウトされている。コメントアウトされている内容が、各項目の初期値におおよそなっている。以下は抜粋。
-Vagrant.configure(2) do |config| # vagrant box addで取得したboxの指定 config.">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2015/vagrant-ansible.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2015/vagrant-ansible.html">
-<meta name="twitter:title" content="VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2015.01.10</span>
-
-        
-
-<h1 id="vagrantでcentosの仮想環境を作ってansibleで遊ぶ">VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ</h1>
-
-<p>Vagrantは今更説明するまでもないけど、仮想環境の作成や起動・破棄を自動化したりするツール。VagrantはChefやAnsibleといったようなプロビジョニングツールとも連携可能なのでそれも少し。</p>
-
-<h2 id="vagrantで仮想環境を作る">Vagrantで仮想環境を作る</h2>
-
-<p>自身には仮想化する機能を備えておらず、仮想化ソフトウェアとしてVirtualBoxやVMWareなどを使う。今回はVagrant + VirtualBoxでCentOSの仮想環境を作ってみる。</p>
-
-<p>以下のサイトに環境ごとのインストーラがあるので、ダウンロードしてインストールする。</p>
-
-<ul>
-<li><a href="https://www.vagrantup.com/">Vagrant</a></li>
-<li><a href="https://www.virtualbox.org/">Oracle VM VirtualBox</a></li>
-</ul>
-
-<h3 id="centos-6のboxファイルをダウンロード">CentOS 6のBoxファイルをダウンロード</h3>
-
-<p>今度はどのOSで仮想化するか決める。VagrantではOSイメージをBoxと呼ばれる形式で管理する。有志で配布されているBoxの一覧は<a href="http://www.vagrantbox.es/">Vagrantbox.es</a>にあるので、違うOSで試したい場合はそちらを。</p>
-
-<pre><code class="language-bash"># boxファイルのダウンロード
+# 仮想環境の起動 $ vagrant up # 仮想環境の終了 $ vagrant halt # 仮想環境の終了と削除 $ vagrant destroy ログインはsshコマンド。vagrantユーザーでログインし、もちろんルートにもスイッチできる。sudo su -とか。
+# 仮想環境へSSHログイン $ vagrant ssh Vagrantfileの中身 vagrant initで作成されたファイルは設定可能な箇所が色々とコメントアウトされている。コメントアウトされている内容が、各項目の初期値におおよそなっている。以下は抜粋。
+Vagrant.configure(2) do |config| # vagrant box addで取得したboxの指定 config."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/vagrant-ansible.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/vagrant-ansible.html"><meta name=twitter:title content="VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2015.01.10</span><h1 id=vagrantでcentosの仮想環境を作ってansibleで遊ぶ>VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ</h1><p>Vagrantは今更説明するまでもないけど、仮想環境の作成や起動・破棄を自動化したりするツール。VagrantはChefやAnsibleといったようなプロビジョニングツールとも連携可能なのでそれも少し。</p><h2 id=vagrantで仮想環境を作る>Vagrantで仮想環境を作る</h2><p>自身には仮想化する機能を備えておらず、仮想化ソフトウェアとしてVirtualBoxやVMWareなどを使う。今回はVagrant + VirtualBoxでCentOSの仮想環境を作ってみる。</p><p>以下のサイトに環境ごとのインストーラがあるので、ダウンロードしてインストールする。</p><ul><li><a href=https://www.vagrantup.com/>Vagrant</a></li><li><a href=https://www.virtualbox.org/>Oracle VM VirtualBox</a></li></ul><h3 id=centos-6のboxファイルをダウンロード>CentOS 6のBoxファイルをダウンロード</h3><p>今度はどのOSで仮想化するか決める。VagrantではOSイメージをBoxと呼ばれる形式で管理する。有志で配布されているBoxの一覧は<a href=http://www.vagrantbox.es/>Vagrantbox.es</a>にあるので、違うOSで試したい場合はそちらを。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># boxファイルのダウンロード</span>
 $ vagrant box add centos6 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
 
-# Vagrantに保持されてるboxのリスト
+<span style=color:#75715e># Vagrantに保持されてるboxのリスト</span>
 $ vagrant box list
 
-# ダウンロードしてきたcentos6を使って初期化
+<span style=color:#75715e># ダウンロードしてきたcentos6を使って初期化</span>
 $ vagrant init centos6
-</code></pre>
-
-<p><code>centos6</code>というキーに対して<code>.box</code>ファイルが紐づいて、そのダウンロードしてきたBoxファイルでVagrantプロジェクトの初期化をしている。これで<code>Vagrantfile</code>が作成され、仮想環境の起動の準備が完了してしまう。簡単すぎる。</p>
-
-<h3 id="起動と終了と削除と仮想環境へのログイン">起動と終了と削除と仮想環境へのログイン</h3>
-
-<p>起動と終了は<code>up</code>と<code>halt</code>で行う。起動するとデフォルトだと<code>2222</code>ポートで仮想環境が立ち上がり、VirtualBoxを見るとインスタンスが追加されているのが確認できる。</p>
-
-<pre><code class="language-bash"># 仮想環境の起動
+</code></pre></div><p><code>centos6</code>というキーに対して<code>.box</code>ファイルが紐づいて、そのダウンロードしてきたBoxファイルでVagrantプロジェクトの初期化をしている。これで<code>Vagrantfile</code>が作成され、仮想環境の起動の準備が完了してしまう。簡単すぎる。</p><h3 id=起動と終了と削除と仮想環境へのログイン>起動と終了と削除と仮想環境へのログイン</h3><p>起動と終了は<code>up</code>と<code>halt</code>で行う。起動するとデフォルトだと<code>2222</code>ポートで仮想環境が立ち上がり、VirtualBoxを見るとインスタンスが追加されているのが確認できる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 仮想環境の起動</span>
 $ vagrant up
 
-# 仮想環境の終了
+<span style=color:#75715e># 仮想環境の終了</span>
 $ vagrant halt
 
-# 仮想環境の終了と削除
+<span style=color:#75715e># 仮想環境の終了と削除</span>
 $ vagrant destroy
-</code></pre>
-
-<p>ログインは<code>ssh</code>コマンド。<code>vagrant</code>ユーザーでログインし、もちろんルートにもスイッチできる。<code>sudo su -</code>とか。</p>
-
-<pre><code class="language-bash"># 仮想環境へSSHログイン
+</code></pre></div><p>ログインは<code>ssh</code>コマンド。<code>vagrant</code>ユーザーでログインし、もちろんルートにもスイッチできる。<code>sudo su -</code>とか。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 仮想環境へSSHログイン</span>
 $ vagrant ssh
-</code></pre>
+</code></pre></div><h3 id=vagrantfileの中身>Vagrantfileの中身</h3><p><code>vagrant init</code>で作成されたファイルは設定可能な箇所が色々とコメントアウトされている。コメントアウトされている内容が、各項目の初期値におおよそなっている。以下は抜粋。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#66d9ef>Vagrant</span><span style=color:#f92672>.</span>configure(<span style=color:#ae81ff>2</span><span style=color:#f92672></span>) <span style=color:#66d9ef>do</span> <span style=color:#f92672>|</span>config<span style=color:#f92672>|</span>
+  <span style=color:#75715e># vagrant box addで取得したboxの指定</span>
+  config<span style=color:#f92672>.</span>vm<span style=color:#f92672>.</span>box <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>centos6</span><span style=color:#e6db74>&#34;</span>
 
-<h3 id="vagrantfileの中身">Vagrantfileの中身</h3>
+  <span style=color:#75715e># ローカルの8080へのアクセスが仮想環境の80へポートフォワードされる</span>
+  config<span style=color:#f92672>.</span>vm<span style=color:#f92672>.</span>network <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>forwarded_port</span><span style=color:#e6db74>&#34;</span>, <span style=color:#e6db74>guest</span>: <span style=color:#ae81ff>80</span><span style=color:#f92672></span>, <span style=color:#e6db74>host</span>: <span style=color:#ae81ff>8080</span>
 
-<p><code>vagrant init</code>で作成されたファイルは設定可能な箇所が色々とコメントアウトされている。コメントアウトされている内容が、各項目の初期値におおよそなっている。以下は抜粋。</p>
+  <span style=color:#f92672></span><span style=color:#75715e># 仮想環境のプライベートIPアドレスを指定</span>
+  config<span style=color:#f92672>.</span>vm<span style=color:#f92672>.</span>network <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>private_network</span><span style=color:#e6db74>&#34;</span>, <span style=color:#e6db74>ip</span>: <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>192.168.33.10</span><span style=color:#e6db74>&#34;</span>
 
-<pre><code class="language-ruby">Vagrant.configure(2) do |config|
-  # vagrant box addで取得したboxの指定
-  config.vm.box = &quot;centos6&quot;
+  <span style=color:#75715e># 仮想環境に同期（マウント）させたいローカル環境のディレクトリ</span>
+  <span style=color:#75715e># デフォルトでカレントディレクトリが仮想環境の/vagrantにマウントされる</span>
+  <span style=color:#75715e># config.vm.synced_folder &#34;../data&#34;, &#34;/vagrant_data&#34;</span>
+<span style=color:#66d9ef>end</span>
+</code></pre></div><p>ここまで出来たら、仮想環境にログインして、煮るなり焼くなりしてOK。間違えて環境を壊しても、<code>vagrant destroy</code>で削除して、指定したBoxとVagrantfileでの設定までは何度でも適用できる。</p><p>詳しい設定は<a href=https://docs.vagrantup.com/v2/vagrantfile/>公式ドキュメント</a>をどうぞ。</p><h2 id=ansibleでプロビジョニング>Ansibleでプロビジョニング</h2><p>プロビジョニングには<a href=http://docs.ansible.com/>Ansible</a>を使ってみる。AnsibleはHomebrewなどでインストールしておくこと。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ brew install ansible
+</code></pre></div><p>プロビジョニングツールとしてはChefやらPuppetやらもあって、それらとも連携出来る。ChefとAnsibleの両方を使ったの感想として、ChefはRubyのコードベースで色々出来るので設定の自由度等は高いけど、学習コスト高め且つ設定等も複雑で膨らみがちな印象。Ansibleは、YAMLでコマンドラインベースの命令を設定するので、シンプルでわかりやすかった。僕はインフラ屋じゃないので、使い込む必要性を問われていないっていう背景はありつつ、やった範囲ではAnsibleで出来ないことがなかったのでAnsibleの感触が良かったっていうだけ。Chefがイケてないとかではない。</p><h3 id=vagrantfileでansibleを使う準備>VagrantfileでAnsibleを使う準備</h3><p>ホスト名の指定<code>config.vm.hostname</code>と、プロビジョニングの設定を<code>config.vm.provision</code>に書いている。Ansibleにおいて指定環境に適用させたい設定はプレイブックと呼ばれ、ここでは<code>vagrant-centos6.yml</code>としておく。<code>ansible.inventory_path</code>には<code>hosts</code>というファイル名を指定しているが、設定を適用させるホストを列挙したインベントリーファイルというものになる。<code>hosts</code>という名前でなくとも良い。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=color:#66d9ef>Vagrant</span><span style=color:#f92672>.</span>configure(<span style=color:#ae81ff>2</span><span style=color:#f92672></span>) <span style=color:#66d9ef>do</span> <span style=color:#f92672>|</span>config<span style=color:#f92672>|</span>
 
-  # ローカルの8080へのアクセスが仮想環境の80へポートフォワードされる
-  config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080
+  config<span style=color:#f92672>.</span>vm<span style=color:#f92672>.</span>box <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>centos6</span><span style=color:#e6db74>&#34;</span>
+  config<span style=color:#f92672>.</span>vm<span style=color:#f92672>.</span>hostname <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>vagrant-centos6</span><span style=color:#e6db74>&#34;</span>
 
-  # 仮想環境のプライベートIPアドレスを指定
-  config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.10&quot;
+  config<span style=color:#f92672>.</span>vm<span style=color:#f92672>.</span>network <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>forwarded_port</span><span style=color:#e6db74>&#34;</span>, <span style=color:#e6db74>guest</span>: <span style=color:#ae81ff>80</span><span style=color:#f92672></span>, <span style=color:#e6db74>host</span>: <span style=color:#ae81ff>8080</span>
+  <span style=color:#f92672></span>config<span style=color:#f92672>.</span>vm<span style=color:#f92672>.</span>network <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>private_network</span><span style=color:#e6db74>&#34;</span>, <span style=color:#e6db74>ip</span>: <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>192.168.33.10</span><span style=color:#e6db74>&#34;</span>
 
-  # 仮想環境に同期（マウント）させたいローカル環境のディレクトリ
-  # デフォルトでカレントディレクトリが仮想環境の/vagrantにマウントされる
-  # config.vm.synced_folder &quot;../data&quot;, &quot;/vagrant_data&quot;
-end
-</code></pre>
+  config<span style=color:#f92672>.</span>vm<span style=color:#f92672>.</span>provision <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>ansible</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>do</span> <span style=color:#f92672>|</span>ansible<span style=color:#f92672>|</span>
+    ansible<span style=color:#f92672>.</span>playbook <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>vagrant-centos6.yml</span><span style=color:#e6db74>&#34;</span>
+    ansible<span style=color:#f92672>.</span>inventory_path <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>hosts</span><span style=color:#e6db74>&#34;</span>
+    ansible<span style=color:#f92672>.</span>limit <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>all</span><span style=color:#e6db74>&#34;</span>
+    ansible<span style=color:#f92672>.</span>verbose <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>v</span><span style=color:#e6db74>&#34;</span>
+  <span style=color:#66d9ef>end</span>
 
-<p>ここまで出来たら、仮想環境にログインして、煮るなり焼くなりしてOK。間違えて環境を壊しても、<code>vagrant destroy</code>で削除して、指定したBoxとVagrantfileでの設定までは何度でも適用できる。</p>
-
-<p>詳しい設定は<a href="https://docs.vagrantup.com/v2/vagrantfile/">公式ドキュメント</a>をどうぞ。</p>
-
-<h2 id="ansibleでプロビジョニング">Ansibleでプロビジョニング</h2>
-
-<p>プロビジョニングには<a href="http://docs.ansible.com/">Ansible</a>を使ってみる。AnsibleはHomebrewなどでインストールしておくこと。</p>
-
-<pre><code class="language-bash">$ brew install ansible
-</code></pre>
-
-<p>プロビジョニングツールとしてはChefやらPuppetやらもあって、それらとも連携出来る。ChefとAnsibleの両方を使ったの感想として、ChefはRubyのコードベースで色々出来るので設定の自由度等は高いけど、学習コスト高め且つ設定等も複雑で膨らみがちな印象。Ansibleは、YAMLでコマンドラインベースの命令を設定するので、シンプルでわかりやすかった。僕はインフラ屋じゃないので、使い込む必要性を問われていないっていう背景はありつつ、やった範囲ではAnsibleで出来ないことがなかったのでAnsibleの感触が良かったっていうだけ。Chefがイケてないとかではない。</p>
-
-<h3 id="vagrantfileでansibleを使う準備">VagrantfileでAnsibleを使う準備</h3>
-
-<p>ホスト名の指定<code>config.vm.hostname</code>と、プロビジョニングの設定を<code>config.vm.provision</code>に書いている。Ansibleにおいて指定環境に適用させたい設定はプレイブックと呼ばれ、ここでは<code>vagrant-centos6.yml</code>としておく。<code>ansible.inventory_path</code>には<code>hosts</code>というファイル名を指定しているが、設定を適用させるホストを列挙したインベントリーファイルというものになる。<code>hosts</code>という名前でなくとも良い。</p>
-
-<pre><code class="language-ruby">Vagrant.configure(2) do |config|
-
-  config.vm.box = &quot;centos6&quot;
-  config.vm.hostname = &quot;vagrant-centos6&quot;
-
-  config.vm.network &quot;forwarded_port&quot;, guest: 80, host: 8080
-  config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.10&quot;
-
-  config.vm.provision &quot;ansible&quot; do |ansible|
-    ansible.playbook = &quot;vagrant-centos6.yml&quot;
-    ansible.inventory_path = &quot;hosts&quot;
-    ansible.limit = &quot;all&quot;
-    ansible.verbose = &quot;v&quot;
-  end
-
-end
-</code></pre>
-
-<h3 id="インベントリーファイル">インベントリーファイル</h3>
-
-<p>今回は<code>hosts</code>というファイル名で、以下のようにVagrantで用意した仮想環境のホスト名を指定した。</p>
-
-<pre><code class="language-ini">[vagrant-centos6] 
-192.168.33.10
-</code></pre>
-
-<h3 id="プレイブック">プレイブック</h3>
-
-<p><code>vagrant-centos6.yml</code>の中身は以下のようになっている。</p>
-
-<pre><code>- hosts: vagrant-centos6 
+<span style=color:#66d9ef>end</span>
+</code></pre></div><h3 id=インベントリーファイル>インベントリーファイル</h3><p>今回は<code>hosts</code>というファイル名で、以下のようにVagrantで用意した仮想環境のホスト名を指定した。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#a6e22e>[vagrant-centos6] </span>
+<span style=color:#a6e22e>192.168.33.10</span>
+</code></pre></div><h3 id=プレイブック>プレイブック</h3><p><code>vagrant-centos6.yml</code>の中身は以下のようになっている。</p><pre><code>- hosts: vagrant-centos6 
   sudo: yes
   tasks:
     - debug: This is a message in tasks   roles:
     - common
-</code></pre>
-
-<p><code>hosts</code>は適用先のホスト名で、<code>sudo</code>は管理者実行するかどうか。設定の実行は<code>tasks</code>ないし、それらを分割管理する<code>roles</code>という属性に指定する。<code>tasks</code>には実行したいことをシェルっぽく書ける。<code>yum</code>を実行したいのであれば、以下の様な雰囲気。</p>
-
-<pre><code>- name: be sure httpd is installed using yum
+</code></pre><p><code>hosts</code>は適用先のホスト名で、<code>sudo</code>は管理者実行するかどうか。設定の実行は<code>tasks</code>ないし、それらを分割管理する<code>roles</code>という属性に指定する。<code>tasks</code>には実行したいことをシェルっぽく書ける。<code>yum</code>を実行したいのであれば、以下の様な雰囲気。</p><pre><code>- name: be sure httpd is installed using yum
   yum: name=httpd state=installed
-</code></pre>
-
-<p>タスクを羅列するだけでも良いけど、項目ごとに単位化したくなるのがエンジニアの性なので、<code>roles</code>を使う。今回は<code>common</code>というロールを作った。このロールの構成には、<code>roles/common/tasks</code>というフォルダ階層が要る。その中に、実行のエントリポイントとなる<code>main.yml</code>を配置するだけ。この<code>main.yml</code>も<code>tasks</code>と同じ要領で記述出来る。</p>
-
-<p>Ansibleとしては、他のタスクをインクルード出来たり、変数宣言等が可能。詳細は公式サイトを確認してください。</p>
-
-<ul>
-<li><a href="http://docs.ansible.com/playbooks_best_practices.html">Best Practices - Ansible Documentation</a></li>
-<li><a href="http://docs.ansible.com/YAMLSyntax.html">YAML Syntax - Ansible Documentation</a></li>
-</ul>
-
-<p>また、今回やったような最低限の連携を少し応用して、WebPageTestを仮想環境に立てるサンプルが<a href="https://github.com/1000ch/webpagetest-local">1000ch/webpagetest-local</a>に置いてある。と、言っても、テストエージェントとの疎通まではしておらず、Webアプリ側だけ閲覧可能というだけだけど、悪しからず。</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fvagrant-ansible.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fvagrant-ansible.html&text=Vagrant%e3%81%a7CentOS%e3%81%ae%e4%bb%ae%e6%83%b3%e7%92%b0%e5%a2%83%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6Ansible%e3%81%a7%e9%81%8a%e3%81%b6" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2015/intention.html">👈 志向性</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2015/github-pages-custom-domain-in-https.html">GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+</code></pre><p>タスクを羅列するだけでも良いけど、項目ごとに単位化したくなるのがエンジニアの性なので、<code>roles</code>を使う。今回は<code>common</code>というロールを作った。このロールの構成には、<code>roles/common/tasks</code>というフォルダ階層が要る。その中に、実行のエントリポイントとなる<code>main.yml</code>を配置するだけ。この<code>main.yml</code>も<code>tasks</code>と同じ要領で記述出来る。</p><p>Ansibleとしては、他のタスクをインクルード出来たり、変数宣言等が可能。詳細は公式サイトを確認してください。</p><ul><li><a href=http://docs.ansible.com/playbooks_best_practices.html>Best Practices - Ansible Documentation</a></li><li><a href=http://docs.ansible.com/YAMLSyntax.html>YAML Syntax - Ansible Documentation</a></li></ul><p>また、今回やったような最低限の連携を少し応用して、WebPageTestを仮想環境に立てるサンプルが<a href=https://github.com/1000ch/webpagetest-local>1000ch/webpagetest-local</a>に置いてある。と、言っても、テストエージェントとの疎通まではしておらず、Webアプリ側だけ閲覧可能というだけだけど、悪しからず。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fvagrant-ansible.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fvagrant-ansible.html&text=Vagrant%e3%81%a7CentOS%e3%81%ae%e4%bb%ae%e6%83%b3%e7%92%b0%e5%a2%83%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6Ansible%e3%81%a7%e9%81%8a%e3%81%b6" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2015/intention.html>👈 志向性</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2015/github-pages-custom-domain-in-https.html>GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -322,7 +84,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

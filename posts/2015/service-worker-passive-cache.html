@@ -1,220 +1,46 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Service Workerを使った消極的なキャッシュ - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="Service Workerを使った消極的なキャッシュ 前略（Service Workerとはなんぞやという方はこちら）、キャッシュさせたいリソースをService Workerのインストール中に全てインストールさせている例が多いが、そのリソース全てをキャッシュさせることを保証しなくても良いケースが大半だと思う（オフライン化ではなくパフォーマンス向上という観点だと特に）。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Service Workerを使った消極的なキャッシュ - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Service Workerを使った消極的なキャッシュ 前略（Service Workerとはなんぞやという方はこちら）、キャッシュさせたいリソースをService Workerのインストール中に全てインストールさせている例が多いが、そのリソース全てをキャッシュさせることを保証しなくても良いケースが大半だと思う（オフライン化ではなくパフォーマンス向上という観点だと特に）。
 優先度を付ける 以下、Service Worker内の処理（The offline cookbookから拝借）。event.waitUntil()及びその中の処理はPromiseでチェーンされているので、Promiseを返却しているcache.addAll()はキャッシュが確実に行われるが、チェーンさせていないcache.addAll()はキャッシュ作業が実施されるものの保証はされない。
-self.addEventListener(&#39;install&#39;, function(event) { event.waitUntil( caches.open(&#39;mygame-core-v1&#39;).then(function(cache) { cache.addAll( // キャッシュ作業が実施されるけど保証されない ); return cache.addAll( // 保証される（失敗しなければ） ); }) ); });  優先度の高いリソースだけ保証させるとか、リクエスト数とのバランスも含めて設定すると良さそう。仮に、キャッシュリソースを100個設定して、何らかの理由でダウンロードが1つでも失敗すると、そのService Workerにインストールは失敗したことになるので、fetchイベントで行うはずのプロキシも適用できなくなってしまう。
+self.addEventListener('install', function(event) { event.waitUntil( caches.open('mygame-core-v1').then(function(cache) { cache.addAll( // キャッシュ作業が実施されるけど保証されない  ); return cache.addAll( // 保証される（失敗しなければ）  ); }) ); }); 優先度の高いリソースだけ保証させるとか、リクエスト数とのバランスも含めて設定すると良さそう。仮に、キャッシュリソースを100個設定して、何らかの理由でダウンロードが1つでも失敗すると、そのService Workerにインストールは失敗したことになるので、fetchイベントで行うはずのプロキシも適用できなくなってしまう。
 消極的にキャッシュする もっと言えばinstall中にキャッシュをせずとも、fetchイベントでキャッシュをチェックし、見つからずにfetch()してきたリソースをキャッシュのように、消極的なキャッシュでも良い気がしている。
-self.addEventListener(&#39;fetch&#39;, function (e) { e.respondWith( caches.open(CACHE_KEY).then(function (cache) { return cache.match(e.request).then(function (response) { if (response) { // e.requestに対するキャッシュが見つかったのでそれを返却 return response; } else { // キャッシュが見つからなかったので取得 return fetch(e.request.clone()).then(function (response) { // 取得したリソースをキャッシュに登録 cache.put(e.request, response.clone()); // 取得したリソースを返却 return response; }); } }); }) ); });  インストール時にキャッシュするのかどうかの差であって、発生するリクエスト数は同じだし、インストールの失敗リスクを避ける意味でも選択肢として有りかとは思う。このコード例だと発生しているリクエストを全てキャッシュしてしまっているので、e.">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2015/service-worker-passive-cache.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Service Workerを使った消極的なキャッシュ">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2015/service-worker-passive-cache.html">
-<meta name="twitter:title" content="Service Workerを使った消極的なキャッシュ">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2015.02.27</span>
-
-        
-
-<h1 id="service-workerを使った消極的なキャッシュ">Service Workerを使った消極的なキャッシュ</h1>
-
-<p>前略（Service Workerとはなんぞやという方は<a href="/posts/2014/service-worker-internals.html">こちら</a>）、キャッシュさせたいリソースをService Workerのインストール中に全てインストールさせている例が多いが、そのリソース全てをキャッシュさせることを保証しなくても良いケースが大半だと思う（オフライン化ではなくパフォーマンス向上という観点だと特に）。</p>
-
-<h2 id="優先度を付ける">優先度を付ける</h2>
-
-<p>以下、Service Worker内の処理（<a href="http://jakearchibald.com/2014/offline-cookbook/">The offline cookbook</a>から拝借）。<code>event.waitUntil()</code>及びその中の処理はPromiseでチェーンされているので、Promiseを返却している<code>cache.addAll()</code>はキャッシュが確実に行われるが、チェーンさせていない<code>cache.addAll()</code>はキャッシュ作業が実施されるものの保証はされない。</p>
-
-<pre><code class="language-js">self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open('mygame-core-v1').then(function(cache) {
-      cache.addAll(
-        // キャッシュ作業が実施されるけど保証されない
-      );
-      return cache.addAll(
-        // 保証される（失敗しなければ）
-      );
+self.addEventListener('fetch', function (e) { e.respondWith( caches.open(CACHE_KEY).then(function (cache) { return cache.match(e.request).then(function (response) { if (response) { // e.requestに対するキャッシュが見つかったのでそれを返却  return response; } else { // キャッシュが見つからなかったので取得  return fetch(e.request.clone()).then(function (response) { // 取得したリソースをキャッシュに登録  cache.put(e.request, response.clone()); // 取得したリソースを返却  return response; }); } }); }) ); }); インストール時にキャッシュするのかどうかの差であって、発生するリクエスト数は同じだし、インストールの失敗リスクを避ける意味でも選択肢として有りかとは思う。このコード例だと発生しているリクエストを全てキャッシュしてしまっているので、e."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/service-worker-passive-cache.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Service Workerを使った消極的なキャッシュ"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/service-worker-passive-cache.html"><meta name=twitter:title content="Service Workerを使った消極的なキャッシュ"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2015.02.27</span><h1 id=service-workerを使った消極的なキャッシュ>Service Workerを使った消極的なキャッシュ</h1><p>前略（Service Workerとはなんぞやという方は<a href=/posts/2014/service-worker-internals.html>こちら</a>）、キャッシュさせたいリソースをService Workerのインストール中に全てインストールさせている例が多いが、そのリソース全てをキャッシュさせることを保証しなくても良いケースが大半だと思う（オフライン化ではなくパフォーマンス向上という観点だと特に）。</p><h2 id=優先度を付ける>優先度を付ける</h2><p>以下、Service Worker内の処理（<a href=http://jakearchibald.com/2014/offline-cookbook/>The offline cookbook</a>から拝借）。<code>event.waitUntil()</code>及びその中の処理はPromiseでチェーンされているので、Promiseを返却している<code>cache.addAll()</code>はキャッシュが確実に行われるが、チェーンさせていない<code>cache.addAll()</code>はキャッシュ作業が実施されるものの保証はされない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>self</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;install&#39;</span>, <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>event</span>) {
+  <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>waitUntil</span>(
+    <span style=color:#a6e22e>caches</span>.<span style=color:#a6e22e>open</span>(<span style=color:#e6db74>&#39;mygame-core-v1&#39;</span>).<span style=color:#a6e22e>then</span>(<span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>cache</span>) {
+      <span style=color:#a6e22e>cache</span>.<span style=color:#a6e22e>addAll</span>(
+        <span style=color:#75715e>// キャッシュ作業が実施されるけど保証されない
+</span><span style=color:#75715e></span>      );
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>cache</span>.<span style=color:#a6e22e>addAll</span>(
+        <span style=color:#75715e>// 保証される（失敗しなければ）
+</span><span style=color:#75715e></span>      );
     })
   );
 });
-</code></pre>
-
-<p>優先度の高いリソースだけ保証させるとか、リクエスト数とのバランスも含めて設定すると良さそう。仮に、キャッシュリソースを100個設定して、何らかの理由でダウンロードが1つでも失敗すると、そのService Workerにインストールは失敗したことになるので、<code>fetch</code>イベントで行うはずのプロキシも適用できなくなってしまう。</p>
-
-<h2 id="消極的にキャッシュする">消極的にキャッシュする</h2>
-
-<p>もっと言えば<code>install</code>中にキャッシュをせずとも、<code>fetch</code>イベントでキャッシュをチェックし、見つからずに<code>fetch()</code>してきたリソースをキャッシュのように、消極的なキャッシュでも良い気がしている。</p>
-
-<pre><code class="language-js">self.addEventListener('fetch', function (e) {
-  e.respondWith(
-    caches.open(CACHE_KEY).then(function (cache) {
-      return cache.match(e.request).then(function (response) {
-        if (response) {
-          // e.requestに対するキャッシュが見つかったのでそれを返却
-          return response;
-        } else {
-          // キャッシュが見つからなかったので取得
-          return fetch(e.request.clone()).then(function (response) {
-            // 取得したリソースをキャッシュに登録
-            cache.put(e.request, response.clone());
-            // 取得したリソースを返却
-            return response;
+</code></pre></div><p>優先度の高いリソースだけ保証させるとか、リクエスト数とのバランスも含めて設定すると良さそう。仮に、キャッシュリソースを100個設定して、何らかの理由でダウンロードが1つでも失敗すると、そのService Workerにインストールは失敗したことになるので、<code>fetch</code>イベントで行うはずのプロキシも適用できなくなってしまう。</p><h2 id=消極的にキャッシュする>消極的にキャッシュする</h2><p>もっと言えば<code>install</code>中にキャッシュをせずとも、<code>fetch</code>イベントでキャッシュをチェックし、見つからずに<code>fetch()</code>してきたリソースをキャッシュのように、消極的なキャッシュでも良い気がしている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>self</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;fetch&#39;</span>, <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>e</span>) {
+  <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>respondWith</span>(
+    <span style=color:#a6e22e>caches</span>.<span style=color:#a6e22e>open</span>(<span style=color:#a6e22e>CACHE_KEY</span>).<span style=color:#a6e22e>then</span>(<span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>cache</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>cache</span>.<span style=color:#a6e22e>match</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>request</span>).<span style=color:#a6e22e>then</span>(<span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>response</span>) {
+        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>response</span>) {
+          <span style=color:#75715e>// e.requestに対するキャッシュが見つかったのでそれを返却
+</span><span style=color:#75715e></span>          <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>response</span>;
+        } <span style=color:#66d9ef>else</span> {
+          <span style=color:#75715e>// キャッシュが見つからなかったので取得
+</span><span style=color:#75715e></span>          <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>request</span>.<span style=color:#a6e22e>clone</span>()).<span style=color:#a6e22e>then</span>(<span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>response</span>) {
+            <span style=color:#75715e>// 取得したリソースをキャッシュに登録
+</span><span style=color:#75715e></span>            <span style=color:#a6e22e>cache</span>.<span style=color:#a6e22e>put</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>request</span>, <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>clone</span>());
+            <span style=color:#75715e>// 取得したリソースを返却
+</span><span style=color:#75715e></span>            <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>response</span>;
           });
         }
       });
     })
   );
 });
-</code></pre>
-
-<p>インストール時にキャッシュするのかどうかの差であって、発生するリクエスト数は同じだし、インストールの失敗リスクを避ける意味でも選択肢として有りかとは思う。このコード例だと発生しているリクエストを全てキャッシュしてしまっているので、<code>e.request</code>の内容を見て処理を分岐させる必要があるが。</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fservice-worker-passive-cache.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fservice-worker-passive-cache.html&text=Service%20Worker%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e6%b6%88%e6%a5%b5%e7%9a%84%e3%81%aa%e3%82%ad%e3%83%a3%e3%83%83%e3%82%b7%e3%83%a5" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2015/farewell-docpad-hello-hugo.html">👈 Farewell DocPad, Hello Hugo.</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2015/url-opener.html">URL Opener 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+</code></pre></div><p>インストール時にキャッシュするのかどうかの差であって、発生するリクエスト数は同じだし、インストールの失敗リスクを避ける意味でも選択肢として有りかとは思う。このコード例だと発生しているリクエストを全てキャッシュしてしまっているので、<code>e.request</code>の内容を見て処理を分岐させる必要があるが。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fservice-worker-passive-cache.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fservice-worker-passive-cache.html&text=Service%20Worker%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e6%b6%88%e6%a5%b5%e7%9a%84%e3%81%aa%e3%82%ad%e3%83%a3%e3%83%83%e3%82%b7%e3%83%a5" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2015/farewell-docpad-hello-hugo.html>👈 Farewell DocPad, Hello Hugo.</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2015/url-opener.html>URL Opener 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -228,7 +54,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

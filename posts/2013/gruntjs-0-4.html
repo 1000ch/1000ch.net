@@ -1,329 +1,92 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Grunt ver0.4に向けての環境の再構築 - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="Grunt ver0.4に向けての環境の再構築 以前の記事が説明足らずだったので補足記事。今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、0.4系と混在すると、うまく動かない。0.4系で整備していく方が今後のために良いと思うのでその説明。rcなので、あまり文句は言えない。 ということだけあらかじめ断っておくとして。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Grunt ver0.4に向けての環境の再構築 - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Grunt ver0.4に向けての環境の再構築 以前の記事が説明足らずだったので補足記事。今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、0.4系と混在すると、うまく動かない。0.4系で整備していく方が今後のために良いと思うのでその説明。rcなので、あまり文句は言えない。 ということだけあらかじめ断っておくとして。
  grunt-cliをグローバルインストール gruntコアをローカルインストール モジュールをローカルインストール gruntfile.jsに設定を記述する  という流れはそのまま。モジュールをローカルインストールの辺りを詳しく説明。package.jsonも修正するなり、作り直すなり。
 grunt-contrib-xxx 公式で配布しているモジュール群は
  grunt-contrib-xxx/master grunt-contrib-xxx/grunt-3.0-stable  というように安定版ブランチと開発ブランチが切られている。開発ブランチは0.4系に向けた開発が行われているので、この開発ブランチを手に入れる。登録されていればnpm経由でもインストールできるが、GitHubのリポジトリからであれば、常に最新のものを入手できる。
-grunt-contrib-watchのgitリポジトリをクローンする # 作業ディレクトリに移動 $ cd /Users/[UserName]/workspace/[ProjectName]/ # gruntfile.jsがあるディレクトリ $ ls -la # grunt-contrib-watchを配置するディレクトリに $ cd ./node_modules/ # リポジトリをクローン $ git clone https://github.com/gruntjs/grunt-contrib-watch.git  npm経由でインストールされるリソースはnode_modulesに配置されるので、その場所にクローンしてgruntに参照してもらう。私の場合はconcat/mincss/uglify/watchの5つを使用しているが、問題なく動いている。package.jsonも作り直したけど、前述の通りlink出来ないものもアリ。
+grunt-contrib-watchのgitリポジトリをクローンする # 作業ディレクトリに移動 $ cd /Users/[UserName]/workspace/[ProjectName]/ # gruntfile.jsがあるディレクトリ $ ls -la # grunt-contrib-watchを配置するディレクトリに $ cd ./node_modules/ # リポジトリをクローン $ git clone https://github.com/gruntjs/grunt-contrib-watch.git npm経由でインストールされるリソースはnode_modulesに配置されるので、その場所にクローンしてgruntに参照してもらう。私の場合はconcat/mincss/uglify/watchの5つを使用しているが、問題なく動いている。package.jsonも作り直したけど、前述の通りlink出来ないものもアリ。
 grunt@0.4でstylusのコンパイルを自動化してみよう stylusのファイルに変更がかかった場合に自動でコンパイルされるタスクを作ってみる。animate.css をフォークしてstylusから生成するという無駄なことをしながら実践したので、サンプルとしてgithubに置いておく。
- 1000ch / animate.css  必要なモジュールとgruntfile.js  grunt@0.4.0rc7 grunt-contrib-watch@0.4.0rc5 grunt-contrib-stylus0.2.0rc5  module.exports = function(grunt) { grunt.initConfig({ stylus: { compile: { files: { &quot;animate.css&quot;: &quot;animate.styl&quot; } } }, watch: { files: [&quot;animate.">
-  
+ 1000ch / animate.css  必要なモジュールとgruntfile.js  grunt@0.4.0rc7 grunt-contrib-watch@0.4.0rc5 grunt-contrib-stylus0.2.0rc5  module.exports = function(grunt) { grunt.initConfig({ stylus: { compile: { files: { &#34;animate.css&#34;: &#34;animate.styl&#34; } } }, watch: { files: [&#34;animate."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/gruntjs-0-4.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Grunt ver0.4に向けての環境の再構築"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/gruntjs-0-4.html"><meta name=twitter:title content="Grunt ver0.4に向けての環境の再構築"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2013.01.22</span><h1 id=grunt-ver04に向けての環境の再構築>Grunt ver0.4に向けての環境の再構築</h1><p><a href=/posts/2012/gruntjs-introduction.html>以前の記事</a>が説明足らずだったので補足記事。今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、0.4系と混在すると、うまく動かない。0.4系で整備していく方が今後のために良いと思うのでその説明。<strong>rcなので、あまり文句は言えない。</strong> ということだけあらかじめ断っておくとして。</p><ul><li><strong>grunt-cliをグローバルインストール</strong></li><li><strong>gruntコアをローカルインストール</strong></li><li><strong>モジュールをローカルインストール</strong></li><li><strong>gruntfile.jsに設定を記述する</strong></li></ul><p>という流れはそのまま。モジュールをローカルインストールの辺りを詳しく説明。<code>package.json</code>も修正するなり、作り直すなり。</p><h2 id=grunt-contrib-xxx>grunt-contrib-xxx</h2><p><a href=http://github.com/gruntjs>公式</a>で配布しているモジュール群は</p><ul><li><strong>grunt-contrib-xxx/master</strong></li><li><strong>grunt-contrib-xxx/grunt-3.0-stable</strong></li></ul><p>というように安定版ブランチと開発ブランチが切られている。開発ブランチは0.4系に向けた開発が行われているので、この開発ブランチを手に入れる。登録されていればnpm経由でもインストールできるが、GitHubのリポジトリからであれば、常に最新のものを入手できる。</p><h2 id=grunt-contrib-watchのgitリポジトリをクローンする>grunt-contrib-watchのgitリポジトリをクローンする</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 作業ディレクトリに移動</span>
+$ cd /Users/<span style=color:#f92672>[</span>UserName<span style=color:#f92672>]</span>/workspace/<span style=color:#f92672>[</span>ProjectName<span style=color:#f92672>]</span>/
 
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2013/gruntjs-0-4.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Grunt ver0.4に向けての環境の再構築">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2013/gruntjs-0-4.html">
-<meta name="twitter:title" content="Grunt ver0.4に向けての環境の再構築">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2013.01.22</span>
-
-        
-
-<h1 id="grunt-ver0-4に向けての環境の再構築">Grunt ver0.4に向けての環境の再構築</h1>
-
-<p><a href="/posts/2012/gruntjs-introduction.html">以前の記事</a>が説明足らずだったので補足記事。今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、0.4系と混在すると、うまく動かない。0.4系で整備していく方が今後のために良いと思うのでその説明。<strong>rcなので、あまり文句は言えない。</strong> ということだけあらかじめ断っておくとして。</p>
-
-<ul>
-<li><strong>grunt-cliをグローバルインストール</strong></li>
-<li><strong>gruntコアをローカルインストール</strong></li>
-<li><strong>モジュールをローカルインストール</strong></li>
-<li><strong>gruntfile.jsに設定を記述する</strong></li>
-</ul>
-
-<p>という流れはそのまま。モジュールをローカルインストールの辺りを詳しく説明。<code>package.json</code>も修正するなり、作り直すなり。</p>
-
-<h2 id="grunt-contrib-xxx">grunt-contrib-xxx</h2>
-
-<p><a href="http://github.com/gruntjs">公式</a>で配布しているモジュール群は</p>
-
-<ul>
-<li><strong>grunt-contrib-xxx/master</strong></li>
-<li><strong>grunt-contrib-xxx/grunt-3.0-stable</strong></li>
-</ul>
-
-<p>というように安定版ブランチと開発ブランチが切られている。開発ブランチは0.4系に向けた開発が行われているので、この開発ブランチを手に入れる。登録されていればnpm経由でもインストールできるが、GitHubのリポジトリからであれば、常に最新のものを入手できる。</p>
-
-<h2 id="grunt-contrib-watchのgitリポジトリをクローンする">grunt-contrib-watchのgitリポジトリをクローンする</h2>
-
-<pre><code class="language-bash"># 作業ディレクトリに移動
-$ cd /Users/[UserName]/workspace/[ProjectName]/
-
-# gruntfile.jsがあるディレクトリ
+<span style=color:#75715e># gruntfile.jsがあるディレクトリ</span>
 $ ls -la
 
-# grunt-contrib-watchを配置するディレクトリに
+<span style=color:#75715e># grunt-contrib-watchを配置するディレクトリに</span>
 $ cd ./node_modules/
 
-# リポジトリをクローン
+<span style=color:#75715e># リポジトリをクローン</span>
 $ git clone https://github.com/gruntjs/grunt-contrib-watch.git
-</code></pre>
-
-<p>npm経由でインストールされるリソースはnode_modulesに配置されるので、その場所にクローンしてgruntに参照してもらう。私の場合はconcat/mincss/uglify/watchの5つを使用しているが、問題なく動いている。<a href="http://github.com/1000ch/playground/blob/master/package.json">package.json</a>も作り直したけど、前述の通りlink出来ないものもアリ。</p>
-
-<h2 id="grunt-0-4でstylusのコンパイルを自動化してみよう">grunt@0.4でstylusのコンパイルを自動化してみよう</h2>
-
-<p>stylusのファイルに変更がかかった場合に自動でコンパイルされるタスクを作ってみる。<strong>animate.css</strong> をフォークしてstylusから生成するという無駄なことをしながら実践したので、サンプルとしてgithubに置いておく。</p>
-
-<ul>
-<li><a href="http://github.com/1000ch/animate.css">1000ch / animate.css</a></li>
-</ul>
-
-<h2 id="必要なモジュールとgruntfile-js">必要なモジュールとgruntfile.js</h2>
-
-<ul>
-<li><strong>grunt@0.4.0rc7</strong></li>
-<li><strong>grunt-contrib-watch@0.4.0rc5</strong></li>
-<li><strong>grunt-contrib-stylus0.2.0rc5</strong></li>
-</ul>
-
-<pre><code class="language-js">module.exports = function(grunt) {
-  grunt.initConfig({
-    stylus: {
-      compile: {
-        files: {
-          &quot;animate.css&quot;: &quot;animate.styl&quot;
+</code></pre></div><p>npm経由でインストールされるリソースはnode_modulesに配置されるので、その場所にクローンしてgruntに参照してもらう。私の場合はconcat/mincss/uglify/watchの5つを使用しているが、問題なく動いている。<a href=http://github.com/1000ch/playground/blob/master/package.json>package.json</a>も作り直したけど、前述の通りlink出来ないものもアリ。</p><h2 id=grunt04でstylusのコンパイルを自動化してみよう><a href=mailto:grunt@0.4>grunt@0.4</a>でstylusのコンパイルを自動化してみよう</h2><p>stylusのファイルに変更がかかった場合に自動でコンパイルされるタスクを作ってみる。<strong>animate.css</strong> をフォークしてstylusから生成するという無駄なことをしながら実践したので、サンプルとしてgithubに置いておく。</p><ul><li><a href=http://github.com/1000ch/animate.css>1000ch / animate.css</a></li></ul><h2 id=必要なモジュールとgruntfilejs>必要なモジュールとgruntfile.js</h2><ul><li><strong><a href=mailto:grunt@0.4.0rc7>grunt@0.4.0rc7</a></strong></li><li><strong><a href=mailto:grunt-contrib-watch@0.4.0rc5>grunt-contrib-watch@0.4.0rc5</a></strong></li><li><strong>grunt-contrib-stylus0.2.0rc5</strong></li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>grunt</span>) {
+  <span style=color:#a6e22e>grunt</span>.<span style=color:#a6e22e>initConfig</span>({
+    <span style=color:#a6e22e>stylus</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>compile</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>files</span><span style=color:#f92672>:</span> {
+          <span style=color:#e6db74>&#34;animate.css&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;animate.styl&#34;</span>
         }
       }
     },
-    watch: {
-      files: [&quot;animate.styl&quot;],
-      tasks: [&quot;stylus&quot;]
+    <span style=color:#a6e22e>watch</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>files</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;animate.styl&#34;</span>],
+      <span style=color:#a6e22e>tasks</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;stylus&#34;</span>]
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-stylus');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  <span style=color:#a6e22e>grunt</span>.<span style=color:#a6e22e>loadNpmTasks</span>(<span style=color:#e6db74>&#39;grunt-contrib-stylus&#39;</span>);
+  <span style=color:#a6e22e>grunt</span>.<span style=color:#a6e22e>loadNpmTasks</span>(<span style=color:#e6db74>&#39;grunt-contrib-watch&#39;</span>);
 
-  grunt.registerTask(&quot;default&quot;, &quot;watch&quot;);
+  <span style=color:#a6e22e>grunt</span>.<span style=color:#a6e22e>registerTask</span>(<span style=color:#e6db74>&#34;default&#34;</span>, <span style=color:#e6db74>&#34;watch&#34;</span>);
 };
-</code></pre>
-
-<h2 id="stylusはnpmから落としてみる">stylusはnpmから落としてみる</h2>
-
-<p>このままだとstylusがないのでstylusだけはnpmから@0.4を付与して、<code>grunt-contrib-stylus/node_modules/</code>にローカルインストールした。</p>
-
-<pre><code class="language-bash"># インストールするgrunt-contrib-stylusフォルダに移動
+</code></pre></div><h2 id=stylusはnpmから落としてみる>stylusはnpmから落としてみる</h2><p>このままだとstylusがないのでstylusだけはnpmから@0.4を付与して、<code>grunt-contrib-stylus/node_modules/</code>にローカルインストールした。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># インストールするgrunt-contrib-stylusフォルダに移動</span>
 $ cd ./grunt-contrib-stylus
 
-# grunt-contrib-stylus@0.4を使用するのでstylus@0.4をインストール
+<span style=color:#75715e># grunt-contrib-stylus@0.4を使用するのでstylus@0.4をインストール</span>
 $ npm install stylus@0.4
 
-# gruntfile.jsがある作業フォルダに移動
+<span style=color:#75715e># gruntfile.jsがある作業フォルダに移動</span>
 $ cd ../../
 
-# watchを実行しstylファイルを編集する
+<span style=color:#75715e># watchを実行しstylファイルを編集する</span>
 $ grunt watch
-</code></pre>
-
-<p>で、コンパイルしてみると以下の2ファイルがエラーになるので手直し。importが引っかかっている。予約語っぽい。</p>
-
-<ul>
-<li><strong>grunt-contrib-stylus/node_modules/stylus/lib/visitor/compiler.js</strong></li>
-<li><strong>grunt-contrib-stylus/node_modules/stylus/lib/visitor/evaluater.js</strong></li>
-</ul>
-
-<p>再度試す。</p>
-
-<pre><code class="language-bash">Waiting...OK
-&gt;&gt; File &quot;animate.styl&quot; changed.
-Running &quot;stylus:compile&quot; (stylus) task
+</code></pre></div><p>で、コンパイルしてみると以下の2ファイルがエラーになるので手直し。importが引っかかっている。予約語っぽい。</p><ul><li><strong>grunt-contrib-stylus/node_modules/stylus/lib/visitor/compiler.js</strong></li><li><strong>grunt-contrib-stylus/node_modules/stylus/lib/visitor/evaluater.js</strong></li></ul><p>再度試す。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>Waiting...OK
+&gt;&gt; File <span style=color:#e6db74>&#34;animate.styl&#34;</span> changed.
+Running <span style=color:#e6db74>&#34;stylus:compile&#34;</span> <span style=color:#f92672>(</span>stylus<span style=color:#f92672>)</span> task
 &gt;&gt; TypeError: animate.styl:70
 &gt;&gt;    66|
 &gt;&gt;    67| .animated.delay
-&gt;&gt;    68|   animation-delay(1s)
+&gt;&gt;    68|   animation-delay<span style=color:#f92672>(</span>1s<span style=color:#f92672>)</span>
 &gt;&gt;    69|
 &gt;&gt;  &gt; 70| @keyframes flash
 &gt;&gt;    71|   0%, 50%, 100%
-&gt;&gt;    72|     opacity: 1
+&gt;&gt;    72|     opacity: <span style=color:#ae81ff>1</span>
 &gt;&gt;    73|   25%, 75%
 &gt;&gt;
-&gt;&gt; Cannot read property 'nodes' of undefined
-Warning: Stylus failed to compile. Use --force to continue.
+&gt;&gt; Cannot read property <span style=color:#e6db74>&#39;nodes&#39;</span> of undefined
+Warning: Stylus failed to compile. Use --force to <span style=color:#66d9ef>continue</span>.
 
 Aborted due to warnings.
-</code></pre>
-
-<p>うーん、動かない。stylファイルが変ですか？</p>
-
-<h2 id="npmではなくgitからcloneしてみる">npmではなくgitからcloneしてみる</h2>
-
-<ul>
-<li><a href="https://github.com/learnboost/stylus">LearnBoost/stylus</a></li>
-</ul>
-
-<p>試しにgithubリポジトリからstylusを入手。</p>
-
-<pre><code class="language-bash"># インストールしたディレクトリに移動する
+</code></pre></div><p>うーん、動かない。stylファイルが変ですか？</p><h2 id=npmではなくgitからcloneしてみる>npmではなくgitからcloneしてみる</h2><ul><li><a href=https://github.com/learnboost/stylus>LearnBoost/stylus</a></li></ul><p>試しにgithubリポジトリからstylusを入手。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># インストールしたディレクトリに移動する</span>
 $ cd ./node_modules/grunt-contrib-stylus
 
-# stylusをアンインストールする
+<span style=color:#75715e># stylusをアンインストールする</span>
 $ npm uninstall stylus
 
-# インストールするディレクトリに移動する
+<span style=color:#75715e># インストールするディレクトリに移動する</span>
 $ cd ./node_modules
 
-# gitリポジトリからedgeバージョンをcloneする
+<span style=color:#75715e># gitリポジトリからedgeバージョンをcloneする</span>
 $ git clone https://github.com/LearnBoost/stylus.git
 
-# gruntfile.jsがある作業フォルダに移動
+<span style=color:#75715e># gruntfile.jsがある作業フォルダに移動</span>
 $ cd ../../../
 
-# watchを実行しstylファイルを編集する
+<span style=color:#75715e># watchを実行しstylファイルを編集する</span>
 $ grunt watch
-</code></pre>
-
-<p>色々依存関係を解決後も、相変わらず同じエラーが出る。</p>
-
-<h2 id="stylusのcompile出来なかった">stylusのcompile出来なかった</h2>
-
-<p>stylファイルが間違っているのか、stylusがedgeであるからなのか、はたまた<code>grunt-contrib-stylus</code>がedgeであるからなのか。わからない。</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fgruntjs-0-4.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fgruntjs-0-4.html&text=Grunt%20ver0.4%e3%81%ab%e5%90%91%e3%81%91%e3%81%a6%e3%81%ae%e7%92%b0%e5%a2%83%e3%81%ae%e5%86%8d%e6%a7%8b%e7%af%89" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2013/jquery-1-9-rc.html">👈 jQuery 1.9リリース候補版がリリースされた</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2013/zeptojs-1-0.html">Zepto.js ver1.0がリリースされた 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+</code></pre></div><p>色々依存関係を解決後も、相変わらず同じエラーが出る。</p><h2 id=stylusのcompile出来なかった>stylusのcompile出来なかった</h2><p>stylファイルが間違っているのか、stylusがedgeであるからなのか、はたまた<code>grunt-contrib-stylus</code>がedgeであるからなのか。わからない。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fgruntjs-0-4.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fgruntjs-0-4.html&text=Grunt%20ver0.4%e3%81%ab%e5%90%91%e3%81%91%e3%81%a6%e3%81%ae%e7%92%b0%e5%a2%83%e3%81%ae%e5%86%8d%e6%a7%8b%e7%af%89" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2013/jquery-1-9-rc.html>👈 jQuery 1.9リリース候補版がリリースされた</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2013/zeptojs-1-0.html>Zepto.js ver1.0がリリースされた 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -337,7 +100,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

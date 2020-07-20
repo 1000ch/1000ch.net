@@ -1,136 +1,14 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Gzipを有効にしてサイト表示速度を向上させる - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="Gzipを有効にしてサイト表示速度を向上させる Gzipはファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は.gzで、MIME-Typeはapplication/x-gzip。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来るがここでは割愛。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Gzipを有効にしてサイト表示速度を向上させる - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Gzipを有効にしてサイト表示速度を向上させる Gzipはファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は.gzで、MIME-Typeはapplication/x-gzip。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来るがここでは割愛。
 httpサーバーのgzipを有効にしてサイト表示速度を向上させる Webサイトの表示は、ブラウザがHTMLドキュメントをサーバーから受け取り、受け取ったHTMLを解釈し、画面に描画する事で成立する。つまり受け取るHTMLのサイズが大きければ大きい程、転送する量が増加し、必然的にロード時間が長くなる。このロード時間を短くするためにGzipでデータを圧縮しよう！という話。
 Google ChromeのPageSpeed 自分のサーバーの設定がどうなっているのかわからないという人は、PageSpeedで調べるのがお手軽。例えば、解析結果でGzipを有効にしましょうと言われる場合は、Gzipが効いていないということになる。
 PageSpeedはGzipが有効になっているかどうかをチェックする他にも、様々なパフォーマンスの改善案を挙げてくれる非常に良く出来たツール。PageSpeed周りの詳しい使い方は以下が参考になる。
  ついに出た！Chrome版「Page Speed」の使い方 - Stocker.jp Google PageSpeed Insights でパフォーマンスチューニング  もう少し詳しい仕組み サーバーがGzipしてデータを転送する前に、 「クライアントがgzipを解凍することが出来る」 という点が保証されなければいけないが、ブラウザがGzipをサポートしている（Gzipされたデータの解凍ができる）場合は、サーバーにリクエストするときにリクエストヘッダに自動的で Accept-Encoding:gzip, deflate を付与し「Gzipで送ってもらっても大丈夫ですよ」という情報をサーバーに送る。なので、このヘッダが付与されたリクエストに対して、Gzipしてデータを返してあげる準備をしてあげれば良い。
 ざっくり以下のような処理の流れになる。
- クライアントがサーバーにデータを要求する。クライアントがgzipに対応している場合はその情報をリクエストヘッダに付与する サーバーが転送する前に、データをgzipで圧縮する。リクエストヘッダに*Accept-Encoding:gzip*が含まれている場合はGzipする。このときレスポンスヘッダに Content-Encoding:gzip を付与する サーバーがクライアントにデータを転送する クライアントがデータを受け取る。レスポンスヘッダに Content-Encoding:gzip がある場合、解凍する  Apacheの場合 Apache2系は mod_deflateモジュール を使用してGzipする。httpd.confを以下のように編集。
-# /etc/httpd/conf/httpd.conf # 以下のコメントアウトを外しdeflateモジュールをロードする LoadModule deflate_module modules/mod_deflate.so # 以下を適当な箇所に記述 &lt;Location /&gt; SetOutputFilter DEFLATE BrowserMatch ^Mozilla/4 gzip-only-text/html BrowserMatch ^Mozilla/4\.0[678] no-gzip BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html SetEnvIfNoCase Request_URI\.(?:gif|jpe?g|png)$ no-gzip dont-vary Header append Vary User-Agent env=!">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2012/gzip.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Gzipを有効にしてサイト表示速度を向上させる">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2012/gzip.html">
-<meta name="twitter:title" content="Gzipを有効にしてサイト表示速度を向上させる">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2012.12.06</span>
-
-        
-
-<h1 id="gzipを有効にしてサイト表示速度を向上させる">Gzipを有効にしてサイト表示速度を向上させる</h1>
-
-<p><a href="http://ja.wikipedia.org/wiki/Gzip">Gzip</a>はファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は<code>.gz</code>で、MIME-Typeは<code>application/x-gzip</code>。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来るがここでは割愛。</p>
-
-<h2 id="httpサーバーのgzipを有効にしてサイト表示速度を向上させる">httpサーバーのgzipを有効にしてサイト表示速度を向上させる</h2>
-
-<p>Webサイトの表示は、ブラウザがHTMLドキュメントをサーバーから受け取り、受け取ったHTMLを解釈し、画面に描画する事で成立する。つまり受け取るHTMLのサイズが大きければ大きい程、転送する量が増加し、必然的にロード時間が長くなる。このロード時間を短くするためにGzipでデータを圧縮しよう！という話。</p>
-
-<h2 id="google-chromeのpagespeed">Google ChromeのPageSpeed</h2>
-
-<p>自分のサーバーの設定がどうなっているのかわからないという人は、<a href="https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli?utm_source=chrome-ntp-icon">PageSpeed</a>で調べるのがお手軽。例えば、解析結果でGzipを有効にしましょうと言われる場合は、Gzipが効いていないということになる。</p>
-
-<p>PageSpeedはGzipが有効になっているかどうかをチェックする他にも、様々なパフォーマンスの改善案を挙げてくれる非常に良く出来たツール。PageSpeed周りの詳しい使い方は以下が参考になる。</p>
-
-<ul>
-<li><a href="http://stocker.jp/diary/chrome_page_speed/">ついに出た！Chrome版「Page Speed」の使い方 - Stocker.jp</a></li>
-<li><a href="http://blog.webcreativepark.net/2012/06/20-154132.html">Google PageSpeed Insights でパフォーマンスチューニング</a></li>
-</ul>
-
-<h2 id="もう少し詳しい仕組み">もう少し詳しい仕組み</h2>
-
-<p>サーバーがGzipしてデータを転送する前に、 <strong>「クライアントがgzipを解凍することが出来る」</strong> という点が保証されなければいけないが、ブラウザがGzipをサポートしている（Gzipされたデータの解凍ができる）場合は、サーバーにリクエストするときにリクエストヘッダに自動的で <strong>Accept-Encoding:gzip, deflate</strong> を付与し「Gzipで送ってもらっても大丈夫ですよ」という情報をサーバーに送る。なので、このヘッダが付与されたリクエストに対して、Gzipしてデータを返してあげる準備をしてあげれば良い。</p>
-
-<p>ざっくり以下のような処理の流れになる。</p>
-
-<ul>
-<li>クライアントがサーバーにデータを要求する。クライアントがgzipに対応している場合はその情報をリクエストヘッダに付与する</li>
-<li>サーバーが転送する前に、データをgzipで圧縮する。リクエストヘッダに*Accept-Encoding:gzip*が含まれている場合はGzipする。このときレスポンスヘッダに <strong>Content-Encoding:gzip</strong> を付与する</li>
-<li>サーバーがクライアントにデータを転送する</li>
-<li>クライアントがデータを受け取る。レスポンスヘッダに <strong>Content-Encoding:gzip</strong> がある場合、解凍する</li>
-</ul>
-
-<h2 id="apacheの場合">Apacheの場合</h2>
-
-<p>Apache2系は <strong>mod_deflateモジュール</strong> を使用してGzipする。<code>httpd.conf</code>を以下のように編集。</p>
-
-<pre><code># /etc/httpd/conf/httpd.conf
+ クライアントがサーバーにデータを要求する。クライアントがgzipに対応している場合はその情報をリクエストヘッダに付与する サーバーが転送する前に、データをgzipで圧縮する。リクエストヘッダにAccept-Encoding:gzipが含まれている場合はGzipする。このときレスポンスヘッダに Content-Encoding:gzip を付与する サーバーがクライアントにデータを転送する クライアントがデータを受け取る。レスポンスヘッダに Content-Encoding:gzip がある場合、解凍する  Apacheの場合 Apache2系は mod_deflateモジュール を使用してGzipする。httpd.confを以下のように編集。
+# /etc/httpd/conf/httpd.conf # 以下のコメントアウトを外しdeflateモジュールをロードする LoadModule deflate_module modules/mod_deflate.so # 以下を適当な箇所に記述 <Location /> SetOutputFilter DEFLATE BrowserMatch ^Mozilla/4 gzip-only-text/html BrowserMatch ^Mozilla/4\.0[678] no-gzip BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html SetEnvIfNoCase Request_URI\.(?:gif|jpe?g|png)$ no-gzip dont-vary Header append Vary User-Agent env=!"><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2012/gzip.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Gzipを有効にしてサイト表示速度を向上させる"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2012/gzip.html"><meta name=twitter:title content="Gzipを有効にしてサイト表示速度を向上させる"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2012.12.06</span><h1 id=gzipを有効にしてサイト表示速度を向上させる>Gzipを有効にしてサイト表示速度を向上させる</h1><p><a href=http://ja.wikipedia.org/wiki/Gzip>Gzip</a>はファイル圧縮の形式の1つで、ほぼ全てのUNIXに搭載されている。拡張子は<code>.gz</code>で、MIME-Typeは<code>application/x-gzip</code>。標準入力から受け取ったデータを圧縮し、標準出力から取り出す事が可能。当然、コマンドで使用する事が出来るがここでは割愛。</p><h2 id=httpサーバーのgzipを有効にしてサイト表示速度を向上させる>httpサーバーのgzipを有効にしてサイト表示速度を向上させる</h2><p>Webサイトの表示は、ブラウザがHTMLドキュメントをサーバーから受け取り、受け取ったHTMLを解釈し、画面に描画する事で成立する。つまり受け取るHTMLのサイズが大きければ大きい程、転送する量が増加し、必然的にロード時間が長くなる。このロード時間を短くするためにGzipでデータを圧縮しよう！という話。</p><h2 id=google-chromeのpagespeed>Google ChromeのPageSpeed</h2><p>自分のサーバーの設定がどうなっているのかわからないという人は、<a href="https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli?utm_source=chrome-ntp-icon">PageSpeed</a>で調べるのがお手軽。例えば、解析結果でGzipを有効にしましょうと言われる場合は、Gzipが効いていないということになる。</p><p>PageSpeedはGzipが有効になっているかどうかをチェックする他にも、様々なパフォーマンスの改善案を挙げてくれる非常に良く出来たツール。PageSpeed周りの詳しい使い方は以下が参考になる。</p><ul><li><a href=http://stocker.jp/diary/chrome_page_speed/>ついに出た！Chrome版「Page Speed」の使い方 - Stocker.jp</a></li><li><a href=http://blog.webcreativepark.net/2012/06/20-154132.html>Google PageSpeed Insights でパフォーマンスチューニング</a></li></ul><h2 id=もう少し詳しい仕組み>もう少し詳しい仕組み</h2><p>サーバーがGzipしてデータを転送する前に、 <strong>「クライアントがgzipを解凍することが出来る」</strong> という点が保証されなければいけないが、ブラウザがGzipをサポートしている（Gzipされたデータの解凍ができる）場合は、サーバーにリクエストするときにリクエストヘッダに自動的で <strong>Accept-Encoding:gzip, deflate</strong> を付与し「Gzipで送ってもらっても大丈夫ですよ」という情報をサーバーに送る。なので、このヘッダが付与されたリクエストに対して、Gzipしてデータを返してあげる準備をしてあげれば良い。</p><p>ざっくり以下のような処理の流れになる。</p><ul><li>クライアントがサーバーにデータを要求する。クライアントがgzipに対応している場合はその情報をリクエストヘッダに付与する</li><li>サーバーが転送する前に、データをgzipで圧縮する。リクエストヘッダに<em>Accept-Encoding:gzip</em>が含まれている場合はGzipする。このときレスポンスヘッダに <strong>Content-Encoding:gzip</strong> を付与する</li><li>サーバーがクライアントにデータを転送する</li><li>クライアントがデータを受け取る。レスポンスヘッダに <strong>Content-Encoding:gzip</strong> がある場合、解凍する</li></ul><h2 id=apacheの場合>Apacheの場合</h2><p>Apache2系は <strong>mod_deflateモジュール</strong> を使用してGzipする。<code>httpd.conf</code>を以下のように編集。</p><pre><code># /etc/httpd/conf/httpd.conf
 # 以下のコメントアウトを外しdeflateモジュールをロードする
 LoadModule deflate_module modules/mod_deflate.so
 
@@ -151,94 +29,11 @@ LoadModule filter_module modules/mod_filter.so
 # 先程の&lt;Location&gt;タグの中に以下のようにMIME Typeを指定する
 AddOutputFilterByType DEFLATE text/css
 AddOutputFilterByType DEFLATE text/javascript
-</code></pre>
-
-<p>あとはサーバーを再起動する。</p>
-
-<pre><code class="language-bash">$ /etc/init.d/httpd restart
-</code></pre>
-
-<h2 id="まとめ">まとめ</h2>
-
-<p>gzipの設定を施すことで転送量が減るため転送にかかる時間は短くなる。一方で、転送するデータに対しGzipを行うサーバー側の負荷と、転送先がGunzipで解凍するクライアント側の負荷が少なからず増えるが、殆どの場合Gzip実施によって実現する転送コストの削減のほうが得られる対価が大きい。テキストデータに対しては漏れ無く実践していくべき。</p>
-
-<ul>
-<li><a href="http://t32k.github.com/speed/articles/gzip.html">gzip圧縮のしくみ - LPWS</a></li>
-<li><a href="http://t32k.github.com/speed/articles/use-compression.html">Web高速化のために圧縮しよう - LPWS</a></li>
-</ul>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fgzip.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fgzip.html&text=Gzip%e3%82%92%e6%9c%89%e5%8a%b9%e3%81%ab%e3%81%97%e3%81%a6%e3%82%b5%e3%82%a4%e3%83%88%e8%a1%a8%e7%a4%ba%e9%80%9f%e5%ba%a6%e3%82%92%e5%90%91%e4%b8%8a%e3%81%95%e3%81%9b%e3%82%8b" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2012/point-of-javascript.html">👈 jQueryでコーディングをする際気をつけたいポイント</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2012/gruntjs-introduction.html">Gruntの概要と導入手順とメリット 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+</code></pre><p>あとはサーバーを再起動する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ /etc/init.d/httpd restart
+</code></pre></div><h2 id=まとめ>まとめ</h2><p>gzipの設定を施すことで転送量が減るため転送にかかる時間は短くなる。一方で、転送するデータに対しGzipを行うサーバー側の負荷と、転送先がGunzipで解凍するクライアント側の負荷が少なからず増えるが、殆どの場合Gzip実施によって実現する転送コストの削減のほうが得られる対価が大きい。テキストデータに対しては漏れ無く実践していくべき。</p><ul><li><a href=http://t32k.github.com/speed/articles/gzip.html>gzip圧縮のしくみ - LPWS</a></li><li><a href=http://t32k.github.com/speed/articles/use-compression.html>Web高速化のために圧縮しよう - LPWS</a></li></ul><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fgzip.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fgzip.html&text=Gzip%e3%82%92%e6%9c%89%e5%8a%b9%e3%81%ab%e3%81%97%e3%81%a6%e3%82%b5%e3%82%a4%e3%83%88%e8%a1%a8%e7%a4%ba%e9%80%9f%e5%ba%a6%e3%82%92%e5%90%91%e4%b8%8a%e3%81%95%e3%81%9b%e3%82%8b" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2012/point-of-javascript.html>👈 jQueryでコーディングをする際気をつけたいポイント</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2012/gruntjs-introduction.html>Gruntの概要と導入手順とメリット 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -252,7 +47,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

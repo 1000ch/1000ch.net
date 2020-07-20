@@ -1,225 +1,43 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>レスポンシブなiframe - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="レスポンシブなiframe 当ブログのようなシングルカラムレイアウトに、外部のコンテンツを &lt;iframe&gt; 要素で埋め込む場合、要素の横幅を 100% にして親要素の幅いっぱいに広げたいが、その時に縦横比を維持して縦幅を追従させる場合に工夫が必要である。
-デフォルトの埋め込みコード YouTube などの動画コンテンツを &lt;iframe&gt; 要素でエンベッドする場合、次のようなものが用意される。
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/gTHAn-nkQnI&quot; frameborder=&quot;0&quot; allowfullscreen&gt; &lt;/iframe&gt;  横幅 560px、縦幅 315px で配置されるので、モバイルデバイスで閲覧すると横スクロールができてしまう。これを 16:9 の縦横比を維持しつつ横幅を親要素一杯まで広げたい。
-&lt;iframe&gt; 要素そのものをレスポンシブにするには「&lt;iframe&gt; 要素の横幅を親要素まで満たしたい」「親要素の縦幅がテキストなどに依存するので不定である」という制約がある。CSS の width と height プロパティに max-content を指定しても、&lt;iframe&gt; 要素のサイズが読み込みページに依存してしまう。
-16:9な親要素を用意して子要素で満たす タイトルの通り、任意の縦横比の親要素を用意して &lt;iframe&gt; 要素をその中に縦横一杯に満たすのが解のようだ。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>レスポンシブなiframe - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="レスポンシブなiframe 当ブログのようなシングルカラムレイアウトに、外部のコンテンツを <iframe> 要素で埋め込む場合、要素の横幅を 100% にして親要素の幅いっぱいに広げたいが、その時に縦横比を維持して縦幅を追従させる場合に工夫が必要である。
+デフォルトの埋め込みコード YouTube などの動画コンテンツを <iframe> 要素でエンベッドする場合、次のようなものが用意される。
+<iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/gTHAn-nkQnI&#34; frameborder=&#34;0&#34; allowfullscreen> </iframe> 横幅 560px、縦幅 315px で配置されるので、モバイルデバイスで閲覧すると横スクロールができてしまう。これを 16:9 の縦横比を維持しつつ横幅を親要素一杯まで広げたい。
+<iframe> 要素そのものをレスポンシブにするには「<iframe> 要素の横幅を親要素まで満たしたい」「親要素の縦幅がテキストなどに依存するので不定である」という制約がある。CSS の width と height プロパティに max-content を指定しても、<iframe> 要素のサイズが読み込みページに依存してしまう。
+16:9な親要素を用意して子要素で満たす タイトルの通り、任意の縦横比の親要素を用意して <iframe> 要素をその中に縦横一杯に満たすのが解のようだ。
 キモとなるのは親要素の高さの取り方で、素直に height プロパティで指定しようとすると先に述べた通り親要素に対するパーセンテージになってしまうので、padding-top を指定することで高さを確保している。横幅は親要素いっぱいにするので、100% で問題ない。
-.YouTube { position: relative; width: 100%; padding-top: 56.25%; } .YouTube iframe { position: absolute; top: 0; right: 0; width: 100%; height: 100%; }  親要素を用意せず &lt;iframe&gt; 要素に対して padding-top を指定しても、読み込んでいるコンテンツに対してパディングが用意されるだけである。">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2017/responsive-iframe.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="レスポンシブなiframe">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2017/responsive-iframe.html">
-<meta name="twitter:title" content="レスポンシブなiframe">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2017.11.22</span>
-
-        
-
-<h1 id="レスポンシブなiframe">レスポンシブなiframe</h1>
-
-<p>当ブログのようなシングルカラムレイアウトに、外部のコンテンツを <code>&lt;iframe&gt;</code> 要素で埋め込む場合、要素の横幅を 100% にして親要素の幅いっぱいに広げたいが、その時に縦横比を維持して縦幅を追従させる場合に工夫が必要である。</p>
-
-<h2 id="デフォルトの埋め込みコード">デフォルトの埋め込みコード</h2>
-
-<p>YouTube などの動画コンテンツを <code>&lt;iframe&gt;</code> 要素でエンベッドする場合、次のようなものが用意される。</p>
-
-<pre><code class="language-html">&lt;iframe 
-  width=&quot;560&quot; 
-  height=&quot;315&quot; 
-  src=&quot;https://www.youtube.com/embed/gTHAn-nkQnI&quot;
-  frameborder=&quot;0&quot;
-  allowfullscreen&gt;
-&lt;/iframe&gt;
-</code></pre>
-
-<p>横幅 560px、縦幅 315px で配置されるので、モバイルデバイスで閲覧すると横スクロールができてしまう。これを 16:9 の縦横比を維持しつつ横幅を親要素一杯まで広げたい。</p>
-
-<p><code>&lt;iframe&gt;</code> 要素そのものをレスポンシブにするには「<code>&lt;iframe&gt;</code> 要素の横幅を親要素まで満たしたい」「親要素の縦幅がテキストなどに依存するので不定である」という制約がある。CSS の <code>width</code> と <code>height</code> プロパティに <a href="https://www.w3.org/TR/css-sizing-3/#max-content-constraint"><code>max-content</code></a> を指定しても、<code>&lt;iframe&gt;</code> 要素のサイズが読み込みページに依存してしまう。</p>
-
-<h2 id="16-9な親要素を用意して子要素で満たす">16:9な親要素を用意して子要素で満たす</h2>
-
-<p>タイトルの通り、任意の縦横比の親要素を用意して <code>&lt;iframe&gt;</code> 要素をその中に縦横一杯に満たすのが解のようだ。</p>
-
-<p>キモとなるのは親要素の高さの取り方で、素直に <code>height</code> プロパティで指定しようとすると先に述べた通り親要素に対するパーセンテージになってしまうので、<code>padding-top</code> を指定することで高さを確保している。横幅は親要素いっぱいにするので、100% で問題ない。</p>
-
-<pre><code class="language-css">.YouTube {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%;
+.YouTube { position: relative; width: 100%; padding-top: 56.25%; } .YouTube iframe { position: absolute; top: 0; right: 0; width: 100%; height: 100%; } 親要素を用意せず <iframe> 要素に対して padding-top を指定しても、読み込んでいるコンテンツに対してパディングが用意されるだけである。"><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/responsive-iframe.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="レスポンシブなiframe"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/responsive-iframe.html"><meta name=twitter:title content="レスポンシブなiframe"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2017.11.22</span><h1 id=レスポンシブなiframe>レスポンシブなiframe</h1><p>当ブログのようなシングルカラムレイアウトに、外部のコンテンツを <code>&lt;iframe></code> 要素で埋め込む場合、要素の横幅を 100% にして親要素の幅いっぱいに広げたいが、その時に縦横比を維持して縦幅を追従させる場合に工夫が必要である。</p><h2 id=デフォルトの埋め込みコード>デフォルトの埋め込みコード</h2><p>YouTube などの動画コンテンツを <code>&lt;iframe></code> 要素でエンベッドする場合、次のようなものが用意される。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>iframe</span> 
+  <span style=color:#a6e22e>width</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;560&#34;</span> 
+  <span style=color:#a6e22e>height</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;315&#34;</span> 
+  <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://www.youtube.com/embed/gTHAn-nkQnI&#34;</span>
+  <span style=color:#a6e22e>frameborder</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0&#34;</span>
+  <span style=color:#a6e22e>allowfullscreen</span>&gt;
+&lt;/<span style=color:#f92672>iframe</span>&gt;
+</code></pre></div><p>横幅 560px、縦幅 315px で配置されるので、モバイルデバイスで閲覧すると横スクロールができてしまう。これを 16:9 の縦横比を維持しつつ横幅を親要素一杯まで広げたい。</p><p><code>&lt;iframe></code> 要素そのものをレスポンシブにするには「<code>&lt;iframe></code> 要素の横幅を親要素まで満たしたい」「親要素の縦幅がテキストなどに依存するので不定である」という制約がある。CSS の <code>width</code> と <code>height</code> プロパティに <a href=https://www.w3.org/TR/css-sizing-3/#max-content-constraint><code>max-content</code></a> を指定しても、<code>&lt;iframe></code> 要素のサイズが読み込みページに依存してしまう。</p><h2 id=169な親要素を用意して子要素で満たす>16:9な親要素を用意して子要素で満たす</h2><p>タイトルの通り、任意の縦横比の親要素を用意して <code>&lt;iframe></code> 要素をその中に縦横一杯に満たすのが解のようだ。</p><p>キモとなるのは親要素の高さの取り方で、素直に <code>height</code> プロパティで指定しようとすると先に述べた通り親要素に対するパーセンテージになってしまうので、<code>padding-top</code> を指定することで高さを確保している。横幅は親要素いっぱいにするので、100% で問題ない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>YouTube</span> {
+  <span style=color:#66d9ef>position</span>: <span style=color:#66d9ef>relative</span>;
+  <span style=color:#66d9ef>width</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>%</span>;
+  <span style=color:#66d9ef>padding-top</span>: <span style=color:#ae81ff>56.25</span><span style=color:#66d9ef>%</span>;
 }
 
-.YouTube iframe {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
+.<span style=color:#a6e22e>YouTube</span> <span style=color:#f92672>iframe</span> {
+  <span style=color:#66d9ef>position</span>: <span style=color:#66d9ef>absolute</span>;
+  <span style=color:#66d9ef>top</span>: <span style=color:#ae81ff>0</span>;
+  <span style=color:#66d9ef>right</span>: <span style=color:#ae81ff>0</span>;
+  <span style=color:#66d9ef>width</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>%</span>;
+  <span style=color:#66d9ef>height</span>: <span style=color:#ae81ff>100</span><span style=color:#66d9ef>%</span>;
 }
-</code></pre>
-
-<p>親要素を用意せず <code>&lt;iframe&gt;</code> 要素に対して <code>padding-top</code> を指定しても、読み込んでいるコンテンツに対してパディングが用意されるだけである。</p>
-
-<p>あとは、埋め込みコードで指定されていた <code>width</code> 属性と <code>height</code> 属性を取り除けば、期待通りに動いてくれた。</p>
-
-<pre><code class="language-html">&lt;div class=&quot;YouTube&quot;&gt;
-  &lt;iframe 
-    src=&quot;https://www.youtube.com/embed/gTHAn-nkQnI&quot;
-    frameborder=&quot;0&quot;
-    allowfullscreen&gt;
-  &lt;/iframe&gt;
-&lt;/div&gt;
-</code></pre>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresponsive-iframe.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresponsive-iframe.html&text=%e3%83%ac%e3%82%b9%e3%83%9d%e3%83%b3%e3%82%b7%e3%83%96%e3%81%aaiframe" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2017/resize-observer.html">👈 要素のサイズ変化を監視するResizeObserver</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2017/hair-kurukuru-poi.html">髪の毛くるくるポイが革命的だった 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+</code></pre></div><p>親要素を用意せず <code>&lt;iframe></code> 要素に対して <code>padding-top</code> を指定しても、読み込んでいるコンテンツに対してパディングが用意されるだけである。</p><p>あとは、埋め込みコードで指定されていた <code>width</code> 属性と <code>height</code> 属性を取り除けば、期待通りに動いてくれた。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;YouTube&#34;</span>&gt;
+  &lt;<span style=color:#f92672>iframe</span> 
+    <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://www.youtube.com/embed/gTHAn-nkQnI&#34;</span>
+    <span style=color:#a6e22e>frameborder</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0&#34;</span>
+    <span style=color:#a6e22e>allowfullscreen</span>&gt;
+  &lt;/<span style=color:#f92672>iframe</span>&gt;
+&lt;/<span style=color:#f92672>div</span>&gt;
+</code></pre></div><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresponsive-iframe.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresponsive-iframe.html&text=%e3%83%ac%e3%82%b9%e3%83%9d%e3%83%b3%e3%82%b7%e3%83%96%e3%81%aaiframe" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2017/resize-observer.html>👈 要素のサイズ変化を監視するResizeObserver</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2017/hair-kurukuru-poi.html>髪の毛くるくるポイが革命的だった 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -233,7 +51,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

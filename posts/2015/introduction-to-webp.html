@@ -1,33 +1,4 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>【翻訳】Introduction to WebP - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="【翻訳】Introduction to WebP ※この記事はMediumに投稿したIntroduction to WebPの日本語訳です。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>【翻訳】Introduction to WebP - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="【翻訳】Introduction to WebP ※この記事はMediumに投稿したIntroduction to WebPの日本語訳です。
 以前述べたように、画像はWebにおけるネットワーク帯域の約60%~70%を占めています。これは、画像がWebパフォーマンスにおいて最も重要な因子の1つであることを意味します。そんな画像の中でも、WebPは他のフォーマットに比べて幾つかの点において優っています。
 WebPの特徴 可逆圧縮と非可逆圧縮 PNGやGIFは可逆圧縮をサポートし、JPEGは非可逆圧縮をサポートしますが、WebPは可逆圧縮と非可逆圧縮の両方を利用することが出来ます。更に特筆すべきは、その圧縮率が他のどのフォーマットよりも高いということです。
  可逆圧縮のWebPは、PNGに比べて26%程サイズが小さくなります。非可逆圧縮のWebPは、同等画質のJPEGに比べて25%~34$程サイズが小さくなります。 ※公式サイトより引用
@@ -36,248 +7,27 @@ WebPの特徴 可逆圧縮と非可逆圧縮 PNGやGIFは可逆圧縮をサポ�
  ブラウザサポート WebPは次のブラウザで表示することが出来ます。
  Google Chrome Opera Chrome for Android Chrome for iOS  今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示されています。きっと、WebPのデコーダを内包しているんでしょう。
 これはつまり、WebPのデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来ることを意味しています。
-他のフォーマットへのフォールバック &lt;picture&gt;要素と&lt;source&gt;要素 御存知の通り、&lt;picture&gt;要素と&lt;source&gt;要素はレスポンシブにリソースをロードする比較的新しい方法です。&lt;source&gt;要素にはリソースの mime-type を指定するtype属性が存在し、それを指定することでブラウザがそれをサポートしている場合にロードさせることが出来ます。
-&lt;picture&gt; &lt;source srcset=&quot;image.webp 1x&quot; type=&quot;image/webp&quot;&gt; &lt;img src=&quot;image.jpg&quot;&gt; &lt;/picture&gt;  この場合、ブラウザがWebPをサポートしていればimage.webpを、サポートしていなければimage.jpgがロードされます。
+他のフォーマットへのフォールバック <picture>要素と<source>要素 御存知の通り、<picture>要素と<source>要素はレスポンシブにリソースをロードする比較的新しい方法です。<source>要素にはリソースの mime-type を指定するtype属性が存在し、それを指定することでブラウザがそれをサポートしている場合にロードさせることが出来ます。
+<picture> <source srcset=&#34;image.webp 1x&#34; type=&#34;image/webp&#34;> <img src=&#34;image.jpg&#34;> </picture> この場合、ブラウザがWebPをサポートしていればimage.webpを、サポートしていなければimage.jpgがロードされます。
 WebPJS WebPJSはJavaScriptのライブラリで、WebPの画像をdataURIの文字列にクライアントサイドで変換します。
 サーバーサイドでAcceptヘッダのチェック ブラウザはリクエストの際に、リクエストそれぞれに次のようなAcceptヘッダを付与します。
-Accept: image/webp, image/png, image/jpeg, image/gif, image/svg&#43;xml, image/bitmap  よって、サーバーはクライアントサイドから送信されるリクエストヘッダに Accept: image/webpが含まれるかどうかをチェックし、ブラウザに返却する画像を選択することが出来ます。 image/webp を含んでいない場合は、WebPに変換する前のオリジナルであるPNGやJPEG、あるいはGIFを返せば良いでしょう。
+Accept: image/webp, image/png, image/jpeg, image/gif, image/svg+xml, image/bitmap よって、サーバーはクライアントサイドから送信されるリクエストヘッダに Accept: image/webpが含まれるかどうかをチェックし、ブラウザに返却する画像を選択することが出来ます。 image/webp を含んでいない場合は、WebPに変換する前のオリジナルであるPNGやJPEG、あるいはGIFを返せば良いでしょう。
 これについては次のリソースも読むことをオススメします。
- Deploying WebP via Accept Content Negotiation — by Ilya Grigorik Faster, smaller and more beautiful web with WebP — by Ilya Grigorik Deploying New Image Formats on the Web — by Ilya Grigorik igrigorik/webp-detect — WebP with Accept negotiation by Ilya Grigorik  WebPのツール cwebp-bin 画像をWebPに変換したいときは、cwebpのNode.">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2015/introduction-to-webp.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="【翻訳】Introduction to WebP">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2015/introduction-to-webp.html">
-<meta name="twitter:title" content="【翻訳】Introduction to WebP">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2015.05.22</span>
-
-        
-
-<h1 id="翻訳-introduction-to-webp">【翻訳】Introduction to WebP</h1>
-
-<p><strong>※この記事はMediumに投稿した<a href="http://bit.ly/introduction-to-webp">Introduction to WebP</a>の日本語訳です。</strong></p>
-
-<p><a href="http://bit.ly/we-should-optimize-images">以前述べたように</a>、画像はWebにおけるネットワーク帯域の約60%~70%を占めています。これは、画像がWebパフォーマンスにおいて最も重要な因子の1つであることを意味します。そんな画像の中でも、WebPは他のフォーマットに比べて幾つかの点において優っています。</p>
-
-<h2 id="webpの特徴">WebPの特徴</h2>
-
-<h3 id="可逆圧縮と非可逆圧縮">可逆圧縮と非可逆圧縮</h3>
-
-<p>PNGやGIFは可逆圧縮をサポートし、JPEGは非可逆圧縮をサポートしますが、WebPは可逆圧縮と非可逆圧縮の両方を利用することが出来ます。更に特筆すべきは、その圧縮率が他のどのフォーマットよりも高いということです。</p>
-
-<blockquote>
-<p>可逆圧縮のWebPは、PNGに比べて26%程サイズが小さくなります。非可逆圧縮のWebPは、同等画質のJPEGに比べて25%~34$程サイズが小さくなります。 ※<a href="https://developers.google.com/speed/webp/">公式サイト</a>より引用</p>
-</blockquote>
-
-<h3 id="透過-アルファチャネル-とアニメーション">透過（アルファチャネル）とアニメーション</h3>
-
-<p>WebPは可逆圧縮・非可逆圧縮を問わず、PNG同様にアルファチャネルとGIF同様にアニメーションをサポートします。</p>
-
-<blockquote>
-<p>WebPは、およそ22%程データを追加することで可逆圧縮で劣化のない透過（アルファチャネル）を利用することが出来ます。透過は非可逆圧縮においても利用可能で、透過付きのPNGに比べて3倍以上もファイルサイズを抑えられます。 ※<a href="https://developers.google.com/speed/webp/">公式サイト</a>より引用</p>
-</blockquote>
-
-<h2 id="ブラウザサポート">ブラウザサポート</h2>
-
-<p>WebPは次のブラウザで表示することが出来ます。</p>
-
-<ul>
-<li>Google Chrome</li>
-<li>Opera</li>
-<li>Chrome for Android</li>
-<li>Chrome <strong>for iOS</strong></li>
-</ul>
-
-<p>今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示されています。きっと、WebPのデコーダを内包しているんでしょう。</p>
-
-<p><img src="/img/posts/2015/introduction-to-webp/safari-chrome.jpg" alt="" /></p>
-
-<p>これはつまり、WebPのデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来ることを意味しています。</p>
-
-<h2 id="他のフォーマットへのフォールバック">他のフォーマットへのフォールバック</h2>
-
-<h3 id="picture-要素と-source-要素"><code>&lt;picture&gt;</code>要素と<code>&lt;source&gt;</code>要素</h3>
-
-<p>御存知の通り、<code>&lt;picture&gt;</code>要素と<code>&lt;source&gt;</code>要素はレスポンシブにリソースをロードする比較的新しい方法です。<code>&lt;source&gt;</code>要素にはリソースの <strong>mime-type</strong> を指定する<code>type</code>属性が存在し、それを指定することでブラウザがそれをサポートしている場合にロードさせることが出来ます。</p>
-
-<pre><code class="language-html">&lt;picture&gt;
-  &lt;source srcset=&quot;image.webp 1x&quot; type=&quot;image/webp&quot;&gt;
-  &lt;img src=&quot;image.jpg&quot;&gt;
-&lt;/picture&gt;
-</code></pre>
-
-<p>この場合、ブラウザがWebPをサポートしていれば<code>image.webp</code>を、サポートしていなければ<code>image.jpg</code>がロードされます。</p>
-
-<h3 id="webpjs">WebPJS</h3>
-
-<p><a href="http://webpjs.appspot.com/">WebPJS</a>はJavaScriptのライブラリで、WebPの画像をdataURIの文字列にクライアントサイドで変換します。</p>
-
-<h3 id="サーバーサイドでacceptヘッダのチェック">サーバーサイドでAcceptヘッダのチェック</h3>
-
-<p>ブラウザはリクエストの際に、リクエストそれぞれに次のようなAcceptヘッダを付与します。</p>
-
-<pre><code>Accept: image/webp, image/png, image/jpeg, image/gif, image/svg+xml, image/bitmap
-</code></pre>
-
-<p>よって、サーバーはクライアントサイドから送信されるリクエストヘッダに <strong>Accept: image/webp</strong>が含まれるかどうかをチェックし、ブラウザに返却する画像を選択することが出来ます。 <strong>image/webp</strong> を含んでいない場合は、WebPに変換する前のオリジナルであるPNGやJPEG、あるいはGIFを返せば良いでしょう。</p>
-
-<p>これについては次のリソースも読むことをオススメします。</p>
-
-<ul>
-<li><a href="https://www.igvita.com/2013/05/01/deploying-webp-via-accept-content-negotiation/">Deploying WebP via Accept Content Negotiation</a> — by Ilya Grigorik</li>
-<li><a href="https://www.igvita.com/2013/03/07/faster-smaller-and-more-beautiful-web-with-webp/">Faster, smaller and more beautiful web with WebP</a> — by Ilya Grigorik</li>
-<li><a href="https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/">Deploying New Image Formats on the Web</a> — by Ilya Grigorik</li>
-<li><a href="https://github.com/igrigorik/webp-detect">igrigorik/webp-detect</a> — WebP with Accept negotiation by Ilya Grigorik</li>
-</ul>
-
-<h2 id="webpのツール">WebPのツール</h2>
-
-<h3 id="cwebp-bin">cwebp-bin</h3>
-
-<p>画像をWebPに変換したいときは、cwebpのNode.jsラッパーである <strong>cwebp-bin</strong> をnpmから手に入れることが出来ます。</p>
-
-<pre><code class="language-bash">$ npm install cwebp-bin
-</code></pre>
-
-<p>もちろん、<a href="https://developers.google.com/speed/webp/docs/precompiled">コンパイル済のバイナリ</a>や自分でビルドする場合は<a href="http://downloads.webmproject.org/releases/webp/index.html">ソースコード</a>も、<a href="https://developers.google.com/speed/webp/">公式ウェブサイト</a>から手に入れることも可能です。</p>
-
-<h3 id="gruntとgulp">GruntとGulp</h3>
-
-<p>GruntやGulpを使って変換したいですか？<a href="https://github.com/1000ch/grunt-cwebp">grunt-cwebp</a>と<a href="https://github.com/1000ch/gulp-cwebp">gulp-cwebp</a>もnpmから入手可能です。</p>
-
-<pre><code class="language-bash">$ npm install grunt-cwebp
+ Deploying WebP via Accept Content Negotiation — by Ilya Grigorik Faster, smaller and more beautiful web with WebP — by Ilya Grigorik Deploying New Image Formats on the Web — by Ilya Grigorik igrigorik/webp-detect — WebP with Accept negotiation by Ilya Grigorik  WebPのツール cwebp-bin 画像をWebPに変換したいときは、cwebpのNode."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/introduction-to-webp.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="【翻訳】Introduction to WebP"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/introduction-to-webp.html"><meta name=twitter:title content="【翻訳】Introduction to WebP"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2015.05.22</span><h1 id=翻訳introduction-to-webp>【翻訳】Introduction to WebP</h1><p><strong>※この記事はMediumに投稿した<a href=http://bit.ly/introduction-to-webp>Introduction to WebP</a>の日本語訳です。</strong></p><p><a href=http://bit.ly/we-should-optimize-images>以前述べたように</a>、画像はWebにおけるネットワーク帯域の約60%~70%を占めています。これは、画像がWebパフォーマンスにおいて最も重要な因子の1つであることを意味します。そんな画像の中でも、WebPは他のフォーマットに比べて幾つかの点において優っています。</p><h2 id=webpの特徴>WebPの特徴</h2><h3 id=可逆圧縮と非可逆圧縮>可逆圧縮と非可逆圧縮</h3><p>PNGやGIFは可逆圧縮をサポートし、JPEGは非可逆圧縮をサポートしますが、WebPは可逆圧縮と非可逆圧縮の両方を利用することが出来ます。更に特筆すべきは、その圧縮率が他のどのフォーマットよりも高いということです。</p><blockquote><p>可逆圧縮のWebPは、PNGに比べて26%程サイズが小さくなります。非可逆圧縮のWebPは、同等画質のJPEGに比べて25%~34$程サイズが小さくなります。 ※<a href=https://developers.google.com/speed/webp/>公式サイト</a>より引用</p></blockquote><h3 id=透過アルファチャネルとアニメーション>透過（アルファチャネル）とアニメーション</h3><p>WebPは可逆圧縮・非可逆圧縮を問わず、PNG同様にアルファチャネルとGIF同様にアニメーションをサポートします。</p><blockquote><p>WebPは、およそ22%程データを追加することで可逆圧縮で劣化のない透過（アルファチャネル）を利用することが出来ます。透過は非可逆圧縮においても利用可能で、透過付きのPNGに比べて3倍以上もファイルサイズを抑えられます。 ※<a href=https://developers.google.com/speed/webp/>公式サイト</a>より引用</p></blockquote><h2 id=ブラウザサポート>ブラウザサポート</h2><p>WebPは次のブラウザで表示することが出来ます。</p><ul><li>Google Chrome</li><li>Opera</li><li>Chrome for Android</li><li>Chrome <strong>for iOS</strong></li></ul><p>今のところ、FirefoxとSafariはWebPをサポートしていません。しかし興味深いことにiOSのChromeではWebPの画像が表示されています。きっと、WebPのデコーダを内包しているんでしょう。</p><p><img src=/img/posts/2015/introduction-to-webp/safari-chrome.jpg alt></p><p>これはつまり、WebPのデコーダを内包していれば、AndroidやiOSのどんなアプリケーションでもWebPを利用することが出来ることを意味しています。</p><h2 id=他のフォーマットへのフォールバック>他のフォーマットへのフォールバック</h2><h3 id=picture要素とsource要素><code>&lt;picture></code>要素と<code>&lt;source></code>要素</h3><p>御存知の通り、<code>&lt;picture></code>要素と<code>&lt;source></code>要素はレスポンシブにリソースをロードする比較的新しい方法です。<code>&lt;source></code>要素にはリソースの <strong>mime-type</strong> を指定する<code>type</code>属性が存在し、それを指定することでブラウザがそれをサポートしている場合にロードさせることが出来ます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>picture</span>&gt;
+  &lt;<span style=color:#f92672>source</span> <span style=color:#a6e22e>srcset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;image.webp 1x&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;image/webp&#34;</span>&gt;
+  &lt;<span style=color:#f92672>img</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;image.jpg&#34;</span>&gt;
+&lt;/<span style=color:#f92672>picture</span>&gt;
+</code></pre></div><p>この場合、ブラウザがWebPをサポートしていれば<code>image.webp</code>を、サポートしていなければ<code>image.jpg</code>がロードされます。</p><h3 id=webpjs>WebPJS</h3><p><a href=http://webpjs.appspot.com/>WebPJS</a>はJavaScriptのライブラリで、WebPの画像をdataURIの文字列にクライアントサイドで変換します。</p><h3 id=サーバーサイドでacceptヘッダのチェック>サーバーサイドでAcceptヘッダのチェック</h3><p>ブラウザはリクエストの際に、リクエストそれぞれに次のようなAcceptヘッダを付与します。</p><pre><code>Accept: image/webp, image/png, image/jpeg, image/gif, image/svg+xml, image/bitmap
+</code></pre><p>よって、サーバーはクライアントサイドから送信されるリクエストヘッダに <strong>Accept: image/webp</strong>が含まれるかどうかをチェックし、ブラウザに返却する画像を選択することが出来ます。 <strong>image/webp</strong> を含んでいない場合は、WebPに変換する前のオリジナルであるPNGやJPEG、あるいはGIFを返せば良いでしょう。</p><p>これについては次のリソースも読むことをオススメします。</p><ul><li><a href=https://www.igvita.com/2013/05/01/deploying-webp-via-accept-content-negotiation/>Deploying WebP via Accept Content Negotiation</a> — by Ilya Grigorik</li><li><a href=https://www.igvita.com/2013/03/07/faster-smaller-and-more-beautiful-web-with-webp/>Faster, smaller and more beautiful web with WebP</a> — by Ilya Grigorik</li><li><a href=https://www.igvita.com/2012/12/18/deploying-new-image-formats-on-the-web/>Deploying New Image Formats on the Web</a> — by Ilya Grigorik</li><li><a href=https://github.com/igrigorik/webp-detect>igrigorik/webp-detect</a> — WebP with Accept negotiation by Ilya Grigorik</li></ul><h2 id=webpのツール>WebPのツール</h2><h3 id=cwebp-bin>cwebp-bin</h3><p>画像をWebPに変換したいときは、cwebpのNode.jsラッパーである <strong>cwebp-bin</strong> をnpmから手に入れることが出来ます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ npm install cwebp-bin
+</code></pre></div><p>もちろん、<a href=https://developers.google.com/speed/webp/docs/precompiled>コンパイル済のバイナリ</a>や自分でビルドする場合は<a href=http://downloads.webmproject.org/releases/webp/index.html>ソースコード</a>も、<a href=https://developers.google.com/speed/webp/>公式ウェブサイト</a>から手に入れることも可能です。</p><h3 id=gruntとgulp>GruntとGulp</h3><p>GruntやGulpを使って変換したいですか？<a href=https://github.com/1000ch/grunt-cwebp>grunt-cwebp</a>と<a href=https://github.com/1000ch/gulp-cwebp>gulp-cwebp</a>もnpmから入手可能です。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ npm install grunt-cwebp
 $ npm install gulp-cwebp
-</code></pre>
-
-<h3 id="webponize">WebPonize</h3>
-
-<p><a href="https://webponize.github.io/">WebPonize</a>はPNGやJPEG画像をWebPへ変換するMac OS X用のアプリケーションです。もしあなたがOS X Yosemiteを使っていれば、<a href="http://bit.ly/webponize">ダウンロード</a>して簡単に使うことが出来ます。画像をドラッグ＆ドロップするだけです！</p>
-
-<p><img src="/img/posts/2015/introduction-to-webp/webponize.jpg" alt="" /></p>
-
-<p>WebPonizeはまだ <strong>アルファバージョン</strong> です。皆さんの<a href="https://github.com/1000ch/webponize/issues/new">フィードバック</a>をお待ちしています！</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fintroduction-to-webp.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fintroduction-to-webp.html&text=%e3%80%90%e7%bf%bb%e8%a8%b3%e3%80%91Introduction%20to%20WebP" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2015/webponize-is-released.html">👈 WebPonizeをリリースした</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2015/we-should-optimize-images.html">【翻訳】We should optimize images 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+</code></pre></div><h3 id=webponize>WebPonize</h3><p><a href=https://webponize.github.io/>WebPonize</a>はPNGやJPEG画像をWebPへ変換するMac OS X用のアプリケーションです。もしあなたがOS X Yosemiteを使っていれば、<a href=http://bit.ly/webponize>ダウンロード</a>して簡単に使うことが出来ます。画像をドラッグ＆ドロップするだけです！</p><p><img src=/img/posts/2015/introduction-to-webp/webponize.jpg alt></p><p>WebPonizeはまだ <strong>アルファバージョン</strong> です。皆さんの<a href=https://github.com/1000ch/webponize/issues/new>フィードバック</a>をお待ちしています！</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fintroduction-to-webp.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fintroduction-to-webp.html&text=%e3%80%90%e7%bf%bb%e8%a8%b3%e3%80%91Introduction%20to%20WebP" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2015/webponize-is-released.html>👈 WebPonizeをリリースした</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2015/we-should-optimize-images.html>【翻訳】We should optimize images 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -291,7 +41,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>

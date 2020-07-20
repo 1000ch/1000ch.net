@@ -1,219 +1,25 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>FlexboxでCSSのグリッドフレームワークの再発明 - EagleLand</title>
-
-<link rel="icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.png">
-<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
-<link rel="stylesheet" href="/css/font.css">
-<link rel="stylesheet" href="/css/settings.css">
-<link rel="stylesheet" href="/css/tools.css">
-<link rel="stylesheet" href="/css/generic.css">
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/css/objects.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/trumps.css">
-<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-
-<meta name="author" content="Shogo Sensui">
-<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-
-
-  
-    <meta property="og:description" content="FlexboxでCSSのグリッドフレームワークの再発明 GrdというFlexboxを使ったCSSグリッドフレームワークを使った。Flexboxで実装しているグリッドフレームワークは既にたくさんあるし、何かに困ったからというわけでもなく、 もし自分が実装したらどうなるかなー くらいのノリで作った。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>FlexboxでCSSのグリッドフレームワークの再発明 - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="FlexboxでCSSのグリッドフレームワークの再発明 GrdというFlexboxを使ったCSSグリッドフレームワークを使った。Flexboxで実装しているグリッドフレームワークは既にたくさんあるし、何かに困ったからというわけでもなく、 もし自分が実装したらどうなるかなー くらいのノリで作った。
 将来的にはdisplay: grid;があったりするけど、多機能な分、使い方が少し複雑である。なので、これはこれで需要があるかもしれないし、ないかもしれない。使い方は1000ch/grdのREADMEを参照のこと。
 セレクタの命名規則の経緯（余談） しばし悩んだが、最終的に-modifierというハイフン1つをプレフィックスにした命名に落ち着いた。modifierと言うだけでBEM感が出るの、どうしようもない。
 --modifier BEMの影響で --で始まるセレクタをmodifierと理解しやすい というのが一番の理由で、開発当初はこれだった。スペック的にはダメだがモダンブラウザ達は--で始まってても一応解釈してくれるので、これでもいいかみたいな。が、カスタムプロパティ周りとバッティングしても微妙かと思い直し、再考し始める。
 Class--modifier BEMの影響で一般的にすらなりつつある(?)、ベースクラスをプレフィックスとしてハイフン2つで繋ぐスタイル。
-&lt;div class=&quot;Grid Grid--left&quot;&gt; &lt;div class=&quot;Cell Cell--2of12&quot;&gt;&lt;/div&gt; &lt;div class=&quot;Cell Cell--2of12&quot;&gt;&lt;/div&gt; &lt;div class=&quot;Cell Cell--8of12&quot;&gt;&lt;/div&gt; &lt;/div&gt;  ベースクラスがどれかを容易に連想できてわかりやすいが、少し冗長かなという。
+<div class=&#34;Grid Grid--left&#34;> <div class=&#34;Cell Cell--2of12&#34;></div> <div class=&#34;Cell Cell--2of12&#34;></div> <div class=&#34;Cell Cell--8of12&#34;></div> </div> ベースクラスがどれかを容易に連想できてわかりやすいが、少し冗長かなという。
 あとは、Grid--leftやCell--8of12のように単一クラスで成立するようにするアイデアもある。最初はこれは一番シンプルかと思っていたが、共有するスタイルが全てのベースクラスに書かれるので無駄が多い。どちらにも対応可能なように基底となるルール群は:rootにルールを切り出して、postcss-applyで変換するようにしている。
 CSS @apply Ruleが現実味を帯びれば、PostCSSナシで出来るようになってとても良い。もし帯びれば、の話だが。
-modifier グリッド上のセルを右寄せにする--rightというmodifierがあるが、これをrightと書くのは流石に攻め過ぎかなと自重した。あるいはpull-rightのようにルールセットの意図をより表現するセレクタにする案もあるが、冗長になりそう&#43;綺麗な命名が浮かばなかったのでボツになった。
+modifier グリッド上のセルを右寄せにする--rightというmodifierがあるが、これをrightと書くのは流石に攻め過ぎかなと自重した。あるいはpull-rightのようにルールセットの意図をより表現するセレクタにする案もあるが、冗長になりそう+綺麗な命名が浮かばなかったのでボツになった。
 __modifier BEMの影響で要素感が凄くてボツになった。スペック的にも問題ないし、エディタ上でダブルクリックして選択できるし、案外良い気がしているが。
--modifier modifierぽさが無くなっている気もするけど、これは個人の感想というかBEMの認知度に左右される話だし、プロジェクトのクラスと上書きし合う可能性も低いはずだし、出たアイデアの中で違和感が最も少なかったのでこれに着地した。">
-  
-
-  
-    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-    <meta name="twitter:card" content="summary">
-  
-
-
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2016/flexbox-grid.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="FlexboxでCSSのグリッドフレームワークの再発明">
-
-<meta name="twitter:site" content="@1000ch">
-<meta name="twitter:url" content="https://1000ch.net/posts/2016/flexbox-grid.html">
-<meta name="twitter:title" content="FlexboxでCSSのグリッドフレームワークの再発明">
-
-<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49530352-1', '1000ch.net');
-  ga('send', 'pageview');
-</script>
-
-  </head>
-  <body>
-    <div class="Container">
-      <header class="Header">
-  <h1 class="Header__Title">
-    <a href="/">EagleLand</a>
-  </h1>
-  <nav class="Header__Menu">
-    <div class="Header__MenuItem">
-      <img src="/img/rss.svg" alt="">
-      <a href="/rss.xml">RSS</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/heart.svg" alt="">
-      <a href="https://shogosensui.com">Activity</a>
-    </div>
-    <div class="Header__MenuItem">
-      <img src="/img/facebook.svg" alt="">
-      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
-    </div>
-  </nav>
-</header>
-
-      <main class="Main">
-        <span class="Label Label--gray pull-left">2016.03.16</span>
-
-        
-
-<h1 id="flexboxでcssのグリッドフレームワークの再発明">FlexboxでCSSのグリッドフレームワークの再発明</h1>
-
-<p><a href="http://1000ch.github.io/grd/">Grd</a>というFlexboxを使ったCSSグリッドフレームワークを使った。Flexboxで実装しているグリッドフレームワークは既にたくさんあるし、何かに困ったからというわけでもなく、 <strong>もし自分が実装したらどうなるかなー</strong> くらいのノリで作った。</p>
-
-<p><img src="/img/posts/2016/flexbox-grid/logo.png" alt="Grd" /></p>
-
-<p><a href="/posts/2016/display-grid.html">将来的には<code>display: grid;</code>があったりする</a>けど、多機能な分、使い方が少し複雑である。なので、これはこれで需要があるかもしれないし、ないかもしれない。使い方は<a href="https://github.com/1000ch/grd">1000ch/grd</a>のREADMEを参照のこと。</p>
-
-<h2 id="セレクタの命名規則の経緯-余談">セレクタの命名規則の経緯（余談）</h2>
-
-<p>しばし悩んだが、最終的に<code>-modifier</code>というハイフン1つをプレフィックスにした命名に落ち着いた。<code>modifier</code>と言うだけでBEM感が出るの、どうしようもない。</p>
-
-<h3 id="modifier"><code>--modifier</code></h3>
-
-<p>BEMの影響で <strong><code>--</code>で始まるセレクタをmodifierと理解しやすい</strong> というのが一番の理由で、開発当初はこれだった。<a href="https://www.w3.org/TR/CSS21/syndata.html#characters">スペック的にはダメ</a>だがモダンブラウザ達は<code>--</code>で始まってても一応解釈してくれるので、これでもいいかみたいな。が、カスタムプロパティ周りとバッティングしても微妙かと思い直し、再考し始める。</p>
-
-<h3 id="class-modifier"><code>Class--modifier</code></h3>
-
-<p>BEMの影響で一般的にすらなりつつある(?)、ベースクラスをプレフィックスとしてハイフン2つで繋ぐスタイル。</p>
-
-<pre><code class="language-html">&lt;div class=&quot;Grid Grid--left&quot;&gt;
-  &lt;div class=&quot;Cell Cell--2of12&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;Cell Cell--2of12&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;Cell Cell--8of12&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>ベースクラスがどれかを容易に連想できてわかりやすいが、少し冗長かなという。</p>
-
-<p>あとは、<code>Grid--left</code>や<code>Cell--8of12</code>のように単一クラスで成立するようにするアイデアもある。最初はこれは一番シンプルかと思っていたが、共有するスタイルが全てのベースクラスに書かれるので無駄が多い。どちらにも対応可能なように基底となるルール群は<code>:root</code>にルールを切り出して、<a href="https://github.com/pascalduez/postcss-apply">postcss-apply</a>で変換するようにしている。</p>
-
-<p><a href="http://tabatkins.github.io/specs/css-apply-rule/">CSS @apply Rule</a>が現実味を帯びれば、PostCSSナシで出来るようになってとても良い。もし帯びれば、の話だが。</p>
-
-<h3 id="modifier-1"><code>modifier</code></h3>
-
-<p>グリッド上のセルを右寄せにする<code>--right</code>というmodifierがあるが、これを<code>right</code>と書くのは流石に攻め過ぎかなと自重した。あるいは<code>pull-right</code>のようにルールセットの意図をより表現するセレクタにする案もあるが、冗長になりそう+綺麗な命名が浮かばなかったのでボツになった。</p>
-
-<h3 id="modifier-2"><code>__modifier</code></h3>
-
-<p>BEMの影響で要素感が凄くてボツになった。スペック的にも問題ないし、エディタ上でダブルクリックして選択できるし、案外良い気がしているが。</p>
-
-<h3 id="modifier-3"><code>-modifier</code></h3>
-
-<p>modifierぽさが無くなっている気もするけど、これは個人の感想というかBEMの認知度に左右される話だし、プロジェクトのクラスと上書きし合う可能性も低いはずだし、出たアイデアの中で違和感が最も少なかったのでこれに着地した。</p>
-
-        <aside class="Share">
-  <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fflexbox-grid.html" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fflexbox-grid.html&text=Flexbox%e3%81%a7CSS%e3%81%ae%e3%82%b0%e3%83%aa%e3%83%83%e3%83%89%e3%83%95%e3%83%ac%e3%83%bc%e3%83%a0%e3%83%af%e3%83%bc%e3%82%af%e3%81%ae%e5%86%8d%e7%99%ba%e6%98%8e" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
-  </div>
-</aside>
-
-<nav class="Pager">
-  
-    <div class="Pager__Item Pager__Item--left">
-      <a href="/posts/2016/display-grid.html">👈 CSS Grid Layout Moduleについて調べたメモ</a>
-    </div>
-  
-
-  
-    <div class="Pager__Item Pager__Item--right">
-      <a href="/posts/2016/qcy-qy8.html">QCY QY8 ワイヤレスイヤホン 👉</a>
-    </div>
-  
-</nav>
-
-      </main>
-      <aside class="Aside">
-  <h1>Author</h1>
-  <div class="Media">
-    <picture>
-      <source srcset="/img/1000ch.webp" type="image/webp">
-      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
-    </picture>
-    <div class="Media__Body">
-      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
-      <p>
-        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
-      </p>
-    </div>
-  </div>
-</aside>
-
-      <footer class="Footer">
-  <div class="Banner">
-    <div class="Banner__Item">
-      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
-        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
-        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
-      </a>
-    </div>
-    <div class="Banner__Item">
-      <form action="https://duckduckgo.com/" role="search">
-        <input name="sites" type="hidden" value="1000ch.net">
-        <input name="q" type="search">
-        <input type="submit" value="Search">
-      </form>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script defer src="https://platform.twitter.com/widgets.js"></script>
-<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
-<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-<script type="module">
+-modifier modifierぽさが無くなっている気もするけど、これは個人の感想というかBEMの認知度に左右される話だし、プロジェクトのクラスと上書きし合う可能性も低いはずだし、出たアイデアの中で違和感が最も少なかったのでこれに着地した。"><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/flexbox-grid.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="FlexboxでCSSのグリッドフレームワークの再発明"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/flexbox-grid.html"><meta name=twitter:title content="FlexboxでCSSのグリッドフレームワークの再発明"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2016.03.16</span><h1 id=flexboxでcssのグリッドフレームワークの再発明>FlexboxでCSSのグリッドフレームワークの再発明</h1><p><a href=http://1000ch.github.io/grd/>Grd</a>というFlexboxを使ったCSSグリッドフレームワークを使った。Flexboxで実装しているグリッドフレームワークは既にたくさんあるし、何かに困ったからというわけでもなく、 <strong>もし自分が実装したらどうなるかなー</strong> くらいのノリで作った。</p><p><img src=/img/posts/2016/flexbox-grid/logo.png alt=Grd></p><p><a href=/posts/2016/display-grid.html>将来的には<code>display: grid;</code>があったりする</a>けど、多機能な分、使い方が少し複雑である。なので、これはこれで需要があるかもしれないし、ないかもしれない。使い方は<a href=https://github.com/1000ch/grd>1000ch/grd</a>のREADMEを参照のこと。</p><h2 id=セレクタの命名規則の経緯余談>セレクタの命名規則の経緯（余談）</h2><p>しばし悩んだが、最終的に<code>-modifier</code>というハイフン1つをプレフィックスにした命名に落ち着いた。<code>modifier</code>と言うだけでBEM感が出るの、どうしようもない。</p><h3 id=--modifier><code>--modifier</code></h3><p>BEMの影響で <strong><code>--</code>で始まるセレクタをmodifierと理解しやすい</strong> というのが一番の理由で、開発当初はこれだった。<a href=https://www.w3.org/TR/CSS21/syndata.html#characters>スペック的にはダメ</a>だがモダンブラウザ達は<code>--</code>で始まってても一応解釈してくれるので、これでもいいかみたいな。が、カスタムプロパティ周りとバッティングしても微妙かと思い直し、再考し始める。</p><h3 id=class--modifier><code>Class--modifier</code></h3><p>BEMの影響で一般的にすらなりつつある(?)、ベースクラスをプレフィックスとしてハイフン2つで繋ぐスタイル。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Grid Grid--left&#34;</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Cell Cell--2of12&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Cell Cell--2of12&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Cell Cell--8of12&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>div</span>&gt;
+</code></pre></div><p>ベースクラスがどれかを容易に連想できてわかりやすいが、少し冗長かなという。</p><p>あとは、<code>Grid--left</code>や<code>Cell--8of12</code>のように単一クラスで成立するようにするアイデアもある。最初はこれは一番シンプルかと思っていたが、共有するスタイルが全てのベースクラスに書かれるので無駄が多い。どちらにも対応可能なように基底となるルール群は<code>:root</code>にルールを切り出して、<a href=https://github.com/pascalduez/postcss-apply>postcss-apply</a>で変換するようにしている。</p><p><a href=http://tabatkins.github.io/specs/css-apply-rule/>CSS @apply Rule</a>が現実味を帯びれば、PostCSSナシで出来るようになってとても良い。もし帯びれば、の話だが。</p><h3 id=modifier><code>modifier</code></h3><p>グリッド上のセルを右寄せにする<code>--right</code>というmodifierがあるが、これを<code>right</code>と書くのは流石に攻め過ぎかなと自重した。あるいは<code>pull-right</code>のようにルールセットの意図をより表現するセレクタにする案もあるが、冗長になりそう+綺麗な命名が浮かばなかったのでボツになった。</p><h3 id=__modifier><code>__modifier</code></h3><p>BEMの影響で要素感が凄くてボツになった。スペック的にも問題ないし、エディタ上でダブルクリックして選択できるし、案外良い気がしているが。</p><h3 id=-modifier><code>-modifier</code></h3><p>modifierぽさが無くなっている気もするけど、これは個人の感想というかBEMの認知度に左右される話だし、プロジェクトのクラスと上書きし合う可能性も低いはずだし、出たアイデアの中で違和感が最も少なかったのでこれに着地した。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fflexbox-grid.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fflexbox-grid.html&text=Flexbox%e3%81%a7CSS%e3%81%ae%e3%82%b0%e3%83%aa%e3%83%83%e3%83%89%e3%83%95%e3%83%ac%e3%83%bc%e3%83%a0%e3%83%af%e3%83%bc%e3%82%af%e3%81%ae%e5%86%8d%e7%99%ba%e6%98%8e" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2016/display-grid.html>👈 CSS Grid Layout Moduleについて調べたメモ</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2016/qcy-qy8.html>QCY QY8 ワイヤレスイヤホン 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
+<source srcset=/img/1000ch.webp type=image/webp><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><a href=https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml target=_blank><img src=https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png alt="follow me on feedly" width=71 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+<input name=q type=search>
+<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://assets.codepen.io/assets/embed/ei.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js></script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -227,7 +33,4 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script>
-
-  </body>
-</html>
+</script></body></html>
