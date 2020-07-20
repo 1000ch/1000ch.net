@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Web Components を本番投入する（2018年春） - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="Web Components を本番投入する（2018年春） とあるプロジェクトの技術監修をして、大まかに Web Components &#43; Payment Request API な構成で進めてみたのでその話を思い出しながら書く。ちなみに FRESH! ではないです。
+決済基盤をサービスで使うための SDK Payment Request API でお察しの通り、新たな決済基盤のプロジェクトで、それを使うための SDK を読み込んでボタンを配置すれば決済できる…みたいなものを作った。Payment Request API は、対応している環境ではそれで、対応していない環境では旧来の通り決済代行業者が用意しているフォーム付きページへ遷移させるという形でビジネスサイドへ提案した。
+技術面に関しても、FRESH! で導入済みだったこともあり、いざとなればサポートできるという意味で心配はあまりないつもりだった。実際には iOS Chrome の Payment Request API 実装に幾つかバグがあったり、決済代行業者との通信時にデータを指定のフォーマットで暗号化しなければいけなかったりと、いくつか地雷は踏みぬいたが…。
+ 806272 - Cannot type sonant mark (Japanese) on any input area of Payment Request API dialog - chromium - Monorail 806666 - Total amount validation is wrong on Payment Request API - chromium - Monorail  ボタンを Web Components で配布したい 配布したい機能を含む JavaScript と CSS をロードさせて使ってもらう、昔ながらの形ではなく、Web Components で定義し配布させることにした。">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2018/webcomponents-in-production.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Web Components を本番投入する（2018年春）">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2018/webcomponents-in-production.html">
+<meta name="twitter:title" content="Web Components を本番投入する（2018年春）">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2018.02.16</span>
+
+        
+
+<h1 id="web-components-を本番投入する-2018年春">Web Components を本番投入する（2018年春）</h1>
+
+<p>とあるプロジェクトの技術監修をして、大まかに Web Components + Payment Request API な構成で進めてみたのでその話を思い出しながら書く。ちなみに FRESH! ではないです。</p>
+
+<h2 id="決済基盤をサービスで使うための-sdk">決済基盤をサービスで使うための SDK</h2>
+
+<p>Payment Request API でお察しの通り、新たな決済基盤のプロジェクトで、それを使うための SDK を読み込んでボタンを配置すれば決済できる…みたいなものを作った。Payment Request API は、対応している環境ではそれで、対応していない環境では旧来の通り決済代行業者が用意しているフォーム付きページへ遷移させるという形でビジネスサイドへ提案した。</p>
+
+<p>技術面に関しても、FRESH! で導入済みだったこともあり、いざとなればサポートできるという意味で心配はあまりないつもりだった。実際には iOS Chrome の Payment Request API 実装に幾つかバグがあったり、決済代行業者との通信時にデータを指定のフォーマットで暗号化しなければいけなかったりと、いくつか地雷は踏みぬいたが…。</p>
+
+<ul>
+<li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=806272">806272 - Cannot type sonant mark (Japanese) on any input area of Payment Request API dialog - chromium - Monorail</a></li>
+<li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=806666">806666 - Total amount validation is wrong on Payment Request API - chromium - Monorail</a></li>
+</ul>
+
+<h2 id="ボタンを-web-components-で配布したい">ボタンを Web Components で配布したい</h2>
+
+<p>配布したい機能を含む JavaScript と CSS をロードさせて使ってもらう、昔ながらの形ではなく、Web Components で定義し配布させることにした。</p>
+
+<ul>
+<li><code>&lt;pay-button&gt;購入する&lt;/pay-button&gt;</code> で機能を提供でき、わかりやすい</li>
+<li>ロードした JavaScript や CSS が Shadow DOM に閉じるので、グローバル空間を汚さない</li>
+</ul>
+
+<p>サービスを丸々 Web Components で構成するとなると大掛かりだが、範囲としてはまずまず小さく、おあつらえ向きだったと言える。2016年末に Safari が Custom Elements v1 と Shadow DOM v1 をサポートしたあたりからモバイル Web ならネイティブで使えることは何度か言ってきたが、2018年末ではサポート環境が更に充実してきた。モダンブラウザでは Firefox が <a href="https://caniuse.com/#feat=custom-elementsv1">v59 で Custom Elements v1 をサポートし</a>、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1205323">Shadow DOM v1 も v59 か v60 に間に合わせたい</a>様子。</p>
+
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="en" dir="ltr">Happy to say that support for Custom Elements and Shadow DOM is coming to Gecko in the Firefox 59/60 time frame. Web Components FTW! 🦎🚀</p>&mdash; Andreas Bovens (@andreasbovens) <a href="https://twitter.com/andreasbovens/status/935870321386754048?ref_src=twsrc%5Etfw">2017年11月29日</a></blockquote>
+
+<p>IE11 は仕方ないとして、残すところは Edge のみとなった。これらの非対応ブラウザでも動いてもらうために、 <a href="https://github.com/webcomponents/webcomponentsjs">webcomponents/webcomponentsjs</a> をロードさせる。Shadow DOM の振る舞いを完全にはエミュレートできず、具体的には、Shadow DOM にぶら下がる予定の <code>&lt;style&gt;</code> などが Light DOM にむき出しになるので、読み込んだ先でクラス名が衝突しないようにある程度のケアは必要である。</p>
+
+<h2 id="es-modules-でロードしてもらう">ES Modules でロードしてもらう</h2>
+
+<p>Web Components で作ったコンポーネントを ES Modules とそのフォールバックでロードしてもらう。</p>
+
+<pre><code class="language-html">&lt;pay-button&gt;購入する&lt;/pay-button&gt;
+&lt;script nomodule src=&quot;polyfill.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot; src=&quot;sdk.js&quot;&gt;&lt;/script&gt;
+&lt;script nomodule src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>これで、ES Modules に対応しているブラウザは <code>sdk.js</code> をロードし、内部の <code>import</code> や <code>export</code> もブラウザネイティブで解決する。対応していないブラウザ向けには、<code>sdk.js</code> をエントリポイントにして依存モジュールをまとめた <code>bundle.js</code> を、 <code>nomodule</code> 属性付きの <code>&lt;script&gt;</code> 要素でロードする。</p>
+
+<p>バンドルには <a href="https://github.com/rollup/rollup">rollup/rollup</a> を、トランスパイルには <a href="https://github.com/babel/babel">babel/babel</a> を使った（ここでも地雷はいくつかあったが、単なる rollup.config.js の書き方の話なので割愛する）。Edge 向けのトランスパイルはある程度省いても良いはずだが、IE11 とエントリポイントとなるファイルが分かれるより、一律トランスパイルして単純化する。どのスペックについても中長期的に Edge のサポートを期待できるので、バンドルもトランスパイルもされていない <code>sdk.js</code> 側を ES Modules をロードしてくれる日が来るはずである。「ES Modules はサポートしたけど、あのシンタックスをサポートしていない」みたいな状況になって部分的にトランスパイルする、などの微調整は要るかもしれないが。</p>
+
+<h2 id="導入する側でのボタン-ui-のカスタマイズ">導入する側でのボタン UI のカスタマイズ</h2>
+
+<p>SDK 側でカスタマイズされたくない、あるいはしても良いというレギュレーションはさておき、Shadow DOM 内部のスタイルも closed な Shadow DOM でない限り上書きできる。仮にボタンの UI を上書きできないとしても、JavaScript のメソッドを直接実行すれば機能を使える。</p>
+
+<pre><code class="language-javascript">import PayButton from './pay-button.js';
+
+// window に宣言する
+window.PayButton = PayButton;
+
+// &lt;pay-button&gt; 要素を宣言する
+customElements.define('pay-button', PayButton);
+
+// PayButton クラスを命令的に使う
+const payButton = new PayButton();
+payButton.foo = '...';
+payButton.pay();
+</code></pre>
+
+<p>なので、ボタンの <code>click</code> イベントで実行すれば、提供している UI は自由である。</p>
+
+<pre><code class="language-javascript">// 望ましくない？
+export default class Component extends React.Component {
+  onClick() {
+    // window.PayButton を命令的に使う
+    const payButton = new PayButton();
+    payButton.foo = this.props.foo;
+    payButton.pay();
+  }
+
+  render() {
+    return &lt;button onClick={this.onClick}&gt;購入する&lt;/button&gt;;
+  }
+}
+</code></pre>
+
+<p>が、これだと Web Components もへったくれもない使い方ではあるので、次のように宣言的に使って欲しい所ではある（使って欲しいというか、Web Components の流儀はこういうものだと解釈している）。</p>
+
+<pre><code class="language-javascript">// 望ましい
+export default class Component extends React.Component {
+  render() {
+    return &lt;pay-button foo={this.props.foo}&gt;購入する&lt;/pay-button&gt;;
+  }
+}
+</code></pre>
+
+<p>こうした他のライブラリとの共存については、<a href="https://qiita.com/mizchi/items/053f5b42a6d0902e9412">JSフレームワークの末端がWebComponentsになるのか、なれるのか、検証してみた</a> という記事を最近見かけた。JSX は結局 JavaScript の世界なので、HTML と JavaScript でやり取りをしようとした時にどうしてもモヤモヤは残る。</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fwebcomponents-in-production.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fwebcomponents-in-production.html&text=Web%20Components%20%e3%82%92%e6%9c%ac%e7%95%aa%e6%8a%95%e5%85%a5%e3%81%99%e3%82%8b%ef%bc%882018%e5%b9%b4%e6%98%a5%ef%bc%89" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2018/inside-frontend-vol2.html">👈 Inside Frontend vol2の感想</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2018/leave-cyberagent.html">2018年2月28日 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

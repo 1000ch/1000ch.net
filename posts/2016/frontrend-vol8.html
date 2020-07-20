@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Frontrend Vol.8でResource Hintsの話をした - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content=" Frontrend Vol.8でResource Hintsの話をした ファイナルを謳った Frontrend Conference を開催した2015年2月21日からしばらくぶりの Frontrend Vol.8 を開催した。およそ1年8ヶ月の充電期間を経て復活した Frontrend には約100名の参加者にご来場頂き、アンケートの結果もまずまずで、主催側としてはやや安心。
+Introduction to Resource Hints Resource Hints について発表したので資料を載せておく。
+#frontrend 長引きましたすみません 🙏 発表資料です / &quot;Introduction to Resource Hints&quot; https://t.co/aWOfplZGCQ
+&mdash; 煎茶 (@1000ch) 2016年12月5日  そして connpass にもイベント資料一覧なるページがあるのを知った。これは良い。
+観測している感想ブログ 今回の Frontrend には、参加枠として ブログ絶対に書くマン枠 というものが3席あったこともあり、参加レポートブログをチラホラ見かける。
+ Frontrend Vol.8 - 帰ってきたフロントレンド に行ってきたメモ #frontrend Frontrend Vol.8 - 帰ってきたフロントレンド 行ってきたメモ frontrend vol.8 へ行ってみた人の戯言 CA主催『Frontrend』に行ってきた話 「Frontrend Vol.8 - 帰ってきたフロントレンド」開催レポート  ">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2016/frontrend-vol8.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Frontrend Vol.8でResource Hintsの話をした">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2016/frontrend-vol8.html">
+<meta name="twitter:title" content="Frontrend Vol.8でResource Hintsの話をした">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2016.12.08</span>
+
+        
+
+<h1 id="frontrend-vol-8でresource-hintsの話をした">Frontrend Vol.8でResource Hintsの話をした</h1>
+
+<p>ファイナルを謳った Frontrend Conference を開催した2015年2月21日からしばらくぶりの <a href="https://frontrend.connpass.com/event/45238/">Frontrend Vol.8</a> を開催した。およそ1年8ヶ月の充電期間を経て復活した Frontrend には約100名の参加者にご来場頂き、アンケートの結果もまずまずで、主催側としてはやや安心。</p>
+
+<h2 id="introduction-to-resource-hints">Introduction to Resource Hints</h2>
+
+<p>Resource Hints について発表したので資料を載せておく。</p>
+
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/frontrend?src=hash">#frontrend</a> 長引きましたすみません 🙏 発表資料です / &quot;Introduction to Resource Hints&quot; <a href="https://t.co/aWOfplZGCQ">https://t.co/aWOfplZGCQ</a></p>&mdash; 煎茶 (@1000ch) <a href="https://twitter.com/1000ch/status/805732943414968320">2016年12月5日</a></blockquote>
+
+<script async class="speakerdeck-embed" data-id="f6ff8bb9ea184fc8852b35215521ee34" data-ratio="1.6" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>そして connpass にも<a href="https://frontrend.connpass.com/event/45238/presentation/">イベント資料一覧なるページ</a>があるのを知った。これは良い。</p>
+
+<h2 id="観測している感想ブログ">観測している感想ブログ</h2>
+
+<p>今回の Frontrend には、参加枠として <strong>ブログ絶対に書くマン枠</strong> というものが3席あったこともあり、参加レポートブログをチラホラ見かける。</p>
+
+<ul>
+<li><a href="http://lealog.hateblo.jp/entry/2016/12/05/210250">Frontrend Vol.8 - 帰ってきたフロントレンド に行ってきたメモ #frontrend</a></li>
+<li><a href="http://honmarkhunt.hatenablog.com/entry/2016/12/05/222759">Frontrend Vol.8 - 帰ってきたフロントレンド 行ってきたメモ</a></li>
+<li><a href="http://qiita.com/monpy/items/0b5076c6793de53f5d93">frontrend vol.8 へ行ってみた人の戯言</a></li>
+<li><a href="http://lineblog.me/derakara5/archives/61594.html">CA主催『Frontrend』に行ってきた話</a></li>
+<li><a href="http://gihyo.jp/news/report/2016/12/0901">「Frontrend Vol.8 - 帰ってきたフロントレンド」開催レポート</a></li>
+</ul>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2ffrontrend-vol8.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2ffrontrend-vol8.html&text=Frontrend%20Vol.8%e3%81%a7Resource%20Hints%e3%81%ae%e8%a9%b1%e3%82%92%e3%81%97%e3%81%9f" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2016/esa-app.html">👈 esaをElectronでラップしてアプリにした</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2016/apple-watch-series-2.html">Apple WatchでApple Payを便利に使っている話 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

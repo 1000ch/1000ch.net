@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>linkのrelの種類と効能等 - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="linkのrelの種類と効能等 Web Componentsの流れでHTMLImportsをよく見るようになったり、パフォーマンス周りでプリフェッチ系の属性が&lt;link&gt;で指定するようになったりしている今日この頃。気になったのでW3Cの Links in HTML documents を眺めたメモ。
+ Links in HTML documents  そもそもリンクとは一体何なのか？ Webにおけるリンクは、&lt;a&gt;と&lt;link&gt;の2種類がある。それらには、 Webのあらゆるリソースの場所 を示す役割が与えられている。つまり、hrefで指定しているURLがそれにあたる。そのURLの振る舞いの種類については、relやrevで記述する、と。revって削除されるんだっけ？
+&lt;img&gt;や&lt;form&gt;といったように、リソースへのリンクはその他のHTML要素でも行う。が、&lt;link&gt;についてはドキュメントの&lt;head&gt;にだけ記述し描画されず、&lt;a&gt;はドキュメントの&lt;body&gt;にのみ現れる。
+気になるrelの種類 relに指定するのは リンク元から見たリンク先の種別 。だから、利用シーンをあまり見ないけど、&lt;a&gt;でもrelは指定可能である。
+ 6.12 Link types HTML4.01のRecommendation 4.8 Links — HTML5 HTML5のCandidate Recommendation  HTML5の方を列挙してみる。
+   種類 &lt;link&gt; &lt;a&gt; &amp; &lt;area&gt; 説明     alternate Hyperlink Hyperlink 代替となるドキュメントを指定する。   author Hyperlink Hyperlink ドキュメントや記事の著者へのリンクを指定する。   bookmark not allowed Hyperlink 最も近い先祖セクションへのパーマリンクを指定する。   help Hyperlink Hyperlink ドキュメントに対するヘルプへのリンクを指定する。   icon External Resource not allowed 現在のドキュメントを代理するアイコンをインポートする。   license Hyperlink Hyperlink 現在のドキュメントのライセンスを説明するドキュメントを指定する。   next Hyperlink Hyperlink 現在のドキュメントはシリーズの一部であることを示し、連続する次のドキュメントを指定する。   nofollow not allowed Annotation 現在のドキュメントのオリジナルの著者や発行者が参照されたドキュメントを支持しないことを示す。   noreferrer not allowed Annotation ハイパーリンクに飛ぶ際、HTTPリファラを送信しないことを要求する。   prefetch External Resource External Resource 先行してキャッシュされるべきリソースを指定する。   prev Hyperlink Hyperlink 現在のドキュメントはシリーズの一部であることを示し、連続する前のドキュメントを指定する。   search Hyperlink Hyperlink 現在のドキュメントや関連するページを探すためのリソースへのリンクを指定する。   stylesheet External Resource not allowed スタイルシートのインポート。   tag not allowed Hyperlink 与えられたアドレスで特定されるタグを付与する。    &lt;link rel=&#39;dns-prefetch&#39; href=&#39;[URL]&#39;とかも対応ブラウザでは動くけど、ドラフトにもない。">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2014/html5-links-rel.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="linkのrelの種類と効能等">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2014/html5-links-rel.html">
+<meta name="twitter:title" content="linkのrelの種類と効能等">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2014.09.01</span>
+
+        
+
+<h1 id="linkのrelの種類と効能等">linkのrelの種類と効能等</h1>
+
+<p>Web Componentsの流れでHTMLImportsをよく見るようになったり、パフォーマンス周りでプリフェッチ系の属性が<code>&lt;link&gt;</code>で指定するようになったりしている今日この頃。気になったのでW3Cの <strong>Links in HTML documents</strong> を眺めたメモ。</p>
+
+<ul>
+<li><a href="http://www.w3.org/TR/html401/struct/links.html">Links in HTML documents</a></li>
+</ul>
+
+<h2 id="そもそもリンクとは一体何なのか">そもそもリンクとは一体何なのか？</h2>
+
+<p>Webにおけるリンクは、<code>&lt;a&gt;</code>と<code>&lt;link&gt;</code>の2種類がある。それらには、 <strong>Webのあらゆるリソースの場所</strong> を示す役割が与えられている。つまり、<code>href</code>で指定しているURLがそれにあたる。そのURLの振る舞いの種類については、<code>rel</code>や<code>rev</code>で記述する、と。<code>rev</code>って削除されるんだっけ？</p>
+
+<p><code>&lt;img&gt;</code>や<code>&lt;form&gt;</code>といったように、リソースへのリンクはその他のHTML要素でも行う。が、<code>&lt;link&gt;</code>についてはドキュメントの<code>&lt;head&gt;</code>にだけ記述し描画されず、<code>&lt;a&gt;</code>はドキュメントの<code>&lt;body&gt;</code>にのみ現れる。</p>
+
+<h2 id="気になる-rel-の種類">気になる<code>rel</code>の種類</h2>
+
+<p><code>rel</code>に指定するのは <strong>リンク元から見たリンク先の種別</strong> 。だから、利用シーンをあまり見ないけど、<code>&lt;a&gt;</code>でも<code>rel</code>は指定可能である。</p>
+
+<ul>
+<li><a href="http://www.w3.org/TR/html401/types.html#type-links">6.12 Link types</a> HTML4.01のRecommendation</li>
+<li><a href="http://www.w3.org/TR/html5/links.html">4.8 Links — HTML5</a> HTML5のCandidate Recommendation</li>
+</ul>
+
+<p>HTML5の方を列挙してみる。</p>
+
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th><a href="http://www.w3.org/TR/html5/document-metadata.html#the-link-element"><code>&lt;link&gt;</code></a></th>
+<th><a href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element"><code>&lt;a&gt;</code></a> &amp; <a href="http://www.w3.org/TR/html5/embedded-content-0.html#the-area-element"><code>&lt;area&gt;</code></a></th>
+<th>説明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#rel-alternate">alternate</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td>代替となるドキュメントを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-author">author</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td>ドキュメントや記事の著者へのリンクを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-bookmark">bookmark</a></td>
+<td><em>not allowed</em></td>
+<td>Hyperlink</td>
+<td>最も近い先祖セクションへのパーマリンクを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-help">help</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td>ドキュメントに対するヘルプへのリンクを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#rel-icon">icon</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#external-resource-link">External Resource</a></td>
+<td><em>not allowed</em></td>
+<td>現在のドキュメントを代理するアイコンをインポートする。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-license">license</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td>現在のドキュメントのライセンスを説明するドキュメントを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-next">next</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td>現在のドキュメントはシリーズの一部であることを示し、連続する次のドキュメントを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-nofollow">nofollow</a></td>
+<td><em>not allowed</em></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink-annotation">Annotation</a></td>
+<td>現在のドキュメントのオリジナルの著者や発行者が参照されたドキュメントを支持しないことを示す。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-noreferrer">noreferrer</a></td>
+<td><em>not allowed</em></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink-annotation">Annotation</a></td>
+<td>ハイパーリンクに飛ぶ際、HTTPリファラを送信しないことを要求する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-prefetch">prefetch</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#external-resource-link">External Resource</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#external-resource-link">External Resource</a></td>
+<td>先行してキャッシュされるべきリソースを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-prev">prev</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td>現在のドキュメントはシリーズの一部であることを示し、連続する前のドキュメントを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-search">search</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td>現在のドキュメントや関連するページを探すためのリソースへのリンクを指定する。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-stylesheet">stylesheet</a></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#external-resource-link">External Resource</a></td>
+<td><em>not allowed</em></td>
+<td>スタイルシートのインポート。</td>
+</tr>
+
+<tr>
+<td><a href="http://www.w3.org/TR/html5/links.html#link-type-tag">tag</a></td>
+<td><em>not allowed</em></td>
+<td><a href="http://www.w3.org/TR/html5/links.html#hyperlink">Hyperlink</a></td>
+<td>与えられたアドレスで特定されるタグを付与する。</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>&lt;link rel='dns-prefetch' href='[URL]'</code>とかも対応ブラウザでは動くけど、ドラフトにもない。</p>
+
+<h2 id="html-imports">HTML Imports</h2>
+
+<p>先程の表には<code>&lt;link rel='import'&gt;</code>も含まれていない。これはまだワーキングドラフトだからだと思うけど、せっかくなので紹介。</p>
+
+<ul>
+<li><a href="http://www.w3.org/TR/html-imports/">HTML Imports</a></li>
+</ul>
+
+<blockquote>
+<p>To enable declaring imports in HTML, a new link type is added to HTML link types:
+The import keyword may be used with link elements. This keyword creates an external resource link to an import.
+The default type for resources given by the import keyword is text/html.
+The link element may have an async attribute. The async attribute is a boolean attribute.
+The appropriate time to obtain the resource is when the external resource link is created or when its element is inserted into a document, whichever happens last.</p>
+</blockquote>
+
+<p>ざっくり翻訳。</p>
+
+<blockquote>
+<p>HTMLにおける宣言的なインポートを可能にし、新たなリンクタイプとして追加される。
+importキーワードはlink要素に使われる。importキーワードによって外部リソースをインポートするリンクを作成する。
+importによって与えられるリソースのデフォルトの種別はtext/htmlである。
+link要素にはasync属性がある。async属性は真偽値である。
+指定されたリソースの獲得は、リンクが作成されたときかlink要素がドキュメントに追加されたタイミングで、いずれも最後に実行される。</p>
+</blockquote>
+
+<p>オチも見つからなかったわけだけど、せっかく一覧表まで組んだので記事にしてしまった。</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fhtml5-links-rel.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fhtml5-links-rel.html&text=link%e3%81%aerel%e3%81%ae%e7%a8%ae%e9%a1%9e%e3%81%a8%e5%8a%b9%e8%83%bd%e7%ad%89" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2014/web-components-and-html-imports.html">👈 Web ComponentsをHTML Importsでロードする必要性</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2014/reduce-http-requests-with-polymer-vulcanize.html">Vulcanizeで減らすHTML ImportsのHTTPリクエスト 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

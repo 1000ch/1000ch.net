@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CentOS 6系に対して行う最低限の設定 - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="CentOS 6系に対して行う最低限の設定 メモを掘り起こしたので、思い出すついでに記事にしてみる。VPSを借りて、ドメイン充ててみたり、ブログを置いてみたり、メールサーバー立ててみたりしていた当時（2年前）のメモなので、悪しからず。
+ユーザーの作成と、SSHのログイン周りに制限をかけている。もちろん、サーバーを大量に用意するようなWeb現場でこういった設定をコツコツやるなんてことはまず無いけど、前提知識で持っているべきものだとは思う。
+ので、chefだのansibleだのfabricだのについては触れていません。
+サーバーへのログイン sshコマンドの引数に、IPアドレスなりドメインなりのホスト名を渡してログインする。
+$ ssh [hostname]  ログインすると~/.ssh/known_hostに、ホスト名とRSA公開鍵のフィンガープリントが記録される。ので、その後、公開鍵を変更して同一のホストにログインしようとすると失敗する。その場合は、~/.ssh/known_hostの該当のホスト名が記録されている行を削除してからやると良い。
+ユーザーの作成 ログイン先のOSにrootではないユーザーを作成して、パスワードを設定する。
+ユーザーを追加 $ useradd [username]  ユーザーの有効期限とかグループとかログインシェルといったような設定はuseraddのオプションで可能なので、ググってみてください。
+パスワードを設定 $ passwd [username]  SSHログイン周りの設定 セキュリティを考慮して以下の2点を実施。sshdの設定を変更したいので/etc/ssh/sshd_configを編集。以下の修正をやったら、忘れずにデーモンの再起動をして変更を適用すること。
+# sshdの設定ファイルを編集 $ vim /etc/ssh/sshd_config # sshdを再起動 $ /etc/init.d/sshd restart  rootログインの拒否 もしrootでサーバーにログインされてしまうと大変なことになるのでやっておく。
+PermitRootLogin no  sshポートの変更 不正ログインのリスクを低減させる意味で、デフォルトのポートである22から変えるべくPortの値を変更。
+Port [portnumber]  ローカルの秘密鍵を利用してログインする設定 今回は、そのサーバー用のSSHキーを用意する。サーバーからログアウトしておく。
+SSHキーの作成 ローカルでSSHキーを作成。
+$ ssh-keygen -t rsa $ Enter file in which to save the key...: hoge_rsa  -tで指定しているのは鍵の種類。ファイル名はhoge_rsaとしている。すると~/.ssh配下にhoge_rsaとその公開鍵hoge_rsa.pubが作成されているはず。
+公開鍵をサーバーに登録する 先程作成した鍵ペアのうち、公開鍵をVPSに持っていてもらう。まず、サーバーにログインし、ホームディレクトリに.">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2015/centos-minimum-config.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="CentOS 6系に対して行う最低限の設定">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2015/centos-minimum-config.html">
+<meta name="twitter:title" content="CentOS 6系に対して行う最低限の設定">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2015.01.07</span>
+
+        
+
+<h1 id="centos-6系に対して行う最低限の設定">CentOS 6系に対して行う最低限の設定</h1>
+
+<p>メモを掘り起こしたので、思い出すついでに記事にしてみる。VPSを借りて、ドメイン充ててみたり、ブログを置いてみたり、メールサーバー立ててみたりしていた当時（2年前）のメモなので、悪しからず。</p>
+
+<p>ユーザーの作成と、SSHのログイン周りに制限をかけている。もちろん、サーバーを大量に用意するようなWeb現場でこういった設定をコツコツやるなんてことはまず無いけど、前提知識で持っているべきものだとは思う。</p>
+
+<p>ので、chefだのansibleだのfabricだのについては触れていません。</p>
+
+<h2 id="サーバーへのログイン">サーバーへのログイン</h2>
+
+<p>sshコマンドの引数に、IPアドレスなりドメインなりのホスト名を渡してログインする。</p>
+
+<pre><code class="language-bash">$ ssh [hostname]
+</code></pre>
+
+<p>ログインすると<code>~/.ssh/known_host</code>に、ホスト名とRSA公開鍵のフィンガープリントが記録される。ので、その後、公開鍵を変更して同一のホストにログインしようとすると失敗する。その場合は、<code>~/.ssh/known_host</code>の該当のホスト名が記録されている行を削除してからやると良い。</p>
+
+<h2 id="ユーザーの作成">ユーザーの作成</h2>
+
+<p>ログイン先のOSに<code>root</code>ではないユーザーを作成して、パスワードを設定する。</p>
+
+<h3 id="ユーザーを追加">ユーザーを追加</h3>
+
+<pre><code class="language-bash">$ useradd [username]
+</code></pre>
+
+<p>ユーザーの有効期限とかグループとかログインシェルといったような設定は<code>useradd</code>のオプションで可能なので、ググってみてください。</p>
+
+<h3 id="パスワードを設定">パスワードを設定</h3>
+
+<pre><code class="language-bash">$ passwd [username]
+</code></pre>
+
+<h2 id="sshログイン周りの設定">SSHログイン周りの設定</h2>
+
+<p>セキュリティを考慮して以下の2点を実施。<code>sshd</code>の設定を変更したいので<code>/etc/ssh/sshd_config</code>を編集。以下の修正をやったら、忘れずにデーモンの再起動をして変更を適用すること。</p>
+
+<pre><code class="language-bash"># sshdの設定ファイルを編集
+$ vim /etc/ssh/sshd_config
+
+# sshdを再起動
+$ /etc/init.d/sshd restart
+</code></pre>
+
+<h3 id="rootログインの拒否">rootログインの拒否</h3>
+
+<p>もし<code>root</code>でサーバーにログインされてしまうと大変なことになるのでやっておく。</p>
+
+<pre><code>PermitRootLogin no
+</code></pre>
+
+<h3 id="sshポートの変更">sshポートの変更</h3>
+
+<p>不正ログインのリスクを低減させる意味で、デフォルトのポートである<code>22</code>から変えるべく<code>Port</code>の値を変更。</p>
+
+<pre><code>Port [portnumber]
+</code></pre>
+
+<h2 id="ローカルの秘密鍵を利用してログインする設定">ローカルの秘密鍵を利用してログインする設定</h2>
+
+<p>今回は、そのサーバー用のSSHキーを用意する。サーバーからログアウトしておく。</p>
+
+<h3 id="sshキーの作成">SSHキーの作成</h3>
+
+<p>ローカルでSSHキーを作成。</p>
+
+<pre><code class="language-bash">$ ssh-keygen -t rsa
+$ Enter file in which to save the key...: hoge_rsa
+</code></pre>
+
+<p><code>-t</code>で指定しているのは鍵の種類。ファイル名は<code>hoge_rsa</code>としている。すると<code>~/.ssh</code>配下に<code>hoge_rsa</code>とその公開鍵<code>hoge_rsa.pub</code>が作成されているはず。</p>
+
+<h3 id="公開鍵をサーバーに登録する">公開鍵をサーバーに登録する</h3>
+
+<p>先程作成した鍵ペアのうち、公開鍵をVPSに持っていてもらう。まず、サーバーにログインし、ホームディレクトリに<code>.ssh</code>フォルダを作成。</p>
+
+<pre><code class="language-bash">$ cd ~
+$ mkdir .ssh
+$ chmod 700 .ssh
+</code></pre>
+
+<p>再びログアウトして、今度はローカルにある公開鍵<code>hoge_rsa.pub</code>をサーバーにコピー。先程の手順で<code>22</code>ポートではログイン不可になっているので、変更後のポート番号を指定する必要有り。</p>
+
+<pre><code class="language-bash">$ scp -P [portnumber] ~/.ssh/hoge_rsa.pub [username]@[hostname]:.
+</code></pre>
+
+<p>またまたサーバーにログインして、<code>scp</code>でコピーした公開鍵を<code>authorized_keys</code>に登録。</p>
+
+<pre><code class="language-bash">$ cat hoge_rsa.pub &gt; ~/.ssh/authorized_keys
+$ chmod 600 ~/.ssh/authorized_keys
+</code></pre>
+
+<p>これで公開鍵の登録自体はおしまい。後処理として、<code>authorized_keys</code>に登録が済んでいる公開鍵を削除して、<code>sshd</code>を再起動。</p>
+
+<pre><code class="language-bash">$ rm hoge_rsa.pub
+$ /etc/init.d/sshd restart
+</code></pre>
+
+<h3 id="実際に秘密鍵でログインする">実際に秘密鍵でログインする</h3>
+
+<p><code>ssh</code>の<code>-i</code>オプションで秘密鍵を指定。</p>
+
+<pre><code class="language-bash">$ ssh -p [portnumber] -i ~/.ssh/hoge_rsa [username]@[hostname]
+</code></pre>
+
+<h2 id="ファイアーウォール">ファイアーウォール</h2>
+
+<p><code>iptables</code>で最低限のファイヤーウォールを設定するべく、<code>/etc/sysconfig</code>配下の<code>iptables</code>ファイルを編集。なかったら作成。</p>
+
+<pre><code class="language-bash">$ cd /etc/sysconfig
+$ vim iptables
+</code></pre>
+
+<p><code>iptables</code>ファイルの中身のサンプル。</p>
+
+<pre><code>*filter
+-A INPUT -i lo -j ACCEPT
+-A INPUT -s 10.0.0.0/255.0.0.0 -j DROP
+-A INPUT -s 172.16.0.0/255.240.0.0 -j DROP
+-A INPUT -s 192.168.0.0/255.255.0.0 -j DROP
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport [portnumber] -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+COMMIT
+</code></pre>
+
+<p>保存したら、<code>iptables</code>を再起動して設定を反映。</p>
+
+<pre><code class="language-bash">$ /etc/rc.d/init.d/iptables restart
+</code></pre>
+
+<p>ちなみに、CentOS 7からはiptablesサービスではなく、firewalldサービスが同じ<code>/etc/sysconfig/iptables</code>ファイルの設定でパケットフィルタリングをしてくれるみたい。</p>
+
+<h2 id="余談">余談</h2>
+
+<p>Webサーバーの環境を用意するには、用途に応じて色々な方法がある。静的ファイルのみを置けたり、Wordpressが設置出来る（php+MySQL+&hellip;）といった所謂レンタルサーバーだったり、<a href="https://parse.com/">Parse</a>のような<a href="http://ja.wikipedia.org/wiki/SaaS">SaaS</a>だったり、<a href="http://heroku.com/">Heroku</a>に代表される<a href="http://ja.wikipedia.org/wiki/Platform_as_a_Service">PaaS</a>だったり。AmazonのS3なりEC2なり。</p>
+
+<p>とにかく、CentOSを自前で建てる必要がないケースも往々にしてあると思う。でもこうやってVPSを借りてWebサーバーを立ててみるように（もちろんVirtualBox+Vagrantでも）、原始的な部分を経験することは、Webに関する様々な事象の体系的な理解に必ず繋がる。</p>
+
+<p>転職して間もない頃にインフラの知識がある人をとっ捕まえてやったんだけど、<code>vim</code>の基本操作とかのコマンドラインの初歩的な素養は此処で得たし、今更ながらやっててよかったと思ってる（小並感）。</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fcentos-minimum-config.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fcentos-minimum-config.html&text=CentOS%206%e7%b3%bb%e3%81%ab%e5%af%be%e3%81%97%e3%81%a6%e8%a1%8c%e3%81%86%e6%9c%80%e4%bd%8e%e9%99%90%e3%81%ae%e8%a8%ad%e5%ae%9a" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2015/image-encoder-es6.html">👈 画像をdataURIに変換するライブラリをES6で書きなおす</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2015/intention.html">志向性 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

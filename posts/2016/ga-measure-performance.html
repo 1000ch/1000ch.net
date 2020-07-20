@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Google AnalyticsとTiming APIでブログのサードパーティスクリプトのパフォーマンス計測 - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="Google AnalyticsとTiming APIでブログのサードパーティスクリプトのパフォーマンス計測 Performance Calendar &raquo; Prefer DEFER Over ASYNC を見たのがきっかけ。
+このブログでもサードパーティのスクリプトをいくつかロードしているが、言及されているように &lt;script async&gt; と &lt;script defer&gt; でパフォーマンスを比較計測してみる。
+Google Analyticsで計測 まずはパフォーマンスを計測しなければということで、カスタム速度 | ウェブ向けアナリティクス（analytics.js）を参考に以下のスクリプトをブログに仕込んだ。今回は Navigation Timing API の navigationStart とdomInteractive の差分を集計する。
+window.addEventListener(&#39;load&#39;, () =&gt; { if (window.performance) { ga(&#39;send&#39;, { hitType: &#39;timing&#39;, timingCategory: &#39;Navigation&#39;, timingVar: &#39;domInteractive&#39;, timingValue: performance.timing.domInteractive - performance.timing.navigationStart }); } });  GA にはページトラッキングやイベントトラッキングの他に、パフォーマンスの任意のメトリクスを集計するインターフェースがある。まじまじと触ることは少ないが、眺めるほど多機能で面白い。値は、 行動 &gt; サイト速度 &gt; カスタム速度 以下に集計される。
+サードパーティスクリプトをdeferで読み込む Prefer DEFER Over ASYNC で言われているのは、 &lt;script async&gt; も &lt;script defer&gt; も HTML のパースはブロックしないが、 &lt;script async&gt; はスクリプトの実行が非同期でされるため UI スレッドを抑止する、つまり描画は遅れるという話。雑に言えば左右するのは DOMContentLoaded のタイミングということになりそうだが、 DOMContentLoaded を早めたいかどうかは Web ページの作りに大きく依存するので例によって「時と場合に依る」ということ。このブログに関して言えば、静的な HTML を配信しているのみでロードしているサードパーティスクリプトがページに作用する割合も大きくないので &lt;script defer&gt; が効果的に思える。">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/posts/2016/ga-measure-performance/custom-speed.png">
+    <meta name="twitter:card" content="summary_large_image">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2016/ga-measure-performance.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Google AnalyticsとTiming APIでブログのサードパーティスクリプトのパフォーマンス計測">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2016/ga-measure-performance.html">
+<meta name="twitter:title" content="Google AnalyticsとTiming APIでブログのサードパーティスクリプトのパフォーマンス計測">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2016.12.24</span>
+
+        
+
+<h1 id="google-analyticsとtiming-apiでブログのサードパーティスクリプトのパフォーマンス計測">Google AnalyticsとTiming APIでブログのサードパーティスクリプトのパフォーマンス計測</h1>
+
+<p><a href="http://calendar.perfplanet.com/2016/prefer-defer-over-async/">Performance Calendar &raquo; Prefer DEFER Over ASYNC</a> を見たのがきっかけ。</p>
+
+<p>このブログでもサードパーティのスクリプトをいくつかロードしているが、言及されているように <code>&lt;script async&gt;</code> と <code>&lt;script defer&gt;</code> でパフォーマンスを比較計測してみる。</p>
+
+<h2 id="google-analyticsで計測">Google Analyticsで計測</h2>
+
+<p>まずはパフォーマンスを計測しなければということで、<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/user-timings?hl=ja">カスタム速度 | ウェブ向けアナリティクス（analytics.js）</a>を参考に以下のスクリプトをブログに仕込んだ。今回は Navigation Timing API の <code>navigationStart</code> と<code>domInteractive</code> の差分を集計する。</p>
+
+<pre><code class="language-javascript">window.addEventListener('load', () =&gt; {
+  if (window.performance) {
+    ga('send', {
+      hitType: 'timing',
+      timingCategory: 'Navigation',
+      timingVar: 'domInteractive',
+      timingValue: performance.timing.domInteractive - performance.timing.navigationStart
+    });
+  }
+});
+</code></pre>
+
+<p>GA にはページトラッキングやイベントトラッキングの他に、パフォーマンスの任意のメトリクスを集計するインターフェースがある。まじまじと触ることは少ないが、眺めるほど多機能で面白い。値は、 <strong>行動 &gt; サイト速度 &gt; カスタム速度</strong> 以下に集計される。</p>
+
+<p><img src="/img/posts/2016/ga-measure-performance/custom-speed.png" alt="" /></p>
+
+<h2 id="サードパーティスクリプトをdeferで読み込む">サードパーティスクリプトをdeferで読み込む</h2>
+
+<p>Prefer DEFER Over ASYNC で言われているのは、 <code>&lt;script async&gt;</code> も <code>&lt;script defer&gt;</code> も HTML のパースはブロックしないが、 <code>&lt;script async&gt;</code> はスクリプトの実行が非同期でされるため UI スレッドを抑止する、つまり描画は遅れるという話。雑に言えば左右するのは <code>DOMContentLoaded</code> のタイミングということになりそうだが、 <code>DOMContentLoaded</code> を早めたいかどうかは Web ページの作りに大きく依存するので例によって「時と場合に依る」ということ。このブログに関して言えば、静的な HTML を配信しているのみでロードしているサードパーティスクリプトがページに作用する割合も大きくないので <code>&lt;script defer&gt;</code> が効果的に思える。</p>
+
+<p>なので、</p>
+
+<pre><code class="language-html">&lt;script async src=&quot;//apis.google.com/js/plusone.js&quot;&gt;&lt;/script&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot;&gt;&lt;/script&gt;
+&lt;script async src=&quot;//platform.instagram.com/en_US/embeds.js&quot;&gt;&lt;/script&gt;
+&lt;script async src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>のように <code>async</code> でロードしているサードパーティのスクリプトを次のように修正。</p>
+
+<pre><code class="language-html">&lt;script defer src=&quot;//apis.google.com/js/plusone.js&quot;&gt;&lt;/script&gt;
+&lt;script defer src=&quot;//platform.twitter.com/widgets.js&quot;&gt;&lt;/script&gt;
+&lt;script defer src=&quot;//platform.instagram.com/en_US/embeds.js&quot;&gt;&lt;/script&gt;
+&lt;script defer src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<h2 id="計測結果の前後比">計測結果の前後比</h2>
+
+<p><code>&lt;script async&gt;</code> でロードしていたサードパーティのスクリプトも <code>&lt;/body&gt;</code> の直上にあったので、 <code>&lt;script defer&gt;</code> にしたところで大差はないことが予想できたが、案の定大差はなかった（複雑なことをしていないので元からそこそこ速いのと、ページビュー数が多くないのでサンプリングとしても微妙）。</p>
+
+<ul>
+<li><code>&lt;script async&gt;</code>: 1.68s ~ 2.65s</li>
+<li><code>&lt;script defer&gt;</code>: 1.65s ~ 1.75s</li>
+</ul>
+
+<p><img src="/img/posts/2016/ga-measure-performance/result.png" alt="計測結果の前後比" /></p>
+
+<p><code>DOMContentLoaded</code> 発火までに関わるリソース（読み込む CSS ファイル数や画像ファイル）が多ければ多いほど、そしてサードパーティスクリプトが
+多く処理が重いほど <code>&lt;script defer&gt;</code> の効能が期待できる。</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fga-measure-performance.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fga-measure-performance.html&text=Google%20Analytics%e3%81%a8Timing%20API%e3%81%a7%e3%83%96%e3%83%ad%e3%82%b0%e3%81%ae%e3%82%b5%e3%83%bc%e3%83%89%e3%83%91%e3%83%bc%e3%83%86%e3%82%a3%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%ae%e3%83%91%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%b3%e3%82%b9%e8%a8%88%e6%b8%ac" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2016/bought-in-2016.html">👈 2016年に買って良かったもの</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2016/stop-using-fontawesome.html">Font Awesome の利用をやめた 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

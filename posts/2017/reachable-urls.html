@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>テキストファイル中に含まれるURLが有効かどうかチェックするツールを作った - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="テキストファイル中に含まれるURLが有効かどうかチェックするツールを作った 前略、 1000ch/reachable-urls というテキストファイルに含まれる URL が有効かどうかチェックするツールを作った。一応程度に @inao さんに報告したらなんと使ってくれて、案外便利だったようで色々フィードバックをもらいながらコツコツ直した。今はバグも取れてきて安定してきたので、そろそろメジャーリリースしようかと考えている。
+原稿中のURLが有効かどうかを調べてくれるツールを @1000ch さんが公開してくださった！ https://t.co/6qG3wpTJYu
+&mdash; 稲尾尚徳 (@inao) 2017年2月8日 インストールと使い方 Node.js 製なのでインストールは npm で。インストールすると reachable-urls コマンドが使えるようになる。グローバルにインストールしてもいいし、ローカルにインストールして npm test で実行するのも悪く無さそう。
+$ npm install -g reachable-urls  引数にはファイルパスか glob を指定する。テキストファイルならなんでも OK なので、プレーンテキストなのかマークダウンなのかは問わない。テキストファイルから正規表現で URL を抜き出して sindresorhus/is-reachable でチェックするという単純な仕組みで出来ている。
+$ reachable-urls ./*.md  CLI だけでなく、もちろん require() しても使える。
+const assert = require(&#39;assert&#39;); const reachableUrls = require(&#39;reachable-urls&#39;); reachableUrls(&#39;https://github.com https://foobarbaz.com&#39;).then(result =&gt; { assert.deepEqual(result, { &#39;https://github.com&#39;: true, &#39;https://foobarbaz.com&#39;: false }); })  実装するかもしれない機能リスト http / https プロトコル以外のチェック @Jxck 氏によるバグ報告で気付いたが、 sindresorhus/is-reachable で WebSocket のプロトコルである ws と wss をチェックできない。これは内部で使っている silverwind/port-numbers で WebSocket が使うポート番号を引いてこれていないことが問題。">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/posts/2017/reachable-urls/demo.gif">
+    <meta name="twitter:card" content="summary_large_image">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2017/reachable-urls.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="テキストファイル中に含まれるURLが有効かどうかチェックするツールを作った">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2017/reachable-urls.html">
+<meta name="twitter:title" content="テキストファイル中に含まれるURLが有効かどうかチェックするツールを作った">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2017.02.15</span>
+
+        
+
+<h1 id="テキストファイル中に含まれるurlが有効かどうかチェックするツールを作った">テキストファイル中に含まれるURLが有効かどうかチェックするツールを作った</h1>
+
+<p>前略、 <a href="https://github.com/1000ch/reachable-urls"><code>1000ch/reachable-urls</code></a> というテキストファイルに含まれる URL が有効かどうかチェックするツールを作った。一応程度に <a href="https://twitter.com/inao">@inao</a> さんに報告したらなんと使ってくれて、案外便利だったようで色々フィードバックをもらいながらコツコツ直した。今はバグも取れてきて安定してきたので、そろそろメジャーリリースしようかと考えている。</p>
+
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">原稿中のURLが有効かどうかを調べてくれるツールを <a href="https://twitter.com/1000ch">@1000ch</a> さんが公開してくださった！ <a href="https://t.co/6qG3wpTJYu">https://t.co/6qG3wpTJYu</a></p>&mdash; 稲尾尚徳 (@inao) <a href="https://twitter.com/inao/status/829268297698906112">2017年2月8日</a></blockquote>
+
+<h2 id="インストールと使い方">インストールと使い方</h2>
+
+<p>Node.js 製なのでインストールは <code>npm</code> で。インストールすると <code>reachable-urls</code> コマンドが使えるようになる。グローバルにインストールしてもいいし、ローカルにインストールして <code>npm test</code> で実行するのも悪く無さそう。</p>
+
+<pre><code class="language-bash">$ npm install -g reachable-urls
+</code></pre>
+
+<p>引数にはファイルパスか glob を指定する。テキストファイルならなんでも OK なので、プレーンテキストなのかマークダウンなのかは問わない。テキストファイルから正規表現で URL を抜き出して <a href="https://github.com/sindresorhus/is-reachable"><code>sindresorhus/is-reachable</code></a> でチェックするという単純な仕組みで出来ている。</p>
+
+<pre><code class="language-bash">$ reachable-urls ./*.md
+</code></pre>
+
+<p><img src="/img/posts/2017/reachable-urls/demo.gif" alt="reachable-urls demo" /></p>
+
+<p>CLI だけでなく、もちろん <code>require()</code> しても使える。</p>
+
+<pre><code class="language-javascript">const assert = require('assert');
+const reachableUrls = require('reachable-urls');
+
+reachableUrls('https://github.com https://foobarbaz.com').then(result =&gt; {
+  assert.deepEqual(result, {
+    'https://github.com': true,
+    'https://foobarbaz.com': false
+  });
+})
+</code></pre>
+
+<h2 id="実装するかもしれない機能リスト">実装するかもしれない機能リスト</h2>
+
+<h3 id="http-https-プロトコル以外のチェック">http / https プロトコル以外のチェック</h3>
+
+<p><a href="https://twitter.com/jxck_">@Jxck</a> 氏によるバグ報告で気付いたが、 <code>sindresorhus/is-reachable</code> で WebSocket のプロトコルである <code>ws</code> と <code>wss</code> をチェックできない。これは内部で使っている <a href="https://github.com/silverwind/port-numbers"><code>silverwind/port-numbers</code></a> で WebSocket が使うポート番号を引いてこれていないことが問題。</p>
+
+<p>設定に、以下のような WebSocket 要の定義を追加すれば動きそうだが、<a href="http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">Service Name and Transport Protocol Port Number Registry</a> を元に記述しているようで WebSocket の定義追加を憚られている。</p>
+
+<pre><code class="language-json">&quot;ws&quot;: {
+  &quot;ports&quot;: [
+    &quot;80/tcp&quot;
+  ]
+},
+&quot;wss&quot;: {
+  &quot;ports&quot;: [
+    &quot;443/tcp&quot;
+  ]
+},
+</code></pre>
+
+<p>ユースケースとしては、全プロトコル対応の URL ヘルスチェックではなく、リンク先にページがあるかどうかを想定しているので、ひとまずチェック対象を <code>http</code> と <code>https</code> に限定することにした。</p>
+
+<h3 id="標準入力-stdin-オプション">標準入力 <code>--stdin</code> オプション</h3>
+
+<p>作った当初は glob で充分じゃろと思っていたが、 <code>--stdin</code> でパイプできても良さそう。</p>
+
+<pre><code class="language-bash">// foo.md の中身を reachable-urls へ渡す
+$ cat foo.md | reachable-urls --stdin
+</code></pre>
+
+<h3 id="ネットワーク越しにチェックする-url-オプション">ネットワーク越しにチェックする <code>--url</code> オプション</h3>
+
+<p>ぶっちゃけこれは要らないかなと思っているけどメモがてら。</p>
+
+<pre><code class="language-bash">// https://google.com のレスポンスに含まれる URL が有効化をチェックする
+$ reachable-urls --url https://google.com
+</code></pre>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2freachable-urls.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2freachable-urls.html&text=%e3%83%86%e3%82%ad%e3%82%b9%e3%83%88%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e4%b8%ad%e3%81%ab%e5%90%ab%e3%81%be%e3%82%8c%e3%82%8bURL%e3%81%8c%e6%9c%89%e5%8a%b9%e3%81%8b%e3%81%a9%e3%81%86%e3%81%8b%e3%83%81%e3%82%a7%e3%83%83%e3%82%af%e3%81%99%e3%82%8b%e3%83%84%e3%83%bc%e3%83%ab%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%9f" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2017/uber-eats.html">👈 UberEATSを使ってみたらとても良かった</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2017/javascript-memory-leak.html">JavaScriptで起こるメモリリークのパターン 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

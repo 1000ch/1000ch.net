@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HTML Importsでインポート先に引き継がれる内容 - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="HTML Importsでインポート先に引き継がれる内容  https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html これってなんでdoc.registerElementになってるんだろう・・
+ っていう質問をされたので調べたメモ。内容的にはHTML ImportsするHTMLのコンテキストになるdocumentの続きにあたるかも。
+registerElementの実行者とカスタム要素の登録先 以下の様なカスタム要素を作成し、ロードする場合を考える。
+sample-element.html &lt;script&gt; var doc = document.currentScript.ownerDocument; doc.variable = &#39;this is the variable in sample-element.html&#39;; window.SampleElement = document.registerElement(&#39;sample-element&#39;, { prototype: Object.create(HTMLElement.prototype) }); &lt;/script&gt;  loader.html &lt;html&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&quot;&gt; &lt;link rel=&quot;import&quot; href=&quot;sample-element.html&quot;&gt; &lt;/head&gt; &lt;body&gt; &lt;sample-element&gt;Sample&lt;/sample-element&gt; &lt;/body&gt; &lt;/html&gt;  document.currentScript.ownerDocumentをdocにキャッシュしないと、sample-element.html内に書いた要素を取得する時に困る話は前述のエントリでしてある。 document.registerElement(&#39;sample-element&#39;, {});しているのは、sample-element.htmlをインポートするHTMLのdocumentになる。
+でも&lt;github-card&gt;ではこの例で言うところのsample-element.htmlのdocumentでregisterElement()を実行している。 感覚的に言えばインポートする側のdocumentで登録を実行するほうがしっくりくるんだけどそうでもないんだろうか。
+HTML Importsでカスタム要素の定義もインポートされる 感覚の話はさておき、&lt;github-card&gt;を見る限りregisterElement()したカスタム要素は引き継がれるよう。 sample-element.htmlでわざとらしく宣言したvariableという変数も見てみる。引き継がれないだろうけど、一応。
+当然のごとくvariableはdocにしかない。が、document.createElement(&#39;sample-element&#39;)は両方とも成功している。
+Firefox Nightly 35.0a1でも試してみた。
+インポートしているsample-element.html内で宣言しているdocがundefinedになってしまっているんだけど、docに登録している&lt;sample-element&gt;はちゃんとインポート先のdocumentに登録されていた。
+スタイルシートも引き継がれる sample-element.html内でsample-element.cssをロードし、そのsample-element.htmlをインポートするとインポート先でsample-element.cssで定義しているクラスは利用出来る。
+このとき、sample-element.cssはdoc.styleSheetsにぶら下がっているけど、当然document.styleSheetsには属さない。
+HTML ImportsとCustom Elementsの仕様を見てみる  http://www.w3.org/TR/html-imports/#loading-imports  HTML Importはこんな感じでlink関係をツリー上に持つらしい。で、このHTML Importsのツリーは">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2014/content-to-import-with-html-imports.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="HTML Importsでインポート先に引き継がれる内容">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2014/content-to-import-with-html-imports.html">
+<meta name="twitter:title" content="HTML Importsでインポート先に引き継がれる内容">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2014.10.07</span>
+
+        
+
+<h1 id="html-importsでインポート先に引き継がれる内容">HTML Importsでインポート先に引き継がれる内容</h1>
+
+<blockquote>
+<p><a href="https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html">https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html</a>
+これってなんで<code>doc.registerElement</code>になってるんだろう・・</p>
+</blockquote>
+
+<p>っていう質問をされたので調べたメモ。内容的には<a href="/posts/2014/html-imports-context.html">HTML ImportsするHTMLのコンテキストになるdocument</a>の続きにあたるかも。</p>
+
+<h2 id="registerelementの実行者とカスタム要素の登録先">registerElementの実行者とカスタム要素の登録先</h2>
+
+<p>以下の様なカスタム要素を作成し、ロードする場合を考える。</p>
+
+<h3 id="sample-element-html"><code>sample-element.html</code></h3>
+
+<pre><code class="language-html">&lt;script&gt;
+  var doc = document.currentScript.ownerDocument;
+  doc.variable = 'this is the variable in sample-element.html';
+  window.SampleElement = document.registerElement('sample-element', {
+    prototype: Object.create(HTMLElement.prototype)
+  });
+&lt;/script&gt;
+</code></pre>
+
+<h3 id="loader-html"><code>loader.html</code></h3>
+
+<pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;link rel=&quot;import&quot; href=&quot;sample-element.html&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;sample-element&gt;Sample&lt;/sample-element&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><code>document.currentScript.ownerDocument</code>を<code>doc</code>にキャッシュしないと、<code>sample-element.html</code>内に書いた要素を取得する時に困る話は前述のエントリでしてある。
+<code>document.registerElement('sample-element', {});</code>しているのは、<code>sample-element.html</code>をインポートするHTMLの<code>document</code>になる。</p>
+
+<p>でも<code>&lt;github-card&gt;</code>ではこの例で言うところの<code>sample-element.html</code>の<code>document</code>で<code>registerElement()</code>を実行している。
+感覚的に言えばインポートする側の<code>document</code>で登録を実行するほうがしっくりくるんだけどそうでもないんだろうか。</p>
+
+<h2 id="html-importsでカスタム要素の定義もインポートされる">HTML Importsでカスタム要素の定義もインポートされる</h2>
+
+<p>感覚の話はさておき、<code>&lt;github-card&gt;</code>を見る限り<code>registerElement()</code>したカスタム要素は引き継がれるよう。
+<code>sample-element.html</code>でわざとらしく宣言した<code>variable</code>という変数も見てみる。引き継がれないだろうけど、一応。</p>
+
+<p><img src="/img/posts/2014/content-to-import-with-html-imports/console.png" alt="" /></p>
+
+<p>当然のごとく<code>variable</code>は<code>doc</code>にしかない。が、<code>document.createElement('sample-element')</code>は両方とも成功している。</p>
+
+<p>Firefox Nightly 35.0a1でも試してみた。</p>
+
+<p><img src="/img/posts/2014/content-to-import-with-html-imports/scratchpad.png" alt="" /></p>
+
+<p>インポートしている<code>sample-element.html</code>内で宣言している<code>doc</code>が<code>undefined</code>になってしまっているんだけど、<code>doc</code>に登録している<code>&lt;sample-element&gt;</code>はちゃんとインポート先の<code>document</code>に登録されていた。</p>
+
+<h2 id="スタイルシートも引き継がれる">スタイルシートも引き継がれる</h2>
+
+<p><code>sample-element.html</code>内で<code>sample-element.css</code>をロードし、その<code>sample-element.html</code>をインポートするとインポート先で<code>sample-element.css</code>で定義しているクラスは利用出来る。</p>
+
+<p><img src="/img/posts/2014/content-to-import-with-html-imports/stylesheet.png" alt="" /></p>
+
+<p>このとき、<code>sample-element.css</code>は<code>doc.styleSheets</code>にぶら下がっているけど、当然<code>document.styleSheets</code>には属さない。</p>
+
+<h2 id="html-importsとcustom-elementsの仕様を見てみる">HTML ImportsとCustom Elementsの仕様を見てみる</h2>
+
+<ul>
+<li><a href="http://www.w3.org/TR/html-imports/#loading-imports">http://www.w3.org/TR/html-imports/#loading-imports</a></li>
+</ul>
+
+<p><img src='http://www.w3.org/TR/html-imports/import-link-list.png'></p>
+
+<p>HTML Importはこんな感じでlink関係をツリー上に持つらしい。で、このHTML Importsのツリーは</p>
+
+<blockquote>
+<p>The import tree order of a given custom element of an import tree is determined by tree order in an import tree that was flattened by replacing every import link with the content of its imported document.</p>
+</blockquote>
+
+<p>インポートしてくるドキュメントでリプレイスされ、ドキュメント達は構造上並列になる（と書いてあるように見える）。</p>
+
+<ul>
+<li><a href="http://w3c.github.io/webcomponents/spec/custom/#dfn-element-registration">http://w3c.github.io/webcomponents/spec/custom/#dfn-element-registration</a></li>
+</ul>
+
+<blockquote>
+<p>Element registration is a process of adding an element definition to a registry. One element definition can only be registered with one registry.</p>
+</blockquote>
+
+<p>ひとつのドキュメントにつき、ひとつのレジストリが存在し、要素の定義はそのレジストリに定義される。</p>
+
+<ul>
+<li><a href="http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries">http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries</a></li>
+</ul>
+
+<p>色々読み漁ったけど、英語力足りなすぎて直接言及している場所がどこかわからなかった。かろうじて、</p>
+
+<blockquote>
+<p>When creating an import, use the registry of the master document.</p>
+</blockquote>
+
+<p>先程のスタイルシートの挙動から察するに、 <strong>HTML Importsのツリー上の子孫にいるカスタム要素のレジストリは親から参照出来る</strong> ってことなんだと思うが、HTML Importが発生した時点でインポート先のドキュメントにカスタム要素の宣言がマージされることを意味しているような気も。</p>
+
+<p>詳しい人おしえて下さい。</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fcontent-to-import-with-html-imports.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fcontent-to-import-with-html-imports.html&text=HTML%20Imports%e3%81%a7%e3%82%a4%e3%83%b3%e3%83%9d%e3%83%bc%e3%83%88%e5%85%88%e3%81%ab%e5%bc%95%e3%81%8d%e7%b6%99%e3%81%8c%e3%82%8c%e3%82%8b%e5%86%85%e5%ae%b9" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2014/philips-wide-display-23inch.html">👈 PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2014/c-in-golang-with-cgo.html">cgoでGoのコードからCの関数を利用する 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

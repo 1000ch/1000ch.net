@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>dotfilesを整理した - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="dotfilesを整理した 久々にdotfilesを整理した。黒い画面に長けているわけではないので、然程モリモリしているというわけではないけど、だいぶダイエットできた。
+Dropbox管理をやめてGitHubのリポジトリに Dropboxにdotfilesを配置して、それらに対してシンボリックリンクを貼ることで設定を共有していたが、gitのリポジトリにした。これで、設定をGitHubで見れるし、変遷もコミット履歴を辿ればOK。
+ 1000ch/dotfiles  dotfilesリポジトリをユーザールート（~/dotfiles）に置くことにして、次のような感じでシンボリックリンクを貼るのは同じ要領。これはsetup.shに書いておく。
+$ ln -s ~/dotfiles/.vimrc ~/.vimrc $ ln -s ~/dotfiles/.zshrc ~/.zshrc $ ln -s ~/dotfiles/.zprofile ~/.zprofile $ ln -s ~/dotfiles/.gitconfig ~/.gitconfig $ ln -s ~/dotfiles/.gemrc ~/.gemrc  実際にこの設定を使うには、リポジトリを~/dotfilesにクローンして、setup.shを実行するだけ。
+$ git clone git@github.com:1000ch/dotfiles.git ~/dotfiles --recursive $ sh ~/dotfiles/setup.sh  oh-my-zshをサブモジュール化 oh-my-zsh &#43; oh-my-zsh-powerline-themeユーザーなので、それらのリポジトリを適当な場所にクローン・インストールしていたが、git管理に伴いサブモジュール化した。場所が~/dotfiles/oh-my-zshといったように決まることで迷わないし、更新も自動で出来る。
+$ git submodule add git@github.com:robbyrussell/oh-my-zsh.git $ git submodule add git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git  dotfilesリポジトリのgit clone時はサブモジュールもダウンロードさせるために--recursiveもつけること。
+setup.shにサブモジュール化したoh-my-zshとpowerlineテーマを有効化させるために以下のコマンドをsetup.shに書いておく。
+# set up oh-my-zsh ~/dotfiles/oh-my-zsh/tools/install.sh | ZSH=~/dotfiles/oh-my-zsh sh # create hard-link to oh-my-zsh-powerline-theme from oh-my-zsh/themes ln -f ~/dotfiles/oh-my-zsh-powerline-theme/powerline.">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2015/dotfiles.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="dotfilesを整理した">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2015/dotfiles.html">
+<meta name="twitter:title" content="dotfilesを整理した">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2015.04.05</span>
+
+        
+
+<h1 id="dotfilesを整理した">dotfilesを整理した</h1>
+
+<p>久々にdotfilesを整理した。黒い画面に長けているわけではないので、然程モリモリしているというわけではないけど、だいぶダイエットできた。</p>
+
+<h2 id="dropbox管理をやめてgithubのリポジトリに">Dropbox管理をやめてGitHubのリポジトリに</h2>
+
+<p>Dropboxにdotfilesを配置して、それらに対してシンボリックリンクを貼ることで設定を共有していたが、gitのリポジトリにした。これで、設定をGitHubで見れるし、変遷もコミット履歴を辿ればOK。</p>
+
+<ul>
+<li><a href="https://github.com/1000ch/dotfiles">1000ch/dotfiles</a></li>
+</ul>
+
+<p>dotfilesリポジトリをユーザールート（<code>~/dotfiles</code>）に置くことにして、次のような感じでシンボリックリンクを貼るのは同じ要領。これは<code>setup.sh</code>に書いておく。</p>
+
+<pre><code class="language-bash">$ ln -s ~/dotfiles/.vimrc ~/.vimrc
+$ ln -s ~/dotfiles/.zshrc ~/.zshrc
+$ ln -s ~/dotfiles/.zprofile ~/.zprofile
+$ ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+$ ln -s ~/dotfiles/.gemrc ~/.gemrc
+</code></pre>
+
+<p>実際にこの設定を使うには、リポジトリを<code>~/dotfiles</code>にクローンして、<code>setup.sh</code>を実行するだけ。</p>
+
+<pre><code class="language-bash">$ git clone git@github.com:1000ch/dotfiles.git ~/dotfiles --recursive
+$ sh ~/dotfiles/setup.sh
+</code></pre>
+
+<h2 id="oh-my-zshをサブモジュール化">oh-my-zshをサブモジュール化</h2>
+
+<p><a href="http://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> + <a href="http://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme">oh-my-zsh-powerline-theme</a>ユーザーなので、それらのリポジトリを適当な場所にクローン・インストールしていたが、git管理に伴いサブモジュール化した。場所が<code>~/dotfiles/oh-my-zsh</code>といったように決まることで迷わないし、更新も自動で出来る。</p>
+
+<pre><code class="language-bash">$ git submodule add git@github.com:robbyrussell/oh-my-zsh.git
+$ git submodule add git@github.com:jeremyFreeAgent/oh-my-zsh-powerline-theme.git
+</code></pre>
+
+<p>dotfilesリポジトリの<code>git clone</code>時はサブモジュールもダウンロードさせるために<code>--recursive</code>もつけること。</p>
+
+<p><code>setup.sh</code>にサブモジュール化したoh-my-zshとpowerlineテーマを有効化させるために以下のコマンドを<code>setup.sh</code>に書いておく。</p>
+
+<pre><code class="language-bash"># set up oh-my-zsh
+~/dotfiles/oh-my-zsh/tools/install.sh | ZSH=~/dotfiles/oh-my-zsh sh
+
+# create hard-link to oh-my-zsh-powerline-theme from oh-my-zsh/themes
+ln -f ~/dotfiles/oh-my-zsh-powerline-theme/powerline.zsh-theme ~/dotfiles/oh-my-zsh/themes/powerline.zsh-theme
+</code></pre>
+
+<h2 id="ドットファイルの更新">ドットファイルの更新</h2>
+
+<p>クローンしてきた<code>~/dotfiles</code>リポジトリ内にあるファイルを更新して、そのまま変更をコミットすればOK。設定を共有している他の環境で<code>git pull</code>することでそのまま適用できる。</p>
+
+<h2 id="各種バージョンマネージャ">各種バージョンマネージャ</h2>
+
+<p>Node.jsはnvm、Rubyはrbenv+ruby-build、Pythonはpyenvを使っているので、以下を<code>setup.sh</code>に追加。</p>
+
+<pre><code class="language-bash"># install nvm
+git clone https://github.com/creationix/nvm.git ~/.nvm
+
+# install rbenv &amp; ruby-build
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+# install pyenv
+git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+</code></pre>
+
+<p><code>.zprofile</code>に以下を追加し、パスを通す。</p>
+
+<pre><code class="language-sh"># nvm
+[ -s $HOME/.nvm/nvm.sh ] &amp;&amp; . $HOME/.nvm/nvm.sh
+
+# rbenv
+export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;
+eval &quot;$(rbenv init -)&quot;
+
+# pyenv
+export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
+export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;
+eval &quot;$(pyenv init -)&quot;
+</code></pre>
+
+<h2 id="エイリアスとかファンクション">エイリアスとかファンクション</h2>
+
+<p><a href="https://github.com/mathiasbynens/dotfiles">mathiasbynens/dotfiles</a>を参考に使いそうなものを置いてあったんだけど、常用していないしので、一旦全部消した。gitもエイリアス使わずにやってる。よほど使用頻度が高いモノが出てきたら、それはまたその時に。</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fdotfiles.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fdotfiles.html&text=dotfiles%e3%82%92%e6%95%b4%e7%90%86%e3%81%97%e3%81%9f" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2015/position-sticky.html">👈 position-stickyについて調べたメモ</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2015/wdpress-frontend-series-serviceworker.html">WEB&#43;DB PRESS Vol.86 Webフロントエンド最前線「Service Workerで実現するオフラインWebアプリケーション」 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

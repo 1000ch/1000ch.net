@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HTML5クックブック - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="HTML5クックブック 読みなおした。
+ バズワード
+A photo posted by 1000ch (@1000ch) on Jan 23, 2015 at 4:27pm PST
+ バズワードとしてのHTML5とリビングスタンダード HTML5の草案が発表されたのが、ちょうど7年前の2008年の1月22日。そして、2014年10月28日に勧告されたのも記憶に新しい。段階的に対応してきたブラウザベンダーも、最新版ではすっかり対応がされている。
+色んな尾ひれを生やして急速に広まった印象があるHTML5だが、どこからどこまでがHTML5なのか認識が人によって曖昧なところがある中で、この本では次の内容を取り扱っている。
+目次  基本的な構文とセマンティクス プログレッシブなマークアップとテクニック フォーム ネイティブオーディオ ネイティブビデオ マークロデータとカスタムデータ アクセシビリティ 位置情報 &lt;canvas&gt;要素 高度なHTML5 JavaScript - ローカルストレージ・Web Worker等の新たなブラウザAPI群について  5回目の改定ということでHTML5だけど、そういった括りも、段々とバージョン（エディション）を意識しないようになってきているなと思う。HTMLの仕様はHTML5として捉えるべきではなく、あくまでHTMLとして捉えるべき。HTMLの仕様は常に更新される。
+HTML5におけるマークアップ 8章の位置情報、9章の&lt;canvas&gt;要素、10章のAPI群に加えて各所にJavaScriptからの取り扱いの解説が散りばめられているが、個人的にはHTMLに追加されたマークアップとしての機能が印象的だった。
+ブラウザの対応状況見てると改めてIE8以前の辛さを感じる。もちろん、バージョンを明確に分けて後方互換性を保ってきた故のことだけど。先日新ブラウザの発表もあったので、流れは少しずつ変わってくるとは思うが、それでもエンタープライズ等での対応を考えたりすると、未だに足枷になっていることと思う。こういった対応していないブラウザへのフォールバックについても、本書では触れている。normalize.cssとModernizrの偉大さたるや。
+&lt;input&gt;要素に追加された新たなtypeについてだったり、フォームの必須属性はrequiredとしたり、hiddenとか&lt;details&gt; &#43; &lt;summary&gt;だったり。JavaScriptでコントロールすることが開発する中で当たり前になってしまっているので、HTMLレベルで実現される振る舞いについては知らないことばかりであった。
+アクセシビリティの章もあるが、本来こういった属性を適切に指定したり、ドキュメント構造を意識すべきなんだと思う。「開発者同志で齟齬が出るくらいなら全部&lt;div&gt;で！」という意見もおおよそ同意な部分もあるけど、適切に実施出来るならやっておくに越したことはないのも間違いなさそう。
+Christopher Schmitt (著), Kyle Simpson (著), 株式会社クイープ (翻訳) 
+HTML5は、既にバズワードではなく当たり前になってきている。HTMLの知識をアップデートしたい人にオススメ。">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2015/html5-cook-book.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="HTML5クックブック">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2015/html5-cook-book.html">
+<meta name="twitter:title" content="HTML5クックブック">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2015.01.22</span>
+
+        
+
+<h1 id="html5クックブック">HTML5クックブック</h1>
+
+<p>読みなおした。</p>
+
+<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="4" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://instagram.com/p/yN3B56hp8F/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_top">バズワード</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A photo posted by 1000ch (@1000ch) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2015-01-24T00:27:43+00:00">Jan 23, 2015 at 4:27pm PST</time></p></div></blockquote>
+
+<h2 id="バズワードとしてのhtml5とリビングスタンダード">バズワードとしてのHTML5とリビングスタンダード</h2>
+
+<p><a href="http://www.w3.org/2008/02/html5-pressrelease.html.ja">HTML5の草案が発表された</a>のが、ちょうど7年前の2008年の1月22日。そして、2014年10月28日に<a href="http://www.w3.org/2014/10/html5-rec.html.ja">勧告された</a>のも記憶に新しい。段階的に対応してきたブラウザベンダーも、最新版ではすっかり対応がされている。</p>
+
+<p>色んな尾ひれを生やして急速に広まった印象があるHTML5だが、どこからどこまでがHTML5なのか認識が人によって曖昧なところがある中で、この本では次の内容を取り扱っている。</p>
+
+<h3 id="目次">目次</h3>
+
+<ol>
+<li><strong>基本的な構文とセマンティクス</strong></li>
+<li><strong>プログレッシブなマークアップとテクニック</strong></li>
+<li><strong>フォーム</strong></li>
+<li><strong>ネイティブオーディオ</strong></li>
+<li><strong>ネイティブビデオ</strong></li>
+<li><strong>マークロデータとカスタムデータ</strong></li>
+<li><strong>アクセシビリティ</strong></li>
+<li><strong>位置情報</strong></li>
+<li><strong><code>&lt;canvas&gt;</code>要素</strong></li>
+<li><strong>高度なHTML5 JavaScript</strong> - ローカルストレージ・Web Worker等の新たなブラウザAPI群について</li>
+</ol>
+
+<p>5回目の改定ということでHTML5だけど、そういった括りも、段々とバージョン（エディション）を意識しないようになってきているなと思う。HTMLの仕様はHTML5として捉えるべきではなく、あくまでHTMLとして捉えるべき。HTMLの仕様は常に更新される。</p>
+
+<h2 id="html5におけるマークアップ">HTML5におけるマークアップ</h2>
+
+<p>8章の位置情報、9章の<code>&lt;canvas&gt;</code>要素、10章のAPI群に加えて各所にJavaScriptからの取り扱いの解説が散りばめられているが、個人的にはHTMLに追加されたマークアップとしての機能が印象的だった。</p>
+
+<p>ブラウザの対応状況見てると改めてIE8以前の辛さを感じる。もちろん、バージョンを明確に分けて後方互換性を保ってきた故のことだけど。<a href="http://www.itmedia.co.jp/news/articles/1501/22/news047.html">先日新ブラウザの発表もあった</a>ので、流れは少しずつ変わってくるとは思うが、それでもエンタープライズ等での対応を考えたりすると、未だに足枷になっていることと思う。こういった対応していないブラウザへのフォールバックについても、本書では触れている。<a href="https://github.com/necolas/normalize.css">normalize.css</a>と<a href="https://github.com/Modernizr/Modernizr">Modernizr</a>の偉大さたるや。</p>
+
+<p><code>&lt;input&gt;</code>要素に追加された新たな<code>type</code>についてだったり、フォームの必須属性は<code>required</code>としたり、<code>hidden</code>とか<code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code>だったり。JavaScriptでコントロールすることが開発する中で当たり前になってしまっているので、HTMLレベルで実現される振る舞いについては知らないことばかりであった。</p>
+
+<p>アクセシビリティの章もあるが、本来こういった属性を適切に指定したり、ドキュメント構造を意識すべきなんだと思う。「開発者同志で齟齬が出るくらいなら全部<code>&lt;div&gt;</code>で！」という意見もおおよそ同意な部分もあるけど、適切に実施出来るならやっておくに越したことはないのも間違いなさそう。</p>
+
+<p><affiliate-link
+  src="https://images-na.ssl-images-amazon.com/images/I/51MGrl%2BdO1L._SX389_BO1,204,203,200_.jpg"
+  href="https://www.amazon.co.jp/dp/4873115477/"
+  tag="1000ch-22"
+  title="HTML5クックブック">
+  Christopher Schmitt (著), Kyle Simpson (著), 株式会社クイープ (翻訳)
+</affiliate-link></p>
+
+<p>HTML5は、既にバズワードではなく当たり前になってきている。HTMLの知識をアップデートしたい人にオススメ。</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fhtml5-cook-book.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fhtml5-cook-book.html&text=HTML5%e3%82%af%e3%83%83%e3%82%af%e3%83%96%e3%83%83%e3%82%af" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2015/github-pages-custom-domain-in-https.html">👈 GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2015/high-performance-javascript.html">ハイパフォーマンスJavaScript 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

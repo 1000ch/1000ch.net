@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HTML5ビギナーズでリファクタリングについて喋ってきた - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="HTML5ビギナーズでリファクタリングについて喋ってきた 2013/10/23(金)に行われたHTMLビギナーズ第3回に参加して、喋ってきた。
+真ん中のスクリーンが映らないという機材トラブルに加えて、吉川さんとひろみつさんのとてもわかりやすいCSSの話の後というプレッシャーの中、 「あれ、2人がCSSで俺だけちょっと違う話だけど大丈夫かコレ」って思いながら 話をさせていただいた。
+スライドはこちら。
+ 当日使ったようで使っていなかったデモファイルはこちら。
+懇親会 参加者の方々と話してたら「黒い画面使ってみようと思いました！」とか「CSSLintの話参考になりました！」とか感想を頂いて非常にありがたかった。少しでも足しになったなら冥利に尽きます。
+黒い画面についてはWebデザイナーの為の「本当は怖くない」”黒い画面”入門が丁寧でオススメ。
+苦手意識がある方もいると思うけど、僕から言わせればPhotoshopのほうがよっぽど難しい。ちょっと苦しめばある程度できるようになるので覚えておいて損はないかと思う。
+npmの話すっ飛ばした これは簡単に解説しておこうと。
+npmはnodeのパッケージ管理ツール。nodeをインストールするとnpmも自動でインストールされる。
+ Node.js 日本ユーザグループ node.js - インストーラはここから入手可能  が、nodeの開発は非常に活発でバージョンアップもどんどん行われる。なので、nodeのバージョン管理ツールを使うことをオススメします。いくつかあるけど、ここではnvmを簡単に紹介。といってもREADMEの通りではありますが。
+まず、nvm本体のインストール。
+$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh  これでホームディレクトリに~/.nvmというフォルダが作成されている。あとはnvmのパスを通すために.bashrcとかが書き換わっている。これでnvmというコマンドが使えるようになる。nodeはnvmを使ってインストールし、インストールしたnodeは~/.nvmの中で管理されるようになる。
+あとはnodeを、バージョンを指定してインストール。
+# nodeの0.10.21をインストールする $ nvm install 0.10.21 # nodeの0.8.25をインストールする $ nvm install 0.8.25 # nvmでインストールしたnodeの0.10.21を使う $ nvm use 0.10.21  これでOKです。ターミナル立ち上げる度にnvm useとかするのもアレなので.bashrcとか.zshrcとかに書いたほうが良い。alias作ったり、.nvmrcを使った運用はREADMEを参照のこと。
+最後に マークシティはダンジョンだ！">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2013/html5beginners.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="HTML5ビギナーズでリファクタリングについて喋ってきた">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2013/html5beginners.html">
+<meta name="twitter:title" content="HTML5ビギナーズでリファクタリングについて喋ってきた">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2013.10.25</span>
+
+        
+
+<h1 id="html5ビギナーズでリファクタリングについて喋ってきた">HTML5ビギナーズでリファクタリングについて喋ってきた</h1>
+
+<p>2013/10/23(金)に行われた<a href="http://atnd.org/events/44530">HTMLビギナーズ第3回</a>に参加して、喋ってきた。</p>
+
+<p>真ん中のスクリーンが映らないという機材トラブルに加えて、<a href="https://twitter.com/yoshikawa_t">吉川さん</a>と<a href="https://twitter.com/hiromitsuuuuu">ひろみつさん</a>のとてもわかりやすいCSSの話の後というプレッシャーの中、 <del>「あれ、2人がCSSで俺だけちょっと違う話だけど大丈夫かコレ」って思いながら</del> 話をさせていただいた。</p>
+
+<p>スライドはこちら。</p>
+
+<script async class="speakerdeck-embed" data-id="876fcb001e760131f03e7e1022f85296" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>当日使ったようで使っていなかったデモファイルは<a href="http://github.com/1000ch/brushup-sample">こちら</a>。</p>
+
+<h2 id="懇親会">懇親会</h2>
+
+<p>参加者の方々と話してたら「黒い画面使ってみようと思いました！」とか「CSSLintの話参考になりました！」とか感想を頂いて非常にありがたかった。少しでも足しになったなら冥利に尽きます。</p>
+
+<p>黒い画面については<a href="http://fjord.jp/tag/dont-be-afraid-kuroigamen">Webデザイナーの為の「本当は怖くない」”黒い画面”入門</a>が丁寧でオススメ。</p>
+
+<p>苦手意識がある方もいると思うけど、僕から言わせればPhotoshopのほうがよっぽど難しい。ちょっと苦しめばある程度できるようになるので覚えておいて損はないかと思う。</p>
+
+<h2 id="npmの話すっ飛ばした">npmの話すっ飛ばした</h2>
+
+<p>これは簡単に解説しておこうと。</p>
+
+<p>npmはnodeのパッケージ管理ツール。nodeをインストールするとnpmも自動でインストールされる。</p>
+
+<ul>
+<li><a href="http://nodejs.jp/">Node.js 日本ユーザグループ</a></li>
+<li><a href="http://nodejs.org/">node.js</a> - インストーラはここから入手可能</li>
+</ul>
+
+<p>が、nodeの開発は非常に活発でバージョンアップもどんどん行われる。なので、nodeのバージョン管理ツールを使うことをオススメします。いくつかあるけど、ここでは<a href="https://github.com/creationix/nvm">nvm</a>を簡単に紹介。といってもREADMEの通りではありますが。</p>
+
+<p>まず、nvm本体のインストール。</p>
+
+<pre><code class="language-bash">$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+</code></pre>
+
+<p>これでホームディレクトリに<code>~/.nvm</code>というフォルダが作成されている。あとはnvmのパスを通すために<code>.bashrc</code>とかが書き換わっている。これで<code>nvm</code>というコマンドが使えるようになる。nodeはnvmを使ってインストールし、インストールしたnodeは<code>~/.nvm</code>の中で管理されるようになる。</p>
+
+<p>あとはnodeを、バージョンを指定してインストール。</p>
+
+<pre><code class="language-bash"># nodeの0.10.21をインストールする
+$ nvm install 0.10.21
+
+# nodeの0.8.25をインストールする
+$ nvm install 0.8.25
+
+# nvmでインストールしたnodeの0.10.21を使う
+$ nvm use 0.10.21
+</code></pre>
+
+<p>これでOKです。ターミナル立ち上げる度に<code>nvm use</code>とかするのもアレなので<code>.bashrc</code>とか<code>.zshrc</code>とかに書いたほうが良い。alias作ったり、<code>.nvmrc</code>を使った運用は<a href="https://github.com/creationix/nvm#usage">README</a>を参照のこと。</p>
+
+<h2 id="最後に">最後に</h2>
+
+<p>マークシティはダンジョンだ！</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fhtml5beginners.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fhtml5beginners.html&text=HTML5%e3%83%93%e3%82%ae%e3%83%8a%e3%83%bc%e3%82%ba%e3%81%a7%e3%83%aa%e3%83%95%e3%82%a1%e3%82%af%e3%82%bf%e3%83%aa%e3%83%b3%e3%82%b0%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e5%96%8b%e3%81%a3%e3%81%a6%e3%81%8d%e3%81%9f" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2013/web-image-optimization.html">👈 Webにおける画像の最適化</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2013/emoji-workflow.html">Emojiを選べるAlfredのWorkflowを作った 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

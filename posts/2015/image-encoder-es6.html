@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>画像をdataURIに変換するライブラリをES6で書きなおす - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="画像をdataURIに変換するライブラリをES6で書きなおす だいぶ前に書いたコードを掘り当ててそれをES6で書き直したのと、エディタのバグらしき現象にぶつかった話。ライブラリはファイルパスを渡して、Canvasに突っ込んだ後、データをdataURIにして出力する。インターフェースがPromise。特に変わったことしてないです(｡-人-｡)ｺﾞﾒﾝﾅｻｲ
+ちなみに、リポジトリは1000ch/image-encoderです。
+ES5で書かれた実装 ES5と言っておきながらPromiseを使っている点には突っ込まないこと。
+(function (window) { function ImageEncoder(path, width, height) { this.path = path || &#39;&#39;; this.width = width || 1; this.height = height || 1; } // ... ImageEncoder.prototype.getDataURI = function () { var that = this; return new Promise(function (resolve, reject) { var image = new Image(); image.setAttribute(&#39;crossOrigin&#39;,&#39;anonymous&#39;); var onLoad = function (e) { var canvas = document.createElement(&#39;canvas&#39;); canvas.width = that.width ? that.width : image.width; canvas.">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+    <meta name="twitter:card" content="summary">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2015/image-encoder-es6.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="画像をdataURIに変換するライブラリをES6で書きなおす">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2015/image-encoder-es6.html">
+<meta name="twitter:title" content="画像をdataURIに変換するライブラリをES6で書きなおす">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2015.01.06</span>
+
+        
+
+<h1 id="画像をdatauriに変換するライブラリをes6で書きなおす">画像をdataURIに変換するライブラリをES6で書きなおす</h1>
+
+<p>だいぶ前に書いたコードを掘り当ててそれをES6で書き直したのと、エディタのバグらしき現象にぶつかった話。ライブラリはファイルパスを渡して、Canvasに突っ込んだ後、データをdataURIにして出力する。インターフェースがPromise。特に変わったことしてないです(｡-人-｡)ｺﾞﾒﾝﾅｻｲ</p>
+
+<p>ちなみに、リポジトリは<a href="https://github.com/1000ch/image-encoder">1000ch/image-encoder</a>です。</p>
+
+<h2 id="es5で書かれた実装">ES5で書かれた実装</h2>
+
+<p>ES5と言っておきながらPromiseを使っている点には突っ込まないこと。</p>
+
+<pre><code class="language-javascript">(function (window) {
+
+  function ImageEncoder(path, width, height) {
+    this.path = path || '';
+    this.width = width || 1;
+    this.height = height || 1;
+  }
+
+  // ...
+
+  ImageEncoder.prototype.getDataURI = function () {
+
+    var that = this;
+
+    return new Promise(function (resolve, reject) {
+
+      var image = new Image();
+      image.setAttribute('crossOrigin','anonymous');
+
+      var onLoad = function (e) {
+
+        var canvas = document.createElement('canvas');
+        canvas.width = that.width ? that.width : image.width;
+        canvas.height = that.height ? that.height : image.height;
+
+        var context = canvas.getContext('2d');
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        image.removeEventListener('load', onLoad);
+        image.removeEventListener('error', onError);
+
+        resolve(canvas.toDataURL('image/png', 1));
+      };
+
+      var onError = function (e) {
+
+        image.removeEventListener('load', onLoad);
+        image.removeEventListener('error', onError);
+
+        reject(e);
+      };
+
+      image.addEventListener('load', onLoad);
+      image.addEventListener('error', onError);
+      image.src = that.path;
+    });
+  };
+
+  window.ImageEncoder = ImageEncoder;
+
+})(window);
+</code></pre>
+
+<p>使うには、のような感じ。</p>
+
+<pre><code class="language-javascript">new ImageEncoder('image.png').getDataURI().then(function onFulfilled(dataURI) {
+  console.log(dataURI);
+});
+</code></pre>
+
+<h2 id="es6で書きなおした実装">ES6で書きなおした実装</h2>
+
+<p>コンストラクタで引数をチェックしていたり、<code>var that = this;</code>はアロー記法の<code>this</code>キャプチャで無くせそうだなとか。<code>class</code>構文を使って書きなおしたクラスを<code>export</code>したり、<code>var</code>を<code>let</code>にしたり。色々妄想をしながら書き直す。</p>
+
+<p>やや古いポストだけど、ES6の各種機能等は以下の記事が参考になるかも。</p>
+
+<ul>
+<li><a href="/posts/2013/es6-features-1.html">ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~</a></li>
+<li><a href="/posts/2013/es6-features-2.html">ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~</a></li>
+</ul>
+
+<p>以下がES6で書き直したコード。</p>
+
+<pre><code class="language-javascript">export class ImageEncoder {
+
+  constructor(path = '', width = 1, height = 1) {
+    this.path = path;
+    this.width = width;
+    this.height = height;
+  }
+
+  // ...
+
+  getDataURI() {
+
+    return new Promise((resolve, reject) =&gt; {
+
+      let image = new Image();
+      image.setAttribute('crossOrigin','anonymous');
+
+      let onLoad = (e) =&gt; {
+
+        let canvas = document.createElement('canvas');
+        canvas.width = this.width ? this.width : image.width;
+        canvas.height = this.height ? this.height : image.height;
+        canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        image.removeEventListener('load', onLoad);
+        image.removeEventListener('error', onError);
+
+        resolve(canvas.toDataURL('image/png', 1));
+      };
+
+      let onError = (e) =&gt; {
+
+        image.removeEventListener('load', onLoad);
+        image.removeEventListener('error', onError);
+
+        reject(e);
+      };
+
+      image.addEventListener('load', onLoad);
+      image.addEventListener('error', onError);
+      image.src = this.path;
+    });
+  }
+}
+</code></pre>
+
+<p>かなりJavaっぽく見える…(´･∀･`)</p>
+
+<p><code>Image</code>オブジェクトの<code>load</code>イベントにバインドしている<code>onLoad</code>等はアロー関数で書いている。その手前の<code>Promise</code>のコンストラクタでもアロー関数を使うことで<code>getDataURI</code>の<code>this</code>をここでは2段構えで引き継いでいる。</p>
+
+<p><code>Image</code>オブジェクトの<code>load</code>にバインドしていると、イベントハンドラの呼び出し元オブジェクトは<code>Image</code>になるはずなのに、こうやってアロー記法でキャプチャしてしまうのも見通しが良くないような気もする（ネストしていると尚更）。</p>
+
+<h2 id="トランスパイル">トランスパイル</h2>
+
+<p>ECMAScript 6から5へのトランスパイルだと<a href="https://github.com/google/traceur-compiler">google/traceur-compiler</a>か、<a href="https://github.com/6to5/6to5">6to5/6to5</a>がメジャーっぽい。</p>
+
+<h3 id="google-traceur-compiler">Google Traceur Compiler</h3>
+
+<p>traceurはプリビルド以外にも、ランタイムエンジンを入れればES6のコードをそのまま実行できたりするので、ES6のブラウザサポートが進んだ時にランタイムエンジンをロードするコードを外せばそのまま動く！みたいなことが可能（というか、それを想定してのランタイムエンジンかとは思う）。<a href="https://github.com/google/traceur-compiler/wiki/Building-custom-Traceur-runtimes">カスタムビルドしないと重い</a>けど。</p>
+
+<pre><code class="language-html">&lt;script src=&quot;https://google.github.io/traceur-compiler/bin/traceur.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://google.github.io/traceur-compiler/src/bootstrap.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  // ES6のコード
+&lt;/script&gt;
+</code></pre>
+
+<h3 id="6to5">6to5</h3>
+
+<p>こちらも有名所なES6→ES5のトランスパイラ。ES6で書きなおした<code>ImageEncoder</code>を6to5で変換してみる。</p>
+
+<pre><code class="language-bash"># 6to5をグローバルにインストールする
+$ npm install -g 6to5
+
+# es6のコードをes5に変換する
+$ 6to5 src/image-encoder-es6.js &gt; transpiled.js
+</code></pre>
+
+<p>変換結果は以下の様になる。</p>
+
+<pre><code class="language-javascript">&quot;use strict&quot;;
+
+var ImageEncoder = function ImageEncoder() {
+  var path = arguments[0] === undefined ? &quot;&quot; : arguments[0];
+  var width = arguments[1] === undefined ? 1 : arguments[1];
+  var height = arguments[2] === undefined ? 1 : arguments[2];
+  this.path = path;
+  this.width = width;
+  this.height = height;
+};
+
+// ...
+
+ImageEncoder.prototype.getDataURI = function () {
+  var _this = this;
+
+  return new Promise(function (resolve, reject) {
+    var image = new Image();
+    image.setAttribute(&quot;crossOrigin&quot;, &quot;anonymous&quot;);
+
+    var onLoad = function (e) {
+      var canvas = document.createElement(&quot;canvas&quot;);
+      canvas.width = _this.width ? _this.width : image.width;
+      canvas.height = _this.height ? _this.height : image.height;
+      canvas.getContext(&quot;2d&quot;).drawImage(image, 0, 0, canvas.width, canvas.height);
+
+      image.removeEventListener(&quot;load&quot;, onLoad);
+      image.removeEventListener(&quot;error&quot;, onError);
+
+      resolve(canvas.toDataURL(&quot;image/png&quot;, 1));
+    };
+
+    var onError = function (e) {
+      image.removeEventListener(&quot;load&quot;, onLoad);
+      image.removeEventListener(&quot;error&quot;, onError);
+
+      reject(e);
+    };
+
+    image.addEventListener(&quot;load&quot;, onLoad);
+    image.addEventListener(&quot;error&quot;, onError);
+    image.src = _this.path;
+  });
+};
+
+exports.ImageEncoder = ImageEncoder;
+</code></pre>
+
+<p>とても綺麗に見える。綺麗に見えるどころか、元のコードに酷似している。この辺は<code>class</code>がシンタックスシュガーだなと改めて思わされるところ。</p>
+
+<h2 id="変な改行コードが挿入される">変な改行コードが挿入される？</h2>
+
+<p>Markdownは<a href="http://www.iawriter.com/mac/">iA Writer</a>を使って書いているけど、このエディタ内でコードを編集して再びWebStormに貼り付けると文法ミス等が無いのに注意される。</p>
+
+<p><img src="/img/posts/2015/image-encoder-es6/error-1.png" alt="" /></p>
+
+<p>所々改行位置に謎のエラーが。これ、実は違う原稿を書いている時にも時折発生していた現象だったけどスルーしていた。</p>
+
+<p><code>nkf</code>で正体を探る。</p>
+
+<pre><code class="language-bash">$ nkf -Lu src/image-encoder-es6.js &gt; test.js
+</code></pre>
+
+<p>すると、注意されている箇所で <strong>窶ィ</strong> という謎の呪文が現れた。</p>
+
+<p><img src="/img/posts/2015/image-encoder-es6/error-2.png" alt="" /></p>
+
+<p>ググっても有益そうな情報が中々出てこない。<code>cat -e</code>でも正体不明な記号が表示されてよくわからない…。</p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fimage-encoder-es6.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fimage-encoder-es6.html&text=%e7%94%bb%e5%83%8f%e3%82%92dataURI%e3%81%ab%e5%a4%89%e6%8f%9b%e3%81%99%e3%82%8b%e3%83%a9%e3%82%a4%e3%83%96%e3%83%a9%e3%83%aa%e3%82%92ES6%e3%81%a7%e6%9b%b8%e3%81%8d%e3%81%aa%e3%81%8a%e3%81%99" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2014/service-worker-internals.html">👈 Service Workerに関する仕様とか機能とか</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2015/centos-minimum-config.html">CentOS 6系に対して行う最低限の設定 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MacのMarkdownアプリ - EagleLand</title>
+
+<link rel="icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/github.min.css">
+<link rel="stylesheet" href="/css/font.css">
+<link rel="stylesheet" href="/css/settings.css">
+<link rel="stylesheet" href="/css/tools.css">
+<link rel="stylesheet" href="/css/generic.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/objects.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/trumps.css">
+<link rel="alternate" href="/rss.xml" title="1000ch.net" type="application/rss+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+
+<meta name="author" content="Shogo Sensui">
+<meta name="copyright" content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+
+
+  
+    <meta property="og:description" content="MacのMarkdownアプリ ブラウザ上にも便利なMarkdownエディタは幾つかあるが、ブラウザのヒストリーバック時に消えたりパフォーマンスもあまりよくなかったり等の理由で、実際には手元の専用アプリで書いていることが多い。
+Mac用のMarkdownエディタも沢山あって、自分もいくつか試してきたのでそれをメモがてら紹介する。
+iA Writer Version 3から機能が多数追加され、左右スワイプでドキュメントライブラリメニューとHTMLプレビューが出るようになった。個人的には余計な機能で、縦にスクロールしたいときにも反応したりするので、シンプルなVersion 2の方が良かった。
+MacDown 開発停止中となっているMouの影響を受けた後発のMacアプリがMacDown。GitHub上でオープンソースとして開発されている。
+表示が左右2ペインになっており、左ペインが編集エリア、その描画結果が右ペインに表示される。編集モードの設定や、フォントやカラーテーマ、プレビュー部分のスタイルなどもカスタマイズ可能になっている。
+Whiskey Nothing MagicalというSam Soffes氏によるプロジェクトが開発している。Beta版であることもあり機能は少なめだが、シンプルで使いやすい。
+Caret Antonio Stoilkov氏とEmanuil Rusev氏によるプロジェクト。プリオーダー時は$5だったが、今は$10でライセンスを購入できる模様。
+見た目も機能も一番バランスが良いが、Undo (⌘ &#43; Z)がバグっており、今のところ使い物にならない。Version 2から修正されることを期待したい。
+Focused 通常の編集機能に加えて、タイプライターモードとフォーカスモードという2つの編集モードや、シェア機能、BGM再生などを備えている。ライセンスは$31で購入可能。
+typora こちらもシンプルで使いやすい。特徴的なのは編集機能とプレビュー機能が同居している点で、マークダウンの文法で編集が行われるとそのままプレビュー結果として表示されていく（言葉で説明し難い）。自分はマークダウンはマークダウンとして編集したい派だが、この使い心地が好みの人もいそう。">
+  
+
+  
+    <meta property="og:image" content="https://1000ch.net/img/posts/2016/markdown-mac-app/macdown.png">
+    <meta name="twitter:card" content="summary_large_image">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2016/markdown-mac-app.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="MacのMarkdownアプリ">
+
+<meta name="twitter:site" content="@1000ch">
+<meta name="twitter:url" content="https://1000ch.net/posts/2016/markdown-mac-app.html">
+<meta name="twitter:title" content="MacのMarkdownアプリ">
+
+<meta name="google-site-verification" content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49530352-1', '1000ch.net');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="Container">
+      <header class="Header">
+  <h1 class="Header__Title">
+    <a href="/">EagleLand</a>
+  </h1>
+  <nav class="Header__Menu">
+    <div class="Header__MenuItem">
+      <img src="/img/rss.svg" alt="">
+      <a href="/rss.xml">RSS</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/heart.svg" alt="">
+      <a href="https://shogosensui.com">Activity</a>
+    </div>
+    <div class="Header__MenuItem">
+      <img src="/img/facebook.svg" alt="">
+      <a href="https://www.facebook.com/1000ch.net">Facebook</a>
+    </div>
+  </nav>
+</header>
+
+      <main class="Main">
+        <span class="Label Label--gray pull-left">2016.01.12</span>
+
+        
+
+<h1 id="macのmarkdownアプリ">MacのMarkdownアプリ</h1>
+
+<p>ブラウザ上にも便利なMarkdownエディタは幾つかあるが、ブラウザのヒストリーバック時に消えたりパフォーマンスもあまりよくなかったり等の理由で、実際には手元の専用アプリで書いていることが多い。</p>
+
+<p>Mac用のMarkdownエディタも沢山あって、自分もいくつか試してきたのでそれをメモがてら紹介する。</p>
+
+<h2 id="ia-writer-https-ia-net-writer-mac"><a href="https://ia.net/writer/mac/">iA Writer</a></h2>
+
+<p>Version 3から機能が多数追加され、左右スワイプでドキュメントライブラリメニューとHTMLプレビューが出るようになった。個人的には余計な機能で、縦にスクロールしたいときにも反応したりするので、シンプルなVersion 2の方が良かった。</p>
+
+<p><img src="/img/posts/2016/markdown-mac-app/iawriter.png" alt="iA Writer" /></p>
+
+<h2 id="macdown-http-macdown-uranusjr-com"><a href="http://macdown.uranusjr.com/">MacDown</a></h2>
+
+<p>開発停止中となっている<a href="http://25.io/mou/">Mou</a>の影響を受けた後発のMacアプリがMacDown。GitHub上で<a href="https://github.com/uranusjr/macdown">オープンソースとして開発されている</a>。</p>
+
+<p><img src="/img/posts/2016/markdown-mac-app/macdown.png" alt="MacDown" /></p>
+
+<p>表示が左右2ペインになっており、左ペインが編集エリア、その描画結果が右ペインに表示される。編集モードの設定や、フォントやカラーテーマ、プレビュー部分のスタイルなどもカスタマイズ可能になっている。</p>
+
+<h2 id="whiskey-http-usewhiskey-com"><a href="http://usewhiskey.com/">Whiskey</a></h2>
+
+<p><a href="http://nothingmagical.com/">Nothing Magical</a>という<a href="https://soff.es/">Sam Soffes</a>氏によるプロジェクトが開発している。Beta版であることもあり機能は少なめだが、シンプルで使いやすい。</p>
+
+<p><img src="/img/posts/2016/markdown-mac-app/whiskey.png" alt="Whiskey" /></p>
+
+<h2 id="caret-http-caret-io"><a href="http://caret.io/">Caret</a></h2>
+
+<p><a href="https://github.com/astoilkov">Antonio Stoilkov</a>氏と<a href="https://github.com/erusev">Emanuil Rusev</a>氏によるプロジェクト。プリオーダー時は$5だったが、今は$10でライセンスを購入できる模様。</p>
+
+<p><img src="/img/posts/2016/markdown-mac-app/caret.png" alt="Caret" /></p>
+
+<p>見た目も機能も一番バランスが良いが、Undo (<kbd>⌘</kbd> + <kbd>Z</kbd>)がバグっており、今のところ使い物にならない。Version 2から修正されることを期待したい。</p>
+
+<h2 id="focused-https-71squared-com-focused"><a href="https://71squared.com/focused">Focused</a></h2>
+
+<p>通常の編集機能に加えて、タイプライターモードとフォーカスモードという2つの編集モードや、シェア機能、BGM再生などを備えている。ライセンスは$31で購入可能。</p>
+
+<p><img src="/img/posts/2016/markdown-mac-app/focused.png" alt="Focused" /></p>
+
+<h2 id="typora-http-www-typora-io"><a href="http://www.typora.io/">typora</a></h2>
+
+<p>こちらもシンプルで使いやすい。特徴的なのは編集機能とプレビュー機能が同居している点で、マークダウンの文法で編集が行われるとそのままプレビュー結果として表示されていく（言葉で説明し難い）。自分はマークダウンはマークダウンとして編集したい派だが、この使い心地が好みの人もいそう。</p>
+
+<p><img src="/img/posts/2016/markdown-mac-app/typora.png" alt="Typora" /></p>
+
+        <aside class="Share">
+  <div class="Share__Item">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fmarkdown-mac-app.html" title="Share on Facebook" target="_blank">
+      <img src="/img/facebook.svg">
+    </a>
+  </div>
+  <div class="Share__Item">
+    <a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fmarkdown-mac-app.html&text=Mac%e3%81%aeMarkdown%e3%82%a2%e3%83%97%e3%83%aa" title="Share on Twitter" target="_blank">
+      <img src="/img/twitter.svg">
+    </a>
+  </div>
+</aside>
+
+<nav class="Pager">
+  
+    <div class="Pager__Item Pager__Item--left">
+      <a href="/posts/2016/chromeos-developer-mode.html">👈 Chrome OSをDeveloper Modeで起動する</a>
+    </div>
+  
+
+  
+    <div class="Pager__Item Pager__Item--right">
+      <a href="/posts/2016/og-card-simulator.html">Open Graphのデータをカードでプレビューする 👉</a>
+    </div>
+  
+</nav>
+
+      </main>
+      <aside class="Aside">
+  <h1>Author</h1>
+  <div class="Media">
+    <picture>
+      <source srcset="/img/1000ch.webp" type="image/webp">
+      <img class="Media__Figure" src="/img/1000ch.jpg" alt="">
+    </picture>
+    <div class="Media__Body">
+      <h3 class="Media__Title">1000ch <a href="https://twitter.com/1000ch" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @1000ch</a></h3>
+      <p>
+        ソフトウェアエンジニア。SIer でのプログラマーを経て Web 業界に転職して以来、Web 技術に没頭する日々を送っている。Web 標準の動向やアーキテクチャの流行を追いかけつつ、技術啓蒙や OSS 活動に励んでいる。
+      </p>
+    </div>
+  </div>
+</aside>
+
+      <footer class="Footer">
+  <div class="Banner">
+    <div class="Banner__Item">
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja" target="_blank">
+        <img src="/img/by-nc-nd.png" alt="CC BY-NC-ND 4.0" width="80" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <a href="https://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fhttps%3A%2F%2F1000ch.net%2Findex.xml" target="_blank">
+        <img src="https://s3.feedly.com/img/follows/feedly-follow-rectangle-flat-medium_2x.png" alt="follow me on feedly" width="71" height="28">
+      </a>
+    </div>
+    <div class="Banner__Item">
+      <form action="https://duckduckgo.com/" role="search">
+        <input name="sites" type="hidden" value="1000ch.net">
+        <input name="q" type="search">
+        <input type="submit" value="Search">
+      </form>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script defer src="https://platform.twitter.com/widgets.js"></script>
+<script defer src="https://platform.instagram.com/en_US/embeds.js"></script>
+<script defer src="https://assets.codepen.io/assets/embed/ei.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script type="module">
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+
+  </body>
+</html>
