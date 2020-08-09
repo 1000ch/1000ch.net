@@ -106,6 +106,7 @@ kbd:active {
 pre {
   word-wrap: normal;
   overflow-wrap: normal;
+  background-color: transparent !important;
 }
 
 code {
@@ -113,15 +114,16 @@ code {
   font-size: 1.4rem;
   margin: 0.1rem 0.2rem;
   padding: 0.1rem 0.2rem;
-  color: #c25;
-  border: 0.1rem solid #ddd;
+  color: var(--light-color);
+  border: 0.1rem solid var(--light-color);
   border-radius: 0.4rem;
   background-color: var(--light-bgcolor);
 }
 
 @media (prefers-color-scheme: dark) {
   code {
-    color: var(--dark-color) !important;
+    color: var(--dark-color);
+    border-color: var(--dark-color);
     background-color: var(--dark-bgcolor);
   }
 }
@@ -131,13 +133,6 @@ pre > code {
   overflow-x: scroll;
   margin: 0.8rem 0;
   padding: 0.8rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  pre > code {
-    color: var(--dark-color) !important;
-    background-color: var(--dark-bgcolor) !important;
-  }
 }
 
 h1 > code {
