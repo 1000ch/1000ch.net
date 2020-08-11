@@ -115,7 +115,7 @@ code {
   margin: 0.1rem 0.2rem;
   padding: 0.1rem 0.2rem;
   color: var(--light-color);
-  border: 0.1rem solid var(--light-color);
+  border: 0.1rem solid var(--light-bordercolor);
   border-radius: 0.4rem;
   background-color: var(--light-bgcolor);
 }
@@ -123,7 +123,7 @@ code {
 @media (prefers-color-scheme: dark) {
   code {
     color: var(--dark-color);
-    border-color: var(--dark-color);
+    border-color: var(--dark-bordercolor);
     background-color: var(--dark-bgcolor);
   }
 }
