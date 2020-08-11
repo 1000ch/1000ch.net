@@ -7,8 +7,10 @@
   --light-color: #666;
   --light-bgcolor: #fff;
   --light-bgcolor-backdrop: #eee;
+  --light-bordercolor: #ccc;
   --dark-color-heading: #ccc;
   --dark-color: #999;
   --dark-bgcolor: #111;
   --dark-bgcolor-backdrop: #222;
+  --dark-bordercolor: #333;
 }
