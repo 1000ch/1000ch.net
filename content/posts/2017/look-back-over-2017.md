@@ -23,7 +23,7 @@ WIP
 
 ## 超速本の出版
 
-かれこれ約2年間執筆していた[超速! Webページ速度改善ガイド](http://amzn.to/2iox4EP)、通称[#超速本](https://twitter.com/search?q=%23超速本)が世に出た。
+かれこれ約2年間執筆していた[超速! Webページ速度改善ガイド](http://amzn.to/2iox4EP)、通称[#超速本](https://twitter.com/search?q=%23超速本)が世に出た。
 
 ほぼ趣味の領域で、[特設サイト](https://webperf.guide)も作ってみた。
 
