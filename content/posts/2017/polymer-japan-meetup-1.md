@@ -28,4 +28,4 @@ WebAudio のコントロールのリッチな UI ですが、これが素晴ら�
 
 ハンズオンは [Polymer Elements Catalog](https://elements.polymer-project.org/) で配布されているコンポーネントを組み合わせて、[地点間の経路を表示する地図アプリ](https://1000ch.github.io/polymer-handson/)の作成でした。コンポーネントを組み合わせるだけで、いとも簡単にリッチなアプリケーションが組み上がっていくのは快感ですね。
 
-Polymer Japan は[ロゴができたり](https://twitter.com/polymer_jp/status/925287871996559360)、[公式サイトがローンチされたり](https://polymer-jp.org/)、徐々にコミュニティとして整いつつあるようです。今後もトピックを臨機応変に変えつつ、こうしたミートアップに留まらず様々な活動を計画しているようで、とても楽しみです。
+Polymer Japan は[ロゴができたり](https://twitter.com/polymer_jp/status/925287871996559360)、[公式サイトがローンチされたり](https://polymer-jp.org/)、徐々にコミュニティとして整いつつあるようです。今後もトピックを臨機応変に変えつつ、こうしたミートアップに留まらず様々な活動を計画しているようで、とても楽しみです。
