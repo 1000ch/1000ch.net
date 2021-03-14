@@ -54,7 +54,10 @@ footer {
 }
 ```
 
-<p data-height="200" data-theme-id="0" data-slug-hash="oxzEBa" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/oxzEBa/">oxzEBa</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid;" src="https://codepen.io/1000ch/embed/oxzEBa?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/1000ch/pen/oxzEBa'>display: grid;</a> by 1000ch
+  (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### レイアウトは子要素の順序に依存しない
 
@@ -211,7 +214,10 @@ footer {
 }
 ```
 
-<p data-height="200" data-theme-id="0" data-slug-hash="bpeQpa" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/bpeQpa/">display: grid; positive value</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; positive value" src="https://codepen.io/1000ch/embed/bpeQpa?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/1000ch/pen/bpeQpa'>display: grid; positive value</a> by 1000ch
+  (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### 区切り線番号のマイナス値
 
@@ -228,7 +234,10 @@ footer {
 }
 ```
 
-<p data-height="200" data-theme-id="0" data-slug-hash="oxLrrZ" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/oxLrrZ/">display: grid; negative value</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; negative value" src="https://codepen.io/1000ch/embed/oxLrrZ?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/1000ch/pen/oxLrrZ'>display: grid; negative value</a> by 1000ch
+  (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### 命名した区切り線の指定
 
@@ -243,7 +252,10 @@ footer {
 }
 ```
 
-<p data-height="200" data-theme-id="0" data-slug-hash="wGWVaQ" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/wGWVaQ/">display: grid; named line value</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; named line value" src="https://codepen.io/1000ch/embed/wGWVaQ?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/1000ch/pen/wGWVaQ'>display: grid; named line value</a> by 1000ch
+  (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### 命名した領域の指定
 
@@ -255,7 +267,10 @@ footer {
 }
 ```
 
-<p data-height="200" data-theme-id="0" data-slug-hash="grMVPj" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/grMVPj/">display: grid; named area value</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; named area value" src="https://codepen.io/1000ch/embed/grMVPj?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/1000ch/pen/grMVPj'>display: grid; named area value</a> by 1000ch
+  (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### 区切り線からの長さ（スパン）で指定
 
@@ -270,7 +285,10 @@ footer {
 
 このように`span`キーワードを使って、セルの数を指定可能。もちろんショートハンドプロパティだけでなく、`grid-row-end`プロパティに`span 2`と指定も出来るが、開始点と距離がペアになっている方が一見わかりやすそう。ケースバイケースだけど。
 
-<p data-height="200" data-theme-id="0" data-slug-hash="dMXxOZ" data-default-tab="result" data-user="1000ch" class="codepen">See the Pen <a href="http://codepen.io/1000ch/pen/dMXxOZ/">display: grid; spanning</a> by 1000ch (<a href="http://codepen.io/1000ch">@1000ch</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; spanning" src="https://codepen.io/1000ch/embed/dMXxOZ?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/1000ch/pen/dMXxOZ'>display: grid; spanning</a> by 1000ch
+  (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ## グリッド要素における子要素の整列
 
