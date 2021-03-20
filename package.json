@@ -10,25 +10,9 @@
     "web": "https://github.com/1000ch"
   },
   "scripts": {
-    "start": "run-p serve watch:css",
-    "serve": "hugo server",
+    "dev": "hugo server & npm run css -- --watch",
     "lint": "stylelint static/css/*.css",
-    "css": "run-p css:*",
-    "css:base": "postcss --output public/css/base.css static/css/base.css",
-    "css:components": "postcss --output public/css/components.css static/css/components.css",
-    "css:generic": "postcss --output public/css/generic.css static/css/generic.css",
-    "css:objects": "postcss --output public/css/objects.css static/css/objects.css",
-    "css:settings": "postcss --output public/css/settings.css static/css/settings.css",
-    "css:tools": "postcss --output public/css/tools.css static/css/tools.css",
-    "css:trumps": "postcss --output public/css/trumps.css static/css/trumps.css",
-    "watch:css": "run-p watch:css:*",
-    "watch:css:base": "npm run css:base -- --watch",
-    "watch:css:components": "npm run css:components -- --watch",
-    "watch:css:generic": "npm run css:generic -- --watch",
-    "watch:css:objects": "npm run css:objects -- --watch",
-    "watch:css:settings": "npm run css:settings -- --watch",
-    "watch:css:tools": "npm run css:tools -- --watch",
-    "watch:css:trumps": "npm run css:trumps -- --watch",
+    "css": "postcss static/css/*.css --dir public/css/",
     "build": "npm run css"
   },
   "devDependencies": {
