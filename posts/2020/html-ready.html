@@ -1,19 +1,89 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト document の DOMContentLoaded イベント や window の load イベント は Web 開発者にとってお馴染みのブラウザライフサイクルである。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト document の DOMContentLoaded イベント や window の load イベント は Web 開発者にとってお馴染みのブラウザライフサイクルである。
 結論から言うと、これらを簡単にハンドリングするための html-ready という小さなライブラリを作ったという話。実装自体はとても簡単で、ここで改めて説明するほどのものではない。ただ、同じことを色んな場面で何度も何度も書いている実感があり、巷にも期待する機能を持ったライブラリがなかったので作った。
 イベントのタイミングとハンドリング方法 簡単におさらいすると、それぞれ以下のような条件で発火する。
  document の DOMContentLoaded イベント: HTML ドキュメントのロードが完了したタイミング window の load イベント: ページが参照する CSS や画像などのサブリソースのロードが完了したタイミング  これらのタイミングを取得するためには、以下のように addEventListener を使ってコールバック内に任意の処理を記述すれば良い。
 document.addEventListener('DOMContentLoaded', () => { console.log('DOMContentLoaded is fired'); }); window.addEventListener('load', () => { console.log('load is fired'); }); ただし、これらはイベントが発火されたあとに実行されるとコールバックが実行されないので、より丁寧にハンドリングしようとすると document.readyState を参照して HTML ドキュメントの読み込み状態をチェックしなくてはならない。
-if (document.readyState === 'interactive' || document.readyState === 'complete') { console."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2020/html-ready.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2020/html-ready.html"><meta name=twitter:title content="DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2020.08.04</span><h1 id=domcontentloaded-イベントや-load-イベントを約束する-promise-オブジェクト>DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト</h1><p><a href=https://developer.mozilla.org/ja/docs/Web/API/Document/DOMContentLoaded_event><code>document</code> の <code>DOMContentLoaded</code> イベント</a> や <a href=https://developer.mozilla.org/ja/docs/Web/API/Window/load_event><code>window</code> の <code>load</code> イベント</a> は Web 開発者にとってお馴染みのブラウザライフサイクルである。</p><p>結論から言うと、これらを簡単にハンドリングするための <a href=https://github.com/1000ch/html-ready>html-ready</a> という小さなライブラリを作ったという話。実装自体はとても簡単で、ここで改めて説明するほどのものではない。ただ、同じことを色んな場面で何度も何度も書いている実感があり、巷にも期待する機能を持ったライブラリがなかったので作った。</p><h2 id=イベントのタイミングとハンドリング方法>イベントのタイミングとハンドリング方法</h2><p>簡単におさらいすると、それぞれ以下のような条件で発火する。</p><ul><li><code>document</code> の <code>DOMContentLoaded</code> イベント: HTML ドキュメントのロードが完了したタイミング</li><li><code>window</code> の <code>load</code> イベント: ページが参照する CSS や画像などのサブリソースのロードが完了したタイミング</li></ul><p>これらのタイミングを取得するためには、以下のように <code>addEventListener</code> を使ってコールバック内に任意の処理を記述すれば良い。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;DOMContentLoaded&#39;</span>, () =&gt; {
+if (document.readyState === 'interactive' || document.readyState === 'complete') { console.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2020/html-ready.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2020/html-ready.html">
+<meta name=twitter:title content="DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2020.08.04</span>
+<h1 id=domcontentloaded-イベントや-load-イベントを約束する-promise-オブジェクト>DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト</h1>
+<p><a href=https://developer.mozilla.org/ja/docs/Web/API/Document/DOMContentLoaded_event><code>document</code> の <code>DOMContentLoaded</code> イベント</a> や <a href=https://developer.mozilla.org/ja/docs/Web/API/Window/load_event><code>window</code> の <code>load</code> イベント</a> は Web 開発者にとってお馴染みのブラウザライフサイクルである。</p>
+<p>結論から言うと、これらを簡単にハンドリングするための <a href=https://github.com/1000ch/html-ready>html-ready</a> という小さなライブラリを作ったという話。実装自体はとても簡単で、ここで改めて説明するほどのものではない。ただ、同じことを色んな場面で何度も何度も書いている実感があり、巷にも期待する機能を持ったライブラリがなかったので作った。</p>
+<h2 id=イベントのタイミングとハンドリング方法>イベントのタイミングとハンドリング方法</h2>
+<p>簡単におさらいすると、それぞれ以下のような条件で発火する。</p>
+<ul>
+<li><code>document</code> の <code>DOMContentLoaded</code> イベント: HTML ドキュメントのロードが完了したタイミング</li>
+<li><code>window</code> の <code>load</code> イベント: ページが参照する CSS や画像などのサブリソースのロードが完了したタイミング</li>
+</ul>
+<p>これらのタイミングを取得するためには、以下のように <code>addEventListener</code> を使ってコールバック内に任意の処理を記述すれば良い。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;DOMContentLoaded&#39;</span>, () =&gt; {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;DOMContentLoaded is fired&#39;</span>);
 });
 
 window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;load&#39;</span>, () =&gt; {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;load is fired&#39;</span>);
 });
-</code></pre></div><p>ただし、これらはイベントが発火されたあとに実行されるとコールバックが実行されないので、より丁寧にハンドリングしようとすると <a href=https://developer.mozilla.org/ja/docs/Web/API/Document/readyState><code>document.readyState</code></a> を参照して HTML ドキュメントの読み込み状態をチェックしなくてはならない。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>if</span> (document.<span style=color:#a6e22e>readyState</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;interactive&#39;</span> <span style=color:#f92672>||</span> document.<span style=color:#a6e22e>readyState</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;complete&#39;</span>) {
+</code></pre></div><p>ただし、これらはイベントが発火されたあとに実行されるとコールバックが実行されないので、より丁寧にハンドリングしようとすると <a href=https://developer.mozilla.org/ja/docs/Web/API/Document/readyState><code>document.readyState</code></a> を参照して HTML ドキュメントの読み込み状態をチェックしなくてはならない。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>if</span> (document.<span style=color:#a6e22e>readyState</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;interactive&#39;</span> <span style=color:#f92672>||</span> document.<span style=color:#a6e22e>readyState</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;complete&#39;</span>) {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;DOMContentLoaded is already fired&#39;</span>);
 } <span style=color:#66d9ef>else</span> {
   document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;DOMContentLoaded&#39;</span>, () =&gt; {
@@ -28,7 +98,9 @@ window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db
     <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;load is fired&#39;</span>);
   });
 }
-</code></pre></div><h2 id=html-ready-を使って-promise-で待機する方法>html-ready を使って Promise で待機する方法</h2><p><a href=https://github.com/1000ch/html-ready>html-ready</a> に <code>documentReady</code> オブジェクトと <code>windowReady</code> オブジェクトが含まれており、これらを使うと以下のように記述できる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>documentReady</span>, <span style=color:#a6e22e>windowReady</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;https://unpkg.com/html-ready&#39;</span>;
+</code></pre></div><h2 id=html-ready-を使って-promise-で待機する方法>html-ready を使って Promise で待機する方法</h2>
+<p><a href=https://github.com/1000ch/html-ready>html-ready</a> に <code>documentReady</code> オブジェクトと <code>windowReady</code> オブジェクトが含まれており、これらを使うと以下のように記述できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>documentReady</span>, <span style=color:#a6e22e>windowReady</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;https://unpkg.com/html-ready&#39;</span>;
 
 <span style=color:#a6e22e>documentReady</span>.<span style=color:#a6e22e>then</span>(() =&gt; {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;DOMContentLoaded is fired&#39;</span>);
@@ -37,10 +109,62 @@ window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db
 <span style=color:#a6e22e>windowReady</span>.<span style=color:#a6e22e>then</span>(() =&gt; {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;load is fired&#39;</span>);
 });
-</code></pre></div><p>これは unpkg を直接参照して <a href=https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules>ESM でロードしている</a>例だが、もちろん <code>npm install html-ready</code> を実行してモジュールバンドラに依存関係を解決させることも可能である。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fhtml-ready.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fhtml-ready.html&text=DOMContentLoaded%20%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%84%20load%20%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%92%e7%b4%84%e6%9d%9f%e3%81%99%e3%82%8b%20Promise%20%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2020/move-to-github-actions.html>👈 静的ホスティングへのデプロイをGitHub Actionsで実行するようにした</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2020/what-you-should-care-about-when-you-use-online-tool.html>オンラインで公開されているサービスやツールを使うときに留意していること 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p>これは unpkg を直接参照して <a href=https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules>ESM でロードしている</a>例だが、もちろん <code>npm install html-ready</code> を実行してモジュールバンドラに依存関係を解決させることも可能である。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fhtml-ready.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fhtml-ready.html&text=DOMContentLoaded%20%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%84%20load%20%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%82%92%e7%b4%84%e6%9d%9f%e3%81%99%e3%82%8b%20Promise%20%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2020/move-to-github-actions.html>👈 静的ホスティングへのデプロイをGitHub Actionsで実行するようにした</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2020/what-you-should-care-about-when-you-use-online-tool.html>オンラインで公開されているサービスやツールを使うときに留意していること 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -54,4 +178,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

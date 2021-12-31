@@ -1,4 +1,26 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>画像を便利に扱うReactコンポーネント - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="画像を便利に扱うReactコンポーネント React を使った Web プロダクト開発では、遅延ロードやアクセシビリティといった画像として基本的な機能を備えつつ、ステートレスな <Image> コンポーネントを実装することがしばしある。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>画像を便利に扱うReactコンポーネント - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="画像を便利に扱うReactコンポーネント React を使った Web プロダクト開発では、遅延ロードやアクセシビリティといった画像として基本的な機能を備えつつ、ステートレスな <Image> コンポーネントを実装することがしばしある。
 FRESH! の Web 開発チームでは以前Intersection Observerを使った要素の出現を検出するReactコンポーネントを公開したが、今度は画像を扱う汎用 React コンポーネントを公開した。今日はその紹介と、それらを組み合わせた <Image> コンポーネントの実装をしてみる。
 こちらも FRESH! 以外でも使えたら便利だなと思った次第で、機能の切り出しは作業は富澤さん @tommy-san がやってくれた 🙏
 SuperImage 仮で付けていた SuperImage がそのまま名前に採用されてしまった。openfresh/super-image にて公開されている。
@@ -6,10 +28,62 @@ SuperImage 仮で付けていた SuperImage がそのまま名前に採用され
  object-fit を使ったレイアウトが可能で、非対応ブラウザでも background-size でフォールバックする alt 属性が未指定の場合に、空文字を付与する。object-fit がフォールバックされ <img> で描画されない場合は aria-label を使う  素で使うには少し面倒な <picture> 要素や srcset 属性を使ったレスポンシブな画像の表示なども、このコンポーネントでうまくラップできると良さそう。
 ViewportObserverとの連携 ViewportObserver と組み合わせれば、画像表示に関して用意しておきたい機能はおおよそカバーできるはず。
 次のコードは、スクロール同期で画像をロードしつつ、フォールバック付きで object-fit でレイアウトできる <Image> コンポーネントのサンプルである。
-import * as React from 'react'; import * as PropTypes from 'prop-types'; import * as SuperImage from 'super-image'; import * as ViewportObserver from 'viewport-observer'; const DUMMY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAP//////zCH5BAEHAAAALAAAAAABAAEAAAICRAEAOw=='; const ROOT_MARGIN = '200px 0'; export default class Image extends React."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/openfresh-super-image.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="画像を便利に扱うReactコンポーネント"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/openfresh-super-image.html"><meta name=twitter:title content="画像を便利に扱うReactコンポーネント"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2017.08.11</span><h1 id=画像を便利に扱うreactコンポーネント>画像を便利に扱うReactコンポーネント</h1><p>React を使った Web プロダクト開発では、遅延ロードやアクセシビリティといった画像として基本的な機能を備えつつ、ステートレスな <code>&lt;Image></code> コンポーネントを実装することがしばしある。</p><p><a href=https://freshlive.tv>FRESH!</a> の Web 開発チームでは以前<a href=/posts/2017/openfresh-viewport-observer.html>Intersection Observerを使った要素の出現を検出するReactコンポーネント</a>を公開したが、今度は画像を扱う汎用 React コンポーネントを公開した。今日はその紹介と、それらを組み合わせた <code>&lt;Image></code> コンポーネントの実装をしてみる。</p><p>こちらも FRESH! 以外でも使えたら便利だなと思った次第で、機能の切り出しは作業は富澤さん <a href=https://github.com/tommy-san>@tommy-san</a> がやってくれた 🙏</p><h2 id=superimage>SuperImage</h2><p>仮で付けていた <code>SuperImage</code> がそのまま名前に採用されてしまった。<a href=https://github.com/openfresh/super-image><code>openfresh/super-image</code></a> にて公開されている。</p><p>このコンポーネントの機能はシンプルに絞ってある。</p><ul><li><a href=https://developer.mozilla.org/ja/docs/Web/CSS/object-fit><code>object-fit</code></a> を使ったレイアウトが可能で、非対応ブラウザでも <a href=https://developer.mozilla.org/ja/docs/Web/CSS/background-size><code>background-size</code></a> でフォールバックする</li><li><code>alt</code> 属性が未指定の場合に、空文字を付与する。<code>object-fit</code> がフォールバックされ <code>&lt;img></code> で描画されない場合は <code>aria-label</code> を使う</li></ul><p>素で使うには少し面倒な <code>&lt;picture></code> 要素や <code>srcset</code> 属性を使ったレスポンシブな画像の表示なども、このコンポーネントでうまくラップできると良さそう。</p><h2 id=viewportobserverとの連携>ViewportObserverとの連携</h2><p>ViewportObserver と組み合わせれば、画像表示に関して用意しておきたい機能はおおよそカバーできるはず。</p><p>次のコードは、スクロール同期で画像をロードしつつ、フォールバック付きで <code>object-fit</code> でレイアウトできる <code>&lt;Image></code> コンポーネントのサンプルである。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>as</span> <span style=color:#a6e22e>React</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;react&#39;</span>;
+import * as React from 'react'; import * as PropTypes from 'prop-types'; import * as SuperImage from 'super-image'; import * as ViewportObserver from 'viewport-observer'; const DUMMY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAP//////zCH5BAEHAAAALAAAAAABAAEAAAICRAEAOw=='; const ROOT_MARGIN = '200px 0'; export default class Image extends React.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2017/openfresh-super-image.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="画像を便利に扱うReactコンポーネント">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2017/openfresh-super-image.html">
+<meta name=twitter:title content="画像を便利に扱うReactコンポーネント">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2017.08.11</span>
+<h1 id=画像を便利に扱うreactコンポーネント>画像を便利に扱うReactコンポーネント</h1>
+<p>React を使った Web プロダクト開発では、遅延ロードやアクセシビリティといった画像として基本的な機能を備えつつ、ステートレスな <code>&lt;Image></code> コンポーネントを実装することがしばしある。</p>
+<p><a href=https://freshlive.tv>FRESH!</a> の Web 開発チームでは以前<a href=/posts/2017/openfresh-viewport-observer.html>Intersection Observerを使った要素の出現を検出するReactコンポーネント</a>を公開したが、今度は画像を扱う汎用 React コンポーネントを公開した。今日はその紹介と、それらを組み合わせた <code>&lt;Image></code> コンポーネントの実装をしてみる。</p>
+<p>こちらも FRESH! 以外でも使えたら便利だなと思った次第で、機能の切り出しは作業は富澤さん <a href=https://github.com/tommy-san>@tommy-san</a> がやってくれた 🙏</p>
+<h2 id=superimage>SuperImage</h2>
+<p>仮で付けていた <code>SuperImage</code> がそのまま名前に採用されてしまった。<a href=https://github.com/openfresh/super-image><code>openfresh/super-image</code></a> にて公開されている。</p>
+<p>このコンポーネントの機能はシンプルに絞ってある。</p>
+<ul>
+<li><a href=https://developer.mozilla.org/ja/docs/Web/CSS/object-fit><code>object-fit</code></a> を使ったレイアウトが可能で、非対応ブラウザでも <a href=https://developer.mozilla.org/ja/docs/Web/CSS/background-size><code>background-size</code></a> でフォールバックする</li>
+<li><code>alt</code> 属性が未指定の場合に、空文字を付与する。<code>object-fit</code> がフォールバックされ <code>&lt;img></code> で描画されない場合は <code>aria-label</code> を使う</li>
+</ul>
+<p>素で使うには少し面倒な <code>&lt;picture></code> 要素や <code>srcset</code> 属性を使ったレスポンシブな画像の表示なども、このコンポーネントでうまくラップできると良さそう。</p>
+<h2 id=viewportobserverとの連携>ViewportObserverとの連携</h2>
+<p>ViewportObserver と組み合わせれば、画像表示に関して用意しておきたい機能はおおよそカバーできるはず。</p>
+<p>次のコードは、スクロール同期で画像をロードしつつ、フォールバック付きで <code>object-fit</code> でレイアウトできる <code>&lt;Image></code> コンポーネントのサンプルである。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>as</span> <span style=color:#a6e22e>React</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;react&#39;</span>;
 <span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>as</span> <span style=color:#a6e22e>PropTypes</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;prop-types&#39;</span>;
 <span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>as</span> <span style=color:#a6e22e>SuperImage</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;super-image&#39;</span>;
 <span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>as</span> <span style=color:#a6e22e>ViewportObserver</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;viewport-observer&#39;</span>;
@@ -54,10 +128,63 @@ import * as React from 'react'; import * as PropTypes from 'prop-types'; import 
     );
   }
 }
-</code></pre></div><p><code>DUMMY_IMAGE</code> は base64 でエンコードされた 1px 四方の gif 画像で、プレースホルダーとしてデフォルト設定されている。</p><p><code>ROOT_MARGIN</code> は ViewportObserver 内部で使っている IntersectionObserver のコンストラクタに指定する <code>rootMargin</code> の値で、ビューポートからのオフセットとして機能する。これによって要素が画面下部に交差した瞬間を判定可能で、要素が画面に交差した瞬間に画像をロードすることの遅延を緩和できる。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fopenfresh-super-image.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fopenfresh-super-image.html&text=%e7%94%bb%e5%83%8f%e3%82%92%e4%be%bf%e5%88%a9%e3%81%ab%e6%89%b1%e3%81%86React%e3%82%b3%e3%83%b3%e3%83%9d%e3%83%bc%e3%83%8d%e3%83%b3%e3%83%88" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2017/web-performance-product-kpi.html>👈 Webパフォーマンスへの取り組みについて寄稿しました</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2017/wdpress-vol100.html>WEB+DB PRESS Vol.100 に寄稿しました 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p><code>DUMMY_IMAGE</code> は base64 でエンコードされた 1px 四方の gif 画像で、プレースホルダーとしてデフォルト設定されている。</p>
+<p><code>ROOT_MARGIN</code> は ViewportObserver 内部で使っている IntersectionObserver のコンストラクタに指定する <code>rootMargin</code> の値で、ビューポートからのオフセットとして機能する。これによって要素が画面下部に交差した瞬間を判定可能で、要素が画面に交差した瞬間に画像をロードすることの遅延を緩和できる。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fopenfresh-super-image.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fopenfresh-super-image.html&text=%e7%94%bb%e5%83%8f%e3%82%92%e4%be%bf%e5%88%a9%e3%81%ab%e6%89%b1%e3%81%86React%e3%82%b3%e3%83%b3%e3%83%9d%e3%83%bc%e3%83%8d%e3%83%b3%e3%83%88" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2017/web-performance-product-kpi.html>👈 Webパフォーマンスへの取り組みについて寄稿しました</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2017/wdpress-vol100.html>WEB+DB PRESS Vol.100 に寄稿しました 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -71,4 +198,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

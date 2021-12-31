@@ -1,12 +1,75 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Electronアプリの自動アップデートサーバーをhazelとnowで作る - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Electronアプリの自動アップデートサーバーをhazelとnowで作る Trello のデスクトップアプリ 1000ch/whale や esa.io のデスクトップアプリ 1000ch/quail は Electron 製だが、この macOS バージョンに、重い腰を上げて自動アップデート機能を実装した。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Electronアプリの自動アップデートサーバーをhazelとnowで作る - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="Electronアプリの自動アップデートサーバーをhazelとnowで作る Trello のデスクトップアプリ 1000ch/whale や esa.io のデスクトップアプリ 1000ch/quail は Electron 製だが、この macOS バージョンに、重い腰を上げて自動アップデート機能を実装した。
 Electronの自動アップデート機能 Electron には autoUpdater という自動アップデートを提供するクラスが備わっている。これは Squirrel/Squirrel.Mac というフレームワークの機能で、Electron 側についてはそれをラップした autoUpdater を通して簡単に実装できる。
 const { autoUpdater } = require('electron'); autoUpdater.on('checking-for-update', () => console.log('アップデートの有無をチェック中')); autoUpdater.on('update-available', () => console.log('アップデートを利用可能')); autoUpdater.on('update-not-available', () => console.log('アップデートを利用不可能')); autoUpdater.on('update-downloaded', () => console.log('アップデートをダウンロード済')); autoUpdater.setFeedURL('...'); autoUpdater.checkForUpdates(); autoUpdater.checkForUpdates() を使うと autoUpdater.setFeedURL() で設定したサーバーにアップデートの有無を問い合わせて、アップデートがあるとダウンロードを行いつつ、各種イベントを発火する。ダウンロードしたアップデートは autoUpdater.quitAndInstall() を実行すれば再起動してアップデートが適用される他、次回起動時に自動で適用される。whale と quail の場合は後者を選んだが、UI 上で再起動を促したい場合は前者を使うことになる。
 autoUpdater(Squirrel.Mac)のサーバー側の実装 Electron 側の実装は簡単だが、サーバーは仕様も実装もなかなか面倒臭い。サーバー側の仕様は Squirrel.Mac#Server Support にあり、autoUpdater.setFeedURL() に指定した URL へのリクエストで規定通りのレスポンスが返ると初めて自動アップデートが機能する。
 この仕様通りのサーバー実装は、オープンソースに既にいくつもある。
-  nuts: A smart release server for your applications, using GitHub as a backend."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/zeit-hazel-now.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Electronアプリの自動アップデートサーバーをhazelとnowで作る"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/zeit-hazel-now.html"><meta name=twitter:title content="Electronアプリの自動アップデートサーバーをhazelとnowで作る"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2017.08.05</span><h1 id=electronアプリの自動アップデートサーバーをhazelとnowで作る>Electronアプリの自動アップデートサーバーをhazelとnowで作る</h1><p>Trello のデスクトップアプリ <a href=https://github.com/1000ch/whale>1000ch/whale</a> や <a href=https://esa.io/>esa.io</a> のデスクトップアプリ <a href=https://github.com/1000ch/quail>1000ch/quail</a> は Electron 製だが、この macOS バージョンに、重い腰を上げて自動アップデート機能を実装した。</p><h2 id=electronの自動アップデート機能>Electronの自動アップデート機能</h2><p>Electron には <a href=https://electron.atom.io/docs/api/auto-updater/><code>autoUpdater</code></a> という自動アップデートを提供するクラスが備わっている。これは <a href=https://github.com/Squirrel/Squirrel.Mac>Squirrel/Squirrel.Mac</a> というフレームワークの機能で、Electron 側についてはそれをラップした <code>autoUpdater</code> を通して簡単に実装できる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>autoUpdater</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;electron&#39;</span>);
+  nuts: A smart release server for your applications, using GitHub as a backend.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2017/zeit-hazel-now.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Electronアプリの自動アップデートサーバーをhazelとnowで作る">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2017/zeit-hazel-now.html">
+<meta name=twitter:title content="Electronアプリの自動アップデートサーバーをhazelとnowで作る">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2017.08.05</span>
+<h1 id=electronアプリの自動アップデートサーバーをhazelとnowで作る>Electronアプリの自動アップデートサーバーをhazelとnowで作る</h1>
+<p>Trello のデスクトップアプリ <a href=https://github.com/1000ch/whale>1000ch/whale</a> や <a href=https://esa.io/>esa.io</a> のデスクトップアプリ <a href=https://github.com/1000ch/quail>1000ch/quail</a> は Electron 製だが、この macOS バージョンに、重い腰を上げて自動アップデート機能を実装した。</p>
+<h2 id=electronの自動アップデート機能>Electronの自動アップデート機能</h2>
+<p>Electron には <a href=https://electron.atom.io/docs/api/auto-updater/><code>autoUpdater</code></a> という自動アップデートを提供するクラスが備わっている。これは <a href=https://github.com/Squirrel/Squirrel.Mac>Squirrel/Squirrel.Mac</a> というフレームワークの機能で、Electron 側についてはそれをラップした <code>autoUpdater</code> を通して簡単に実装できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>autoUpdater</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;electron&#39;</span>);
 
 <span style=color:#a6e22e>autoUpdater</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;checking-for-update&#39;</span>, () =&gt; <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;アップデートの有無をチェック中&#39;</span>));
 <span style=color:#a6e22e>autoUpdater</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;update-available&#39;</span>, () =&gt; <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;アップデートを利用可能&#39;</span>));
@@ -15,7 +78,24 @@ autoUpdater(Squirrel.Mac)のサーバー側の実装 Electron 側の実装は簡
 
 <span style=color:#a6e22e>autoUpdater</span>.<span style=color:#a6e22e>setFeedURL</span>(<span style=color:#e6db74>&#39;...&#39;</span>);
 <span style=color:#a6e22e>autoUpdater</span>.<span style=color:#a6e22e>checkForUpdates</span>();
-</code></pre></div><p><code>autoUpdater.checkForUpdates()</code> を使うと <code>autoUpdater.setFeedURL()</code> で設定したサーバーにアップデートの有無を問い合わせて、アップデートがあるとダウンロードを行いつつ、各種イベントを発火する。ダウンロードしたアップデートは <code>autoUpdater.quitAndInstall()</code> を実行すれば再起動してアップデートが適用される他、次回起動時に自動で適用される。whale と quail の場合は後者を選んだが、UI 上で再起動を促したい場合は前者を使うことになる。</p><h2 id=autoupdatersquirrelmacのサーバー側の実装>autoUpdater(Squirrel.Mac)のサーバー側の実装</h2><p>Electron 側の実装は簡単だが、サーバーは仕様も実装もなかなか面倒臭い。サーバー側の仕様は <a href=https://github.com/Squirrel/Squirrel.Mac#server-support>Squirrel.Mac#Server Support</a> にあり、<code>autoUpdater.setFeedURL()</code> に指定した URL へのリクエストで規定通りのレスポンスが返ると初めて自動アップデートが機能する。</p><p>この仕様通りのサーバー実装は、オープンソースに既にいくつもある。</p><blockquote><ul><li><a href=https://github.com/GitbookIO/nuts>nuts</a>: <em>A smart release server for your applications, using GitHub as a backend. Auto-updates with Squirrel (Mac & Windows)</em></li><li><a href=https://github.com/ArekSredzki/electron-release-server>electron-release-server</a>: <em>A fully featured, self-hosted release server for electron applications, compatible with auto-updater</em></li><li><a href=https://github.com/Aluxian/squirrel-updates-server>squirrel-updates-server</a>: <em>A simple node.js server for Squirrel.Mac and Squirrel.Windows which uses GitHub releases</em></li><li><a href=https://github.com/Arcath/squirrel-release-server>squirrel-release-server</a>: <em>A simple PHP application for Squirrel.Windows which reads updates from a folder. Supports delta updates.</em></li></ul></blockquote><p>GitHub のリリースにアップデートのアーカイブをアップロードしておき、Electron アプリからリクエストされるとバージョンを突き合わせて、新しいアーカイブがあればそのダウンロード URL を JSON で返し、既に最新を使っているようなら <code>204</code> を返すというような実装である。</p><p>また、この他にも <a href=https://github.com/electron-userland/electron-builder>electron-userland/electron-builder</a> では Electron アプリのパッケージングと共に、自動アップデートのインテグレーションを用意している。</p><h2 id=zeithazelとzeitnow>zeit/hazelとzeit/now</h2><p>ここまで紹介したソリューションを知りつつも重い腰が上がらなかったが、最近 <a href=https://github.com/zeit/hazel><code>zeit/hazel</code></a> を見つけた。</p><p>zeit 製の安心感だけでなく、コマンドラインでアプリケーションを即座にデプロイする PaaS <a href=https://github.com/zeit/now><code>zeit/now</code></a> を使えば、すぐに Electron のアップデートサーバーを用意できるとのことで、試したところどこにも詰まることなく用意できてしまった。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># now をインストールする</span>
+</code></pre></div><p><code>autoUpdater.checkForUpdates()</code> を使うと <code>autoUpdater.setFeedURL()</code> で設定したサーバーにアップデートの有無を問い合わせて、アップデートがあるとダウンロードを行いつつ、各種イベントを発火する。ダウンロードしたアップデートは <code>autoUpdater.quitAndInstall()</code> を実行すれば再起動してアップデートが適用される他、次回起動時に自動で適用される。whale と quail の場合は後者を選んだが、UI 上で再起動を促したい場合は前者を使うことになる。</p>
+<h2 id=autoupdatersquirrelmacのサーバー側の実装>autoUpdater(Squirrel.Mac)のサーバー側の実装</h2>
+<p>Electron 側の実装は簡単だが、サーバーは仕様も実装もなかなか面倒臭い。サーバー側の仕様は <a href=https://github.com/Squirrel/Squirrel.Mac#server-support>Squirrel.Mac#Server Support</a> にあり、<code>autoUpdater.setFeedURL()</code> に指定した URL へのリクエストで規定通りのレスポンスが返ると初めて自動アップデートが機能する。</p>
+<p>この仕様通りのサーバー実装は、オープンソースに既にいくつもある。</p>
+<blockquote>
+<ul>
+<li><a href=https://github.com/GitbookIO/nuts>nuts</a>: <em>A smart release server for your applications, using GitHub as a backend. Auto-updates with Squirrel (Mac & Windows)</em></li>
+<li><a href=https://github.com/ArekSredzki/electron-release-server>electron-release-server</a>: <em>A fully featured, self-hosted release server for electron applications, compatible with auto-updater</em></li>
+<li><a href=https://github.com/Aluxian/squirrel-updates-server>squirrel-updates-server</a>: <em>A simple node.js server for Squirrel.Mac and Squirrel.Windows which uses GitHub releases</em></li>
+<li><a href=https://github.com/Arcath/squirrel-release-server>squirrel-release-server</a>: <em>A simple PHP application for Squirrel.Windows which reads updates from a folder. Supports delta updates.</em></li>
+</ul>
+</blockquote>
+<p>GitHub のリリースにアップデートのアーカイブをアップロードしておき、Electron アプリからリクエストされるとバージョンを突き合わせて、新しいアーカイブがあればそのダウンロード URL を JSON で返し、既に最新を使っているようなら <code>204</code> を返すというような実装である。</p>
+<p>また、この他にも <a href=https://github.com/electron-userland/electron-builder>electron-userland/electron-builder</a> では Electron アプリのパッケージングと共に、自動アップデートのインテグレーションを用意している。</p>
+<h2 id=zeithazelとzeitnow>zeit/hazelとzeit/now</h2>
+<p>ここまで紹介したソリューションを知りつつも重い腰が上がらなかったが、最近 <a href=https://github.com/zeit/hazel><code>zeit/hazel</code></a> を見つけた。</p>
+<p>zeit 製の安心感だけでなく、コマンドラインでアプリケーションを即座にデプロイする PaaS <a href=https://github.com/zeit/now><code>zeit/now</code></a> を使えば、すぐに Electron のアップデートサーバーを用意できるとのことで、試したところどこにも詰まることなく用意できてしまった。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># now をインストールする</span>
 $ npm install -g now
 
 <span style=color:#75715e># now で now にデプロイする</span>
@@ -26,10 +106,63 @@ $ now -e NODE_ENV<span style=color:#f92672>=</span><span style=color:#e6db74>&#3
 
 <span style=color:#75715e># REPOSITORY</span>
 whale
-</code></pre></div><p>これでアップデートサーバー <a href=https://hazel-mdyjxpqlnl.now.sh>https://hazel-mdyjxpqlnl.now.sh</a> ができてしまった。このサーバーに対して <a href=https://github.com/zeit/hazel#routes>zeit/hazel#routes</a> の通りにリクエストすれば良い。</p><p>now は<a href=https://zeit.co/account/plan>無料の OSS プランで 3 インスタンスまで使える</a>。ことごとく終了している PaaS が多くて、now もいつまで(無料で)使えるか心配だが、しばらくこれで運用してみる。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fzeit-hazel-now.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fzeit-hazel-now.html&text=Electron%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ae%e8%87%aa%e5%8b%95%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%82%92hazel%e3%81%a8now%e3%81%a7%e4%bd%9c%e3%82%8b" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2017/sublime-theme-switcher.html>👈 Sublime Theme Switcherがとても便利</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2017/web-performance-product-kpi.html>Webパフォーマンスへの取り組みについて寄稿しました 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p>これでアップデートサーバー <a href=https://hazel-mdyjxpqlnl.now.sh>https://hazel-mdyjxpqlnl.now.sh</a> ができてしまった。このサーバーに対して <a href=https://github.com/zeit/hazel#routes>zeit/hazel#routes</a> の通りにリクエストすれば良い。</p>
+<p>now は<a href=https://zeit.co/account/plan>無料の OSS プランで 3 インスタンスまで使える</a>。ことごとく終了している PaaS が多くて、now もいつまで(無料で)使えるか心配だが、しばらくこれで運用してみる。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fzeit-hazel-now.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fzeit-hazel-now.html&text=Electron%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ae%e8%87%aa%e5%8b%95%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%82%92hazel%e3%81%a8now%e3%81%a7%e4%bd%9c%e3%82%8b" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2017/sublime-theme-switcher.html>👈 Sublime Theme Switcherがとても便利</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2017/web-performance-product-kpi.html>Webパフォーマンスへの取り組みについて寄稿しました 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -43,4 +176,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

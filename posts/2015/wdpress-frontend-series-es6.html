@@ -1,15 +1,142 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」 - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」 「Webフロントエンド最前線」という連載を担当させてもらっているWEB+DB PRESS Vol.85が2月24日に発売されます！連載5回目はECMAScript 6の概要・歴史、主要な追加機能、ブラウザサポートが不完全な今どのように取り入れるか等等を書いています。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」 - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」 「Webフロントエンド最前線」という連載を担当させてもらっているWEB+DB PRESS Vol.85が2月24日に発売されます！連載5回目はECMAScript 6の概要・歴史、主要な追加機能、ブラウザサポートが不完全な今どのように取り入れるか等等を書いています。
 はじめようトランスパイラ生活 JSerならES6を聞いたこと無いっていう人は流石にいないと思うが、もう「まだ先だからいいでしょ」って言ってられる段階ではなくなってきてると思う。
 現状ブラウザサポートは弱いけど、今から使っていくために出来る工夫はいくらでもあって、Chrome ExtensionsやFirefox Add-onのように実行環境が限定されるツールを作る時に書いてみるとか。比較的大きめプロダクトだとしても、トランスパイラが賢くやってくれるのでビルド前提でコード書いていくのもコスパの良い投資。
 iojsも--harmonyフラグなしでES6のシンタックスが使えるし、 Node.js 0.12向けでもブラウザ向けでもトランスパイル前提で書いていくとか、いくらでもやりようはある。
  画像をdataURIに変換するライブラリをES6で書きなおす もうES6 (ES2015) でいいんじゃないか  6to5がbabelに 記事内で紹介しているES6→ES5のトランスパイラである6to5が、原稿が入稿された後にbabelに名前が変わるという悲劇が起こってしまったのでご注意ください。こちらは別途アナウンスがあると思います。どこかから。
-菅原 元気 (著), 磯辺 和彦 (著), 山口 与力 (著), 澤登 亨彦 (著), 濱田 章吾 (著), 宮田 淳平 (著), 松本 亮介 (著), 海野 弘成 (著), 佐藤 歩 (著), 泉水 翔吾 (著), 佐藤 太一 (著), hide_o_55 (著), 青木 良樹 (著), 武本 将英 (著), 道井 俊介 (著), 伊藤 直也 (著), 橋本 翔 (著), 渡邊 恵太 (著), 舘野 祐一 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 牧 大輔 (著), 工藤 春奈 (著), WEB+DB PRESS編集部 (編集)"><meta property="og:image" content="https://1000ch.net/img/posts/2015/wdpress-frontend-series-es6/cover.jpg"><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/wdpress-frontend-series-es6.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/wdpress-frontend-series-es6.html"><meta name=twitter:title content="WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2015.02.23</span><h1 id=webdb-press-vol85-webフロントエンド最前線ecmascript-6とjavascriptの未来>WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」</h1><p>「Webフロントエンド最前線」という連載を担当させてもらっている<a href=http://gihyo.jp/magazine/wdpress/archive/2015/vol85>WEB+DB PRESS Vol.85</a>が2月24日に発売されます！連載5回目はECMAScript 6の概要・歴史、主要な追加機能、ブラウザサポートが不完全な今どのように取り入れるか等等を書いています。</p><p><img src=/img/posts/2015/wdpress-frontend-series-es6/cover.jpg alt></p><h2 id=はじめようトランスパイラ生活>はじめようトランスパイラ生活</h2><p>JSerならES6を聞いたこと無いっていう人は流石にいないと思うが、もう「まだ先だからいいでしょ」って言ってられる段階ではなくなってきてると思う。</p><p>現状ブラウザサポートは弱いけど、今から使っていくために出来る工夫はいくらでもあって、Chrome ExtensionsやFirefox Add-onのように実行環境が限定されるツールを作る時に書いてみるとか。比較的大きめプロダクトだとしても、トランスパイラが賢くやってくれるのでビルド前提でコード書いていくのもコスパの良い投資。</p><p>iojsも<a href=https://iojs.org/en/es6.html><code>--harmony</code>フラグなしでES6のシンタックスが使える</a>し、 Node.js 0.12向けでもブラウザ向けでもトランスパイル前提で書いていくとか、いくらでもやりようはある。</p><ul><li><a href=/posts/2015/image-encoder-es6.html>画像をdataURIに変換するライブラリをES6で書きなおす</a></li><li><a href=http://havelog.ayumusato.com/develop/javascript/e651-es2015.html>もうES6 (ES2015) でいいんじゃないか</a></li></ul><h2 id=6to5がbabelに>6to5がbabelに</h2><p>記事内で紹介しているES6→ES5のトランスパイラである6to5が、原稿が入稿された後に<a href=https://github.com/babel/babel>babel</a>に名前が変わるという悲劇が起こってしまったのでご注意ください。こちらは別途アナウンスがあると思います。どこかから。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/611JK2E4TZL._SX352_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4774171417/ tag=1000ch-22 title="WEB+DB PRESS Vol.85">菅原 元気 (著), 磯辺 和彦 (著), 山口 与力 (著), 澤登 亨彦 (著), 濱田 章吾 (著), 宮田 淳平 (著), 松本 亮介 (著), 海野 弘成 (著), 佐藤 歩 (著), 泉水 翔吾 (著), 佐藤 太一 (著), hide_o_55 (著), 青木 良樹 (著), 武本 将英 (著), 道井 俊介 (著), 伊藤 直也 (著), 橋本 翔 (著), 渡邊 恵太 (著), 舘野 祐一 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 牧 大輔 (著), 工藤 春奈 (著), WEB+DB PRESS編集部 (編集)</affiliate-link></p><p>よろしくお願いします(´・ω・`)</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwdpress-frontend-series-es6.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwdpress-frontend-series-es6.html&text=WEB%2bDB%20PRESS%20Vol.85%20Web%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e6%9c%80%e5%89%8d%e7%b7%9a%e3%80%8cECMAScript%206%e3%81%a8JavaScript%e3%81%ae%e6%9c%aa%e6%9d%a5%e3%80%8d" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2015/frontrend-conference.html>👈 Frontrend ConferenceでService Workerについて話してきた</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2015/farewell-docpad-hello-hugo.html>Farewell DocPad, Hello Hugo. 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+菅原 元気 (著), 磯辺 和彦 (著), 山口 与力 (著), 澤登 亨彦 (著), 濱田 章吾 (著), 宮田 淳平 (著), 松本 亮介 (著), 海野 弘成 (著), 佐藤 歩 (著), 泉水 翔吾 (著), 佐藤 太一 (著), hide_o_55 (著), 青木 良樹 (著), 武本 将英 (著), 道井 俊介 (著), 伊藤 直也 (著), 橋本 翔 (著), 渡邊 恵太 (著), 舘野 祐一 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 牧 大輔 (著), 工藤 春奈 (著), WEB+DB PRESS編集部 (編集)">
+<meta property="og:image" content="https://1000ch.net/img/posts/2015/wdpress-frontend-series-es6/cover.jpg">
+<meta name=twitter:card content="summary_large_image">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2015/wdpress-frontend-series-es6.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2015/wdpress-frontend-series-es6.html">
+<meta name=twitter:title content="WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2015.02.23</span>
+<h1 id=webdb-press-vol85-webフロントエンド最前線ecmascript-6とjavascriptの未来>WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」</h1>
+<p>「Webフロントエンド最前線」という連載を担当させてもらっている<a href=http://gihyo.jp/magazine/wdpress/archive/2015/vol85>WEB+DB PRESS Vol.85</a>が2月24日に発売されます！連載5回目はECMAScript 6の概要・歴史、主要な追加機能、ブラウザサポートが不完全な今どのように取り入れるか等等を書いています。</p>
+<p><img src=/img/posts/2015/wdpress-frontend-series-es6/cover.jpg alt></p>
+<h2 id=はじめようトランスパイラ生活>はじめようトランスパイラ生活</h2>
+<p>JSerならES6を聞いたこと無いっていう人は流石にいないと思うが、もう「まだ先だからいいでしょ」って言ってられる段階ではなくなってきてると思う。</p>
+<p>現状ブラウザサポートは弱いけど、今から使っていくために出来る工夫はいくらでもあって、Chrome ExtensionsやFirefox Add-onのように実行環境が限定されるツールを作る時に書いてみるとか。比較的大きめプロダクトだとしても、トランスパイラが賢くやってくれるのでビルド前提でコード書いていくのもコスパの良い投資。</p>
+<p>iojsも<a href=https://iojs.org/en/es6.html><code>--harmony</code>フラグなしでES6のシンタックスが使える</a>し、 Node.js 0.12向けでもブラウザ向けでもトランスパイル前提で書いていくとか、いくらでもやりようはある。</p>
+<ul>
+<li><a href=/posts/2015/image-encoder-es6.html>画像をdataURIに変換するライブラリをES6で書きなおす</a></li>
+<li><a href=http://havelog.ayumusato.com/develop/javascript/e651-es2015.html>もうES6 (ES2015) でいいんじゃないか</a></li>
+</ul>
+<h2 id=6to5がbabelに>6to5がbabelに</h2>
+<p>記事内で紹介しているES6→ES5のトランスパイラである6to5が、原稿が入稿された後に<a href=https://github.com/babel/babel>babel</a>に名前が変わるという悲劇が起こってしまったのでご注意ください。こちらは別途アナウンスがあると思います。どこかから。</p>
+<p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/611JK2E4TZL._SX352_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4774171417/ tag=1000ch-22 title="WEB+DB PRESS Vol.85">
+菅原 元気 (著), 磯辺 和彦 (著), 山口 与力 (著), 澤登 亨彦 (著), 濱田 章吾 (著), 宮田 淳平 (著), 松本 亮介 (著), 海野 弘成 (著), 佐藤 歩 (著), 泉水 翔吾 (著), 佐藤 太一 (著), hide_o_55 (著), 青木 良樹 (著), 武本 将英 (著), 道井 俊介 (著), 伊藤 直也 (著), 橋本 翔 (著), 渡邊 恵太 (著), 舘野 祐一 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 牧 大輔 (著), 工藤 春奈 (著), WEB+DB PRESS編集部 (編集)
+</affiliate-link></p>
+<p>よろしくお願いします(´・ω・`)</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwdpress-frontend-series-es6.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwdpress-frontend-series-es6.html&text=WEB%2bDB%20PRESS%20Vol.85%20Web%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e6%9c%80%e5%89%8d%e7%b7%9a%e3%80%8cECMAScript%206%e3%81%a8JavaScript%e3%81%ae%e6%9c%aa%e6%9d%a5%e3%80%8d" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2015/frontrend-conference.html>👈 Frontrend ConferenceでService Workerについて話してきた</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2015/farewell-docpad-hello-hugo.html>Farewell DocPad, Hello Hugo. 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -23,4 +150,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

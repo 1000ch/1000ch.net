@@ -1,4 +1,26 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Android Studio+GenymotionではじめるAndroid開発 - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Android Studio+GenymotionではじめるAndroid開発 クライアントサイドのネイティブアプリを作れればiOSでもAndroidでも良かったのだけど、プラットフォームへの興味もあるし、Javaのリハビリもしたかったし、そんなこんなでAndroidをはじめた。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Android Studio+GenymotionではじめるAndroid開発 - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="Android Studio+GenymotionではじめるAndroid開発 クライアントサイドのネイティブアプリを作れればiOSでもAndroidでも良かったのだけど、プラットフォームへの興味もあるし、Javaのリハビリもしたかったし、そんなこんなでAndroidをはじめた。
 今回はAndroidの開発を始めるにあたり、どんな環境を構築したかのお話。
 Android Studio or Eclipse まだAndroid StudioがBeta版なせいか、トップにはEclipseのダウンロードリンクが貼られていたりするけど、Android Studioを選んだ。Android Studioを推奨している雰囲気をひしひしと感じるのと、私は 『IDEといえばIntelliJかWebStormでしょ』 という属性の人間なので、IntelliJ Platformなら間違いないだろ！という偏った視点もありつつ。
 古いデバイスを考慮するにしても、SDKがあれば後方互換性については特に気にすることなく開発が出来るはずなので、Eclipseはアプリ開発の互換性というよりプロジェクトの開発互換性のために残されているのでは。
@@ -9,13 +31,138 @@ Preferences (cmd + ,)を開いて、 Updates を選択すると、更新チェ�
 Android StudioからスタンドアロンなSDKを参照するので、 Project Structure (cmd + ;)を開いて、 SDK Location > Android SDK Location にダウンロードして解凍したディレクトリルートを指定する。
 エミュレータの設定 ここまで設定して、ようやくコードを書いていけるようになる。チュートリアルに沿ってプロジェクトを作成すると、いわゆる Hello World! が用意された空プロジェクトが出来上がる（このプロセスは割愛）。
 自動作成されたプロジェクトは既にコンパイルして実行することが可能になっているが、 Run から実行しようとすると Choose Device という画面が表示され、どの環境で実行するかを聞かれる。最初はここが空の状態のはず。
- Launch Emulator - Android Studio上で仮想のAndroid環境を作ってそれを指定することが出来る。その仮想環境は Android Virtual Device の頭文字を取って AVD と呼ぶみたい。 AVD Manager からデバイスの種類やターゲットになるAndroidのバージョン等を細かく指定してイメージを作ることが出来る。 Choose a running device こっちは接続中のデバイスを使ってアプリケーションを起動する。たぶん、コードをビルドして."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/android-development-with-genymotion.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Android Studio+GenymotionではじめるAndroid開発"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/android-development-with-genymotion.html"><meta name=twitter:title content="Android Studio+GenymotionではじめるAndroid開発"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2014.08.08</span><h1 id=android-studiogenymotionではじめるandroid開発>Android Studio+GenymotionではじめるAndroid開発</h1><p>クライアントサイドのネイティブアプリを作れればiOSでもAndroidでも良かったのだけど、プラットフォームへの興味もあるし、Javaのリハビリもしたかったし、そんなこんなでAndroidをはじめた。</p><p>今回はAndroidの開発を始めるにあたり、どんな環境を構築したかのお話。</p><h2 id=android-studiohttpsdeveloperandroidcomsdkinstallingstudiohtml-or-eclipsehttpsdeveloperandroidcomsdkindexhtml><a href=https://developer.android.com/sdk/installing/studio.html>Android Studio</a> or <a href=https://developer.android.com/sdk/index.html>Eclipse</a></h2><p>まだAndroid StudioがBeta版なせいか、トップにはEclipseのダウンロードリンクが貼られていたりするけど、Android Studioを選んだ。Android Studioを推奨している雰囲気をひしひしと感じるのと、私は <strong>『IDEといえばIntelliJかWebStormでしょ』</strong> という属性の人間なので、IntelliJ Platformなら間違いないだろ！という偏った視点もありつつ。</p><p>古いデバイスを考慮するにしても、SDKがあれば後方互換性については特に気にすることなく開発が出来るはずなので、Eclipseはアプリ開発の互換性というよりプロジェクトの開発互換性のために残されているのでは。</p><h2 id=android-studioもcanary-buildを使う>Android StudioもCanary Buildを使う</h2><p>もはや気持ちの問題かと思いますが、新しいビルドのものを使っておこうということで設定をする。</p><p><strong>Preferences</strong> (<code>cmd + ,</code>)を開いて、 <strong>Updates</strong> を選択すると、更新チェックするチャネルを選べるので、 <strong>Canary Channel</strong> を選択。</p><p><img src=/img/posts/2014/android-development-with-genymotion/android-studio-preferences-updates.png alt></p><h2 id=スタンドアロンなsdkを用意する>スタンドアロンなSDKを用意する</h2><p>EclipseにもAndroid StudioにもSDKは同梱されているんだけど、別途用意して指定した。以下からダウンロードし、適当な場所に配置。</p><ul><li><a href="https://developer.android.com/sdk/installing/index.html?pkg=tools">Installing the Stand-alone SDK Tools</a></li></ul><p>IDEにバンドルされているSDKでも基本的に問題は無さそうだが、気分的に別途管理したかったのと、詳しい人に聞いてみると、Eclipseからも同じSDKを参照したい場合等にスタンドアロンにしておかないと面倒と言っていた。なるほど。</p><p>Android StudioからスタンドアロンなSDKを参照するので、 <strong>Project Structure</strong> (<code>cmd + ;</code>)を開いて、 <strong>SDK Location > Android SDK Location</strong> にダウンロードして解凍したディレクトリルートを指定する。</p><p><img src=/img/posts/2014/android-development-with-genymotion/android-studio-project-structure.png alt></p><h2 id=エミュレータの設定>エミュレータの設定</h2><p>ここまで設定して、ようやくコードを書いていけるようになる。チュートリアルに沿ってプロジェクトを作成すると、いわゆる Hello World! が用意された空プロジェクトが出来上がる（このプロセスは割愛）。</p><p>自動作成されたプロジェクトは既にコンパイルして実行することが可能になっているが、 <strong>Run</strong> から実行しようとすると <strong>Choose Device</strong> という画面が表示され、どの環境で実行するかを聞かれる。最初はここが空の状態のはず。</p><ol><li><strong>Launch Emulator</strong> - Android Studio上で仮想のAndroid環境を作ってそれを指定することが出来る。その仮想環境は <strong>Android Virtual Device</strong> の頭文字を取って <strong>AVD</strong> と呼ぶみたい。 <strong>AVD Manager</strong> からデバイスの種類やターゲットになるAndroidのバージョン等を細かく指定してイメージを作ることが出来る。</li><li><strong>Choose a running device</strong> こっちは接続中のデバイスを使ってアプリケーションを起動する。たぶん、コードをビルドして<code>.apk</code>をアップロードしてるんだと思われる。実機でやる場合はUSBで繋げる他、USBデバッグをオンするとOK。</li></ol><h2 id=genymotionhttpwwwgenymotioncom><a href=http://www.genymotion.com/>Genymotion</a></h2><p>実機でのテストは必要になるものの、AVDを使って基本的な開発を行っていくことを考えると、Android StudioのAVDは設定が如何せん面倒な上に起動が遅い。</p><p>そこで、<a href=http://www.genymotion.com/>Genymotion</a>というものを勧めてもらった。サードパーティのAndroidエミュレータだが、本家より起動が速く、軽快に動作するという特徴がある。</p><p><a href=https://cloud.genymotion.com/page/customer/login/>ココ</a>からサインアップすると、<a href=https://cloud.genymotion.com/page/launchpad/download/>ダウンロード画面</a>からGenymotionアプリを入手することが出来る。アプリからは予め用意されたAndroidイメージを選択して入手することが可能で、セットアップが非常に簡単なうえ、 <strong>Play</strong> での起動も比較的軽快である。</p><p><img src=/img/posts/2014/android-development-with-genymotion/genymotion.png alt></p><p>GenymotionはVirtualBoxに依存しており、予めVirtualBoxをインストールしておく必要がある。Androidの仮想環境を用意するという意味では、改めて疑問を抱く余地はない。</p><h3 id=genymotionから起動したandroidでアプリをデバッグ>Genymotionから起動したAndroidでアプリをデバッグ</h3><p>Genymotionで仮想デバイスを起動したあとは、 <strong>Choose a running device</strong> の一覧にその端末が追加されているはずなので、それを選ぶだけ。</p><p><img src=/img/posts/2014/android-development-with-genymotion/android-studio-choose-device.png alt></p><p>つまり、Android StudioのAVDと同じように仮想デバイスを作るけど、動作としてはリモートデバッギングしているような感じになる。</p><p><img src=/img/posts/2014/android-development-with-genymotion/genymotion-nexus5.png alt></p><p>以上、備忘録でした。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fandroid-development-with-genymotion.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fandroid-development-with-genymotion.html&text=Android%20Studio%2bGenymotion%e3%81%a7%e3%81%af%e3%81%98%e3%82%81%e3%82%8bAndroid%e9%96%8b%e7%99%ba" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2014/css-architecture-textbook.html>👈 Web制作者のためのCSS設計の教科書</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2014/html-imports-context.html>HTML ImportsするHTMLのコンテキストになるdocument 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+ Launch Emulator - Android Studio上で仮想のAndroid環境を作ってそれを指定することが出来る。その仮想環境は Android Virtual Device の頭文字を取って AVD と呼ぶみたい。 AVD Manager からデバイスの種類やターゲットになるAndroidのバージョン等を細かく指定してイメージを作ることが出来る。 Choose a running device こっちは接続中のデバイスを使ってアプリケーションを起動する。たぶん、コードをビルドして.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2014/android-development-with-genymotion.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Android Studio+GenymotionではじめるAndroid開発">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2014/android-development-with-genymotion.html">
+<meta name=twitter:title content="Android Studio+GenymotionではじめるAndroid開発">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2014.08.08</span>
+<h1 id=android-studiogenymotionではじめるandroid開発>Android Studio+GenymotionではじめるAndroid開発</h1>
+<p>クライアントサイドのネイティブアプリを作れればiOSでもAndroidでも良かったのだけど、プラットフォームへの興味もあるし、Javaのリハビリもしたかったし、そんなこんなでAndroidをはじめた。</p>
+<p>今回はAndroidの開発を始めるにあたり、どんな環境を構築したかのお話。</p>
+<h2 id=android-studiohttpsdeveloperandroidcomsdkinstallingstudiohtml-or-eclipsehttpsdeveloperandroidcomsdkindexhtml><a href=https://developer.android.com/sdk/installing/studio.html>Android Studio</a> or <a href=https://developer.android.com/sdk/index.html>Eclipse</a></h2>
+<p>まだAndroid StudioがBeta版なせいか、トップにはEclipseのダウンロードリンクが貼られていたりするけど、Android Studioを選んだ。Android Studioを推奨している雰囲気をひしひしと感じるのと、私は <strong>『IDEといえばIntelliJかWebStormでしょ』</strong> という属性の人間なので、IntelliJ Platformなら間違いないだろ！という偏った視点もありつつ。</p>
+<p>古いデバイスを考慮するにしても、SDKがあれば後方互換性については特に気にすることなく開発が出来るはずなので、Eclipseはアプリ開発の互換性というよりプロジェクトの開発互換性のために残されているのでは。</p>
+<h2 id=android-studioもcanary-buildを使う>Android StudioもCanary Buildを使う</h2>
+<p>もはや気持ちの問題かと思いますが、新しいビルドのものを使っておこうということで設定をする。</p>
+<p><strong>Preferences</strong> (<code>cmd + ,</code>)を開いて、 <strong>Updates</strong> を選択すると、更新チェックするチャネルを選べるので、 <strong>Canary Channel</strong> を選択。</p>
+<p><img src=/img/posts/2014/android-development-with-genymotion/android-studio-preferences-updates.png alt></p>
+<h2 id=スタンドアロンなsdkを用意する>スタンドアロンなSDKを用意する</h2>
+<p>EclipseにもAndroid StudioにもSDKは同梱されているんだけど、別途用意して指定した。以下からダウンロードし、適当な場所に配置。</p>
+<ul>
+<li><a href="https://developer.android.com/sdk/installing/index.html?pkg=tools">Installing the Stand-alone SDK Tools</a></li>
+</ul>
+<p>IDEにバンドルされているSDKでも基本的に問題は無さそうだが、気分的に別途管理したかったのと、詳しい人に聞いてみると、Eclipseからも同じSDKを参照したい場合等にスタンドアロンにしておかないと面倒と言っていた。なるほど。</p>
+<p>Android StudioからスタンドアロンなSDKを参照するので、 <strong>Project Structure</strong> (<code>cmd + ;</code>)を開いて、 <strong>SDK Location > Android SDK Location</strong> にダウンロードして解凍したディレクトリルートを指定する。</p>
+<p><img src=/img/posts/2014/android-development-with-genymotion/android-studio-project-structure.png alt></p>
+<h2 id=エミュレータの設定>エミュレータの設定</h2>
+<p>ここまで設定して、ようやくコードを書いていけるようになる。チュートリアルに沿ってプロジェクトを作成すると、いわゆる Hello World! が用意された空プロジェクトが出来上がる（このプロセスは割愛）。</p>
+<p>自動作成されたプロジェクトは既にコンパイルして実行することが可能になっているが、 <strong>Run</strong> から実行しようとすると <strong>Choose Device</strong> という画面が表示され、どの環境で実行するかを聞かれる。最初はここが空の状態のはず。</p>
+<ol>
+<li><strong>Launch Emulator</strong> - Android Studio上で仮想のAndroid環境を作ってそれを指定することが出来る。その仮想環境は <strong>Android Virtual Device</strong> の頭文字を取って <strong>AVD</strong> と呼ぶみたい。 <strong>AVD Manager</strong> からデバイスの種類やターゲットになるAndroidのバージョン等を細かく指定してイメージを作ることが出来る。</li>
+<li><strong>Choose a running device</strong> こっちは接続中のデバイスを使ってアプリケーションを起動する。たぶん、コードをビルドして<code>.apk</code>をアップロードしてるんだと思われる。実機でやる場合はUSBで繋げる他、USBデバッグをオンするとOK。</li>
+</ol>
+<h2 id=genymotionhttpwwwgenymotioncom><a href=http://www.genymotion.com/>Genymotion</a></h2>
+<p>実機でのテストは必要になるものの、AVDを使って基本的な開発を行っていくことを考えると、Android StudioのAVDは設定が如何せん面倒な上に起動が遅い。</p>
+<p>そこで、<a href=http://www.genymotion.com/>Genymotion</a>というものを勧めてもらった。サードパーティのAndroidエミュレータだが、本家より起動が速く、軽快に動作するという特徴がある。</p>
+<p><a href=https://cloud.genymotion.com/page/customer/login/>ココ</a>からサインアップすると、<a href=https://cloud.genymotion.com/page/launchpad/download/>ダウンロード画面</a>からGenymotionアプリを入手することが出来る。アプリからは予め用意されたAndroidイメージを選択して入手することが可能で、セットアップが非常に簡単なうえ、 <strong>Play</strong> での起動も比較的軽快である。</p>
+<p><img src=/img/posts/2014/android-development-with-genymotion/genymotion.png alt></p>
+<p>GenymotionはVirtualBoxに依存しており、予めVirtualBoxをインストールしておく必要がある。Androidの仮想環境を用意するという意味では、改めて疑問を抱く余地はない。</p>
+<h3 id=genymotionから起動したandroidでアプリをデバッグ>Genymotionから起動したAndroidでアプリをデバッグ</h3>
+<p>Genymotionで仮想デバイスを起動したあとは、 <strong>Choose a running device</strong> の一覧にその端末が追加されているはずなので、それを選ぶだけ。</p>
+<p><img src=/img/posts/2014/android-development-with-genymotion/android-studio-choose-device.png alt></p>
+<p>つまり、Android StudioのAVDと同じように仮想デバイスを作るけど、動作としてはリモートデバッギングしているような感じになる。</p>
+<p><img src=/img/posts/2014/android-development-with-genymotion/genymotion-nexus5.png alt></p>
+<p>以上、備忘録でした。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fandroid-development-with-genymotion.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fandroid-development-with-genymotion.html&text=Android%20Studio%2bGenymotion%e3%81%a7%e3%81%af%e3%81%98%e3%82%81%e3%82%8bAndroid%e9%96%8b%e7%99%ba" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2014/css-architecture-textbook.html>👈 Web制作者のためのCSS設計の教科書</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2014/html-imports-context.html>HTML ImportsするHTMLのコンテキストになるdocument 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -29,4 +176,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

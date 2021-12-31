@@ -1,15 +1,162 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>jQuery 1.9リリース候補版がリリースされた - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="jQuery 1.9リリース候補版がリリースされた  JQUERY 1.9 RC1 AND MIGRATE RC1 RELEASED  jQuery1.9のリリース候補版ver1が公開された。beta1の続きということで、懲りずに変更とか追っかけてみる。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>jQuery 1.9リリース候補版がリリースされた - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="jQuery 1.9リリース候補版がリリースされた  JQUERY 1.9 RC1 AND MIGRATE RC1 RELEASED  jQuery1.9のリリース候補版ver1が公開された。beta1の続きということで、懲りずに変更とか追っかけてみる。
 Sizzleが対応するCSS3セレクタが増えた 追加されたものと、簡単な解説を。ネイティブじゃないので相変わらずIE6でも使えるそうで。:link・:visited・:hoverの3つに関してはサポートしていない。オーバーヘッドが大きいこともあって、実装予定はないとのこと。
- :nth-last-child() - ()の条件式に該当する子要素の最後の要素。引数の形式は:nth-childと同様。 :nth-of-type() - ()の条件式に該当する同一属性要素。引数の形式は:nth-childと同様。 :nth-last-of-type() - ()の条件式に該当する同一属性要素の最後の要素。引数の形式は:nth-childと同様。 :first-of-type - 同一属性要素の最初の要素。:nth-of-type(1)と同義。 :last-of-type - 同一属性要素の最後の要素。:nth-last-of-type(1)と同義。 :only-of-type - 同一属性要素が単独の場合該当。:first-of-type:last-of-typeとか:nth-of-type(1):nth-last-of-type(1)と同義。 :target - アンカーで遷移した先の要素に該当。 :root - ルートを意味する。htmlで言うとhtml。 :lang() - ()の指定と、lang=&#34;ja&#34;が一致する要素。  finish()が追加された .stop(Boolean, Boolean)のように真偽値を渡すのをやめたいそうな。stop()の引数の渡し方で制御をするような複雑なことをしたことがないが、ほとんどの場合は.clearQueue(a)や.finish()で解決できるからだそう。
+ :nth-last-child() - ()の条件式に該当する子要素の最後の要素。引数の形式は:nth-childと同様。 :nth-of-type() - ()の条件式に該当する同一属性要素。引数の形式は:nth-childと同様。 :nth-last-of-type() - ()の条件式に該当する同一属性要素の最後の要素。引数の形式は:nth-childと同様。 :first-of-type - 同一属性要素の最初の要素。:nth-of-type(1)と同義。 :last-of-type - 同一属性要素の最後の要素。:nth-last-of-type(1)と同義。 :only-of-type - 同一属性要素が単独の場合該当。:first-of-type:last-of-typeとか:nth-of-type(1):nth-last-of-type(1)と同義。 :target - アンカーで遷移した先の要素に該当。 :root - ルートを意味する。htmlで言うとhtml。 :lang() - ()の指定と、lang=&ldquo;ja&#34;が一致する要素。  finish()が追加された .stop(Boolean, Boolean)のように真偽値を渡すのをやめたいそうな。stop()の引数の渡し方で制御をするような複雑なことをしたことがないが、ほとんどの場合は.clearQueue(a)や.finish()で解決できるからだそう。
  サンプル  Source Mapに対応 minifyされてたら無理ということでSource Mapを用意してくれた。生ソースが得られてもjQueryをデバッグする気にはあまりならないけど。Source Mapについては以下のリソースが参考になる。
  Source Map Revision 3 Proposal SourceMapについて調べました。  たくさんあるchangelogで気になるところ  ajax.typeがajax.methodにリネームされた。 $(&#34;some-selector&#34;)の性能が10%~30%向上した。  Sizzleはどこまで進化するんだ。
-まとめ ロードマップは、2.0はIE6~IE8のサポートを打ち切り、再設計して改良。軽量化と高速化を図るそう。1.9は引き続きIE6~IE8をサポートを続ける。バグフィックスは2.0.xと1.9.xのマイナーアップデートにされるってことになるのかな。内部APIを色々と整理したのでたくさんテストして下さいとのこと。"><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/jquery-1-9-rc.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="jQuery 1.9リリース候補版がリリースされた"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/jquery-1-9-rc.html"><meta name=twitter:title content="jQuery 1.9リリース候補版がリリースされた"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2013.01.11</span><h1 id=jquery-19リリース候補版がリリースされた>jQuery 1.9リリース候補版がリリースされた</h1><ul><li><a href=http://blog.jquery.com/2013/01/09/jquery-1-9-rc1-and-migrate-rc1-released/>JQUERY 1.9 RC1 AND MIGRATE RC1 RELEASED</a></li></ul><p>jQuery1.9のリリース候補版ver1が公開された。<a href=/posts/2012/jQuery-1-9.html>beta1の続き</a>ということで、懲りずに変更とか追っかけてみる。</p><h2 id=sizzleが対応するcss3セレクタが増えた>Sizzleが対応するCSS3セレクタが増えた</h2><p>追加されたものと、簡単な解説を。ネイティブじゃないので相変わらずIE6でも使えるそうで。<code>:link</code>・<code>:visited</code>・<code>:hover</code>の3つに関してはサポートしていない。オーバーヘッドが大きいこともあって、実装予定はないとのこと。</p><ul><li><code>:nth-last-child()</code> - ()の条件式に該当する子要素の最後の要素。引数の形式は:nth-childと同様。</li><li><code>:nth-of-type()</code> - ()の条件式に該当する同一属性要素。引数の形式は:nth-childと同様。</li><li><code>:nth-last-of-type()</code> - ()の条件式に該当する同一属性要素の最後の要素。引数の形式は:nth-childと同様。</li><li><code>:first-of-type</code> - 同一属性要素の最初の要素。:nth-of-type(1)と同義。</li><li><code>:last-of-type</code> - 同一属性要素の最後の要素。:nth-last-of-type(1)と同義。</li><li><code>:only-of-type</code> - 同一属性要素が単独の場合該当。:first-of-type:last-of-typeとか:nth-of-type(1):nth-last-of-type(1)と同義。</li><li><code>:target</code> - アンカーで遷移した先の要素に該当。</li><li><code>:root</code> - ルートを意味する。htmlで言うとhtml。</li><li><code>:lang()</code> - ()の指定と、lang="ja"が一致する要素。</li></ul><h2 id=finishが追加された>finish()が追加された</h2><p><code>.stop(Boolean, Boolean)</code>のように真偽値を渡すのをやめたいそうな。<code>stop()</code>の引数の渡し方で制御をするような複雑なことをしたことがないが、ほとんどの場合は<code>.clearQueue(a)</code>や<code>.finish()</code>で解決できるからだそう。</p><ul><li><a href=http://jsfiddle.net/dmethvin/AFGgJ/>サンプル</a></li></ul><h2 id=source-mapに対応>Source Mapに対応</h2><p>minifyされてたら無理ということでSource Mapを用意してくれた。生ソースが得られてもjQueryをデバッグする気にはあまりならないけど。Source Mapについては以下のリソースが参考になる。</p><ul><li><a href="https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit?pli=1#heading=h.9ppdoan5f016">Source Map Revision 3 Proposal</a></li><li><a href=http://maruta.be/intfloat_staff/144>SourceMapについて調べました。</a></li></ul><h2 id=たくさんあるchangelogで気になるところ>たくさんあるchangelogで気になるところ</h2><ul><li><code>ajax.type</code>が<code>ajax.method</code>にリネームされた。</li><li><code>$("some-selector")</code>の性能が10%~30%向上した。</li></ul><p>Sizzleはどこまで進化するんだ。</p><h2 id=まとめ>まとめ</h2><p>ロードマップは、2.0はIE6~IE8のサポートを打ち切り、再設計して改良。軽量化と高速化を図るそう。1.9は引き続きIE6~IE8をサポートを続ける。バグフィックスは2.0.xと1.9.xのマイナーアップデートにされるってことになるのかな。内部APIを色々と整理したのでたくさんテストして下さいとのこと。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fjquery-1-9-rc.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fjquery-1-9-rc.html&text=jQuery%201.9%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e5%80%99%e8%a3%9c%e7%89%88%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%9f" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2013/how-to-optimize-javascript-by-google.html>👈 Google I/O 2012発 JavaScript高速化テクニックの日本語訳と考察</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2013/gruntjs-0-4.html>Grunt ver0.4に向けての環境の再構築 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+まとめ ロードマップは、2.0はIE6~IE8のサポートを打ち切り、再設計して改良。軽量化と高速化を図るそう。1.9は引き続きIE6~IE8をサポートを続ける。バグフィックスは2.0.xと1.9.xのマイナーアップデートにされるってことになるのかな。内部APIを色々と整理したのでたくさんテストして下さいとのこと。">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2013/jquery-1-9-rc.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="jQuery 1.9リリース候補版がリリースされた">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2013/jquery-1-9-rc.html">
+<meta name=twitter:title content="jQuery 1.9リリース候補版がリリースされた">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2013.01.11</span>
+<h1 id=jquery-19リリース候補版がリリースされた>jQuery 1.9リリース候補版がリリースされた</h1>
+<ul>
+<li><a href=http://blog.jquery.com/2013/01/09/jquery-1-9-rc1-and-migrate-rc1-released/>JQUERY 1.9 RC1 AND MIGRATE RC1 RELEASED</a></li>
+</ul>
+<p>jQuery1.9のリリース候補版ver1が公開された。<a href=/posts/2012/jQuery-1-9.html>beta1の続き</a>ということで、懲りずに変更とか追っかけてみる。</p>
+<h2 id=sizzleが対応するcss3セレクタが増えた>Sizzleが対応するCSS3セレクタが増えた</h2>
+<p>追加されたものと、簡単な解説を。ネイティブじゃないので相変わらずIE6でも使えるそうで。<code>:link</code>・<code>:visited</code>・<code>:hover</code>の3つに関してはサポートしていない。オーバーヘッドが大きいこともあって、実装予定はないとのこと。</p>
+<ul>
+<li><code>:nth-last-child()</code> - ()の条件式に該当する子要素の最後の要素。引数の形式は:nth-childと同様。</li>
+<li><code>:nth-of-type()</code> - ()の条件式に該当する同一属性要素。引数の形式は:nth-childと同様。</li>
+<li><code>:nth-last-of-type()</code> - ()の条件式に該当する同一属性要素の最後の要素。引数の形式は:nth-childと同様。</li>
+<li><code>:first-of-type</code> - 同一属性要素の最初の要素。:nth-of-type(1)と同義。</li>
+<li><code>:last-of-type</code> - 同一属性要素の最後の要素。:nth-last-of-type(1)と同義。</li>
+<li><code>:only-of-type</code> - 同一属性要素が単独の場合該当。:first-of-type:last-of-typeとか:nth-of-type(1):nth-last-of-type(1)と同義。</li>
+<li><code>:target</code> - アンカーで遷移した先の要素に該当。</li>
+<li><code>:root</code> - ルートを意味する。htmlで言うとhtml。</li>
+<li><code>:lang()</code> - ()の指定と、lang=&ldquo;ja"が一致する要素。</li>
+</ul>
+<h2 id=finishが追加された>finish()が追加された</h2>
+<p><code>.stop(Boolean, Boolean)</code>のように真偽値を渡すのをやめたいそうな。<code>stop()</code>の引数の渡し方で制御をするような複雑なことをしたことがないが、ほとんどの場合は<code>.clearQueue(a)</code>や<code>.finish()</code>で解決できるからだそう。</p>
+<ul>
+<li><a href=http://jsfiddle.net/dmethvin/AFGgJ/>サンプル</a></li>
+</ul>
+<h2 id=source-mapに対応>Source Mapに対応</h2>
+<p>minifyされてたら無理ということでSource Mapを用意してくれた。生ソースが得られてもjQueryをデバッグする気にはあまりならないけど。Source Mapについては以下のリソースが参考になる。</p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit?pli=1#heading=h.9ppdoan5f016">Source Map Revision 3 Proposal</a></li>
+<li><a href=http://maruta.be/intfloat_staff/144>SourceMapについて調べました。</a></li>
+</ul>
+<h2 id=たくさんあるchangelogで気になるところ>たくさんあるchangelogで気になるところ</h2>
+<ul>
+<li><code>ajax.type</code>が<code>ajax.method</code>にリネームされた。</li>
+<li><code>$("some-selector")</code>の性能が10%~30%向上した。</li>
+</ul>
+<p>Sizzleはどこまで進化するんだ。</p>
+<h2 id=まとめ>まとめ</h2>
+<p>ロードマップは、2.0はIE6~IE8のサポートを打ち切り、再設計して改良。軽量化と高速化を図るそう。1.9は引き続きIE6~IE8をサポートを続ける。バグフィックスは2.0.xと1.9.xのマイナーアップデートにされるってことになるのかな。内部APIを色々と整理したのでたくさんテストして下さいとのこと。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fjquery-1-9-rc.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fjquery-1-9-rc.html&text=jQuery%201.9%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e5%80%99%e8%a3%9c%e7%89%88%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%9f" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2013/how-to-optimize-javascript-by-google.html>👈 Google I/O 2012発 JavaScript高速化テクニックの日本語訳と考察</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2013/gruntjs-0-4.html>Grunt ver0.4に向けての環境の再構築 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -23,4 +170,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

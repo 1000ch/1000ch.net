@@ -1,4 +1,26 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>esaをElectronでラップしてアプリにした - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="esaをElectronでラップしてアプリにした ※この記事は Electron Advent Calendar 2016 1日目の記事です。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>esaをElectronでラップしてアプリにした - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="esaをElectronでラップしてアプリにした ※この記事は Electron Advent Calendar 2016 1日目の記事です。
 プロジェクトで esa を頻繁に使っているので、 Electron でラップして Dock に常駐できるようにした。鳥から連想して、ウズラを意味する Quail という名前にしてみたが、深い意味はない。
 インストールするには 1000ch/quail/releases からアーカイブファイルをダウンロードして、アプリケーションファイルを任意の場所に配置してもらうだけ。
 サードパーティーesaツール ありがたいことにサードパーティーesaツールに載せてもらった。Windows ビルドも用意でき次第、追加してもらおう。
@@ -7,10 +29,60 @@
 画面遷移が少ない Trello とは異なり esa では遷移が頻繁に発生する。 esa は SSR だが SPA ではないので2回目以降のナビゲーションでは画面が白くなる時間があるのだが、これが案外気になる。これもコンテキストの話だ。
 Web アプリを Electron でラップして思うのは「 Dock に常駐するアプリなのに画面真っ白になるのなー」という気持ち。ブラウザだと気にならないのにネイティブアプリにした途端、不思議なくらい気になる。
 &mdash; 1000ch (@1000ch) 2016年11月27日 これについては次のような安直スクリプトを各ページに仕込んで、主な導線への遷移を高速化しようとしたがダメだった。静的なリソースじゃないとですね。
-function createPrerender(url) { const link = document.createElement('link'); link.rel = 'prerender'; link."><meta property="og:image" content="https://1000ch.net/img/posts/2016/esa-app/demo.png"><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/esa-app.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="esaをElectronでラップしてアプリにした"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/esa-app.html"><meta name=twitter:title content="esaをElectronでラップしてアプリにした"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2016.12.01</span><h1 id=esaをelectronでラップしてアプリにした>esaをElectronでラップしてアプリにした</h1><p>※この記事は <a href=http://qiita.com/advent-calendar/2016/electron>Electron Advent Calendar 2016</a> 1日目の記事です。</p><p>プロジェクトで esa を頻繁に使っているので、 Electron でラップして Dock に常駐できるようにした。鳥から連想して、ウズラを意味する Quail という名前にしてみたが、深い意味はない。</p><p><img src=/img/posts/2016/esa-app/demo.png alt=Quail></p><p>インストールするには <a href=https://github.com/1000ch/quail/releases>1000ch/quail/releases</a> からアーカイブファイルをダウンロードして、アプリケーションファイルを任意の場所に配置してもらうだけ。</p><h2 id=サードパーティーesaツール>サードパーティーesaツール</h2><p>ありがたいことに<a href=https://docs.esa.io/posts/158>サードパーティーesaツール</a>に載せてもらった。Windows ビルドも用意でき次第、追加してもらおう。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>【お知らせ】esa 非公式 Mac/Linux app “Quail” by <a href=https://twitter.com/1000ch>@1000ch</a> をサードパーティーesaツールに追加しました ( ⁰⊖⁰) <a href="https://twitter.com/hashtag/%EF%BE%84%EF%BE%89%EF%BD%BA%EF%BE%84?src=hash">#ﾄﾉｺﾄ</a><a href=https://t.co/3H2SQqj6H6>https://t.co/3H2SQqj6H6</a><a href=https://t.co/Ap6RJZESIj>https://t.co/Ap6RJZESIj</a></p>&mdash; esa_io (@esa_io) <a href=https://twitter.com/esa_io/status/802846086972833792>2016年11月27日</a></blockquote><h2 id=使い手のコンテキストとパフォーマンス>使い手のコンテキストとパフォーマンス</h2><p><a href=/posts/2016/trello-app.html>TrelloをElectronでラップしてアプリにした</a>でコンテキストの区別の話をしたが、他にも気づいたことがある。</p><p>画面遷移が少ない Trello とは異なり esa では遷移が頻繁に発生する。 esa は SSR だが SPA ではないので2回目以降のナビゲーションでは画面が白くなる時間があるのだが、これが案外気になる。これもコンテキストの話だ。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>Web アプリを Electron でラップして思うのは「 Dock に常駐するアプリなのに画面真っ白になるのなー」という気持ち。ブラウザだと気にならないのにネイティブアプリにした途端、不思議なくらい気になる。</p>&mdash; 1000ch (@1000ch) <a href=https://twitter.com/1000ch/status/802894791025389575>2016年11月27日</a></blockquote><p>これについては次のような安直スクリプトを各ページに仕込んで、主な導線への遷移を高速化しようとしたがダメだった。静的なリソースじゃないとですね。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>createPrerender</span>(<span style=color:#a6e22e>url</span>) {
+function createPrerender(url) { const link = document.createElement('link'); link.rel = 'prerender'; link.">
+<meta property="og:image" content="https://1000ch.net/img/posts/2016/esa-app/demo.png">
+<meta name=twitter:card content="summary_large_image">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2016/esa-app.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="esaをElectronでラップしてアプリにした">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2016/esa-app.html">
+<meta name=twitter:title content="esaをElectronでラップしてアプリにした">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2016.12.01</span>
+<h1 id=esaをelectronでラップしてアプリにした>esaをElectronでラップしてアプリにした</h1>
+<p>※この記事は <a href=http://qiita.com/advent-calendar/2016/electron>Electron Advent Calendar 2016</a> 1日目の記事です。</p>
+<p>プロジェクトで esa を頻繁に使っているので、 Electron でラップして Dock に常駐できるようにした。鳥から連想して、ウズラを意味する Quail という名前にしてみたが、深い意味はない。</p>
+<p><img src=/img/posts/2016/esa-app/demo.png alt=Quail></p>
+<p>インストールするには <a href=https://github.com/1000ch/quail/releases>1000ch/quail/releases</a> からアーカイブファイルをダウンロードして、アプリケーションファイルを任意の場所に配置してもらうだけ。</p>
+<h2 id=サードパーティーesaツール>サードパーティーesaツール</h2>
+<p>ありがたいことに<a href=https://docs.esa.io/posts/158>サードパーティーesaツール</a>に載せてもらった。Windows ビルドも用意でき次第、追加してもらおう。</p>
+<blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>【お知らせ】esa 非公式 Mac/Linux app “Quail” by <a href=https://twitter.com/1000ch>@1000ch</a> をサードパーティーesaツールに追加しました ( ⁰⊖⁰) <a href="https://twitter.com/hashtag/%EF%BE%84%EF%BE%89%EF%BD%BA%EF%BE%84?src=hash">#ﾄﾉｺﾄ</a><a href=https://t.co/3H2SQqj6H6>https://t.co/3H2SQqj6H6</a><a href=https://t.co/Ap6RJZESIj>https://t.co/Ap6RJZESIj</a></p>&mdash; esa_io (@esa_io) <a href=https://twitter.com/esa_io/status/802846086972833792>2016年11月27日</a></blockquote>
+<h2 id=使い手のコンテキストとパフォーマンス>使い手のコンテキストとパフォーマンス</h2>
+<p><a href=/posts/2016/trello-app.html>TrelloをElectronでラップしてアプリにした</a>でコンテキストの区別の話をしたが、他にも気づいたことがある。</p>
+<p>画面遷移が少ない Trello とは異なり esa では遷移が頻繁に発生する。 esa は SSR だが SPA ではないので2回目以降のナビゲーションでは画面が白くなる時間があるのだが、これが案外気になる。これもコンテキストの話だ。</p>
+<blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>Web アプリを Electron でラップして思うのは「 Dock に常駐するアプリなのに画面真っ白になるのなー」という気持ち。ブラウザだと気にならないのにネイティブアプリにした途端、不思議なくらい気になる。</p>&mdash; 1000ch (@1000ch) <a href=https://twitter.com/1000ch/status/802894791025389575>2016年11月27日</a></blockquote>
+<p>これについては次のような安直スクリプトを各ページに仕込んで、主な導線への遷移を高速化しようとしたがダメだった。静的なリソースじゃないとですね。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>createPrerender</span>(<span style=color:#a6e22e>url</span>) {
   <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>link</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#39;link&#39;</span>);
   <span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>rel</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;prerender&#39;</span>;
   <span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>href</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>url</span>;
@@ -31,12 +103,64 @@ document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6
 
   <span style=color:#a6e22e>pathnames</span>
     .<span style=color:#a6e22e>filter</span>(<span style=color:#a6e22e>u</span> =&gt; <span style=color:#a6e22e>u</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>pathname</span>)
-    .<span style=color:#a6e22e>forEach</span>(<span style=color:#a6e22e>u</span> =&gt; <span style=color:#a6e22e>head</span>.<span style=color:#a6e22e>appendChild</span>(<span style=color:#a6e22e>createPrerender</span>(<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>baseURL</span><span style=color:#e6db74>}</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>u</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>)));
+    .<span style=color:#a6e22e>forEach</span>(<span style=color:#a6e22e>u</span> =&gt; <span style=color:#a6e22e>head</span>.<span style=color:#a6e22e>appendChild</span>(<span style=color:#a6e22e>createPrerender</span>(<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>baseURL</span><span style=color:#e6db74>}${</span><span style=color:#a6e22e>u</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>)));
 });
-</code></pre></div><p>また Electron でラップすることでオムニボックスが見えなくなるので UI としてスッキリする反面、閲覧ページの URL を参照できない。結果、URL をシェアできない。また esa の URL をクリックしても起動するのは Quail ではなく Chrome なので、 iOS や Android のようなディープリンクの仕組みが macOS にあれば良いなと思いつつ、今後更にブラウザが Appy になっていって、私達が Web をアプリと認識する未来が来るのかどうかに思いを馳せる。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fesa-app.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fesa-app.html&text=esa%e3%82%92Electron%e3%81%a7%e3%83%a9%e3%83%83%e3%83%97%e3%81%97%e3%81%a6%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ab%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2016/okinawa-3rd-day.html>👈 沖縄旅行最終日</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2016/frontrend-vol8.html>Frontrend Vol.8でResource Hintsの話をした 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p>また Electron でラップすることでオムニボックスが見えなくなるので UI としてスッキリする反面、閲覧ページの URL を参照できない。結果、URL をシェアできない。また esa の URL をクリックしても起動するのは Quail ではなく Chrome なので、 iOS や Android のようなディープリンクの仕組みが macOS にあれば良いなと思いつつ、今後更にブラウザが Appy になっていって、私達が Web をアプリと認識する未来が来るのかどうかに思いを馳せる。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fesa-app.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fesa-app.html&text=esa%e3%82%92Electron%e3%81%a7%e3%83%a9%e3%83%83%e3%83%97%e3%81%97%e3%81%a6%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ab%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2016/okinawa-3rd-day.html>👈 沖縄旅行最終日</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2016/frontrend-vol8.html>Frontrend Vol.8でResource Hintsの話をした 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -50,4 +174,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

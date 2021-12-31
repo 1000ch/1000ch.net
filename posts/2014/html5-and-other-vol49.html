@@ -1,22 +1,149 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた 第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O- でWeb ComponentsとPolymerについてお話してきました。 Google I/O 2014に参加したことは前段の通りで、 今回はEric Bidelmanによる、 Polymer and Web Components change everything you know about Web development のフィードバックという形でセッションしました。 会場はグリー@六本木ヒルズで開催されましたが、そのセミナールームをほぼ埋める300人超の参加者がいまして戦々恐々としてました。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた 第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O- でWeb ComponentsとPolymerについてお話してきました。 Google I/O 2014に参加したことは前段の通りで、 今回はEric Bidelmanによる、 Polymer and Web Components change everything you know about Web development のフィードバックという形でセッションしました。 会場はグリー@六本木ヒルズで開催されましたが、そのセミナールームをほぼ埋める300人超の参加者がいまして戦々恐々としてました。
 当日の資料等 諸事情でスライドに十分な時間を割くことが出来ず、当日時点ではシンプルなスライドになっていたのですが それを参加者の人に指摘されました。手を抜いたつもりは更々ありません（確かに簡素ではあったけど！）。 というわけで、Speakerdeckに事後装飾済みの資料をアップしてあります。
  Google I/O 2014でのWeb Components/Polymerに関する新ネタとしては、やはりMaterial DesignからのPaper Elementsが色濃かったような印象で、その他は2014年の状況に合わせてアップデートされた内容でした。
 フォローアップも兼ねてHTML5 Experts.jpに Web Componentsが変えるWeb開発の未来 という記事も書いていますので、宜しければどうぞ。
 Web Components ∈ Polymer 発表中に話しましたが、私個人の意見としては
  Web Componentsの各種仕様を理解し、ネイティブAPIを触ってみる それを踏まえてPolymerが何をしているかを学習し、利用する  という流れをオススメします。Polymerは便利でWeb Componentsの普及に欠かせない存在であることについては疑う余地がありませんが、故にWeb ComponentsとPolymerがやや混同されているような印象を受けるので、それを拭いたい気持ちがぼんやりと。
 jQueryが流行り過ぎて、あたかも JavaScript = jQuery のような誤解が一時期溢れていたことに非常に違和感を感じていたので、同じ道は辿ってほしくないなぁ…。
-あくまで、 JavaScript ∋ jQuery であり、 Web Components ∋ Polymer です。jQueryやらPolymerから学習することを止める気は更々ありませんが、jQueryをやってみたい人にはJavaScriptを勉強することをオススメするように、今からWeb Componentsをやってみたいと考えている人には、まずWeb Componentsの基礎からやってみるといいですよ！と言うでしょう。"><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/html5-and-other-vol49.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/html5-and-other-vol49.html"><meta name=twitter:title content="HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2014.07.31</span><h1 id=html5とか勉強会でweb-componentsとpolymerについて話してきた>HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた</h1><p><a href=https://atnd.org/events/53826>第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O-</a> でWeb ComponentsとPolymerについてお話してきました。
+あくまで、 JavaScript ∋ jQuery であり、 Web Components ∋ Polymer です。jQueryやらPolymerから学習することを止める気は更々ありませんが、jQueryをやってみたい人にはJavaScriptを勉強することをオススメするように、今からWeb Componentsをやってみたいと考えている人には、まずWeb Componentsの基礎からやってみるといいですよ！と言うでしょう。">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2014/html5-and-other-vol49.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2014/html5-and-other-vol49.html">
+<meta name=twitter:title content="HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2014.07.31</span>
+<h1 id=html5とか勉強会でweb-componentsとpolymerについて話してきた>HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた</h1>
+<p><a href=https://atnd.org/events/53826>第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O-</a> でWeb ComponentsとPolymerについてお話してきました。
 <a href=/posts/2014/google-io-2014.html>Google I/O 2014に参加した</a>ことは前段の通りで、
 今回はEric Bidelmanによる、 <a href=http://youtu.be/8OJ7ih8EE7s><strong>Polymer and Web Components change everything you know about Web development</strong></a> のフィードバックという形でセッションしました。
-会場はグリー@六本木ヒルズで開催されましたが、そのセミナールームをほぼ埋める300人超の参加者がいまして戦々恐々としてました。</p><h2 id=当日の資料等>当日の資料等</h2><p>諸事情でスライドに十分な時間を割くことが出来ず、当日時点ではシンプルなスライドになっていたのですが
+会場はグリー@六本木ヒルズで開催されましたが、そのセミナールームをほぼ埋める300人超の参加者がいまして戦々恐々としてました。</p>
+<h2 id=当日の資料等>当日の資料等</h2>
+<p>諸事情でスライドに十分な時間を割くことが出来ず、当日時点ではシンプルなスライドになっていたのですが
 それを参加者の人に指摘されました。手を抜いたつもりは更々ありません（確かに簡素ではあったけど！）。
-というわけで、Speakerdeckに事後装飾済みの資料をアップしてあります。</p><script async class=speakerdeck-embed data-id=68ef20c0f9bf013175412a749889ce68 data-ratio=1.33333333333333 src=//speakerdeck.com/assets/embed.js></script><p>Google I/O 2014でのWeb Components/Polymerに関する新ネタとしては、やはりMaterial DesignからのPaper Elementsが色濃かったような印象で、その他は2014年の状況に合わせてアップデートされた内容でした。</p><p>フォローアップも兼ねてHTML5 Experts.jpに <a href=http://html5experts.jp/1000ch/8906/><strong>Web Componentsが変えるWeb開発の未来</strong></a> という記事も書いていますので、宜しければどうぞ。</p><h2 id=web-components--polymer>Web Components ∈ Polymer</h2><p>発表中に話しましたが、私個人の意見としては</p><ol><li>Web Componentsの各種仕様を理解し、ネイティブAPIを触ってみる</li><li>それを踏まえてPolymerが何をしているかを学習し、利用する</li></ol><p>という流れをオススメします。Polymerは便利でWeb Componentsの普及に欠かせない存在であることについては疑う余地がありませんが、故にWeb ComponentsとPolymerがやや混同されているような印象を受けるので、それを拭いたい気持ちがぼんやりと。</p><p>jQueryが流行り過ぎて、あたかも <strong>JavaScript = jQuery</strong> のような誤解が一時期溢れていたことに非常に違和感を感じていたので、同じ道は辿ってほしくないなぁ…。</p><p>あくまで、 <strong>JavaScript ∋ jQuery</strong> であり、 <strong>Web Components ∋ Polymer</strong> です。jQueryやらPolymerから学習することを止める気は更々ありませんが、jQueryをやってみたい人にはJavaScriptを勉強することをオススメするように、今からWeb Componentsをやってみたいと考えている人には、まずWeb Componentsの基礎からやってみるといいですよ！と言うでしょう。</p><p>Let&rsquo;s Web Components!</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fhtml5-and-other-vol49.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fhtml5-and-other-vol49.html&text=HTML5%e3%81%a8%e3%81%8b%e5%8b%89%e5%bc%b7%e4%bc%9a%e3%81%a7Web%20Components%e3%81%a8Polymer%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%a9%b1%e3%81%97%e3%81%a6%e3%81%8d%e3%81%9f" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2014/x-notification.html>👈 ブラウザのNotification APIをWeb Components化した</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2014/css-architecture-textbook.html>Web制作者のためのCSS設計の教科書 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+というわけで、Speakerdeckに事後装飾済みの資料をアップしてあります。</p>
+<script async class=speakerdeck-embed data-id=68ef20c0f9bf013175412a749889ce68 data-ratio=1.33333333333333 src=//speakerdeck.com/assets/embed.js></script>
+<p>Google I/O 2014でのWeb Components/Polymerに関する新ネタとしては、やはりMaterial DesignからのPaper Elementsが色濃かったような印象で、その他は2014年の状況に合わせてアップデートされた内容でした。</p>
+<p>フォローアップも兼ねてHTML5 Experts.jpに <a href=http://html5experts.jp/1000ch/8906/><strong>Web Componentsが変えるWeb開発の未来</strong></a> という記事も書いていますので、宜しければどうぞ。</p>
+<h2 id=web-components--polymer>Web Components ∈ Polymer</h2>
+<p>発表中に話しましたが、私個人の意見としては</p>
+<ol>
+<li>Web Componentsの各種仕様を理解し、ネイティブAPIを触ってみる</li>
+<li>それを踏まえてPolymerが何をしているかを学習し、利用する</li>
+</ol>
+<p>という流れをオススメします。Polymerは便利でWeb Componentsの普及に欠かせない存在であることについては疑う余地がありませんが、故にWeb ComponentsとPolymerがやや混同されているような印象を受けるので、それを拭いたい気持ちがぼんやりと。</p>
+<p>jQueryが流行り過ぎて、あたかも <strong>JavaScript = jQuery</strong> のような誤解が一時期溢れていたことに非常に違和感を感じていたので、同じ道は辿ってほしくないなぁ…。</p>
+<p>あくまで、 <strong>JavaScript ∋ jQuery</strong> であり、 <strong>Web Components ∋ Polymer</strong> です。jQueryやらPolymerから学習することを止める気は更々ありませんが、jQueryをやってみたい人にはJavaScriptを勉強することをオススメするように、今からWeb Componentsをやってみたいと考えている人には、まずWeb Componentsの基礎からやってみるといいですよ！と言うでしょう。</p>
+<p>Let&rsquo;s Web Components!</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fhtml5-and-other-vol49.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fhtml5-and-other-vol49.html&text=HTML5%e3%81%a8%e3%81%8b%e5%8b%89%e5%bc%b7%e4%bc%9a%e3%81%a7Web%20Components%e3%81%a8Polymer%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%a9%b1%e3%81%97%e3%81%a6%e3%81%8d%e3%81%9f" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2014/x-notification.html>👈 ブラウザのNotification APIをWeb Components化した</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2014/css-architecture-textbook.html>Web制作者のためのCSS設計の教科書 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -30,4 +157,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

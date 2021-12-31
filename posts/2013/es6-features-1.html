@@ -1,13 +1,84 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~ - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~ ES6のフォローについては書こうとしていたものの後手に回っていて、ようやく書くに至る。SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてるけど、letとかconst、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておく。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~ - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~ ES6のフォローについては書こうとしていたものの後手に回っていて、ようやく書くに至る。SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてるけど、letとかconst、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておく。
 この段階での実装状況はNightly > Canary  Chrome Canary 34.0.1760.0 Firefox Nightly 29.0a1 (2013-12-25)  この2つをECMAScript 6 compatibility tableで比較するとNightlyのほうが先行実装は進んでいるのでNightlyでアレコレする。Canaryだと試したいシンタックス部分がまだ実装されていないので断念。
 Canaryでデバッグしたい人はES6実装を有効にするフラグをたてる必要があるので、chrome://flagsにアクセスして#enable-javascript-harmonyでページを検索すると JavaScript の試験運用機能を有効にする という項目があるのでそれを有効にする。あとはDevTool開いてConsoleでいつも通り試せる。が、今回はFirefoxなのでScratchpadでやる。使い慣れてない…。
 let letを使うことでブロックスコープの変数宣言が可能になる。
 まず、今までのvarを使ったパターン。（これだとそもそもlintで怒られるけど、挙動のテストということで。）
 var x = 1; if (true) { var x = 2; console.log('x is ' + x); // x is 2 } console.log('x is ' + x); // x is 2 このケースだと最初に宣言したxがif内で上書きされ、2回とも2が出力される。ここでletを使ってみる。
-let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/es6-features-1.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/es6-features-1.html"><meta name=twitter:title content="ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2013.12.26</span><h1 id=es6のシンタックスを予習復習1-let-const-arrow-function-generators-for-of>ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~</h1><p>ES6のフォローについては書こうとしていたものの後手に回っていて、ようやく書くに至る。SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてるけど、<code>let</code>とか<code>const</code>、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておく。</p><h2 id=この段階での実装状況はnightly--canary>この段階での実装状況はNightly > Canary</h2><ul><li>Chrome Canary 34.0.1760.0</li><li>Firefox Nightly 29.0a1 (2013-12-25)</li></ul><p>この2つを<a href=http://kangax.github.io/es5-compat-table/es6/>ECMAScript 6 compatibility table</a>で比較するとNightlyのほうが先行実装は進んでいるのでNightlyでアレコレする。Canaryだと試したいシンタックス部分がまだ実装されていないので断念。</p><p>Canaryでデバッグしたい人はES6実装を有効にするフラグをたてる必要があるので、<code>chrome://flags</code>にアクセスして<code>#enable-javascript-harmony</code>でページを検索すると <strong>JavaScript の試験運用機能を有効にする</strong> という項目があるのでそれを有効にする。あとはDevTool開いてConsoleでいつも通り試せる。が、今回はFirefoxなのでScratchpadでやる。使い慣れてない…。</p><h2 id=let><code>let</code></h2><p><code>let</code>を使うことでブロックスコープの変数宣言が可能になる。</p><p>まず、今までの<code>var</code>を使ったパターン。（これだとそもそもlintで怒られるけど、挙動のテストということで。）</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+let x = 1; if (true) { let x = 2; console.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2013/es6-features-1.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2013/es6-features-1.html">
+<meta name=twitter:title content="ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2013.12.26</span>
+<h1 id=es6のシンタックスを予習復習1-let-const-arrow-function-generators-for-of>ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~</h1>
+<p>ES6のフォローについては書こうとしていたものの後手に回っていて、ようやく書くに至る。SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてるけど、<code>let</code>とか<code>const</code>、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておく。</p>
+<h2 id=この段階での実装状況はnightly--canary>この段階での実装状況はNightly > Canary</h2>
+<ul>
+<li>Chrome Canary 34.0.1760.0</li>
+<li>Firefox Nightly 29.0a1 (2013-12-25)</li>
+</ul>
+<p>この2つを<a href=http://kangax.github.io/es5-compat-table/es6/>ECMAScript 6 compatibility table</a>で比較するとNightlyのほうが先行実装は進んでいるのでNightlyでアレコレする。Canaryだと試したいシンタックス部分がまだ実装されていないので断念。</p>
+<p>Canaryでデバッグしたい人はES6実装を有効にするフラグをたてる必要があるので、<code>chrome://flags</code>にアクセスして<code>#enable-javascript-harmony</code>でページを検索すると <strong>JavaScript の試験運用機能を有効にする</strong> という項目があるのでそれを有効にする。あとはDevTool開いてConsoleでいつも通り試せる。が、今回はFirefoxなのでScratchpadでやる。使い慣れてない…。</p>
+<h2 id=let><code>let</code></h2>
+<p><code>let</code>を使うことでブロックスコープの変数宣言が可能になる。</p>
+<p>まず、今までの<code>var</code>を使ったパターン。（これだとそもそもlintで怒られるけど、挙動のテストということで。）</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
 <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>true</span>) {
   <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;x is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>x</span>);
@@ -15,7 +86,8 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
 </span><span style=color:#75715e></span>}
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;x is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>x</span>);
 <span style=color:#75715e>// x is 2
-</span></code></pre></div><p>このケースだと最初に宣言した<code>x</code>がif内で上書きされ、2回とも2が出力される。ここで<code>let</code>を使ってみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></code></pre></div><p>このケースだと最初に宣言した<code>x</code>がif内で上書きされ、2回とも2が出力される。ここで<code>let</code>を使ってみる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
 <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>true</span>) {
   <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;x is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>x</span>);
@@ -23,7 +95,8 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
 </span><span style=color:#75715e></span>}
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;x is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>x</span>);
 <span style=color:#75715e>// x is 1
-</span></code></pre></div><p>期待通りの動きをしてくれる。<code>var</code>と<code>let</code>の複合はどうなるか。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></code></pre></div><p>期待通りの動きをしてくれる。<code>var</code>と<code>let</code>の複合はどうなるか。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
 <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>true</span>) {
   <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;x is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>x</span>);
@@ -31,7 +104,8 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
 </span><span style=color:#75715e></span>}
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;x is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>x</span>);
 <span style=color:#75715e>// x is 2
-</span></code></pre></div><p><code>var</code>はスコープの外の<code>let</code>を上書いてしまうらしい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></code></pre></div><p><code>var</code>はスコープの外の<code>let</code>を上書いてしまうらしい。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
 <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>true</span>) {
   <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;x is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>x</span>);
@@ -39,23 +113,30 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
 </span><span style=color:#75715e></span>}
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;x is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>x</span>);
 <span style=color:#75715e>// x is 1
-</span></code></pre></div><p>こっちはスコープを守ってくれている。<code>var</code>の使用頻度えらく減る予感…。おなじみのスコープ形成無名関数も減るのかな、と。なんか<a href=https://developer.mozilla.org/en/docs/Web/JavaScript/ECMAScript_6_support_in_Mozilla>Firefoxの現在の実装は仕様とちょっと違うらしい</a>。</p><h2 id=const><code>const</code></h2><p><code>const</code>もES6から追加される新しい変数宣言の方法で、定数値(constant value)を宣言する時に使用する。<code>const</code>を使って宣言された変数には値を代入できなくなる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PI</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3.14</span>;
+</span></code></pre></div><p>こっちはスコープを守ってくれている。<code>var</code>の使用頻度えらく減る予感…。おなじみのスコープ形成無名関数も減るのかな、と。なんか<a href=https://developer.mozilla.org/en/docs/Web/JavaScript/ECMAScript_6_support_in_Mozilla>Firefoxの現在の実装は仕様とちょっと違うらしい</a>。</p>
+<h2 id=const><code>const</code></h2>
+<p><code>const</code>もES6から追加される新しい変数宣言の方法で、定数値(constant value)を宣言する時に使用する。<code>const</code>を使って宣言された変数には値を代入できなくなる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PI</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3.14</span>;
 <span style=color:#a6e22e>PI</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;PI is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>PI</span>);
 <span style=color:#75715e>// PI is 3.14
-</span></code></pre></div><p>こういうのものOK。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+</span></code></pre></div><p>こういうのものOK。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
 <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>y</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.14</span>;
 <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PI</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>y</span>;
 <span style=color:#a6e22e>PI</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;PI is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>PI</span>);
 <span style=color:#75715e>// PI is 3.14
-</span></code></pre></div><p><code>use strict</code>をつけてstrictモードになっている場合は、<code>PI = 3;</code>の部分で例外が発生。ちなみにこれはtry/catchでも捕捉出来なかった(?)。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#e6db74>&#34;use strict&#34;</span>;
+</span></code></pre></div><p><code>use strict</code>をつけてstrictモードになっている場合は、<code>PI = 3;</code>の部分で例外が発生。ちなみにこれはtry/catchでも捕捉出来なかった(?)。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#e6db74>&#34;use strict&#34;</span>;
 <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PI</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3.14</span>;
 <span style=color:#a6e22e>PI</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
 <span style=color:#75715e>// TypeError: PI is read-only
 </span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>PI</span>);
 <span style=color:#75715e>// ここまで来ない
-</span></code></pre></div><h2 id=関数のアロー記法>関数のアロー記法</h2><p>関数を、<code>function</code>の代わりに<code>=></code>を使って表現可能になったアレ。CoffeeScriptを連想させられる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>square</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>x</span>) {
+</span></code></pre></div><h2 id=関数のアロー記法>関数のアロー記法</h2>
+<p>関数を、<code>function</code>の代わりに<code>=></code>を使って表現可能になったアレ。CoffeeScriptを連想させられる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>square</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>x</span>) {
   <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>x</span>;
 };
 <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>multiply</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span>) {
@@ -65,7 +146,8 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
 <span style=color:#75715e>// 4
 </span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>multiply</span>(<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>));
 <span style=color:#75715e>// 12
-</span></code></pre></div><p>これをアロー記法で書くと</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>square</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> =&gt; {
+</span></code></pre></div><p>これをアロー記法で書くと</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>square</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> =&gt; {
   <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>x</span>;
 };
 <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>multiply</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span>) =&gt; {
@@ -75,11 +157,15 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
 <span style=color:#75715e>// 4
 </span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>multiply</span>(<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>));
 <span style=color:#75715e>// 12
-</span></code></pre></div><p>関数のとる引数がひとつの場合は括弧を省略出来る。<code>this</code>の持ち込みには注意するとして、記法自体は <strong><code>function</code>というキーワードを除いて、引数の括弧の後ろに<code>=></code>をつける</strong> という覚え方で良いのかな。あとはイベントのコールバックにも書いたり出来そう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;DOMContentLoaded&#39;</span>, <span style=color:#a6e22e>e</span> =&gt; {
+</span></code></pre></div><p>関数のとる引数がひとつの場合は括弧を省略出来る。<code>this</code>の持ち込みには注意するとして、記法自体は <strong><code>function</code>というキーワードを除いて、引数の括弧の後ろに<code>=></code>をつける</strong> という覚え方で良いのかな。あとはイベントのコールバックにも書いたり出来そう。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;DOMContentLoaded&#39;</span>, <span style=color:#a6e22e>e</span> =&gt; {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>e</span>);
 });
 <span style=color:#75715e>// DOMContentLoaded {target: ...}
-</span></code></pre></div><p>C#のラムダ式で妙に親しみがあるのでちょっと懐かしい。そしてJSで書けるのは嬉しい。</p><h2 id=generatorsとfor-ofループ>Generatorsとfor ofループ</h2><p>Generator Functionは実行された後も実行状態を保持し、イテレータとして使用する。<a href=http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81%E6%95%B0>フィボナッチ数列</a>を例に説明。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fibonacci</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span><span style=color:#f92672>*</span> () {
+</span></code></pre></div><p>C#のラムダ式で妙に親しみがあるのでちょっと懐かしい。そしてJSで書けるのは嬉しい。</p>
+<h2 id=generatorsとfor-ofループ>Generatorsとfor ofループ</h2>
+<p>Generator Functionは実行された後も実行状態を保持し、イテレータとして使用する。<a href=http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81%E6%95%B0>フィボナッチ数列</a>を例に説明。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fibonacci</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span><span style=color:#f92672>*</span> () {
   <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>prev</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
   <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>curr</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
   <span style=color:#66d9ef>while</span> (<span style=color:#66d9ef>true</span>) {
@@ -89,7 +175,8 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
   }
 };
 <span style=color:#75715e>// SyntaxError: missing ; before statement
-</span></code></pre></div><p>が、SpiderMonkeyが<code>function*</code>シンタックスに綺麗に対応していない(?)ようで、実行出来なかった。仕方なく以下のように書いた。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fibonacci</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span><span style=color:#f92672>*</span> () {
+</span></code></pre></div><p>が、SpiderMonkeyが<code>function*</code>シンタックスに綺麗に対応していない(?)ようで、実行出来なかった。仕方なく以下のように書いた。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fibonacci</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span><span style=color:#f92672>*</span> () {
   <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>prev</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
   <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>curr</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
   <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>swap</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
@@ -106,19 +193,22 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
 </span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>seq</span>.<span style=color:#a6e22e>next</span>()); <span style=color:#75715e>// {value: 3, done: false}
 </span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>seq</span>.<span style=color:#a6e22e>next</span>()); <span style=color:#75715e>// {value: 5, done: false}
 </span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>seq</span>.<span style=color:#a6e22e>next</span>()); <span style=color:#75715e>// {value: 8, done: false}
-</span></code></pre></div><p>実行するとイテレータオブジェクトを返却して、<code>next()</code>を実行すると値が列挙されていく。これを配列のイテレーションをすることが可能なfor ofループと組み合わせてみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>seq</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>fibonacci</span>()) {
+</span></code></pre></div><p>実行するとイテレータオブジェクトを返却して、<code>next()</code>を実行すると値が列挙されていく。これを配列のイテレーションをすることが可能なfor ofループと組み合わせてみる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>seq</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>fibonacci</span>()) {
   <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>seq</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1000</span>) {
     <span style=color:#66d9ef>break</span>;
   }
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>seq</span>);
 }
 <span style=color:#75715e>// 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987
-</span></code></pre></div><p>順番が逆になってしまいましたが、for ofで配列をイテレートすることが可能。今までやっていたfor in + Arrayの罠にハマることがなくなりそう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>array</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>1000</span>, <span style=color:#ae81ff>10000</span>];
+</span></code></pre></div><p>順番が逆になってしまいましたが、for ofで配列をイテレートすることが可能。今までやっていたfor in + Arrayの罠にハマることがなくなりそう。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>array</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>1000</span>, <span style=color:#ae81ff>10000</span>];
 <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>item</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>array</span>) {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>item</span>);
 }
 <span style=color:#75715e>// 1, 10, 100, 1000, 10000
-</span></code></pre></div><p>オブジェクトにはイテレータ関数が明示されていないので、そのままだと<code>for of</code>は使えない。なので、イテレータ関数を挟んで<code>for of</code>に列挙させてみる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> {
+</span></code></pre></div><p>オブジェクトにはイテレータ関数が明示されていないので、そのままだと<code>for of</code>は使えない。なので、イテレータ関数を挟んで<code>for of</code>に列挙させてみる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> {
   <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>,
   <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>20</span>,
   <span style=color:#a6e22e>c</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>30</span>
@@ -133,10 +223,65 @@ let x = 1; if (true) { let x = 2; console."><meta property="og:image" content="h
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>item</span>);
 }
 <span style=color:#75715e>// 10, 20, 30
-</span></code></pre></div><h2 id=所感>所感</h2><p>一番試したかったclassが未実装で書けなかった（ただの糖衣構文だが）。でも実装も色々と進んできているし、試すレベルでは色々と楽しめそうな予感。</p><p>ES6をES5にコンパイルしてくれる<a href=https://github.com/google/traceur-compiler>google / traceur-compiler</a>とかもあるが、プロダクトで <strong>「ES6をゴリゴリ使って後方互換にES5ソースを用意する」</strong> みたいなことをするのはちょっとだけ早いかなとは思った。</p><p>続き(?)はまた新年。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fes6-features-1.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fes6-features-1.html&text=ES6%e3%81%ae%e3%82%b7%e3%83%b3%e3%82%bf%e3%83%83%e3%82%af%e3%82%b9%e3%82%92%e4%ba%88%e7%bf%92%e5%be%a9%e7%bf%92%281%29%20~let%2c%20const%2c%20Arrow%20Function%2c%20Generators%2c%20for%20of~" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2013/sacss-follow-up.html>👈 SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2013/es6-features-2.html>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</span></code></pre></div><h2 id=所感>所感</h2>
+<p>一番試したかったclassが未実装で書けなかった（ただの糖衣構文だが）。でも実装も色々と進んできているし、試すレベルでは色々と楽しめそうな予感。</p>
+<p>ES6をES5にコンパイルしてくれる<a href=https://github.com/google/traceur-compiler>google / traceur-compiler</a>とかもあるが、プロダクトで <strong>「ES6をゴリゴリ使って後方互換にES5ソースを用意する」</strong> みたいなことをするのはちょっとだけ早いかなとは思った。</p>
+<p>続き(?)はまた新年。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fes6-features-1.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fes6-features-1.html&text=ES6%e3%81%ae%e3%82%b7%e3%83%b3%e3%82%bf%e3%83%83%e3%82%af%e3%82%b9%e3%82%92%e4%ba%88%e7%bf%92%e5%be%a9%e7%bf%92%281%29%20~let%2c%20const%2c%20Arrow%20Function%2c%20Generators%2c%20for%20of~" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2013/sacss-follow-up.html>👈 SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2013/es6-features-2.html>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -150,4 +295,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

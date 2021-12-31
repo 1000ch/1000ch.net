@@ -1,16 +1,139 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>WEB+DB PRESS 新連載「Webフロントエンド最前線」 - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="WEB+DB PRESS 新連載「Webフロントエンド最前線」 来たる6月24日に発売するWEB+DB PRESS Vol.81から「Webフロントエンド最前線」という連載を担当させていただくことになりました。巷に溢れかえっているフロントエンド技術の中でも特に注目すべきモノを、 「流行に乗り遅れず、そして踊らされないようにキャッチアップしていく」 というコンセプトの連載です。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>WEB+DB PRESS 新連載「Webフロントエンド最前線」 - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="WEB+DB PRESS 新連載「Webフロントエンド最前線」 来たる6月24日に発売するWEB+DB PRESS Vol.81から「Webフロントエンド最前線」という連載を担当させていただくことになりました。巷に溢れかえっているフロントエンド技術の中でも特に注目すべきモノを、 「流行に乗り遅れず、そして踊らされないようにキャッチアップしていく」 というコンセプトの連載です。
 連載は@ahomuさんと共同で執筆していくことになります。各号を交代で担当するのか、はたまた分割して執筆していくのか決まっているわけではなく、状況に応じてやっていくことになりそう。
 連載第1回目は「WebRTCでブラウザ間P2P通信」 今回（Vol.81）については私が WebRTC について執筆しました。通信にサーバーを経由せず、ブラウザ同士で通信させちゃうアレです。
 内容としては、P2P通信やリアルタイム通信と表されるWebSocketとの比較といったようなWebRTCの基礎理論から、WebRTCのAPIを実際に使ったビデオチャットのコードの詳細な解説、最後にPeerJSとSkyWayの簡単な紹介が盛り込まれています。
 この記事で何かとてつもないアプリが作れるようになるわけではありませんが、 なぜWebRTCを使うのか 、 WebRTCのどこがイケてるのか はきっとわかるはずです。基礎の理解、大事。
 Special Thanks to @sugimoto1981!
-長嶋 享 (著), 藤 吾郎 (著), 八木 俊広 (著), 日高 一明 (著), 滝口 健太郎 (著), 田中 慎司 (著), 泉水 翔吾 (著), 海野 弘成 (著), 佐藤 太一 (著), 吉村 総一郎 (著), 伊藤 直也 (著), 川上 大喜 (著), こしば としあき (著), 舘野 祐一 (著), 中島 聡 (著), 橋本 翔 (著), 渡邊 恵太 (著), はまちや2 (著), 竹原 (著), 川添 貴生 (著), 沢渡 真雪 (著), WEB+DB PRESS編集部 (編集)"><meta property="og:image" content="https://1000ch.net/img/posts/2014/wdpress-frontend-series-webrtc/cover.jpg"><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/wdpress-frontend-series-webrtc.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="WEB+DB PRESS 新連載「Webフロントエンド最前線」"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/wdpress-frontend-series-webrtc.html"><meta name=twitter:title content="WEB+DB PRESS 新連載「Webフロントエンド最前線」"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2014.06.19</span><h1 id=webdb-press-新連載webフロントエンド最前線>WEB+DB PRESS 新連載「Webフロントエンド最前線」</h1><p>来たる6月24日に発売する<a href=http://www.amazon.co.jp/gp/product/4774165069/>WEB+DB PRESS Vol.81</a>から「Webフロントエンド最前線」という連載を担当させていただくことになりました。巷に溢れかえっているフロントエンド技術の中でも特に注目すべきモノを、 <strong>「流行に乗り遅れず、そして踊らされないようにキャッチアップしていく」</strong> というコンセプトの連載です。</p><p><img src=/img/posts/2014/wdpress-frontend-series-webrtc/cover.jpg alt></p><p>連載は<a href=http://twitter.com/ahomu>@ahomu</a>さんと共同で執筆していくことになります。各号を交代で担当するのか、はたまた分割して執筆していくのか決まっているわけではなく、状況に応じてやっていくことになりそう。</p><h2 id=連載第1回目はwebrtcでブラウザ間p2p通信>連載第1回目は「WebRTCでブラウザ間P2P通信」</h2><p>今回（Vol.81）については私が <strong>WebRTC</strong> について執筆しました。通信にサーバーを経由せず、ブラウザ同士で通信させちゃうアレです。</p><p>内容としては、P2P通信やリアルタイム通信と表されるWebSocketとの比較といったようなWebRTCの基礎理論から、WebRTCのAPIを実際に使ったビデオチャットのコードの詳細な解説、最後にPeerJSとSkyWayの簡単な紹介が盛り込まれています。</p><p>この記事で何かとてつもないアプリが作れるようになるわけではありませんが、 <strong>なぜWebRTCを使うのか</strong> 、 <strong>WebRTCのどこがイケてるのか</strong> はきっとわかるはずです。基礎の理解、大事。</p><p>Special Thanks to <a href=http://twitter.com/sugimoto1981>@sugimoto1981</a>!</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/61CJ%2BwUVNpL._SX353_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4774165069/ tag=1000ch-22 title="WEB+DB PRESS Vol.81">長嶋 享 (著), 藤 吾郎 (著), 八木 俊広 (著), 日高 一明 (著), 滝口 健太郎 (著), 田中 慎司 (著), 泉水 翔吾 (著), 海野 弘成 (著), 佐藤 太一 (著), 吉村 総一郎 (著), 伊藤 直也 (著), 川上 大喜 (著), こしば としあき (著), 舘野 祐一 (著), 中島 聡 (著), 橋本 翔 (著), 渡邊 恵太 (著), はまちや2 (著), 竹原 (著), 川添 貴生 (著), 沢渡 真雪 (著), WEB+DB PRESS編集部 (編集)</affiliate-link></p><p>連続で著書の紹介になってしまいましたが、どうぞお手にとって見てください！（アフィリンクです）</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fwdpress-frontend-series-webrtc.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fwdpress-frontend-series-webrtc.html&text=WEB%2bDB%20PRESS%20%e6%96%b0%e9%80%a3%e8%bc%89%e3%80%8cWeb%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e6%9c%80%e5%89%8d%e7%b7%9a%e3%80%8d" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2014/frontend-engineer-training-book.html>👈 フロントエンドエンジニア養成読本</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2014/google-io-2014.html>Google I/O 2014 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+長嶋 享 (著), 藤 吾郎 (著), 八木 俊広 (著), 日高 一明 (著), 滝口 健太郎 (著), 田中 慎司 (著), 泉水 翔吾 (著), 海野 弘成 (著), 佐藤 太一 (著), 吉村 総一郎 (著), 伊藤 直也 (著), 川上 大喜 (著), こしば としあき (著), 舘野 祐一 (著), 中島 聡 (著), 橋本 翔 (著), 渡邊 恵太 (著), はまちや2 (著), 竹原 (著), 川添 貴生 (著), 沢渡 真雪 (著), WEB+DB PRESS編集部 (編集)">
+<meta property="og:image" content="https://1000ch.net/img/posts/2014/wdpress-frontend-series-webrtc/cover.jpg">
+<meta name=twitter:card content="summary_large_image">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2014/wdpress-frontend-series-webrtc.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="WEB+DB PRESS 新連載「Webフロントエンド最前線」">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2014/wdpress-frontend-series-webrtc.html">
+<meta name=twitter:title content="WEB+DB PRESS 新連載「Webフロントエンド最前線」">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2014.06.19</span>
+<h1 id=webdb-press-新連載webフロントエンド最前線>WEB+DB PRESS 新連載「Webフロントエンド最前線」</h1>
+<p>来たる6月24日に発売する<a href=http://www.amazon.co.jp/gp/product/4774165069/>WEB+DB PRESS Vol.81</a>から「Webフロントエンド最前線」という連載を担当させていただくことになりました。巷に溢れかえっているフロントエンド技術の中でも特に注目すべきモノを、 <strong>「流行に乗り遅れず、そして踊らされないようにキャッチアップしていく」</strong> というコンセプトの連載です。</p>
+<p><img src=/img/posts/2014/wdpress-frontend-series-webrtc/cover.jpg alt></p>
+<p>連載は<a href=http://twitter.com/ahomu>@ahomu</a>さんと共同で執筆していくことになります。各号を交代で担当するのか、はたまた分割して執筆していくのか決まっているわけではなく、状況に応じてやっていくことになりそう。</p>
+<h2 id=連載第1回目はwebrtcでブラウザ間p2p通信>連載第1回目は「WebRTCでブラウザ間P2P通信」</h2>
+<p>今回（Vol.81）については私が <strong>WebRTC</strong> について執筆しました。通信にサーバーを経由せず、ブラウザ同士で通信させちゃうアレです。</p>
+<p>内容としては、P2P通信やリアルタイム通信と表されるWebSocketとの比較といったようなWebRTCの基礎理論から、WebRTCのAPIを実際に使ったビデオチャットのコードの詳細な解説、最後にPeerJSとSkyWayの簡単な紹介が盛り込まれています。</p>
+<p>この記事で何かとてつもないアプリが作れるようになるわけではありませんが、 <strong>なぜWebRTCを使うのか</strong> 、 <strong>WebRTCのどこがイケてるのか</strong> はきっとわかるはずです。基礎の理解、大事。</p>
+<p>Special Thanks to <a href=http://twitter.com/sugimoto1981>@sugimoto1981</a>!</p>
+<p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/61CJ%2BwUVNpL._SX353_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4774165069/ tag=1000ch-22 title="WEB+DB PRESS Vol.81">
+長嶋 享 (著), 藤 吾郎 (著), 八木 俊広 (著), 日高 一明 (著), 滝口 健太郎 (著), 田中 慎司 (著), 泉水 翔吾 (著), 海野 弘成 (著), 佐藤 太一 (著), 吉村 総一郎 (著), 伊藤 直也 (著), 川上 大喜 (著), こしば としあき (著), 舘野 祐一 (著), 中島 聡 (著), 橋本 翔 (著), 渡邊 恵太 (著), はまちや2 (著), 竹原 (著), 川添 貴生 (著), 沢渡 真雪 (著), WEB+DB PRESS編集部 (編集)
+</affiliate-link></p>
+<p>連続で著書の紹介になってしまいましたが、どうぞお手にとって見てください！（アフィリンクです）</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fwdpress-frontend-series-webrtc.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fwdpress-frontend-series-webrtc.html&text=WEB%2bDB%20PRESS%20%e6%96%b0%e9%80%a3%e8%bc%89%e3%80%8cWeb%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e6%9c%80%e5%89%8d%e7%b7%9a%e3%80%8d" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2014/frontend-engineer-training-book.html>👈 フロントエンドエンジニア養成読本</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2014/google-io-2014.html>Google I/O 2014 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -24,4 +147,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

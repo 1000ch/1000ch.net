@@ -1,16 +1,84 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>要素のサイズ変化を監視するResizeObserver - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="要素のサイズ変化を監視するResizeObserver 便利な Observer シリーズのひとつ ResizeObserver が Chrome 64 に ship された。Chrome 55 からフラグ付きで入っていたが、フラグなしで動作するようになっている。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>要素のサイズ変化を監視するResizeObserver - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="要素のサイズ変化を監視するResizeObserver 便利な Observer シリーズのひとつ ResizeObserver が Chrome 64 に ship された。Chrome 55 からフラグ付きで入っていたが、フラグなしで動作するようになっている。
 旧来のやり方と問題 これまでの方法としては resize という DOM イベントを監視することで、要素の変更を検知できた。しかしサイズや位置といった変更の多寡を知るには、Element#getBoundingClientRect() や window.getComputerStyle(Element) といった関数を呼び出す必要があり、これによって強制的にレイアウト処理が実行される。そのため、対象要素の量や処理の重さによってはレンダリングパフォーマンスを大きく損なってしまう。
 document.querySelector('div').addEventListener('resize', e => { // レイアウト処理が強制的に実行される  console.log(e.target.getBoundingClientRect()); }); ResizeObserver ではこうした問題を解決し、レイアウト処理を呼び出さずに変更を取得できるようになっている。
 ResizeObserverの使い方 ResizeObserverの簡単な説明から。
 インスタンスの生成と要素の監視 MutationObserver や PerformanceObserver と同様に new してインスタンスを生成後、ResizeObserver#observe() メソッドに監視対象の要素を引数として渡して実行する。
-const resizeObserver = new ResizeObserver(entries => { for (const entry of entries) { ... } }); const target = document.querySelector('div'); // target の監視を開始する resizeObserver.observe(target); // target の監視を終了する resizeObserver."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/resize-observer.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="要素のサイズ変化を監視するResizeObserver"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/resize-observer.html"><meta name=twitter:title content="要素のサイズ変化を監視するResizeObserver"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2017.11.21</span><h1 id=要素のサイズ変化を監視するresizeobserver>要素のサイズ変化を監視するResizeObserver</h1><p>便利な Observer シリーズのひとつ <a href=https://wicg.github.io/ResizeObserver/>ResizeObserver</a> が Chrome 64 に ship された。Chrome 55 からフラグ付きで入っていたが、フラグなしで動作するようになっている。</p><h2 id=旧来のやり方と問題>旧来のやり方と問題</h2><p>これまでの方法としては <code>resize</code> という DOM イベントを監視することで、要素の変更を検知できた。しかしサイズや位置といった変更の多寡を知るには、<code>Element#getBoundingClientRect()</code> や <code>window.getComputerStyle(Element)</code> といった関数を呼び出す必要があり、これによって強制的にレイアウト処理が実行される。そのため、対象要素の量や処理の重さによってはレンダリングパフォーマンスを大きく損なってしまう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;div&#39;</span>).<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;resize&#39;</span>, <span style=color:#a6e22e>e</span> =&gt; {
+const resizeObserver = new ResizeObserver(entries => { for (const entry of entries) { ... } }); const target = document.querySelector('div'); // target の監視を開始する resizeObserver.observe(target); // target の監視を終了する resizeObserver.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2017/resize-observer.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="要素のサイズ変化を監視するResizeObserver">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2017/resize-observer.html">
+<meta name=twitter:title content="要素のサイズ変化を監視するResizeObserver">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2017.11.21</span>
+<h1 id=要素のサイズ変化を監視するresizeobserver>要素のサイズ変化を監視するResizeObserver</h1>
+<p>便利な Observer シリーズのひとつ <a href=https://wicg.github.io/ResizeObserver/>ResizeObserver</a> が Chrome 64 に ship された。Chrome 55 からフラグ付きで入っていたが、フラグなしで動作するようになっている。</p>
+<h2 id=旧来のやり方と問題>旧来のやり方と問題</h2>
+<p>これまでの方法としては <code>resize</code> という DOM イベントを監視することで、要素の変更を検知できた。しかしサイズや位置といった変更の多寡を知るには、<code>Element#getBoundingClientRect()</code> や <code>window.getComputerStyle(Element)</code> といった関数を呼び出す必要があり、これによって強制的にレイアウト処理が実行される。そのため、対象要素の量や処理の重さによってはレンダリングパフォーマンスを大きく損なってしまう。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;div&#39;</span>).<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;resize&#39;</span>, <span style=color:#a6e22e>e</span> =&gt; {
   <span style=color:#75715e>// レイアウト処理が強制的に実行される
 </span><span style=color:#75715e></span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>getBoundingClientRect</span>());
 });
-</code></pre></div><p>ResizeObserver ではこうした問題を解決し、レイアウト処理を呼び出さずに変更を取得できるようになっている。</p><h2 id=resizeobserverの使い方>ResizeObserverの使い方</h2><p>ResizeObserverの簡単な説明から。</p><h3 id=インスタンスの生成と要素の監視>インスタンスの生成と要素の監視</h3><p><a href=https://dom.spec.whatwg.org/#interface-mutationobserver>MutationObserver</a> や <a href=https://www.w3.org/TR/performance-timeline-2/#the-performanceobserver-interface>PerformanceObserver</a> と同様に <code>new</code> してインスタンスを生成後、<code>ResizeObserver#observe()</code> メソッドに監視対象の要素を引数として渡して実行する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>resizeObserver</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ResizeObserver</span>(<span style=color:#a6e22e>entries</span> =&gt; {
+</code></pre></div><p>ResizeObserver ではこうした問題を解決し、レイアウト処理を呼び出さずに変更を取得できるようになっている。</p>
+<h2 id=resizeobserverの使い方>ResizeObserverの使い方</h2>
+<p>ResizeObserverの簡単な説明から。</p>
+<h3 id=インスタンスの生成と要素の監視>インスタンスの生成と要素の監視</h3>
+<p><a href=https://dom.spec.whatwg.org/#interface-mutationobserver>MutationObserver</a> や <a href=https://www.w3.org/TR/performance-timeline-2/#the-performanceobserver-interface>PerformanceObserver</a> と同様に <code>new</code> してインスタンスを生成後、<code>ResizeObserver#observe()</code> メソッドに監視対象の要素を引数として渡して実行する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>resizeObserver</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ResizeObserver</span>(<span style=color:#a6e22e>entries</span> =&gt; {
   <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>entry</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>entries</span>) { ... }
 });
 
@@ -21,7 +89,10 @@ const resizeObserver = new ResizeObserver(entries => { for (const entry of entri
 
 <span style=color:#75715e>// target の監視を終了する
 </span><span style=color:#75715e></span><span style=color:#a6e22e>resizeObserver</span>.<span style=color:#a6e22e>unobserve</span>(<span style=color:#a6e22e>target</span>);
-</code></pre></div><h3 id=resizeobserverentry>ResizeObserverEntry</h3><p>ResizeObserver に渡すコールバック関数の引数には、検知した変更の構造体である <a href=https://wicg.github.io/ResizeObserver/#resize-observer-entry-interface><code>ResizeObserverEntry</code></a> が配列で渡される。</p><p><code>ResizeObserverEntry</code> には <code>target</code> プロパティと <code>contentRect</code> プロパティが生えており、それぞれ対象要素と矩形を参照できる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>resizeObserver</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ResizeObserver</span>(<span style=color:#a6e22e>entries</span> =&gt; {
+</code></pre></div><h3 id=resizeobserverentry>ResizeObserverEntry</h3>
+<p>ResizeObserver に渡すコールバック関数の引数には、検知した変更の構造体である <a href=https://wicg.github.io/ResizeObserver/#resize-observer-entry-interface><code>ResizeObserverEntry</code></a> が配列で渡される。</p>
+<p><code>ResizeObserverEntry</code> には <code>target</code> プロパティと <code>contentRect</code> プロパティが生えており、それぞれ対象要素と矩形を参照できる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>resizeObserver</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ResizeObserver</span>(<span style=color:#a6e22e>entries</span> =&gt; {
   <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>entry</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>entries</span>) {
     <span style=color:#75715e>// 変更を検知した要素
 </span><span style=color:#75715e></span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>entry</span>.<span style=color:#a6e22e>target</span>);
@@ -32,16 +103,72 @@ const resizeObserver = new ResizeObserver(entries => { for (const entry of entri
     <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>rect</span>.<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>rect</span>.<span style=color:#a6e22e>height</span>);
   }
 });
-</code></pre></div><h3 id=複数要素の監視>複数要素の監視</h3><p>ResizeObserver インスタンスが監視できる要素はひとつに限らず、複数要素を監視できる。内部的には <a href=https://wicg.github.io/ResizeObserver/#dom-resizeobserver-observationtargets>observationtargets</a> というスロットがあり、<code>observe()</code> メソッドが呼び出される度に監視する要素を追加している。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// 複数の要素を監視する
+</code></pre></div><h3 id=複数要素の監視>複数要素の監視</h3>
+<p>ResizeObserver インスタンスが監視できる要素はひとつに限らず、複数要素を監視できる。内部的には <a href=https://wicg.github.io/ResizeObserver/#dom-resizeobserver-observationtargets>observationtargets</a> というスロットがあり、<code>observe()</code> メソッドが呼び出される度に監視する要素を追加している。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// 複数の要素を監視する
 </span><span style=color:#75715e></span><span style=color:#a6e22e>resizeObserver</span>.<span style=color:#a6e22e>observe</span>(document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#foo&#39;</span>));
 <span style=color:#a6e22e>resizeObserver</span>.<span style=color:#a6e22e>observe</span>(document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#bar&#39;</span>));
 <span style=color:#a6e22e>resizeObserver</span>.<span style=color:#a6e22e>observe</span>(document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#baz&#39;</span>));
-</code></pre></div><h3 id=監視要素のクリア>監視要素のクリア</h3><p>監視を終了するには、<a href=https://wicg.github.io/ResizeObserver/#dom-resizeobserver-disconnect><code>ResizeObserver#disconnect()</code></a> メソッドを呼び出す。内部的には observationtargets に追加されている要素をすべてクリアするという処理になっている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// 監視を終了する
+</code></pre></div><h3 id=監視要素のクリア>監視要素のクリア</h3>
+<p>監視を終了するには、<a href=https://wicg.github.io/ResizeObserver/#dom-resizeobserver-disconnect><code>ResizeObserver#disconnect()</code></a> メソッドを呼び出す。内部的には observationtargets に追加されている要素をすべてクリアするという処理になっている。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// 監視を終了する
 </span><span style=color:#75715e></span><span style=color:#a6e22e>resizeObserver</span>.<span style=color:#a6e22e>disconnect</span>();
-</code></pre></div><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresize-observer.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresize-observer.html&text=%e8%a6%81%e7%b4%a0%e3%81%ae%e3%82%b5%e3%82%a4%e3%82%ba%e5%a4%89%e5%8c%96%e3%82%92%e7%9b%a3%e8%a6%96%e3%81%99%e3%82%8bResizeObserver" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2017/webperf-guide.html>👈 超速! Webページ速度改善ガイドの出版に寄せて</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2017/responsive-iframe.html>レスポンシブなiframe 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresize-observer.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresize-observer.html&text=%e8%a6%81%e7%b4%a0%e3%81%ae%e3%82%b5%e3%82%a4%e3%82%ba%e5%a4%89%e5%8c%96%e3%82%92%e7%9b%a3%e8%a6%96%e3%81%99%e3%82%8bResizeObserver" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2017/webperf-guide.html>👈 超速! Webページ速度改善ガイドの出版に寄せて</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2017/responsive-iframe.html>レスポンシブなiframe 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -55,4 +182,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

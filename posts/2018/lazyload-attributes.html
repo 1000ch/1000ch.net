@@ -1,14 +1,146 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>img要素とiframe要素のlazyload属性 - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="img要素とiframe要素のlazyload属性 <img> 要素と <iframe> 要素に lazyload 属性を定義する Pull Request が whatwg/html に出されている。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>img要素とiframe要素のlazyload属性 - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="img要素とiframe要素のlazyload属性 <img> 要素と <iframe> 要素に lazyload 属性を定義する Pull Request が whatwg/html に出されている。
 <img> 要素と <iframe> 要素の lazyload 属性 / &#34;Lazyload images and iframes by bengreenstein · Pull Request #3752 · whatwg/html&#34; https://t.co/3gJ9BVNRJc
 &mdash; Shogo 🍵 (@1000ch) 2018年8月18日 Web における画像の遅延ロード Web でロードするリソースは増える一方で、中でも画像が占める割合は大きい。ロードした HTML ドキュメントに <img> 要素があれば、ブラウザは即座に画像をダウンロードしようとする。これらの画像が大きければ大きいほど、初期ロードにおけるネットワークのコストと占めるメモリの割合が大きくなる。こうした問題を背景に、画像を遅延ロードする様々なアプローチが取られてきた。
- aFarkas/lazysizes: is a fast (jank-free), SEO-friendly and self-initializing lazyloader for images (including responsive images picture/srcset), iframes, scripts/widgets and much more 1000ch/lazyload-image: HTMLImageElement extension for lazy loading."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2018/lazyload-attributes.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="img要素とiframe要素のlazyload属性"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2018/lazyload-attributes.html"><meta name=twitter:title content="img要素とiframe要素のlazyload属性"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2018.08.18</span><h1 id=img要素とiframe要素のlazyload属性>img要素とiframe要素のlazyload属性</h1><p><code>&lt;img></code> 要素と <code>&lt;iframe></code> 要素に <code>lazyload</code> 属性を定義する Pull Request が <a href=https://github.com/whatwg/html><code>whatwg/html</code></a> に出されている。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>&lt;img> 要素と &lt;iframe> 要素の lazyload 属性 / "Lazyload images and iframes by bengreenstein · Pull Request #3752 · whatwg/html" <a href=https://t.co/3gJ9BVNRJc>https://t.co/3gJ9BVNRJc</a></p>&mdash; Shogo 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1030832747114192898?ref_src=twsrc%5Etfw">2018年8月18日</a></blockquote><h2 id=web-における画像の遅延ロード>Web における画像の遅延ロード</h2><p>Web でロードするリソースは増える一方で、中でも画像が占める割合は大きい。ロードした HTML ドキュメントに <code>&lt;img></code> 要素があれば、ブラウザは即座に画像をダウンロードしようとする。これらの画像が大きければ大きいほど、初期ロードにおけるネットワークのコストと占めるメモリの割合が大きくなる。こうした問題を背景に、画像を遅延ロードする様々なアプローチが取られてきた。</p><ul><li><a href=https://github.com/aFarkas/lazysizes>aFarkas/lazysizes</a>: is a fast (jank-free), SEO-friendly and self-initializing lazyloader for images (including responsive images picture/srcset), iframes, scripts/widgets and much more</li><li><a href=https://github.com/1000ch/lazyload-image>1000ch/lazyload-image</a>:
-HTMLImageElement extension for lazy loading. (プリロードスキャナのせいでうまく動かない)</li></ul><p>今回追加されようとしている <code>lazyload</code> 属性はこうした処理をブラウザネイティブで出来るようにする提案である。この属性は <code>&lt;img></code> 要素だけでなく <code>&lt;iframe></code> 要素でも有効化され、Above The Fold にないこれらの要素が参照するリソースをむやみにロードせずに済む。</p><h2 id=blink-lazyload>Blink LazyLoad</h2><p>Chromium ではそれぞれ実装が進められており、<code>&lt;iframe lazyload="on"></code> と <code>&lt;img lazyload="on"></code> は Chrome 70 以降で、それぞれ以下のフラグをオンにすると機能を有効化できる（前者は Chrome 68 から、らしい）。</p><ul><li><code>chrome://flags/#enable-lazy-frame-loading</code>: Enable lazy image loading</li><li><code>chrome://flags/#enable-lazy-image-loading</code>: Enable lazy frame loading</li></ul><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>対象のリソースを、スクロールに応じて遅延ロードする Blink LazyLoad のデザイン / "Blink LazyLoad Design Doc (public) - Google ドキュメント" <a href=https://t.co/BpIfD8ZZjy>https://t.co/BpIfD8ZZjy</a></p>&mdash; Shogo 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1030832768039538688?ref_src=twsrc%5Etfw">2018年8月18日</a></blockquote><p>「その要素がビューポートに入ったらロードする」という機能は、Blink LazyLoad Design Doc というドキュメントで説明されており、さらに <code>&lt;iframe></code> 要素と <code>&lt;img></code> 要素それぞれのメカニズムは LazyFrames と LazyImages に細分化されている。内部デザインが気になる人はそちらを参照して欲しい。</p><ul><li><a href="https://docs.google.com/document/d/1ITh7UqhmfirprVtjEtpfhga5Qyfoh78UkRmW8r3CntM/edit#heading=h.c7mc4hh4xdhq">Blink LazyFrames (public) - Google ドキュメント</a></li><li><a href=https://docs.google.com/document/d/1jF1eSOhqTEt0L1WBCccGwH9chxLd9d1Ez0zo11obj14/edit>Blink LazyImages (public) - Google ドキュメント</a></li></ul><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2flazyload-attributes.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2flazyload-attributes.html&text=img%e8%a6%81%e7%b4%a0%e3%81%a8iframe%e8%a6%81%e7%b4%a0%e3%81%aelazyload%e5%b1%9e%e6%80%a7" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2018/deprecate-webcomponents-v0.html>👈 R.I.P. Web Components v0</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2018/tryshift.html>複数の Google アカウントを統合管理する Shift というアプリが良い 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+ aFarkas/lazysizes: is a fast (jank-free), SEO-friendly and self-initializing lazyloader for images (including responsive images picture/srcset), iframes, scripts/widgets and much more 1000ch/lazyload-image: HTMLImageElement extension for lazy loading.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2018/lazyload-attributes.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="img要素とiframe要素のlazyload属性">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2018/lazyload-attributes.html">
+<meta name=twitter:title content="img要素とiframe要素のlazyload属性">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2018.08.18</span>
+<h1 id=img要素とiframe要素のlazyload属性>img要素とiframe要素のlazyload属性</h1>
+<p><code>&lt;img></code> 要素と <code>&lt;iframe></code> 要素に <code>lazyload</code> 属性を定義する Pull Request が <a href=https://github.com/whatwg/html><code>whatwg/html</code></a> に出されている。</p>
+<blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>&lt;img> 要素と &lt;iframe> 要素の lazyload 属性 / "Lazyload images and iframes by bengreenstein · Pull Request #3752 · whatwg/html" <a href=https://t.co/3gJ9BVNRJc>https://t.co/3gJ9BVNRJc</a></p>&mdash; Shogo 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1030832747114192898?ref_src=twsrc%5Etfw">2018年8月18日</a></blockquote>
+<h2 id=web-における画像の遅延ロード>Web における画像の遅延ロード</h2>
+<p>Web でロードするリソースは増える一方で、中でも画像が占める割合は大きい。ロードした HTML ドキュメントに <code>&lt;img></code> 要素があれば、ブラウザは即座に画像をダウンロードしようとする。これらの画像が大きければ大きいほど、初期ロードにおけるネットワークのコストと占めるメモリの割合が大きくなる。こうした問題を背景に、画像を遅延ロードする様々なアプローチが取られてきた。</p>
+<ul>
+<li><a href=https://github.com/aFarkas/lazysizes>aFarkas/lazysizes</a>: is a fast (jank-free), SEO-friendly and self-initializing lazyloader for images (including responsive images picture/srcset), iframes, scripts/widgets and much more</li>
+<li><a href=https://github.com/1000ch/lazyload-image>1000ch/lazyload-image</a>:
+HTMLImageElement extension for lazy loading. (プリロードスキャナのせいでうまく動かない)</li>
+</ul>
+<p>今回追加されようとしている <code>lazyload</code> 属性はこうした処理をブラウザネイティブで出来るようにする提案である。この属性は <code>&lt;img></code> 要素だけでなく <code>&lt;iframe></code> 要素でも有効化され、Above The Fold にないこれらの要素が参照するリソースをむやみにロードせずに済む。</p>
+<h2 id=blink-lazyload>Blink LazyLoad</h2>
+<p>Chromium ではそれぞれ実装が進められており、<code>&lt;iframe lazyload="on"></code> と <code>&lt;img lazyload="on"></code> は Chrome 70 以降で、それぞれ以下のフラグをオンにすると機能を有効化できる（前者は Chrome 68 から、らしい）。</p>
+<ul>
+<li><code>chrome://flags/#enable-lazy-frame-loading</code>: Enable lazy image loading</li>
+<li><code>chrome://flags/#enable-lazy-image-loading</code>: Enable lazy frame loading</li>
+</ul>
+<blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>対象のリソースを、スクロールに応じて遅延ロードする Blink LazyLoad のデザイン / "Blink LazyLoad Design Doc (public) - Google ドキュメント" <a href=https://t.co/BpIfD8ZZjy>https://t.co/BpIfD8ZZjy</a></p>&mdash; Shogo 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1030832768039538688?ref_src=twsrc%5Etfw">2018年8月18日</a></blockquote>
+<p>「その要素がビューポートに入ったらロードする」という機能は、Blink LazyLoad Design Doc というドキュメントで説明されており、さらに <code>&lt;iframe></code> 要素と <code>&lt;img></code> 要素それぞれのメカニズムは LazyFrames と LazyImages に細分化されている。内部デザインが気になる人はそちらを参照して欲しい。</p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1ITh7UqhmfirprVtjEtpfhga5Qyfoh78UkRmW8r3CntM/edit#heading=h.c7mc4hh4xdhq">Blink LazyFrames (public) - Google ドキュメント</a></li>
+<li><a href=https://docs.google.com/document/d/1jF1eSOhqTEt0L1WBCccGwH9chxLd9d1Ez0zo11obj14/edit>Blink LazyImages (public) - Google ドキュメント</a></li>
+</ul>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2flazyload-attributes.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2flazyload-attributes.html&text=img%e8%a6%81%e7%b4%a0%e3%81%a8iframe%e8%a6%81%e7%b4%a0%e3%81%aelazyload%e5%b1%9e%e6%80%a7" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2018/deprecate-webcomponents-v0.html>👈 R.I.P. Web Components v0</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2018/tryshift.html>複数の Google アカウントを統合管理する Shift というアプリが良い 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -22,4 +154,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

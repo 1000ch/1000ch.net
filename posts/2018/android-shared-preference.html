@@ -1,11 +1,74 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>SharedPreferenceへのアクセスがつらい - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="SharedPreferenceへのアクセスがつらい Android のアプリケーションでデータの永続化をしてくれる SharedPreference だが、これがなかなかつらい。SharedPreference はコンストラクタに ApplicationContext を渡してインスタンスを生成するが、肝心の値の取得と保存が面倒である。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>SharedPreferenceへのアクセスがつらい - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="SharedPreferenceへのアクセスがつらい Android のアプリケーションでデータの永続化をしてくれる SharedPreference だが、これがなかなかつらい。SharedPreference はコンストラクタに ApplicationContext を渡してインスタンスを生成するが、肝心の値の取得と保存が面倒である。
 値の取得と保存 SharedPreference のインスタンスを取得して、アレコレする。インスタンスの生成は PreferenceManager からじゃなくても良い。
 val p: SharedPreference = PreferenceManager.getDefaultSharedPreferences(context) // getString() で文字列を取得する val data: String = p.getString(&#34;key&#34;, &#34;default value&#34;) // putString() + commit() で文字列を保存する val editor: SharedPreferences.Editor = p.edit() editor.putString(&#34;key&#34;, &#34;new value&#34;) editor.commit() 保存時は SharedPreferences.Editor インスタンスの put***() メソッドで値をセットし、 commit() メソッドで保存を実行する。保存先は XML ファイルなので、IO を最小限にするためのインターフェースになっている。
 保存したいデータモデルとSharedPreferenceへのアクセスの抽象化 やり方はいくつか思い浮かんだが、最適解が浮かばないのでひとまず以下に落ち着いた。Context をコンストラクタの引数にとり、メンバ変数に SharedPreference を初期化する。
-import android.content.Context import android.content.SharedPreferences import android.preference.PreferenceManager class Preference(context: Context) { val p: SharedPreferences = PreferenceManager."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2018/android-shared-preference.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="SharedPreferenceへのアクセスがつらい"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2018/android-shared-preference.html"><meta name=twitter:title content="SharedPreferenceへのアクセスがつらい"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2018.01.18</span><h1 id=sharedpreferenceへのアクセスがつらい>SharedPreferenceへのアクセスがつらい</h1><p>Android のアプリケーションでデータの永続化をしてくれる <a href="https://developer.android.com/training/basics/data-storage/shared-preferences.html?hl=ja">SharedPreference</a> だが、これがなかなかつらい。SharedPreference はコンストラクタに ApplicationContext を渡してインスタンスを生成するが、肝心の値の取得と保存が面倒である。</p><h2 id=値の取得と保存>値の取得と保存</h2><p><code>SharedPreference</code> のインスタンスを取得して、アレコレする。インスタンスの生成は <code>PreferenceManager</code> からじゃなくても良い。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#66d9ef>val</span> p: SharedPreference = PreferenceManager.getDefaultSharedPreferences(context)
+import android.content.Context import android.content.SharedPreferences import android.preference.PreferenceManager class Preference(context: Context) { val p: SharedPreferences = PreferenceManager.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2018/android-shared-preference.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="SharedPreferenceへのアクセスがつらい">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2018/android-shared-preference.html">
+<meta name=twitter:title content="SharedPreferenceへのアクセスがつらい">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2018.01.18</span>
+<h1 id=sharedpreferenceへのアクセスがつらい>SharedPreferenceへのアクセスがつらい</h1>
+<p>Android のアプリケーションでデータの永続化をしてくれる <a href="https://developer.android.com/training/basics/data-storage/shared-preferences.html?hl=ja">SharedPreference</a> だが、これがなかなかつらい。SharedPreference はコンストラクタに ApplicationContext を渡してインスタンスを生成するが、肝心の値の取得と保存が面倒である。</p>
+<h2 id=値の取得と保存>値の取得と保存</h2>
+<p><code>SharedPreference</code> のインスタンスを取得して、アレコレする。インスタンスの生成は <code>PreferenceManager</code> からじゃなくても良い。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#66d9ef>val</span> p: SharedPreference = PreferenceManager.getDefaultSharedPreferences(context)
 
 <span style=color:#75715e>// getString() で文字列を取得する
 </span><span style=color:#75715e></span><span style=color:#66d9ef>val</span> data: String = p.getString(<span style=color:#e6db74>&#34;key&#34;</span>, <span style=color:#e6db74>&#34;default value&#34;</span>)
@@ -14,7 +77,10 @@ import android.content.Context import android.content.SharedPreferences import a
 </span><span style=color:#75715e></span><span style=color:#66d9ef>val</span> editor: SharedPreferences.Editor = p.edit()
 editor.putString(<span style=color:#e6db74>&#34;key&#34;</span>, <span style=color:#e6db74>&#34;new value&#34;</span>)
 editor.commit()
-</code></pre></div><p>保存時は <code>SharedPreferences.Editor</code> インスタンスの <code>put***()</code> メソッドで値をセットし、 <code>commit()</code> メソッドで保存を実行する。保存先は XML ファイルなので、IO を最小限にするためのインターフェースになっている。</p><h2 id=保存したいデータモデルとsharedpreferenceへのアクセスの抽象化>保存したいデータモデルとSharedPreferenceへのアクセスの抽象化</h2><p>やり方はいくつか思い浮かんだが、最適解が浮かばないのでひとまず以下に落ち着いた。Context をコンストラクタの引数にとり、メンバ変数に <code>SharedPreference</code> を初期化する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#66d9ef>import</span> android.content.Context
+</code></pre></div><p>保存時は <code>SharedPreferences.Editor</code> インスタンスの <code>put***()</code> メソッドで値をセットし、 <code>commit()</code> メソッドで保存を実行する。保存先は XML ファイルなので、IO を最小限にするためのインターフェースになっている。</p>
+<h2 id=保存したいデータモデルとsharedpreferenceへのアクセスの抽象化>保存したいデータモデルとSharedPreferenceへのアクセスの抽象化</h2>
+<p>やり方はいくつか思い浮かんだが、最適解が浮かばないのでひとまず以下に落ち着いた。Context をコンストラクタの引数にとり、メンバ変数に <code>SharedPreference</code> を初期化する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-kotlin data-lang=kotlin><span style=color:#66d9ef>import</span> android.content.Context
 <span style=color:#66d9ef>import</span> android.content.SharedPreferences
 <span style=color:#66d9ef>import</span> android.preference.PreferenceManager
 
@@ -24,13 +90,78 @@ editor.commit()
     <span style=color:#66d9ef>var</span> userId: String = p.getString(<span style=color:#e6db74>&#34;userId&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
         <span style=color:#66d9ef>set</span>(value) {
             p.edit().putString(<span style=color:#e6db74>&#34;userId&#34;</span>, value).commit()
-            field = value
+            <span style=color:#66d9ef>field</span> = value
         }
 }
-</code></pre></div><p>永続化したいデータはプロパティとして定義して、初期値を <code>SharedPreference</code> から取得する。<code>setter</code> で <code>SharedPreference</code> への保存処理を行い、<code>field</code> キーワードからメンバー変数にも代入しておく。値のバリデーション等はここで行えば良い。という、たぶん普通のやり方。</p><p>しかしこれだと <code>setter</code> へアクセスがある度に XML ファイルへの保存が実行されるので、複数プロパティへの変更を保存したい時に無駄な IO が発生する。できれば変更をキューに溜めて、何かを契機にコミットするのが望ましい。</p><p>抽象化の別案としては、</p><ol><li>保存したいデータをプロパティに持つクラスを定義し、class annotation を付与すると、プロパティへの get/set 時に SharedPreference への永続化も行うアノテーション</li><li>保存したいデータをプロパティに持つクラスを定義し、基底クラスを継承すると、プロパティへの get/set 時に SharedPreference への永続化も行うクラス</li></ol><p>が浮かんだ（普通だ…）。SharedPreference に関する色々な記事を徘徊している感じでは、おおよそ近い解決方法が提示されていた。</p><ul><li><a href=https://qiita.com/rejasupotaro/items/e112350e5a7db2febc74>中規模以上のアプリでSharedPreferencesをエレガントに扱う</a></li><li><a href=http://f2prateek.com/2015/10/05/rx-preferences/>Rx Preferences・Public Void</a></li><li><a href=https://qiita.com/operandoOS/items/8af20ac09a9d6acb075e>GarumとSharedPreferencesへの異常なまでの愛</a></li><li><a href=https://qiita.com/kobakei/items/91cc4fb673c846549c84>SharedPreferencesをいい感じに扱うライブラリSpotを書いた</a></li></ul><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fandroid-shared-preference.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fandroid-shared-preference.html&text=SharedPreference%e3%81%b8%e3%81%ae%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9%e3%81%8c%e3%81%a4%e3%82%89%e3%81%84" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2018/webponize-v2.html>👈 WebPonize v2</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2018/inside-frontend-vol2.html>Inside Frontend vol2の感想 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p>永続化したいデータはプロパティとして定義して、初期値を <code>SharedPreference</code> から取得する。<code>setter</code> で <code>SharedPreference</code> への保存処理を行い、<code>field</code> キーワードからメンバー変数にも代入しておく。値のバリデーション等はここで行えば良い。という、たぶん普通のやり方。</p>
+<p>しかしこれだと <code>setter</code> へアクセスがある度に XML ファイルへの保存が実行されるので、複数プロパティへの変更を保存したい時に無駄な IO が発生する。できれば変更をキューに溜めて、何かを契機にコミットするのが望ましい。</p>
+<p>抽象化の別案としては、</p>
+<ol>
+<li>保存したいデータをプロパティに持つクラスを定義し、class annotation を付与すると、プロパティへの get/set 時に SharedPreference への永続化も行うアノテーション</li>
+<li>保存したいデータをプロパティに持つクラスを定義し、基底クラスを継承すると、プロパティへの get/set 時に SharedPreference への永続化も行うクラス</li>
+</ol>
+<p>が浮かんだ（普通だ…）。SharedPreference に関する色々な記事を徘徊している感じでは、おおよそ近い解決方法が提示されていた。</p>
+<ul>
+<li><a href=https://qiita.com/rejasupotaro/items/e112350e5a7db2febc74>中規模以上のアプリでSharedPreferencesをエレガントに扱う</a></li>
+<li><a href=http://f2prateek.com/2015/10/05/rx-preferences/>Rx Preferences・Public Void</a></li>
+<li><a href=https://qiita.com/operandoOS/items/8af20ac09a9d6acb075e>GarumとSharedPreferencesへの異常なまでの愛</a></li>
+<li><a href=https://qiita.com/kobakei/items/91cc4fb673c846549c84>SharedPreferencesをいい感じに扱うライブラリSpotを書いた</a></li>
+</ul>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fandroid-shared-preference.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fandroid-shared-preference.html&text=SharedPreference%e3%81%b8%e3%81%ae%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9%e3%81%8c%e3%81%a4%e3%82%89%e3%81%84" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2018/webponize-v2.html>👈 WebPonize v2</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2018/inside-frontend-vol2.html>Inside Frontend vol2の感想 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -44,4 +175,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

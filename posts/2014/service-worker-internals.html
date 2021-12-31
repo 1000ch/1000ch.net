@@ -1,4 +1,26 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Service Workerに関する仕様とか機能とか - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Service Workerに関する仕様とか機能とか 今巷で流行りのService Workerについて調べ物してたので、まとめたメモ。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Service Workerに関する仕様とか機能とか - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="Service Workerに関する仕様とか機能とか 今巷で流行りのService Workerについて調べ物してたので、まとめたメモ。
 Service Workerが解決してくれること Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScriptのAPIから命令的にコントロールすることを実現する。Webページのパフォーマンスに関する指標としてネットワークを介して得るリソースをキャッシュさせたりすることが効果的であることは今更改めて挙げないが、Service Workerによって保持されたリソースは、オフライン状態でも返却することが可能という凄さを持っている。つまり、更新性の低いコンテンツであればオフラインでも閲覧させることが可能ということ。
 更新性のあるコンテンツでも、回線が不安定な時はローカルに変更を保持して、サーバーに対してデータを遅延で同期するみたいなテクニックは既に存在している。ので、こういったテクニックと組み合わせて、よりクライアントの画面がホワイトアウトすることを減らしていける。はず。
 
@@ -12,10 +34,92 @@ Application Cacheの問題点については、@kyo_agoさんが執筆したモ�
 Service WorkerのAPIと挙動 Service WorkerはWeb Workerなんかと同じように（Web Workerの一種と言ったほうが正確なのかも）、ブラウザの表示とは別スレッドで実行される（だから、DOMのAPIとかを叩いたりすることは出来ない）。Service Workerでは、ページから行われるリソースの要求等に対し、独自の処理を挟むことが出来る。 プロキシを自前で用意出来る と言ったほうがイメージしやすいかも。
 リクエストをフックし、Cache APIを介してアレコレする。あるURLへのリクエストに対するレスポンスを受け取った時にそのリソースを保持したり、はたまた再度そのリクエストが発生する時にはCache APIから保持したリソースを引っ張りだしてブラウザに返却する。といったような処理をService Workerにしてもらうことになる。
 しれっとCache APIが出てきたが、これもService WorkerのAPIの一環で、Service Workerコンテキストで利用可能なキャッシュリソースを管理するためのAPIである。
-もうちょっと実際の処理に近い説明  リクエストされたリソースをキャッシュさせたり、リクエストに割り込んでキャッシュされたリソース等を返却するような処理が記述されているservice-worker.jsを用意 index.htmlでservice-worker.jsをService Workerとして登録する（この時、index."><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/service-worker-internals.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Service Workerに関する仕様とか機能とか"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/service-worker-internals.html"><meta name=twitter:title content="Service Workerに関する仕様とか機能とか"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2014.12.29</span><h1 id=service-workerに関する仕様とか機能とか>Service Workerに関する仕様とか機能とか</h1><p>今巷で流行りのService Workerについて調べ物してたので、まとめたメモ。</p><h2 id=service-workerが解決してくれること>Service Workerが解決してくれること</h2><p>Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScriptのAPIから命令的にコントロールすることを実現する。Webページのパフォーマンスに関する指標としてネットワークを介して得るリソースをキャッシュさせたりすることが効果的であることは今更改めて挙げないが、Service Workerによって保持されたリソースは、オフライン状態でも返却することが可能という凄さを持っている。つまり、更新性の低いコンテンツであればオフラインでも閲覧させることが可能ということ。</p><p>更新性のあるコンテンツでも、回線が不安定な時はローカルに変更を保持して、サーバーに対してデータを遅延で同期するみたいなテクニックは既に存在している。ので、こういったテクニックと組み合わせて、よりクライアントの画面がホワイトアウトすることを減らしていける。はず。</p><p><fluid-iframe src=https://www.youtube.com/embed/_yy0CDLnhMA></fluid-iframe></p><p>こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。<a href=http://twitter.com/myakura>@myakura</a>氏による<a href=http://html5experts.jp/myakura/8365/>解説記事</a>もある。</p><h3 id=application-cache>Application Cache</h3><p>先程の動画でも少し触れられているように、Application Cacheとよく対比される。リソースをキャッシュする機能として現れたのがApplication Cacheだったが、キャッシュリソースのコントロールがし難かったり、動的なコンテンツを生成する際、構成がApplication Cache前提になってしまう等、いささか問題を抱えていた。それを解決してくれるのがService Workerでもある。</p><p>Application Cacheの問題点については、<a href=https://twitter.com/kyo_ago>@kyo_ago</a>さんが執筆した<a href=http://html5experts.jp/kyo_ago/2466/>モバイル対応Webアプリケーションのキャッシュ戦略</a>という記事にまとまっている他、TwitterでメンションしてもApplication Cacheの話題であれば何かしらレスをくれる。かもしれない。</p><h3 id=ブラウザキャッシュ>ブラウザキャッシュ</h3><p>ブラウザキャッシュもパフォーマンスを向上させる上で非常に重要な存在であることには間違いなさそうだが、JavaScriptからコントロールすることは不能だし、ブラウザによって挙動もまちまちである。なんせ、ブラウザキャッシュはW3Cに載っているような仕様の類ではなく、ブラウザベンダーが気を利かせて実装している機能に過ぎないからである。</p><p>ブラウザキャッシュと言えば、<a href=https://twitter.com/slicknet>Nicholas Zakas</a>氏による<a href=http://calendar.perfplanet.com/2014/the-changing-role-of-the-browser-cache/>The changing role of the browser cache</a>というブラウザキャッシュの役目の移り変わりについての記事も興味深い。</p><h3 id=オフラインアプリケーションの夢>オフラインアプリケーションの夢</h3><p>ホワイトアウトを減らすどころか、必要なリソースを全てService Workerでコントロールすればオフラインアプリケーションの作成も可能である（キャッシュするリソースを取得する最初のダウンロードは必要になるが）。</p><p>つまりService Workerは、<del>Application Cacheの屍を超えて生まれた</del>今までにないリソースのコントロール機構であると言える。</p><h2 id=service-workerのapiと挙動>Service WorkerのAPIと挙動</h2><p>Service WorkerはWeb Workerなんかと同じように（Web Workerの一種と言ったほうが正確なのかも）、ブラウザの表示とは別スレッドで実行される（だから、DOMのAPIとかを叩いたりすることは出来ない）。Service Workerでは、ページから行われるリソースの要求等に対し、独自の処理を挟むことが出来る。 <strong>プロキシを自前で用意出来る</strong> と言ったほうがイメージしやすいかも。</p><p>リクエストをフックし、Cache APIを介してアレコレする。あるURLへのリクエストに対するレスポンスを受け取った時にそのリソースを保持したり、はたまた再度そのリクエストが発生する時にはCache APIから保持したリソースを引っ張りだしてブラウザに返却する。といったような処理をService Workerにしてもらうことになる。</p><p>しれっと<a href=http://www.w3.org/TR/service-workers/#cache-objects>Cache API</a>が出てきたが、これもService WorkerのAPIの一環で、Service Workerコンテキストで利用可能なキャッシュリソースを管理するためのAPIである。</p><h3 id=もうちょっと実際の処理に近い説明>もうちょっと実際の処理に近い説明</h3><ol><li>リクエストされたリソースをキャッシュさせたり、リクエストに割り込んでキャッシュされたリソース等を返却するような処理が記述されている<code>service-worker.js</code>を用意</li><li><code>index.html</code>で<code>service-worker.js</code>をService Workerとして登録する（この時、<code>index.html</code>内の評価は行われていない）。</li><li><code>service-worker.js</code>に定義してあるリクエストが<code>index.html</code>から行われた場合、フックする。既にキャッシュに存在している場合はそれを返却したり、キャッシュされていなければそのままサーバーへリクエストしてあげる。</li></ol><h2 id=画像をservice-workerでcachesにキャッシュさせるサンプル>画像をService Workerでcachesにキャッシュさせるサンプル</h2><p>実際のコードを動かしてもらって、デバッグしてもらう方がイメージしやすいと思うので簡単なサンプルを作った。</p><h3 id=ブラウザの準備>ブラウザの準備</h3><p><a href=https://www.google.co.jp/chrome/browser/canary.html>Google Chrome Canary</a>の <strong>Version 41.0.2259.0 canary (64-bit)</strong> で動作確認済。フラグをonにしないと動かないので<a href=chrome://flags/><code>chrome://flags</code></a>で、<a href=chrome://flags/#enable-experimental-web-platform-features><strong>Enable experimental Web Platform features.</strong></a>と<a href=chrome://flags/#enable-service-worker-sync><strong>Enable support for ServiceWorker background sync event.</strong></a>を有効にしておく。</p><p>Service Workerはセキュリティ上、HTTPS環境かローカルホストのみ実行可能になっている。ローカルでのデバッグは<code>python -m http.server</code>でOKだが、動くように作ったつもりでもホスト先がHTTPSじゃないと動かない。~~簡単デプロイの代名詞のGitHub Pagesもダメなので、~~お手軽に用意出来そうなHTTPS環境はDropboxのPublicっぽい。</p><p>※2014/12/29追記</p><blockquote><p>簡単デプロイの代名詞のGitHub Pagesもダメなので、</p></blockquote><p>と書いてあるところに指摘を頂きまして、修正しました。</p><blockquote class=twitter-tweet lang=ja><p><a href=https://twitter.com/1000ch>@1000ch</a> github pagesはhttpsも提供されてますよー。httpsでアクセスすれば表示されると思います。 <a href=http://t.co/327sxlRQ3R>http://t.co/327sxlRQ3R</a></p>&mdash; さだ (@sada_h) <a href=https://twitter.com/sada_h/status/549383897373356032>2014, 12月 29</a></blockquote><p>GitHub PagesのHTTPSサポートについては、以下にも情報があった。</p><ul><li><a href=https://help.github.com/articles/what-are-github-pages/>What are GitHub Pages?</a></li><li><a href=https://konklone.com/post/github-pages-now-supports-https-so-use-it>GitHub Pages Now Supports HTTPS, So Use It</a></li></ul><h3 id=indexhtml><code>index.html</code></h3><p>5枚の画像を表示するだけの、シンプルなHTML。</p><p>ブラウザキャッシュだと、URLにアクセスした時に真っ白になってしまうけど、今回はURLに対して、画像5枚とHTMLをService Workerで丸ごとキャッシュさせてインターネットに接続されていない状態でも表示させることを目指す。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>html</span>&gt;
+もうちょっと実際の処理に近い説明  リクエストされたリソースをキャッシュさせたり、リクエストに割り込んでキャッシュされたリソース等を返却するような処理が記述されているservice-worker.jsを用意 index.htmlでservice-worker.jsをService Workerとして登録する（この時、index.">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2014/service-worker-internals.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Service Workerに関する仕様とか機能とか">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2014/service-worker-internals.html">
+<meta name=twitter:title content="Service Workerに関する仕様とか機能とか">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2014.12.29</span>
+<h1 id=service-workerに関する仕様とか機能とか>Service Workerに関する仕様とか機能とか</h1>
+<p>今巷で流行りのService Workerについて調べ物してたので、まとめたメモ。</p>
+<h2 id=service-workerが解決してくれること>Service Workerが解決してくれること</h2>
+<p>Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScriptのAPIから命令的にコントロールすることを実現する。Webページのパフォーマンスに関する指標としてネットワークを介して得るリソースをキャッシュさせたりすることが効果的であることは今更改めて挙げないが、Service Workerによって保持されたリソースは、オフライン状態でも返却することが可能という凄さを持っている。つまり、更新性の低いコンテンツであればオフラインでも閲覧させることが可能ということ。</p>
+<p>更新性のあるコンテンツでも、回線が不安定な時はローカルに変更を保持して、サーバーに対してデータを遅延で同期するみたいなテクニックは既に存在している。ので、こういったテクニックと組み合わせて、よりクライアントの画面がホワイトアウトすることを減らしていける。はず。</p>
+<p><fluid-iframe src=https://www.youtube.com/embed/_yy0CDLnhMA></fluid-iframe></p>
+<p>こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。<a href=http://twitter.com/myakura>@myakura</a>氏による<a href=http://html5experts.jp/myakura/8365/>解説記事</a>もある。</p>
+<h3 id=application-cache>Application Cache</h3>
+<p>先程の動画でも少し触れられているように、Application Cacheとよく対比される。リソースをキャッシュする機能として現れたのがApplication Cacheだったが、キャッシュリソースのコントロールがし難かったり、動的なコンテンツを生成する際、構成がApplication Cache前提になってしまう等、いささか問題を抱えていた。それを解決してくれるのがService Workerでもある。</p>
+<p>Application Cacheの問題点については、<a href=https://twitter.com/kyo_ago>@kyo_ago</a>さんが執筆した<a href=http://html5experts.jp/kyo_ago/2466/>モバイル対応Webアプリケーションのキャッシュ戦略</a>という記事にまとまっている他、TwitterでメンションしてもApplication Cacheの話題であれば何かしらレスをくれる。かもしれない。</p>
+<h3 id=ブラウザキャッシュ>ブラウザキャッシュ</h3>
+<p>ブラウザキャッシュもパフォーマンスを向上させる上で非常に重要な存在であることには間違いなさそうだが、JavaScriptからコントロールすることは不能だし、ブラウザによって挙動もまちまちである。なんせ、ブラウザキャッシュはW3Cに載っているような仕様の類ではなく、ブラウザベンダーが気を利かせて実装している機能に過ぎないからである。</p>
+<p>ブラウザキャッシュと言えば、<a href=https://twitter.com/slicknet>Nicholas Zakas</a>氏による<a href=http://calendar.perfplanet.com/2014/the-changing-role-of-the-browser-cache/>The changing role of the browser cache</a>というブラウザキャッシュの役目の移り変わりについての記事も興味深い。</p>
+<h3 id=オフラインアプリケーションの夢>オフラインアプリケーションの夢</h3>
+<p>ホワイトアウトを減らすどころか、必要なリソースを全てService Workerでコントロールすればオフラインアプリケーションの作成も可能である（キャッシュするリソースを取得する最初のダウンロードは必要になるが）。</p>
+<p>つまりService Workerは、<del>Application Cacheの屍を超えて生まれた</del>今までにないリソースのコントロール機構であると言える。</p>
+<h2 id=service-workerのapiと挙動>Service WorkerのAPIと挙動</h2>
+<p>Service WorkerはWeb Workerなんかと同じように（Web Workerの一種と言ったほうが正確なのかも）、ブラウザの表示とは別スレッドで実行される（だから、DOMのAPIとかを叩いたりすることは出来ない）。Service Workerでは、ページから行われるリソースの要求等に対し、独自の処理を挟むことが出来る。 <strong>プロキシを自前で用意出来る</strong> と言ったほうがイメージしやすいかも。</p>
+<p>リクエストをフックし、Cache APIを介してアレコレする。あるURLへのリクエストに対するレスポンスを受け取った時にそのリソースを保持したり、はたまた再度そのリクエストが発生する時にはCache APIから保持したリソースを引っ張りだしてブラウザに返却する。といったような処理をService Workerにしてもらうことになる。</p>
+<p>しれっと<a href=http://www.w3.org/TR/service-workers/#cache-objects>Cache API</a>が出てきたが、これもService WorkerのAPIの一環で、Service Workerコンテキストで利用可能なキャッシュリソースを管理するためのAPIである。</p>
+<h3 id=もうちょっと実際の処理に近い説明>もうちょっと実際の処理に近い説明</h3>
+<ol>
+<li>リクエストされたリソースをキャッシュさせたり、リクエストに割り込んでキャッシュされたリソース等を返却するような処理が記述されている<code>service-worker.js</code>を用意</li>
+<li><code>index.html</code>で<code>service-worker.js</code>をService Workerとして登録する（この時、<code>index.html</code>内の評価は行われていない）。</li>
+<li><code>service-worker.js</code>に定義してあるリクエストが<code>index.html</code>から行われた場合、フックする。既にキャッシュに存在している場合はそれを返却したり、キャッシュされていなければそのままサーバーへリクエストしてあげる。</li>
+</ol>
+<h2 id=画像をservice-workerでcachesにキャッシュさせるサンプル>画像をService Workerでcachesにキャッシュさせるサンプル</h2>
+<p>実際のコードを動かしてもらって、デバッグしてもらう方がイメージしやすいと思うので簡単なサンプルを作った。</p>
+<h3 id=ブラウザの準備>ブラウザの準備</h3>
+<p><a href=https://www.google.co.jp/chrome/browser/canary.html>Google Chrome Canary</a>の <strong>Version 41.0.2259.0 canary (64-bit)</strong> で動作確認済。フラグをonにしないと動かないので<a href=chrome://flags/><code>chrome://flags</code></a>で、<a href=chrome://flags/#enable-experimental-web-platform-features><strong>Enable experimental Web Platform features.</strong></a>と<a href=chrome://flags/#enable-service-worker-sync><strong>Enable support for ServiceWorker background sync event.</strong></a>を有効にしておく。</p>
+<p>Service Workerはセキュリティ上、HTTPS環境かローカルホストのみ実行可能になっている。ローカルでのデバッグは<code>python -m http.server</code>でOKだが、動くように作ったつもりでもホスト先がHTTPSじゃないと動かない。~~簡単デプロイの代名詞のGitHub Pagesもダメなので、~~お手軽に用意出来そうなHTTPS環境はDropboxのPublicっぽい。</p>
+<p>※2014/12/29追記</p>
+<blockquote>
+<p>簡単デプロイの代名詞のGitHub Pagesもダメなので、</p>
+</blockquote>
+<p>と書いてあるところに指摘を頂きまして、修正しました。</p>
+<blockquote class=twitter-tweet lang=ja><p><a href=https://twitter.com/1000ch>@1000ch</a> github pagesはhttpsも提供されてますよー。httpsでアクセスすれば表示されると思います。 <a href=http://t.co/327sxlRQ3R>http://t.co/327sxlRQ3R</a></p>&mdash; さだ (@sada_h) <a href=https://twitter.com/sada_h/status/549383897373356032>2014, 12月 29</a></blockquote>
+<p>GitHub PagesのHTTPSサポートについては、以下にも情報があった。</p>
+<ul>
+<li><a href=https://help.github.com/articles/what-are-github-pages/>What are GitHub Pages?</a></li>
+<li><a href=https://konklone.com/post/github-pages-now-supports-https-so-use-it>GitHub Pages Now Supports HTTPS, So Use It</a></li>
+</ul>
+<h3 id=indexhtml><code>index.html</code></h3>
+<p>5枚の画像を表示するだけの、シンプルなHTML。</p>
+<p>ブラウザキャッシュだと、URLにアクセスした時に真っ白になってしまうけど、今回はURLに対して、画像5枚とHTMLをService Workerで丸ごとキャッシュさせてインターネットに接続されていない状態でも表示させることを目指す。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>html</span>&gt;
   &lt;<span style=color:#f92672>head</span>&gt;
     &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>&gt;
     &lt;<span style=color:#f92672>title</span>&gt;Service Worker Playground&lt;/<span style=color:#f92672>title</span>&gt;
@@ -46,7 +150,10 @@ Service WorkerのAPIと挙動 Service WorkerはWeb Workerなんかと同じよ�
     &lt;<span style=color:#f92672>div</span>&gt;&lt;<span style=color:#f92672>img</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;img/5.jpg&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
   &lt;/<span style=color:#f92672>body</span>&gt;
 &lt;/<span style=color:#f92672>html</span>&gt;
-</code></pre></div><h3 id=service-workerjs><code>service-worker.js</code></h3><p>先程の<code>index.html</code>からService Workerとして登録している<code>service-worker.js</code>の中身。Service Workerコンテキストは<code>self</code>で参照し、各種イベントにハンドラを登録している。</p><p>また、Chrome 40ではCache APIが一部未実装なので<a href=https://github.com/coonsta/cache-polyfill>coonsta/cache-polyfill</a>をロードする。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// Cache APIが一部未実装なのでポリフィルをロード
+</code></pre></div><h3 id=service-workerjs><code>service-worker.js</code></h3>
+<p>先程の<code>index.html</code>からService Workerとして登録している<code>service-worker.js</code>の中身。Service Workerコンテキストは<code>self</code>で参照し、各種イベントにハンドラを登録している。</p>
+<p>また、Chrome 40ではCache APIが一部未実装なので<a href=https://github.com/coonsta/cache-polyfill>coonsta/cache-polyfill</a>をロードする。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// Cache APIが一部未実装なのでポリフィルをロード
 </span><span style=color:#75715e></span><span style=color:#a6e22e>importScripts</span>(<span style=color:#e6db74>&#39;serviceworker-cache-polyfill.js&#39;</span>);
 
 <span style=color:#75715e>// キャッシュのキーとなる文字列
@@ -103,11 +210,88 @@ Service WorkerのAPIと挙動 Service WorkerはWeb Workerなんかと同じよ�
 <span style=color:#a6e22e>self</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;activate&#39;</span>, <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>e</span>) {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;ServiceWorker.onactivate: &#39;</span>, <span style=color:#a6e22e>e</span>);
 });
-</code></pre></div><p>Service Workerの登録（<code>navigator.serviceWorker.register</code>）時に発火する<code>install</code>イベントで、キャッシュさせたいリソースのパスをキーとして登録定義している。これは<a href=https://fetch.spec.whatwg.org/#requestinfo><code>RequestInfo</code></a>という構造体の配列になる。</p><p><code>fetch</code>はブラウザのUIスレッドからリクエストが発生したときに発火する。ここでは、キャッシュオブジェクト（<code>caches</code>）にリクエストに対するリソースが保持されている場合に、サーバーへのリクエストを実行せずキャッシュされたリソースを返却し、キャッシュに保持されていない場合はサーバーにリソースを要求しキャッシュに保持した上でブラウザにリソースを返却している。</p><h3 id=service-workerのデバッグ>Service Workerのデバッグ</h3><p><code>index.html</code>と<code>service-worker.js</code>、あとは<code>img</code>フォルダに<code>1.jpg</code> ~ <code>5.jpg</code>を配置して準備は完了。あとはローカルホストを起動する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ python -m http.server
-</code></pre></div><p>URLに対し登録されたService Workerは、<a href=chrome://serviceworker-internals><code>chrome://serviceworker-internals</code></a>でどういう状態かを確認することが出来る。 <strong>Opens the DevTools window for ServiceWorker on start for debugging.</strong> のチェックをオンにしておくと、Service Workerが登録された時にワーカースレッドに対するDevToolsが自動で開くのでデバッグ時はオンにしておくと良さげ。</p><p><img src=/img/posts/2014/service-worker-internals/service-worker-devtools.png alt="Service Worker Internalsから起動するDevTools"></p><p>起動した<a href=http://localhost:8000><code>localhost:8000</code></a>をCanaryで開くとService Workerの登録（<code>service-worker.js</code>）が<code>index.html</code>で行われる。Service WorkerのDevTools上でステップ実行をしていくと、各イベントハンドラが登録されていくのがわかる。最後まで実行されると、<code>index.html</code>に実行スレッドが戻ってくるのが確認出来る。</p><p>初回登録時にはService Workerで定義しているリソースが保持されていないのでダウンロードが必要だが、2回目以降のアクセス時には<code>&lt;img src='img/1.jpg'></code>によって発生するリクエストをService Workerが拾って、<code>fetch</code>イベント内でキャッシュからリソースを返却するようになる。</p><p>めでたしめでたし。</p><h2 id=その他>その他</h2><p>今回はService Worker内で<code>fetch</code>や<code>install</code>といった初歩的な部分しかハンドルしてないけど、バックグラウンドでデータの同期（Background Sync）を行ったり、<a href=https://w3c.github.io/push-api/>Push API</a>と連携する<code>push</code>だったり、ブラウザスレッドからのメッセージ（<code>navigator.serviceWorker.controller.postMessage</code>）を<code>message</code>で受け取ることで任意のタイミングでリソースの更新を行ったり出来そう。</p><p>まだ<code>push</code>の機能はChromeにも実装されていないけど、<code>chrome.gcm</code>のインフラ使うのかなとか、SafariだったらiOSのプッシュサーバー使うのかなとか色々妄想はある。インフラさえ整えば、<code>push</code>イベント時にNotification出すとか、本当のプッシュ通知をWebで利用できる日が来そう。</p><p>何にせよ、仕様がもっと安定して、ブラウザの実装が進むのを待ちたい。</p><h2 id=参考リソース>参考リソース</h2><p>以下、Jake率高めなService Workerに関する記事とか。</p><ul><li><a href=http://www.w3.org/TR/service-workers/>Service Workers - W3C</a></li><li><a href=https://developer.mozilla.org/ja/docs/Web/API/ServiceWorker_API>ServiceWorker API - MDN</a></li><li><a href=http://jakearchibald.com/2014/service-worker-first-draft/>Service Worker - first draft published - JakeArchibald.com</a></li><li><a href=http://jakearchibald.com/2014/using-serviceworker-today/>Using ServiceWorker in Chrome today - JakeArchibald.com</a></li><li><a href=http://jakearchibald.com/2014/launching-sw-without-breaking-the-web/>Launching ServiceWorker without breaking the web - JakeArchibald.com</a></li><li><a href=http://jakearchibald.com/2014/offline-cookbook/>The offline cookbook - JakeArchibald.com</a></li><li><a href=https://www.igvita.com/2014/12/15/capability-reporting-with-service-worker/>Capability Reporting with Service Worker - igvita.com</a></li><li><a href=https://infrequently.org/2014/12/psa-service-workers-are-coming/>PSA: Service Workers are Coming - Infrequently Noted</a></li><li><a href=http://www.html5rocks.com/en/tutorials/service-worker/introduction/>Introduction to Service Worker - HTML5 Rocks</a></li></ul><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fservice-worker-internals.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fservice-worker-internals.html&text=Service%20Worker%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e4%bb%95%e6%a7%98%e3%81%a8%e3%81%8b%e6%a9%9f%e8%83%bd%e3%81%a8%e3%81%8b" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2014/look-back-over-2014.html>👈 2014年の振り返りと人気記事まとめ</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2015/image-encoder-es6.html>画像をdataURIに変換するライブラリをES6で書きなおす 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p>Service Workerの登録（<code>navigator.serviceWorker.register</code>）時に発火する<code>install</code>イベントで、キャッシュさせたいリソースのパスをキーとして登録定義している。これは<a href=https://fetch.spec.whatwg.org/#requestinfo><code>RequestInfo</code></a>という構造体の配列になる。</p>
+<p><code>fetch</code>はブラウザのUIスレッドからリクエストが発生したときに発火する。ここでは、キャッシュオブジェクト（<code>caches</code>）にリクエストに対するリソースが保持されている場合に、サーバーへのリクエストを実行せずキャッシュされたリソースを返却し、キャッシュに保持されていない場合はサーバーにリソースを要求しキャッシュに保持した上でブラウザにリソースを返却している。</p>
+<h3 id=service-workerのデバッグ>Service Workerのデバッグ</h3>
+<p><code>index.html</code>と<code>service-worker.js</code>、あとは<code>img</code>フォルダに<code>1.jpg</code> ~ <code>5.jpg</code>を配置して準備は完了。あとはローカルホストを起動する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ python -m http.server
+</code></pre></div><p>URLに対し登録されたService Workerは、<a href=chrome://serviceworker-internals><code>chrome://serviceworker-internals</code></a>でどういう状態かを確認することが出来る。 <strong>Opens the DevTools window for ServiceWorker on start for debugging.</strong> のチェックをオンにしておくと、Service Workerが登録された時にワーカースレッドに対するDevToolsが自動で開くのでデバッグ時はオンにしておくと良さげ。</p>
+<p><img src=/img/posts/2014/service-worker-internals/service-worker-devtools.png alt="Service Worker Internalsから起動するDevTools"></p>
+<p>起動した<a href=http://localhost:8000><code>localhost:8000</code></a>をCanaryで開くとService Workerの登録（<code>service-worker.js</code>）が<code>index.html</code>で行われる。Service WorkerのDevTools上でステップ実行をしていくと、各イベントハンドラが登録されていくのがわかる。最後まで実行されると、<code>index.html</code>に実行スレッドが戻ってくるのが確認出来る。</p>
+<p>初回登録時にはService Workerで定義しているリソースが保持されていないのでダウンロードが必要だが、2回目以降のアクセス時には<code>&lt;img src='img/1.jpg'></code>によって発生するリクエストをService Workerが拾って、<code>fetch</code>イベント内でキャッシュからリソースを返却するようになる。</p>
+<p>めでたしめでたし。</p>
+<h2 id=その他>その他</h2>
+<p>今回はService Worker内で<code>fetch</code>や<code>install</code>といった初歩的な部分しかハンドルしてないけど、バックグラウンドでデータの同期（Background Sync）を行ったり、<a href=https://w3c.github.io/push-api/>Push API</a>と連携する<code>push</code>だったり、ブラウザスレッドからのメッセージ（<code>navigator.serviceWorker.controller.postMessage</code>）を<code>message</code>で受け取ることで任意のタイミングでリソースの更新を行ったり出来そう。</p>
+<p>まだ<code>push</code>の機能はChromeにも実装されていないけど、<code>chrome.gcm</code>のインフラ使うのかなとか、SafariだったらiOSのプッシュサーバー使うのかなとか色々妄想はある。インフラさえ整えば、<code>push</code>イベント時にNotification出すとか、本当のプッシュ通知をWebで利用できる日が来そう。</p>
+<p>何にせよ、仕様がもっと安定して、ブラウザの実装が進むのを待ちたい。</p>
+<h2 id=参考リソース>参考リソース</h2>
+<p>以下、Jake率高めなService Workerに関する記事とか。</p>
+<ul>
+<li><a href=http://www.w3.org/TR/service-workers/>Service Workers - W3C</a></li>
+<li><a href=https://developer.mozilla.org/ja/docs/Web/API/ServiceWorker_API>ServiceWorker API - MDN</a></li>
+<li><a href=http://jakearchibald.com/2014/service-worker-first-draft/>Service Worker - first draft published - JakeArchibald.com</a></li>
+<li><a href=http://jakearchibald.com/2014/using-serviceworker-today/>Using ServiceWorker in Chrome today - JakeArchibald.com</a></li>
+<li><a href=http://jakearchibald.com/2014/launching-sw-without-breaking-the-web/>Launching ServiceWorker without breaking the web - JakeArchibald.com</a></li>
+<li><a href=http://jakearchibald.com/2014/offline-cookbook/>The offline cookbook - JakeArchibald.com</a></li>
+<li><a href=https://www.igvita.com/2014/12/15/capability-reporting-with-service-worker/>Capability Reporting with Service Worker - igvita.com</a></li>
+<li><a href=https://infrequently.org/2014/12/psa-service-workers-are-coming/>PSA: Service Workers are Coming - Infrequently Noted</a></li>
+<li><a href=http://www.html5rocks.com/en/tutorials/service-worker/introduction/>Introduction to Service Worker - HTML5 Rocks</a></li>
+</ul>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fservice-worker-internals.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fservice-worker-internals.html&text=Service%20Worker%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e4%bb%95%e6%a7%98%e3%81%a8%e3%81%8b%e6%a9%9f%e8%83%bd%e3%81%a8%e3%81%8b" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2014/look-back-over-2014.html>👈 2014年の振り返りと人気記事まとめ</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2015/image-encoder-es6.html>画像をdataURIに変換するライブラリをES6で書きなおす 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -121,4 +305,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

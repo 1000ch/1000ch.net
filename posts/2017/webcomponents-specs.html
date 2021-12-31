@@ -1,11 +1,74 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Web Components 周辺の仕様とか 2017年秋 - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Web Components 周辺の仕様とかブラウザ互換性 2017年秋 二週間後の素振り入ってます、連投ですが悪しからず。Web Components v0 から Web Components v1 へのアップデートに関しては、去年の DevFest Tokyo 2016 で発表した Web Components 2016 & Polymer v2 にまとめてあるが、それを改めて見直している。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Web Components 周辺の仕様とか 2017年秋 - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="Web Components 周辺の仕様とかブラウザ互換性 2017年秋 二週間後の素振り入ってます、連投ですが悪しからず。Web Components v0 から Web Components v1 へのアップデートに関しては、去年の DevFest Tokyo 2016 で発表した Web Components 2016 & Polymer v2 にまとめてあるが、それを改めて見直している。
 HTML Templates HTML Templates は HTML ドキュメントに埋め込まれてもコピーして使うまで非活性であるような、本来的な雛形の機能を実現する <template> 要素の仕様である。 <script type=&#34;text/template&#34;>...</script> やら <div style=&#34;display: none&#34;>...</div> やらの、ハックを使わずに済む。
-<template> <!--非活性なので bar.jpg へのリクエストが発生しない --> <div class=&#34;foo&#34;> <img src=&#34;bar.jpg&#34;> </div> </template> <script> const template = document.querySelector('template'); const clone = template.content.cloneNode(true); document.body.appendChild(clone); </script> Web Components に分類される他の仕様に比べて、与えられている役割が単純なので、仕様が大きく変更されることは想像しにくい。IE11 を除いてブラウザの対応状況は良い し、ポリフィルである webcomponents/template のファイルサイズも小さい。
-ポリフィルでは、 HTMLTemplateElement が未定義の場合に"><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/webcomponents-specs.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Web Components 周辺の仕様とか 2017年秋"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/webcomponents-specs.html"><meta name=twitter:title content="Web Components 周辺の仕様とか 2017年秋"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2017.09.12</span><h1 id=web-components-周辺の仕様とかブラウザ互換性-2017年秋>Web Components 周辺の仕様とかブラウザ互換性 2017年秋</h1><p>二週間後の素振り入ってます、連投ですが悪しからず。Web Components v0 から Web Components v1 へのアップデートに関しては、去年の <a href=https://gdg-tokyo.connpass.com/event/38927/>DevFest Tokyo 2016</a> で発表した <a href=https://1000ch.github.io/slide/webcomponents-2016/>Web Components 2016 & Polymer v2</a> にまとめてあるが、それを改めて見直している。</p><h2 id=html-templates>HTML Templates</h2><p>HTML Templates は HTML ドキュメントに埋め込まれてもコピーして使うまで非活性であるような、本来的な雛形の機能を実現する <code>&lt;template></code> 要素の仕様である。 <code>&lt;script type="text/template">...&lt;/script></code> やら <code>&lt;div style="display: none">...&lt;/div></code> やらの、ハックを使わずに済む。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>template</span>&gt;
-  <span style=color:#75715e>&lt;!--</span><span style=color:#75715e> 非活性なので bar.jpg へのリクエストが発生しない </span><span style=color:#75715e>--&gt;</span>
+<template> <!-- 非活性なので bar.jpg へのリクエストが発生しない --> <div class=&#34;foo&#34;> <img src=&#34;bar.jpg&#34;> </div> </template> <script> const template = document.querySelector('template'); const clone = template.content.cloneNode(true); document.body.appendChild(clone); </script> Web Components に分類される他の仕様に比べて、与えられている役割が単純なので、仕様が大きく変更されることは想像しにくい。IE11 を除いてブラウザの対応状況は良い し、ポリフィルである webcomponents/template のファイルサイズも小さい。
+ポリフィルでは、 HTMLTemplateElement が未定義の場合に">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2017/webcomponents-specs.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Web Components 周辺の仕様とか 2017年秋">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2017/webcomponents-specs.html">
+<meta name=twitter:title content="Web Components 周辺の仕様とか 2017年秋">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2017.09.12</span>
+<h1 id=web-components-周辺の仕様とかブラウザ互換性-2017年秋>Web Components 周辺の仕様とかブラウザ互換性 2017年秋</h1>
+<p>二週間後の素振り入ってます、連投ですが悪しからず。Web Components v0 から Web Components v1 へのアップデートに関しては、去年の <a href=https://gdg-tokyo.connpass.com/event/38927/>DevFest Tokyo 2016</a> で発表した <a href=https://1000ch.github.io/slide/webcomponents-2016/>Web Components 2016 & Polymer v2</a> にまとめてあるが、それを改めて見直している。</p>
+<h2 id=html-templates>HTML Templates</h2>
+<p>HTML Templates は HTML ドキュメントに埋め込まれてもコピーして使うまで非活性であるような、本来的な雛形の機能を実現する <code>&lt;template></code> 要素の仕様である。 <code>&lt;script type="text/template">...&lt;/script></code> やら <code>&lt;div style="display: none">...&lt;/div></code> やらの、ハックを使わずに済む。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>template</span>&gt;
+  <span style=color:#75715e>&lt;!-- 非活性なので bar.jpg へのリクエストが発生しない --&gt;</span>
   &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;foo&#34;</span>&gt;
     &lt;<span style=color:#f92672>img</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bar.jpg&#34;</span>&gt;
   &lt;/<span style=color:#f92672>div</span>&gt;
@@ -17,7 +80,23 @@ HTML Templates HTML Templates は HTML ドキュメントに埋め込まれて�
 
   document.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>appendChild</span>(<span style=color:#a6e22e>clone</span>);
 &lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>Web Components に分類される他の仕様に比べて、与えられている役割が単純なので、仕様が大きく変更されることは想像しにくい。IE11 を除いて<a href="http://caniuse.com/#search=templates">ブラウザの対応状況は良い</a> し、ポリフィルである <a href=https://github.com/webcomponents/template>webcomponents/template</a> のファイルサイズも小さい。</p><p>ポリフィルでは、 <code>HTMLTemplateElement</code> が未定義の場合に</p><ol><li><code>&lt;head></code> 要素に <code>&lt;style>template{display:none;}&lt;/style></code> を埋め込んで <code>&lt;template></code> 要素を非表示にする</li><li><code>HTMLTemplateElement.prototype</code> を <code>HTMLElement.prototype</code> から作成する</li><li><code>&lt;template></code> 要素で囲った子要素を <code>content</code> プロパティに埋め込む <code>decorate()</code> 関数を <code>HTMLTemplateElement</code> に生やす</li><li><code>innerHTML</code> プロパティを <code>HTMLTemplateElement.prototype</code> に生やす</li><li>HTML に存在する <code>&lt;template></code> 要素を参照し、 <code>HTMLTemplateElement.decorate()</code> 関数を実行する <code>bootstrap()</code> 関数を <code>HTMLTemplateElement</code> に生やす</li><li><code>DOMContentLoaded</code> イベントで <code>HTMLTemplateElement.decorate()</code> 関数を実行する</li><li>ネイティブの <code>document.createElement()</code> 関数、 <code>Node.prototype.cloneNode()</code> 関数、<code>document.importNode()</code> 関数をフックし、 <code>&lt;template></code> 要素が対象の場合に <code>HTMLTemplateElement.decorate()</code> を適用する</li></ol><p>のようなことをしている。</p><h2 id=shadow-dom-v1>Shadow DOM v1</h2><p>Shadow DOM （と、Custom Elements）については、v0 のことは忘れて、ブラウザの足並みが揃っている v1 のことだけ書く。</p><p>Shadow DOM は DOM に Shadow DOM と呼ばれるその DOM にだけ影響するスコープを作る仕様である。Shadow DOM の世界で発生することは、基本的に外へ漏れないし、外からも入り込まない。</p><p>Shadow DOM には外部からの各種アクセスを許容する <code>open</code> モードと、完全に遮断する <code>closed</code> モードがあるが、外部へ影響を及ぼすことはないので Web の弱点であったスコープ問題は根本的に解決される。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span>&gt;あいうえお&lt;/<span style=color:#f92672>div</span>&gt;
+</code></pre></div><p>Web Components に分類される他の仕様に比べて、与えられている役割が単純なので、仕様が大きく変更されることは想像しにくい。IE11 を除いて<a href="http://caniuse.com/#search=templates">ブラウザの対応状況は良い</a> し、ポリフィルである <a href=https://github.com/webcomponents/template>webcomponents/template</a> のファイルサイズも小さい。</p>
+<p>ポリフィルでは、 <code>HTMLTemplateElement</code> が未定義の場合に</p>
+<ol>
+<li><code>&lt;head></code> 要素に <code>&lt;style>template{display:none;}&lt;/style></code> を埋め込んで <code>&lt;template></code> 要素を非表示にする</li>
+<li><code>HTMLTemplateElement.prototype</code> を <code>HTMLElement.prototype</code> から作成する</li>
+<li><code>&lt;template></code> 要素で囲った子要素を <code>content</code> プロパティに埋め込む <code>decorate()</code> 関数を <code>HTMLTemplateElement</code> に生やす</li>
+<li><code>innerHTML</code> プロパティを <code>HTMLTemplateElement.prototype</code> に生やす</li>
+<li>HTML に存在する <code>&lt;template></code> 要素を参照し、 <code>HTMLTemplateElement.decorate()</code> 関数を実行する <code>bootstrap()</code> 関数を <code>HTMLTemplateElement</code> に生やす</li>
+<li><code>DOMContentLoaded</code> イベントで <code>HTMLTemplateElement.decorate()</code> 関数を実行する</li>
+<li>ネイティブの <code>document.createElement()</code> 関数、 <code>Node.prototype.cloneNode()</code> 関数、<code>document.importNode()</code> 関数をフックし、 <code>&lt;template></code> 要素が対象の場合に <code>HTMLTemplateElement.decorate()</code> を適用する</li>
+</ol>
+<p>のようなことをしている。</p>
+<h2 id=shadow-dom-v1>Shadow DOM v1</h2>
+<p>Shadow DOM （と、Custom Elements）については、v0 のことは忘れて、ブラウザの足並みが揃っている v1 のことだけ書く。</p>
+<p>Shadow DOM は DOM に Shadow DOM と呼ばれるその DOM にだけ影響するスコープを作る仕様である。Shadow DOM の世界で発生することは、基本的に外へ漏れないし、外からも入り込まない。</p>
+<p>Shadow DOM には外部からの各種アクセスを許容する <code>open</code> モードと、完全に遮断する <code>closed</code> モードがあるが、外部へ影響を及ぼすことはないので Web の弱点であったスコープ問題は根本的に解決される。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span>&gt;あいうえお&lt;/<span style=color:#f92672>div</span>&gt;
 &lt;<span style=color:#f92672>script</span>&gt;
   <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>div</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;div&#39;</span>);
 
@@ -27,14 +106,20 @@ HTML Templates HTML Templates は HTML ドキュメントに埋め込まれて�
   });
 
   <span style=color:#75715e>// shadowRoot は読み取り専用のプロパティ
-</span><span style=color:#75715e></span>  <span style=color:#a6e22e>div</span>.<span style=color:#a6e22e>shadowRoot</span>.<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>div</span>.<span style=color:#a6e22e>shadowRoot</span>.<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`
 </span><span style=color:#e6db74>    &lt;style&gt;div { color: tomato; }&lt;/style&gt;
 </span><span style=color:#e6db74>    &lt;div&gt;
 </span><span style=color:#e6db74>      &lt;slot&gt;&lt;/slot&gt;
 </span><span style=color:#e6db74>    &lt;/div&gt;
-</span><span style=color:#e6db74>  </span><span style=color:#e6db74>`</span>;
+</span><span style=color:#e6db74>  `</span>;
 &lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>Shadow DOM が作成されると、そのホストとなる要素は Shadow DOM のコンテンツを表示するようになる。ここでは <code>&lt;style></code> 要素でスタイルを定義したり、ホストのコンテンツの挿入先となる <code>&lt;slot></code> 要素を <code>shadowRoot.innerHTML</code> に適用している。これによって Shadow DOM のホスト要素である <code>&lt;div></code> に囲まれていた「あいうえお」に <code>div { color: tomato; }</code> が適用されて表示される。</p><p>こうした振る舞いをポリフィルで実現するのは難しい。Shadow DOM v0 の頃は <a href=https://github.com/webcomponents/webcomponentsjs>webcomponents/webcomponentsjs</a> によって少し凝った実装がされていたが、実行コストが問題視されていた。これは Polymer v2 がリリースされるあたりで軽量な互換実装である <a href=https://github.com/webcomponents/shadydom>webcomponents/ShadyDOM</a> が発表され、webcomponentsjs にバンドルするポリフィルも ShadyDOM に移行した。Shadow DOM の複雑な振る舞いを JavaScript + DOM でポリフィルするには無理があった。</p><p><a href="http://caniuse.com/#feat=shadowdomv1">ブラウザのサポート状況</a> を見てみると、Chrome と Safari は既に実装済、Firefox は開発中、Edge は Under Consideration となっている。<a href=https://developer.microsoft.com/en-us/microsoft-edge/platform/status/shadowdom/>Edge も Roadmap Priority: High — We intend to begin development soon. となっている</a>し、主要ブラウザの実装が揃う日も遠くないだろう。むしろ IE11 の昇天のほうが問題になってくる。</p><h2 id=custom-elements-v1>Custom Elements v1</h2><p>HTML の各要素の振る舞いは <code>&lt;div></code> 要素であれば <a href=https://developer.mozilla.org/ja/docs/Web/API/HTMLDivElement><code>HTMLDivElement</code></a> 、 <code>&lt;input></code> 要素であれば <a href=https://developer.mozilla.org/ja/docs/Web/API/HTMLInputElement><code>HTMLInputElement</code></a> といったように、それぞれ <code>HTML***Element</code> クラスで定義されている。これを拡張して開発者が自由にカスタム要素を定義できるようにするのが Custom Elements の機能である。</p><p>カスタム要素を使うのも HTML ドキュメント上なので、基本的な DOM の振る舞いを備えていて欲しい。だから、HTMLElement を継承したクラスで定義していく。作成したカスタム要素のクラスは、グローバルスコープにある <code>customElements</code> オブジェクトを通して登録する。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FooElement</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>HTMLElement</span> {
+</code></pre></div><p>Shadow DOM が作成されると、そのホストとなる要素は Shadow DOM のコンテンツを表示するようになる。ここでは <code>&lt;style></code> 要素でスタイルを定義したり、ホストのコンテンツの挿入先となる <code>&lt;slot></code> 要素を <code>shadowRoot.innerHTML</code> に適用している。これによって Shadow DOM のホスト要素である <code>&lt;div></code> に囲まれていた「あいうえお」に <code>div { color: tomato; }</code> が適用されて表示される。</p>
+<p>こうした振る舞いをポリフィルで実現するのは難しい。Shadow DOM v0 の頃は <a href=https://github.com/webcomponents/webcomponentsjs>webcomponents/webcomponentsjs</a> によって少し凝った実装がされていたが、実行コストが問題視されていた。これは Polymer v2 がリリースされるあたりで軽量な互換実装である <a href=https://github.com/webcomponents/shadydom>webcomponents/ShadyDOM</a> が発表され、webcomponentsjs にバンドルするポリフィルも ShadyDOM に移行した。Shadow DOM の複雑な振る舞いを JavaScript + DOM でポリフィルするには無理があった。</p>
+<p><a href="http://caniuse.com/#feat=shadowdomv1">ブラウザのサポート状況</a> を見てみると、Chrome と Safari は既に実装済、Firefox は開発中、Edge は Under Consideration となっている。<a href=https://developer.microsoft.com/en-us/microsoft-edge/platform/status/shadowdom/>Edge も Roadmap Priority: High — We intend to begin development soon. となっている</a>し、主要ブラウザの実装が揃う日も遠くないだろう。むしろ IE11 の昇天のほうが問題になってくる。</p>
+<h2 id=custom-elements-v1>Custom Elements v1</h2>
+<p>HTML の各要素の振る舞いは <code>&lt;div></code> 要素であれば <a href=https://developer.mozilla.org/ja/docs/Web/API/HTMLDivElement><code>HTMLDivElement</code></a> 、 <code>&lt;input></code> 要素であれば <a href=https://developer.mozilla.org/ja/docs/Web/API/HTMLInputElement><code>HTMLInputElement</code></a> といったように、それぞれ <code>HTML***Element</code> クラスで定義されている。これを拡張して開発者が自由にカスタム要素を定義できるようにするのが Custom Elements の機能である。</p>
+<p>カスタム要素を使うのも HTML ドキュメント上なので、基本的な DOM の振る舞いを備えていて欲しい。だから、HTMLElement を継承したクラスで定義していく。作成したカスタム要素のクラスは、グローバルスコープにある <code>customElements</code> オブジェクトを通して登録する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FooElement</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>HTMLElement</span> {
   <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>get</span> <span style=color:#a6e22e>observedAttributes</span>() { ... }
   <span style=color:#a6e22e>constructor</span>() { ... }
   <span style=color:#a6e22e>connectedCallback</span>() { ... }
@@ -44,15 +129,84 @@ HTML Templates HTML Templates は HTML ドキュメントに埋め込まれて�
 }
 
 <span style=color:#a6e22e>customElements</span>.<span style=color:#a6e22e>define</span>(<span style=color:#e6db74>&#39;foo-element&#39;</span>, <span style=color:#a6e22e>FooElement</span>);
-</code></pre></div><p>これを実行したあとは <code>&lt;foo-element></code> 要素が使えるようになる。登録前に <code>&lt;foo-element></code> 要素があっても、走査されて <code>FooElement</code> として再解決される。カスタム要素を定義する <code>customElements.define()</code> の実行タイミングによっては、 <code>&lt;foo-element></code> は <code>HTMLUnknownElement</code> として解決され続けてしまう。このあたりの話は HTML5 conference で話したい。</p><p><a href="http://caniuse.com/#feat=custom-elementsv1">ブラウザのサポート状況</a> を見てみると Shadow DOM v1 と同様に、Chrome と Safari は既に実装済、Firefox は開発中、Edge は Under Consideration となっている。Shadow DOM v1 の状況と合わせて、モバイル Web であれば使って良さそうだ。</p><p>customElements といえば雲行きが怪しくなった <code>is</code> 属性によるネイティブ要素の拡張機能だが、こちらも新たな議論が進んでいる。これも HTML5 conference まで取っておこう。　</p><h2 id=es-modules>ES Modules</h2><p>HTML Imports は ES Modules を見越して見送られていたが、ブラウザでの ES Modules が無事着地したことでお蔵入りになった。</p><ul><li><a href=https://hacks.mozilla.org/2014/12/mozilla-and-web-components/>Mozilla and Web Components: Update ★ Mozilla Hacks – the Web developer blog</a></li><li><a href=https://hacks.mozilla.org/2015/06/the-state-of-web-components/>The state of Web Components ★ Mozilla Hacks – the Web developer blog</a></li></ul><p>それに合わせて Polymer も v3 から、ES Modules に沿った実装にしていくことを <a href=https://summit.polymer-project.org/>Polymer Summit 2017</a> で発表している。</p><p><fluid-iframe src=https://www.youtube.com/embed/JH6jEcLxJEI></fluid-iframe></p><p>先程の <code>FooElement</code> を <code>foo-element.js</code> で <code>export default</code> しているとすると、次のようなイメージになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;module&#34;</span>&gt;
+</code></pre></div><p>これを実行したあとは <code>&lt;foo-element></code> 要素が使えるようになる。登録前に <code>&lt;foo-element></code> 要素があっても、走査されて <code>FooElement</code> として再解決される。カスタム要素を定義する <code>customElements.define()</code> の実行タイミングによっては、 <code>&lt;foo-element></code> は <code>HTMLUnknownElement</code> として解決され続けてしまう。このあたりの話は HTML5 conference で話したい。</p>
+<p><a href="http://caniuse.com/#feat=custom-elementsv1">ブラウザのサポート状況</a> を見てみると Shadow DOM v1 と同様に、Chrome と Safari は既に実装済、Firefox は開発中、Edge は Under Consideration となっている。Shadow DOM v1 の状況と合わせて、モバイル Web であれば使って良さそうだ。</p>
+<p>customElements といえば雲行きが怪しくなった <code>is</code> 属性によるネイティブ要素の拡張機能だが、こちらも新たな議論が進んでいる。これも HTML5 conference まで取っておこう。　</p>
+<h2 id=es-modules>ES Modules</h2>
+<p>HTML Imports は ES Modules を見越して見送られていたが、ブラウザでの ES Modules が無事着地したことでお蔵入りになった。</p>
+<ul>
+<li><a href=https://hacks.mozilla.org/2014/12/mozilla-and-web-components/>Mozilla and Web Components: Update ★ Mozilla Hacks – the Web developer blog</a></li>
+<li><a href=https://hacks.mozilla.org/2015/06/the-state-of-web-components/>The state of Web Components ★ Mozilla Hacks – the Web developer blog</a></li>
+</ul>
+<p>それに合わせて Polymer も v3 から、ES Modules に沿った実装にしていくことを <a href=https://summit.polymer-project.org/>Polymer Summit 2017</a> で発表している。</p>
+<p><fluid-iframe src=https://www.youtube.com/embed/JH6jEcLxJEI></fluid-iframe></p>
+<p>先程の <code>FooElement</code> を <code>foo-element.js</code> で <code>export default</code> しているとすると、次のようなイメージになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;module&#34;</span>&gt;
   <span style=color:#66d9ef>import</span> <span style=color:#a6e22e>FooElement</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;foo-element.js&#39;</span>;
 
   <span style=color:#a6e22e>customElements</span>.<span style=color:#a6e22e>define</span>(<span style=color:#e6db74>&#39;foo-element&#39;</span>, <span style=color:#a6e22e>FooElement</span>);
 &lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>ES2015 の <code>import/export</code> の文法は既に真新しいものではないが、ブラウザでどう使うかであったり、Node.js を意識した Isomorphic なアーキテクチャで使うには少し注意が必要である。</p><ul><li><a href=https://jakearchibald.com/2017/es-modules-in-browsers/>ECMAScript modules in browsers - JakeArchibald.com</a></li><li><a href=https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html>ES Modules への橋渡しとしての nomodule 属性 | blog.jxck.io</a></li><li><a href=http://teppeis.hatenablog.com/entry/2017/08/es-modules-in-nodejs>Node.jsのES Modulesサポートの現状確認と備え - teppeis blog</a></li></ul><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fwebcomponents-specs.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fwebcomponents-specs.html&text=Web%20Components%20%e5%91%a8%e8%be%ba%e3%81%ae%e4%bb%95%e6%a7%98%e3%81%a8%e3%81%8b%202017%e5%b9%b4%e7%a7%8b" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2017/html5conference-2017.html>👈 HTML5 Conference 2017 に出演します</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2017/lit-html.html>lit-html を調べたメモと考えたこと 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p>ES2015 の <code>import/export</code> の文法は既に真新しいものではないが、ブラウザでどう使うかであったり、Node.js を意識した Isomorphic なアーキテクチャで使うには少し注意が必要である。</p>
+<ul>
+<li><a href=https://jakearchibald.com/2017/es-modules-in-browsers/>ECMAScript modules in browsers - JakeArchibald.com</a></li>
+<li><a href=https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html>ES Modules への橋渡しとしての nomodule 属性 | blog.jxck.io</a></li>
+<li><a href=http://teppeis.hatenablog.com/entry/2017/08/es-modules-in-nodejs>Node.jsのES Modulesサポートの現状確認と備え - teppeis blog</a></li>
+</ul>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fwebcomponents-specs.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fwebcomponents-specs.html&text=Web%20Components%20%e5%91%a8%e8%be%ba%e3%81%ae%e4%bb%95%e6%a7%98%e3%81%a8%e3%81%8b%202017%e5%b9%b4%e7%a7%8b" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2017/html5conference-2017.html>👈 HTML5 Conference 2017 に出演します</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2017/lit-html.html>lit-html を調べたメモと考えたこと 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -66,4 +220,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

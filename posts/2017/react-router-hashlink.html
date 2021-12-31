@@ -1,31 +1,155 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>react-routerのハッシュリンクとスムーススクロール - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="react-routerのハッシュリンクとスムーススクロール React Router を使っているプロジェクトで、できれば「ハッシュリンクを踏んだ時に、対象位置までスクロールしたい」というのがあり、少し調べていた。そもそも React Router はハッシュリンクが正しく機能しないという不具合があったり、既に公開されているライブラリでは機能を満たせない、メンテナンスが不安、コードがアレ…等等、スクラッチで書くところから始まった。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>react-routerのハッシュリンクとスムーススクロール - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="react-routerのハッシュリンクとスムーススクロール React Router を使っているプロジェクトで、できれば「ハッシュリンクを踏んだ時に、対象位置までスクロールしたい」というのがあり、少し調べていた。そもそも React Router はハッシュリンクが正しく機能しないという不具合があったり、既に公開されているライブラリでは機能を満たせない、メンテナンスが不安、コードがアレ…等等、スクラッチで書くところから始まった。
 react-router-hashlink React Router の <Link> コンポーネント をラップして、ハッシュリンクに対応したのが 1000ch/react-router-hashlink である。
 import { HashLink } from 'react-router-hashlink'; function render() { return ( <ul> <li><HashLink to=&#34;/foo#bar&#34;>/foo#bar</HashLink></li> <li><HashLink to=&#34;/foo#bar&#34; behavior=&#34;smooth&#34;>/foo#bar</HashLink></li> <li><HashLink to=&#34;/foo#bar&#34; delay={500}>/foo#bar</HashLink></li> </ul> ); } な感じで使う。behavior と delay を除き、React Router の <Link> コンポーネントを指定できると思ってもらえば良い。
-Element.prototype.scrollIntoView() と ScrollBehavior 内部的に #bar へは document.getElementById('bar').scrollIntoView() で移動しているが、この Element.prototype.scrollIntoView() 実行時などのスクロールの挙動を制御する仕様、 ScrollBehavior が新たに策定されつつある。ScrollBehavior の適用先としては MDN の Element.prototype.scrollIntoView() にはあるが、CSSOM View Module の 6. Extensions to the Element Interface にはないようで、最終的にどうなるかは不明。全て CSS の scroll-behavior に吸収される可能性も大いにある（この辺りの動向を突き止められていないので誰か知っていたら教えてください）。"><meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/react-router-hashlink.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="react-routerのハッシュリンクとスムーススクロール"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/react-router-hashlink.html"><meta name=twitter:title content="react-routerのハッシュリンクとスムーススクロール"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2017.06.11</span><h1 id=react-routerのハッシュリンクとスムーススクロール>react-routerのハッシュリンクとスムーススクロール</h1><p>React Router を使っているプロジェクトで、できれば「ハッシュリンクを踏んだ時に、対象位置までスクロールしたい」というのがあり、少し調べていた。そもそも React Router はハッシュリンクが正しく機能しないという不具合があったり、既に公開されているライブラリでは機能を満たせない、メンテナンスが不安、コードがアレ…等等、スクラッチで書くところから始まった。</p><h2 id=react-router-hashlink>react-router-hashlink</h2><p><a href=https://reacttraining.com/react-router/web/api/Link>React Router の <code>&lt;Link></code> コンポーネント</a> をラップして、ハッシュリンクに対応したのが <a href=https://github.com/1000ch/react-router-hashlink>1000ch/react-router-hashlink</a> である。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>HashLink</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;react-router-hashlink&#39;</span>;
+Element.prototype.scrollIntoView() と ScrollBehavior 内部的に #bar へは document.getElementById('bar').scrollIntoView() で移動しているが、この Element.prototype.scrollIntoView() 実行時などのスクロールの挙動を制御する仕様、 ScrollBehavior が新たに策定されつつある。ScrollBehavior の適用先としては MDN の Element.prototype.scrollIntoView() にはあるが、CSSOM View Module の 6. Extensions to the Element Interface にはないようで、最終的にどうなるかは不明。全て CSS の scroll-behavior に吸収される可能性も大いにある（この辺りの動向を突き止められていないので誰か知っていたら教えてください）。">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2017/react-router-hashlink.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="react-routerのハッシュリンクとスムーススクロール">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2017/react-router-hashlink.html">
+<meta name=twitter:title content="react-routerのハッシュリンクとスムーススクロール">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2017.06.11</span>
+<h1 id=react-routerのハッシュリンクとスムーススクロール>react-routerのハッシュリンクとスムーススクロール</h1>
+<p>React Router を使っているプロジェクトで、できれば「ハッシュリンクを踏んだ時に、対象位置までスクロールしたい」というのがあり、少し調べていた。そもそも React Router はハッシュリンクが正しく機能しないという不具合があったり、既に公開されているライブラリでは機能を満たせない、メンテナンスが不安、コードがアレ…等等、スクラッチで書くところから始まった。</p>
+<h2 id=react-router-hashlink>react-router-hashlink</h2>
+<p><a href=https://reacttraining.com/react-router/web/api/Link>React Router の <code>&lt;Link></code> コンポーネント</a> をラップして、ハッシュリンクに対応したのが <a href=https://github.com/1000ch/react-router-hashlink>1000ch/react-router-hashlink</a> である。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>HashLink</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;react-router-hashlink&#39;</span>;
 
 <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>render</span>() {
   <span style=color:#66d9ef>return</span> (
     <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>ul</span><span style=color:#f92672>&gt;</span>
-      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>li</span><span style=color:#f92672>&gt;</span><span style=color:#f92672>&lt;</span><span style=color:#a6e22e>HashLink</span> <span style=color:#a6e22e>to</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/foo#bar&#34;</span><span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>f</span><span style=color:#960050;background-color:#1e0010>o</span><span style=color:#960050;background-color:#1e0010>o</span><span style=color:#960050;background-color:#1e0010>#</span><span style=color:#960050;background-color:#1e0010>b</span><span style=color:#960050;background-color:#1e0010>a</span><span style=color:#960050;background-color:#1e0010>r</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>H</span><span style=color:#960050;background-color:#1e0010>a</span><span style=color:#960050;background-color:#1e0010>s</span><span style=color:#960050;background-color:#1e0010>h</span><span style=color:#960050;background-color:#1e0010>L</span><span style=color:#960050;background-color:#1e0010>i</span><span style=color:#960050;background-color:#1e0010>n</span><span style=color:#960050;background-color:#1e0010>k</span><span style=color:#960050;background-color:#1e0010>&gt;</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>l</span><span style=color:#960050;background-color:#1e0010>i</span><span style=color:#960050;background-color:#1e0010>&gt;</span>
-      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>li</span><span style=color:#f92672>&gt;</span><span style=color:#f92672>&lt;</span><span style=color:#a6e22e>HashLink</span> <span style=color:#a6e22e>to</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/foo#bar&#34;</span> <span style=color:#a6e22e>behavior</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;smooth&#34;</span><span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>f</span><span style=color:#960050;background-color:#1e0010>o</span><span style=color:#960050;background-color:#1e0010>o</span><span style=color:#960050;background-color:#1e0010>#</span><span style=color:#960050;background-color:#1e0010>b</span><span style=color:#960050;background-color:#1e0010>a</span><span style=color:#960050;background-color:#1e0010>r</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>H</span><span style=color:#960050;background-color:#1e0010>a</span><span style=color:#960050;background-color:#1e0010>s</span><span style=color:#960050;background-color:#1e0010>h</span><span style=color:#960050;background-color:#1e0010>L</span><span style=color:#960050;background-color:#1e0010>i</span><span style=color:#960050;background-color:#1e0010>n</span><span style=color:#960050;background-color:#1e0010>k</span><span style=color:#960050;background-color:#1e0010>&gt;</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>l</span><span style=color:#960050;background-color:#1e0010>i</span><span style=color:#960050;background-color:#1e0010>&gt;</span>
-      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>li</span><span style=color:#f92672>&gt;</span><span style=color:#f92672>&lt;</span><span style=color:#a6e22e>HashLink</span> <span style=color:#a6e22e>to</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/foo#bar&#34;</span> <span style=color:#a6e22e>delay</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>500</span>}<span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>f</span><span style=color:#960050;background-color:#1e0010>o</span><span style=color:#960050;background-color:#1e0010>o</span><span style=color:#960050;background-color:#1e0010>#</span><span style=color:#960050;background-color:#1e0010>b</span><span style=color:#960050;background-color:#1e0010>a</span><span style=color:#960050;background-color:#1e0010>r</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>H</span><span style=color:#960050;background-color:#1e0010>a</span><span style=color:#960050;background-color:#1e0010>s</span><span style=color:#960050;background-color:#1e0010>h</span><span style=color:#960050;background-color:#1e0010>L</span><span style=color:#960050;background-color:#1e0010>i</span><span style=color:#960050;background-color:#1e0010>n</span><span style=color:#960050;background-color:#1e0010>k</span><span style=color:#960050;background-color:#1e0010>&gt;</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>l</span><span style=color:#960050;background-color:#1e0010>i</span><span style=color:#960050;background-color:#1e0010>&gt;</span>
-    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>u</span><span style=color:#960050;background-color:#1e0010>l</span><span style=color:#960050;background-color:#1e0010>&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>li</span><span style=color:#f92672>&gt;&lt;</span><span style=color:#a6e22e>HashLink</span> <span style=color:#a6e22e>to</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/foo#bar&#34;</span><span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>/foo#bar&lt;/HashLink&gt;&lt;/li&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>li</span><span style=color:#f92672>&gt;&lt;</span><span style=color:#a6e22e>HashLink</span> <span style=color:#a6e22e>to</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/foo#bar&#34;</span> <span style=color:#a6e22e>behavior</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;smooth&#34;</span><span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>/foo#bar&lt;/HashLink&gt;&lt;/li&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>li</span><span style=color:#f92672>&gt;&lt;</span><span style=color:#a6e22e>HashLink</span> <span style=color:#a6e22e>to</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/foo#bar&#34;</span> <span style=color:#a6e22e>delay</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>500</span>}<span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>/foo#bar&lt;/HashLink&gt;&lt;/li&gt;</span>
+    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/ul&gt;</span>
   );
 }
-</code></pre></div><p>な感じで使う。<code>behavior</code> と <code>delay</code> を除き、React Router の <code>&lt;Link></code> コンポーネントを指定できると思ってもらえば良い。</p><h2 id=elementprototypescrollintoview-と-scrollbehavior><code>Element.prototype.scrollIntoView()</code> と ScrollBehavior</h2><p>内部的に <code>#bar</code> へは <code>document.getElementById('bar').scrollIntoView()</code> で移動しているが、この <code>Element.prototype.scrollIntoView()</code> 実行時などのスクロールの挙動を制御する仕様、 <a href=https://drafts.csswg.org/cssom-view/#extensions-to-the-window-interface>ScrollBehavior</a> が新たに策定されつつある。ScrollBehavior の適用先としては MDN の <a href=https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView><code>Element.prototype.scrollIntoView()</code></a> にはあるが、CSSOM View Module の <a href=https://drafts.csswg.org/cssom-view/#extension-to-the-element-interface>6. Extensions to the Element Interface</a> にはないようで、最終的にどうなるかは不明。全て CSS の <a href=https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior><code>scroll-behavior</code></a> に吸収される可能性も大いにある（この辺りの動向を突き止められていないので誰か知っていたら教えてください）。</p><h2 id=scrollbehavior-のポリフィル>ScrollBehavior のポリフィル</h2><p>この ScrollBehavior のポリフィルが <a href=http://iamdustan.com/smoothscroll/>smooth scroll polyfill</a> で、これで <code>scrollIntoView({ behavior: 'smooth' })</code> とすると、その要素まで滑らかにスクロールしてくれる。</p><p>このポリフィルがよくできていて良いのだが、<code>polyfill()</code> 関数のはじめに次のような処理をしている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>polyfill</span>() {
+</code></pre></div><p>な感じで使う。<code>behavior</code> と <code>delay</code> を除き、React Router の <code>&lt;Link></code> コンポーネントを指定できると思ってもらえば良い。</p>
+<h2 id=elementprototypescrollintoview-と-scrollbehavior><code>Element.prototype.scrollIntoView()</code> と ScrollBehavior</h2>
+<p>内部的に <code>#bar</code> へは <code>document.getElementById('bar').scrollIntoView()</code> で移動しているが、この <code>Element.prototype.scrollIntoView()</code> 実行時などのスクロールの挙動を制御する仕様、 <a href=https://drafts.csswg.org/cssom-view/#extensions-to-the-window-interface>ScrollBehavior</a> が新たに策定されつつある。ScrollBehavior の適用先としては MDN の <a href=https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView><code>Element.prototype.scrollIntoView()</code></a> にはあるが、CSSOM View Module の <a href=https://drafts.csswg.org/cssom-view/#extension-to-the-element-interface>6. Extensions to the Element Interface</a> にはないようで、最終的にどうなるかは不明。全て CSS の <a href=https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior><code>scroll-behavior</code></a> に吸収される可能性も大いにある（この辺りの動向を突き止められていないので誰か知っていたら教えてください）。</p>
+<h2 id=scrollbehavior-のポリフィル>ScrollBehavior のポリフィル</h2>
+<p>この ScrollBehavior のポリフィルが <a href=http://iamdustan.com/smoothscroll/>smooth scroll polyfill</a> で、これで <code>scrollIntoView({ behavior: 'smooth' })</code> とすると、その要素まで滑らかにスクロールしてくれる。</p>
+<p>このポリフィルがよくできていて良いのだが、<code>polyfill()</code> 関数のはじめに次のような処理をしている。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>polyfill</span>() {
   <span style=color:#66d9ef>if</span> (<span style=color:#e6db74>&#39;scrollBehavior&#39;</span> <span style=color:#66d9ef>in</span> document.<span style=color:#a6e22e>documentElement</span>.<span style=color:#a6e22e>style</span>) {
     <span style=color:#66d9ef>return</span>;
   }
 
   <span style=color:#75715e>// ポリフィル処理
 </span><span style=color:#75715e></span>}
-</code></pre></div><p>Chrome では <a href=https://developer.mozilla.org/ja/docs/Web/API/CSSStyleDeclaration>CSSStyleDeclaration</a> に既に <code>scrollBehavior</code> が存在している状態なので、このポリフィルの恩恵を受けることができない。これは <code>delete</code> などで消すことも不能なので仕方なく、ネイティブ実装をポリフィルで上書きできるように <a href=https://github.com/iamdustan/smoothscroll/pull/69><code>override()</code> 関数を追加してプルリクエストを出した</a>。他の PR の状態を見るにあまり活発ではないようなので、しばらく <a href=https://github.com/1000ch/smoothscroll>fork バージョン</a>を使おうと思う。</p><h2 id=ハッシュリンクでスムーススクロール>ハッシュリンクでスムーススクロール</h2><p><code>&lt;HashLink></code> とポリフィル、諸々合わせると<a href=https://1000ch.github.io/react-router-hashlink-demo/>ハッシュリンクへのスムーススクロールが実現できた</a>。まぁここまでせずともユーティリティ関数を作って凌げそうではあるが、なるべく Web 標準に準拠した形で実装したい気持ち。</p><p><code>&lt;HashLink></code> コンポーネントに <code>delay</code> プロパティを用意したのは、ページ遷移を含むハッシュリンクの場合に、ページ遷移直後にすぐさまスムーススクロールするより、ファーストビューを視認させた上でスクロールを始めたいケースがある気がしたから。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2freact-router-hashlink.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2freact-router-hashlink.html&text=react-router%e3%81%ae%e3%83%8f%e3%83%83%e3%82%b7%e3%83%a5%e3%83%aa%e3%83%b3%e3%82%af%e3%81%a8%e3%82%b9%e3%83%a0%e3%83%bc%e3%82%b9%e3%82%b9%e3%82%af%e3%83%ad%e3%83%bc%e3%83%ab" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2017/markdown-headings.html>👈 Markdownの見出しを抽出するツールを作った</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2017/visualize-audio-input.html>ブラウザで音声入力の可視化と録音 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p>Chrome では <a href=https://developer.mozilla.org/ja/docs/Web/API/CSSStyleDeclaration>CSSStyleDeclaration</a> に既に <code>scrollBehavior</code> が存在している状態なので、このポリフィルの恩恵を受けることができない。これは <code>delete</code> などで消すことも不能なので仕方なく、ネイティブ実装をポリフィルで上書きできるように <a href=https://github.com/iamdustan/smoothscroll/pull/69><code>override()</code> 関数を追加してプルリクエストを出した</a>。他の PR の状態を見るにあまり活発ではないようなので、しばらく <a href=https://github.com/1000ch/smoothscroll>fork バージョン</a>を使おうと思う。</p>
+<h2 id=ハッシュリンクでスムーススクロール>ハッシュリンクでスムーススクロール</h2>
+<p><code>&lt;HashLink></code> とポリフィル、諸々合わせると<a href=https://1000ch.github.io/react-router-hashlink-demo/>ハッシュリンクへのスムーススクロールが実現できた</a>。まぁここまでせずともユーティリティ関数を作って凌げそうではあるが、なるべく Web 標準に準拠した形で実装したい気持ち。</p>
+<p><code>&lt;HashLink></code> コンポーネントに <code>delay</code> プロパティを用意したのは、ページ遷移を含むハッシュリンクの場合に、ページ遷移直後にすぐさまスムーススクロールするより、ファーストビューを視認させた上でスクロールを始めたいケースがある気がしたから。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2freact-router-hashlink.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2freact-router-hashlink.html&text=react-router%e3%81%ae%e3%83%8f%e3%83%83%e3%82%b7%e3%83%a5%e3%83%aa%e3%83%b3%e3%82%af%e3%81%a8%e3%82%b9%e3%83%a0%e3%83%bc%e3%82%b9%e3%82%b9%e3%82%af%e3%83%ad%e3%83%bc%e3%83%ab" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2017/markdown-headings.html>👈 Markdownの見出しを抽出するツールを作った</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2017/visualize-audio-input.html>ブラウザで音声入力の可視化と録音 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -39,4 +163,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>

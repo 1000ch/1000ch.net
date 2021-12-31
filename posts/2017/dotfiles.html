@@ -1,11 +1,78 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ghqとpecoを使ったリポジトリの管理またはコマンドラインの話 - EagleLand</title><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/font.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono"><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="ghqとpecoを使ったリポジトリの管理またはコマンドラインの話 ghqとpecoを使ったプロジェクト管理が便利なのは真新しくないが、コマンドラインを見られて質問されたこともあり、自分の運用方法などを記しておく。
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>ghqとpecoを使ったリポジトリの管理またはコマンドラインの話 - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/font.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="ghqとpecoを使ったリポジトリの管理またはコマンドラインの話 ghqとpecoを使ったプロジェクト管理が便利なのは真新しくないが、コマンドラインを見られて質問されたこともあり、自分の運用方法などを記しておく。
  ghq: リモートリポジトリのローカルクローンをシンプルに管理する - 詩と創作・思索のひろば peco、ghq、gh-openの組み合わせが捗る - Webtech Walker  ghqを使ってgitプロジェクトを管理する motemen/ghq はクローンした git リポジトリを管理する Go 製のコマンドラインツール。
 # Homebrewでghqをインストールする $ brew install ghq # リポジトリをクローン $ ghq get git@github.com:1000ch/grd.git $ ghq get 1000ch/grd # ghqでクローンしたリポジトリのリスト表示 $ ghq list -p 他にも機能はあるが、リポジトリのクローンやリスト表示を、カレントディレクトリを選ばずに実行できるだけでもありがたいツール。
 クローン先はデフォルトで ~/.ghq だが、 .gitconfig の [ghq] で指定できる。なので、 ~/dev にリポジトリをクローンしているのであれば git config --global ghq.root ~/dev を実行すればそのまま移行できるし、今の Go 環境をシームレスに使いたければ $GOPATH/src でも良さそう。
-[ghq] root = ~/dev ghqをpecoと連携する peco/peco は入力をインタラクティブにフィルタリングするツール。同種のツールで Python 製の mooz/percol があるが、peco は Go 製なので単一バイナリで動いてくれるのがありがたい。"><meta property="og:image" content="https://1000ch.net/img/posts/2017/dotfiles/ghq-peco.gif"><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/dotfiles.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ghqとpecoを使ったリポジトリの管理またはコマンドラインの話"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/dotfiles.html"><meta name=twitter:title content="ghqとpecoを使ったリポジトリの管理またはコマンドラインの話"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-49530352-1','1000ch.net');ga('send','pageview');</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a></div><div class=Header__MenuItem><img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a></div><div class=Header__MenuItem><img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a></div></nav></header><main class=Main><span class="Label Label--gray pull-left">2017.05.23</span><h1 id=ghqとpecoを使ったリポジトリの管理またはコマンドラインの話>ghqとpecoを使ったリポジトリの管理またはコマンドラインの話</h1><p>ghqとpecoを使ったプロジェクト管理が便利なのは真新しくないが、コマンドラインを見られて質問されたこともあり、自分の運用方法などを記しておく。</p><ul><li><a href=http://motemen.hatenablog.com/entry/2014/06/01/introducing-ghq>ghq: リモートリポジトリのローカルクローンをシンプルに管理する - 詩と創作・思索のひろば</a></li><li><a href=http://webtech-walker.com/archive/2014/06/peco-ghq-gh-open.html>peco、ghq、gh-openの組み合わせが捗る - Webtech Walker</a></li></ul><h2 id=ghqを使ってgitプロジェクトを管理する>ghqを使ってgitプロジェクトを管理する</h2><p><a href=https://github.com/motemen/ghq>motemen/ghq</a> はクローンした git リポジトリを管理する Go 製のコマンドラインツール。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Homebrewでghqをインストールする</span>
+[ghq] root = ~/dev ghqをpecoと連携する peco/peco は入力をインタラクティブにフィルタリングするツール。同種のツールで Python 製の mooz/percol があるが、peco は Go 製なので単一バイナリで動いてくれるのがありがたい。">
+<meta property="og:image" content="https://1000ch.net/img/posts/2017/dotfiles/ghq-peco.gif">
+<meta name=twitter:card content="summary_large_image">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2017/dotfiles.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="ghqとpecoを使ったリポジトリの管理またはコマンドラインの話">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2017/dotfiles.html">
+<meta name=twitter:title content="ghqとpecoを使ったリポジトリの管理またはコマンドラインの話">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<img src=/img/rss.svg alt>
+<a href=/rss.xml>RSS</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/heart.svg alt>
+<a href=https://shogosensui.com>Activity</a>
+</div>
+<div class=Header__MenuItem>
+<img src=/img/facebook.svg alt>
+<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2017.05.23</span>
+<h1 id=ghqとpecoを使ったリポジトリの管理またはコマンドラインの話>ghqとpecoを使ったリポジトリの管理またはコマンドラインの話</h1>
+<p>ghqとpecoを使ったプロジェクト管理が便利なのは真新しくないが、コマンドラインを見られて質問されたこともあり、自分の運用方法などを記しておく。</p>
+<ul>
+<li><a href=http://motemen.hatenablog.com/entry/2014/06/01/introducing-ghq>ghq: リモートリポジトリのローカルクローンをシンプルに管理する - 詩と創作・思索のひろば</a></li>
+<li><a href=http://webtech-walker.com/archive/2014/06/peco-ghq-gh-open.html>peco、ghq、gh-openの組み合わせが捗る - Webtech Walker</a></li>
+</ul>
+<h2 id=ghqを使ってgitプロジェクトを管理する>ghqを使ってgitプロジェクトを管理する</h2>
+<p><a href=https://github.com/motemen/ghq>motemen/ghq</a> はクローンした git リポジトリを管理する Go 製のコマンドラインツール。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Homebrewでghqをインストールする</span>
 $ brew install ghq
 
 <span style=color:#75715e># リポジトリをクローン</span>
@@ -14,14 +81,25 @@ $ ghq get 1000ch/grd
 
 <span style=color:#75715e># ghqでクローンしたリポジトリのリスト表示</span>
 $ ghq list -p
-</code></pre></div><p>他にも機能はあるが、リポジトリのクローンやリスト表示を、カレントディレクトリを選ばずに実行できるだけでもありがたいツール。</p><p>クローン先はデフォルトで <code>~/.ghq</code> だが、 <code>.gitconfig</code> の <code>[ghq]</code> で指定できる。なので、 <code>~/dev</code> にリポジトリをクローンしているのであれば <code>git config --global ghq.root ~/dev</code> を実行すればそのまま移行できるし、今の Go 環境をシームレスに使いたければ <code>$GOPATH/src</code> でも良さそう。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#66d9ef>[ghq]</span>
+</code></pre></div><p>他にも機能はあるが、リポジトリのクローンやリスト表示を、カレントディレクトリを選ばずに実行できるだけでもありがたいツール。</p>
+<p>クローン先はデフォルトで <code>~/.ghq</code> だが、 <code>.gitconfig</code> の <code>[ghq]</code> で指定できる。なので、 <code>~/dev</code> にリポジトリをクローンしているのであれば <code>git config --global ghq.root ~/dev</code> を実行すればそのまま移行できるし、今の Go 環境をシームレスに使いたければ <code>$GOPATH/src</code> でも良さそう。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#66d9ef>[ghq]</span>
   <span style=color:#a6e22e>root</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>~/dev</span>
-</code></pre></div><h2 id=ghqをpecoと連携する>ghqをpecoと連携する</h2><p><a href=https://github.com/peco/peco>peco/peco</a> は入力をインタラクティブにフィルタリングするツール。同種のツールで Python 製の <a href=https://github.com/mooz/percol>mooz/percol</a> があるが、peco は Go 製なので単一バイナリで動いてくれるのがありがたい。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Homebrewでpecoをインストールする</span>
+</code></pre></div><h2 id=ghqをpecoと連携する>ghqをpecoと連携する</h2>
+<p><a href=https://github.com/peco/peco>peco/peco</a> は入力をインタラクティブにフィルタリングするツール。同種のツールで Python 製の <a href=https://github.com/mooz/percol>mooz/percol</a> があるが、peco は Go 製なので単一バイナリで動いてくれるのがありがたい。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Homebrewでpecoをインストールする</span>
 $ brew install peco
-</code></pre></div><p><code>ghq list -p</code> で ghq で管理している git リポジトリのパスがリスト化されるが、 これを peco に <code>ghq list -p | peco</code> のようにパイプ渡せば入力値に応じてリポジトリを雑に絞れる。</p><p><img src=/img/posts/2017/dotfiles/ghq-peco.gif alt></p><p>これを利用して <code>cd $(ghq list -p | peco)</code> のようにすれば、ghq で管理している git リポジトリへ、カレントディレクトリに関わらず移動できる。</p><p>peco は超汎用的なツールで、ghq との連携以外にも便利な場面が山ほどあるので、<a href=http://b.hatena.ne.jp/lestrrat/peco/>その他の活用方法</a>もどうぞ。</p><h2 id=aliasやfunctionで更に便利に>aliasやfunctionで更に便利に</h2><p>毎回 <code>ghq list -p | peco</code> を打つのは面倒なので、当然エイリアスを作成する。ここまでを応用し、更に git リポジトリの Web ページを開く <a href=https://github.com/typester/gh-open><code>typester/gh-open</code></a> と連携すると次のようになる。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>alias repos<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;ghq list -p | peco&#39;</span>
+</code></pre></div><p><code>ghq list -p</code> で ghq で管理している git リポジトリのパスがリスト化されるが、 これを peco に <code>ghq list -p | peco</code> のようにパイプ渡せば入力値に応じてリポジトリを雑に絞れる。</p>
+<p><img src=/img/posts/2017/dotfiles/ghq-peco.gif alt></p>
+<p>これを利用して <code>cd $(ghq list -p | peco)</code> のようにすれば、ghq で管理している git リポジトリへ、カレントディレクトリに関わらず移動できる。</p>
+<p>peco は超汎用的なツールで、ghq との連携以外にも便利な場面が山ほどあるので、<a href=http://b.hatena.ne.jp/lestrrat/peco/>その他の活用方法</a>もどうぞ。</p>
+<h2 id=aliasやfunctionで更に便利に>aliasやfunctionで更に便利に</h2>
+<p>毎回 <code>ghq list -p | peco</code> を打つのは面倒なので、当然エイリアスを作成する。ここまでを応用し、更に git リポジトリの Web ページを開く <a href=https://github.com/typester/gh-open><code>typester/gh-open</code></a> と連携すると次のようになる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>alias repos<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;ghq list -p | peco&#39;</span>
 alias repo<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;cd $(repos)&#39;</span>
 alias github<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;gh-open $(repos)&#39;</span>
-</code></pre></div><p>また、各種エディタの起動もコマンドラインからやりたい。自分の場合は <code>sublime</code> コマンドで、<a href=https://www.sublimetext.com/>Sublime Text</a> を起動する設定をしている。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>function</span> get_target_repo<span style=color:#f92672>(</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</code></pre></div><p>また、各種エディタの起動もコマンドラインからやりたい。自分の場合は <code>sublime</code> コマンドで、<a href=https://www.sublimetext.com/>Sublime Text</a> を起動する設定をしている。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>function</span> get_target_repo<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
   <span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span> $# -eq <span style=color:#ae81ff>1</span> <span style=color:#f92672>]</span>; <span style=color:#66d9ef>then</span>
     echo $1
   <span style=color:#66d9ef>else</span>
@@ -29,13 +107,66 @@ alias github<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;gh-
   <span style=color:#66d9ef>fi</span>
 <span style=color:#f92672>}</span>
 
-<span style=color:#66d9ef>function</span> sublime<span style=color:#f92672>(</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style=color:#66d9ef>function</span> sublime<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
   open -a Sublime<span style=color:#ae81ff>\ </span>Text <span style=color:#66d9ef>$(</span>get_target_repo $1<span style=color:#66d9ef>)</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><p>これで <code>sublime</code> だけを打ち込めば、ghq で一覧されるリポジトリを peco で絞りつつ、選択したリポジトリを Sublime Text で開くし、 <code>sublime .</code> を実行すればカレントディレクトリを Sublime Text で開く。</p><p>捗る。</p><aside class=Share><div class=Share__Item><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fdotfiles.html" title="Share on Facebook" target=_blank><img src=/img/facebook.svg></a></div><div class=Share__Item><a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fdotfiles.html&text=ghq%e3%81%a8peco%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%ae%e7%ae%a1%e7%90%86%e3%81%be%e3%81%9f%e3%81%af%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%83%a9%e3%82%a4%e3%83%b3%e3%81%ae%e8%a9%b1" title="Share on Twitter" target=_blank><img src=/img/twitter.svg></a></div></aside><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2017/openfresh-viewport-observer.html>👈 Intersection Observerを使った要素の出現を検出するReactコンポーネント</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2017/speedindex-for-web-performance.html>Speed IndexというWebパフォーマンスの指標 👉</a></div></nav></main><aside class=Aside><h1>Author</h1><div class=Media><picture>
-<source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></aside><footer class=Footer><div class=Banner><div class=Banner__Item><a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank><img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28></a></div><div class=Banner__Item><form action=https://duckduckgo.com/ role=search><input name=sites type=hidden value=1000ch.net>
+</code></pre></div><p>これで <code>sublime</code> だけを打ち込めば、ghq で一覧されるリポジトリを peco で絞りつつ、選択したリポジトリを Sublime Text で開くし、 <code>sublime .</code> を実行すればカレントディレクトリを Sublime Text で開く。</p>
+<p>捗る。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fdotfiles.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fdotfiles.html&text=ghq%e3%81%a8peco%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%81%ae%e7%ae%a1%e7%90%86%e3%81%be%e3%81%9f%e3%81%af%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%83%a9%e3%82%a4%e3%83%b3%e3%81%ae%e8%a9%b1" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2017/openfresh-viewport-observer.html>👈 Intersection Observerを使った要素の出現を検出するReactコンポーネント</a>
+</div>
+<div class="Pager__Item Pager__Item--right">
+<a href=/posts/2017/speedindex-for-web-performance.html>Speed IndexというWebパフォーマンスの指標 👉</a>
+</div>
+</nav>
+</main>
+<aside class=Aside>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</aside>
+<footer class=Footer>
+<div class=Banner>
+<div class=Banner__Item>
+<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
+<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
+</a>
+</div>
+<div class=Banner__Item>
+<form action=https://duckduckgo.com/ role=search>
+<input name=sites type=hidden value=1000ch.net>
 <input name=q type=search>
-<input type=submit value=Search></form></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script><script type=module>
+<input type=submit value=Search>
+</form>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
@@ -49,4 +180,6 @@ document.querySelectorAll('pre code').forEach(block => {
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('/sw.js');
 }
-</script></body></html>
+</script>
+</body>
+</html>
