@@ -29,20 +29,20 @@ export default class AffiliateLink extends LitElement {
       .AffiliateLink {
         padding: 16px;
         border: 1px solid #ddd;
+        font-size: 14px;
+      }
+
+      .AffiliateLink::after {
+        content: "";
+        display: table;
+        clear: both;
       }
 
       img {
         float: left;
         margin-right: 16px;
-        margin-bottom: 16px;
         width: 120px;
         object-fit: cover;
-      }
-
-      img::after {
-        content: "";
-        display: table;
-        clear: both;
       }
 
       h3 {
