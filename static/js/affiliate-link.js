@@ -2,7 +2,7 @@ import {
   LitElement,
   html,
   css
-} from 'https://unpkg.com/lit-element/lit-element.js?module';
+} from 'https://unpkg.com/lit@2.0.2/index.js?module';
 
 export default class AffiliateLink extends LitElement {
   static get properties() {
@@ -27,15 +27,23 @@ export default class AffiliateLink extends LitElement {
       }
 
       .AffiliateLink {
-        display: flex;
-        align-items: flex-start;
         padding: 16px;
         border: 1px solid #ddd;
+        font-size: 14px;
+      }
+
+      .AffiliateLink::after {
+        content: "";
+        display: table;
+        clear: both;
       }
 
       img {
-        margin-right: 16px;
         width: 120px;
+        margin-right: 16px;
+        padding: 8px;
+        float: left;
+        background-color: #fff;
         object-fit: cover;
       }
 
@@ -44,11 +52,6 @@ export default class AffiliateLink extends LitElement {
         margin-bottom: 8px;
         font-size: 20px;
       }
-
-      p {
-        margin: 0;
-        font-size: 14px;
-      }
 `;
   }
 
@@ -56,10 +59,8 @@ export default class AffiliateLink extends LitElement {
     return html`
       <div class="AffiliateLink">
         <img alt="" src="${this.src}">
-        <div>
-          <h3><a href="${this.href}?tag=${this.tag}">${this.title}</a></h3>
-          <p><slot /></p>
-        </div>
+        <h3><a href="${this.href}?tag=${this.tag}">${this.title}</a></h3>
+        <slot />
       </div>
     `;
   }
