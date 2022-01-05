@@ -41,10 +41,7 @@ constantly, consistently or continuously. pic.twitter.com/dpA0YsN27A
 チームの状態や抱えている課題も組織によって異なり、本業では向き合えない多種多様な問題に取り組めていることはとても貴重な経験である。ありがたいことに、2021 年も新しい組織に関われる予定なので、うまく時間配分しつつ貢献していきたい。露出を目的に技術顧問をするわけではないが、顧問先に還元することを目的に、組織でどういったことに取り組んでいるかをアウトプットする機会も作りたい。
 #strobofm の運営 #strobofm は話したい人と話したいことを話すポッドキャストで、こちらも細々と継続している。あまり宣伝をしていないので知らない人も多そうだが、リスナーの数もじわじわと増えているので、暇つぶしには使ってもらえているのかもしれない。話題にこれと言って縛りはないが、時々の興味関心とそれに対する知識がスナップショットとして吐き出されていて、最近はコロナウイルス・英語・資産運用あたりのネタに寄っている。出演してくれるゲストの皆さん、いつもありがとうございます。
 運営費用のカバーだけではなく、ゲストに何らかの形でお返しをするためにスポンサーを募っている。今のところ月払いのプランがあるが、割引ありの年払いができるような仕組みを Patreon が準備中のようで、これによって月 $1 で年 $12 のところを年払いだと $10 に割引されるといったオプションを用意できそう。</description></item><item><title>2020年に買って良かったもの</title><link>https://1000ch.net/posts/2020/bought-in-2020.html</link><pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2020/bought-in-2020.html</guid><description>2020年に買って良かったもの 今年も書きます。
-2015年に買って良かったもの 2016年に買って良かったもの 2017年に買って良かったもの 2018年に買って良かったもの 2019年に買って良かったもの Google Pixel 5 いつでもベストな写真を撮影できるカメラ。昼でも夜でも、あらゆる瞬間を鮮やかな写真に。ハリウッド映画のような効果を演出したクリップも撮影できます。
-ワイヤレス充電器にもなるスマートフォン。ワイヤレス充電対応で、長時間フル充電。スーパー バッテリー セーバーをオンにすると、電池が必要なときに最長 48 時間使用できるようになります。
-セキュリティの脅威からも水滴からも保護します。防水仕様のメタルボディと超高機能セキュリティ チップでデータとデバイスを保護します。
-Google アシスタントで外出先でも便利に。外出先でも頼れるアシスタント。Google アシスタントに何でも聞いてください。
+2015年に買って良かったもの 2016年に買って良かったもの 2017年に買って良かったもの 2018年に買って良かったもの 2019年に買って良かったもの Google Pixel 5 いつでもベストな写真を撮影できるカメラ。昼でも夜でも、あらゆる瞬間を鮮やかな写真に。ハリウッド映画のような効果を演出したクリップも撮影できます。 ワイヤレス充電器にもなるスマートフォン。ワイヤレス充電対応で、長時間フル充電。スーパー バッテリー セーバーをオンにすると、電池が必要なときに最長 48 時間使用できるようになります。 セキュリティの脅威からも水滴からも保護します。防水仕様のメタルボディと超高機能セキュリティ チップでデータとデバイスを保護します。 Google アシスタントで外出先でも便利に。外出先でも頼れるアシスタント。Google アシスタントに何でも聞いてください。
 Pixel 2 と Pixel 3 を 2018 年に、Pixel 4 を 2020 年に購入していたが、Pixel 5 も今年の 10 月に購入した。Pixel 3 は NFC に対応していたが FeLiCa に対応しておらず iPhone 7 に比べたときの劣化ポイントだった。また、Pixel 4 は FeLiCa に対応したものの指紋認証から顔認証に変更され、コロナ禍でマスクを着けているとかなり不便だった。
 そして今年買った Pixel 5 は指紋認証の復活と電池容量の増加という、いわゆる順当な進化で特別何かが目立っていたわけではないが、堂々のベストバイだったと思っている。5G にも対応しているので、日本の通信キャリアが 5G の普及を進めてくれるのを待っている。その時は Pixel 6 が発売されているかもしれないが。
 TP-Link Wi-Fi 無線LAN ルーター 11ac AC2600 [特徴] Archer A10にUSB3.</description></item><item><title>template 要素の shadowroot 属性による宣言的な Shadow DOM</title><link>https://1000ch.net/posts/2020/declarative-shadow-dom.html</link><pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2020/declarative-shadow-dom.html</guid><description>template 要素の shadowroot 属性による宣言的な Shadow DOM Shadow DOM は、代替要素を除いた任意の HTML 要素を DOM API で参照して attachShadow({ ... }) メソッドを呼び出すことで命令的に生成できる。これを新たに &amp;lt;template&amp;gt; 要素の shadowroot 属性によって、対象の HTML 要素の Shadow DOM を宣言的に生やせるようになる仕様が提案されている。既に Chrome 85 で試験的に実装されており、フラグ付きで利用できるようになっている。この記事は自分用にまとめたメモ。
@@ -128,8 +125,7 @@ Tenswall 珪藻土速乾バスマットは太古の植物性プランクトン(�
 番手・枚数：#240(12枚)。サイズ：228mm × 93mm。その他：ハンドサンダー・電動サンダーにも取付け可能です。
 ヤスリの目の細かさについては色んな説があるが、今回は240番で試した。要するに、表面を削れれば良い。足で踏んだ感触も、滑らかである。お手入れの頻度は、使用頻度に依るところが大きそうだが、半年〜1年に1度磨けば十分かなという印象。磨くのが面倒という説はあるが、定期的にバスマットを洗って乾かすよりは確実に手間が小さい。
 Qi ワイヤレス急速充電器 Anker PowerWave 7.5 Stand 同僚が iPhone をワイヤレスで充電しており、試しに使わせてもらったら 「これは良い！」 となり、購入した。これを体感してしまうと「ケーブルを抜き差しすればいいじゃん」とはならない。思った以上に無線充電が良すぎて、気づいたらオフィス用と自宅用の 2 つ買っていた。
-ワイヤレス充電はこれひとつで：最新のiPhone(最大7.5W)やSamsung製スマートフォン主要モデル(最大10W)を含む、ワイヤレス充電に対応するあらゆる機器と互換性があります(*急速充電に対応するには、別売りのQC3.0対応充電器を合わせてご利用ください)。
-ケースはそのままで：PowerWaveは、ほとんどのスマホケースをつけたままでスマートフォンを充電することが可能です(※5mm以上の厚みがあるケースや金属製や磁気を帯びたケースおよびクレジットカードは、充電前に取り外してください)。
+ワイヤレス充電はこれひとつで：最新のiPhone(最大7.5W)やSamsung製スマートフォン主要モデル(最大10W)を含む、ワイヤレス充電に対応するあらゆる機器と互換性があります(*急速充電に対応するには、別売りのQC3.0対応充電器を合わせてご利用ください)。 ケースはそのままで：PowerWaveは、ほとんどのスマホケースをつけたままでスマートフォンを充電することが可能です(※5mm以上の厚みがあるケースや金属製や磁気を帯びたケースおよびクレジットカードは、充電前に取り外してください)。
 電子機器周り、特に給電系で安心感がある気がする Anker を選んだ。Mac やらヘッドホンやら、あらゆる電池機器が無線でできれば良いのに、と思う。
 圧倒的な充電速度：Qualcomm Quick Charge 3.0対応ポートを搭載。また、Anker独自技術PowerIQとVoltageBoostを搭載し、あらゆるUSB機器にフルスピード充電が可能です。十分な4ポート：4ポートで合計43.5Wの出力が可能。家族全員分のスマホやタブレットを同時に急速充電可能です。また100-240Vの入力に対応しているので、世界中でご利用いただけます。海外旅行にも最適です。
 Teslong のスコープ付き耳かき いつぞや Twitter のタイムラインに流れてきて、安かったので面白半分で買ってみた。簡単に言うと USB Type-C の耳掻き付きカメラで、耳の中をディスプレイやスマートフォンで見ながら耳掃除ができるというものである。自分の耳の中は見えないし、仮に他人の耳だとしても穴の中は見にくい。その耳の中をライト付きスコープで撮影しながら耳掻きできるのは、なんとも言い難い。ピンポイントで狙い撃ちできる。
@@ -278,10 +274,7 @@ FRESH! Web パフォーマンス改善 〜クライアントサイド編〜 「�
 金谷 治(著)
 孫子は色んな出版社から出版されているが、岩波文庫の本書は1篇毎に「漢文（白文）」「書き下し文」「日本語訳」の三段構成になっている。自分は日本語訳しか読まなかった。</description></item><item><title>Steinbergのオーディオインターフェース</title><link>https://1000ch.net/posts/2017/steinberg-audio-interface.html</link><pubDate>Wed, 27 Dec 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/steinberg-audio-interface.html</guid><description>Steinberg のオーディオインターフェース 今年から細々とはじめたポッドキャストの環境を、少しずつ整え始めた。
 マイクについては Audio-Technica ATR2100-USB ダイナミック USB/XLR マイクを購入して使っていた。音質はかなりクリアで流石マイクといったところだが、感度が低くパソコンにインプットされたデータはソフトウェアによる増幅が必要で、そのためホワイトノイズが入りがちなのが気になっていた。
-Handheld dynamic microphone with USB digital output and XLR analog output
-USB output connects to your computer for digital recording, while the XLR output connects with your sound system conventional microphone input for use in live performance
-Smooth, extended frequency response ideally suited for podcasting, home studio recording, field recording, voiceover, and on-stage use
-Built-in headphone jack allows you to directly monitor your microphone output without audible delay</description></item><item><title>Fuglen Tokyoのテストロースト</title><link>https://1000ch.net/posts/2017/fuglen-tokyo-test-roast.html</link><pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/fuglen-tokyo-test-roast.html</guid><description>Fuglen Tokyoのテストロースト Coffee Advent Calendar 2017 の5日目の記事「コスパの良い豆を入手できるお店」で紹介されている、Fuglen Tokyo のテストローストの豆を購入した。
+Handheld dynamic microphone with USB digital output and XLR analog output. USB output connects to your computer for digital recording, while the XLR output connects with your sound system conventional microphone input for use in live performance. Smooth, extended frequency response ideally suited for podcasting, home studio recording, field recording, voiceover, and on-stage use. Built-in headphone jack allows you to directly monitor your microphone output without audible delay.</description></item><item><title>Fuglen Tokyoのテストロースト</title><link>https://1000ch.net/posts/2017/fuglen-tokyo-test-roast.html</link><pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/fuglen-tokyo-test-roast.html</guid><description>Fuglen Tokyoのテストロースト Coffee Advent Calendar 2017 の5日目の記事「コスパの良い豆を入手できるお店」で紹介されている、Fuglen Tokyo のテストローストの豆を購入した。
 パッケージ このコーヒーはテストローストです。店頭で販売するために最適な焙煎プロファイルであるとは言えませんが、スーパーマーケットやコンビニエンスストアのコーヒーに比べますと、品質は間違いなく高いものになります。価格はテストロースト価格とさせていただいております。オフィスなどのコーヒーとして、ぜひお試しください。
 ホンジュラスの豆だが、他の産地のテストローストがあるかどうかはわからない。
 豆 この前に飲んでいた某所で購入した豆が、焙煎方法のせいかベタベタしていてミル部分に引っかかって困っていたのだが、この豆はサラサラしている。
@@ -290,13 +283,9 @@ Nature Remo とは Nature Remo は家電をスマートフォンなどから操�
 Nature Remo は赤外線を発信できるようになっており、これによってエアコンやライトなどの赤外線リモコンで操作する家電を操作できる、という理屈である。Nature Remo はインターネットを通してアプリなどから操作できるので、家にいるときはもちろんのこと、外出中でも Nature Remo を操作し、家電の管理が可能である。赤外線で操作できるデバイスならなんでも良いので、抜群に汎用性が高い。
 Nature Remo でエアコンやライトを操作する 手始めにエアコンを Nature Remo から操作できるようにしてみる。といっても、もともと赤外線リモコンで操作する家電なので Nature Remo をセットアップし、エアコンまで赤外線が届く場所に配置すれば良い。あとは Nature Remo のアプリをインストールすれば使えるようになる。スマートフォンよりは使う頻度が低いせいか、よくリモコンを見失うので、使う必要がなくなるだけでも便利だったりする。
 あとは天井の照明を Nature Remo で操作できるようにしてみよう。もともと家に備え付けのライトはなく、無印良品のペンダントライトに LED 電球を付けて使っていた。
-口金：E26 演色指数(CRI)：80Ra以上
-入力電圧：AC100－240V　50/60HZ 入力電流：0.11A
-定格消費電力:13W　全光束：1100lm
-ビーム角：270°　色温度：6000K　サイズ：Φ95*138mm
+口金：E26 演色指数(CRI)：80Ra以上 入力電圧：AC100－240V　50/60HZ 入力電流：0.11A 定格消費電力:13W　全光束：1100lm ビーム角：270°　色温度：6000K　サイズ：Φ95*138mm
 そのため照明のオンオフを切り替えるには壁にあるスイッチを押すしかなかったのだが、これについては @horimislime に教えてもらった天井とペンダントライトの間に装着するリモコンスイッチを中継することで、まずは赤外線リモコンで操作できるようにした。
-サイズ:8.3×9.6×4.5cm
-本体重量(kg):0.115
+サイズ:8.3×9.6×4.5cm 本体重量(kg):0.115
 Nature Remo アプリの Control タブから+ボタンをクリックし、新たなコントロールを追加する Nature Remo 本体に向けて登録したいリモコンの操作を実行する プリセットとして登録されている場合は自動的に認識されるのでそれを利用する プリセットとして登録されていない場合は、それが何の操作なのかわかるような名前やアイコンを設定する これで Nature Remo アプリの Control タブに新しいコントロールが追加される。この時点で、追加したコントロールから家電を操作できるかどうか確認しておくと良い。</description></item><item><title>味噌卵麺の豆腐変更 at 中本渋谷店</title><link>https://1000ch.net/posts/2017/nakamoto.html</link><pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/nakamoto.html</guid><description>味噌卵麺の豆腐変更 at 中本渋谷店 蒙古タンメン中本 Advent Calendar 2017 12日目の記事です。
 ちなみに去年も 蒙古タンメン中本 2016 Advent Calendar 2016 に参加して味噌卵麺について書いた。今年も味噌卵麺ですが、最近ハマっている豆腐変更オプションについて。
 豆腐変更券は60円で、ラーメンメニューの麺を豆腐に変更できるオプションだ。冷し麺や半ラーメン系には適用できないが、普段味噌卵麺を食べている私にとっては非常に興味深いものだった。
@@ -340,10 +329,7 @@ Coffee Advent Calendar 2017 二日目の記事でした。</description></item><
 &amp;lt;link&amp;gt; 要素によるリクエストの credential が &amp;lt;script&amp;gt; 要素と一致している必要がある 事前に module なのかどうかわかっていないとパースに困る (v8 固有？) &amp;lt;link rel=&amp;quot;preload&amp;quot;&amp;gt; は単一リソースをロードする仕様である 保存先が preload cache ではなく module map である必要がある (chrome 固有？) &amp;lt;link rel=&amp;quot;preload&amp;quot;&amp;gt; の保存先は preload cache/HTTP cache である as=&amp;quot;&amp;quot; で対応しようとすると modulescript / moduleworker / modulesharedworker / moduleserviceworker と、様々な値を定義しなくてはならない つまり Normal Script と Module Script を区別する必要アリということだ。</description></item><item><title>髪の毛くるくるポイが革命的だった</title><link>https://1000ch.net/posts/2017/hair-kurukuru-poi.html</link><pubDate>Sat, 25 Nov 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/hair-kurukuru-poi.html</guid><description>髪の毛くるくるポイが革命的だった 風呂場の排水口についている備え付けの目皿では、色んな毛が絡みついて剥がし取りにくい上に、シャンプーやリンス、ボディソープの泡などが付着してとても汚い。
 髪の毛くるくるぽいはその代わりとなる目皿だが、工夫が施されており水流が渦を作る形状になっている。これによって、髪の毛が中心部の凹みに溜まるようになっており、石鹸カスなどは流れる仕組みだ。
 安かったので買ってみたところ、期待以上の働きをしてくれている。同じ問題にお悩みの人は、試してみてほしい。
-サイズ:(約)外径寸法 直径120mm 厚さ45mm
-本体重量:35g
-素材:本体/ポリプロピレン
-原産国:日本</description></item><item><title>レスポンシブなiframe</title><link>https://1000ch.net/posts/2017/responsive-iframe.html</link><pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/responsive-iframe.html</guid><description>レスポンシブなiframe 当ブログのようなシングルカラムレイアウトに、外部のコンテンツを &amp;lt;iframe&amp;gt; 要素で埋め込む場合、要素の横幅を 100% にして親要素の幅いっぱいに広げたいが、その時に縦横比を維持して縦幅を追従させる場合に工夫が必要である。
+サイズ:(約)外径寸法 直径120mm 厚さ45mm 本体重量:35g 素材:本体/ポリプロピレン 原産国:日本</description></item><item><title>レスポンシブなiframe</title><link>https://1000ch.net/posts/2017/responsive-iframe.html</link><pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/responsive-iframe.html</guid><description>レスポンシブなiframe 当ブログのようなシングルカラムレイアウトに、外部のコンテンツを &amp;lt;iframe&amp;gt; 要素で埋め込む場合、要素の横幅を 100% にして親要素の幅いっぱいに広げたいが、その時に縦横比を維持して縦幅を追従させる場合に工夫が必要である。
 デフォルトの埋め込みコード YouTube などの動画コンテンツを &amp;lt;iframe&amp;gt; 要素でエンベッドする場合、次のようなものが用意される。
 &amp;lt;iframe width=&amp;#34;560&amp;#34; height=&amp;#34;315&amp;#34; src=&amp;#34;https://www.youtube.com/embed/gTHAn-nkQnI&amp;#34; frameborder=&amp;#34;0&amp;#34; allowfullscreen&amp;gt; &amp;lt;/iframe&amp;gt; 横幅 560px、縦幅 315px で配置されるので、モバイルデバイスで閲覧すると横スクロールができてしまう。これを 16:9 の縦横比を維持しつつ横幅を親要素一杯まで広げたい。
 &amp;lt;iframe&amp;gt; 要素そのものをレスポンシブにするには「&amp;lt;iframe&amp;gt; 要素の横幅を親要素まで満たしたい」「親要素の縦幅がテキストなどに依存するので不定である」という制約がある。CSS の width と height プロパティに max-content を指定しても、&amp;lt;iframe&amp;gt; 要素のサイズが読み込みページに依存してしまう。
@@ -427,9 +413,7 @@ $ npm install --global markdown-headings 引数にファイルパスか glob を
 $ markdown-headings ./**/*.md &amp;gt; outlines.txt 標準入力も --stdin オプションで受け付けている。
 $ cat readme.md | markdown-headings --stdin &amp;gt; outlines.txt require()して使う プロジェクトローカルにインストールして require('markdown-headings') しても使える。
 const assert = require(&amp;#39;assert&amp;#39;); const markdownHeadings = require(&amp;#39;markdown-headings&amp;#39;); const markdown = ` # h1 あいうえお ## h2 かきくけこ`; assert.deepEqual(markdownHeadings(markdown), [ &amp;#39;# h1&amp;#39;, &amp;#39;## h2&amp;#39; ]);</description></item><item><title>cheero CLIP Lightがなかなか便利</title><link>https://1000ch.net/posts/2017/cheero-clip-light.html</link><pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/cheero-clip-light.html</guid><description>cheero CLIP Lightがなかなか便利 デスクが何かとケーブルで散乱しがちなので、まとめるべく試しに買ってみたら思いの外便利だった。
-【マグネットなので利便性◎】 ケーブルだけでなく、お札を挟んでマネークリップとして使ったり、メモをとめておくマグネットとしても利用できます。まさに使用方法は無限大！ぜひ皆様オリジナルの使い方を探してみてください。
-【お値打ち価格】 なんと発売当初より大人気の「cheero CLIP」5色セット分の価格よりお値打ちです！見た目も、お値段もさらに可愛くなってお買い得に◎見ていて明るい気持ちにさせてくれるポップな色合いは、プチギフトにピッタリ！友人や恋人、家族へのちょっとした贈り物としていかがでしょうか。
-【絡みやすいケーブルまとめに】 モバイルガジェット携行の悩み、ケーブルの煩わしさを解消。 「cheero CLIP Light」は、cheero のバッテリーシリーズ付属のケーブルをはじめ、お手持ちのイヤホンケーブル等をすっきりとまとめることができる万能クリップです。
+【マグネットなので利便性◎】 ケーブルだけでなく、お札を挟んでマネークリップとして使ったり、メモをとめておくマグネットとしても利用できます。まさに使用方法は無限大！ぜひ皆様オリジナルの使い方を探してみてください。 【お値打ち価格】 なんと発売当初より大人気の「cheero CLIP」5色セット分の価格よりお値打ちです！見た目も、お値段もさらに可愛くなってお買い得に◎見ていて明るい気持ちにさせてくれるポップな色合いは、プチギフトにピッタリ！友人や恋人、家族へのちょっとした贈り物としていかがでしょうか。 【絡みやすいケーブルまとめに】 モバイルガジェット携行の悩み、ケーブルの煩わしさを解消。 「cheero CLIP Light」は、cheero のバッテリーシリーズ付属のケーブルをはじめ、お手持ちのイヤホンケーブル等をすっきりとまとめることができる万能クリップです。
 ケーブル類を束ねるためのゴムバンド。両端にマグネットがついていて、それらがくっつく仕組み。このマグネットにある程度重さがあるので、束ねたケーブルがその場所で留まってくれる。もちろん冷蔵庫やら扉にもくっつくし、ケーブルを束ねるだけじゃなく汎用性が高い。</description></item><item><title>Speed IndexというWebパフォーマンスの指標</title><link>https://1000ch.net/posts/2017/speedindex-for-web-performance.html</link><pubDate>Mon, 29 May 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/speedindex-for-web-performance.html</guid><description>Speed IndexというWebパフォーマンスの指標 Web パフォーマンスの文脈で語られてきた DOMContentLoaded や load といった、いわゆるロード速度として括られてきた指標は、ユーザー体験とパフォーマンスの相関を俯瞰する上でいまや適切ではない。
 DOMContentLoaded は DOM ツリーと CSSOM ツリーを組み合わせたレンダーツリーの準備完了を指し、ひとつの Web クライアントサイドでできる最適化の指標だが、それでも描画状態はレンダーツリーの複雑さやスクリプト処理との兼ね合いに依存してくるので、如何に素早くページが表示されているか ということを正確に表現できない。
 load は HTML ドキュメントから参照する画像などのサブリソースのロードが全て完了した状態で、この頃にはページ全体が表示完了している状態に近い。しかし長大なコンテンツでは、ユーザーがページの最下部まで見る保証はなく（むしろ見ないのが大半）、より重要であろうファーストビューの表示が早かったか はわからない。
@@ -498,11 +482,7 @@ Apple で買った Incase のバックパックが壊れて以来、headporter �
 背面 使っていた HEADPORTER の 3way の不満点を挙げるとすれば、ショルダーストラップの根本が少し頼りなくリュック用途で使う時に若干の不安があった。cote&amp;amp;ciel のバックパックは、ショルダーストラップと本体部分の生地が繋がっており、生地自体もかなり丈夫なので安心して背負える。
 正面口を開けた状態 このバックパックを象徴するデザインとも言えるのが、この正面側の口だろう。開け口が大きく、ものを出し入れしやすい。容量もなかなか大きく、数泊の旅行であればこれで全て収まりそう。
 背面口を開けた状態 背中側の口を開けるとノート PC を収めるスペースがあり、ここに MacBook Pro 13inch を入れている。構造上ショルダーストラップの後ろなので、若干開けにくい。生地の硬さや新品ファスナーの開けにくさも相まっている気がするので、使いながら緩和されるのを待ちたい。
-外側収納：ファスナーポケット×2/固定バンド×2
-前面収納：PC収納ポケット×1/ファスナーポケット×1/仕切りありオープンポケット×1
-サイズ：縦×横×厚：約55×32×21.5cm/ショルダーストラップ：約53～88cm
-素材：エコヤーン/カーゴキャンバス
-カラー：Black Melange(27711)</description></item><item><title>JavaScriptで起こるメモリリークのパターン</title><link>https://1000ch.net/posts/2017/javascript-memory-leak.html</link><pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/javascript-memory-leak.html</guid><description>JavaScriptで起こるメモリリークのパターン 2014年1月25日に Frontrend in Fukuoka というイベントが開催された（もう3年前か…）。その時に Browser Computing Structure というタイトルで、ブラウザの仕組みやらスクリプト処理について発表している。
+外側収納：ファスナーポケット×2/固定バンド×2 前面収納：PC収納ポケット×1/ファスナーポケット×1/仕切りありオープンポケット×1 サイズ：縦×横×厚：約55×32×21.5cm/ショルダーストラップ：約53～88cm 素材：エコヤーン/カーゴキャンバス カラー：Black Melange(27711)</description></item><item><title>JavaScriptで起こるメモリリークのパターン</title><link>https://1000ch.net/posts/2017/javascript-memory-leak.html</link><pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/javascript-memory-leak.html</guid><description>JavaScriptで起こるメモリリークのパターン 2014年1月25日に Frontrend in Fukuoka というイベントが開催された（もう3年前か…）。その時に Browser Computing Structure というタイトルで、ブラウザの仕組みやらスクリプト処理について発表している。
 たまたま当時の資料を掘り起こす機会があったので、メモリリークのサンプルを直したついでにリークする JavaScript のパターンについて書き起こしてみる。サンプルは 1000ch/memory-leak に公開してあり、手順通り操作するとメモリリークを再現できるようになっている。
 GCで回収されないオブジェクト JavaScript はランタイム上で動的にメモリを確保する GC（ガベージコレクション）を採用しているので、JavaScript の書き手がメモリの確保・開放を意識することは少ない。しかしプログラムの書き方によっては、確保したメモリが GC によって開放されずにメモリが肥大化し、内部処理を圧迫していくことになる。
 開放されないメモリは、対象の変数への参照が残っている場合である。どこかで使われている変数であれば GC で回収してはまずいが、不要になった変数が回収されないのはプログラム上のミスと言える。
@@ -528,10 +508,7 @@ UberEATS未体験の人は 招待コード eats-uber1000ch を使うと1500円�
 一般参加枠300人募集のところ、既に500人突破していますが、参加可否は抽選なので今から応募してもチャンスがあります。もしよかったらご応募くださいませ👀</description></item><item><title>Apple Watchの充電クレードルを購入した</title><link>https://1000ch.net/posts/2017/apple-watch-cradle.html</link><pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/apple-watch-cradle.html</guid><description>Apple Watch の充電クレードルを購入した Apple Watch には磁気充電ケーブルが付属されているが、予備を兼ねて会社にも欲しいと思いクレードルを購入した。
 iVAPO Apple Watch / iPhone 充電スタンド iVAPO Apple Watch / iPhone 充電スタンドは iPhone と Apple Watch をセットできる充電スタンド。 iPhone も Apple Watch もケーブルから充電しているだけだと不格好…とまでは言わないまでも、格好良くはない。
 充電ケーブルは別売りだが、 iPhone や Apple Watch に付属してきた充電ケーブル群をまとめる目的も果たしている。アルミニウム製でスタイリッシュな見た目もなかなか気に入っている。
-2つのUSBポートを搭載し、家庭用コンセントから2台のスマートフォンを同時に充電可能です。
-スマートフォンを約2.5時間でフル充電できる急速充電タイプです。
-コンパクトなキューブ型で、急速充電できる高出力タイプとして国内最小クラスを実現しています。
-未使用時は電源プラグを折りたたんで充電器本体に収納可能です。
+2つのUSBポートを搭載し、家庭用コンセントから2台のスマートフォンを同時に充電可能です。 スマートフォンを約2.5時間でフル充電できる急速充電タイプです。 コンパクトなキューブ型で、急速充電できる高出力タイプとして国内最小クラスを実現しています。 未使用時は電源プラグを折りたたんで充電器本体に収納可能です。
 Poweradd Apple Watch専用磁気ワイヤレス充電ケーブル 充電スタンド付き Poweradd Apple Watch専用磁気ワイヤレス充電ケーブル 充電スタンド付きは、携帯用の充電ケーブル・会社に置いておく用のクレードルとして購入した。</description></item><item><title>Developer Summit 2017 に出演します</title><link>https://1000ch.net/posts/2017/developer-summit-2017.html</link><pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/developer-summit-2017.html</guid><description>Developer Summit 2017 に出演します デブサミこと Developer Summit 2017 に出演します。目黒雅叙園にて2月の16日・17日の2日間開催されますが、初日の Web セッションを鳥の人と担当します。
 出演します w/ @ahomu 初日の E 会場 の 10:00~10:45 です 🙏 / &amp;quot;【16-E-1】 Web フロントエンドの変遷とこれから（仮） | Developers Summit 2017&amp;quot; https://t.co/28ju9FImos
 &amp;mdash; 煎茶🍵 (@1000ch) 2017年1月5日 Web フロントエンドの変遷とこれから というタイトルで講演します。
