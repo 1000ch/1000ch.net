@@ -39,9 +39,11 @@ export default class AffiliateLink extends LitElement {
       }
 
       img {
-        float: left;
-        margin-right: 16px;
         width: 120px;
+        margin-right: 16px;
+        padding: 8px;
+        float: left;
+        background-color: #fff;
         object-fit: cover;
       }
 
