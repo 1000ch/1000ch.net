@@ -15,10 +15,10 @@ date: 2017-12-27
   href="https://www.amazon.co.jp/dp/B004QJOZS4/"
   tag="1000ch-22"
   title="Audio-Technica ATR2100-USB Cardioid Dynamic USB/XLR Microphone by Audio-Technica">
-  Handheld dynamic microphone with USB digital output and XLR analog output<br>
-  USB output connects to your computer for digital recording, while the XLR output connects with your sound system conventional microphone input for use in live performance<br>
-  Smooth, extended frequency response ideally suited for podcasting, home studio recording, field recording, voiceover, and on-stage use<br>
-  Built-in headphone jack allows you to directly monitor your microphone output without audible delay
+  Handheld dynamic microphone with USB digital output and XLR analog output.
+  USB output connects to your computer for digital recording, while the XLR output connects with your sound system conventional microphone input for use in live performance.
+  Smooth, extended frequency response ideally suited for podcasting, home studio recording, field recording, voiceover, and on-stage use.
+  Built-in headphone jack allows you to directly monitor your microphone output without audible delay.
 </affiliate-link>
 
 そこで、物は試しということで [Steinberg オーディオインターフェース UR22mkII](https://www.amazon.co.jp/dp/B017MVUAHM/?tag=1000ch-22) を購入してみた。オーディオインターフェースはマイクなどの入力機器に繋いで、音量などの調節を行う機器である。これを中継して調節した上でパソコンに入力するのだが、こんなにもクリアな音質のまま増幅できるものなのか、というレベルで改善された。
