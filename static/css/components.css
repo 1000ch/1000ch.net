@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   .Container {
-    color: var(--dark-color);
     background-color: var(--dark-bgcolor);
+    color: var(--dark-color);
   }
 }
 
@@ -45,11 +45,11 @@
 }
 
 .Header__Title {
+  margin: 1.6rem 0;
+  border-bottom: none;
   font-size: 4.8rem;
   font-weight: bold;
-  margin: 1.6rem 0;
   text-decoration: none;
-  border-bottom: none;
 }
 
 .Header__Menu {
@@ -57,9 +57,9 @@
 }
 
 .Header__MenuItem {
-  padding: 0.8rem;
   display: inline-flex;
   align-items: center;
+  padding: 0.8rem;
 }
 
 .Header__MenuItem img {
@@ -73,9 +73,9 @@
 }
 
 .Media__Figure {
-  margin-right: 16px;
-  min-width: 120px;
   width: 120px;
+  min-width: 120px;
+  margin-right: 16px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -85,9 +85,9 @@
 }
 
 .Media__Title {
-  margin: 0;
   display: flex;
   align-items: center;
+  margin: 0;
 }
 
 .Media__Title iframe {
@@ -96,8 +96,8 @@
 
 .Banner {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .Banner__Item {
