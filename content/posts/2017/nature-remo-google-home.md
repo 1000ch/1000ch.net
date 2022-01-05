@@ -29,9 +29,9 @@ Nature Remo は赤外線を発信できるようになっており、これに�
   href="https://www.amazon.co.jp/dp/B0716KGVFM/"
   tag="1000ch-22"
   title="ボンコシ　LED電球 E26口金 100W形相当 1100lm 昼光色相当(13W) 一般電球・ボール電球タイプ・95mm径">
-  口金：E26 演色指数(CRI)：80Ra以上<br>
-  入力電圧：AC100－240V　50/60HZ 入力電流：0.11A<br>
-  定格消費電力:13W　全光束：1100lm<br>
+  口金：E26 演色指数(CRI)：80Ra以上
+  入力電圧：AC100－240V　50/60HZ 入力電流：0.11A
+  定格消費電力:13W　全光束：1100lm
   ビーム角：270°　色温度：6000K　サイズ：Φ95*138mm
 </affiliate-link>
 
@@ -42,7 +42,7 @@ Nature Remo は赤外線を発信できるようになっており、これに�
   href="https://www.amazon.co.jp/dp/B01ABMGF1Y/"
   tag="1000ch-22"
   title="天井照明器具専用 リモコンスイッチ [品番]07-8250 OCR-04W">
-  サイズ:8.3×9.6×4.5cm<br>
+  サイズ:8.3×9.6×4.5cm
   本体重量(kg):0.115
 </affiliate-link>
 
