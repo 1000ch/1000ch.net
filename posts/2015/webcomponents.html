@@ -2,7 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Web Componentsに対する問題提起 - EagleLand</title>
+<title>Web Components に対する問題提起 - EagleLand</title>
 <link rel=icon href=/favicon.png>
 <link rel="shortcut icon" href=/favicon.png>
 <link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
@@ -20,21 +20,21 @@
 <link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
 <meta name=author content="Shogo Sensui">
 <meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="Web Componentsに対する問題提起 Web Componentsについては暫く理想を語ってきたけど、正直そうは上手くいかないと思っている。
- Web Componentsが変えるWeb開発の未来 Web Componentsを構成する4つの仕様 ー Web Components基礎編 Web Componentsでカルーセルギャラリーを作る ー Web Components実践編 Web Componentsを簡単・便利にするライブラリ「Polymer」を使いこなそう 基本的な要素・機能を提供するCore ElementsとMaterial Designを実現するPaper Elements  Web Componentsを司る4つの仕様、Custom Elements・Template・Shadow DOM・HTML Importsは、確かにCSSの弱点を解決してくれる。
-しかし、作られた・配布されているコンポーネントを使う側はともかく、Web Componentsの仕様を抑えてコンポーネントを構築していくのは、HTMLにCSSでスタイリングをしていく従来のやり方に比べて圧倒的に敷居が高いように感じる。CSSの言語としての簡易さと引き換えに顕在化してきた弱点にフォーカスされているからShadow DOMのありがたみがあるけど、Web Componentsによるコンポーネント作成が一般化するかどうかを想像するといささか疑問符が残る。
-CSSの設計に悩まなくなるだけで、コンポーネント化する単位といったようなWeb Componentsを使っていく難しさに問題がシフトするだけなんじゃないかって。
-Web Componentsの技術そのものへの敷居 CSSの問題を取り払いたいだけのはずなのに、Shadow DOMを使う敷居が高い（と、思う）。もっと言えばDeclarative（宣言的）からImperative（命令的）への思想の移行はプログラマでない人にとっては辛いところなんじゃないかと。
-<template> <style> input {} button {} </style> <input type=&#34;text&#34;> <button>Button</button> </template> <script> var ownerDocument = document.currentScript.ownerDocument; var SampleElementPrototype = Object.create(HTMLElement.prototype); SampleElementPrototype.createdCallback = function () { var template = ownerDocument.querySelector('template'); var clone = document.">
+<meta property="og:description" content="Web Components に対する問題提起 Web Components については暫く理想を語ってきたが、正直そうは上手くいかないと思っている。
+ Web Componentsが変えるWeb開発の未来 Web Componentsを構成する4つの仕様 ー Web Components基礎編 Web Componentsでカルーセルギャラリーを作る ー Web Components実践編 Web Componentsを簡単・便利にするライブラリ「Polymer」を使いこなそう 基本的な要素・機能を提供するCore ElementsとMaterial Designを実現するPaper Elements  Web Components を司る4つの仕様、Custom Elements・Template・Shadow DOM・HTML Importsは、確かに HTML/CSS の弱点を解決してくれる。
+しかし、作られた・配布されているコンポーネントを使う側はともかく、Web Components の仕様を抑えてコンポーネントを構築していくのは、HTMLにCSSでスタイリングをしていく従来のやり方に比べていささか敷居が高い。CSS の言語としての簡易さと引き換えに顕在化してきた弱点にフォーカスされているから Shadow DOM のありがたみがあるものの、Web Components によるコンポーネント実装と配布が一般化するかについては、いささか疑問符が残る。
+CSS の設計に悩まなくなる点は前進しつつ、コンポーネント化する単位といったような Web Components を使っていく難しさに問題は引き続きあるだろう。
+Web Componentsの技術そのものへの敷居 CSS の問題を取り払いたいだけのはずなのに、Shadow DOM を使う敷居が高い。もっと言えば宣言的 (Declarative) から命令的 (Imperative) への思想の移行はプログラマでない人にとっては辛いかもしれない。
+<template> <style> input {} button {} </style> <input type=&#34;text&#34;> <button>Button</button> </template> <script> var ownerDocument = document.">
 <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
 <meta name=twitter:card content="summary">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://1000ch.net/posts/2015/webcomponents.html">
 <meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Web Componentsに対する問題提起">
+<meta property="og:title" content="Web Components に対する問題提起">
 <meta name=twitter:site content="@1000ch">
 <meta name=twitter:url content="https://1000ch.net/posts/2015/webcomponents.html">
-<meta name=twitter:title content="Web Componentsに対する問題提起">
+<meta name=twitter:title content="Web Components に対する問題提起">
 <meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
 <link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
 <link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
@@ -65,8 +65,8 @@ Web Componentsの技術そのものへの敷居 CSSの問題を取り払いた�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.03.23</span>
-<h1 id=web-componentsに対する問題提起>Web Componentsに対する問題提起</h1>
-<p>Web Componentsについては暫く理想を語ってきたけど、正直そうは上手くいかないと思っている。</p>
+<h1 id=web-components-に対する問題提起>Web Components に対する問題提起</h1>
+<p>Web Components については暫く理想を語ってきたが、正直そうは上手くいかないと思っている。</p>
 <ul>
 <li><a href=https://html5experts.jp/1000ch/8906/>Web Componentsが変えるWeb開発の未来</a></li>
 <li><a href=https://html5experts.jp/1000ch/11142/>Web Componentsを構成する4つの仕様 ー Web Components基礎編</a></li>
@@ -74,11 +74,11 @@ Web Componentsの技術そのものへの敷居 CSSの問題を取り払いた�
 <li><a href=https://html5experts.jp/1000ch/11905/>Web Componentsを簡単・便利にするライブラリ「Polymer」を使いこなそう</a></li>
 <li><a href=https://html5experts.jp/1000ch/12477/>基本的な要素・機能を提供するCore ElementsとMaterial Designを実現するPaper Elements</a></li>
 </ul>
-<p>Web Componentsを司る4つの仕様、Custom Elements・Template・Shadow DOM・HTML Importsは、確かにCSSの弱点を解決してくれる。</p>
-<p>しかし、作られた・配布されているコンポーネントを使う側はともかく、Web Componentsの仕様を抑えてコンポーネントを構築していくのは、HTMLにCSSでスタイリングをしていく従来のやり方に比べて圧倒的に敷居が高いように感じる。CSSの言語としての簡易さと引き換えに顕在化してきた弱点にフォーカスされているからShadow DOMのありがたみがあるけど、Web Componentsによるコンポーネント作成が一般化するかどうかを想像するといささか疑問符が残る。</p>
-<p>CSSの設計に悩まなくなるだけで、コンポーネント化する単位といったようなWeb Componentsを使っていく難しさに問題がシフトするだけなんじゃないかって。</p>
+<p>Web Components を司る4つの仕様、Custom Elements・Template・Shadow DOM・HTML Importsは、確かに HTML/CSS の弱点を解決してくれる。</p>
+<p>しかし、作られた・配布されているコンポーネントを使う側はともかく、Web Components の仕様を抑えてコンポーネントを構築していくのは、HTMLにCSSでスタイリングをしていく従来のやり方に比べていささか敷居が高い。CSS の言語としての簡易さと引き換えに顕在化してきた弱点にフォーカスされているから Shadow DOM のありがたみがあるものの、Web Components によるコンポーネント実装と配布が一般化するかについては、いささか疑問符が残る。</p>
+<p>CSS の設計に悩まなくなる点は前進しつつ、コンポーネント化する単位といったような Web Components を使っていく難しさに問題は引き続きあるだろう。</p>
 <h2 id=web-componentsの技術そのものへの敷居>Web Componentsの技術そのものへの敷居</h2>
-<p>CSSの問題を取り払いたいだけのはずなのに、Shadow DOMを使う敷居が高い（と、思う）。もっと言えばDeclarative（宣言的）からImperative（命令的）への思想の移行はプログラマでない人にとっては辛いところなんじゃないかと。</p>
+<p>CSS の問題を取り払いたいだけのはずなのに、Shadow DOM を使う敷居が高い。もっと言えば宣言的 (Declarative) から命令的 (Imperative) への思想の移行はプログラマでない人にとっては辛いかもしれない。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>template</span>&gt;
   &lt;<span style=color:#f92672>style</span>&gt;
     <span style=color:#f92672>input</span> {}
@@ -104,7 +104,7 @@ Web Componentsの技術そのものへの敷居 CSSの問題を取り払いた�
     <span style=color:#a6e22e>prototype</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>SampleElementPrototype</span>
   });
 &lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>この辺りの問題をPolymerは取り除こうとしている。以下はPolymer v0.8系ではなくv0.5現行の宣言スタイルだが、JavaScriptによるShadow DOMの生成プロセスはPolymerのお作法とともに自動化されている。</p>
+</code></pre></div><p>この辺りの問題を Polymer は取り除こうとしている。以下は Polymer v0.8 系ではなく v0.5 現行の宣言スタイルだが、JavaScript による Shadow DOM の生成プロセスは Polymer のお作法とともに自動化されている。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>polymer-element</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sample-element&#34;</span> <span style=color:#a6e22e>noscript</span>&gt;
   &lt;<span style=color:#f92672>template</span>&gt;
     &lt;<span style=color:#f92672>style</span>&gt;
@@ -115,11 +115,11 @@ Web Componentsの技術そのものへの敷居 CSSの問題を取り払いた�
     &lt;<span style=color:#f92672>button</span>&gt;Button&lt;/<span style=color:#f92672>button</span>&gt;
   &lt;/<span style=color:#f92672>template</span>&gt;
 &lt;/<span style=color:#f92672>polymer-element</span>&gt;
-</code></pre></div><p>このPolymerのお作法は<a href=/posts/2015/polymer-is.html>Polymerについての所感</a>ではPolymerのアレなところっていう話をしたけど、Web Componentsの簡略化アプローチって大事だなと思った。</p>
-<p>この敷居を取り払うために、仕様が開発者に優しくなるか、またはPolymerのようなライブラリで解決するのか、どちらが正しいのかはわからない。仕様が開発者に優しくなるのはExtensive Webの考えに反するようで気が進まない節もあるが、SizzleからのquerySelectorAllの例もあるので、両者の溝が時間とともに勝手に埋まるのかもしれない。</p>
-<p>てんこ盛りで重いなーと思っていたPolymerの機能も、v0.8以降はプラガブル（カスタムビルド？）になるっぽいし、着々と普及に向けて準備が進んでいる。jQueryのように爆発的に流行るかどうかはわからないけど、流れがよく似ていると思う。</p>
+</code></pre></div><p>この Polymer のお作法は<a href=/posts/2015/polymer-is.html>Polymerについての所感</a>では Polymer のアレなところっていう話をしたが、Web Components の敷居を下げること必要だろう。</p>
+<p>この敷居を取り払うために、仕様が開発者に優しくなるか、または Polymer のようなライブラリで解決するのかは、Extensible Web に沿って API を低水準に維持することが望ましい。一方で Sizzle で実装されたクエリ表現からの <code>.querySelectorAll()</code> の例もあるので、どちらが正解かは何とも言い難い。両者の溝が時間とともに自然と埋まる可能性はある。</p>
+<p>てんこ盛りで重いと思っていた Polymer の機能も、v0.8 以降はプラガブル（カスタムビルド？）になるようだし、着々と準備が進んでいる。jQuery のように爆発的に流行るかどうかはわからないけど、流れがよく似ていると思う。</p>
 <h2 id=コンポーネント化の難しさ>コンポーネント化の難しさ</h2>
-<p>どこからどこまでをコンポーネントとするかはノウハウがないし、そもそも時と場合によるける部分が大きいので、実装者の経験則によって良い悪いが決まってくる。</p>
+<p>どこからどこまでをコンポーネントとするかはノウハウが少なく、時と場合によるける部分が大きいので、実装者の経験則によって良し悪しが左右される。</p>
 <ul>
 <li>ひとつのコンポーネントに何の要素を含めるのか</li>
 <li>どういった機能を公開属性とするのか</li>
@@ -127,8 +127,7 @@ Web Componentsの技術そのものへの敷居 CSSの問題を取り払いた�
 <li>ドキュメントを今まで以上に整備しないとダメだろうな</li>
 <li>他のコンポーネントとの一貫性</li>
 </ul>
-<p>デザイナーとかにコンポーネント化のリテラシーを伝える良いきっかけではあると思う。</p>
-<p>Shadow DOMに入れたスタイルが外に漏れないのはとても素晴らしいけど、外部から完璧に守られるわけではないのを忘れてはいけない。Shadow DOMのスタイリングは<code>/deep/</code>やら<code>::shadow</code>やらで可能になっている。外部からのスタイリングを完璧に遮断してしまってはコンポーネントの汎用性を著しく失うことになるからだ。</p>
+<p>Shadow DOM に入れたスタイルが外に漏れないのは素晴らしいが、それでも完璧ではないことは覚えておく必要がある。Shadow DOM は <code>/deep/</code> やら <code>::shadow</code> などの専用のセレクタを通じてスタイリング可能になっている。外部からのスタイリングを完璧に遮断してしまってはコンポーネントの汎用性を著しく失うことになるからだ。</p>
 <p>一時的な修正にそういったセレクタの追加を繰り返していれば今までの二の舞だ。結局のところはリファクタリングの繰り返しと、コンポーネント開発者と利用者のリテラシーに委ねられることに変わりない。</p>
 <aside class=Share>
 <div class=Share__Item>
@@ -137,7 +136,7 @@ Web Componentsの技術そのものへの敷居 CSSの問題を取り払いた�
 </a>
 </div>
 <div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwebcomponents.html&text=Web%20Components%e3%81%ab%e5%af%be%e3%81%99%e3%82%8b%e5%95%8f%e9%a1%8c%e6%8f%90%e8%b5%b7" title="Share on Twitter" target=_blank>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwebcomponents.html&text=Web%20Components%20%e3%81%ab%e5%af%be%e3%81%99%e3%82%8b%e5%95%8f%e9%a1%8c%e6%8f%90%e8%b5%b7" title="Share on Twitter" target=_blank>
 <img src=/img/twitter.svg>
 </a>
 </div>
