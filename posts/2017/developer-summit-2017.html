@@ -50,16 +50,13 @@
 </h1>
 <nav class=Header__Menu>
 <div class=Header__MenuItem>
-<img src=/img/rss.svg alt>
-<a href=/rss.xml>RSS</a>
+<a href=/rss.xml>📻RSS</a>
 </div>
 <div class=Header__MenuItem>
-<img src=/img/heart.svg alt>
-<a href=https://shogosensui.com>Activity</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍検索</a>
 </div>
 <div class=Header__MenuItem>
-<img src=/img/facebook.svg alt>
-<a href=https://www.facebook.com/1000ch.net>Facebook</a>
+<a href=https://shogosensui.com>🌎Who is 1000ch</a>
 </div>
 </nav>
 </header>
@@ -97,7 +94,8 @@
 </div>
 </nav>
 </main>
-<aside class=Aside>
+<aside class=Aside></aside>
+<footer class=Footer style=margin-bottom:2%>
 <h1>Author</h1>
 <div class=Media>
 <picture>
@@ -107,22 +105,6 @@
 <div class=Media__Body>
 <h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
 <p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</aside>
-<footer class=Footer>
-<div class=Banner>
-<div class=Banner__Item>
-<a href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.ja target=_blank>
-<img src=/img/by-nc-nd.png alt="CC BY-NC-ND 4.0" width=80 height=28>
-</a>
-</div>
-<div class=Banner__Item>
-<form action=https://duckduckgo.com/ role=search>
-<input name=sites type=hidden value=1000ch.net>
-<input name=q type=search>
-<input type=submit value=Search>
-</form>
 </div>
 </div>
 </footer>
@@ -141,9 +123,7 @@ document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('/sw.js');
-}
+navigator.serviceWorker.unregister();
 </script>
 </body>
 </html>
