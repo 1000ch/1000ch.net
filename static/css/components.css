@@ -5,18 +5,11 @@
 .Container {
   display: flex;
   flex-direction: column;
-  min-width: 32rem;
-  max-width: 80rem;
+  min-width: 320px;
+  max-width: 800px;
   min-height: 100vh;
   margin: 0 auto;
   background-color: var(--light-bgcolor);
-}
-
-@media (prefers-color-scheme: dark) {
-  .Container {
-    background-color: var(--dark-bgcolor);
-    color: var(--dark-color);
-  }
 }
 
 .Header,
@@ -45,10 +38,16 @@
 }
 
 .Header__Title {
-  margin: 1.6rem 0;
+  margin: 1em 0;
   border-bottom: none;
-  font-size: 4.8rem;
+  font-size: 48px;
   font-weight: bold;
+}
+
+.Header__Title a,
+.Header__Title a:visited,
+.Header__Title a:active {
+  color: var(--light-color-heading);
   text-decoration: none;
 }
 
@@ -59,12 +58,12 @@
 .Header__MenuItem {
   display: inline-flex;
   align-items: center;
-  padding: 0.8rem;
+  padding: 0.5em;
 }
 
 .Header__MenuItem img {
-  width: 1.6rem;
-  margin-right: 0.4rem;
+  width: 16px;
+  margin-right: 0.25em;
 }
 
 .Media {
@@ -81,7 +80,7 @@
 }
 
 .Media__Body {
-  font-size: 1.4rem;
+  font-size: 14px;
 }
 
 .Media__Title {
@@ -91,7 +90,7 @@
 }
 
 .Media__Title iframe {
-  margin-left: 8px;
+  margin-left: 0.5em;
 }
 
 .Banner {
@@ -101,16 +100,12 @@
 }
 
 .Banner__Item {
-  padding: 0.8rem;
+  padding: 0.5em;
 }
 
 .List {
   padding-left: 0 !important;
   list-style-type: none;
-}
-
-.List__Item {
-  padding: 1.6rem 0;
 }
 
 .Share {
@@ -120,11 +115,11 @@
 }
 
 .Share__Item {
-  padding: 0.8rem;
+  padding: 0.5em;
 }
 
 .Share__Item img {
-  width: 3.2rem;
+  width: 32px;
   vertical-align: text-bottom;
 }
 

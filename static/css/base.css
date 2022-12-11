@@ -2,9 +2,13 @@
  * Base..................Unclassed HTML elements [type selectors].
  */
 
-html {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  font-size: 62.5%;
+}
+
+html {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -12,58 +16,16 @@ html {
 body {
   background-color: var(--light-bgcolor-backdrop);
   color: var(--light-color);
-  font-family: "Noto Sans", "Noto Sans CJK JP", "NotoSansCJKjp-1000ch", sans-serif;
-  font-size: 1.6rem;
-  font-weight: normal;
+  font-family: monospace, sans-serif;
+  font-size: 16px;
   line-height: 1.6;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--dark-bgcolor-backdrop);
-    color: var(--dark-color);
-  }
-}
-
-::selection {
-  background-color: #e2007a;
-  color: #fff;
 }
 
 h1,
 h2,
 h3 {
-  margin: 4.8rem 0 2.4rem;
+  margin: 2em 0 1em;
   color: var(--light-color-heading);
-}
-
-@media (prefers-color-scheme: dark) {
-  h1,
-  h2,
-  h3 {
-    color: var(--dark-color-heading);
-  }
-}
-
-h1 {
-  font-size: 3.2rem;
-}
-
-h2 {
-  font-size: 2.4rem;
-}
-
-h3 {
-  font-size: 2rem;
-}
-
-ul,
-ol {
-  padding-left: 3.2rem;
-}
-
-li {
-  padding: 0.4rem 0;
 }
 
 li > p {
@@ -83,20 +45,20 @@ table {
 
 td,
 th {
-  padding: 0.8rem;
-  border: 0.1rem solid #ddd;
+  padding: 0.5em;
+  border: 1px solid #ddd;
 }
 
 kbd {
   display: inline-block;
-  padding: 0.2rem 0.4rem;
-  border: solid 0.1rem #ccc;
-  border-radius: 0.4rem;
+  padding: 0.125em 0.25em;
+  border: solid 1px #ccc;
+  border-radius: 4px;
   border-bottom-color: #bbb;
   background-color: #fcfcfc;
-  box-shadow: inset 0 -0.1rem 0 #bbb;
-  font-size: 1.2rem;
-  line-height: 1.2rem;
+  box-shadow: inset 0 -1px 0 #bbb;
+  font-size: 12px;
+  line-height: 1;
   vertical-align: text-bottom;
   user-select: none;
   -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
@@ -104,7 +66,7 @@ kbd {
 
 kbd:active {
   position: relative;
-  top: 0.1rem;
+  top: 1px;
   box-shadow: inset 0 0 0 #bbb;
 }
 
@@ -115,28 +77,20 @@ pre {
 }
 
 code {
-  margin: 0.1rem 0.2rem;
-  padding: 0.1rem 0.2rem;
-  border: 0.1rem solid var(--light-bordercolor);
-  border-radius: 0.4rem;
+  margin: 0.125em 0.25em;
+  padding: 0.125em 0.25em;
+  border: 1px solid var(--light-bordercolor);
+  border-radius: 0.25em;
   background-color: var(--light-bgcolor);
   color: var(--light-color);
-  font-family: "Roboto Mono", monospace;
-  font-size: 1.4rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  code {
-    border-color: var(--dark-bordercolor);
-    background-color: var(--dark-bgcolor);
-    color: var(--dark-color);
-  }
+  font-family: menlo, monospace;
+  font-size: 14px;
 }
 
 pre > code {
   display: block;
-  margin: 0.8rem 0;
-  padding: 0.8rem;
+  margin: 0.5em 0;
+  padding: 0.5em;
   overflow-x: scroll;
   border-width: 0;
 }
@@ -157,51 +111,24 @@ h3 > code {
 }
 
 blockquote {
-  margin: 1.6rem 0;
-  padding: 0 1.6rem;
-  border-left: 0.4rem solid #666;
+  margin: 1em 0;
+  padding: 0 1em;
+  border-left: 4px solid #666;
   font-style: italic;
 }
 
 hr {
-  height: 0.4rem;
-  margin: 3.2rem 1.6rem;
+  height: 0.25em;
+  margin: 2em 1em;
   padding: 0;
   border: 0 none;
   background-color: #e7e7e7;
 }
 
-a {
-  color: #199ad5;
-  text-decoration: none;
-  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
-}
-
-a:hover,
-a:active {
-  color: #e2007a;
-}
-
-a code {
-  color: #199ad5 !important;
-}
-
-a:hover code,
-a:active code {
-  color: #e2007a !important;
-}
-
 input {
-  padding: 5px 10px;
+  padding: 0.25em 0.5em;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 0.25em;
   background-color: var(--light-bgcolor-backdrop);
   color: var(--light-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  input {
-    background-color: var(--dark-bgcolor-backdrop);
-    color: var(--dark-color);
-  }
 }

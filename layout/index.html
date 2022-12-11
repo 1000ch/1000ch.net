@@ -8,16 +8,12 @@
       {{ partial "header.html" . }}
       <main class="Main">
         <h1>Posts</h1>
-        {{ $paginator := .Paginate .Site.RegularPages }}
+        {{ $paginator := .Paginate .Site.RegularPages 20 }}
         <ul class="List">
           {{ range $paginator.Pages }}
             <li class="List__Item">
-              <div>
-                <span class="Label Label--gray">{{ .Date.Format "2006.01.02" }}</span>
-              </div>
-              <div class="h2">
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-              </div>
+              <span class="Label Label--gray">{{ .Date.Format "2006.01.02" }}</span>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             </li>
           {{ end }}
         </ul>

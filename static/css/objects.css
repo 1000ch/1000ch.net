@@ -3,21 +3,14 @@
  */
 
 .Label {
-  margin: 0.4rem;
-  padding: 0.4rem;
-  border-radius: 0.4rem;
-  font-size: 1.2rem;
+  margin: 0.25em;
+  padding: 0.25em;
+  border-radius: 0.25em;
+  font-size: 12px;
   vertical-align: text-bottom;
 }
 
 .Label--gray {
   background: var(--light-bgcolor-backdrop);
   color: var(--light-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  .Label--gray {
-    background-color: var(--dark-bgcolor-backdrop);
-    color: var(--dark-color);
-  }
 }
