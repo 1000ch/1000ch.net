@@ -16,16 +16,6 @@ export default class AffiliateLink extends LitElement {
 
   static get styles() {
     return css`
-      a {
-        text-decoration: none;
-        color: #199ad5;
-      }
-
-      a:hover,
-      a:active {
-        color: #e2007a;
-      }
-
       .AffiliateLink {
         padding: 16px;
         border: 1px solid #ddd;
