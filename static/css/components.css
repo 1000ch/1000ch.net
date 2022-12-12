@@ -47,7 +47,7 @@
 .Header__Title a,
 .Header__Title a:visited,
 .Header__Title a:active {
-  color: var(--light-color-heading);
+  color: var(--light-color);
   text-decoration: none;
 }
 
