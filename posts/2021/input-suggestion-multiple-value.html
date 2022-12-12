@@ -8,7 +8,6 @@
 <link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/font.css>
 <link rel=stylesheet href=/css/settings.css>
 <link rel=stylesheet href=/css/tools.css>
 <link rel=stylesheet href=/css/generic.css>
@@ -17,7 +16,6 @@
 <link rel=stylesheet href=/css/components.css>
 <link rel=stylesheet href=/css/trumps.css>
 <link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Mono">
 <meta name=author content="Shogo Sensui">
 <meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
 <meta property="og:description" content="フォームに複数の値を入力するときの入力補完 <input type=&#34;text&#34;> の入力補完は <datalist> 要素と組み合わせることで簡単に実現できる。ただし、これは単一の値に対する補完で、複数の値を入力しようとしたときに適用されない。というのも、ブラウザとしては <input> 要素の value プロパティをひとつの値として扱い、それを <datalist> 要素の入力候補と比較しているため、当たり前といえば当たり前である。つまり <input> 要素に複数の値を保持するという概念がそもそもない。
