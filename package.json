@@ -10,6 +10,7 @@
     "web": "https://github.com/1000ch"
   },
   "scripts": {
+    "start": "hugo server",
     "dev": "hugo server & npm run css -- --watch",
     "lint": "stylelint static/css/*.css",
     "css": "postcss static/css/*.css --dir public/css/",
