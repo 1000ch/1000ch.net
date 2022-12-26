@@ -46,10 +46,13 @@ export default class AffiliateLink extends LitElement {
   }
 
   render() {
+    const url = new URL(this.href);
+    url.searchParams.set('tag', this.tag);
+
     return html`
       <div class="AffiliateLink">
         <img alt="" src="${this.src}">
-        <h3><a href="${this.href}?tag=${this.tag}">${this.title}</a></h3>
+        <h3><a href="${url.toString()}">${this.title}</a></h3>
         <slot />
       </div>
     `;
