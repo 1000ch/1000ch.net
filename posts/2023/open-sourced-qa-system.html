@@ -1,0 +1,118 @@
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>社内の有志で運用していた QA システムをオープンソース化した - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="社内の有志で運用していた QA システムをオープンソース化した 社員が一堂に会する全体定例や各種イベントで、相互的な理解を促すためのコミュニケーションツールとして Q&A システムを用いている。元はと言えば、この目的に即した出来物のシステムを使っていたが、社内で求める用途に合わず @sinmetal さんがゼロから作ったことがきっかけで、途中からフロントエンド部分の改善を手伝っていた。
+すると想定以上に様々な場面で利用されるようになり、ツールへの依存が高まる一方で、維持管理をボランティアベースでやっていたため、中長期的に維持が難しくなることが懸念された。実際、当時 Vue.js/Nuxt v2 で実装されていたが長い間そのまま改善されず、Vue.js/Nuxt v3 がリリースされた後もしばらく放置されていた。
+そこで Vue.js/Nuxt を最新の v3 にアップグレードさせつつ、よりコミュニティベースでもコミットできるように OSS として公開した。それが gcpug/qa_board である。公開に際して、もともと社内向けにベタ書きしていたロジックなどの情報を削除する必要があり、コミットログは squash されていることをご容赦頂きたい。
+システムとしてはデータベースに Firestore を利用している。そのため作成したプロジェクトの Firebase console から、Firebase SDK の初期化に必要な各種トークンを環境変数として渡す必要がある。ローカル環境であれば .env で（これは Nuxt v3 の機能である）、デプロイ時には CI の環境変数に設定しビルド時に参照できるようにする。
+システムと言っても豊富な機能を備えているわけではなく、ある程度運用でカバーしている部分が大きい。機能を追加するほどソフトウェアが複雑になり最終的に持続が難しくなる側面は避けられないため、コミュニティベースになったとはいえ全ての機能リクエストを汲めるわけではなく、ある程度目を瞑ってメンテナンスしていく必要がある。この点を理解いただいた上で、こうした会社やコミュニティの Q&A システムの需要がある場合は是非お試しください。">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2023/open-sourced-qa-system.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="社内の有志で運用していた QA システムをオープンソース化した">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2023/open-sourced-qa-system.html">
+<meta name=twitter:title content="社内の有志で運用していた QA システムをオープンソース化した">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<a href=/rss.xml>📻RSS</a>
+</div>
+<div class=Header__MenuItem>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍検索</a>
+</div>
+<div class=Header__MenuItem>
+<a href=https://shogosensui.com>🌎Who is 1000ch</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2023.04.24</span>
+<h1 id=社内の有志で運用していた-qa-システムをオープンソース化した>社内の有志で運用していた QA システムをオープンソース化した</h1>
+<p>社員が一堂に会する全体定例や各種イベントで、相互的な理解を促すためのコミュニケーションツールとして Q&A システムを用いている。元はと言えば、この目的に即した出来物のシステムを使っていたが、社内で求める用途に合わず <a href=https://twitter.com/sinmetal>@sinmetal</a> さんがゼロから作ったことがきっかけで、途中からフロントエンド部分の改善を手伝っていた。</p>
+<p>すると想定以上に様々な場面で利用されるようになり、ツールへの依存が高まる一方で、維持管理をボランティアベースでやっていたため、中長期的に維持が難しくなることが懸念された。実際、当時 Vue.js/Nuxt v2 で実装されていたが長い間そのまま改善されず、Vue.js/Nuxt v3 がリリースされた後もしばらく放置されていた。</p>
+<p>そこで Vue.js/Nuxt を最新の v3 にアップグレードさせつつ、よりコミュニティベースでもコミットできるように OSS として公開した。それが <a href=https://github.com/gcpug/qa_board>gcpug/qa_board</a> である。公開に際して、もともと社内向けにベタ書きしていたロジックなどの情報を削除する必要があり、コミットログは squash されていることをご容赦頂きたい。</p>
+<p>システムとしてはデータベースに Firestore を利用している。そのため作成したプロジェクトの Firebase console から、Firebase SDK の初期化に必要な各種トークンを環境変数として渡す必要がある。ローカル環境であれば <code>.env</code> で（これは <a href=https://nuxt.com/docs/guide/directory-structure/env#env-file>Nuxt v3 の機能</a>である）、デプロイ時には CI の環境変数に設定しビルド時に参照できるようにする。</p>
+<p>システムと言っても豊富な機能を備えているわけではなく、ある程度運用でカバーしている部分が大きい。機能を追加するほどソフトウェアが複雑になり最終的に持続が難しくなる側面は避けられないため、コミュニティベースになったとはいえ全ての機能リクエストを汲めるわけではなく、ある程度目を瞑ってメンテナンスしていく必要がある。この点を理解いただいた上で、こうした会社やコミュニティの Q&A システムの需要がある場合は是非お試しください。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fopen-sourced-qa-system.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fopen-sourced-qa-system.html&text=%e7%a4%be%e5%86%85%e3%81%ae%e6%9c%89%e5%bf%97%e3%81%a7%e9%81%8b%e7%94%a8%e3%81%97%e3%81%a6%e3%81%84%e3%81%9f%20QA%20%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%82%92%e3%82%aa%e3%83%bc%e3%83%97%e3%83%b3%e3%82%bd%e3%83%bc%e3%82%b9%e5%8c%96%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2023/tokyo-sakura-marathon.html>👈 東京さくらマラソンで 10km を完走した</a>
+</div>
+</nav>
+</main>
+<aside class=Aside></aside>
+<footer class=Footer style=margin-bottom:2%>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+navigator.serviceWorker.unregister();
+</script>
+</body>
+</html>
