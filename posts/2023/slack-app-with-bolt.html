@@ -1,0 +1,246 @@
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Bolt を使って Slack app を実装する - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="Bolt を使って Slack app を実装する Bolt 入門ガイドに詳しく書かれているが、「一体 Slack アプリとは何なのか」を掴むのに時間がかかったので、自分の理解をまとめていく。
+Slack アプリは、Slack 有料版に提供される Slack の機能を拡張する概念で、Slack App Directory で配布されているアプリやワークスペース内で作成するアプリを含む。今回は Bolt for JavaScript という公式のフレームワークを使って Slack アプリを作っていくが、それを Slack App Directory に公開して使ってもらうことも可能なようだ。
+空の Slack アプリを作成する Your Apps ページから新しい Slack アプリを作成すると、インストール先として選択した Slack workspace に空の Slack アプリが作成される。Slack アプリの管理のため必要となるトークンがいくつかある。
+Basic Information ページ > App Credentials の Signing Secret Slack が Slack アプリに対して送信するリクエストは、この secret を使って署名される。Slack アプリは送信されるリクエストが Slack からのものであることを検証するために使う。
+Install App ページ > OAuth Tokens for Your Workspace の Bot User OAuth Token Slack アプリを Slack workspace にインストールすると自動で生成されるトークンで、Slack アプリを認証するために使う。OAuth & Permissions ページで同じトークンの表示および管理が可能である。">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2023/slack-app-with-bolt.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Bolt を使って Slack app を実装する">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2023/slack-app-with-bolt.html">
+<meta name=twitter:title content="Bolt を使って Slack app を実装する">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<a href=/rss.xml>📻RSS</a>
+</div>
+<div class=Header__MenuItem>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍検索</a>
+</div>
+<div class=Header__MenuItem>
+<a href=https://shogosensui.com>🌎Who is 1000ch</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2023.05.04</span>
+<h1 id=bolt-を使って-slack-app-を実装する>Bolt を使って Slack app を実装する</h1>
+<p><a href=https://slack.dev/bolt-js/ja-jp/tutorial/getting-started>Bolt 入門ガイド</a>に詳しく書かれているが、「一体 Slack アプリとは何なのか」を掴むのに時間がかかったので、自分の理解をまとめていく。</p>
+<p>Slack アプリは、Slack 有料版に提供される Slack の機能を拡張する概念で、<a href=https://slack.com/intl/ja-jp/apps>Slack App Directory で配布されているアプリ</a>や<a href=https://api.slack.com/apps>ワークスペース内で作成するアプリ</a>を含む。今回は <a href=https://github.com/slackapi/bolt-js>Bolt for JavaScript</a> という公式のフレームワークを使って Slack アプリを作っていくが、それを Slack App Directory に公開して使ってもらうことも可能なようだ。</p>
+<h2 id=空の-slack-アプリを作成する>空の Slack アプリを作成する</h2>
+<p><a href="https://api.slack.com/apps?new_app=1">Your Apps ページから新しい Slack アプリを作成</a>すると、インストール先として選択した Slack workspace に空の Slack アプリが作成される。Slack アプリの管理のため必要となるトークンがいくつかある。</p>
+<h3 id=basic-information-ページ--app-credentials-の-signing-secret>Basic Information ページ > App Credentials の Signing Secret</h3>
+<p>Slack が Slack アプリに対して送信するリクエストは、この secret を使って署名される。Slack アプリは送信されるリクエストが Slack からのものであることを検証するために使う。</p>
+<h3 id=install-app-ページ--oauth-tokens-for-your-workspace-の-bot-user-oauth-token>Install App ページ > OAuth Tokens for Your Workspace の Bot User OAuth Token</h3>
+<p>Slack アプリを Slack workspace にインストールすると自動で生成されるトークンで、Slack アプリを認証するために使う。OAuth & Permissions ページで同じトークンの表示および管理が可能である。</p>
+<h3 id=basic-information-ページ--app-level-tokens-のトークン>Basic Information ページ > App-Level Tokens のトークン</h3>
+<p>先の2つのトークンだけでも Slack アプリは動作するが、Slack アプリを Socket Mode で動作させる方が Request URL などの設定が不要になるため、今回は Socket Mode ページから Socket Mode を有効化する。Slack アプリを Socket Mode で動作させるためには、scope を <code>connections:write</code> にした App Level Token を作成する必要がある。</p>
+<h2 id=作成した-slack-アプリを動作させるプログラムを実装する>作成した Slack アプリを動作させるプログラムを実装する</h2>
+<p>Slack アプリを実際に動作させるためのプログラムは <a href=https://api.slack.com/lang/ja-jp>Slack API</a> の仕様に沿っていれば、理論上はプログラム言語を問わないが、Slack アプリを開発するために Bolt というフレームワークが公式で用意されているのでこれを使う。提供されている言語は JavaScript (Node.js)、Python、Java があるが、今回は <a href=https://github.com/slackapi/bolt-js>Bolt for JavaScript</a> を使って Node.js で動作するプログラムを実装していく。</p>
+<h3 id=slack-アプリの動作に必要なトークンを環境変数にセットする>Slack アプリの動作に必要なトークンを環境変数にセットする</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>export SLACK_SIGNING_SECRET<span style=color:#f92672>=</span>&lt;your-signing-secret&gt;
+export SLACK_BOT_TOKEN<span style=color:#f92672>=</span>xoxb-&lt;your-bot-token&gt;
+export SLACK_APP_TOKEN<span style=color:#f92672>=</span>&lt;your-app-token&gt;
+</code></pre></div><h3 id=必要最小限の-packagejson-と-srcindexts-を用意する>必要最小限の <code>package.json</code> と <code>src/index.ts</code> を用意する</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json:package.json data-lang=json:package.json>{
+  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;slack-app&#34;</span>,
+  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;module&#34;</span>,
+  <span style=color:#f92672>&#34;scripts&#34;</span>: {
+    <span style=color:#f92672>&#34;build&#34;</span>: <span style=color:#e6db74>&#34;tsc&#34;</span>,
+    <span style=color:#f92672>&#34;start&#34;</span>: <span style=color:#e6db74>&#34;node out/index.js&#34;</span>,
+    <span style=color:#f92672>&#34;dev&#34;</span>: <span style=color:#e6db74>&#34;tsc --watch&#34;</span>
+  },
+  <span style=color:#f92672>&#34;dependencies&#34;</span>: {
+    <span style=color:#f92672>&#34;@slack/bolt&#34;</span>: <span style=color:#e6db74>&#34;^3.13.1&#34;</span>
+  },
+  <span style=color:#f92672>&#34;devDependencies&#34;</span>: {
+    <span style=color:#f92672>&#34;typescript&#34;</span>: <span style=color:#e6db74>&#34;^5.0.4&#34;</span>
+  }
+}
+
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript:src/index.ts data-lang=typescript:src/index.ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>bolt</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@slack/bolt&#39;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>bolt</span>.<span style=color:#a6e22e>App</span>({
+  <span style=color:#a6e22e>socketMode</span>: <span style=color:#66d9ef>true</span>,
+  <span style=color:#a6e22e>appToken</span>: <span style=color:#66d9ef>process.env.SLACK_APP_TOKEN</span>,
+  <span style=color:#a6e22e>token</span>: <span style=color:#66d9ef>process.env.SLACK_BOT_TOKEN</span>,
+  <span style=color:#a6e22e>signingSecret</span>: <span style=color:#66d9ef>process.env.SLACK_SIGNING_SECRET</span>
+});
+
+<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>start</span>(<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>PORT</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>3000</span>);
+</code></pre></div><p><code>npm run build</code> でコンパイルし、 <code>npm start</code> を実行すると、作成した Slack アプリと接続する何もしないプログラムが起動する。</p>
+<h2 id=slack-アプリで特定のコマンドでモーダルを開きその入力を受けつける>Slack アプリで特定のコマンドでモーダルを開きその入力を受けつける</h2>
+<p>Slack workspace 内で <code>/command_name</code> を実行したときに、Slack 内でモーダルを表示して、その入力内容を Slack アプリで受け取るという処理を実装する。</p>
+<h3 id=slash-commands-ページで-command_name-コマンドを追加する>Slash Commands ページで <code>/command_name</code> コマンドを追加する</h3>
+<p>作成した空の Slack アプリの Slash Commands ページでコマンドを、ここでは <code>/command_name</code> を追加する。そうすると、Slack アプリがインストールされた Slack workspace で <code>/command_name</code> コマンドが使えるようになる。</p>
+<h3 id=command_name-コマンドが実行された時にモーダルを表示する><code>/command_name</code> コマンドが実行された時にモーダルを表示する</h3>
+<p>前のステップで作成した Node.js で動作する Slack アプリの、<code>bolt.App</code> クラスのインスタンスに <a href=https://slack.dev/bolt-js/ja-jp/concepts#commands><code>.command()</code> メソッド</a>があり、これを使ってコマンドが実行された場合の処理を実装する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript:src/index.ts data-lang=typescript:src/index.ts><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>command</span>(<span style=color:#e6db74>&#39;/command_name&#39;</span>, <span style=color:#66d9ef>async</span> ({<span style=color:#a6e22e>ack</span>, <span style=color:#a6e22e>body</span>, <span style=color:#a6e22e>client</span>}) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>ack</span>();
+
+  <span style=color:#66d9ef>try</span> {
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>views</span>.<span style=color:#a6e22e>open</span>({
+      <span style=color:#a6e22e>trigger_id</span>: <span style=color:#66d9ef>body.trigger_id</span>,
+      <span style=color:#a6e22e>view</span><span style=color:#f92672>:</span> {...}
+    });
+  } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>error</span>);
+  }
+});
+</code></pre></div><p>ここではモーダルを作成しているが、Slack 内で用意されている UI を作るためのツールとして <a href=https://api.slack.com/block-kit/building>Block Kit</a> というツールが用意されており、<a href=https://app.slack.com/block-kit-builder/T01EZME6Y7M#%7B%22title%22:%7B%22type%22:%22plain_text%22,%22text%22:%22Modal%20Title%22%7D,%22submit%22:%7B%22type%22:%22plain_text%22,%22text%22:%22Submit%22%7D,%22blocks%22:%5B%7B%22type%22:%22input%22,%22element%22:%7B%22type%22:%22plain_text_input%22,%22action_id%22:%22sl_input%22,%22placeholder%22:%7B%22type%22:%22plain_text%22,%22text%22:%22Placeholder%20text%20for%20single-line%20input%22%7D%7D,%22label%22:%7B%22type%22:%22plain_text%22,%22text%22:%22Label%22%7D,%22hint%22:%7B%22type%22:%22plain_text%22,%22text%22:%22Hint%20text%22%7D%7D%5D,%22type%22:%22modal%22%7D>モーダルについても Web ページ上でインタラクティブに作成</a>できる。すると、作成したモーダルの表示に必要な JSON が出力されるので、これを上記の <code>client.views.open()</code> メソッドの引数の <code>view</code> プロパティに渡す。</p>
+<pre tabindex=0><code class=language-json:Block data-lang=json:Block>{
+  &quot;type&quot;: &quot;modal&quot;,
+  &quot;title&quot;: {
+    &quot;type&quot;: &quot;plain_text&quot;,
+    &quot;text&quot;: &quot;Modal Title&quot;
+  },
+  &quot;submit&quot;: {
+    &quot;type&quot;: &quot;plain_text&quot;,
+    &quot;text&quot;: &quot;Submit&quot;
+  },
+  &quot;blocks&quot;: [
+    {
+      &quot;type&quot;: &quot;input&quot;,
+      &quot;element&quot;: {
+        &quot;type&quot;: &quot;plain_text_input&quot;,
+        &quot;action_id&quot;: &quot;sl_input&quot;,
+        &quot;placeholder&quot;: {
+          &quot;type&quot;: &quot;plain_text&quot;,
+          &quot;text&quot;: &quot;Placeholder text for single-line input&quot;
+        }
+      },
+      &quot;label&quot;: {
+        &quot;type&quot;: &quot;plain_text&quot;,
+        &quot;text&quot;: &quot;Label&quot;
+      },
+      &quot;hint&quot;: {
+        &quot;type&quot;: &quot;plain_text&quot;,
+        &quot;text&quot;: &quot;Hint text&quot;
+      }
+    }
+  ]
+}
+</code></pre><h3 id=モーダルのフォームが送信された時の処理を実装する>モーダルのフォームが送信された時の処理を実装する</h3>
+<p><code>bolt.App</code> クラスのインスタンスの <a href=https://slack.dev/bolt-js/ja-jp/concepts#view-submissions><code>.view()</code> メソッド</a>を使って、モーダルのフォームの送信やモーダルが閉じられたタイミングを検知する。引数にはコールバック ID と呼ばれる任意の文字列で構成される識別子を指定し、どのモーダルが対象なのかを指定する必要がある。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript:src/index.ts data-lang=typescript:src/index.ts><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>view</span>(<span style=color:#e6db74>&#39;unique_callback_id&#39;</span>, <span style=color:#66d9ef>async</span> ({<span style=color:#a6e22e>ack</span>, <span style=color:#a6e22e>view</span>, <span style=color:#a6e22e>client</span>}) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>ack</span>();
+
+  <span style=color:#66d9ef>try</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>values</span> <span style=color:#f92672>=</span> Object.<span style=color:#a6e22e>values</span>(<span style=color:#a6e22e>view</span>.<span style=color:#a6e22e>state</span>.<span style=color:#a6e22e>values</span>);
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>inputValue</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>values</span>.<span style=color:#a6e22e>find</span>(<span style=color:#a6e22e>v</span> <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>v</span>[<span style=color:#e6db74>&#39;sl_input&#39;</span>])<span style=color:#f92672>?</span>.[<span style=color:#e6db74>&#39;sl_input&#39;</span>].<span style=color:#a6e22e>value</span>;
+
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>inputValue</span>) {
+      <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Error(<span style=color:#e6db74>`Input value is invalid`</span>);
+    }
+
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>chat</span>.<span style=color:#a6e22e>postMessage</span>({
+      <span style=color:#a6e22e>channel</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;...&#39;</span>,
+      <span style=color:#a6e22e>text</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`Input value is </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>inputValue</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>,
+    });
+  } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>error</span>);
+  }
+});
+</code></pre></div><p>同様にモーダルを表示する <code>client.views.open()</code> メソッドの引数の <code>view</code> プロパティにも、<code>callback_id</code> プロパティを指定する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript:src/index.ts data-lang=typescript:src/index.ts><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>command</span>(<span style=color:#e6db74>&#39;/command_name&#39;</span>, <span style=color:#66d9ef>async</span> ({<span style=color:#a6e22e>ack</span>, <span style=color:#a6e22e>body</span>, <span style=color:#a6e22e>client</span>}) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>ack</span>();
+
+  <span style=color:#66d9ef>try</span> {
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>views</span>.<span style=color:#a6e22e>open</span>({
+      <span style=color:#a6e22e>trigger_id</span>: <span style=color:#66d9ef>body.trigger_id</span>,
+      <span style=color:#a6e22e>view</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>callback_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;unique_callback_id&#39;</span>,
+        ...
+      }
+    });
+  } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>error</span>);
+  }
+});
+</code></pre></div>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fslack-app-with-bolt.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fslack-app-with-bolt.html&text=Bolt%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Slack%20app%20%e3%82%92%e5%ae%9f%e8%a3%85%e3%81%99%e3%82%8b" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2023/farewell-mercari.html>👈 株式会社メルカリを退職します</a>
+</div>
+</nav>
+</main>
+<aside class=Aside></aside>
+<footer class=Footer style=margin-bottom:2%>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+navigator.serviceWorker.unregister();
+</script>
+</body>
+</html>
