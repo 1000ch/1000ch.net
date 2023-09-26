@@ -1,0 +1,124 @@
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Obsidian を使ったデバイスを問わないメモ運用 - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="Obsidian を使ったデバイスを問わないメモ運用 仕事用なのかプライベート用なのか、はたまた両方なのか、端末を問わずに共有されるメモを望む人は多い。こうした目的に対しては Evernote や Day One、Inkdrop といったプロダクトがあるが、手に馴染みききらず public な scrapbox を使っている。
+scrapbox 独自の記法はあるものの、メモがてら公開したいものを管理する目的に対して scrapbox はとても良い一方で、タッチデバイスで編集するには使い心地が難しい部分があったり、Markdown で書きたいニーズを満たせていなかった。
+Markdown をサポートしているプロダクトは多数ある。Typora や Quiver、先の Day One/Inkdrop などもそうだが、Android に対応していなかったり、クラウド同期が各プロダクトに依存していたりする。特に後者は、蓄積したデータの可搬性を考えると慎重になっており、そのプロダクトが終了したときの import/export を考えると管理可能であって欲しい。
+Obsidian が良く出来ている 自分のニーズを整理すると「プライベートに管理できて」「データ同期がクロスデバイスかつ持続可能で」「デバイスを問わずにアプリが優れている」だが、現時点で最も正解に近そうなのが Obsidian である。
+Obsidian はマルチプラットフォームに対応しており、便利なコミュニティプラグインがあり、課金することでデータの同期やページの公開にも対応している。アプリ自体の出来が良く、データの同期を OS のファイルシステム上に Vault を作成する。その Vault を Dropbox で同期することで、Obsidian に依存せずクロスデバイスなデータ同期を実現できる。
+Dropsync を使った Android でのデータ同期 Obsidian は Android アプリを提供しており、Dropbox の Android アプリも存在する。しかし、Dropbox がデータ同期に参照している Android のファイルシステムは隔離されているので、通常 Obsidian から参照できない。
+そこで Dropsync: Autosync for Dropbox というアプリを使うことで Android 端末の任意のフォルダを Dropbox の同期対象とすることができる。同期の頻度や状況の設定なども豊富だし、苦労するポイントはない。あまりにピッタリのソリューションだったので、広告を非表示にする必要はなかったが、感謝の気持を込めて課金した。">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2023/obsidian.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Obsidian を使ったデバイスを問わないメモ運用">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2023/obsidian.html">
+<meta name=twitter:title content="Obsidian を使ったデバイスを問わないメモ運用">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<a href=/rss.xml>📻RSS</a>
+</div>
+<div class=Header__MenuItem>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍検索</a>
+</div>
+<div class=Header__MenuItem>
+<a href=https://shogosensui.com>🌎Who is 1000ch</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2023.09.26</span>
+<h1 id=obsidian-を使ったデバイスを問わないメモ運用>Obsidian を使ったデバイスを問わないメモ運用</h1>
+<p>仕事用なのかプライベート用なのか、はたまた両方なのか、端末を問わずに共有されるメモを望む人は多い。こうした目的に対しては <a href=https://evernote.com/ja-jp>Evernote</a> や <a href=https://dayoneapp.com/>Day One</a>、<a href=https://www.inkdrop.app/>Inkdrop</a> といったプロダクトがあるが、手に馴染みききらず public な <a href=https://scrapbox.io/1000ch>scrapbox</a> を使っている。</p>
+<p>scrapbox 独自の記法はあるものの、メモがてら公開したいものを管理する目的に対して scrapbox はとても良い一方で、タッチデバイスで編集するには使い心地が難しい部分があったり、Markdown で書きたいニーズを満たせていなかった。</p>
+<p>Markdown をサポートしているプロダクトは多数ある。<a href=https://www.typora.io/>Typora</a> や <a href=https://yliansoft.com/>Quiver</a>、先の Day One/Inkdrop などもそうだが、Android に対応していなかったり、クラウド同期が各プロダクトに依存していたりする。特に後者は、蓄積したデータの可搬性を考えると慎重になっており、そのプロダクトが終了したときの import/export を考えると管理可能であって欲しい。</p>
+<h2 id=obsidian-が良く出来ている>Obsidian が良く出来ている</h2>
+<p>自分のニーズを整理すると「プライベートに管理できて」「データ同期がクロスデバイスかつ持続可能で」「デバイスを問わずにアプリが優れている」だが、現時点で最も正解に近そうなのが <a href=https://obsidian.md/>Obsidian</a> である。</p>
+<p>Obsidian は<a href=https://obsidian.md/download>マルチプラットフォームに対応しており</a>、<a href=https://obsidian.md/plugins>便利なコミュニティプラグインがあり</a>、課金することで<a href=https://obsidian.md/sync>データの同期</a>や<a href=https://obsidian.md/publish>ページの公開</a>にも対応している。アプリ自体の出来が良く、データの同期を OS のファイルシステム上に Vault を作成する。その Vault を Dropbox で同期することで、Obsidian に依存せずクロスデバイスなデータ同期を実現できる。</p>
+<h2 id=dropsync-を使った-android-でのデータ同期>Dropsync を使った Android でのデータ同期</h2>
+<p>Obsidian は Android アプリを提供しており、Dropbox の Android アプリも存在する。しかし、Dropbox がデータ同期に参照している Android のファイルシステムは隔離されているので、通常 Obsidian から参照できない。</p>
+<p>そこで <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync">Dropsync: Autosync for Dropbox</a> というアプリを使うことで Android 端末の任意のフォルダを Dropbox の同期対象とすることができる。同期の頻度や状況の設定なども豊富だし、苦労するポイントはない。あまりにピッタリのソリューションだったので、広告を非表示にする必要はなかったが、感謝の気持を込めて課金した。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fobsidian.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fobsidian.html&text=Obsidian%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%87%e3%83%90%e3%82%a4%e3%82%b9%e3%82%92%e5%95%8f%e3%82%8f%e3%81%aa%e3%81%84%e3%83%a1%e3%83%a2%e9%81%8b%e7%94%a8" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2023/frontend-productivity-online-conference.html>👈 フロントエンドの開発生産性〜Online Conference〜に出演した</a>
+</div>
+</nav>
+</main>
+<aside class=Aside></aside>
+<footer class=Footer style=margin-bottom:2%>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+customElements.define('fluid-iframe', FluidIframe);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+
+navigator.serviceWorker.unregister();
+</script>
+</body>
+</html>
