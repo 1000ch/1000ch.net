@@ -22,8 +22,7 @@
  http://1000ch.github.io → http://1000ch.net https://1000ch.github.io → http://1000ch.net  となり、
  (http://1000ch.github.io → https://1000ch.net) https://1000ch.github.io → https://1000ch.net  とならない。
 なぜHTTPSにしたいか 話はGoogle I/O 2014に参加した時に見たHTTPS Everywhereというセッションに遡る。
-
-ネットワークレイヤ疎い自分は、SSLのオーバーヘッドの方が大きいのではと薄っすら妄想してしまったけど、事はそう簡単ではないらしい。
+ ネットワークレイヤ疎い自分は、SSLのオーバーヘッドの方が大きいのではと薄っすら妄想してしまったけど、事はそう簡単ではないらしい。
 HTTP vs HTTPS TestはHTTPとHTTPS通信化において、Webサイトのパフォーマンスがどうなるかを検証するサイトだが、見ての通りHTTPSの方が高速という驚くべき結果になっている。
 このカラクリは、@kazuhoさんのなぜHTTPSはHTTPより速いのか - Kazuho&rsquo;s Weblogという記事にある考察を見てもらうとわかる。
 話題のService Workerもセキュアな環境じゃないと無効だし、パフォーマンスの観点からも2015年はHTTP→HTTPSという潮流が生まれる予感。これについてはHTTPからHTTPSへ - Hail2u.netという記事も見て欲しい。
@@ -84,7 +83,7 @@ CloudFlareをDNSサーバーとして利用する GitHub PagesにCNAMEで設定�
 <p>とならない。</p>
 <h2 id=なぜhttpsにしたいか>なぜHTTPSにしたいか</h2>
 <p>話はGoogle I/O 2014に参加した時に見たHTTPS Everywhereというセッションに遡る。</p>
-<p><fluid-iframe src=https://www.youtube.com/embed/cBhZ6S0PFCY></fluid-iframe></p>
+<iframe loading=lazy src="https://www.youtube.com/embed/cBhZ6S0PFCY?si=9hG4T9WLUelnAFB_" title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style=width:100%;aspect-ratio:16/9></iframe>
 <p>ネットワークレイヤ疎い自分は、SSLのオーバーヘッドの方が大きいのではと薄っすら妄想してしまったけど、事はそう簡単ではないらしい。</p>
 <p><a href=http://www.httpvshttps.com/>HTTP vs HTTPS Test</a>はHTTPとHTTPS通信化において、Webサイトのパフォーマンスがどうなるかを検証するサイトだが、見ての通りHTTPSの方が高速という驚くべき結果になっている。</p>
 <p>このカラクリは、<a href=http://twitter.com/kazuho>@kazuho</a>さんの<a href=http://blog.kazuhooku.com/2014/12/httpshttp.html>なぜHTTPSはHTTPより速いのか - Kazuho&rsquo;s Weblog</a>という記事にある考察を見てもらうとわかる。</p>

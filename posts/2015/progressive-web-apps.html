@@ -19,8 +19,7 @@
 <meta name=author content="Shogo Sensui">
 <meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
 <meta property="og:description" content="Progressive Web Appsとは 今年の Chrome Dev Summit でもセッションにあった Progressive Web Apps について。Progressive Web Apps は特定の技術を指す言葉ではなく、 Web の進化していくべき姿 を提唱しているものだ。Alex Russell 氏が自身のブログで綴ったのが事の始まりで、Chrome Dev Summit でも初日は Progressive Web Apps をテーマにセッションが組まれた。
-
-Web アプリとネイティブアプリ 昨今、パソコンで Web を閲覧する時にパフォーマンスがボトルネックになることは少なくなってきている。パソコンの性能はネットワークインフラに比べれば進化が順調であり、ネットワークも光回線のように十分に速度が得られる環境でインターネットをすることが大半ではないだろうか。
+ Web アプリとネイティブアプリ 昨今、パソコンで Web を閲覧する時にパフォーマンスがボトルネックになることは少なくなってきている。パソコンの性能はネットワークインフラに比べれば進化が順調であり、ネットワークも光回線のように十分に速度が得られる環境でインターネットをすることが大半ではないだろうか。
 しかしモバイルデバイスではどうだろうか。iPhone や Android 端末の性能も良くなってきているとはいえ、MacBook Pro とは比較にならないし、4G の提供エリアであっても建物の中や地下鉄に乗っていれば相応の影響を受けるといったように、ネットワークも不安定であることが多い（それでも着実に整備が進んでいると思うが）。
 要するに、閲覧環境が不安定なのだ。HTML・CSS・JavaScript・画像・動画といったようなリソースをネットワークを介して適時取得する必要がある Web にとっては、サービスの価値を左右する要因になってしまう。低スペックの端末だろうと、貧弱なネットワーク環境であろうと、ユーザーはスムースに閲覧できることをいつも期待しているからだ。
 それに比べてネイティブアプリは、リソースの大半がアプリにバンドルされているため、起動後はネットワークからリソースを読み出す回数が Web に比べて少ない。オフライン時にもキャッシュデータをロードするなど、オフラインになったことを意識させない設計になっていることが多く、Web のように画面が真っ白になってしまうことが少ない。動作も OS ネイティブのランタイムで動作するため、ブラウザエンジンというレイヤを介す Web はどうしてもパフォーマンスが出難い。
@@ -64,7 +63,7 @@ A year ago, I asked what features made you turn to native. #1 response: push not
 <span class="Label Label--gray pull-left">2015.12.24</span>
 <h1 id=progressive-web-appsとは>Progressive Web Appsとは</h1>
 <p>今年の Chrome Dev Summit でもセッションにあった <a href="https://www.youtube.com/watch?v=MyQ8mtR9WxI">Progressive Web Apps</a> について。Progressive Web Apps は特定の技術を指す言葉ではなく、 <strong>Web の進化していくべき姿</strong> を提唱しているものだ。<a href=https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/>Alex Russell 氏が自身のブログで綴った</a>のが事の始まりで、Chrome Dev Summit でも初日は Progressive Web Apps をテーマにセッションが組まれた。</p>
-<p><fluid-iframe src=https://www.youtube.com/embed/MyQ8mtR9WxI></fluid-iframe></p>
+<iframe loading=lazy src=https://www.youtube.com/embed/MyQ8mtR9WxI title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style=width:100%;aspect-ratio:16/9></iframe>
 <h2 id=web-アプリとネイティブアプリ>Web アプリとネイティブアプリ</h2>
 <p>昨今、パソコンで Web を閲覧する時にパフォーマンスがボトルネックになることは少なくなってきている。パソコンの性能はネットワークインフラに比べれば進化が順調であり、ネットワークも光回線のように十分に速度が得られる環境でインターネットをすることが大半ではないだろうか。</p>
 <p>しかしモバイルデバイスではどうだろうか。iPhone や Android 端末の性能も良くなってきているとはいえ、MacBook Pro とは比較にならないし、4G の提供エリアであっても建物の中や地下鉄に乗っていれば相応の影響を受けるといったように、ネットワークも不安定であることが多い（それでも着実に整備が進んでいると思うが）。</p>

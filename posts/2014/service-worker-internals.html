@@ -21,8 +21,7 @@
 <meta property="og:description" content="Service Workerに関する仕様とか機能とか 今巷で流行りのService Workerについて調べ物してたので、まとめたメモ。
 Service Workerが解決してくれること Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScriptのAPIから命令的にコントロールすることを実現する。Webページのパフォーマンスに関する指標としてネットワークを介して得るリソースをキャッシュさせたりすることが効果的であることは今更改めて挙げないが、Service Workerによって保持されたリソースは、オフライン状態でも返却することが可能という凄さを持っている。つまり、更新性の低いコンテンツであればオフラインでも閲覧させることが可能ということ。
 更新性のあるコンテンツでも、回線が不安定な時はローカルに変更を保持して、サーバーに対してデータを遅延で同期するみたいなテクニックは既に存在している。ので、こういったテクニックと組み合わせて、よりクライアントの画面がホワイトアウトすることを減らしていける。はず。
-
-こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。@myakura氏による解説記事もある。
+ こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。@myakura氏による解説記事もある。
 Application Cache 先程の動画でも少し触れられているように、Application Cacheとよく対比される。リソースをキャッシュする機能として現れたのがApplication Cacheだったが、キャッシュリソースのコントロールがし難かったり、動的なコンテンツを生成する際、構成がApplication Cache前提になってしまう等、いささか問題を抱えていた。それを解決してくれるのがService Workerでもある。
 Application Cacheの問題点については、@kyo_agoさんが執筆したモバイル対応Webアプリケーションのキャッシュ戦略という記事にまとまっている他、TwitterでメンションしてもApplication Cacheの話題であれば何かしらレスをくれる。かもしれない。
 ブラウザキャッシュ ブラウザキャッシュもパフォーマンスを向上させる上で非常に重要な存在であることには間違いなさそうだが、JavaScriptからコントロールすることは不能だし、ブラウザによって挙動もまちまちである。なんせ、ブラウザキャッシュはW3Cに載っているような仕様の類ではなく、ブラウザベンダーが気を利かせて実装している機能に過ぎないからである。
@@ -74,7 +73,7 @@ Service WorkerのAPIと挙動 Service WorkerはWeb Workerなんかと同じよ�
 <h2 id=service-workerが解決してくれること>Service Workerが解決してくれること</h2>
 <p>Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScriptのAPIから命令的にコントロールすることを実現する。Webページのパフォーマンスに関する指標としてネットワークを介して得るリソースをキャッシュさせたりすることが効果的であることは今更改めて挙げないが、Service Workerによって保持されたリソースは、オフライン状態でも返却することが可能という凄さを持っている。つまり、更新性の低いコンテンツであればオフラインでも閲覧させることが可能ということ。</p>
 <p>更新性のあるコンテンツでも、回線が不安定な時はローカルに変更を保持して、サーバーに対してデータを遅延で同期するみたいなテクニックは既に存在している。ので、こういったテクニックと組み合わせて、よりクライアントの画面がホワイトアウトすることを減らしていける。はず。</p>
-<p><fluid-iframe src=https://www.youtube.com/embed/_yy0CDLnhMA></fluid-iframe></p>
+<iframe loading=lazy src="https://www.youtube.com/embed/_yy0CDLnhMA?si=7sVkwQU21MIHugjv" title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style=width:100%;aspect-ratio:16/9></iframe>
 <p>こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。<a href=http://twitter.com/myakura>@myakura</a>氏による<a href=http://html5experts.jp/myakura/8365/>解説記事</a>もある。</p>
 <h3 id=application-cache>Application Cache</h3>
 <p>先程の動画でも少し触れられているように、Application Cacheとよく対比される。リソースをキャッシュする機能として現れたのがApplication Cacheだったが、キャッシュリソースのコントロールがし難かったり、動的なコンテンツを生成する際、構成がApplication Cache前提になってしまう等、いささか問題を抱えていた。それを解決してくれるのがService Workerでもある。</p>
