@@ -121,16 +121,12 @@ UberEATS未体験の人は 招待コード eats-uber1000ch を使うと1500円�
 <script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
 <script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
-import FluidIframe from 'https://cdn.jsdelivr.net/npm/fluid-iframe/dist/index.js';
 
 customElements.define('affiliate-link', AffiliateLink);
-customElements.define('fluid-iframe', FluidIframe);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-
-navigator.serviceWorker.unregister();
 </script>
 </body>
 </html>
