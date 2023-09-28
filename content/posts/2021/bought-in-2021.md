@@ -47,7 +47,7 @@ Black Friday でセールになっていたので買ってみた。買っては�
 
 [中田が最近「買ってよかったもの」BEST7](https://www.youtube.com/watch?v=F84WSXg7HvI) を見て [Aer というブランド](https://aersf.jp/)を知り、普段使い用にスリングバッグ買ってみた。動画で紹介しているバックパックも良さそうで、衝動的に買ってしまう可能性がある。
 
-<fluid-iframe src="https://www.youtube.com/embed/F84WSXg7HvI"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/F84WSXg7HvI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 使い始めて間もないが、使い勝手が良く気に入っている。前述の Kindle Paperwhite はもちろん、MacBook Pro 13inch も入るサイズで、2つのメインポケットに加えて小物を収納する小さなポケットもある。購入直後は止水ジップがやや固く感じたが、徐々に柔らかくなってきた。
 

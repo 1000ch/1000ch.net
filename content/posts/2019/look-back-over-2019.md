@@ -14,19 +14,19 @@ date: 2019-12-17
 
 公開されたスペースで60分間議論しっぱなしというのは初体験で新鮮そのものだった。登壇者で開催された懇親会のほうが議論が盛り上がったのはここだけの秘密である。
 
-<fluid-iframe src="https://www.youtube.com/embed/nXvHsb3uCIw"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/nXvHsb3uCIw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## 2.19 [Chrome Tech Talk Night #12](https://events.withgoogle.com/chrome-tech-talk-night-12/) で登壇した
 
 Google で Web パフォーマンスについて取り組んでいる [@katiehempenius](https://twitter.com/katiehempenius) の来日に合わせて開催された Chrome Tech Talk Night #12 にて登壇し、Web パフォーマンスに関する Web 標準技術のアップデートについて話してきた。
 
-<script async class="speakerdeck-embed" data-id="e173560a8a1044f1b7442e946a42a60c" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/e173560a8a1044f1b7442e946a42a60c" title="Introduction to Performance APIs" allowfullscreen="true" data-ratio="1.7777777777777777"></iframe>
 
 ## 3.2 [ゲーム実機音源楽団 第一回コンサート](http://nesband.com/gameband1/)に行った
 
 スギモトリガーに誘われて [NES BAND](http://nesband.com/) のライブに行ってきた。NES BAND はファミコン実機を音源として1人1チャンネルずつ、4人で生演奏するバンドである。演奏者がキーボードを操作して入力し、接続されたファミコンやスーパーファミコンなどから出力するというもの。実機から音が出力されるのでゲーム音楽そのままだし、バンドメンバーの息もピッタリだし、スーパーファミコン世代に突き刺さる選曲で非常に良かった。
 
-<fluid-iframe src="https://www.youtube.com/embed/JPs8yL1ptw4"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/JPs8yL1ptw4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ライブの様子は YouTube にて公開されている。是非とも聴いて欲しい。
 
@@ -40,7 +40,7 @@ Google で Web パフォーマンスについて取り組んでいる [@katiehem
 
 JAGMO の公演には事あるごとにスギモトリガーと参加している。例によってお目当ては MOTHER シリーズの音楽である（もちろん他の演目も素晴らしいけど）。オフィシャルで公開されている動画があったので貼っておく。
 
-<fluid-iframe src="https://www.youtube.com/embed/b6oVG_jI6OI"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/b6oVG_jI6OI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## 5.6 [Code Chrysalis](https://www.codechrysalis.io/?lng=jp) の英語強化プログラムに参加した
 
@@ -81,13 +81,7 @@ Inside Frontend #3 に、[#strobofm](https://strobo.fm) の公開収録という
 
 同僚が登壇するということで、応援と現地での広報活動を兼ねて参加してきた。JSDC 2019 は台北で開催されたので、カンファレンスの前後の時間は市街地を少しだけ観光できた。時間があれば九份にも行きたかったが、そこまでは時間が取れず断念した。
 
-<div style="position: relative; width: 100%; padding-top: 78.37%;">
-  <iframe 
-    style="position: absolute; top: 0; right: 0; width: 100% !important; height: 100% !important;"
-    src="https://www.linkedin.com/embed/feed/update/urn:li:share:6609745599141158912" 
-    frameborder="0">
-  </iframe>
-</div>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6609745599141158912" allowfullscreen></iframe>
 
 台湾は中国に比べて英語が通じるシーンが多く、現地の人とのコミュニケーションにはそこまで困らなかった。この写真は夜市の様子を撮ったもので、台湾らしい雰囲気を楽しめた。
 
@@ -103,9 +97,9 @@ Frontend Conference Fukuoka 2019 にお呼ばれして、登壇してきた。
 
 イベントは九州産業大学で開催された。博多駅からおよそ15分程電車に揺られていると、到着する。このカンファレンスで一番ありがたかったのはトップバッターだったことで、自分の発表が終わったあとは他の人の発表を見たり、ゆっくりしたりするなどで楽しむことができた。発表の機会があれば、是非また福岡に行きたい。
 
-<fluid-iframe src="https://www.youtube.com/embed/AfqCwgG2pus"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/AfqCwgG2pus" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<script async class="speakerdeck-embed" data-id="d33f506a2ee348eaaaca0af3a8adbbe0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow" src="https://docs.google.com/presentation/d/e/2PACX-1vTauEbZQlEQinyeSHWJZy0YaRzk20RmWuAaGT-yVm75FDwXi3ocNXGSg38G96CgiiO7b1TfJ0_DuJV2/embed?start=false&loop=false&delayms=3000" allowfullscreen="true"></iframe>
 
 セッション内容は [Web パフォーマンスのための HTML 最適化 - Mercari Engineering Blog](https://tech.mercari.com/entry/2019/12/02/000000) に書き起こしてある。
 
@@ -123,4 +117,4 @@ DIST に初めて参加したのは [DIST.23 「マークアップを止める�
 
 数あるエンジニアコミュニティの中でも、とりわけ [DIST](http://dist.tokyo/) は素晴らしいコミュニティの一つだと思っている。運営が非常にスムーズであり、費用の収支を公開するなど、公平さや透明性を強く意識しているのがわかる。有志でスタッフが集まっているのも頷ける。
 
-<script async class="speakerdeck-embed" data-id="ddd6b654b5134dad851131711a18020e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow" src="https://docs.google.com/presentation/d/e/2PACX-1vRan1seF6nAHYpm5KMUuzyek7oht6JU6gMKjc38JvLMsZwnbH1UctYD54on2fHppr0DH54E64qU9lmI/embed?start=false&loop=false&delayms=3000" allowfullscreen="true"></iframe>

@@ -133,7 +133,7 @@ navigator.mediaDevices.getUserMedia({
 
 ## デモ
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="Webで音声を描画・録音したい" src="https://codepen.io/1000ch/embed/OgbwEe?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="Webで音声を描画・録音したい" src="https://codepen.io/1000ch/embed/OgbwEe?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/OgbwEe'>Webで音声を描画・録音したい</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>

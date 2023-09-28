@@ -12,7 +12,7 @@ date: 2013-10-25
 
 スライドはこちら。
 
-<script async class="speakerdeck-embed" data-id="876fcb001e760131f03e7e1022f85296" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/876fcb001e760131f03e7e1022f85296" title="Brush up your Coding" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 当日使ったようで使っていなかったデモファイルは[こちら](http://github.com/1000ch/brushup-sample)。
 

@@ -22,7 +22,7 @@ date: 2013-12-10
 
 さて、本題。セッションの後半でのデモで（デモになってなかったけど）HTMLInspector、CSSLint、JSHintのエラーサンプルを解説したが、コードと紐付けて説明が出来ていなかったので、HTMLInspector、CSSLint、JSHintを実際に試すあたりを[1000ch/brushup-sample](http://github.com/1000ch/brushup-sample)に詳しく書いた。
 
-<script async class="speakerdeck-embed" data-id="1b318f5058b0013149ef66d2f27aad89" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/1b318f5058b0013149ef66d2f27aad89" title="Brush up your Coding 2013 Winter" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 ## SaCSSはとても素敵なコミュニティ
 

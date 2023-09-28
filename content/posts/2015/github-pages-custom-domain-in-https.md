@@ -22,7 +22,7 @@ date: 2015-01-12
 
 話はGoogle I/O 2014に参加した時に見たHTTPS Everywhereというセッションに遡る。
 
-<fluid-iframe src="https://www.youtube.com/embed/cBhZ6S0PFCY"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/cBhZ6S0PFCY?si=9hG4T9WLUelnAFB_" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="aspect-ratio: 16/9;"></iframe>
 
 ネットワークレイヤ疎い自分は、SSLのオーバーヘッドの方が大きいのではと薄っすら妄想してしまったけど、事はそう簡単ではないらしい。
 

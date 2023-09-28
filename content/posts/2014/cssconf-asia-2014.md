@@ -21,14 +21,14 @@ date: 2014-11-19
 
 - ツールっていっぱいあって、どれがベストなのかわからない…
 - **SIMPLICITY** 目的がわかりやすく、複雑でないものを選ぼう
-    - "Complexity is a fact of the world, simplicity is in the mind."
+  - "Complexity is a fact of the world, simplicity is in the mind."
 - **AUTOMATION** 自動化がキモ
-    - AutoprefixerやらCSSLintやらCode BloatやらStressCSSやらを駆使
-    - 共有にはnpmもとい`package.json`を利用するのが良いかな
-    - ランナーにはGruntでもGulpでもMakeでも！
+  - AutoprefixerやらCSSLintやらCode BloatやらStressCSSやらを駆使
+  - 共有にはnpmもとい`package.json`を利用するのが良いかな
+  - ランナーにはGruntでもGulpでもMakeでも！
 - **COLLABORATION** 皆が使うことを前提にする
-    - プロジェクトにジョインする人みながバイアスをもっている
-    - "Knowledge makes everything simpler"
+  - プロジェクトにジョインする人みながバイアスをもっている
+  - "Knowledge makes everything simpler"
 
 >"its easy to introduce that unnecessary complexity by adding tools that manage other tools"
 
@@ -56,11 +56,11 @@ SVGに関するとてもわかり易い話だった。
 
 - CSSがUIのパフォーマンスに与える影響
 - ペイントとリフロー
-    - ペイントは位置の更新を伴わない・リフローは位置の更新を伴う
-    - 何がそれらを引き起こすかは[CSSTriggers](http://csstriggers.com/)を参考に
+  - ペイントは位置の更新を伴わない・リフローは位置の更新を伴う
+  - 何がそれらを引き起こすかは[CSSTriggers](http://csstriggers.com/)を参考に
 - モダンブラウザならどれでもいつ何が起こっているか、タイムラインでデバッグできる
-    - SafariならCompositing Borderを表示することが出来る
-    - order属性はパフォーマンスの良いプロパティとは言えないよう
+  - SafariならCompositing Borderを表示することが出来る
+  - order属性はパフォーマンスの良いプロパティとは言えないよう
 - デバッグツールはどれもまだ過渡期だし、良いUIを作っていくのも難しい。 **でも不可能じゃない。**
 
 >"Performance is fragile"
@@ -76,15 +76,15 @@ SVGに関するとてもわかり易い話だった。
 ## [Build Scalable, Automated CSS Both You and Your ’Back-End’ Coders Can Love](http://www.slideshare.net/xmlilley/css-conf-asia-2014-preso) by [@xmlilley](https://twitter.com/xmlilley)
 
 - なぜCSSはクソなのか
-    - 強力とも言えるが、それが悪いところでもある
-    - 上書き前提だし、セレクタは複雑になるし、レイアウトは難しいし
+  - 強力とも言えるが、それが悪いところでもある
+  - 上書き前提だし、セレクタは複雑になるし、レイアウトは難しいし
 
 >"an anti-language, full of dark magic"
 
 - レイアウトをする上で何に気をつければいいか
-    - すべての鍵は「`float: left|right`を使うのをやめること」
-    - `inline-block`は、`text-align`も使えるし、いいよ。`vertical-align`はバグじゃない。ああいうもんだ！
-    - whitespace問題は…プリプロセッサの **mix-in** つかうといいんじゃないかな
+  - すべての鍵は「`float: left|right`を使うのをやめること」
+  - `inline-block`は、`text-align`も使えるし、いいよ。`vertical-align`はバグじゃない。ああいうもんだ！
+  - whitespace問題は…プリプロセッサの **mix-in** つかうといいんじゃないかな
 
 <blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/hashtag/CSS?src=hash">#CSS</a> Selectors are evaluated right-to-left <a href="https://twitter.com/hashtag/cssconfasia?src=hash">#cssconfasia</a></p>&mdash; 1000ch (@1000ch_en) <a href="https://twitter.com/1000ch_en/status/534930278121086976">2014, 11月 19</a></blockquote>
 

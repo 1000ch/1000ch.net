@@ -27,7 +27,7 @@ date: 2016-02-05
 
 「リーン・スタートアップが一体どういったものなのか」がこの本に凝縮されているわけだが、ストーリーを交えていることもありやや冗長（400P超）なので、読んでられないという人は以下のスライドでも要点はわかりそう。
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/GuPph4hKsSbQD5" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/shintokeimail/10lean-startup" title="10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~" target="_blank">10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~</a> </strong> from <strong><a href="//www.slideshare.net/shintokeimail" target="_blank">圭 進藤</a></strong> </div>
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/GuPph4hKsSbQD5"scrolling="no" style="aspect-ratio: 4/3;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/shintokeimail/10lean-startup" title="10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~" target="_blank">10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~</a> </strong> from <strong><a href="//www.slideshare.net/shintokeimail" target="_blank">圭 進藤</a></strong> </div>
 
 僕自身はスタートアップを率いたわけではないし、プロダクトの先頭に立って成功を収めたこともないけど、検証で示されるデータに納得の元で進める開発をしたいとは思ってる。
 

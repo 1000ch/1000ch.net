@@ -24,8 +24,8 @@ date: 2020-09-22
 
 ## 【山奥ニート①】なるべく働かずに楽して生きていく
 
-<fluid-iframe src="https://www.youtube.com/embed/eQZ9XtI4ZIA"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/eQZ9XtI4ZIA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## 【山奥ニート②】実は時代の最先端を走る生き方
 
-<fluid-iframe src="https://www.youtube.com/embed/die7CSOt7wc"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/die7CSOt7wc" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

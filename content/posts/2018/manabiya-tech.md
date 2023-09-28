@@ -28,6 +28,6 @@ date: 2018-03-28
 
 ありがたいことに満員御礼でした。2018年の Web 標準ということで Service Worker、Web Components、Web Payments の話をしました。この3つは決して真新しいものではないですが、強力かつどれもブラウザ実装が進んでおり、これから導入事例が増えてほしいという期待を込めてのトピック選定です。
 
-<script async class="speakerdeck-embed" data-id="0a008ff2aa2a4c0a954b61368cae3140" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/0a008ff2aa2a4c0a954b61368cae3140" title="2018 年の Web 標準 / Web Standards 2018" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 今年のはじめに gihyo.jp の新春特別企画ということで、同じタイトル [2018年の Web 標準](http://gihyo.jp/design/column/newyear/2018/web-standards-prospect) という記事を寄稿しました。セッションに近い内容を書いていますので、こちらも合わせて御覧ください。

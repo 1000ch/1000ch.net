@@ -8,7 +8,7 @@ date: 2018-08-25
 
 2018年8月23日に開催された [Bonfire Frontend #2](https://yj-meetup.connpass.com/event/97695/) に出演して、「PWA 対応戦略と現実解」というタイトルで PWA についてお話しました。
 
-<script async class="speakerdeck-embed" data-id="dcd7d335c6894846ab892806c081b053" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow" src="https://docs.google.com/presentation/d/e/2PACX-1vTJKE7pbxy7limVmICK8UF7lH1FVwN1wUiq-eSeKUh1NwigvjUltmH1yLQEl-xeUJQ6HhS1B0KBXahX/embed?start=false&loop=false&delayms=3000" allowfullscreen="true"></iframe>
 
 [Progressive Web Apps はという言葉は 2015 年にスタート](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/)し、普及を続けてきました。PWA の構成要素や、それを達成するための HTTPS、Service Worker、Web App Manifest などの技術要素などについての理解も、ここ数年でかなり進んでいます。
 

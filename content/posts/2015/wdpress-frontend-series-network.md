@@ -17,7 +17,7 @@ Webサイトのパフォーマンスがユーザー体験にどれほど影響�
 
 ページロードはWebページの閲覧フローのうち、ユーザーが最初に体験するフェーズです。ページロードで10秒かかったらユーザーはそのサイトへ二度と帰ってこないかもしれません。
 
-<script async class="speakerdeck-embed" data-slide="11" data-id="1b3549704a03013120435a62e2d384d2" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/1b3549704a03013120435a62e2d384d2" title="俺的フロントレンド2013総括" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 **HTTP/2の台頭でフロントエンドの最適化が要らなくなる** と誤変換された情報が流れているのをたまーに見ますが、変化するだけで要らなくなるわけではありません。そのことについても書いてます。
 

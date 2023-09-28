@@ -17,7 +17,6 @@ YouTube などの動画コンテンツを `<iframe>` 要素でエンベッドす
   width="560" 
   height="315" 
   src="https://www.youtube.com/embed/gTHAn-nkQnI"
-  frameborder="0"
   allowfullscreen>
 </iframe>
 ```
@@ -54,10 +53,6 @@ YouTube などの動画コンテンツを `<iframe>` 要素でエンベッドす
 
 ```html
 <div class="YouTube">
-  <iframe 
-    src="https://www.youtube.com/embed/gTHAn-nkQnI"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
+  <iframe  src="https://www.youtube.com/embed/gTHAn-nkQnI" allowfullscreen></iframe>
 </div>
 ```

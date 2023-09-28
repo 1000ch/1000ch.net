@@ -12,7 +12,7 @@ date: 2017-11-05
 
 Polymer のイベントとはいえ前提技術として Web Components の話が必要ということで、Web Components の基礎部分について解説しました。[HTML5 Conference 2017 で話した内容](https://speakerdeck.com/1000ch/the-state-of-web-components)と被るところもありますが、全体感をまとめてお届けしました。
 
-<script async class="speakerdeck-embed" data-id="a194ef68986e476c8eba0159a7a46bf2" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/a194ef68986e476c8eba0159a7a46bf2" title="Web Components Re-Introduction" allowfullscreen="true" data-ratio="1.7777777777777777"></iframe>
 
 Polymer もとい Web Components の良さについては、このデモが一番わかりやすいです。
 

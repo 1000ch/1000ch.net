@@ -131,3 +131,18 @@ input {
   background-color: var(--light-bgcolor-backdrop);
   color: var(--light-color);
 }
+
+iframe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+iframe.dropshadow {
+  background: padding-box padding-box rgba(0, 0, 0, .1);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, .2) 0 5px 40px;
+}

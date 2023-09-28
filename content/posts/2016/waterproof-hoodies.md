@@ -12,4 +12,4 @@ date: 2016-05-20
 
 弾く素材とは言っても洗わずにはいられないので、洗濯機で洗えるのか心配であったが、ちゃんと洗えているようだ。
 
-<fluid-iframe src="https://www.youtube.com/embed/_0JikPoN6L8"></fluid-iframe>
+<iframe loading="lazy" src="https://www.youtube.com/embed/_0JikPoN6L8" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

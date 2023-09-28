@@ -42,11 +42,11 @@ HTMLやCSSを部品として含む場合は、`<template>`タグや、ShadowDOM�
 
 例えば`<x-element>`というカスタムエレメントが以下のように、`img`フォルダの配下に`foo.png`と`bar.png`を含んだ構成とする。
 
-- x-element
-    - x-element.html
-    - img
-        - foo.png
-        - bar.png
+- `x-element`
+  - `x-element.html`
+  - `img`
+    - `foo.png`
+    - `bar.png`
 
 
 `bower`なんかでインストールされれば`x-element`というフォルダごとダウンロードされて、いざインポートするときには`<link rel='import' href='bower_components/x-element/x-element.html'>`のようになる。

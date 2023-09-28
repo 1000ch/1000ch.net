@@ -12,9 +12,9 @@ date: 2017-02-21
 
 インターネット黎明期から昨今にかけて Web がどのように変遷してきたかを振り返りつつ、この進化の早い Web の世界で私達開発者はどのように向き合っていけばよいのかという内容でした。
 
-<script async class="speakerdeck-embed" data-id="e9838c769de2446aa1e3d5149d9ca46d" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/e9838c769de2446aa1e3d5149d9ca46d" title="Web フロントエンドの変遷とこれから / Transition of Web Frontend" allowfullscreen="true" data-ratio="1.7777777777777777"></iframe>
 
-<script async class="speakerdeck-embed" data-id="7576965b3556486bbf486d5e62d5a798" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/7576965b3556486bbf486d5e62d5a798" title="Web フロントエンドに期待される適応と新陳代謝" allowfullscreen="true" data-ratio="1.7777777777777777"></iframe>
 
 私が Web 業界に飛び込んだのがサイバーエージェントに転職した 2012 年で、「Web フロントエンドは技術の流行り廃りが早い」と言われ始めたのもこの頃からだろうか。これ以前の Web 業界の動向は知る良しもなかったけど、個人的には移り変わりの早さを相対的に感じることはなくて、それが当たり前だったというかなんというか。
 

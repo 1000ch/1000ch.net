@@ -12,7 +12,7 @@ date: 2017-02-26
 
 技術寄りな話をすることが多いけど、今回は Web クライアントサイドのエンジニアとデザイナーの協業について話した。
 
-<script async class="speakerdeck-embed" data-id="094bd4bc698d4d5e94c50fa412829ab1" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/094bd4bc698d4d5e94c50fa412829ab1" title="Web フロントエンドにおけるコンポーネント化のアプローチ / Component of Web Frontend" allowfullscreen="true" data-ratio="1.7777777777777777"></iframe>
 
 コンポーネント化は、開発や運用のコストを小さくしたり、アプリケーションの品質を高める上で欠かせない。成果物を整理・抽象化したいのはデザイナー・エンジニアを問わず開発者皆が思うところ。でも今までの Web フロントエンドにおけるコンポーネント化したい欲求は、エンジニアの心の中にしかなくて、うまくいってなかった。開発プロセスにおいて、全体像を求められるデザイナーとモジュラーにプログラムを構築していく職能間の意識の齟齬や、Web フロントエンド固有の技術課題である CSS もある。そういった背景がある中で、コンポーネント化を進めるには何に取り組めばいいか、という話をした。
 

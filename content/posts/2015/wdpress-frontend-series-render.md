@@ -15,7 +15,7 @@ image: /img/posts/2015/wdpress-frontend-series-render/cover.jpg
 
 普段から描画パフォーマンスを意識して開発している人は、そこまで多くはないでしょう。しかし、Webを見ている時にスクロールの引っ掛かりを感じたり、画面のガタつきにイラッとした体験は誰しもあるのではないでしょうか。[前回のネットワークパフォーマンスと同様](/posts/2015/wdpress-frontend-series-network.html)にスムーズなWeb体験もサービスの価値を左右します。
 
-<script async class="speakerdeck-embed" data-slide="9" data-id="6c6285903bcf0131b1062e4c06c0e983" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/6c6285903bcf0131b1062e4c06c0e983" title="Web Frontend Rendering Performance Knowledge &amp; Tips" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 これは[@ahomu](http://twitter.com/ahomu)さんがHTML5 Conferenceでセッションした**Web Frontend Rendering Performance Knowledge & Tips**というセッションの資料です。この辺の内容をアップデートしてまとめたのが今回の内容です。
 

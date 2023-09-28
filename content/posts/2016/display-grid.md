@@ -54,7 +54,7 @@ footer {
 }
 ```
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid;" src="https://codepen.io/1000ch/embed/oxzEBa?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="display: grid;" src="https://codepen.io/1000ch/embed/oxzEBa?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/oxzEBa'>display: grid;</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -214,7 +214,7 @@ footer {
 }
 ```
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; positive value" src="https://codepen.io/1000ch/embed/bpeQpa?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="display: grid; positive value" src="https://codepen.io/1000ch/embed/bpeQpa?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/bpeQpa'>display: grid; positive value</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -234,7 +234,7 @@ footer {
 }
 ```
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; negative value" src="https://codepen.io/1000ch/embed/oxLrrZ?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="display: grid; negative value" src="https://codepen.io/1000ch/embed/oxLrrZ?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/oxLrrZ'>display: grid; negative value</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -252,7 +252,7 @@ footer {
 }
 ```
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; named line value" src="https://codepen.io/1000ch/embed/wGWVaQ?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="display: grid; named line value" src="https://codepen.io/1000ch/embed/wGWVaQ?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/wGWVaQ'>display: grid; named line value</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -267,7 +267,7 @@ footer {
 }
 ```
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; named area value" src="https://codepen.io/1000ch/embed/grMVPj?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="display: grid; named area value" src="https://codepen.io/1000ch/embed/grMVPj?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/grMVPj'>display: grid; named area value</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -285,7 +285,7 @@ footer {
 
 このように`span`キーワードを使って、セルの数を指定可能。もちろんショートハンドプロパティだけでなく、`grid-row-end`プロパティに`span 2`と指定も出来るが、開始点と距離がペアになっている方が一見わかりやすそう。ケースバイケースだけど。
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="display: grid; spanning" src="https://codepen.io/1000ch/embed/dMXxOZ?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="display: grid; spanning" src="https://codepen.io/1000ch/embed/dMXxOZ?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/dMXxOZ'>display: grid; spanning</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>

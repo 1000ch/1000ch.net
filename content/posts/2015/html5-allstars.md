@@ -12,7 +12,7 @@ date: 2015-06-15
 
 は、こちら。セッション時間が20分だったので枚数も少なめだが、それなりに凝縮できた気はする。
 
-<script async class="speakerdeck-embed" data-id="617f2e6d9aa04843b4d27368d5f11b8c" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/617f2e6d9aa04843b4d27368d5f11b8c" title="いまからはじめるECMAScript 6 / Begin ECMAScript6" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 詳しいフォローアップ記事はまた後程。
 

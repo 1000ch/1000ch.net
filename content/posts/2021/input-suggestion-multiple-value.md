@@ -10,7 +10,7 @@ date: 2021-03-14
 
 次のデモは `<input type="text">` と `<datalist>` 要素を組み合わせた挙動である。 [`<input>` 要素の `list` 属性](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input#htmlattrdeflist)に、[`<datalist>` 要素](https://developer.mozilla.org/ja/docs/Web/HTML/Element/datalist)の `id` 属性の値を指定している。
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="&lt;input type=&quot;text&quot;&gt; and &lt;datalist&gt;" src="https://codepen.io/1000ch/embed/PobLZGV?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="&lt;input type=&quot;text&quot;&gt; and &lt;datalist&gt;" src="https://codepen.io/1000ch/embed/PobLZGV?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/PobLZGV'>&lt;input type=&quot;text&quot;&gt; and &lt;datalist&gt;</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -21,7 +21,7 @@ date: 2021-03-14
 
 [^1]: `<input type="email" multiple>` と `<datalist>` の組み合わせは、[MDN でも解説されている](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/email)。
 
-<iframe style="width: 100%; aspect-ratio: 16/9;" scrolling="no" title="&lt;input type=&quot;email&quot; multiple&gt; and &lt;datalist&gt;" src="https://codepen.io/1000ch/embed/mdOvoVw?theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe loading="lazy" scrolling="no" title="&lt;input type=&quot;email&quot; multiple&gt; and &lt;datalist&gt;" src="https://codepen.io/1000ch/embed/mdOvoVw?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/1000ch/pen/mdOvoVw'>&lt;input type=&quot;email&quot; multiple&gt; and &lt;datalist&gt;</a> by 1000ch
   (<a href='https://codepen.io/1000ch'>@1000ch</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>

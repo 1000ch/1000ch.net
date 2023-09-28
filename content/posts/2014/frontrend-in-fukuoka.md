@@ -32,7 +32,7 @@ date: 2014-02-02
 私のセッションではBrowser Computing Structureということで、WebサイトのパフォーマンスをComputingの観点から攻めるべく
 ブラウザの仕組みを知り、メモリの仕組みを知り、JavaScriptを制すといったような内容でした。
 
-<script async class="speakerdeck-embed" data-id="178c76b068ca013133ba7691c1dda2be" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/178c76b068ca013133ba7691c1dda2be" title="Browser Computing Structure" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 参考リンクは[こちら](https://gist.github.com/1000ch/8611733)をどうぞ。ボリューム多いですが、参考になるリンクばかりです。
 

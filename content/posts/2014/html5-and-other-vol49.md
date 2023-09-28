@@ -17,7 +17,7 @@ date: 2014-07-31
 それを参加者の人に指摘されました。手を抜いたつもりは更々ありません（確かに簡素ではあったけど！）。
 というわけで、Speakerdeckに事後装飾済みの資料をアップしてあります。
 
-<script async class="speakerdeck-embed" data-id="68ef20c0f9bf013175412a749889ce68" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/68ef20c0f9bf013175412a749889ce68" title="Web Components changes Web Development" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 Google I/O 2014でのWeb Components/Polymerに関する新ネタとしては、やはりMaterial DesignからのPaper Elementsが色濃かったような印象で、その他は2014年の状況に合わせてアップデートされた内容でした。
 

@@ -26,7 +26,7 @@ date: 2021-12-31
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">メルペイのクライアントサイドでやっていることを書きました。図らずも <a href="https://twitter.com/hashtag/FELounge?src=hash&amp;ref_src=twsrc%5Etfw">#FELounge</a> (<a href="https://t.co/HN22IePNkb">https://t.co/HN22IePNkb</a>) 向けの内容になりましたが、本番ではモチベーションの部分を話そうと思います。 / “メルペイのクライアントエンジニアリングの話” <a href="https://t.co/80FK600ebT">https://t.co/80FK600ebT</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/1467680316592914432?ref_src=twsrc%5Etfw">December 6, 2021</a></blockquote>
 
-あとは、僭越ながら[技育展 2021](https://talent.supporterz.jp/geekten/2021/) の審査員を担当させて頂いたり、メルペイやメルコインの会社説明会でメルカリグループ全体の事業や組織についてお話しさせて頂いた。
+あとは、僭越ながら[技育展 2021](https://talent.supporterz.jp/geekten/2021/) の審査員を担当させていただいたり、メルペイやメルコインの会社説明会でメルカリグループ全体の事業や組織についてお話しさせていただいた。
 
 ## 副業でやっていたこと
 
@@ -48,11 +48,11 @@ date: 2021-12-31
 
 ## その他のアウトプット
 
-Yahoo! JAPAN とメルカリ・メルペイのエンジニアリングについて議論を、CodeZine さんに取材して頂いた。
+Yahoo! JAPAN とメルカリ・メルペイのエンジニアリングについて議論を、CodeZine さんに取材していただいた。
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Yahoo! JAPAN とメルカリ・メルペイにおけるエンジニアリング組織や、行っている取り組みなどについて話しました。改めて見ると所々で主語が大きめですが、それとなく雰囲気が伝わると嬉しいです / “エンジニアに求められるのは「品質に向き合う力」――ユーザー価値向上のた…” <a href="https://t.co/6fgV5p6fI6">https://t.co/6fgV5p6fI6</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/1372408517689180160?ref_src=twsrc%5Etfw">March 18, 2021</a></blockquote>
 
-こちらは久々の執筆業で、WEB+DB PRESS の総集編に JavaScript の歴史や進化の変遷に関するエッセイを寄稿させて頂いた。
+こちらは久々の執筆業で、WEB+DB PRESS の総集編に JavaScript の歴史や進化の変遷に関するエッセイを寄稿させていただいた。
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">書き下ろし特別企画「進化するプログラミング言語の魅力」で、JavaScript の歴史や進化の変遷について寄稿しました。WEB+DB PRESS の総集編ということで、Vol.1~120 という <a href="https://twitter.com/hashtag/wdpress?src=hash&amp;ref_src=twsrc%5Etfw">#wdpress</a> の 20 年分が詰まった超お得な一冊です📚 <a href="https://t.co/sF98be039Q">https://t.co/sF98be039Q</a> <a href="https://t.co/9LgKqP5vFf">https://t.co/9LgKqP5vFf</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/1422026776641896449?ref_src=twsrc%5Etfw">August 2, 2021</a></blockquote>
 

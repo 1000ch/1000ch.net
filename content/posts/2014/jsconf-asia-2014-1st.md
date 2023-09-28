@@ -18,28 +18,28 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 - JavaScriptはブラウザ環境でもNode.js環境でも実行される。だからこそIsomorphicにするべき
 - フロントエンドの比重は大きくなっているが、SPAなどで極端にクライアントに処理を寄せてしまうとパフォーマンスに影響する
-    - 1.Download skelton HTML
-    - 2.Download JavaScript
-    - 3.Evaluate JavaScript
-    - 4.Fetch data from API
-    - 5.User sees content
+  - 1.Download skelton HTML
+  - 2.Download JavaScript
+  - 3.Evaluate JavaScript
+  - 4.Fetch data from API
+  - 5.User sees content
 - 従来のように、HTMLをサーバー側で構築して返却する場合はやはり手順が少ない
-    - 1.Download fill HTML
-    - 2.User sees content
+  - 1.Download fill HTML
+  - 2.User sees content
 - パフォーマンスはもちろん、SEO的にも、うまく組み合わせたい。
-    - Flickerは[mojito](https://github.com/yahoo/mojito)で、Instagramは[react](https://github.com/facebook/react)と[django](https://github.com/django/django)で実現しているらしい。
-    - AirbnbのモバイルWebはBackboneとExpressで作った自家製ライブラリらしい。
-    - [ASANA](https://github.com/Asana) - クライアントとサーバーで同期されているランタイムらしい。Meteorも同じ類のアプローチ？
+  - Flickerは[mojito](https://github.com/yahoo/mojito)で、Instagramは[react](https://github.com/facebook/react)と[django](https://github.com/django/django)で実現しているらしい。
+  - AirbnbのモバイルWebはBackboneとExpressで作った自家製ライブラリらしい。
+  - [ASANA](https://github.com/Asana) - クライアントとサーバーで同期されているランタイムらしい。Meteorも同じ類のアプローチ？
 - これらの実現のために、環境の差異を吸収する。”Enviroment agnostic & Shimmed per environment”
-    - 例えばCookieの抽象化は、[cookie](https://github.com/jshttp/cookie) + Browserifyで良いのでは？
-    - リクエストであれば[visionmedia/superagent](https://github.com/visionmedia/superagent)とか。
-    - webpackを使ったアプローチも、InstagramやFacebook、Yahooで使われている。
+  - 例えばCookieの抽象化は、[cookie](https://github.com/jshttp/cookie) + Browserifyで良いのでは？
+  - リクエストであれば[visionmedia/superagent](https://github.com/visionmedia/superagent)とか。
+  - webpackを使ったアプローチも、InstagramやFacebook、Yahooで使われている。
 - どうやってshimmed-per-environmentなモジュールをつくるのか？
-    - `package.json`の`browser`属性を使おう
-    - https://github.com/spikebrehm/set-cookie
-    - [facebook/react](https://github.com/facebook/react)
-    - [yahoo/flux-examples](https://github.com/yahoo/flux-examples)
-    - [Isobuild: why Meteor created a new package system](https://www.meteor.com/blog/2014/08/28/isobuild-why-meteor-created-a-new-package-system)
+  - `package.json`の`browser`属性を使おう
+  - https://github.com/spikebrehm/set-cookie
+  - [facebook/react](https://github.com/facebook/react)
+  - [yahoo/flux-examples](https://github.com/yahoo/flux-examples)
+  - [Isobuild: why Meteor created a new package system](https://www.meteor.com/blog/2014/08/28/isobuild-why-meteor-created-a-new-package-system)
 
 ## Pixel Art and Complex Systems by [@vinceallenvince](https://twitter.com/vinceallenvince)
 
@@ -55,13 +55,13 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 面白かった。凄くしゃべり慣れている感じ。Firefox OS中心の話。
 
 - モバイルデバイスに対する入力の方法は限られていたが、センサーの進化によって、今では色んな可能性がある。
-    - 輝度・湿気・磁力・カメラ・バッテリー・圧力等…
+  - 輝度・湿気・磁力・カメラ・バッテリー・圧力等…
 - これらのセンサーを組み合わせたらアプリケーションの幅が広がる
-    - 電波が悪くなったらオフラインモードに切り替える（`navigator.mozWifiManager`）
-    - 暗くなったら音量を下げる（`window.addEventListener('devicelight')` + `AudioContext`）
+  - 電波が悪くなったらオフラインモードに切り替える（`navigator.mozWifiManager`）
+  - 暗くなったら音量を下げる（`window.addEventListener('devicelight')` + `AudioContext`）
 - Firefox OSのアーキテクチャ
-    - Linux Kernel > Gecko > HTML5 UI
-    - このGeckoの部分にJSからセンサーにアクセスするAPIが集約されている
+  - Linux Kernel > Gecko > HTML5 UI
+  - このGeckoの部分にJSからセンサーにアクセスするAPIが集約されている
 
 <blockquote class="twitter-tweet" lang="ja"><p>Fun with JavaScript and Sensors by <a href="https://twitter.com/janjongboom">@janjongboom</a> <a href="https://twitter.com/hashtag/jsconfasia?src=hash">#jsconfasia</a> <a href="http://t.co/uzgJDvrPbI">pic.twitter.com/uzgJDvrPbI</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/535311304526163968">2014, 11月 20</a></blockquote>
 
@@ -73,14 +73,14 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 恐らく、後日ビデオで公開されると思うのでJavaScript好きな人に見て欲しい。 http://aem1k.com/ に置いてあるブツが好きなら見て損はないと思う。
 
-<script async class="speakerdeck-embed" data-id="b18b2cb052bf013294f64e2c5650262a" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/178c76b068ca013133ba7691c1dda2be" title="Browser Computing Structure" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 ## Preparing Your NodeJS Application for Scale by Dexter Tan & Laurence Franslay
 
 - expressにはデフォルトだとセキュリティ的な機能はないので[Lusca](https://github.com/krakenjs/lusca)か[Helmet](https://github.com/helmetjs/helmet)を使うとだいぶ良くなる。
 - 使っていないモジュールは削除し、使っているならこまめに更新する。そして依存関係を無闇に作らないことも大事
-    - [grunt-nsp-package](https://github.com/nodesecurity/grunt-nsp-package)でモジュールの脆弱性を調べる
-    - [retire.js](http://bekk.github.io/retire.js/)で古くなったモジュールを調べる。Gruntは[grunt-retire](https://github.com/bekk/grunt-retire)
+  - [grunt-nsp-package](https://github.com/nodesecurity/grunt-nsp-package)でモジュールの脆弱性を調べる
+  - [retire.js](http://bekk.github.io/retire.js/)で古くなったモジュールを調べる。Gruntは[grunt-retire](https://github.com/bekk/grunt-retire)
 - XSS対策として、基本的にincomingなものもoutgoingなものもエスケープする
 
 あと、ローカライズとかパフォーマンスの話もあった。
@@ -99,7 +99,7 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 申し込んでみたものの、「希望者が殺到してたら時間ないだろうなー」と思っていた。が、いざ主催スタッフに話を聞いてみると申込者は6人しかいなかったという展開で、難なく枠をゲット出来てしまったという話。
 
-<script async class="speakerdeck-embed" data-id="e18016304ebe01320da372c75fc688f9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/e18016304ebe01320da372c75fc688f9" title="We should optimize images" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 滅多に無いチャンスだったと思うので、良い経験になった。
 

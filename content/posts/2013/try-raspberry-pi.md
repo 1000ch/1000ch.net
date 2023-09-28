@@ -8,7 +8,7 @@ date: 2013-12-02
 
 この記事は[Frontrend Advent Calendar 2013](http://www.adventar.org/calendars/62) 2日目の記事です。
 
-この前フロントエンドな同僚の方々にRaspberry Piをプレゼントして頂いたので、アレコレしてみたログを晒してみる。Frontrendのアドベントカレンダーに書いて良いのか些か迷ったものの、フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！
+この前フロントエンドな同僚の方々にRaspberry Piをプレゼントしていただいたので、アレコレしてみたログを晒してみる。Frontrendのアドベントカレンダーに書いて良いのか些か迷ったものの、フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！
 
 ![](/img/posts/2013/raspberry-pi/raspberrypi.jpg)
 
@@ -28,8 +28,21 @@ USBケーブルから電源を供給し、起動するようなイメージ。
 
 電源を供給しなければ始まらないのでMicro-USB(A-MicroB)という規格(?)のケーブルを購入。あと、OSイメージを焼くSDカードがないと話にならないのでそれも購入。  
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B003UIRIFY&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B003YC0U5G&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<affiliate-link
+  src="https://m.media-amazon.com/images/I/71xLL2jT47L._AC_SL1500_.jpg"
+  href="https://www.amazon.co.jp/dp/B003UIRIFY"
+  tag="1000ch-22"
+  title="エレコム マイクロUSBケーブル microUSB 転送・充電 1A出力 1.0m ブラック MPA-AMB10BK">
+  USB(Aタイプ:オス)のインターフェイスを持つパソコンに、USB(MicroBタイプ:オス)のインターフェイスを持つスマートフォン(Xperia(TM)やDesire)などの機器を接続し、充電やデータ転送ができるMicro-USBケーブルです。
+</affiliate-link>
+
+<affiliate-link
+  src="https://m.media-amazon.com/images/I/61s-6bZrcxL._AC_SL1500_.jpg"
+  href="https://www.amazon.co.jp/dp/B0B21F8RQ5"
+  tag="1000ch-22"
+  title="SDカード 32GB SDHC Class10 UHS-I U3 V30 SanDisk Extreme SDSDXVT-032G-GHJIN">
+  ブランド: SanDisk、モデル名: Extreme SD、フラッシュメモリタイプ: SDHCカード、メモリストレージ容量: 32 GB、色: ブラック|ゴールド
+</affiliate-link>
 
 USBは2口しかないけど、ハブ等駆使すればラズパイだけでそれなりに楽しめそうな。
 
@@ -105,7 +118,14 @@ Password raspberry（デフォルトのままの場合）
 
 Raspberry Piをネットワークに繋げるべく、AirMac Expressからイーサネット経由で接続。  
 
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00B42GZV6&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+<affiliate-link
+  src="https://m.media-amazon.com/images/I/51Utf90oy5L._AC_SL1204_.jpg"
+  href="https://www.amazon.co.jp/dp/B076J9NL4D"
+  tag="1000ch-22"
+  title="エレコム LANケーブル CAT6A 3m 爪折れ防止コネクタ cat6a対応 やわらか ホワイト LD-GPAYC/WH3">
+高速光通信に適した、10ギガビット・イーサネットの「10GBASE-T」に対応した、Cat6A準拠LANケーブルです。
+Cat6の2倍である500MHzまでの高周波帯域まで対応しており、ノイズ干渉にも強く、高速で安定したネットワーク環境を実現します。
+</affiliate-link>
 
 LANケーブルでAirMac Expressと接続して`sudo reboot`でRaspberry Pi再起動。
 

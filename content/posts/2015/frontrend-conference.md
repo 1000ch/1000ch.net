@@ -10,7 +10,7 @@ date: 2015-02-22
 
 ## Introduction to Service Worker
 
-<script async class="speakerdeck-embed" data-id="ac1d3d87628c466a89c99e8983329fe1" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/ac1d3d87628c466a89c99e8983329fe1" title="Introduction to Service Worker" allowfullscreen="true" style="aspect-ratio: 560 / 420;" data-ratio="1.3333333333333333"></iframe>
 
 日本語・英語を問わずService Workerに関する資料が少なくて調べるの結構大変だったけど、なんとか漕ぎ着けた。発表も45分に収まらなくて、後半の一部を端折ってしまったけど、伝えるべきは前半の「オフラインWeb」だと思っていたので、あまり後悔していない。
 

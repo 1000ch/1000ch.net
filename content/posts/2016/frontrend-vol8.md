@@ -14,7 +14,7 @@ Resource Hints について発表したので資料を載せておく。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/frontrend?src=hash">#frontrend</a> 長引きましたすみません 🙏 発表資料です / &quot;Introduction to Resource Hints&quot; <a href="https://t.co/aWOfplZGCQ">https://t.co/aWOfplZGCQ</a></p>&mdash; 煎茶 (@1000ch) <a href="https://twitter.com/1000ch/status/805732943414968320">2016年12月5日</a></blockquote>
 
-<script async class="speakerdeck-embed" data-id="f6ff8bb9ea184fc8852b35215521ee34" data-ratio="1.6" src="//speakerdeck.com/assets/embed.js"></script>
+<iframe loading="lazy" class="dropshadow speakerdeck-iframe" src="https://speakerdeck.com/player/f6ff8bb9ea184fc8852b35215521ee34" title="Introduction to Resource Hints" allowfullscreen="true" data-ratio="1.7777777777777777"></iframe>
 
 そして connpass にも[イベント資料一覧なるページ](https://frontrend.connpass.com/event/45238/presentation/)があるのを知った。これは良い。
 
