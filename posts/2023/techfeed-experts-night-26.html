@@ -1,9 +1,8 @@
 <!doctype html><html lang=ja>
 <head>
-<meta name=generator content="Hugo 0.91.0">
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>EagleLand</title>
+<title>TechFeed Experts Night#26 で 2023 年の Web 開発のベースラインについて話した - EagleLand</title>
 <link rel=icon href=/favicon.png>
 <link rel="shortcut icon" href=/favicon.png>
 <link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
@@ -19,16 +18,18 @@
 <link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
 <meta name=author content="Shogo Sensui">
 <meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="Happens on me, happens from me.">
+<meta property="og:description" content="掲題の通り、2023年9月27日に開催された TechFeed Experts Night#26 で 2023 年の Web 開発のベースラインについて発表しました。
+ TechFeed のイベントに出演したのは、昨年開催された TechFeed Conference 2022 ぶりで、ちょうど IE11 のサポート終了に関してアナウンスされた前後でした。それを踏まえて、これまで Web 開発がどういう変化を遂げてきたのかをおさらいしながら、これからの Web 開発のベースラインをどこに置くべきかという問について話しました。
+ ">
 <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
 <meta name=twitter:card content="summary">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/">
+<meta property="og:url" content="https://1000ch.net/posts/2023/techfeed-experts-night-26.html">
 <meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="EagleLand">
+<meta property="og:title" content="TechFeed Experts Night#26 で 2023 年の Web 開発のベースラインについて話した">
 <meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/">
-<meta name=twitter:title content="EagleLand">
+<meta name=twitter:url content="https://1000ch.net/posts/2023/techfeed-experts-night-26.html">
+<meta name=twitter:title content="TechFeed Experts Night#26 で 2023 年の Web 開発のベースラインについて話した">
 <meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
 <link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
 <link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
@@ -55,95 +56,26 @@
 </nav>
 </header>
 <main class=Main>
-<h1>Posts</h1>
-<ul class=List>
-<li class=List__Item>
-<span class="Label Label--gray">2019.01.31</span>
-<a href=/posts/2019/setup-environment-for-designers.html>デザイナーさん向け開発環境セットアップガイド</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2019.01.08</span>
-<a href=/posts/2019/web-standards-prospect.html>2019年のWeb標準という記事を寄稿しました</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.12.24</span>
-<a href=/posts/2018/bought-in-2018.html>2018年に買って良かったもの</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.11.12</span>
-<a href=/posts/2018/gae-project-firewall.html>GAE のプロジェクトに Firewall を設定する</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.11.11</span>
-<a href=/posts/2018/optimize-svg-in-gui.html>SVG ファイルを GUI ツールで最適化する</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.10.16</span>
-<a href=/posts/2018/nd.html>Go で Node.js のバージョンマネージャを自作した</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.10.08</span>
-<a href=/posts/2018/techbookfest-vol5.html>技術書典5にサークル参加した</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.10.01</span>
-<a href=/posts/2018/next-web-conf-2019.html>次世代 Web カンファレンスに出演します</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.08.25</span>
-<a href=/posts/2018/bonfire-frontend-vol2.html>Bonfire Frontend vol2 に出演しました</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.08.21</span>
-<a href=/posts/2018/tryshift.html>複数の Google アカウントを統合管理する Shift というアプリが良い</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.08.18</span>
-<a href=/posts/2018/lazyload-attributes.html>img要素とiframe要素のlazyload属性</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.07.30</span>
-<a href=/posts/2018/deprecate-webcomponents-v0.html>R.I.P. Web Components v0</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.07.22</span>
-<a href=/posts/2018/running-environment.html>ランニング環境の最適化</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.07.10</span>
-<a href=/posts/2018/sense-starts-with-knowledge.html>センスは知識からはじまる</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.07.08</span>
-<a href=/posts/2018/creativity-inc.html>ピクサー流 創造するちから</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.06.30</span>
-<a href=/posts/2018/second-quarter.html>2018年のQ2</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.05.13</span>
-<a href=/posts/2018/gitbook.html>gitbook で Markdown から PDF を生成する</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.05.12</span>
-<a href=/posts/2018/merpay-tech-meetup.html>merpay Tech Meetup vol.5 に出演します</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.05.04</span>
-<a href=/posts/2018/hitachi-bd-sv110bl.html>日立ドラム式洗濯乾燥機 BD-NV110BL</a>
-</li>
-<li class=List__Item>
-<span class="Label Label--gray">2018.04.22</span>
-<a href=/posts/2018/techbookfest-vol4.html>技術書典4の戦利品</a>
-</li>
-</ul>
+<span class="Label Label--gray pull-left">2023.09.27</span>
+<p>掲題の通り、2023年9月27日に開催された <a href=https://techfeed.io/events/techfeed-experts-night-26>TechFeed Experts Night#26</a> で <a href=https://1000ch.github.io/slides/web-development-baseline-2023/>2023 年の Web 開発のベースライン</a>について発表しました。</p>
+<iframe loading=lazy src=https://1000ch.github.io/slides/web-development-baseline-2023/ frameborder=0 style=width:100%;aspect-ratio:16/9></iframe>
+<p>TechFeed のイベントに出演したのは、<a href=/posts/2022/techfeed-conference-2022.html>昨年開催された TechFeed Conference 2022 ぶり</a>で、ちょうど IE11 のサポート終了に関してアナウンスされた前後でした。それを踏まえて、これまで Web 開発がどういう変化を遂げてきたのかをおさらいしながら、これからの Web 開発のベースラインをどこに置くべきかという問について話しました。</p>
+<iframe loading=lazy src="https://www.youtube.com/embed/Q0dX-hzr3QI?si=AYXfkIARQNxvjC_j" title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style=width:100%;aspect-ratio:16/9></iframe>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2ftechfeed-experts-night-26.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2ftechfeed-experts-night-26.html&text=TechFeed%20Experts%20Night%2326%20%e3%81%a7%202023%20%e5%b9%b4%e3%81%ae%20Web%20%e9%96%8b%e7%99%ba%e3%81%ae%e3%83%99%e3%83%bc%e3%82%b9%e3%83%a9%e3%82%a4%e3%83%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%a9%b1%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
-<a href=/page/2.html>👈 Prev</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/page/4.html>Next 👉</a>
+<a href=/posts/2023/obsidian.html>👈 Obsidian を使ったデバイスを問わないメモ運用</a>
 </div>
 </nav>
 </main>
