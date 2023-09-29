@@ -96,7 +96,7 @@ Chromeは50から、Firefoxは46から対応しているが、Chromeは現安定
   <span style=color:#66d9ef>grid-row</span>: <span style=color:#ae81ff>3</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>;
   <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>1</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span>;
 }
-</code></pre></div><iframe style=width:100%;aspect-ratio:16/9 scrolling=no title="display: grid;" src="https://codepen.io/1000ch/embed/oxzEBa?theme-id=light&default-tab=html,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/oxzEBa>display: grid;</a> by 1000ch
+</code></pre></div><iframe loading=lazy scrolling=no title="display: grid;" src="https://codepen.io/1000ch/embed/oxzEBa?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/oxzEBa>display: grid;</a> by 1000ch
 (<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
 <h3 id=レイアウトは子要素の順序に依存しない>レイアウトは子要素の順序に依存しない</h3>
 <p>見ての通り、グリッド要素下のセル要素の<code>grid-row</code>や<code>grid-column</code>によってどういった領域を占めるかが決定されるので、HTMLの記述順序は直接影響しない。</p>
@@ -191,7 +191,7 @@ Chromeは50から、Firefoxは46から対応しているが、Chromeは現安定
   <span style=color:#75715e>/* grid-row-start / grid-column-start / grid-row-end / grid-column-end */</span>
   <span style=color:#66d9ef>grid-area</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>;
 }
-</code></pre></div><iframe style=width:100%;aspect-ratio:16/9 scrolling=no title="display: grid; positive value" src="https://codepen.io/1000ch/embed/bpeQpa?theme-id=light&default-tab=html,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/bpeQpa>display: grid; positive value</a> by 1000ch
+</code></pre></div><iframe loading=lazy scrolling=no title="display: grid; positive value" src="https://codepen.io/1000ch/embed/bpeQpa?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/bpeQpa>display: grid; positive value</a> by 1000ch
 (<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
 <h3 id=区切り線番号のマイナス値>区切り線番号のマイナス値</h3>
 <p>区切り線番号は起点を右下にして、マイナスで指定する方法もある。2行×3列のグリッドであれば、下から数えると-1、-2、-3であり、右から数えると-1、-2、-3、-4ということになる。</p>
@@ -202,7 +202,7 @@ Chromeは50から、Firefoxは46から対応しているが、Chromeは現安定
   <span style=color:#66d9ef>grid-row-end</span>: <span style=color:#ae81ff>-1</span>;
   <span style=color:#66d9ef>grid-column-end</span>: <span style=color:#ae81ff>-1</span>;
 }
-</code></pre></div><iframe style=width:100%;aspect-ratio:16/9 scrolling=no title="display: grid; negative value" src="https://codepen.io/1000ch/embed/oxLrrZ?theme-id=light&default-tab=html,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/oxLrrZ>display: grid; negative value</a> by 1000ch
+</code></pre></div><iframe loading=lazy scrolling=no title="display: grid; negative value" src="https://codepen.io/1000ch/embed/oxLrrZ?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/oxLrrZ>display: grid; negative value</a> by 1000ch
 (<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
 <h3 id=命名した区切り線の指定>命名した区切り線の指定</h3>
 <p><code>### 区切り線とその命名</code>で<code>grid-template-rows</code>と<code>grid-template-columns</code>を使って区切り線に名前を付けたが、この名前で範囲を指定することも出来る。</p>
@@ -212,14 +212,14 @@ Chromeは50から、Firefoxは46から対応しているが、Chromeは現安定
   <span style=color:#66d9ef>grid-row-end</span>: <span style=color:#66d9ef>row</span><span style=color:#f92672>-</span>c;
   <span style=color:#66d9ef>grid-column-end</span>: <span style=color:#66d9ef>column</span><span style=color:#f92672>-</span>d;
 }
-</code></pre></div><iframe style=width:100%;aspect-ratio:16/9 scrolling=no title="display: grid; named line value" src="https://codepen.io/1000ch/embed/wGWVaQ?theme-id=light&default-tab=html,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/wGWVaQ>display: grid; named line value</a> by 1000ch
+</code></pre></div><iframe loading=lazy scrolling=no title="display: grid; named line value" src="https://codepen.io/1000ch/embed/wGWVaQ?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/wGWVaQ>display: grid; named line value</a> by 1000ch
 (<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
 <h3 id=命名した領域の指定>命名した領域の指定</h3>
 <p><code>### セル領域の命名</code>で<code>grid-template-area</code>を使ってセル領域に名前を付けたが、<code>grid-area</code>プロパティにはこの名前を指定することも出来る。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>cell</span> {
   <span style=color:#66d9ef>grid-area</span>: area-d;
 }
-</code></pre></div><iframe style=width:100%;aspect-ratio:16/9 scrolling=no title="display: grid; named area value" src="https://codepen.io/1000ch/embed/grMVPj?theme-id=light&default-tab=html,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/grMVPj>display: grid; named area value</a> by 1000ch
+</code></pre></div><iframe loading=lazy scrolling=no title="display: grid; named area value" src="https://codepen.io/1000ch/embed/grMVPj?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/grMVPj>display: grid; named area value</a> by 1000ch
 (<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
 <h3 id=区切り線からの長さスパンで指定>区切り線からの長さ（スパン）で指定</h3>
 <p>セル領域は <strong>区切り線から区切り線</strong> による指定だけではなく、距離で指定可能である。昔のテーブルレイアウトの<code>rowspan</code>と<code>colspan</code>と同じようなものと思って良い。</p>
@@ -228,7 +228,7 @@ Chromeは50から、Firefoxは46から対応しているが、Chromeは現安定
   <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> span <span style=color:#ae81ff>2</span>;
 }
 </code></pre></div><p>このように<code>span</code>キーワードを使って、セルの数を指定可能。もちろんショートハンドプロパティだけでなく、<code>grid-row-end</code>プロパティに<code>span 2</code>と指定も出来るが、開始点と距離がペアになっている方が一見わかりやすそう。ケースバイケースだけど。</p>
-<iframe style=width:100%;aspect-ratio:16/9 scrolling=no title="display: grid; spanning" src="https://codepen.io/1000ch/embed/dMXxOZ?theme-id=light&default-tab=html,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/dMXxOZ>display: grid; spanning</a> by 1000ch
+<iframe loading=lazy scrolling=no title="display: grid; spanning" src="https://codepen.io/1000ch/embed/dMXxOZ?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/dMXxOZ>display: grid; spanning</a> by 1000ch
 (<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
 <h2 id=グリッド要素における子要素の整列>グリッド要素における子要素の整列</h2>
 <p>グリッド要素に対して、<a href=https://developer.mozilla.org/ja/docs/Web/CSS/justify-content><code>justify-content</code></a>ないし<a href=https://developer.mozilla.org/ja/docs/Web/CSS/align-content><code>align-content</code></a>を使う。Flexboxと同じ要領。</p>

@@ -25,7 +25,9 @@
  となっている。
 手のひらサイズで非常に小さいながらも、CPU、GPU、メモリ、USB2.0 x 2、HDMI、イーサネット等を備えている。SDカードが挿せるようになっており、OSのイメージをSDカードに焼いて、 USBケーブルから電源を供給し、起動するようなイメージ。
  Raspberry Pi Raspberry Pi - Wikipedia  用意したもの 電源を供給しなければ始まらないのでMicro-USB(A-MicroB)という規格(?)のケーブルを購入。あと、OSイメージを焼くSDカードがないと話にならないのでそれも購入。
-  USBは2口しかないけど、ハブ等駆使すればラズパイだけでそれなりに楽しめそうな。
+USB(Aタイプ:オス)のインターフェイスを持つパソコンに、USB(MicroBタイプ:オス)のインターフェイスを持つスマートフォン(Xperia(TM)やDesire)などの機器を接続し、充電やデータ転送ができるMicro-USBケーブルです。 
+ブランド: SanDisk、モデル名: Extreme SD、フラッシュメモリタイプ: SDHCカード、メモリストレージ容量: 32 GB、色: ブラック|ゴールド 
+USBは2口しかないけど、ハブ等駆使すればラズパイだけでそれなりに楽しめそうな。
 OSイメージをSDカードに焼く Linuxなら何でも動くっぽいけど、基本の Raspbian をDownloads | Raspberry Piからダウンロードしてみる。ダウンロードしてきたzipを解凍すると、.img拡張子のイメージファイルがある。そのイメージファイルをSDカードに焼けばRaspbianの起動ディスクの完成。ということで、MacにSDカードを挿し込む。
 挿す前 $ df -h Filesystem Size Used Avail Capacity iused ifree %iused Mounted on /dev/disk1 233Gi 106Gi 126Gi 46% 27952569 33026246 46% / 挿した後 $ df -h Filesystem Size Used Avail Capacity iused ifree %iused Mounted on /dev/disk1 233Gi 106Gi 126Gi 46% 27973543 33005272 46% / /dev/disk2s1 15Gi 2.">
 <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
@@ -81,8 +83,12 @@ USBケーブルから電源を供給し、起動するようなイメージ。</
 </ul>
 <h2 id=用意したもの>用意したもの</h2>
 <p>電源を供給しなければ始まらないのでMicro-USB(A-MicroB)という規格(?)のケーブルを購入。あと、OSイメージを焼くSDカードがないと話にならないのでそれも購入。</p>
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B003UIRIFY&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style=width:120px;height:240px scrolling=no marginwidth=0 marginheight=0 frameborder=0></iframe>
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B003YC0U5G&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style=width:120px;height:240px scrolling=no marginwidth=0 marginheight=0 frameborder=0></iframe>
+<p><affiliate-link src=https://m.media-amazon.com/images/I/71xLL2jT47L._AC_SL1500_.jpg href=https://www.amazon.co.jp/dp/B003UIRIFY tag=1000ch-22 title="エレコム マイクロUSBケーブル microUSB 転送・充電 1A出力 1.0m ブラック MPA-AMB10BK">
+USB(Aタイプ:オス)のインターフェイスを持つパソコンに、USB(MicroBタイプ:オス)のインターフェイスを持つスマートフォン(Xperia(TM)やDesire)などの機器を接続し、充電やデータ転送ができるMicro-USBケーブルです。
+</affiliate-link></p>
+<p><affiliate-link src=https://m.media-amazon.com/images/I/61s-6bZrcxL._AC_SL1500_.jpg href=https://www.amazon.co.jp/dp/B0B21F8RQ5 tag=1000ch-22 title="SDカード 32GB SDHC Class10 UHS-I U3 V30 SanDisk Extreme SDSDXVT-032G-GHJIN">
+ブランド: SanDisk、モデル名: Extreme SD、フラッシュメモリタイプ: SDHCカード、メモリストレージ容量: 32 GB、色: ブラック|ゴールド
+</affiliate-link></p>
 <p>USBは2口しかないけど、ハブ等駆使すればラズパイだけでそれなりに楽しめそうな。</p>
 <h2 id=osイメージをsdカードに焼く>OSイメージをSDカードに焼く</h2>
 <p>Linuxなら何でも動くっぽいけど、基本の <strong>Raspbian</strong> を<a href=http://www.raspberrypi.org/downloads>Downloads | Raspberry Pi</a>からダウンロードしてみる。ダウンロードしてきたzipを解凍すると、<code>.img</code>拡張子のイメージファイルがある。そのイメージファイルをSDカードに焼けばRaspbianの起動ディスクの完成。ということで、MacにSDカードを挿し込む。</p>
@@ -123,7 +129,10 @@ Password raspberry（デフォルトのままの場合）
 </code></pre></div><p>何か困って初期設定画面に戻りたい場合は<code>sudo raspi-config</code>を実行すれば良い。</p>
 <h2 id=ネットワークに接続>ネットワークに接続</h2>
 <p>Raspberry Piをネットワークに繋げるべく、AirMac Expressからイーサネット経由で接続。</p>
-<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&o=9&p=8&l=as1&asins=B00B42GZV6&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style=width:120px;height:240px scrolling=no marginwidth=0 marginheight=0 frameborder=0></iframe>
+<p><affiliate-link src=https://m.media-amazon.com/images/I/51Utf90oy5L._AC_SL1204_.jpg href=https://www.amazon.co.jp/dp/B076J9NL4D tag=1000ch-22 title="エレコム LANケーブル CAT6A 3m 爪折れ防止コネクタ cat6a対応 やわらか ホワイト LD-GPAYC/WH3">
+高速光通信に適した、10ギガビット・イーサネットの「10GBASE-T」に対応した、Cat6A準拠LANケーブルです。
+Cat6の2倍である500MHzまでの高周波帯域まで対応しており、ノイズ干渉にも強く、高速で安定したネットワーク環境を実現します。
+</affiliate-link></p>
 <p>LANケーブルでAirMac Expressと接続して<code>sudo reboot</code>でRaspberry Pi再起動。</p>
 <p>そうするとIPアドレスが勝手に割り振られて、起動ログの最後にIPアドレスが出力される。<code>ifconfig</code>とかでももちろん表示される。これは後ほどMacからのログインに使うので覚えておく。</p>
 <p>ネットワークに繋がっているかどうか、<code>ping</code>で確認。</p>

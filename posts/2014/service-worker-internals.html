@@ -73,7 +73,7 @@ Service WorkerのAPIと挙動 Service WorkerはWeb Workerなんかと同じよ�
 <h2 id=service-workerが解決してくれること>Service Workerが解決してくれること</h2>
 <p>Service WorkerはHTML・CSS・JS・画像等などのリソースを、JavaScriptのAPIから命令的にコントロールすることを実現する。Webページのパフォーマンスに関する指標としてネットワークを介して得るリソースをキャッシュさせたりすることが効果的であることは今更改めて挙げないが、Service Workerによって保持されたリソースは、オフライン状態でも返却することが可能という凄さを持っている。つまり、更新性の低いコンテンツであればオフラインでも閲覧させることが可能ということ。</p>
 <p>更新性のあるコンテンツでも、回線が不安定な時はローカルに変更を保持して、サーバーに対してデータを遅延で同期するみたいなテクニックは既に存在している。ので、こういったテクニックと組み合わせて、よりクライアントの画面がホワイトアウトすることを減らしていける。はず。</p>
-<iframe loading=lazy src="https://www.youtube.com/embed/_yy0CDLnhMA?si=7sVkwQU21MIHugjv" title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style=width:100%;aspect-ratio:16/9></iframe>
+<iframe loading=lazy src="https://www.youtube.com/embed/_yy0CDLnhMA?si=7sVkwQU21MIHugjv" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 <p>こちらは、Jake Archibald氏とAlex Russell氏によるGoogle I/O 2014でのセッション「Bridging the gap between the web and apps」。<a href=http://twitter.com/myakura>@myakura</a>氏による<a href=http://html5experts.jp/myakura/8365/>解説記事</a>もある。</p>
 <h3 id=application-cache>Application Cache</h3>
 <p>先程の動画でも少し触れられているように、Application Cacheとよく対比される。リソースをキャッシュする機能として現れたのがApplication Cacheだったが、キャッシュリソースのコントロールがし難かったり、動的なコンテンツを生成する際、構成がApplication Cache前提になってしまう等、いささか問題を抱えていた。それを解決してくれるのがService Workerでもある。</p>

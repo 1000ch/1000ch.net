@@ -411,7 +411,7 @@ Coffee Advent Calendar 2017 二日目の記事でした。</description></item><
 安かったので買ってみたところ、期待以上の働きをしてくれている。同じ問題にお悩みの人は、試してみてほしい。
 サイズ:(約)外径寸法 直径120mm 厚さ45mm 本体重量:35g 素材:本体/ポリプロピレン 原産国:日本</description></item><item><title>レスポンシブなiframe</title><link>https://1000ch.net/posts/2017/responsive-iframe.html</link><pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2017/responsive-iframe.html</guid><description>レスポンシブなiframe 当ブログのようなシングルカラムレイアウトに、外部のコンテンツを &amp;lt;iframe&amp;gt; 要素で埋め込む場合、要素の横幅を 100% にして親要素の幅いっぱいに広げたいが、その時に縦横比を維持して縦幅を追従させる場合に工夫が必要である。
 デフォルトの埋め込みコード YouTube などの動画コンテンツを &amp;lt;iframe&amp;gt; 要素でエンベッドする場合、次のようなものが用意される。
-&amp;lt;iframe width=&amp;#34;560&amp;#34; height=&amp;#34;315&amp;#34; src=&amp;#34;https://www.youtube.com/embed/gTHAn-nkQnI&amp;#34; frameborder=&amp;#34;0&amp;#34; allowfullscreen&amp;gt; &amp;lt;/iframe&amp;gt; 横幅 560px、縦幅 315px で配置されるので、モバイルデバイスで閲覧すると横スクロールができてしまう。これを 16:9 の縦横比を維持しつつ横幅を親要素一杯まで広げたい。
+&amp;lt;iframe width=&amp;#34;560&amp;#34; height=&amp;#34;315&amp;#34; src=&amp;#34;https://www.youtube.com/embed/gTHAn-nkQnI&amp;#34; allowfullscreen&amp;gt; &amp;lt;/iframe&amp;gt; 横幅 560px、縦幅 315px で配置されるので、モバイルデバイスで閲覧すると横スクロールができてしまう。これを 16:9 の縦横比を維持しつつ横幅を親要素一杯まで広げたい。
 &amp;lt;iframe&amp;gt; 要素そのものをレスポンシブにするには「&amp;lt;iframe&amp;gt; 要素の横幅を親要素まで満たしたい」「親要素の縦幅がテキストなどに依存するので不定である」という制約がある。CSS の width と height プロパティに max-content を指定しても、&amp;lt;iframe&amp;gt; 要素のサイズが読み込みページに依存してしまう。
 16:9な親要素を用意して子要素で満たす タイトルの通り、任意の縦横比の親要素を用意して &amp;lt;iframe&amp;gt; 要素をその中に縦横一杯に満たすのが解のようだ。
 キモとなるのは親要素の高さの取り方で、素直に height プロパティで指定しようとすると先に述べた通り親要素に対するパーセンテージになってしまうので、padding-top を指定することで高さを確保している。横幅は親要素いっぱいにするので、100% で問題ない。
@@ -1540,6 +1540,8 @@ Raspberry Pi（ラズベリーパイ）は、ラズベリーパイ財団によ�
 となっている。
 手のひらサイズで非常に小さいながらも、CPU、GPU、メモリ、USB2.0 x 2、HDMI、イーサネット等を備えている。SDカードが挿せるようになっており、OSのイメージをSDカードに焼いて、 USBケーブルから電源を供給し、起動するようなイメージ。
 Raspberry Pi Raspberry Pi - Wikipedia 用意したもの 電源を供給しなければ始まらないのでMicro-USB(A-MicroB)という規格(?)のケーブルを購入。あと、OSイメージを焼くSDカードがないと話にならないのでそれも購入。
+USB(Aタイプ:オス)のインターフェイスを持つパソコンに、USB(MicroBタイプ:オス)のインターフェイスを持つスマートフォン(Xperia(TM)やDesire)などの機器を接続し、充電やデータ転送ができるMicro-USBケーブルです。
+ブランド: SanDisk、モデル名: Extreme SD、フラッシュメモリタイプ: SDHCカード、メモリストレージ容量: 32 GB、色: ブラック|ゴールド
 USBは2口しかないけど、ハブ等駆使すればラズパイだけでそれなりに楽しめそうな。
 OSイメージをSDカードに焼く Linuxなら何でも動くっぽいけど、基本の Raspbian をDownloads | Raspberry Piからダウンロードしてみる。ダウンロードしてきたzipを解凍すると、.img拡張子のイメージファイルがある。そのイメージファイルをSDカードに焼けばRaspbianの起動ディスクの完成。ということで、MacにSDカードを挿し込む。
 挿す前 $ df -h Filesystem Size Used Avail Capacity iused ifree %iused Mounted on /dev/disk1 233Gi 106Gi 126Gi 46% 27952569 33026246 46% / 挿した後 $ df -h Filesystem Size Used Avail Capacity iused ifree %iused Mounted on /dev/disk1 233Gi 106Gi 126Gi 46% 27973543 33005272 46% / /dev/disk2s1 15Gi 2.</description></item><item><title>Pinput ~PinboardユーザーのためのChrome Extension~</title><link>https://1000ch.net/posts/2013/pinput-for-pinboard.html</link><pubDate>Wed, 13 Nov 2013 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2013/pinput-for-pinboard.html</guid><description>Pinput ~PinboardユーザーのためのChrome Extension~ Pinboard - 雑音の少ないブックマークサイト Pinput - Chromeストア 1000ch/Pinput -リポジトリ なんか、周りのPinboardユーザーに使ってもらったら思った以上に好評だった。@t32k氏と『既存だといいのがないですね』という話をしていたら、いつの間にかプロトタイプが出来てた。

@@ -61,13 +61,13 @@ See the Pen Input suggestion using input-suggest by 1000ch (@1000ch) on CodePen.
 <span class="Label Label--gray pull-left">2015.06.22</span>
 <h1 id=inputやtextareaの入力補助>inputやtextareaの入力補助</h1>
 <p><code>&lt;input></code>の入力補助には<code>&lt;datalist></code>を使ったものがある。補助候補を<code>&lt;datalist></code>と<code>&lt;option></code>を使って定義し、そのIDを適用先の<code>&lt;input></code>の<code>list</code>属性に付与する。以下サンプル。</p>
-<iframe style=width:100%;aspect-ratio:16/9 scrolling=no title="Input suggestion using datalist" src="https://codepen.io/1000ch/embed/ZGJVJL?theme-id=light&default-tab=html,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/ZGJVJL>Input suggestion using datalist</a> by 1000ch
+<iframe loading=lazy scrolling=no title="Input suggestion using datalist" src="https://codepen.io/1000ch/embed/ZGJVJL?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/ZGJVJL>Input suggestion using datalist</a> by 1000ch
 (<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
 <p>Chromeだと領域の右端に▼が表示されているし、候補のドロップダウンやその▼はまさにブラウザネイティブのUIといった感じだが、どうもスタイリングが出来ない。古いという意味で信頼性に欠けるが<a href=https://css-tricks.com/relevant-dropdowns-polyfill-for-datalist/>Relevant Dropdowns: Polyfill for Datalist</a>にも不可能っぽいことが書いてある。Shadow DOMだろうからインスペクタ使ってセレクタを調べようとしたけど、フォーカスアウトするとダメで断念した。</p>
 <p>これらに加えて、<a href=http://www.w3.org/TR/html5/forms.html#the-datalist-element>テキストエリアでは機能しない</a>。僕はテキストエリアでサジェストされて欲しいんです。</p>
 <h2 id=input-suggest>input-suggest</h2>
 <p>jQueryプラグインだとチラホラ見かけるけど、jQueryナシが良いし、自分の勉強も兼ねて<a href=https://github.com/1000ch/input-suggest>実装してみた</a>。<code>InputSuggest</code>コンストラクタに<code>&lt;textarea></code>要素・<code>&lt;input type="text"></code>要素、ないしそれらを参照するセレクタを渡すと実行される。また、ポップアップはそのままだとスタイルが当たっていないので各自でCSSを書いてもらう必要がある。</p>
-<iframe style=width:100%;aspect-ratio:16/9 scrolling=no title="Input suggestion using input-suggest" src="https://codepen.io/1000ch/embed/EjwOaz?theme-id=light&default-tab=js,result" frameborder=no loading=lazy allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/EjwOaz>Input suggestion using input-suggest</a> by 1000ch
+<iframe loading=lazy scrolling=no title="Input suggestion using input-suggest" src="https://codepen.io/1000ch/embed/EjwOaz?theme-id=light&default-tab=js,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/EjwOaz>Input suggestion using input-suggest</a> by 1000ch
 (<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe>
 <p><code>&lt;datalist></code>を<code>&lt;textarea></code>でも機能させるというコンセプトにしようかとも考えたが、定義されてもいないポリフィルを実装するような感覚に陥りそうだったのでやめた。</p>
 <aside class=Share>
