@@ -8,6 +8,8 @@ date: 2020-12-31
 
 今年も振り返り記事を書いてみる。2020 年は誰も予想できなかったような事態になったこともあり、例年よりあっという間に過ぎてしまった感覚がある。
 
+- [2019 年の振り返り](/posts/2019/look-back-over-2019.html)
+
 ## 本業でやっていたこと
 
 [Merpay Frontend のこれまでとこれから](https://engineering.mercari.com/blog/entry/20201222-merpay-frontend/)という記事でも触れたが、メルペイとメルカリの両組織にまたがって仕事をしている。役割としては引き続き Software Engineer と Engineering Manager を兼務していて、エンジニア成分がゼロにならないよう現場での開発にも関わるように意識している。
