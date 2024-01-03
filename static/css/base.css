@@ -37,6 +37,10 @@ img {
   max-width: 100%;
 }
 
+ul {
+  padding-inline-start: 1.5em;
+}
+
 table {
   margin: 0 auto;
   overflow: auto;
