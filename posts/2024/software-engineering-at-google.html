@@ -1,0 +1,114 @@
+<!doctype html><html lang=ja>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Google のソフトウェアエンジニアリングを読んだ - EagleLand</title>
+<link rel=icon href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.png>
+<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
+<link rel=stylesheet href=/css/settings.css>
+<link rel=stylesheet href=/css/tools.css>
+<link rel=stylesheet href=/css/generic.css>
+<link rel=stylesheet href=/css/base.css>
+<link rel=stylesheet href=/css/objects.css>
+<link rel=stylesheet href=/css/components.css>
+<link rel=stylesheet href=/css/trumps.css>
+<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
+<meta name=author content="Shogo Sensui">
+<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
+<meta property="og:description" content="Google のソフトウェアエンジニアリングを読んだ kumagi さんの Mond での回答で言及があり、読みかけのまま本棚に入っていたことを思い出して読み直した。
+Google という巨大企業がテクノロジーで世界を変えていることは周知の事実だが、ソフトウェアエンジニアリングに関わるいち技術者としては、どのようにしてそのテックドリブンな文化が支えられているのかに興味がある。エンジニアリングとして切り取られるプロセスそれぞれの重要性だけでなく、エンジニアリングそのものの解釈や組織的な位置づけなどが論じられている。要するに、エンジニアリングに対してソフトウェア開発の要求のみをしているうちは、テックカンパニーには程遠い。
+Googleの現役ソフトウェアエンジニアたちが、超大規模ソフトウェアの開発と保守を長期的に支えてきたGoogle社内の多様なベストプラクティスを、文化、プロセス、ツールの側面からこの一冊に凝縮。時間と変化、規模と成長、トレードオフとコストという3つの基本原理に沿って、コードを持続可能にする方法論を紐解きます。 
+Google の情報自体は書籍を含めて多くの情報がインターネットに落ちているが、ソフトウェアエンジニアリングに焦点が当たった体系的な資料が読めるのは貴重である。英語版の原著は Kindle でも販売されているが、日本語版だと単行本しか販売されていない。肝心の日本語訳も堅苦しさがあり、読みやすいとは言い難いものの、Google というテックカンパニーのエッセンスを吸収するには充分だろう。願わくば、日本語訳の改良と Kindle 版が販売されることを祈りたい。">
+<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
+<meta name=twitter:card content="summary">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://1000ch.net/posts/2024/software-engineering-at-google.html">
+<meta property="og:site_name" content="EagleLand">
+<meta property="og:title" content="Google のソフトウェアエンジニアリングを読んだ">
+<meta name=twitter:site content="@1000ch">
+<meta name=twitter:url content="https://1000ch.net/posts/2024/software-engineering-at-google.html">
+<meta name=twitter:title content="Google のソフトウェアエンジニアリングを読んだ">
+<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
+</head>
+<body>
+<div class=Container>
+<header class=Header>
+<h1 class=Header__Title>
+<a href=/>EagleLand</a>
+</h1>
+<nav class=Header__Menu>
+<div class=Header__MenuItem>
+<a href=/rss.xml>📻RSS</a>
+</div>
+<div class=Header__MenuItem>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍検索</a>
+</div>
+<div class=Header__MenuItem>
+<a href=https://shogosensui.com>🌎Who is 1000ch</a>
+</div>
+</nav>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2024.01.14</span>
+<h1 id=google-のソフトウェアエンジニアリングを読んだ>Google のソフトウェアエンジニアリングを読んだ</h1>
+<p><a href=https://mond.how/topics/5i49gd7avszd8zd>kumagi さんの Mond での回答</a>で言及があり、読みかけのまま本棚に入っていたことを思い出して読み直した。</p>
+<p>Google という巨大企業がテクノロジーで世界を変えていることは周知の事実だが、ソフトウェアエンジニアリングに関わるいち技術者としては、どのようにしてそのテックドリブンな文化が支えられているのかに興味がある。エンジニアリングとして切り取られるプロセスそれぞれの重要性だけでなく、エンジニアリングそのものの解釈や組織的な位置づけなどが論じられている。要するに、エンジニアリングに対してソフトウェア開発の要求のみをしているうちは、テックカンパニーには程遠い。</p>
+<p><affiliate-link src=https://m.media-amazon.com/images/I/61Gx3rNo4LL._SL1280_.jpg href=https://www.amazon.co.jp/dp/4873119650/ tag=1000ch-22 title="Googleのソフトウェアエンジニアリング ―持続可能なプログラミングを支える技術、文化、プロセス">
+Googleの現役ソフトウェアエンジニアたちが、超大規模ソフトウェアの開発と保守を長期的に支えてきたGoogle社内の多様なベストプラクティスを、文化、プロセス、ツールの側面からこの一冊に凝縮。時間と変化、規模と成長、トレードオフとコストという3つの基本原理に沿って、コードを持続可能にする方法論を紐解きます。
+</affiliate-link></p>
+<p>Google の情報自体は書籍を含めて多くの情報がインターネットに落ちているが、ソフトウェアエンジニアリングに焦点が当たった体系的な資料が読めるのは貴重である。<a href=https://www.amazon.co.jp/dp/B0859PF5HB>英語版の原著は Kindle でも販売されている</a>が、日本語版だと単行本しか販売されていない。肝心の日本語訳も堅苦しさがあり、読みやすいとは言い難いものの、Google というテックカンパニーのエッセンスを吸収するには充分だろう。願わくば、日本語訳の改良と Kindle 版が販売されることを祈りたい。</p>
+<aside class=Share>
+<div class=Share__Item>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2024%2fsoftware-engineering-at-google.html" title="Share on Facebook" target=_blank>
+<img src=/img/facebook.svg>
+</a>
+</div>
+<div class=Share__Item>
+<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2024%2fsoftware-engineering-at-google.html&text=Google%20%e3%81%ae%e3%82%bd%e3%83%95%e3%83%88%e3%82%a6%e3%82%a7%e3%82%a2%e3%82%a8%e3%83%b3%e3%82%b8%e3%83%8b%e3%82%a2%e3%83%aa%e3%83%b3%e3%82%b0%e3%82%92%e8%aa%ad%e3%82%93%e3%81%a0" title="Share on Twitter" target=_blank>
+<img src=/img/twitter.svg>
+</a>
+</div>
+</aside>
+<nav class=Pager>
+<div class="Pager__Item Pager__Item--left">
+<a href=/posts/2023/look-back-over-2023.html>👈 2023年の振り返り</a>
+</div>
+</nav>
+</main>
+<aside class=Aside></aside>
+<footer class=Footer style=margin-bottom:2%>
+<h1>Author</h1>
+<div class=Media>
+<picture>
+<source srcset=/img/1000ch.avif type=image/avif>
+<img class=Media__Figure src=/img/1000ch.jpg alt>
+</picture>
+<div class=Media__Body>
+<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
+<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
+</div>
+</div>
+</footer>
+</div>
+<script defer src=https://platform.twitter.com/widgets.js></script>
+<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js></script>
+<script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script>
+</body>
+</html>
