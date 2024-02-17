@@ -1,15 +1,10 @@
 <aside class="Share">
   <div class="Share__Item">
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{.Permalink}}" title="Share on Facebook" target="_blank">
-      <img src="/img/facebook.svg">
-    </a>
-  </div>
-  <div class="Share__Item">
-    <a href="https://twitter.com/share?url={{.Permalink}}&text={{ .Title }}" title="Share on Twitter" target="_blank">
-      <img src="/img/twitter.svg">
-    </a>
+    <button type="button" class="Share__Button">🔗 この記事をシェアする</a>
   </div>
 </aside>
+
+<div popover="auto" id="Popover">タイトルと URL をコピーしました</div>
 
 <nav class="Pager">
   {{ with .PrevPage }}

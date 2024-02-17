@@ -10,4 +10,26 @@ customElements.define('affiliate-link', AffiliateLink);
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
+
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
 </script>

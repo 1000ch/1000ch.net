@@ -118,9 +118,16 @@
   padding: 0.5em;
 }
 
-.Share__Item img {
-  width: 32px;
-  vertical-align: text-bottom;
+.Share__Item button {
+  border: 0;
+  background-color: var(--light-bgcolor);
+  text-decoration: underline;
+  color: -webkit-link;
+  cursor: pointer;
+}
+
+.Share__Item button:active {
+  color: -webkit-activelink;
 }
 
 .Pager {
@@ -133,7 +140,6 @@
   flex-grow: 1;
 }
 
-.Pager__Item i,
 .Pager__Item a {
   align-self: center;
 }
@@ -142,14 +148,16 @@
   justify-content: flex-start;
 }
 
-.Pager__Item--left i {
-  margin-right: 0.8rem;
-}
-
 .Pager__Item--right {
   justify-content: flex-end;
 }
 
-.Pager__Item--right i {
-  margin-left: 0.8rem;
+#Popover {
+  inset: unset;
+  right: 1em;
+  bottom: 1em;
+  padding: 0.5em;
+  color: #eee;
+  background-color: #333;
+  border: 0;
 }
