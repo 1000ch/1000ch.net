@@ -10,7 +10,7 @@ date: 2022-04-10
 
 折角コンスタントに走っているので、何かわかりやすい成果があると良いなと思っている最中 [@stormcat24](https://twitter.com/stormcat24) 氏にそそのかされ、[第3回 東京さくらマラソン](https://www.sportsentry.ne.jp/event/t/86388)に参加することになった。
 
-<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="6957093695"></div><script defer src="https://strava-embeds.com/embed.js"></script>
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="6957093695"></div>
 
 そもそも普段のランニングで 10km をぶっ続けで走ることがないので不安を覚えながらも、[10km を 54:22](https://www.t-njsf.net/tokyo/wp-content/uploads/2022/04/22sakurakiroku.pdf) と思ったほど悪くないタイムで完走できた。今回の大会参加でまんまと味をしめたので、定期的に大会へ参加していきたい。日々のランニングも、走行距離を長くして運動負荷を徐々に高め、どこまでタイムを伸ばせるのか楽しみである。
 
