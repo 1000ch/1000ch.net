@@ -94,13 +94,8 @@ Nicholas C. Zakas (著), 水野 貴明 (翻訳)
 </affiliate-link></p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fhigh-performance-javascript.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fhigh-performance-javascript.html&text=%e3%83%8f%e3%82%a4%e3%83%91%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%b3%e3%82%b9JavaScript" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/high-performance-javascript.html title="ハイパフォーマンスJavaScript - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -139,6 +134,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

@@ -83,13 +83,8 @@ HTMLImageElement extension for lazy loading. (プリロードスキャナのせ�
 </ul>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2flazyload-attributes.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2flazyload-attributes.html&text=img%e8%a6%81%e7%b4%a0%e3%81%a8iframe%e8%a6%81%e7%b4%a0%e3%81%aelazyload%e5%b1%9e%e6%80%a7" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/lazyload-attributes.html title="img要素とiframe要素のlazyload属性 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -128,6 +123,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

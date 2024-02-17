@@ -99,13 +99,8 @@ QoL挙がること間違いなし。">
 <p>QoL挙がること間違いなし。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fpanasonic-petit-drum.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fpanasonic-petit-drum.html&text=%e3%83%89%e3%83%a9%e3%83%a0%e5%bc%8f%e6%b4%97%e6%bf%af%e4%b9%be%e7%87%a5%e6%a9%9f%e3%80%8c%e3%83%97%e3%83%81%e3%83%89%e3%83%a9%e3%83%a0%e3%80%8d%e3%81%a7%e5%bf%ab%e9%81%a9%e6%b4%97%e6%bf%af%e7%94%9f%e6%b4%bb" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/panasonic-petit-drum.html title="ドラム式洗濯乾燥機「プチドラム」で快適洗濯生活 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -144,6 +139,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

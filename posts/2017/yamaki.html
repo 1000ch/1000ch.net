@@ -71,13 +71,8 @@
 <p>前回通り、古き良き旅館という感じだった。開発に使った場所が前回と異なり、2階の会議室のような場所だった。前回は地下だったせいか(?)旅館の Wi-Fi が弱くて苦しんだ記憶があるが、反省を活かしてポケット Wi-Fi を持参したのと、2階だったことも手伝ってか、比較的良好な電波状況で開発できた。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fyamaki.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fyamaki.html&text=%e9%96%8b%e7%99%ba%e5%90%88%e5%ae%bf%20in%20%e5%b1%b1%e5%96%9c%e6%97%85%e9%a4%a8%202017" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/yamaki.html title="開発合宿 in 山喜旅館 2017 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -116,6 +111,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

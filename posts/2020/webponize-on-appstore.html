@@ -76,13 +76,8 @@ Web Authentication (Face ID, Touch ID) や http/3 など、色々と実装され
 <p>こうした改善を経て、ついに <a href="https://apps.apple.com/us/app/id1526039365?mt=12">WebPonize は App Store にて公開されました</a>。今まで GitHub のリリースや Homebrew Cask を使ってインストールしていた人もそうでない人も、是非 App Store からダウンロードしてください。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fwebponize-on-appstore.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fwebponize-on-appstore.html&text=WebPonize%20%e3%82%92%20App%20Store%20%e3%81%a7%e5%85%ac%e9%96%8b%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2020/webponize-on-appstore.html title="WebPonize を App Store で公開した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -121,6 +116,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

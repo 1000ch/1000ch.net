@@ -103,13 +103,8 @@ google les paul ギブソンのレス・ポールの生みの親、レス・ポ�
 演奏することが出来る。<a href=http://www.google.com/logos/2011/lespaul.html>現在の置き場はこちら</a>。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fgoogle-easter-egg.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fgoogle-easter-egg.html&text=Google%e3%81%ae%e9%9a%a0%e3%81%97%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2013/google-easter-egg.html title="Googleの隠しコマンド - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -148,6 +143,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

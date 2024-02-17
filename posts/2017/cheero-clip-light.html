@@ -67,13 +67,8 @@
 <p>ケーブル類を束ねるためのゴムバンド。両端にマグネットがついていて、それらがくっつく仕組み。このマグネットにある程度重さがあるので、束ねたケーブルがその場所で留まってくれる。もちろん冷蔵庫やら扉にもくっつくし、ケーブルを束ねるだけじゃなく汎用性が高い。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fcheero-clip-light.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fcheero-clip-light.html&text=cheero%20CLIP%20Light%e3%81%8c%e3%81%aa%e3%81%8b%e3%81%aa%e3%81%8b%e4%be%bf%e5%88%a9" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/cheero-clip-light.html title="cheero CLIP Lightがなかなか便利 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -112,6 +107,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

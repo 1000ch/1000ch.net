@@ -115,13 +115,8 @@ iframe {">
 </code></pre></div><p>また、<code>&lt;iframe></code>でロードされるコンテンツにはレスポンスヘッダに<code>Expose-Height-Cross-Origin: 1;</code>を含んでいる必要がある。<a href=https://github.com/craigfrancis/iframe-height/blob/master/problems/infinite-loops.md>潜在的な問題を抱えている</a>ものの、ウィンドウ間で<code>postMessage()</code>をしないとダメというのもあまりにナンセンスだと思うので、是非実現されて欲しい。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fiframe-content-size.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fiframe-content-size.html&text=iframe%e3%81%ae%e9%ab%98%e3%81%95%e3%82%92%e8%aa%ad%e3%81%bf%e8%be%bc%e3%82%80%e3%82%b3%e3%83%b3%e3%83%86%e3%83%b3%e3%83%84%e3%81%ab%e5%bf%9c%e3%81%98%e3%81%a6%e5%a4%89%e3%81%88%e3%82%8b" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/iframe-content-size.html title="iframeの高さを読み込むコンテンツに応じて変える - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -160,6 +155,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

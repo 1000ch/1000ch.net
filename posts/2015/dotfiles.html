@@ -118,13 +118,8 @@ eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>py
 <p><a href=https://github.com/mathiasbynens/dotfiles>mathiasbynens/dotfiles</a>を参考に使いそうなものを置いてあったんだけど、常用していないしので、一旦全部消した。gitもエイリアス使わずにやってる。よほど使用頻度が高いモノが出てきたら、それはまたその時に。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fdotfiles.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fdotfiles.html&text=dotfiles%e3%82%92%e6%95%b4%e7%90%86%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/dotfiles.html title="dotfilesを整理した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -163,6 +158,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

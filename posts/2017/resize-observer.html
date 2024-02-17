@@ -111,13 +111,8 @@ const resizeObserver = new ResizeObserver(entries => { for (const entry of entri
 </code></pre></div>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresize-observer.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fresize-observer.html&text=%e8%a6%81%e7%b4%a0%e3%81%ae%e3%82%b5%e3%82%a4%e3%82%ba%e5%a4%89%e5%8c%96%e3%82%92%e7%9b%a3%e8%a6%96%e3%81%99%e3%82%8bResizeObserver" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/resize-observer.html title="要素のサイズ変化を監視するResizeObserver - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -156,6 +151,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

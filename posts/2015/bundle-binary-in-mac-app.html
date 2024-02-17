@@ -129,13 +129,8 @@ free(output)
 </code></pre></div><p>これならば手元でのコンパイルでCode Signが付与される。ストアへのsubmitもできた。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fbundle-binary-in-mac-app.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fbundle-binary-in-mac-app.html&text=Mac%e3%81%ae%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ab%e3%83%90%e3%82%a4%e3%83%8a%e3%83%aa%e3%82%92%e3%83%90%e3%83%b3%e3%83%89%e3%83%ab%e3%81%99%e3%82%8b" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/bundle-binary-in-mac-app.html title="Macのアプリにバイナリをバンドルする - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -174,6 +169,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

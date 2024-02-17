@@ -106,13 +106,8 @@ const rog = require('rog'); rog('http://google.com').then(data => { console.log(
 <p>cors問題がある限りプロキシ的なものを挟まないとデータを取れない気はしてるが、これが正攻法なのかわからない。ネイティブアプリからならこういった中継をせずとも、HTTPクライアントからリクエストしてHTMLを検証するということを直接できるんだろうか。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fog-card-simulator.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fog-card-simulator.html&text=Open%20Graph%e3%81%ae%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%82%ab%e3%83%bc%e3%83%89%e3%81%a7%e3%83%97%e3%83%ac%e3%83%93%e3%83%a5%e3%83%bc%e3%81%99%e3%82%8b" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/og-card-simulator.html title="Open Graphのデータをカードでプレビューする - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -151,6 +146,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

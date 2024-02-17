@@ -26,7 +26,7 @@
 GEL 100は、高濃度の炭水化物を封入するMAURTENが開発した”ハイドロゲル技術”により、1時間あたり最大で100gの炭水化物をエネルギーに変換することを可能にした革命的スポーツエネルギードリンク・エナジージェルです。この量は、これまで人間が吸収できると考えられていた量の限界を超えています。 
 上記の練習中にウィダーインゼリーを補給しながら走ったら随分楽だったので、その話をしたところ、知人にこれを進めてもらった。高いが毎日飲むようなものではないし、値段相応の商品なんだろうということで挑戦してみることに。冷静に考えれば、21km という距離を走れば、それは相応に身体を消耗するよなというところである。
 そして当日を迎えて、無事に完走できた。
- ノベルティなどは最小限だが個人的にはむしろありがたい。司会進行やペーサー、そしてスタッフの対応も充実しており、大会の参加経験が少ない自分にとっては、中々勉強になる経験だった。ハーフマラソンに走り慣れるまでは時間がかかりそうだが、思い返せば 10km や、その前の 5km もそうだったので、続ければ人間なんとかなるものと信じて続けてみよう。">
+ ノベルティなどは最小限だが個人的にはむしろありがたい。司会進行やペーサー、そしてスタッフの対応も充実しており、大会の参加経験が少ない自分にとっては、中々勉強になる経験だった。ハーフマラソンに走り慣れるまでは時間がかかりそうだが、思い返せば 10km や、その前の 5km もそうだったので、続ければ人間なんとかなるものと信じて続けてみる。">
 <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
 <meta name=twitter:card content="summary">
 <meta property="og:type" content="article">
@@ -82,16 +82,11 @@ GEL 100は、高濃度の炭水化物を封入するMAURTENが開発した”ハ
 <p>上記の練習中にウィダーインゼリーを補給しながら走ったら随分楽だったので、その話をしたところ、知人にこれを進めてもらった。高いが毎日飲むようなものではないし、値段相応の商品なんだろうということで挑戦してみることに。冷静に考えれば、21km という距離を走れば、それは相応に身体を消耗するよなというところである。</p>
 <p>そして当日を迎えて、無事に完走できた。</p>
 <div class=strava-embed-placeholder data-embed-type=activity data-embed-id=10776882229 data-style=standard></div>
-<p>ノベルティなどは最小限だが個人的にはむしろありがたい。司会進行やペーサー、そしてスタッフの対応も充実しており、大会の参加経験が少ない自分にとっては、中々勉強になる経験だった。ハーフマラソンに走り慣れるまでは時間がかかりそうだが、思い返せば 10km や、その前の 5km もそうだったので、続ければ人間なんとかなるものと信じて続けてみよう。</p>
+<p>ノベルティなどは最小限だが個人的にはむしろありがたい。司会進行やペーサー、そしてスタッフの対応も充実しており、大会の参加経験が少ない自分にとっては、中々勉強になる経験だった。ハーフマラソンに走り慣れるまでは時間がかかりそうだが、思い返せば 10km や、その前の 5km もそうだったので、続ければ人間なんとかなるものと信じて続けてみる。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2024%2farakawa-half-marathon.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2024%2farakawa-half-marathon.html&text=%e3%82%a2%e3%83%9f%e3%83%8e%e3%83%90%e3%82%a4%e3%82%bf%e3%83%ab%20presents%20%e8%8d%92%e5%b7%9d%e3%83%8f%e3%83%bc%e3%83%95%e3%83%9e%e3%83%a9%e3%82%bd%e3%83%b3%e3%82%92%e5%ae%8c%e8%b5%b0%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2024/arakawa-half-marathon.html title="アミノバイタル presents 荒川ハーフマラソンを完走した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -127,6 +122,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

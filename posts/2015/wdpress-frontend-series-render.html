@@ -73,13 +73,8 @@
 </affiliate-link></p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwdpress-frontend-series-render.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwdpress-frontend-series-render.html&text=WEB%2bDB%20PRESS%20Vol.88%20Web%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e6%9c%80%e5%89%8d%e7%b7%9a%e3%80%8c%e3%82%b9%e3%83%a0%e3%83%bc%e3%82%ba%e3%81%aaUI%e3%82%92%e5%ae%9f%e7%8f%be%e3%81%99%e3%82%8b%e3%83%ac%e3%83%b3%e3%83%80%e3%83%aa%e3%83%b3%e3%82%b0%e9%80%9f%e5%ba%a6%e3%81%ae%e6%94%b9%e5%96%84%e3%83%8e%e3%82%a6%e3%83%8f%e3%82%a6%e3%80%8d" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/wdpress-frontend-series-render.html title="WEB+DB PRESS Vol.88 Webフロントエンド最前線「スムーズなUIを実現するレンダリング速度の改善ノウハウ」 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -118,6 +113,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

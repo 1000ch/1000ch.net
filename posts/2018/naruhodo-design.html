@@ -67,13 +67,8 @@ Chapter 1 でデザインのケーススタディと基本戦略、Chapter 2 で
 <p>デザインを具体例を比較しながら進むので、納得しやすく、わかりやすい。活字も少なめでサクサク読み進められる。その具体例のせいか少しだけ DTP 寄りな話にも見えたが、Web の人間だからそう感じただけかもしれない。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fnaruhodo-design.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fnaruhodo-design.html&text=%e3%81%aa%e3%82%8b%e3%81%bb%e3%81%a9%e3%83%87%e3%82%b6%e3%82%a4%e3%83%b3" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/naruhodo-design.html title="なるほどデザイン - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -112,6 +107,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

@@ -94,13 +94,8 @@ const diff = new Date('2023/6/30') - new Date('2018/3/1'); const days = diff / (
 </section>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2ffarewell-mercari.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2ffarewell-mercari.html&text=%e6%a0%aa%e5%bc%8f%e4%bc%9a%e7%a4%be%e3%83%a1%e3%83%ab%e3%82%ab%e3%83%aa%e3%82%92%e9%80%80%e8%81%b7%e3%81%97%e3%81%be%e3%81%99" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2023/farewell-mercari.html title="株式会社メルカリを退職します - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -139,6 +134,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

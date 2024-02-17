@@ -74,13 +74,8 @@
 <p>よろしくお願いします(´・ω・`)</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fwdpress-frontend-series-pwa.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fwdpress-frontend-series-pwa.html&text=WEB%2bDB%20PRESS%20Vol.91%20Web%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e6%9c%80%e5%89%8d%e7%b7%9a%e3%80%8cProgressive%20Web%20Apps%20-%20%e5%ae%89%e5%85%a8%e3%80%81%e9%ab%98%e9%80%9f%e3%80%81%e3%82%aa%e3%83%95%e3%83%a9%e3%82%a4%e3%83%b3%e5%af%be%e5%bf%9c%e3%81%97%e3%81%9f%e6%ac%a1%e4%b8%96%e4%bb%a3Web%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%80%8d" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/wdpress-frontend-series-pwa.html title="WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -119,6 +114,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

@@ -99,13 +99,8 @@
 <p>オンだけでなく、自分が家の半径 300 メートルから出ると、ライトとエアコンをオフするようにしている。エアコンについてはこまめにオンオフすると空調効率が良くないが、こまめにオンオフするのが目的ではなく「家に近づいたときに確実にオンし、家から遠ざかったときに確実にオフする」のが目的なので気にしない。そもそも、こまめにオンオフされてしまう瞬間はランニングや近所に出歩く時くらいなので、無視して良い。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2frunning-environment.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2frunning-environment.html&text=%e3%83%a9%e3%83%b3%e3%83%8b%e3%83%b3%e3%82%b0%e7%92%b0%e5%a2%83%e3%81%ae%e6%9c%80%e9%81%a9%e5%8c%96" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/running-environment.html title="ランニング環境の最適化 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -144,6 +139,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

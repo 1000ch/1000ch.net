@@ -66,13 +66,8 @@
 <p>昔、いわゆる学生時代に想いを馳せると、中学生の時に駅伝競走に参加していたことを思い出す。当時は 3km 弱を 10min 程で走っていた記憶（記録）があり、若かったとはいえ 3:40~3:50/km ぐらいのラップを刻んでいたのは恐ろしい。今では 5min/km で結構キツいので、このペースで走れる距離を伸ばしていくことを差し当たっての目標にしてみる。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2022%2ftokyo-sakura-marathon.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2022%2ftokyo-sakura-marathon.html&text=%e6%9d%b1%e4%ba%ac%e3%81%95%e3%81%8f%e3%82%89%e3%83%9e%e3%83%a9%e3%82%bd%e3%83%b3%e3%81%a7%2010km%20%e3%82%92%e5%ae%8c%e8%b5%b0%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2022/tokyo-sakura-marathon.html title="東京さくらマラソンで 10km を完走した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -111,6 +106,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

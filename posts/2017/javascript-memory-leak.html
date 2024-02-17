@@ -150,13 +150,8 @@ class Leaker {} let leaker = new Leaker(); この JavaScript を実行してみ�
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>Chrome の `console.log(object)` で参照してるせいで GC で回収されない現象、無くなってるぽい（前も解消されてるなーという記憶はあったけど改めて確認した） <a href=https://t.co/grkBbHHqNQ>https://t.co/grkBbHHqNQ</a></p>&mdash; 煎茶 🍵 (@1000ch) <a href=https://twitter.com/1000ch/status/827067019451199488>2017年2月2日</a></blockquote>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fjavascript-memory-leak.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fjavascript-memory-leak.html&text=JavaScript%e3%81%a7%e8%b5%b7%e3%81%93%e3%82%8b%e3%83%a1%e3%83%a2%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%af%e3%81%ae%e3%83%91%e3%82%bf%e3%83%bc%e3%83%b3" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/javascript-memory-leak.html title="JavaScriptで起こるメモリリークのパターン - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -195,6 +190,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

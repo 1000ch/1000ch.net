@@ -82,13 +82,8 @@ SPA なんぞ要らんと言わんばかりに https://t.co/X0JB9v1vJS が速い
 <p>Web フォントのテキストへの適用フェーズを、block period、swap period、failure period に分けて説明していて丁寧だった。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2ftechbookfest-vol4.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2ftechbookfest-vol4.html&text=%e6%8a%80%e8%a1%93%e6%9b%b8%e5%85%b84%e3%81%ae%e6%88%a6%e5%88%a9%e5%93%81" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/techbookfest-vol4.html title="技術書典4の戦利品 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -127,6 +122,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

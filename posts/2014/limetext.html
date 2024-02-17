@@ -112,13 +112,8 @@ $ go run main.go
 <p>と、いうことで、まだ山師用ということになりそうです。100%オープンソースということでどんどん改善されて欲しいナーと希望的観測。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2flimetext.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2flimetext.html&text=Sublime%20Text%e3%81%ae%e5%be%8c%e7%b6%99%e3%82%92%e7%9b%ae%e6%8c%87%e3%81%99%e3%82%aa%e3%83%bc%e3%83%97%e3%83%b3%e3%82%bd%e3%83%bc%e3%82%b9%e3%81%ae%e3%83%86%e3%82%ad%e3%82%b9%e3%83%88%e3%82%a8%e3%83%87%e3%82%a3%e3%82%bfLime%20Text%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e6%84%9f%e6%83%b3" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2014/limetext.html title="Sublime Textの後継を目指すオープンソースのテキストエディタLime Textを使った感想 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -157,6 +152,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

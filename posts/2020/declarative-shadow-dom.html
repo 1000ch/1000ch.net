@@ -156,13 +156,8 @@
 <p>SEO のためのデータを初期レスポンスに含めたいという目的であれば、旧来の Web Components 実装でも <code>&lt;slot></code> から参照される部分に必要なデータを埋め込んでおけば、理論上はカバーできたと思っている。が、パフォーマンス評価もページランクに含まれることが明言されているので、SEO としても、もちろん実際にアクセスするユーザーにとってのパフォーマンスも維持した形で Web Components を使っていけるようになる。…かもしれない。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fdeclarative-shadow-dom.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fdeclarative-shadow-dom.html&text=template%20%e8%a6%81%e7%b4%a0%e3%81%ae%20shadowroot%20%e5%b1%9e%e6%80%a7%e3%81%ab%e3%82%88%e3%82%8b%e5%ae%a3%e8%a8%80%e7%9a%84%e3%81%aa%20Shadow%20DOM" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2020/declarative-shadow-dom.html title="template 要素の shadowroot 属性による宣言的な Shadow DOM - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -201,6 +196,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

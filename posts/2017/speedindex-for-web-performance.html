@@ -96,13 +96,8 @@ Speed Indexの考え方 同じコンテンツのページ A とページ B が�
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>Performance API あたりで Speed Index 取得できるようになりますように🙏 <a href=https://t.co/IVTMlbeEkf>https://t.co/IVTMlbeEkf</a> は、良いんだけど DevTools 頼みなのでモバイルでアレ</p>&mdash; 煎茶 🍵 (@1000ch) <a href=https://twitter.com/1000ch/status/868853133857837056>2017年5月28日</a></blockquote>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fspeedindex-for-web-performance.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fspeedindex-for-web-performance.html&text=Speed%20Index%e3%81%a8%e3%81%84%e3%81%86Web%e3%83%91%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%b3%e3%82%b9%e3%81%ae%e6%8c%87%e6%a8%99" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/speedindex-for-web-performance.html title="Speed IndexというWebパフォーマンスの指標 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -141,6 +136,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

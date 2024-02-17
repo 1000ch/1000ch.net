@@ -73,13 +73,8 @@ Dropsync を使った Android でのデータ同期 Obsidian は Android アプ�
 <p>そこで <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync">Dropsync: Autosync for Dropbox</a> というアプリを使うことで Android 端末の任意のフォルダを Dropbox の同期対象とすることができる。同期の頻度や状況の設定なども豊富だし、苦労するポイントはない。あまりにピッタリのソリューションだったので、広告を非表示にする必要はなかったが、感謝の気持を込めて課金した。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fobsidian.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fobsidian.html&text=Obsidian%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%87%e3%83%90%e3%82%a4%e3%82%b9%e3%82%92%e5%95%8f%e3%82%8f%e3%81%aa%e3%81%84%e3%83%a1%e3%83%a2%e9%81%8b%e7%94%a8" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2023/obsidian.html title="Obsidian を使ったデバイスを問わないメモ運用 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -118,6 +113,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

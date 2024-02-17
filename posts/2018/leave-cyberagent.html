@@ -76,13 +76,8 @@ Wishlist です。">
 <p><a href=https://www.amazon.co.jp/gp/registry/wishlist/251LOLSAUKEDK/>Wishlist</a> です。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fleave-cyberagent.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fleave-cyberagent.html&text=%e6%a0%aa%e5%bc%8f%e4%bc%9a%e7%a4%be%e3%82%b5%e3%82%a4%e3%83%90%e3%83%bc%e3%82%a8%e3%83%bc%e3%82%b8%e3%82%a7%e3%83%b3%e3%83%88%e3%82%92%e9%80%80%e8%81%b7%e3%81%97%e3%81%be%e3%81%99" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/leave-cyberagent.html title="株式会社サイバーエージェントを退職します - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -121,6 +116,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

@@ -114,13 +114,8 @@ by Steve Jobs at <a href="https://www.youtube.com/watch?v=UF8uR6Z6KLc">2005 Stan
 <p>キャリアビジョンを否定する意図はなく、もちろん理想像を描いて逆算的に動けることも望ましいだろう。私が言いたいのは、キャリア形成が必ずしも中長期ゴールからの逆算である必要はなく、むしろ時々で納得できる選択を繰り返していくことも、選び取りたいゴールに辿り着くために重要なのではないかということだ。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2022%2fmy-engineering-career.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2022%2fmy-engineering-career.html&text=%e6%bc%94%e7%b9%b9%e7%9a%84%e3%81%aa%e3%82%a8%e3%83%b3%e3%82%b8%e3%83%8b%e3%82%a2%e3%83%aa%e3%83%b3%e3%82%b0%e3%82%ad%e3%83%a3%e3%83%aa%e3%82%a2%e3%81%ae%e5%bd%a2%e6%88%90" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2022/my-engineering-career.html title="演繹的なエンジニアリングキャリアの形成 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -159,6 +154,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

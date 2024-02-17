@@ -118,13 +118,8 @@
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr><a href="https://twitter.com/hashtag/%E6%8A%80%E8%A1%93%E6%9B%B8%E5%85%B8?src=hash&ref_src=twsrc%5Etfw">#技術書典</a> 運営スタッフの皆さん、サークル参加の皆さん、来場者の皆さん、ありがとうございました＆お疲れ様でした♨</p>&mdash; Shogo 🍵【技術書典5 け45・う18】 (@1000ch) <a href="https://twitter.com/1000ch/status/1049246627997708288?ref_src=twsrc%5Etfw">2018年10月8日</a></blockquote>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2ftechbookfest-vol5.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2ftechbookfest-vol5.html&text=%e6%8a%80%e8%a1%93%e6%9b%b8%e5%85%b85%e3%81%ab%e3%82%b5%e3%83%bc%e3%82%af%e3%83%ab%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/techbookfest-vol5.html title="技術書典5にサークル参加した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -163,6 +158,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

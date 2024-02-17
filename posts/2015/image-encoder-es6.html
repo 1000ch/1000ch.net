@@ -248,13 +248,8 @@ $ 6to5 src/image-encoder-es6.js &gt; transpiled.js
 <p>ググっても有益そうな情報が中々出てこない。<code>cat -e</code>でも正体不明な記号が表示されてよくわからない…。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fimage-encoder-es6.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fimage-encoder-es6.html&text=%e7%94%bb%e5%83%8f%e3%82%92dataURI%e3%81%ab%e5%a4%89%e6%8f%9b%e3%81%99%e3%82%8b%e3%83%a9%e3%82%a4%e3%83%96%e3%83%a9%e3%83%aa%e3%82%92ES6%e3%81%a7%e6%9b%b8%e3%81%8d%e3%81%aa%e3%81%8a%e3%81%99" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/image-encoder-es6.html title="画像をdataURIに変換するライブラリをES6で書きなおす - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -293,6 +288,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

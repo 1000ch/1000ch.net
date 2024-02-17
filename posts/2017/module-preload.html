@@ -86,13 +86,8 @@
 <p>対策案はいくつかありそうだが、この <code>&lt;link rel="modulepreload"></code> を使って優先的に Module Script をリクエストしておけば、モジュールをバンドルせずとも改善が見込める。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fmodule-preload.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fmodule-preload.html&text=ES%20Modules%e3%82%92%e5%84%aa%e5%85%88%e7%9a%84%e3%81%ab%e3%83%ad%e3%83%bc%e3%83%89%e3%81%99%e3%82%8bmodulepreload" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/module-preload.html title="ES Modulesを優先的にロードするmodulepreload - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -131,6 +126,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

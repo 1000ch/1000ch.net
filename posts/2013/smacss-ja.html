@@ -77,13 +77,8 @@
 <p>こういった新しい設計概念などが日本語訳されるケースはそこまで多くないと思うので、 <strong>「SMACSS読みたいけど英語は辛い…。」</strong> という方は購入を検討してみてはいかがでしょう。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fsmacss-ja.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2013%2fsmacss-ja.html&text=SMACSS%e3%81%8c%e6%97%a5%e6%9c%ac%e8%aa%9e%e3%81%ab%e7%bf%bb%e8%a8%b3%e3%81%95%e3%82%8c%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2013/smacss-ja.html title="SMACSSが日本語に翻訳された - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -122,6 +117,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

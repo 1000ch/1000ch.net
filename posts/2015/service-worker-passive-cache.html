@@ -101,13 +101,8 @@ self.addEventListener('fetch', function (e) { e.respondWith( caches.open(CACHE_K
 </code></pre></div><p>インストール時にキャッシュするのかどうかの差であって、発生するリクエスト数は同じだし、インストールの失敗リスクを避ける意味でも選択肢として有りかとは思う。このコード例だと発生しているリクエストを全てキャッシュしてしまっているので、<code>e.request</code>の内容を見て処理を分岐させる必要があるが。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fservice-worker-passive-cache.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fservice-worker-passive-cache.html&text=Service%20Worker%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e6%b6%88%e6%a5%b5%e7%9a%84%e3%81%aa%e3%82%ad%e3%83%a3%e3%83%83%e3%82%b7%e3%83%a5" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/service-worker-passive-cache.html title="Service Workerを使った消極的なキャッシュ - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -146,6 +141,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

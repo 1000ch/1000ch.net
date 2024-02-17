@@ -145,13 +145,8 @@ COMMIT
 <p>転職して間もない頃にインフラの知識がある人をとっ捕まえてやったんだけど、<code>vim</code>の基本操作とかのコマンドラインの初歩的な素養は此処で得たし、今更ながらやっててよかったと思ってる（小並感）。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fcentos-minimum-config.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fcentos-minimum-config.html&text=CentOS%206%e7%b3%bb%e3%81%ab%e5%af%be%e3%81%97%e3%81%a6%e8%a1%8c%e3%81%86%e6%9c%80%e4%bd%8e%e9%99%90%e3%81%ae%e8%a8%ad%e5%ae%9a" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/centos-minimum-config.html title="CentOS 6系に対して行う最低限の設定 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -190,6 +185,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

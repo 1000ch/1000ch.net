@@ -98,13 +98,8 @@ Steve Souders (著), 武舎 広幸 (翻訳), 福地 太郎 (翻訳), 武舎 る�
 </affiliate-link></p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2frecommend-books.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2frecommend-books.html&text=Web%e3%81%ae%e3%83%97%e3%83%ad%e3%83%80%e3%82%af%e3%83%88%e9%96%8b%e7%99%ba%e3%81%ab%e9%96%a2%e3%82%8f%e3%82%8b%e4%ba%ba%e3%81%8c%e8%aa%ad%e3%82%80%e3%81%b9%e3%81%8d5%e5%86%8a%e3%81%ae%e6%9c%ac" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/recommend-books.html title="Webのプロダクト開発に関わる人が読むべき5冊の本 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -143,6 +138,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

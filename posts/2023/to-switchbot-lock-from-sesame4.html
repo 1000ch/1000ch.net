@@ -82,13 +82,8 @@ SESAME 4 は玄関ドアの内側に取り付けて施錠と解錠を管理で�
 <p>ちなみにマンションのエントランスの解錠をどうにかしたい問題は残っているが、こちらはマンションの組合で議論するハードルがある。理想的には生体認証による解錠を提案したいが、費用と工事規模が膨らみそうだ。せめてエントランスの工事だけで完結する要件を考えると、センサーによる非接触解錠あたりだろうか。自分の部屋番号を押されたときに、解錠ボタンが押されるような仕組みを作ることも不可能ではなさそうだが、逆に手間になってしまい解決にならなそうだ。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fto-switchbot-lock-from-sesame4.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fto-switchbot-lock-from-sesame4.html&text=%e3%82%b9%e3%83%9e%e3%83%bc%e3%83%88%e3%83%ad%e3%83%83%e3%82%af%e3%82%92%20SESAME%204%20%e3%81%8b%e3%82%89%20SwitchBot%20%e3%83%ad%e3%83%83%e3%82%af%e3%81%ab%e7%a7%bb%e8%a1%8c%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2023/to-switchbot-lock-from-sesame4.html title="スマートロックを SESAME 4 から SwitchBot ロックに移行した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -127,6 +122,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

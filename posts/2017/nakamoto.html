@@ -73,13 +73,8 @@
 <p>豆腐そのものも美味しいが、麺による炭水化物プレッシャーがなく心理的安全性が保たれたまま楽しめる一品になる。ということで「麺だと炭水化物が気になる…」という人に、一度試して欲しいオプションだ。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fnakamoto.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fnakamoto.html&text=%e5%91%b3%e5%99%8c%e5%8d%b5%e9%ba%ba%e3%81%ae%e8%b1%86%e8%85%90%e5%a4%89%e6%9b%b4%20at%20%e4%b8%ad%e6%9c%ac%e6%b8%8b%e8%b0%b7%e5%ba%97" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/nakamoto.html title="味噌卵麺の豆腐変更 at 中本渋谷店 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -118,6 +113,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

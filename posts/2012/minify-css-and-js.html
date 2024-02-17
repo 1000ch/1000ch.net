@@ -93,13 +93,8 @@ $ uglifyjs /path/jsfile.js /path/jsfile.min.js オンラインツールでminify
 </ul>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fminify-css-and-js.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fminify-css-and-js.html&text=CSS%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%a8JS%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%82%92%e6%9c%80%e5%b0%8f%e5%8c%96%e3%81%97%e3%81%a6%e3%83%91%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%b3%e3%82%b9%e3%82%92%e5%90%91%e4%b8%8a%e3%81%95%e3%81%9b%e3%82%8b" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2012/minify-css-and-js.html title="CSSファイルとJSファイルを最小化してパフォーマンスを向上させる - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -135,6 +130,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

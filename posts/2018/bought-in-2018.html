@@ -113,13 +113,8 @@ Tenswall 珪藻土速乾バスマットは太古の植物性プランクトン(�
 <p>そんな Pixel 2 を使い始めて1年も経たないうちに、<a href=https://store.google.com/jp/product/pixel_3>Pixel 3 が発表された</a>。ロクに調べもせず即ポチしたが、前評判の通り FeLiCa に対応しており、電子マネー生活に戻ることができた。カメラ性能もかなり優秀だが、Pixel 2 のカメラ性能もだいぶ良かったので、差という差は体感できていない。唯一、とあるアプリを消せないことだけは Fxck だが、それを除けば非常に満足している。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fbought-in-2018.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fbought-in-2018.html&text=2018%e5%b9%b4%e3%81%ab%e8%b2%b7%e3%81%a3%e3%81%a6%e8%89%af%e3%81%8b%e3%81%a3%e3%81%9f%e3%82%82%e3%81%ae" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/bought-in-2018.html title="2018年に買って良かったもの - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -158,6 +153,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

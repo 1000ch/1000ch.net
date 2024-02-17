@@ -99,13 +99,8 @@ A year ago, I asked what features made you turn to native. #1 response: push not
 <p>そうなれば1つのソースコードであらゆるプラットフォームに配信できる Web の方が開発時のコストも低く、よりストアに申請することなくスピーディに配信でき、サービスの提供側にも利用側にもメリットが大きい。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fprogressive-web-apps.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fprogressive-web-apps.html&text=Progressive%20Web%20Apps%e3%81%a8%e3%81%af" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/progressive-web-apps.html title="Progressive Web Appsとは - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -144,6 +139,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

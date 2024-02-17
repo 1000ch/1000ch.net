@@ -127,6 +127,19 @@ customElements.define('affiliate-link', AffiliateLink);
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
+});
 </script>
 </body>
 </html>

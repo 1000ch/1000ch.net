@@ -67,13 +67,8 @@
 <p>孫子は色んな出版社から出版されているが、岩波文庫の本書は1篇毎に「漢文（白文）」「書き下し文」「日本語訳」の三段構成になっている。自分は日本語訳しか読まなかった。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fsonshi.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fsonshi.html&text=%e6%96%b0%e8%a8%82%20%e5%ad%ab%e5%ad%90%20%28%e5%b2%a9%e6%b3%a2%e6%96%87%e5%ba%ab%29" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/sonshi.html title="新訂 孫子 (岩波文庫) - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -112,6 +107,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

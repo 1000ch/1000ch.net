@@ -94,13 +94,8 @@ P.S. 福岡に行って衝撃の鉄鍋餃子でお出迎えをしていただき
 まんまとハマってしまい、皆が渋谷で鉄鍋餃子を探す日々が続いております。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2ffrontrend-in-fukuoka.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2ffrontrend-in-fukuoka.html&text=Frontrend%20in%20Fukuoka%e3%81%a7%e3%83%96%e3%83%a9%e3%82%a6%e3%82%b6%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%81%a8Computing%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%a9%b1%e3%81%97%e3%81%a6%e3%81%8d%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2014/frontrend-in-fukuoka.html title="Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -139,6 +134,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

@@ -148,13 +148,8 @@ Firebase Hostings へデプロイする  package.json に記述されている�
 </code></pre></div>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fmove-to-github-actions.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fmove-to-github-actions.html&text=%e9%9d%99%e7%9a%84%e3%83%9b%e3%82%b9%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%b8%e3%81%ae%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%82%92GitHub%20Actions%e3%81%a7%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2020/move-to-github-actions.html title="静的ホスティングへのデプロイをGitHub Actionsで実行するようにした - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -193,6 +188,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

@@ -119,13 +119,8 @@ $ ender info
 <h3 id=beyond-the-jeeshadditional-packageshttpenderjitsuadditionalpackages><a href=http://ender.jit.su/#additionalpackages>beyond the jeesh—additional packages</a></h3>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fenderjs.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fenderjs.html&text=Ender%e3%81%ae%e4%bd%bf%e3%81%84%e6%96%b9%e3%81%ae%e3%81%be%e3%81%a8%e3%82%81%20%e3%80%9c%e5%bf%85%e8%a6%81%e3%81%aa%e3%83%a9%e3%82%a4%e3%83%96%e3%83%a9%e3%83%aa%e3%82%92%e5%bf%85%e8%a6%81%e3%81%aa%e5%88%86%e3%81%a0%e3%81%91%e3%80%9c" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2012/enderjs.html title="Enderの使い方のまとめ 〜必要なライブラリを必要な分だけ〜 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -164,6 +159,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

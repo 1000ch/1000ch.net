@@ -73,13 +73,8 @@ $ brew install brotli
 </code></pre></div>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fcompare-compression.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fcompare-compression.html&text=gzip%e3%81%a8zopfli%e3%81%a8brotli%e3%81%ab%e3%82%88%e3%82%8b%e5%9c%a7%e7%b8%ae%e3%83%87%e3%83%bc%e3%82%bf%e3%81%ae%e3%82%b5%e3%82%a4%e3%82%ba%e3%82%92%e7%b0%a1%e6%98%93%e7%9a%84%e3%81%ab%e6%af%94%e8%bc%83%e3%81%99%e3%82%8b" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/compare-compression.html title="gzipとzopfliとbrotliによる圧縮データのサイズを簡易的に比較する - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -118,6 +113,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

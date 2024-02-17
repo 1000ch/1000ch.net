@@ -113,13 +113,8 @@ HTMLを部品として含む場合 HTMLやCSSを部品として含む場合は�
 </code></pre></div><p>ネタに走った感あるけど、 <a href=https://github.com/1000ch/x-zangief>https://github.com/1000ch/x-zangief</a> は上記のようなパス解決をしている。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fweb-components-and-html-imports.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fweb-components-and-html-imports.html&text=Web%20Components%e3%82%92HTML%20Imports%e3%81%a7%e3%83%ad%e3%83%bc%e3%83%89%e3%81%99%e3%82%8b%e5%bf%85%e8%a6%81%e6%80%a7" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2014/web-components-and-html-imports.html title="Web ComponentsをHTML Importsでロードする必要性 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -158,6 +153,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

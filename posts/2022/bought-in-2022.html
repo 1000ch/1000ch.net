@@ -132,13 +132,8 @@ PowerIQ 4.0搭載： Anker独自技術PowerIQが4.0へ進化。 更なる高出�
 <p>この接続し直す手間のペインが個人的には中々に大きかったので、もはや手放せないレベルの便利さになっている。このマルチポイント接続はオープンイヤー型のヘッドフォンに限らず、様々な Bluetooth 接続ヘッドフォンに普及して欲しい。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2022%2fbought-in-2022.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2022%2fbought-in-2022.html&text=2022%e5%b9%b4%e3%81%ab%e8%b2%b7%e3%81%a3%e3%81%a6%e8%89%af%e3%81%8b%e3%81%a3%e3%81%9f%e3%82%82%e3%81%ae" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2022/bought-in-2022.html title="2022年に買って良かったもの - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -177,6 +172,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

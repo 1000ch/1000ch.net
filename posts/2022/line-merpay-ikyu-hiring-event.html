@@ -66,13 +66,8 @@
 <blockquote class=twitter-tweet><p lang=ja dir=ltr>先日 <a href="https://twitter.com/LINECorp_jp?ref_src=twsrc%5Etfw">@linecorp_jp</a> <a href="https://twitter.com/merpayinc?ref_src=twsrc%5Etfw">@merpayinc</a> <a href="https://twitter.com/Ikyu_saiyo?ref_src=twsrc%5Etfw">@ikyu_saiyo</a> の合同で行われたフロントエンドエンジニア採用説明会のパネルディスカッションを <a href="https://twitter.com/logmi_tech?ref_src=twsrc%5Etfw">@logmi_tech</a> で書き起こして頂きました / “採用時に見ているのは技術と、経歴よりもコミュニケーション能力　LINE・メルペイ・一休の入社前後の…” <a href=https://t.co/UQrZK7picn>https://t.co/UQrZK7picn</a></p>&mdash; Shogo 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1592874809641553920?ref_src=twsrc%5Etfw">November 16, 2022</a></blockquote>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2022%2fline-merpay-ikyu-hiring-event.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2022%2fline-merpay-ikyu-hiring-event.html&text=LINE%2f%e3%83%a1%e3%83%ab%e3%83%9a%e3%82%a4%2f%e4%b8%80%e4%bc%91%20%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e3%82%a8%e3%83%b3%e3%82%b8%e3%83%8b%e3%82%a2%e6%8e%a1%e7%94%a8%e8%aa%ac%e6%98%8e%e4%bc%9a" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2022/line-merpay-ikyu-hiring-event.html title="LINE/メルペイ/一休 フロントエンドエンジニア採用説明会 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -111,6 +106,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

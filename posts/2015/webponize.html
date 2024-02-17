@@ -75,13 +75,8 @@ App Storeに出す手順が難しい こちらも現在進行中で辛い問題�
 <p>こちらも現在進行中で辛い問題で、解決出来ていない。実際、アプリの実装自体は2週間くらいでおおよそ終わっていたけど、いざストアに公開しようとすると、Developer登録とかアプリの認証情報とか、バンドルするバイナリにサンドボックス情報を追加するだとかで、色々難航している。iTunesコネクトがイマイチ分からない。さらに、これまたネット上に新しい情報が少なくて辛い。なので、App Storeへの公開は今暫くお待ちください。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwebponize.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2fwebponize.html&text=WebPonize" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/webponize.html title="WebPonize - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -120,6 +115,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

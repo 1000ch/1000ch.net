@@ -96,13 +96,8 @@ vim + tmux 再入門 門を叩いては出てきているので、再度やっ�
 <p>友人達に付き合ってもらって Y&rsquo;s Road に行ったり、<a href=https://www.tokyobike.com/product.html>tokyobike</a> などで、そこそこ良い自転車を買おうと探している。tokyobike は可愛らしいデザインの自転車ばかりでとても良いのだが、修理保証が tokyobike でしか受けれない気配などのロックインが悩ましい。安くはない買い物だし、デザイン等も好みじゃないと乗らない気もするので、いやはや。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2ffirst-quarter.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2ffirst-quarter.html&text=2018%e5%b9%b4%e3%81%aeQ1" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/first-quarter.html title="2018年のQ1 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -141,6 +136,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

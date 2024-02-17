@@ -109,13 +109,8 @@
 <p>負債を返却することを目的にした合宿を頼りにすると、人によっては普段の開発での心構えが弱くなりそうなのでそれは注意が必要。とは言え、温泉地に赴いてリファクタリングだけに集中することは大事だし、楽しいし、事業の一環として（表現がやや無理矢理だが）許容してもらえるのは非常にありがたいことだ。マンネリ化するのも良くないので、クオーター・半期に1回くらい行けると合宿としての意義が生まれやすいかもしれない。あとは、1泊2日だとそれなりに移動に疲弊してしまうので、できれば2泊3日だとより良かった。この辺は業務との兼ね合いもあるので難しいけど。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fyamaki.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fyamaki.html&text=%e9%96%8b%e7%99%ba%e5%90%88%e5%ae%bf%20in%20%e5%b1%b1%e5%96%9c%e6%97%85%e9%a4%a8" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/yamaki.html title="開発合宿 in 山喜旅館 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -154,6 +149,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

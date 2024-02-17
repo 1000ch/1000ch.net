@@ -122,13 +122,8 @@
 </code></pre></div><p>こうした他のライブラリとの共存については、<a href=https://qiita.com/mizchi/items/053f5b42a6d0902e9412>JSフレームワークの末端がWebComponentsになるのか、なれるのか、検証してみた</a> という記事を最近見かけた。JSX は結局 JavaScript の世界なので、HTML と JavaScript でやり取りをしようとした時にどうしてもモヤモヤは残る。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fwebcomponents-in-production.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fwebcomponents-in-production.html&text=Web%20Components%20%e3%82%92%e6%9c%ac%e7%95%aa%e6%8a%95%e5%85%a5%e3%81%99%e3%82%8b%ef%bc%882018%e5%b9%b4%e6%98%a5%ef%bc%89" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/webcomponents-in-production.html title="Web Components を本番投入する（2018年春） - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -167,6 +162,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

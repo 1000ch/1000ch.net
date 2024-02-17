@@ -91,13 +91,8 @@ emulateHTTPとemulateJSON リクエストヘッダのapplication/jsonは、古�
 <p>明確なAPIラップ関数の用意と、それ以上に<code>change</code> / <code>destroy</code> / <code>sync</code>とイベントの発行に関わっている。また、underscore依存といいつつ、事実上jQueryに依存している。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fbackbone-ajax.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fbackbone-ajax.html&text=Backbone.js%e3%81%aeAjax%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2012/backbone-ajax.html title="Backbone.jsのAjaxについて - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -136,6 +131,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

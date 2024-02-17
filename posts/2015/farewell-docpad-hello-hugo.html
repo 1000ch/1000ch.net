@@ -90,13 +90,8 @@ Hugoにした Hugo自体はもっと前から知っていた（きっかけは�
 <p>自分は完全移行を目指したから無駄に苦労した部分があるけど、Hugoにもデフォルトでよさ気なテーマがあるのでそれを使えば楽だし、それをちょっとずつカスタマイズするほうが良さそう。英語だけど、<a href=http://gohugo.io/overview/introduction/>ドキュメントもとても充実している</a>のでオススメ。成果物は<a href=https://github.com/1000ch/1000ch.net>1000ch/1000ch.net</a>。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2015%2ffarewell-docpad-hello-hugo.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2015%2ffarewell-docpad-hello-hugo.html&text=Farewell%20DocPad%2c%20Hello%20Hugo." title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2015/farewell-docpad-hello-hugo.html title="Farewell DocPad, Hello Hugo. - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -135,6 +130,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

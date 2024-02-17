@@ -79,13 +79,8 @@ JavaScriptをTypeScriptでビルドする TypeScript と JSX それぞれの Jav
 <p><code>eslint-config-fresh</code> で <code>parser</code> に <code>babel-eslint</code> を指定していたところ、プロジェクトの <code>.eslintrc</code> で <code>typescript-eslint-parser</code> を指定しても先に <code>babel-eslint</code> が参照されてしまうようでうまく ESLint が動作しなかった（これが仕様なのかどうかはちゃんとに調べていない…）。これは <a href=https://github.com/openfresh/eslint-config-fresh/pull/5><code>eslint-config-fresh</code> 側で <code>parser</code> を指定しない方向で対処した</a>。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2ftypescript-without-babel.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2ftypescript-without-babel.html&text=Babel%e3%81%a8%e3%81%ae%e4%bd%b5%e7%94%a8%e3%82%92%e6%ad%a2%e3%82%81%e3%81%a6TypeScript%e3%83%93%e3%83%ab%e3%83%89%e4%b8%80%e6%9c%ac%e5%8c%96%e3%81%b8" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/typescript-without-babel.html title="Babelとの併用を止めてTypeScriptビルド一本化へ - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -124,6 +119,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

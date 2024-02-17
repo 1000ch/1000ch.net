@@ -87,13 +87,8 @@
 <p>乾燥はヒートリサイクル方式で、この機種には風アイロンという、強い風を押し当ててシワを伸ばす乾燥機能が付いている。プチドラムの乾燥ではシャツがボトムはシワシワになってしまうので、洗濯だけして干していたが、この乾燥方式であれば両方共シワなく仕上がるので分けて洗って干す手間がなくなった。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fhitachi-bd-sv110bl.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fhitachi-bd-sv110bl.html&text=%e6%97%a5%e7%ab%8b%e3%83%89%e3%83%a9%e3%83%a0%e5%bc%8f%e6%b4%97%e6%bf%af%e4%b9%be%e7%87%a5%e6%a9%9f%20BD-NV110BL" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/hitachi-bd-sv110bl.html title="日立ドラム式洗濯乾燥機 BD-NV110BL - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -132,6 +127,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

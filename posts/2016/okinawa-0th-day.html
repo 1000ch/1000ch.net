@@ -80,13 +80,8 @@ FIRST CABIN 羽田ターミナル1 FIRST CABIN はカプセルホテルのチェ
 <p><a href=https://tabelog.com/tokyo/A1315/A131504/13135148/>レストランあずさ</a>で天ぷらうどんを食べた。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fokinawa-0th-day.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fokinawa-0th-day.html&text=%e6%b2%96%e7%b8%84%e6%97%85%e8%a1%8c0%e6%97%a5%e7%9b%ae" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/okinawa-0th-day.html title="沖縄旅行0日目 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -125,6 +120,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

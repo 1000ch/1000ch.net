@@ -88,13 +88,8 @@ openfreshでのソフトウェアの公開 FRESH! の開発で生まれた副産
 <p>他の人に使われているプレッシャーによる、ある種義務のような保守意識を持つため…というと色々違うような気もするけど、中途半端にコストかけてプライベートに使い続けて闇に葬られる…よりはマシだと信じたい。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fopenfresh-viewport-observer.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fopenfresh-viewport-observer.html&text=Intersection%20Observer%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e8%a6%81%e7%b4%a0%e3%81%ae%e5%87%ba%e7%8f%be%e3%82%92%e6%a4%9c%e5%87%ba%e3%81%99%e3%82%8bReact%e3%82%b3%e3%83%b3%e3%83%9d%e3%83%bc%e3%83%8d%e3%83%b3%e3%83%88" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/openfresh-viewport-observer.html title="Intersection Observerを使った要素の出現を検出するReactコンポーネント - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -133,6 +128,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

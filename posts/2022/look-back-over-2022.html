@@ -95,13 +95,8 @@ VPoE @1000ch による「メルカリアプリのコードベースを置き換�
 <p>その中で、インターン生向けにソフトウェアエンジニアのキャリア形成について話して欲しいというリクエストがあり、業務依頼の中ではこれが最もタフだったが、自分のキャリアを眺め直して言語化することは今まで無かったので受けることにした。あまり「いつ何歳までに●●を達成して、●●になっている」といったキャリア設計をしたことがなく、目の前の業務に取り組んで成果を出し、その結果として次にやりたいことが生まれて行動する、といったことを繰り返した結果として今の自分があるので、あくまで私のキャリアはイチ例でしかないが、<a href=/posts/2022/my-engineering-career.html>目の前の仕事をちゃんとやる、もとい期待に応え続けられることがキャリアの選択肢を広げる上で重要なのでは</a>、という趣旨の話をした。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2022%2flook-back-over-2022.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2022%2flook-back-over-2022.html&text=2022%e5%b9%b4%e3%81%ae%e6%8c%af%e3%82%8a%e8%bf%94%e3%82%8a" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2022/look-back-over-2022.html title="2022年の振り返り - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -140,6 +135,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

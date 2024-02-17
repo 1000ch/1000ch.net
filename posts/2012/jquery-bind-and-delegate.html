@@ -109,13 +109,8 @@ $element.on()は引数のによってどのようにハンドルするかを振�
 <p><code>delegate</code>するためにセレクタのマッチング処理と<code>undelegate</code>のためにクロージャを内部的に保持するので、処理は増加する。それでも、Ajaxなどで動的に生成するコンテンツに対してイベントを定義する場合は、都度bindするよりdelegateを1つ貼っておく方がブラウザに優しいと言える。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fjquery-bind-and-delegate.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2012%2fjquery-bind-and-delegate.html&text=jQuery%e3%81%ab%e3%81%8a%e3%81%91%e3%82%8bbind%e3%81%a8delegate%e3%81%ae%e9%81%95%e3%81%84" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2012/jquery-bind-and-delegate.html title="jQueryにおけるbindとdelegateの違い - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -154,6 +149,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

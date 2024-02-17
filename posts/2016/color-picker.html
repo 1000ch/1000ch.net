@@ -98,13 +98,8 @@ const svg = d3.select('body') // bodyを参照する  .append('svg') // svgをap
 </code></pre></div><p>コアの使い方を覚えてからは、<a href=https://github.com/mbostock/d3/wiki/Layouts>Layouts</a>というデータレイアウトの手段を見始めていて、これにはノード同士の物理シミュレーションを行う<a href=https://github.com/mbostock/d3/wiki/Force-Layout>Force</a>やノード同士の階層構造を表現する<a href=https://github.com/mbostock/d3/wiki/Pack-Layout>Pack</a>などが含まれている。これらが理解できてくるといよいよD3が本領発揮できそうだが、理系脳がだいぶ眠っているのでまずはリハビリから。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fcolor-picker.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fcolor-picker.html&text=D3.js%e3%81%a7Color%20Picker%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/color-picker.html title="D3.jsでColor Pickerを作った - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -143,6 +138,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

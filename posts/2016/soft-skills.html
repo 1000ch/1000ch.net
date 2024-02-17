@@ -65,13 +65,8 @@
 <p>独立・筋トレ・セルフブランディング・投資など多くな開発者が興味を持つ（将来に描く？）トピックについて生々しく語られている。ストイックな人には特に面白い内容だと思う。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fsoft-skills.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fsoft-skills.html&text=SOFT%20SKILLS%e3%80%80%e3%82%bd%e3%83%95%e3%83%88%e3%82%a6%e3%82%a7%e3%82%a2%e9%96%8b%e7%99%ba%e8%80%85%e3%81%ae%e4%ba%ba%e7%94%9f%e3%83%9e%e3%83%8b%e3%83%a5%e3%82%a2%e3%83%ab" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/soft-skills.html title="SOFT SKILLS　ソフトウェア開発者の人生マニュアル - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -110,6 +105,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

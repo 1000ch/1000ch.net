@@ -129,13 +129,8 @@ pic.twitter.com/vV2jSODp8I
 <p>少なくとも肉体的にはこれから劣化し続ける訳で、酒を止めたり運動するなど健康への投資を強めた。無論稼くことは大事だが、限られた時間をどう駆使していくかの判断基準を見直す必要もある（このあたりは <a href=https://scrapbox.io/1000ch/DIE_WITH_ZERO>DIE WITH ZERO で書かれている</a>）。すべてを人生スパンで見ることは難しいが、見る必要に迫られていることも事実なのだ。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2flook-back-over-2023.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2flook-back-over-2023.html&text=2023%e5%b9%b4%e3%81%ae%e6%8c%af%e3%82%8a%e8%bf%94%e3%82%8a" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2023/look-back-over-2023.html title="2023年の振り返り - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -174,6 +169,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

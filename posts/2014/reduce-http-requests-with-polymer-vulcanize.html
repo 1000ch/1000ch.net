@@ -150,13 +150,8 @@ Web Componentsの謳い文句である <strong>「再利用」</strong> を考�
 それがorigamiのようなCDNで配信側でビルドされて返却されるようになるのか、はたまたHTTP2の普及で気にしなくなる時が来るのかわからないけど、それまではVulcanize使うと良さそう。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2freduce-http-requests-with-polymer-vulcanize.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2freduce-http-requests-with-polymer-vulcanize.html&text=Vulcanize%e3%81%a7%e6%b8%9b%e3%82%89%e3%81%99HTML%20Imports%e3%81%aeHTTP%e3%83%aa%e3%82%af%e3%82%a8%e3%82%b9%e3%83%88" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2014/reduce-http-requests-with-polymer-vulcanize.html title="Vulcanizeで減らすHTML ImportsのHTTPリクエスト - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -195,6 +190,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

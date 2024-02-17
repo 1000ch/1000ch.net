@@ -62,13 +62,8 @@
 <p>メルカリ Web をゼロベースで書き直すという大きなプロジェクトの経緯は<a href=https://engineering.mercari.com/blog/entry/20210810-the-new-mercari-web/>新しいメルカリ Web の話</a>に詳細に書いたが、パフォーマンスそのものについて、もといアーキテクチャやそれを維持するための文化や仕組みといった込み入った話には及んでいなかったので、組織的な背景にも触れながら話す良い機会になった。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2ffrontend-performance-fastly-mercari.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2ffrontend-performance-fastly-mercari.html&text=2023%e5%b9%b4%e3%81%ae%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e9%ab%98%e9%80%9f%e5%8c%96%e6%89%8b%e6%b3%95%e3%80%9cFastly%e3%81%a8%e3%83%a1%e3%83%ab%e3%82%ab%e3%83%aa%e3%81%ab%e5%ad%a6%e3%81%b6%e3%80%81%e3%83%91%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%b3%e3%82%b9%e3%83%81%e3%83%a5%e3%83%bc%e3%83%8b%e3%83%b3%e3%82%b0%e6%9c%80%e5%89%8d%e7%b7%9a%e3%81%ab%e5%87%ba%e6%bc%94%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2023/frontend-performance-fastly-mercari.html title="2023年のフロントエンド高速化手法〜Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線に出演した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -107,6 +102,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

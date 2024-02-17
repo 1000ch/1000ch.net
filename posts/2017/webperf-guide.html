@@ -101,13 +101,8 @@
 <p><strong>超速!</strong> ということで、当初予定していたハッシュタグは <a href="https://twitter.com/hashtag/%E8%B6%85%E9%80%9F%E6%9C%AC?src=hash">#超速本</a> ですが、とあるツイートによって <a href="https://twitter.com/hashtag/%E3%83%81%E3%83%A7%E3%83%83%E3%83%91%E3%83%A4%E6%9C%AC?src=hash">#チョッパヤ本</a> というハッシュタグが追加されたようです。使いやすい方をお使いください。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fwebperf-guide.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fwebperf-guide.html&text=%e8%b6%85%e9%80%9f%21%20Web%e3%83%9a%e3%83%bc%e3%82%b8%e9%80%9f%e5%ba%a6%e6%94%b9%e5%96%84%e3%82%ac%e3%82%a4%e3%83%89%e3%81%ae%e5%87%ba%e7%89%88%e3%81%ab%e5%af%84%e3%81%9b%e3%81%a6" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/webperf-guide.html title="超速! Webページ速度改善ガイドの出版に寄せて - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -146,6 +141,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

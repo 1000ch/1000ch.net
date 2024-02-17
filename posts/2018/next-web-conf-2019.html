@@ -65,13 +65,8 @@
 <p><a href=https://webperf.guide>#超速本</a>を世に送り出してから早一年が経とうとしており、Web パフォーマンスを取り巻く要素も増えつつあります。本番では議論がコンテンツなので頭出しはしませんが、触れたいトピックは色々とあるので、今から温めておこうと思います。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fnext-web-conf-2019.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2018%2fnext-web-conf-2019.html&text=%e6%ac%a1%e4%b8%96%e4%bb%a3%20Web%20%e3%82%ab%e3%83%b3%e3%83%95%e3%82%a1%e3%83%ac%e3%83%b3%e3%82%b9%e3%81%ab%e5%87%ba%e6%bc%94%e3%81%97%e3%81%be%e3%81%99" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2018/next-web-conf-2019.html title="次世代 Web カンファレンスに出演します - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -110,6 +105,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

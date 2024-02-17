@@ -102,13 +102,8 @@
 <p><a href=https://codezine.jp/article/detail/14915>Front-End Lounge</a> は Front-End Study の姉妹イベントで、いわゆる技術そのものではないトピックについて議論する勉強会である。<a href=https://twitter.com/forkwell_ja>@forkwell_ja</a> さんがかなり力を入れて運営していて、様々なところに配慮が行き届いた準備と開催に加えて、<a href=https://twitter.com/potato4d>@potato4d</a> さんの企画力と影響力がバランス良くブレンドされており、今後も楽しみなイベントである。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2021%2flook-back-over-2021.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2021%2flook-back-over-2021.html&text=2021%e5%b9%b4%e3%81%ae%e6%8c%af%e3%82%8a%e8%bf%94%e3%82%8a" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2021/look-back-over-2021.html title="2021年の振り返り - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -147,6 +142,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

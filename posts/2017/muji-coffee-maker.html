@@ -83,13 +83,8 @@ Coffee Advent Calendar 2017 二日目の記事でした。">
 <p><a href=https://adventar.org/calendars/2165>Coffee Advent Calendar 2017</a> 二日目の記事でした。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fmuji-coffee-maker.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fmuji-coffee-maker.html&text=%e7%84%a1%e5%8d%b0%e8%89%af%e5%93%81%20%e8%b1%86%e3%81%8b%e3%82%89%e6%8c%bd%e3%81%91%e3%82%8b%e3%82%b3%e3%83%bc%e3%83%92%e3%83%bc%e3%83%a1%e3%83%bc%e3%82%ab%e3%83%bc" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/muji-coffee-maker.html title="無印良品 豆から挽けるコーヒーメーカー - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -128,6 +123,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

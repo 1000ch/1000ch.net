@@ -71,13 +71,8 @@ Swift のメジャーアップデート対応はそれなりに辛くて、毎�
 <p>Swift のメジャーアップデート対応はそれなりに辛くて、毎度骨が折れる。というのは、これに手を付けるときは毎回のように Xcode のアップデートやら iCloud の認証やらが入るからだ。コードベースがそこまで大きくないこともあり、Swift のマイグレーション自体はそこまで辛くない。Web クライアントサイドのプロジェクトを開始するときの環境整備も一仕事だが、本作業に入る前の避けようがないタスクとして近い感覚を覚える。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fupdate-pinfeed.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fupdate-pinfeed.html&text=PinFeed%e3%82%92%e8%89%b2%e3%80%85%e6%89%8b%e7%9b%b4%e3%81%97%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/update-pinfeed.html title="PinFeedを色々手直しした - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -116,6 +111,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

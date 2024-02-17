@@ -89,13 +89,8 @@ const assert = require('assert'); const markdownHeadings = require('markdown-hea
 </code></pre></div>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fmarkdown-headings.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fmarkdown-headings.html&text=Markdown%e3%81%ae%e8%a6%8b%e5%87%ba%e3%81%97%e3%82%92%e6%8a%bd%e5%87%ba%e3%81%99%e3%82%8b%e3%83%84%e3%83%bc%e3%83%ab%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/markdown-headings.html title="Markdownの見出しを抽出するツールを作った - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -134,6 +129,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

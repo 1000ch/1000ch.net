@@ -76,13 +76,8 @@ Developer Modeの有効化 まずはシステムbashをフルで使うために�
 <p>Chromeを起動して<kbd>Control</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd>を押すと、新しいタブで<code>crosh</code>というディベロッパーシェルが起動する。ここで<code>shell</code>というコマンドを実行すると、Chrome OS内部までアクセスできる<code>bash</code>が起動する。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fchromeos-developer-mode.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fchromeos-developer-mode.html&text=Chrome%20OS%e3%82%92Developer%20Mode%e3%81%a7%e8%b5%b7%e5%8b%95%e3%81%99%e3%82%8b" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/chromeos-developer-mode.html title="Chrome OSをDeveloper Modeで起動する - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -121,6 +116,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

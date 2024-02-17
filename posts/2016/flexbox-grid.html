@@ -91,13 +91,8 @@ __modifier BEMの影響で要素感が凄くてボツになった。スペック
 <p>modifierぽさが無くなっている気もするけど、これは個人の感想というかBEMの認知度に左右される話だし、プロジェクトのクラスと上書きし合う可能性も低いはずだし、出たアイデアの中で違和感が最も少なかったのでこれに着地した。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fflexbox-grid.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2016%2fflexbox-grid.html&text=Flexbox%e3%81%a7CSS%e3%81%ae%e3%82%b0%e3%83%aa%e3%83%83%e3%83%89%e3%83%95%e3%83%ac%e3%83%bc%e3%83%a0%e3%83%af%e3%83%bc%e3%82%af%e3%81%ae%e5%86%8d%e7%99%ba%e6%98%8e" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2016/flexbox-grid.html title="FlexboxでCSSのグリッドフレームワークの再発明 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -136,6 +131,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

@@ -66,13 +66,8 @@
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr><a href="https://twitter.com/hashtag/html5j?src=hash">#html5j</a> <a href="https://twitter.com/hashtag/html5j_a?src=hash">#html5j_a</a> セッション資料です、ご清聴ありがとうございました 🙏 / "The State of Web Components" <a href=https://t.co/1IpoQ6hT99>https://t.co/1IpoQ6hT99</a></p>&mdash; 煎茶 🍵 (@1000ch) <a href=https://twitter.com/1000ch/status/911867298398400513>2017年9月24日</a></blockquote>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fhtml5conference-2017.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fhtml5conference-2017.html&text=HTML5%20Conference%202017%20%e3%81%ab%e5%87%ba%e6%bc%94%e3%81%97%e3%81%be%e3%81%99" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/html5conference-2017.html title="HTML5 Conference 2017 に出演します - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -111,6 +106,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

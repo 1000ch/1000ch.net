@@ -69,13 +69,8 @@ Guetzliとは Guetzli は Google が開発している JPEG エンコーダで�
 <p>パラメータを変えて圧縮を繰り返し、最も劣化が少ない試行を選ぶという処理なので、処理速度は遅い。というより、圧縮スピードに主眼は置いていない。同じファイルサイズであれば Guetzli の方が良い結果が得られるのなら、多少遅くとも Guetzli で圧縮したほうが良い気はする。しかし手元で色々試していても遅いなぁと感じる遅さなので、導入するときは開発フローのどこで行うかは考える必要がある。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fnode-guetzli.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fnode-guetzli.html&text=Guetzli%e3%82%92Node.js%e3%81%a7%e4%bd%bf%e3%81%88%e3%82%8b%e3%83%a2%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/node-guetzli.html title="GuetzliをNode.jsで使えるモジュール - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -114,6 +109,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

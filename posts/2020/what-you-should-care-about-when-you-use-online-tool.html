@@ -71,13 +71,8 @@
 <p>「対策を徹底しましょう！」というより、まずは「入力データがインターネットのどこかのサーバーを経由しているかもしれない」こと（とそのリスク）を認識してもらえたら、この記事を書いた甲斐があります。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fwhat-you-should-care-about-when-you-use-online-tool.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2020%2fwhat-you-should-care-about-when-you-use-online-tool.html&text=%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e3%81%a7%e5%85%ac%e9%96%8b%e3%81%95%e3%82%8c%e3%81%a6%e3%81%84%e3%82%8b%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e3%82%84%e3%83%84%e3%83%bc%e3%83%ab%e3%82%92%e4%bd%bf%e3%81%86%e3%81%a8%e3%81%8d%e3%81%ab%e7%95%99%e6%84%8f%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e3%81%93%e3%81%a8" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2020/what-you-should-care-about-when-you-use-online-tool.html title="オンラインで公開されているサービスやツールを使うときに留意していること - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -116,6 +111,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

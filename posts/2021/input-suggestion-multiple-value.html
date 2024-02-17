@@ -83,13 +83,8 @@ See the Pen <input type=&#34;email&#34; multiple> and <datalist> by 1000ch (@100
 </section>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2021%2finput-suggestion-multiple-value.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2021%2finput-suggestion-multiple-value.html&text=%e3%83%95%e3%82%a9%e3%83%bc%e3%83%a0%e3%81%ab%e8%a4%87%e6%95%b0%e3%81%ae%e5%80%a4%e3%82%92%e5%85%a5%e5%8a%9b%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ae%e5%85%a5%e5%8a%9b%e8%a3%9c%e5%ae%8c" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2021/input-suggestion-multiple-value.html title="フォームに複数の値を入力するときの入力補完 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -128,6 +123,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

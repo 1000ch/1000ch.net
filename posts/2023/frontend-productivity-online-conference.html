@@ -64,13 +64,8 @@
 <p>イベントのセッションタイトルを並べてみたときに、皆さん認知負荷や変化の激しさ、技術選定とキャッチアップ、品質と生産性の両立、デザイン、テスト自動化など、同じ生産性を語る上でもいい感じにバラけていたので、このセッションも生産性に向き合う上で何らかのヒントになれば幸いです。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2ffrontend-productivity-online-conference.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2ffrontend-productivity-online-conference.html&text=%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e3%81%ae%e9%96%8b%e7%99%ba%e7%94%9f%e7%94%a3%e6%80%a7%e3%80%9cOnline%20Conference%e3%80%9c%e3%81%ab%e5%87%ba%e6%bc%94%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2023/frontend-productivity-online-conference.html title="フロントエンドの開発生産性〜Online Conference〜に出演した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -109,6 +104,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

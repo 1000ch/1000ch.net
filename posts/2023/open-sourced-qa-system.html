@@ -67,13 +67,8 @@
 <p>システムと言っても豊富な機能を備えているわけではなく、ある程度運用でカバーしている部分が大きい。機能を追加するほどソフトウェアが複雑になり最終的に持続が難しくなる側面は避けられないため、コミュニティベースになったとはいえ全ての機能リクエストを汲めるわけではなく、ある程度目を瞑ってメンテナンスしていく必要がある。この点を理解いただいた上で、こうした会社やコミュニティの Q&A システムの需要がある場合は是非お試しください。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fopen-sourced-qa-system.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2023%2fopen-sourced-qa-system.html&text=%e7%a4%be%e5%86%85%e3%81%ae%e6%9c%89%e5%bf%97%e3%81%a7%e9%81%8b%e7%94%a8%e3%81%97%e3%81%a6%e3%81%84%e3%81%9f%20QA%20%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%82%92%e3%82%aa%e3%83%bc%e3%83%97%e3%83%b3%e3%82%bd%e3%83%bc%e3%82%b9%e5%8c%96%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2023/open-sourced-qa-system.html title="社内の有志で運用していた QA システムをオープンソース化した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -112,6 +107,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

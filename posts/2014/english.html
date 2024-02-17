@@ -88,13 +88,8 @@
 <p>英語リソースを獲得することで、前述の量の観点以外に、情報の鮮度も期待出来る。Webを牽引しているのはW3Cであり、Googleであり、Mozillaである。そしてそれらは英語で発信されるので、日本語に変換されるのを待っているよりは、英語を読む力を身につけてしまったほうが、良い。極論、日本がWebを牽引して日本語が基準になるなら英語やらなくても良いのかも。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fenglish.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2014%2fenglish.html&text=%e8%8b%b1%e8%aa%9e%e7%92%b0%e5%a2%83" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2014/english.html title="英語環境 - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -133,6 +128,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

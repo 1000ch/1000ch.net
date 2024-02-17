@@ -67,13 +67,8 @@ TechFeed では2021年9月にもトライアル企画にお呼ばれしていて
 <p>TechFeed では<a href=https://techfeed.io/entries/6140b08c21fbaf70489303fe>2021年9月にもトライアル企画にお呼ばれ</a>していて、<a href=https://techfeed.io/people/@1000ch>Web 標準技術のエキスパート</a>ということでその時も最近の Web について話している。結果的に、今回のカンファレンスではその延長線にあたるセッションになった。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2022%2ftechfeed-conference-2022.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2022%2ftechfeed-conference-2022.html&text=TechFeed%20Conference%202022%20%e3%81%a7%20Web%20%e6%a8%99%e6%ba%96%e6%8a%80%e8%a1%93%e3%81%ae%e7%9b%b8%e4%ba%92%e9%81%8b%e7%94%a8%e6%80%a7%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%a9%b1%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2022/techfeed-conference-2022.html title="TechFeed Conference 2022 で Web 標準技術の相互運用性について話した - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -112,6 +107,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

@@ -62,13 +62,8 @@
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr><a href="https://twitter.com/hashtag/automagic?src=hash">#automagic</a> に出演しました / "Automagic Podcast — 株式会社サイバーエージェントのフロントエンドエンジニア..." <a href=https://t.co/OqWsIoz31W>https://t.co/OqWsIoz31W</a></p>&mdash; 煎茶 🍵 (@1000ch) <a href=https://twitter.com/1000ch/status/846565898328522752>2017年3月28日</a></blockquote>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fautomagic-ep188.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2fautomagic-ep188.html&text=Automagic%20Podcast%20188%e3%81%ab%e5%87%ba%e6%bc%94%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/automagic-ep188.html title="Automagic Podcast 188に出演しました - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -107,6 +102,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>

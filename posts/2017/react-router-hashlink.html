@@ -92,13 +92,8 @@ Element.prototype.scrollIntoView() と ScrollBehavior 内部的に #bar へは d
 <p><code>&lt;HashLink></code> コンポーネントに <code>delay</code> プロパティを用意したのは、ページ遷移を含むハッシュリンクの場合に、ページ遷移直後にすぐさまスムーススクロールするより、ファーストビューを視認させた上でスクロールを始めたいケースがある気がしたから。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f1000ch.net%2fposts%2f2017%2freact-router-hashlink.html" title="Share on Facebook" target=_blank>
-<img src=/img/facebook.svg>
-</a>
-</div>
-<div class=Share__Item>
-<a href="https://twitter.com/share?url=https%3a%2f%2f1000ch.net%2fposts%2f2017%2freact-router-hashlink.html&text=react-router%e3%81%ae%e3%83%8f%e3%83%83%e3%82%b7%e3%83%a5%e3%83%aa%e3%83%b3%e3%82%af%e3%81%a8%e3%82%b9%e3%83%a0%e3%83%bc%e3%82%b9%e3%82%b9%e3%82%af%e3%83%ad%e3%83%bc%e3%83%ab" title="Share on Twitter" target=_blank>
-<img src=/img/twitter.svg>
+<a href=https://1000ch.net/posts/2017/react-router-hashlink.html title="react-routerのハッシュリンクとスムーススクロール - EagleLand">
+<img src=/img/share.svg> この記事をシェアする
 </a>
 </div>
 </aside>
@@ -137,6 +132,19 @@ customElements.define('affiliate-link', AffiliateLink);
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
+});
+
+document.querySelector('.Share__Item a').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const shareData = {
+    title: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare(shareData)) {
+    await navigator.share(shareData);
+  }
 });
 </script>
 </body>
