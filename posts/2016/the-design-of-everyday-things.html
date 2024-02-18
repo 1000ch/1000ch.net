@@ -98,6 +98,7 @@ D. A. ノーマン (著), 岡本明 (翻訳), 安村通晃 (翻訳), 伊賀聡�
 </div>
 </footer>
 </div>
+<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -123,6 +124,13 @@ document.querySelector('.Share__Item a').addEventListener('click', async event =
     await navigator.share(data);
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.textContent = 'タイトルと URL をコピーしました';
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
   }
 });
 </script>
