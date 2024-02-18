@@ -191,10 +191,10 @@ document.querySelector('.Share__Item a').addEventListener('click', async event =
     url: location.href
   };
 
-  if (navigator.canShare(data)) {
+  if (navigator.canShare?.(data)) {
     await navigator.share(data);
   } else {
-    await navigator.clipboard.writeText(`${data.title} ${data.url}`);
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
   }
 });
 </script>
