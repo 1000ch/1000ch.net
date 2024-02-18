@@ -139,13 +139,15 @@ document.querySelectorAll('pre code').forEach(block => {
 document.querySelector('.Share__Item a').addEventListener('click', async event => {
   event.preventDefault();
 
-  const shareData = {
+  const data = {
     title: document.title,
     url: location.href
   };
 
-  if (navigator.canShare(shareData)) {
-    await navigator.share(shareData);
+  if (navigator.canShare(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard.writeText(`${data.title} ${data.url}`);
   }
 });
 </script>
