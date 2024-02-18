@@ -101,9 +101,7 @@ self.addEventListener('fetch', function (e) { e.respondWith( caches.open(CACHE_K
 </code></pre></div><p>インストール時にキャッシュするのかどうかの差であって、発生するリクエスト数は同じだし、インストールの失敗リスクを避ける意味でも選択肢として有りかとは思う。このコード例だと発生しているリクエストを全てキャッシュしてしまっているので、<code>e.request</code>の内容を見て処理を分岐させる必要があるが。</p>
 <aside class=Share>
 <div class=Share__Item>
-<a href=https://1000ch.net/posts/2015/service-worker-passive-cache.html title="Service Workerを使った消極的なキャッシュ - EagleLand">
-<img src=/img/share.svg alt>この記事をシェアする
-</a>
+<a href=https://1000ch.net/posts/2015/service-worker-passive-cache.html title="Service Workerを使った消極的なキャッシュ - EagleLand">🔗 この記事をシェアする</a>
 </div>
 </aside>
 <nav class=Pager>
