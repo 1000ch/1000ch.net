@@ -162,7 +162,7 @@ document.querySelector('.Share__Item a').addEventListener('click', async event =
   event.preventDefault();
 
   const data = {
-    title: '1000ch.net',
+    title: document.title,
     text: document.title,
     url: location.href
   };
