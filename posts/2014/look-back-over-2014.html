@@ -150,11 +150,13 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-document.querySelectorAll('pre code').forEach(block => {
+const blocks = document.querySelectorAll('pre code');
+blocks.forEach(block => {
   hljs.highlightBlock(block);
 });
 
-document.querySelector('.Share__Item a').addEventListener('click', async event => {
+const share = document.querySelector('.Share__Item a');
+share.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
