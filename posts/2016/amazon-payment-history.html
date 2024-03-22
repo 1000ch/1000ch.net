@@ -114,12 +114,12 @@ blocks.forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item a');
+const share = document.querySelector('.Share__Item button');
 share.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
-    title: document.title,
+    title: 'Share the post',
     text: document.title,
     url: location.href
   };
