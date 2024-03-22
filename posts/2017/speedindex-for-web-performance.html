@@ -96,9 +96,10 @@ Speed Indexの考え方 同じコンテンツのページ A とページ B が�
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>Performance API あたりで Speed Index 取得できるようになりますように🙏 <a href=https://t.co/IVTMlbeEkf>https://t.co/IVTMlbeEkf</a> は、良いんだけど DevTools 頼みなのでモバイルでアレ</p>&mdash; 煎茶 🍵 (@1000ch) <a href=https://twitter.com/1000ch/status/868853133857837056>2017年5月28日</a></blockquote>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2017/dotfiles.html>👈 ghqとpecoを使ったリポジトリの管理またはコマンドラインの話</a>
@@ -123,7 +124,6 @@ Speed Indexの考え方 同じコンテンツのページ A とページ B が�
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -133,13 +133,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -153,7 +151,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

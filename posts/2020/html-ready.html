@@ -107,9 +107,10 @@ window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db
 </code></pre></div><p>これは unpkg を直接参照して <a href=https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules>ESM でロードしている</a>例だが、もちろん <code>npm install html-ready</code> を実行してモジュールバンドラに依存関係を解決させることも可能である。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2020/move-to-github-actions.html>👈 静的ホスティングへのデプロイをGitHub Actionsで実行するようにした</a>
@@ -134,7 +135,6 @@ window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -144,13 +144,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -164,7 +162,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

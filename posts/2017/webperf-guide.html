@@ -101,9 +101,10 @@
 <p><strong>超速!</strong> ということで、当初予定していたハッシュタグは <a href="https://twitter.com/hashtag/%E8%B6%85%E9%80%9F%E6%9C%AC?src=hash">#超速本</a> ですが、とあるツイートによって <a href="https://twitter.com/hashtag/%E3%83%81%E3%83%A7%E3%83%83%E3%83%91%E3%83%A4%E6%9C%AC?src=hash">#チョッパヤ本</a> というハッシュタグが追加されたようです。使いやすい方をお使いください。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2017/polymer-japan-meetup-1.html>👈 Polymer Japan Meetupに出演しました</a>
@@ -128,7 +129,6 @@
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -138,13 +138,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -158,7 +156,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

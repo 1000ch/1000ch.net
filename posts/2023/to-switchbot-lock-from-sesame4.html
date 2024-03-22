@@ -82,9 +82,10 @@ SESAME 4 は玄関ドアの内側に取り付けて施錠と解錠を管理で�
 <p>ちなみにマンションのエントランスの解錠をどうにかしたい問題は残っているが、こちらはマンションの組合で議論するハードルがある。理想的には生体認証による解錠を提案したいが、費用と工事規模が膨らみそうだ。せめてエントランスの工事だけで完結する要件を考えると、センサーによる非接触解錠あたりだろうか。自分の部屋番号を押されたときに、解錠ボタンが押されるような仕組みを作ることも不可能ではなさそうだが、逆に手間になってしまい解決にならなそうだ。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2022/20000min-on-dmm-eikaiwa.html>👈 オンライン英会話の学習時間が 20,000 分に到達した</a>
@@ -109,7 +110,6 @@ SESAME 4 は玄関ドアの内側に取り付けて施錠と解錠を管理で�
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -119,13 +119,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -139,7 +137,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

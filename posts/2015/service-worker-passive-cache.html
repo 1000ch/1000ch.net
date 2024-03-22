@@ -101,9 +101,10 @@ self.addEventListener('fetch', function (e) { e.respondWith( caches.open(CACHE_K
 </code></pre></div><p>インストール時にキャッシュするのかどうかの差であって、発生するリクエスト数は同じだし、インストールの失敗リスクを避ける意味でも選択肢として有りかとは思う。このコード例だと発生しているリクエストを全てキャッシュしてしまっているので、<code>e.request</code>の内容を見て処理を分岐させる必要があるが。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2015/farewell-docpad-hello-hugo.html>👈 Farewell DocPad, Hello Hugo.</a>
@@ -128,7 +129,6 @@ self.addEventListener('fetch', function (e) { e.respondWith( caches.open(CACHE_K
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -138,13 +138,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -158,7 +156,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

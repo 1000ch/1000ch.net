@@ -105,9 +105,10 @@ Nature Remo は赤外線を発信できるようになっており、これに�
 <p>IFTTT 経由で Nature Remo を操作するコツとして、先の4のステップで <strong>Google Home のネイティブで反応するキーワードで登録しない</strong> 必要がある。今回は「部屋のエアコンをつけて」「部屋の電気をつけて」というキーワードで登録したが、ここで単に「エアコンをつけて」「電気をつけて」とすると、Google Home ネイティブでエアコンやライトと連携できる機能が反応してしまい、IFTTT まで命令が届かない。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2017/nakamoto.html>👈 味噌卵麺の豆腐変更 at 中本渋谷店</a>
@@ -132,7 +133,6 @@ Nature Remo は赤外線を発信できるようになっており、これに�
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -142,13 +142,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -162,7 +160,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

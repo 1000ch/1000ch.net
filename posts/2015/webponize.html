@@ -75,9 +75,10 @@ App Storeに出す手順が難しい こちらも現在進行中で辛い問題�
 <p>こちらも現在進行中で辛い問題で、解決出来ていない。実際、アプリの実装自体は2週間くらいでおおよそ終わっていたけど、いざストアに公開しようとすると、Developer登録とかアプリの認証情報とか、バンドルするバイナリにサンドボックス情報を追加するだとかで、色々難航している。iTunesコネクトがイマイチ分からない。さらに、これまたネット上に新しい情報が少なくて辛い。なので、App Storeへの公開は今暫くお待ちください。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2015/url-opener.html>👈 URL Opener</a>
@@ -102,7 +103,6 @@ App Storeに出す手順が難しい こちらも現在進行中で辛い問題�
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -112,13 +112,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -132,7 +130,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

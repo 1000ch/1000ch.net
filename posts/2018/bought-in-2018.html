@@ -113,9 +113,10 @@ Tenswall 珪藻土速乾バスマットは太古の植物性プランクトン(�
 <p>そんな Pixel 2 を使い始めて1年も経たないうちに、<a href=https://store.google.com/jp/product/pixel_3>Pixel 3 が発表された</a>。ロクに調べもせず即ポチしたが、前評判の通り FeLiCa に対応しており、電子マネー生活に戻ることができた。カメラ性能もかなり優秀だが、Pixel 2 のカメラ性能もだいぶ良かったので、差という差は体感できていない。唯一、とあるアプリを消せないことだけは Fxck だが、それを除けば非常に満足している。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2018/gae-project-firewall.html>👈 GAE のプロジェクトに Firewall を設定する</a>
@@ -140,7 +141,6 @@ Tenswall 珪藻土速乾バスマットは太古の植物性プランクトン(�
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -150,13 +150,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -170,7 +168,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

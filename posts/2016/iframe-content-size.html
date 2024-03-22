@@ -115,9 +115,10 @@ iframe {">
 </code></pre></div><p>また、<code>&lt;iframe></code>でロードされるコンテンツにはレスポンスヘッダに<code>Expose-Height-Cross-Origin: 1;</code>を含んでいる必要がある。<a href=https://github.com/craigfrancis/iframe-height/blob/master/problems/infinite-loops.md>潜在的な問題を抱えている</a>ものの、ウィンドウ間で<code>postMessage()</code>をしないとダメというのもあまりにナンセンスだと思うので、是非実現されて欲しい。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2016/wdpress-frontend-series-pwa.html>👈 WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」</a>
@@ -142,7 +143,6 @@ iframe {">
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -152,13 +152,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -172,7 +170,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

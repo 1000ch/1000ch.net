@@ -95,9 +95,10 @@ VPoE @1000ch による「メルカリアプリのコードベースを置き換�
 <p>その中で、インターン生向けにソフトウェアエンジニアのキャリア形成について話して欲しいというリクエストがあり、業務依頼の中ではこれが最もタフだったが、自分のキャリアを眺め直して言語化することは今まで無かったので受けることにした。あまり「いつ何歳までに●●を達成して、●●になっている」といったキャリア設計をしたことがなく、目の前の業務に取り組んで成果を出し、その結果として次にやりたいことが生まれて行動する、といったことを繰り返した結果として今の自分があるので、あくまで私のキャリアはイチ例でしかないが、<a href=/posts/2022/my-engineering-career.html>目の前の仕事をちゃんとやる、もとい期待に応え続けられることがキャリアの選択肢を広げる上で重要なのでは</a>、という趣旨の話をした。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2022/bought-in-2022.html>👈 2022年に買って良かったもの</a>
@@ -122,7 +123,6 @@ VPoE @1000ch による「メルカリアプリのコードベースを置き換�
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -132,13 +132,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -152,7 +150,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

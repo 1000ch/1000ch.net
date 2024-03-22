@@ -110,9 +110,10 @@ USB Power Delivery対応：最新のMacBook Air等のノートPCへ、PD対応�
 <p>USB ポート3つに加えて 45W 出力の USB type-C があり、合計 65W 出力かつ本体が薄く持ち運びやすいという機能性を備えている。Anker の製品は基本的に信頼しており他の製品も多数所持しているが、中でも価格と機能性のバランスが最も良いものの一つだと思う。<a href=https://www.amazon.co.jp/dp/B088R6SV4Z/?1000ch-22>Anker PowerPort III 65W Pod (PD 充電器 USB-C)</a> も同じく 65W 出力の充電器だが、用途として USB type-C だけで良かったり、プラグ部分を折りたたんでよりコンパクトにしたい等があれば、こちらも比較しても良さそう。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2020/declarative-shadow-dom.html>👈 template 要素の shadowroot 属性による宣言的な Shadow DOM</a>
@@ -137,7 +138,6 @@ USB Power Delivery対応：最新のMacBook Air等のノートPCへ、PD対応�
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -147,13 +147,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -167,7 +165,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {

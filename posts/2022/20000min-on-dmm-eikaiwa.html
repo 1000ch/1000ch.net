@@ -65,9 +65,10 @@ pic.twitter.com/2Ig1q5tMR1
 <p>休眠期間を除き基本的にはほぼ毎日レッスンを受けてきたが、以前と比べるとやはり上達を実感しづらくなっている。語学は費やした時間とその濃度だと思っているが、変数の1つとしてネイティブの英語にふれる機会を増やすべく<a href=https://eikaiwa.dmm.com/plan/>スタンダードプランからネイティブプラスプランに変更した</a>。もちろん、予習復習といった受講の仕方や YouTube チャネルなどを活用するなどのアプローチはある一方で、量という意味で1日1レッスンではなく、1日2レッスンにするなどをしていくことも必要かもしれない。</p>
 <aside class=Share>
 <div class=Share__Item>
-<button type=button>🔗 この記事をシェアする</a>
+<button type=button class=Share__Button>🔗 この記事をシェアする</a>
 </div>
 </aside>
+<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
 <nav class=Pager>
 <div class="Pager__Item Pager__Item--left">
 <a href=/posts/2022/look-back-over-2022.html>👈 2022年の振り返り</a>
@@ -92,7 +93,6 @@ pic.twitter.com/2Ig1q5tMR1
 </div>
 </footer>
 </div>
-<div popover=auto id=Popover></div>
 <script defer src=https://platform.twitter.com/widgets.js></script>
 <script defer src=https://platform.instagram.com/en_US/embeds.js></script>
 <script defer src=https://strava-embeds.com/embed.js></script>
@@ -102,13 +102,11 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const blocks = document.querySelectorAll('pre code');
-blocks.forEach(block => {
+document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
 
-const share = document.querySelector('.Share__Item button');
-share.addEventListener('click', async event => {
+document.querySelector('.Share__Item button').addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
@@ -122,7 +120,6 @@ share.addEventListener('click', async event => {
   } else {
     await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
     const popover = document.querySelector('#Popover');
-    popover.textContent = 'タイトルと URL をコピーしました';
     popover.showPopover();
 
     setTimeout(() => {
