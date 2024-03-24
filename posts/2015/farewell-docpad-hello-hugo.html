@@ -64,10 +64,15 @@ Hugoにした Hugo自体はもっと前から知っていた（きっかけは�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.02.24</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=farewell-docpad-hello-hugo>Farewell DocPad, Hello Hugo.</h1>
 <p>Hugoはじめました。</p>
 <h2 id=docpadからhugoへ>DocPadからHugoへ</h2>
@@ -130,14 +135,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

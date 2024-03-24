@@ -61,10 +61,15 @@ MacBook Pro や iPhone などは比較的早いサイクルで買い換えるよ
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.01.02</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=実践してるライフハック>実践してるライフハック</h1>
 <p>ライフハックというものでもないが、<a href=http://oinume.hatenablog.com/entry/techniques-to-save-money>お金を節約するワザ - oinume journal</a> に感化されたので、普段実践していることを書いてみる。</p>
 <h2 id=amazonへ依存する>Amazonへ依存する</h2>
@@ -121,14 +126,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

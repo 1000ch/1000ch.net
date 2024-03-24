@@ -60,10 +60,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2013.04.19</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=jquery-20がリリースされた>jQuery 2.0がリリースされた</h1>
 <ul>
 <li><a href=http://blog.jquery.com/2013/04/18/jquery-2-0-released/>jQuery 2.0 Released</a></li>
@@ -150,14 +155,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

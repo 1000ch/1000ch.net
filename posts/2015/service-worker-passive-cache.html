@@ -58,10 +58,15 @@ self.addEventListener('fetch', function (e) { e.respondWith( caches.open(CACHE_K
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.02.27</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=service-workerを使った消極的なキャッシュ>Service Workerを使った消極的なキャッシュ</h1>
 <p>前略（Service Workerとはなんぞやという方は<a href=/posts/2014/service-worker-internals.html>こちら</a>）、キャッシュさせたいリソースをService Workerのインストール中に全てインストールさせている例が多いが、そのリソース全てをキャッシュさせることを保証しなくても良いケースが大半だと思う（オフライン化ではなくパフォーマンス向上という観点だと特に）。</p>
 <h2 id=優先度を付ける>優先度を付ける</h2>
@@ -141,14 +146,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

@@ -60,10 +60,15 @@ manifest.jsonのサンプル 後述の公式ドキュメントに詳しく載っ
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2013.03.09</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=閲覧履歴を簡単に消せるgoogle-chromeの拡張機能を作った>閲覧履歴を簡単に消せるGoogle Chromeの拡張機能を作った</h1>
 <p><a href=https://twitter.com/t32k/>@t32k</a>氏に影響されて<a href=https://github.com/1000ch/one-click-clear>Chromeの拡張機能を作った</a>。アイコンのクリックで全履歴を消すという非常にシンプルな機能。ソースも非常に小さい構成になっている。機能・実装がブラッシュアップされてきたらウェブストアへの登録もしてみようかな、と。</p>
 <p>以下の手順でも使える。</p>
@@ -143,14 +148,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

@@ -56,10 +56,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.04.30</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=frontrend-vol9-を開催しました>Frontrend Vol.9 を開催しました</h1>
 <p>2017/04/28に<a href=https://frontrend.connpass.com/event/53985/>Frontrend Vol.9 - 春の新人歓迎 マークアップ/アクセシビリティのキホン</a>を開催しました。登壇資料やブログ枠などは既に<a href=https://frontrend.connpass.com/event/53985/presentation/>イベント資料一覧</a>にまとまっています。</p>
 <p>当日の様子は FRESH! で生配信され、<a href=https://freshlive.tv/tech-conference/109133>アーカイブも残っている</a>ので見逃した方は是非どうぞ。</p>
@@ -103,14 +108,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

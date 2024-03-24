@@ -68,10 +68,15 @@ CloudFlareをDNSサーバーとして利用する GitHub PagesにCNAMEで設定�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.01.12</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=github-pagesに設定しているカスタムドメインをhttps対応させる>GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる</h1>
 <p>このブログはGitHub Pagesで運用している。ホスト名を書いた<code>CNAME</code>ファイルをドキュメントルートに配置してドメインを1000ch.netとしているが、これだと証明書がないせいでGitHub Pagesが対応しているHTTPSを利用できない。つまり、</p>
 <ul>
@@ -143,14 +148,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

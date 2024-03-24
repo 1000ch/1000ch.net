@@ -59,10 +59,15 @@ const rog = require('rog'); rog('http://google.com').then(data => { console.log(
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.01.29</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=open-graphのデータをカードでプレビューする>Open Graphのデータをカードでプレビューする</h1>
 <p>オープングラフのデータを取得して表示する機能は、FacebookやらTwitter、Google+では当たり前のようにある機能だが、業務上必要になったので調査して、ツールを作った話。</p>
 <p>文字列や画像のURLといった表示させたいデータを<code>&lt;meta></code>や<code>&lt;link></code>で記述するのは御存知の通りだが、HTMLにどのように記述するかは各プラットフォーム毎に定義がなされている。Facebookであれば<a href=http://ogp.me/>Open Graph</a>、Twitterであれば<a href=https://dev.twitter.com/cards/markup>Twitter Cards</a>といった名前が付いている。</p>
@@ -146,14 +151,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

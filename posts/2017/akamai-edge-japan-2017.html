@@ -57,10 +57,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.09.25</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=akamai-edge-japan-2017-に出演します>Akamai Edge Japan 2017 に出演します</h1>
 <p>少し先ですが、11月10日(金) に開催される <a href=http://www.seminar-reg.jp/akamai/aej2017/>Akamai Edge Japan 2017</a> のトークセッション「<a href=http://www.seminar-reg.jp/akamai/aej2017/#PD-1>顧客のデジタルシフトに追いつけ！攻めのWebサイトへの次の一手</a>」（PD-1、17:05-18:35）に出演します。<a href=http://anaintercontinental-tokyo.jp/>ANAインターコンチネンタルホテル東京</a>で開催され、既に<a href=https://www.evt-entry.com/aej2017/>申し込みは始まっている</a>ようです。</p>
 <p>私が弊社でやっている Web プロダクトの品質向上、特に Web パフォーマンスへの取り組みについて、パフォーマンス指標の決め方、プロジェクトでの改善の進め方、取り組んできてどうだったか・これからどうか、みたいなことをお話します。たぶん。</p>
@@ -105,14 +110,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

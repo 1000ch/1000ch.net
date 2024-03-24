@@ -58,10 +58,15 @@ const svg = d3.select('body') // bodyを参照する  .append('svg') // svgをap
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.05.02</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=d3jsでcolor-pickerを作った>D3.jsでColor Pickerを作った</h1>
 <p>D3.jsの素振りをしていて、何か練習台になるものはと探していたら<a href=https://www.smashingmagazine.com/2016/04/web-developer-guide-color/>A Simple Web Developer’s Guide To Color</a>で<a href=https://dribbble.com/colors/>Dribbble</a>やら<a href=http://designspiration.net/>Designspiration</a>にあるようなカラーピッカーが紹介されていたので、真似て<a href=https://1000ch.github.io/color-picker/>Color Picker</a>を実装した。機能としては、予め用意してある色がパレットのように陳列されていて、クリックするとそのカラーコードをコピー出来るという単純なもの。ある程度整頓された色の中から選んで使いたいことは多々あったので、その個人的な問題はコレで解決できそう。</p>
 <p>クリックでコピーできる機能については<a href=https://clipboardjs.com/>clipboard.js</a>を使っているのでFlashに依存していない代わりに、<code>execCommand</code>がアレなSafariではコピーは機能しない。</p>
@@ -138,14 +143,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

@@ -55,10 +55,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2020.10.07</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=template-要素の-shadowroot-属性による宣言的な-shadow-dom>template 要素の shadowroot 属性による宣言的な Shadow DOM</h1>
 <p>Shadow DOM は、代替要素を除いた任意の HTML 要素を DOM API で参照して <code>attachShadow({ ... })</code> メソッドを呼び出すことで命令的に生成できる。これを新たに <code>&lt;template></code> 要素の <code>shadowroot</code> 属性によって、対象の HTML 要素の Shadow DOM を宣言的に生やせるようになる仕様が提案されている。既に <a href=https://www.chromestatus.com/feature/5191745052606464>Chrome 85 で試験的に実装されており</a>、フラグ付きで利用できるようになっている。この記事は自分用にまとめたメモ。</p>
 <ul>
@@ -196,14 +201,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

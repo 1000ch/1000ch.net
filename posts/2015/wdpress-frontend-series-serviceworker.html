@@ -61,10 +61,15 @@ Service Workerで変わるWebアプリの常識 Service Workerで実現される
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.04.15</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=webdb-press-vol86-webフロントエンド最前線service-workerて実現するオフラインwebアフリケーション>WEB+DB PRESS Vol.86 Webフロントエンド最前線「Service Workerで実現するオフラインWebアプリケーション」</h1>
 <p>「Webフロントエンド最前線」という連載を担当させてもらっている<a href=http://gihyo.jp/magazine/wdpress/archive/2015/vol86>WEB+DB PRESS Vol.86</a>が4月23日に発売されます！連載6回目は、HTTPリクエストの操作・サーバープッシュの受信・バックグラウンドスケジューラといった、Webに長らく求められてきた機能の基盤となるService Workerについて。</p>
 <p><img src=/img/posts/2015/wdpress-frontend-series-serviceworker/cover.jpg alt></p>
@@ -129,14 +134,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

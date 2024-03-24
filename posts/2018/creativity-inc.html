@@ -55,10 +55,15 @@ Ed Catmull (著)、Amy Wallace (著)、石原 薫 (翻訳)">
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2018.07.08</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=ピクサー流-創造するちから>ピクサー流 創造するちから</h1>
 <p>ピクサー社のモノづくりにまつわる様々なストーリーを軸に、組織や人のマネジメントについて示唆している本。チームのクリエイティビティを維持するために必要だったこと・ディズニー社による買収劇の裏側・ジョブズのパーソナリティなどについて書かれている。紙にして 424 ページというボリュームで内容も濃く、読み応えがある。</p>
 <p><affiliate-link src=https://images-fe.ssl-images-amazon.com/images/I/51HicxQBZZL.jpg href=https://www.amazon.co.jp/dp/B00OYMOEOS/ tag=1000ch-22 title="ピクサー流 創造するちから">
@@ -103,14 +108,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

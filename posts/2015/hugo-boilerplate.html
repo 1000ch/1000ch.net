@@ -68,10 +68,15 @@ Automated deployments with Werckerに完璧なドキュメントがあるので�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.03.22</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=hugo-boilerplate>Hugo Boilerplate</h1>
 <p><a href=http://gohugo.io/>Hugo</a>の<a href=http://gohugo.io/overview/introduction/>ドキュメンテーション</a>はとても充実していて良いのだが、最小構成がそもそも小さいのでコードレベルで把握してしまったほうがわかりやすい可能性がある。</p>
 <p><a href=https://github.com/1000ch/hugo-boilerplate>1000ch/hugo-boilerplate</a>は、Hugoの主な機能を最小限の形にまとめたリポジトリ。</p>
@@ -150,14 +155,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

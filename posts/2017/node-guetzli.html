@@ -56,10 +56,15 @@ Guetzliとは Guetzli は Google が開発している JPEG エンコーダで�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.04.21</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=guetzliをnodejsで使えるモジュール>GuetzliをNode.jsで使えるモジュール</h1>
 <p><a href=https://github.com/imagemin/guetzli-bin>imagemin/guetzli-bin</a> という、Node.js のモジュールを作った。<a href=https://github.com/imagemin/imagemin-guetzli>imagemin のプラグイン</a>もあるし、<a href=https://github.com/1000ch/gulp-image>gulp-image</a> や <a href=https://github.com/1000ch/grunt-image>grunt-image</a> もサポートしている。</p>
 <h2 id=guetzliとは>Guetzliとは</h2>
@@ -109,14 +114,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

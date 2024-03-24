@@ -61,10 +61,15 @@ jQueryが流行り過ぎて、あたかも JavaScript = jQuery のような誤�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2014.07.31</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=html5とか勉強会でweb-componentsとpolymerについて話してきた>HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた</h1>
 <p><a href=https://atnd.org/events/53826>第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O-</a> でWeb ComponentsとPolymerについてお話してきました。
 <a href=/posts/2014/google-io-2014.html>Google I/O 2014に参加した</a>ことは前段の通りで、
@@ -126,14 +131,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

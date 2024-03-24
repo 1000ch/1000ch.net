@@ -61,10 +61,15 @@ Shadow DOM配下のlink要素は無効である  7.1 Inert HTML Elements A subse
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.01.30</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=polymerについての所感>Polymerについての所感</h1>
 <p>Polymerを使ったWeb Componentsに<a href=https://github.com/zenorocha/twitter-button><code>&lt;twitter-button></code></a>、<a href=https://github.com/zenorocha/facebook-button><code>&lt;facebook-button></code></a>、<a href=https://github.com/zenorocha/gplus-elements><code>&lt;gplus-one></code>・<code>&lt;gplus-follow></code></a>がある。Polymerのバージョンが古かったのでプルリクエストを送ったんだけど、修正しながら考えてたことを書いてみた。</p>
 <h2 id=polymerに依存するweb-components>Polymerに依存するWeb Components</h2>
@@ -141,14 +146,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

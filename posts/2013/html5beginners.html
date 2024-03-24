@@ -68,10 +68,15 @@ $ curl https://raw.github.com/creationix/nvm/master/install.sh | sh これでホ
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2013.10.25</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=html5ビギナーズでリファクタリングについて喋ってきた>HTML5ビギナーズでリファクタリングについて喋ってきた</h1>
 <p>2013/10/23(金)に行われた<a href=http://atnd.org/events/44530>HTMLビギナーズ第3回</a>に参加して、喋ってきた。</p>
 <p>真ん中のスクリーンが映らないという機材トラブルに加えて、<a href=https://twitter.com/yoshikawa_t>吉川さん</a>と<a href=https://twitter.com/hiromitsuuuuu>ひろみつさん</a>のとてもわかりやすいCSSの話の後というプレッシャーの中、 <del>「あれ、2人がCSSで俺だけちょっと違う話だけど大丈夫かコレ」って思いながら</del> 話をさせていただいた。</p>
@@ -144,14 +149,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

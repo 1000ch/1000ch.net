@@ -59,10 +59,15 @@ HerokuとGitHubを連携する Heroku に GitHub へのアクセス権を与え�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.10.21</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=githubのリポジトリをherokuに自動でデプロイする>GitHubのリポジトリをHerokuに自動でデプロイする</h1>
 <p>何事も自動が大事という前置きはさておき、GitHub のリポジトリへのコミットを契機に Heroku へ自動でデプロイを行いたい話。機能が存在していることは認識していたが、実際に使ってみたら便利だったのでメモ。といっても、難しいことはないので、詰まることもなかったが。</p>
 <h2 id=heroku-gitによるデプロイ>Heroku Gitによるデプロイ</h2>
@@ -119,14 +124,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

@@ -59,10 +59,15 @@ autoUpdater(Squirrel.Mac)のサーバー側の実装 Electron 側の実装は簡
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.08.05</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=electronアプリの自動アップデートサーバーをhazelとnowで作る>Electronアプリの自動アップデートサーバーをhazelとnowで作る</h1>
 <p>Trello のデスクトップアプリ <a href=https://github.com/1000ch/whale>1000ch/whale</a> や <a href=https://esa.io/>esa.io</a> のデスクトップアプリ <a href=https://github.com/1000ch/quail>1000ch/quail</a> は Electron 製だが、この macOS バージョンに、重い腰を上げて自動アップデート機能を実装した。</p>
 <h2 id=electronの自動アップデート機能>Electronの自動アップデート機能</h2>
@@ -145,14 +150,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

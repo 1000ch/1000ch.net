@@ -58,10 +58,15 @@ Developer Modeの有効化 まずはシステムbashをフルで使うために�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.01.02</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=chrome-osをdeveloper-modeで起動する>Chrome OSをDeveloper Modeで起動する</h1>
 <p>Chromebookを去年の10月に購入したが、主にHulu観賞にしか使っていなかったので、もう少しアレコレカスタマイズしてみることにした。</p>
 <p>Chrome OSはWebに特化したオペレーティング・システムで、全てのアプリケーションはChrome（Chromiumプラットフォーム）で実行される。そのため、ベースカーネルはGentoo（Linux）だが、システム部分へのアクセスが制限されている。ターミナルも<code>crosh</code>というブラウザから実行するディベロッパーシェルがあるものの、やりたいこと（いわゆるNode.jsのインストールとかそういうの）がほとんどできない。</p>
@@ -116,14 +121,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

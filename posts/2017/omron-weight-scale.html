@@ -58,10 +58,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.07.10</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=オムロンの体重計>オムロンの体重計</h1>
 <p>前回の健康診断から 4kg 増えている（58kg -> 62kg）とのことで、計測員のお姉さんに心配されて以来体重を気にしている。年齢的にも本格的に運動で絞っていかないとマズイと危機感を感じたので、ゴールデンウィークあたりから継続的に週一程度でランニングをしている。実際に体重がどうなっているのかを知りたい時に、ふと体重計がないことに気づき、買ってみた。</p>
 <p><img src=/img/posts/2017/omron-weight-scale/omron.jpg alt=オムロンの体重計></p>
@@ -110,14 +115,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

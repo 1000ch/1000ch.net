@@ -59,10 +59,15 @@ Introduction to Resource Hints Resource Hints について発表したので資�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.12.08</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=frontrend-vol8でresource-hintsの話をした>Frontrend Vol.8でResource Hintsの話をした</h1>
 <p>ファイナルを謳った Frontrend Conference を開催した2015年2月21日からしばらくぶりの <a href=https://frontrend.connpass.com/event/45238/>Frontrend Vol.8</a> を開催した。およそ1年8ヶ月の充電期間を経て復活した Frontrend には約100名の参加者にご来場頂き、アンケートの結果もまずまずで、主催側としてはやや安心。</p>
 <h2 id=introduction-to-resource-hints>Introduction to Resource Hints</h2>
@@ -118,14 +123,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

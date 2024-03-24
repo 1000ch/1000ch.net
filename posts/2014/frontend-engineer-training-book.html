@@ -60,10 +60,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2014.06.16</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=フロントエンドエンジニア養成読本>フロントエンドエンジニア養成読本</h1>
 <p>フロントエンドエンジニア養成読本という本を共著で執筆しました。技術評論社さんから刊行されます。</p>
 <blockquote class=twitter-tweet lang=ja><p>7/2発売です！ / “<a href=http://t.co/cxQm0qCTFU>http://t.co/cxQm0qCTFU</a>： フロントエンドエンジニア養成読本 [HTML、CSS、JavaScriptの基本から現場で役立つ技術まで満載! ] (Software Design plus…” <a href=http://t.co/IeOxwfY1ZY>http://t.co/IeOxwfY1ZY</a></p>&mdash; 1000ch (@1000ch) <a href=https://twitter.com/1000ch/statuses/477357597029199874>2014, 6月 13</a></blockquote>
@@ -148,14 +153,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

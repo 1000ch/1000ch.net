@@ -58,10 +58,15 @@ Apple お墨付きのセミオフィシャル的なディスプレイとして�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2022.06.20</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=lg-ultrafine-5k-display-27インチ>LG UltraFine 5K Display 27インチ</h1>
 <p>MacBook Pro (M1, 2020) 単品の運用で目立った不満があったわけではないが、USB type-C のポートが2つしかないので、基本的には給電しっぱなしであることを加味すると、残りのポートにマイクを繋げて終了という状況だった。あとは、大きい画面のほうが作業が捗るのはもちろんありつつ、ラップトップのディスプレイを見るとどうしても前かがみな姿勢になってしまうので、肩こりなどの原因になっている自覚が少なからずあった。</p>
 <p>ということで、これらの問題を解消してくれるディスプレイとして、LG UltraFine 5K Display 27インチを購入した。もとい、友人がちょうど手放そうとしていたという偶然が重なり、譲り受けることができた。</p>
@@ -130,14 +135,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

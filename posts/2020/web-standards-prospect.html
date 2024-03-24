@@ -57,10 +57,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2020.01.06</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=2020年のweb標準という記事を寄稿しました>2020年のWeb標準という記事を寄稿しました</h1>
 <p>今年も gihyo.jp の新春特別企画ということで <a href=https://gihyo.jp/design/column/newyear/2020/web-standards-prospect>2020年のWeb標準</a> という記事を寄稿しました。</p>
 <blockquote class=twitter-tweet><p lang=ja dir=ltr>2020 年ということで、Web Packaging と Web Authentication について <a href="https://twitter.com/hashtag/gihyojp?src=hash&ref_src=twsrc%5Etfw">#gihyojp</a> に寄稿しました📝🎍 Special thanks to <a href="https://twitter.com/kinu?ref_src=twsrc%5Etfw">@kinu</a> and <a href="https://twitter.com/agektmr?ref_src=twsrc%5Etfw">@agektmr</a> ✨ / "新春特別企画：2020年のWeb標準" <a href=https://t.co/sVjHoi8zNC>https://t.co/sVjHoi8zNC</a></p>&mdash; Shogo ( ˘ω˘) (@1000ch) <a href="https://twitter.com/1000ch/status/1213988634623266821?ref_src=twsrc%5Etfw">January 6, 2020</a></blockquote>
@@ -105,14 +110,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

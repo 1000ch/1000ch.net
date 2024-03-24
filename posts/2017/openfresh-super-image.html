@@ -62,10 +62,15 @@ import * as React from 'react'; import * as PropTypes from 'prop-types'; import 
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.08.11</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=画像を便利に扱うreactコンポーネント>画像を便利に扱うReactコンポーネント</h1>
 <p>React を使った Web プロダクト開発では、遅延ロードやアクセシビリティといった画像として基本的な機能を備えつつ、ステートレスな <code>&lt;Image></code> コンポーネントを実装することがしばしある。</p>
 <p><a href=https://freshlive.tv>FRESH!</a> の Web 開発チームでは以前<a href=/posts/2017/openfresh-viewport-observer.html>Intersection Observerを使った要素の出現を検出するReactコンポーネント</a>を公開したが、今度は画像を扱う汎用 React コンポーネントを公開した。今日はその紹介と、それらを組み合わせた <code>&lt;Image></code> コンポーネントの実装をしてみる。</p>
@@ -167,14 +172,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

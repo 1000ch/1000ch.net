@@ -56,10 +56,15 @@ constantly, consistently or continuously. pic.twitter.com/dpA0YsN27A
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2021.03.12</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=オンライン英会話の学習時間が-10000-分に到達した>オンライン英会話の学習時間が 10,000 分に到達した</h1>
 <p>2019 年の8月頃から DMM 英会話を使って英語学習を続けており、つい先日レッスン時間が 10,000 分に到達した。1レッスン 25 分なので、10,000 分までに 400 レッスンを受けたことになる。毎日受講しても1年1ヶ月かかることになるが、自分の場合は、ほぼ毎日受講してきた中で約1ヶ月間のスランプに2回程陥っていたりして、結局1年半かかった。</p>
 <blockquote class=twitter-tweet><p lang=en dir=ltr>constantly, consistently or continuously. <a href=https://t.co/dpA0YsN27A>pic.twitter.com/dpA0YsN27A</a></p>&mdash; Shogo SENSUI (@1000ch) <a href="https://twitter.com/1000ch/status/1370224370388365317?ref_src=twsrc%5Etfw">March 12, 2021</a></blockquote>
@@ -103,14 +108,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

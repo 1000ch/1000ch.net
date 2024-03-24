@@ -66,10 +66,15 @@ showCommentList(toShow = true) { this.">
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.05.17</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=abematvのランタイムパフォーマンスのaudit>AbemaTVのランタイムパフォーマンスのAudit</h1>
 <p>最近業務で、巷で話題の<a href=https://abema.tv/>AbemaTV</a>のパフォーマンス改善をしている。個別具体性が高いが調査改善の雰囲気を感じ取ってもらえればそれで良いかと思い、記事にした。</p>
 <h2 id=abematvのフロントエンドの構成>AbemaTVのフロントエンドの構成</h2>
@@ -276,14 +281,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

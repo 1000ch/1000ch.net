@@ -57,10 +57,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.11.25</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=髪の毛くるくるポイが革命的だった>髪の毛くるくるポイが革命的だった</h1>
 <p>風呂場の排水口についている備え付けの目皿では、色んな毛が絡みついて剥がし取りにくい上に、シャンプーやリンス、ボディソープの泡などが付着してとても汚い。</p>
 <p><a href="https://www.amazon.co.jp/gp/product/B009PDG7UK?tag=1000ch-22">髪の毛くるくるぽい</a>はその代わりとなる目皿だが、工夫が施されており水流が渦を作る形状になっている。これによって、髪の毛が中心部の凹みに溜まるようになっており、石鹸カスなどは流れる仕組みだ。</p>
@@ -110,14 +115,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

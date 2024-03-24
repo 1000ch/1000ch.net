@@ -60,10 +60,15 @@ Dropsync を使った Android でのデータ同期 Obsidian は Android アプ�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2023.09.26</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=obsidian-を使ったデバイスを問わないメモ運用>Obsidian を使ったデバイスを問わないメモ運用</h1>
 <p>仕事用なのかプライベート用なのか、はたまた両方なのか、端末を問わずに共有されるメモを望む人は多い。こうした目的に対しては <a href=https://evernote.com/ja-jp>Evernote</a> や <a href=https://dayoneapp.com/>Day One</a>、<a href=https://www.inkdrop.app/>Inkdrop</a> といったプロダクトがあるが、手に馴染みききらず public な <a href=https://scrapbox.io/1000ch>scrapbox</a> を使っている。</p>
 <p>scrapbox 独自の記法はあるものの、メモがてら公開したいものを管理する目的に対して scrapbox はとても良い一方で、タッチデバイスで編集するには使い心地が難しい部分があったり、Markdown で書きたいニーズを満たせていなかった。</p>
@@ -113,14 +118,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

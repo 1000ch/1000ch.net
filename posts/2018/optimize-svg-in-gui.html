@@ -60,10 +60,15 @@ Sketch のプラグインをインストールしておけば、エクスポー�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2018.11.11</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=svg-ファイルを-gui-ツールで最適化する>SVG ファイルを GUI ツールで最適化する</h1>
 <p>Sketch や各種ツールから出力する SVG には、表示には必要ないデータが含まれることがある。SVG を git などでバージョン管理することも多いと思うが、この時に不要なデータを含めたくない。</p>
 <p>ツールとしては <a href=https://github.com/svg/svgo>svgo</a> という Node.js 製のツールがあり、これを使うことで不要なデータを取り除きつつ、整形や最小化処理を適用できる。</p>
@@ -120,14 +125,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

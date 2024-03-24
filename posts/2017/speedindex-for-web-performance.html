@@ -60,10 +60,15 @@ Speed Indexの考え方 同じコンテンツのページ A とページ B が�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.05.29</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=speed-indexというwebパフォーマンスの指標>Speed IndexというWebパフォーマンスの指標</h1>
 <p>Web パフォーマンスの文脈で語られてきた <code>DOMContentLoaded</code> や <code>load</code> といった、いわゆるロード速度として括られてきた指標は、ユーザー体験とパフォーマンスの相関を俯瞰する上でいまや適切ではない。</p>
 <p><code>DOMContentLoaded</code> は DOM ツリーと CSSOM ツリーを組み合わせたレンダーツリーの準備完了を指し、ひとつの Web クライアントサイドでできる最適化の指標だが、それでも描画状態はレンダーツリーの複雑さやスクリプト処理との兼ね合いに依存してくるので、<strong>如何に素早くページが表示されているか</strong> ということを正確に表現できない。</p>
@@ -136,14 +141,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

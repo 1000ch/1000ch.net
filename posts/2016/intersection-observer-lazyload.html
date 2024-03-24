@@ -62,10 +62,15 @@ function intersectionChanged(changes) { for (let change of changes) { console.lo
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.05.15</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=intersectionobserverを使ってlazyload-imageを書き直した>IntersectionObserverを使ってlazyload-imageを書き直した</h1>
 <p>画像をスクロール同期でロードする<a href=https://1000ch.github.io/lazyload-image/><code>&lt;lazyload-image></code></a>というWeb Componentsの内部処理を、<a href=https://github.com/WICG/IntersectionObserver><code>IntersectionObserver</code></a>で書き直した。</p>
 <h2 id=可視領域に要素が入っているかどうかの判定>可視領域に要素が入っているかどうかの判定</h2>
@@ -137,14 +142,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

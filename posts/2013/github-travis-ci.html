@@ -65,10 +65,15 @@ testem周り  airportyh/testem require.js 環境で mocha + expect + testem を�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2013.08.19</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=travis-ciを使ったgithubプロジェクトの継続的インテグレーション>Travis CIを使ったGitHubプロジェクトの継続的インテグレーション</h1>
 <p>今更感が否めないけど、簡単にまとめた。<a href=https://travis-ci.org/>Travis CI</a>とはなんぞやという方はこちら。<a href=http://ja.wikipedia.org/wiki/%E7%B6%99%E7%B6%9A%E7%9A%84%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3>継続的インテグレーション</a>とはなんぞやという方はこちら。</p>
 <p>例えばテストの自動化をして、リファクタリングのしやすい環境を作って、コードの品質向上を継続的に行っていくサイクル。というイメージ。今回はGitHubとTravis CIで自動化を測るけど、Jenkinsでビルド環境を整えて、継続的にデプロイをしていくのもひとつのCIである。</p>
@@ -184,14 +189,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

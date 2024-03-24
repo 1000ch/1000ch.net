@@ -70,10 +70,15 @@ HDMI端子入数:2 [HDMI 1、HDMIMHL1]。USB機能:なし。スピーカ無し�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2014.09.11</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=philips-23型ah-ipsパネル採用ワイドディスプレイを買った>PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った</h1>
 <p>良いという噂が飛び交っているPHILIPSのAH-IPSパネルディスプレイを購入した。</p>
 <p><img src=/img/posts/2014/philips-wide-display-23inch/packed.jpg alt></p>
@@ -157,14 +162,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

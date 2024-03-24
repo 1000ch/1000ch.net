@@ -61,10 +61,15 @@ SESAME 4 は玄関ドアの内側に取り付けて施錠と解錠を管理で�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2023.01.30</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=スマートロックを-sesame-4-から-switchbot-ロックに移行した>スマートロックを SESAME 4 から SwitchBot ロックに移行した</h1>
 <p>自宅のスマートロックを「<a href=https://jp.candyhouse.co/products/sesame4>SESAME 4</a> + <a href=https://jp.candyhouse.co/products/new-wifi>WiFi Module 2</a> + NFC タグ」から「SwitchBot ロック + SwitchBot キーパッド」にしたら、施錠時と解錠時にスマートフォンを取り出す手間がなくなり、かなり快適になった。</p>
 <p><affiliate-link src=https://m.media-amazon.com/images/I/81ltCKo4+pL._AC_SY300_SX300_.jpg href=https://www.amazon.co.jp/dp/B0B1ZJP9YK tag=1000ch-22 title="SwitchBot スマートロック 指紋認証パッド セット">
@@ -122,14 +127,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

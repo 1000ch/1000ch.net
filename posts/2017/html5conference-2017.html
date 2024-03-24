@@ -58,10 +58,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.09.10</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=html5-conference-2017-に出演します>HTML5 Conference 2017 に出演します</h1>
 <p>来たる 9/24(日) に開催される <a href=http://events.html5j.org/conference/2017/9/>HTML5 Conference 2017</a> に、<a href=http://events.html5j.org/conference/2017/9/session/#a5>The State of Web Components</a>というタイトルで出演します。<a href=https://html5j.connpass.com/event/64992/>既に満員</a>の状況なので、恒例の是非ご応募くださいはないですが、もし興味がある方はセッションにお越し頂ければと思います。<a href=http://events.html5j.org/conference/2017/9/access/>会場はおなじみの東京電機大学です</a>。</p>
 <p>さて、Web Components については去年の <a href=https://gdg-tokyo.connpass.com/event/38927/>DevFest Tokyo 2016</a> というイベントでも <a href=https://1000ch.github.io/slide/webcomponents-2016/>Web Components 2016 & Polymer v2</a> というセッションで発表させていただきました。この時は Web Components v0 -> v1 のアップデートにフォーカスした内容だったので、時世に合わせてまとめなおしてみようと思います。どうぞ宜しくお願い致します。</p>
@@ -106,14 +111,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

@@ -60,10 +60,15 @@ let x = 1; if (true) { let x = 2; console.">
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2013.12.26</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=es6のシンタックスを予習復習1-let-const-arrow-function-generators-for-of>ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~</h1>
 <p>ES6のフォローについては書こうとしていたものの後手に回っていて、ようやく書くに至る。SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてるけど、<code>let</code>とか<code>const</code>、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておく。</p>
 <h2 id=この段階での実装状況はnightly--canary>この段階での実装状況はNightly > Canary</h2>
@@ -264,14 +269,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

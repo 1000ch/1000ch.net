@@ -56,10 +56,15 @@ Merpay Tech Fest はメルペイの事業を支える技術や組織といった
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2022.08.24</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=メルペイエンジニアリングのこれまでとこれから-at-merpay-tech-fest-2022>メルペイエンジニアリングのこれまでとこれから at Merpay Tech Fest 2022</h1>
 <p>先日 <a href=https://events.merpay.com/techfest-2022/>Merpay Tech Fest 2022</a> が開催された。</p>
 <p>Merpay Tech Fest はメルペイの事業を支える技術や組織といったエンジニアリングの取り組みを紹介するカンファレンスだ。2022年8月21日から3日間かけて開催され、エンジニアリング全体を総括するキーノートに始まり、プロダクト開発に関わるチームから様々な取り組みについて発表があった。また、今年はトークセッションだけでなく視聴者参加型のコンテンツとして、コードベースに仕込まれているバグを参加者が協力して直すといった、体験型ワークショップも開催された。</p>
@@ -103,14 +108,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

@@ -60,10 +60,15 @@ HTTP1.1  IPアドレスだけでなくホスト名で通信相手を特定でき
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.01.29</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=http11とspdyとhttp2>HTTP1.1とSPDYとHTTP2</h1>
 <p>Webの通信プロトコルとして普及するHTTPも、HTTP2に向かって大きな変貌を遂げようとしている。最初期のHTTP0.9からどういう変化をたどってきたのか気になったので、調べたメモ。ネットワーク・HTTPの予備知識に<a href=/posts/2014/networking-in-web.html>Webにおけるネットワーク通信</a>もどうぞ。</p>
 <h2 id=各プロトコルの特徴>各プロトコルの特徴</h2>
@@ -163,14 +168,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

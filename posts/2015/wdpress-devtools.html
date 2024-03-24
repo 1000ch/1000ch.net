@@ -64,10 +64,15 @@ ElementパネルとConsoleパネルを使ったWebページのデバッグには
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.10.19</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=webdb-press-vol89-特集詳解-chrome-developer-tools>WEB+DB PRESS Vol.89 特集「詳解 Chrome Developer Tools」</h1>
 <p><a href=http://gihyo.jp/magazine/wdpress/archive/2015/vol89>WEB+DB PRESS Vol.89</a>が10月24日に発売されます！Vol.89は連載「Webフロントエンド最前線」をお休みして特集1の 「[詳細] Chrome Developer Tools」を<a href=http://twitter.com/ahomu>@ahomu</a>さんと担当させていただきました。</p>
 <blockquote class=twitter-tweet lang=ja><p lang=ja dir=ltr>特集1は「詳解Chrome Developer Tools」。著者は<a href=https://twitter.com/ahomu>@ahomu</a>さん、<a href=https://twitter.com/1000ch>@1000ch</a>さんという、連載「Webフロントエンド最前線」のお二人です。連載のほうはお休みですが、そのぶん「まさに詳解！」という網羅的な特集となっておりますので、お楽しみに！ <a href="https://twitter.com/hashtag/wdpress?src=hash">#wdpress</a></p>&mdash; WEB+DB PRESS編集部 (@wdpress) <a href=https://twitter.com/wdpress/status/658580867850223616>2015, 10月 26</a></blockquote>
@@ -140,14 +145,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

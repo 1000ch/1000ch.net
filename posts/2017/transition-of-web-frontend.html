@@ -65,10 +65,15 @@ Shogo Sensuiさん(@1000ch)がシェアした投稿 - 2017 2月 15 9:28午後 PS
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.02.21</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=webフロントエンドの変遷とこれから-at-デブサミ2017>Webフロントエンドの変遷とこれから at デブサミ2017</h1>
 <p><a href=http://event.shoeisha.jp/devsumi/20170216/>Developer Summit 2017</a> にて <a href=http://event.shoeisha.jp/devsumi/20170216/session/1270/>Web フロントエンドの変遷とこれから</a> というタイトルで講演した。</p>
 <h2 id=前後半のスライド>前後半のスライド</h2>
@@ -131,14 +136,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

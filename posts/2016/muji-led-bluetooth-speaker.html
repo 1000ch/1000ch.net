@@ -58,10 +58,15 @@ LED電球の寿命は一般的に約10年（40000時間）と言われている�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.07.31</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=無印良品のペンダントライトとled電球型bluetoothスピーカー>無印良品のペンダントライトとLED電球型Bluetoothスピーカー</h1>
 <p>以前から<a href="https://www.amazon.co.jp/dp/B00XKFB7ZE/?tag=1000ch-22">SONYのLED電球スピーカー</a>が気になっていたが、無印良品に赴いたところ同等の商品が偶然あったので、衝動的に購入してしまった。<a href=http://www.muji.net/store/cmdty/detail/4549337144415>ペンダントライト本体が9000円</a>、<a href=http://www.muji.net/store/cmdty/detail/4549337258051>LED電球型Bluetoothスピーカーが9800円</a>と、照明より高い。個人的に無印良品が好きなので今回はセットで購入したが、型（口金E26）さえ合えば違うものでも使える。はず。</p>
 <blockquote class=instagram-media data-instgrm-captioned data-instgrm-version=7 style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px rgba(0,0,0,.5),0 1px 10px rgba(0,0,0,.15);margin:1px;max-width:658px;padding:0;width:99.375%;width:-webkit-calc(100% - 2px);width:calc(100% - 2px)"><div style=padding:8px> <div style="background:#f8f8f8;line-height:0;margin-top:40px;padding:50% 0;text-align:center;width:100%"> <div style="background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC);display:block;height:44px;margin:0 auto -44px;position:relative;top:-22px;width:44px"></div></div> <p style="margin:8px 0 0;padding:0 4px"> <a href=https://www.instagram.com/p/BIhDZaVDUBR/ style=color:#000;font-family:Arial,sans-serif;font-size:14px;font-style:normal;font-weight:400;line-height:17px;text-decoration:none;word-wrap:break-word target=_blank>無印良品のペンダントライトとLED電球型Bluetoothスピーカー</a></p> <p style="color:#c9c8cd;font-family:Arial,sans-serif;font-size:14px;line-height:17px;margin-bottom:0;margin-top:8px;overflow:hidden;padding:8px 0 7px;text-align:center;text-overflow:ellipsis;white-space:nowrap">Shogo Sensuiさん(@1000ch)が投稿した写真 - <time style=font-family:Arial,sans-serif;font-size:14px;line-height:17px datetime=2016-07-31T06:52:01+00:00>2016 7月 30 11:52午後 PDT</time></p></div></blockquote>
@@ -106,14 +111,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

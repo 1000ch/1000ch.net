@@ -69,10 +69,15 @@ Accept: image/webp, image/png, image/jpeg, image/gif, image/svg+xml, image/bitma
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2015.05.22</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=翻訳introduction-to-webp>【翻訳】Introduction to WebP</h1>
 <p><strong>※この記事はMediumに投稿した<a href=http://bit.ly/introduction-to-webp>Introduction to WebP</a>の日本語訳です。</strong></p>
 <p><a href=http://bit.ly/we-should-optimize-images>以前述べたように</a>、画像はWebにおけるネットワーク帯域の約60%~70%を占めています。これは、画像がWebパフォーマンスにおいて最も重要な因子の1つであることを意味します。そんな画像の中でも、WebPは他のフォーマットに比べて幾つかの点において優っています。</p>
@@ -171,14 +176,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

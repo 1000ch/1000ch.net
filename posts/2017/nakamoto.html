@@ -60,10 +60,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.12.12</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=味噌卵麺の豆腐変更-at-中本渋谷店>味噌卵麺の豆腐変更 at 中本渋谷店</h1>
 <p><a href=https://adventar.org/calendars/2135>蒙古タンメン中本 Advent Calendar 2017</a> 12日目の記事です。</p>
 <p>ちなみに去年も <a href=https://adventar.org/calendars/1344>蒙古タンメン中本 2016 Advent Calendar 2016</a> に参加して<a href=/posts/2016/nakamoto.html>味噌卵麺について書いた</a>。今年も味噌卵麺ですが、最近ハマっている豆腐変更オプションについて。</p>
@@ -113,14 +118,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

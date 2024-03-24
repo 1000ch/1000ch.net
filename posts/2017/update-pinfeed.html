@@ -58,10 +58,15 @@ Swift のメジャーアップデート対応はそれなりに辛くて、毎�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.05.05</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=pinfeedを色々手直しした>PinFeedを色々手直しした</h1>
 <p>PinFeed は趣味で作っている Pinboard の iOS クライアントで、自分がフォローしているユーザーのブックマークにフォーカスしているのが特徴（<a href=http://d.hatena.ne.jp/naoya/20111111/1320965898>HBFav に強くインスパイアされている</a>、というかそのまま）。<a href=/posts/2016/pinfeed-for-pinboard.html>リリース自体はかれこれ1年以上前</a>だが、こつこつメンテナンスを続けていて、Swift のメジャーアップデートなどにも追従している。</p>
 <p><img src=/img/posts/2017/update-pinfeed/timeline.png style=width:50%><img src=/img/posts/2017/update-pinfeed/setting.png style=width:50%></p>
@@ -111,14 +116,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

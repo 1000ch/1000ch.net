@@ -59,10 +59,15 @@ Apple Payでできること Apple Watch Series 2 は FeliCa を通した Apple P
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.12.09</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=apple-watchでapple-payを便利に使っている話>Apple WatchでApple Payを便利に使っている話</h1>
 <p>昔から腕時計を付けないタイプだが、人様の Pebble を見てからスマートウォッチに興味を持ちはじめ、その Pebble の新しいバージョンである <a href=https://www.kickstarter.com/projects/597507018/pebble-2-time-2-and-core-an-entirely-new-3g-ultra>Pebble 2 および上位モデルの Time 2 のプロジェクト</a>が、今年5月に Kickstarter で発表された。</p>
 <p>Time 2 の Pledge を $179 で募集していたので衝動的に back して楽しみにしていた所で、今年の9月に Apple Watch Series 2 が発表される。</p>
@@ -146,14 +151,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

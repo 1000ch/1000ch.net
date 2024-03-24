@@ -58,10 +58,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.10.10</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=devfest-tokyo-2016でweb-componentsの話をした>DevFest Tokyo 2016でWeb Componentsの話をした</h1>
 <p>10月9日に開催された <a href=http://gdg-tokyo.connpass.com/event/38927/>DevFest Tokyo 2016</a> に出演しました。</p>
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>先程の Web セッションのスライドです！ / "Web Components 2016 & Polymer v2" <a href=https://t.co/hPlKgYINdP>https://t.co/hPlKgYINdP</a> <a href="https://twitter.com/hashtag/devfest16?src=hash">#devfest16</a></p>&mdash; 1000ch (@1000ch) <a href=https://twitter.com/1000ch/status/785015190576173056>2016年10月9日</a></blockquote>
@@ -127,14 +132,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

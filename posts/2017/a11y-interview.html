@@ -60,10 +60,15 @@ FRESH! や AbemaTV のような動画サービスが配信するのは映像と�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.05.13</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=アクセシビリティへの取り組みについてのインタビュー>アクセシビリティへの取り組みについてのインタビュー</h1>
 <p>インタビュー記事が公開された。</p>
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>「アメブロ」や映像配信プラットフォーム「FRESH!」でアクセシビリティに取り組む技術者たちに話を聞きました。<br>『「アクセシビリティに取り組むことが価値あるサービスづくりにつながる」サイバーエージェント技術者たちの取り組み』<a href=https://t.co/gZC4IqQSs0>https://t.co/gZC4IqQSs0</a></p>&mdash; サイバーエージェント　広報＆IR担当 (@CyberAgent_PR) <a href=https://twitter.com/CyberAgent_PR/status/862869891530936320>2017年5月12日</a></blockquote>
@@ -111,14 +116,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

@@ -56,10 +56,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2018.08.25</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=bonfire-frontend-vol2-に出演しました>Bonfire Frontend vol2 に出演しました</h1>
 <p>2018年8月23日に開催された <a href=https://yj-meetup.connpass.com/event/97695/>Bonfire Frontend #2</a> に出演して、「PWA 対応戦略と現実解」というタイトルで PWA についてお話しました。</p>
 <iframe loading=lazy class=dropshadow src="https://docs.google.com/presentation/d/e/2PACX-1vTJKE7pbxy7limVmICK8UF7lH1FVwN1wUiq-eSeKUh1NwigvjUltmH1yLQEl-xeUJQ6HhS1B0KBXahX/embed?start=false&loop=false&delayms=3000" allowfullscreen></iframe>
@@ -104,14 +109,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

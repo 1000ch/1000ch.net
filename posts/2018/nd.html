@@ -61,10 +61,15 @@ nvm の PATH を変更する方式は、なかなか痒い部分があるのと�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2018.10.16</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=go-で-nodejs-のバージョンマネージャを自作した>Go で Node.js のバージョンマネージャを自作した</h1>
 <p><a href=https://github.com/1000ch/nd>1000ch/nd</a> という Node.js のバージョンマネージャを Go で書いた。車輪の再発明もいいところで、特に今使っているバージョンマネージャから切り替えるメリットは今の所ない。ただの作業ログです、悪しからず。</p>
 <h2 id=それっぽいモチベーション>それっぽいモチベーション</h2>
@@ -177,14 +182,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

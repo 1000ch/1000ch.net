@@ -56,10 +56,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2016.09.04</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=soft-skillsソフトウェア開発者の人生マニュアル>SOFT SKILLS　ソフトウェア開発者の人生マニュアル</h1>
 <p>ソフトウェア開発者のキャリアマネジメントについて書かれた啓発本。原著は<a href="https://www.amazon.co.jp/dp/1617292397/?tag=1000ch-22">Soft Skills: The Software Developer&rsquo;s Life Manual</a>で、今年の6月に発売された和訳版にあたる。</p>
 <p><affiliate-link src=https://images-fe.ssl-images-amazon.com/images/I/51xVQQcUloL.jpg href=https://www.amazon.co.jp/dp/B01GDS0994/ tag=1000ch-22 title="SOFT SKILLS　ソフトウェア開発者の人生マニュアル">
@@ -105,14 +110,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

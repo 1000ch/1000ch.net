@@ -56,10 +56,15 @@
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2023.09.21</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=フロントエンドの開発生産性online-conferenceに出演した>フロントエンドの開発生産性〜Online Conference〜に出演した</h1>
 <p>Findy さんに声をかけていただき、2023 年 9 月 21 日に開催された、<a href=https://findy.connpass.com/event/294482/>フロントエンドの開発生産性〜Online Conference〜</a>というイベントに出演した。</p>
 <p>半年前にも、同じく Findy さん主催の <a href=/posts/2023/frontend-performance-fastly-mercari.html>2023年のフロントエンド高速化手法~Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線というイベントにも出演させていただいた</a>が、今回は「開発生産性と組織」という難しいテーマで話すことになった。</p>
@@ -104,14 +109,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

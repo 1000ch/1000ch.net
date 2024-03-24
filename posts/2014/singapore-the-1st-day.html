@@ -58,10 +58,15 @@ JSConf.AsiaとCSSConf.Asiaの立て付けについての詳しいところはよ
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2014.11.18</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=シンガポール遠征初日>シンガポール遠征初日</h1>
 <p>掲題の件、2014/11/19に行われる<a href=http://2014.cssconf.asia/>CSSConf.Asia 2014</a>、および2014/11/20 ~ 2014/11/21に行われる<a href=http://2014.jsconf.asia/>JSConf.Asia 2014</a>に参加のために、シンガポールに来ている。</p>
 <p>暑い。雨季ということも相まって、蒸し暑さ抜群だ。</p>
@@ -149,14 +154,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

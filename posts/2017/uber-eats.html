@@ -62,10 +62,15 @@ UberEATS未体験の人は 招待コード eats-uber1000ch を使うと1500円�
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.02.02</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=ubereatsを使ってみたらとても良かった>UberEATSを使ってみたらとても良かった</h1>
 <p>昨日、タイムラインで噂の UberEATS を使ってみた。注文したのは<a href=https://tabelog.com/tokyo/A1303/A130301/13174303/>渋谷ガパオ食堂</a>のガパオライスで、とても美味しかったことに加えて、UberEATS 体験が思いの外良かった。</p>
 <blockquote class=instagram-media data-instgrm-captioned data-instgrm-version=7 style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px rgba(0,0,0,.5),0 1px 10px rgba(0,0,0,.15);margin:1px;max-width:658px;padding:0;width:99.375%;width:-webkit-calc(100% - 2px);width:calc(100% - 2px)"><div style=padding:8px> <div style="background:#f8f8f8;line-height:0;margin-top:40px;padding:50% 0;text-align:center;width:100%"> <div style="background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC);display:block;height:44px;margin:0 auto -44px;position:relative;top:-22px;width:44px"></div></div> <p style="margin:8px 0 0;padding:0 4px"> <a href=https://www.instagram.com/p/BP-DCblDI2l/ style=color:#000;font-family:Arial,sans-serif;font-size:14px;font-style:normal;font-weight:400;line-height:17px;text-decoration:none;word-wrap:break-word target=_blank>#UberEATS で渋谷ガパオ食堂のガパオライスを注文してみた。店も豊富だし、注文も簡単、支払いもシームレスで良かった。思ったより便利なので早く普及して欲しい🚗 新規の人は招待コード「 eats-uber1000ch 」を使うと1500円分無料で注文できます😋</a></p> <p style="color:#c9c8cd;font-family:Arial,sans-serif;font-size:14px;line-height:17px;margin-bottom:0;margin-top:8px;overflow:hidden;padding:8px 0 7px;text-align:center;text-overflow:ellipsis;white-space:nowrap">Shogo Sensuiさん(@1000ch)が投稿した写真 - <time style=font-family:Arial,sans-serif;font-size:14px;line-height:17px datetime=2017-02-01T12:46:37+00:00>2017 2月 1 4:46午前 PST</time></p></div></blockquote>
@@ -122,14 +127,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 

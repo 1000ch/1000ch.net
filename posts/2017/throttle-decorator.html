@@ -58,10 +58,15 @@ import throttle from 'throttle-decorator'; class Foo extends React.Component { @
 </nav>
 </header>
 <main class=Main>
+<div class=PostHeader>
 <span class="Label Label--gray pull-left">2017.07.15</span>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
+<label>
+<input type=checkbox switch id=dark-mode> ダークモード
+</label>
+</div>
 <h1 id=クラス関数をthrottleするデコレータ>クラス関数をthrottleするデコレータ</h1>
 <p>掲題の通り、throttle してくれる <a href=https://github.com/1000ch/throttle-decorator>1000ch/throttle-decorator</a> というモジュールを作った。ES Decorator については<a href=http://qiita.com/mizchi/items/6bdf9d100f564a5c5b08>全力で ES Decorator使ってみた</a>が参考になると思う。標準化されるか問題は一旦さておいて。</p>
 <h2 id=インストールと使い方>インストールと使い方</h2>
@@ -136,14 +141,24 @@ import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
 
-const input = document.querySelector('#auto-phrase');
-input.checked = localStorage.getItem('auto-phrase');
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
 
-input.addEventListener('change', event => {
+autoPhrase.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
     localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
   }
 });
 
