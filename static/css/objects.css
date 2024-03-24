@@ -8,9 +8,9 @@
   border-radius: 0.25em;
   font-size: 12px;
   vertical-align: text-bottom;
-}
 
-.Label--gray {
-  background: var(--light-bgcolor-backdrop);
-  color: var(--light-color);
+  &.Label--gray {
+    background: var(--light-bgcolor-backdrop);
+    color: var(--light-color);
+  }
 }
