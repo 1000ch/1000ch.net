@@ -10,7 +10,7 @@
   vertical-align: text-bottom;
 
   &.Label--gray {
-    background: var(--light-bgcolor-backdrop);
-    color: var(--light-color);
+    background: var(--bgcolor-backdrop);
+    color: var(--color);
   }
 }
