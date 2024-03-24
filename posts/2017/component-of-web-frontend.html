@@ -67,6 +67,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.02.26</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webフロントエンドにおけるコンポーネント化のアプローチ>Webフロントエンドにおけるコンポーネント化のアプローチ</h1>
 <p>株式会社サイバーエージェント、日本経済新聞社、ヤフー株式会社の三社共催の Web フロントエンドの技術カンファレンス <a href=https://inside-frontend.connpass.com/event/47920/>Inside Frontend</a> が 2017/2/25 に開催され、スピーカー兼スタッフで参加してきた。</p>
 <h2 id=発表資料と雑感>発表資料と雑感</h2>
@@ -139,6 +142,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

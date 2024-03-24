@@ -60,6 +60,9 @@ const assert = require('assert'); const markdownHeadings = require('markdown-hea
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.06.05</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=markdownの見出しを抽出するツールを作った>Markdownの見出しを抽出するツールを作った</h1>
 <p>Markdown の見出しだけを抽出したい欲求が高まり <a href=https://github.com/1000ch/markdown-headings><code>1000ch/markdown-headings</code></a> というツールを作った。単純な文法なので正規表現だけでも充分抜いてこれるが、今回は <a href=https://markdown-it/markdown-it><code>markdown-it/markdown-it</code></a> の AST を使うことにした。</p>
 <h2 id=コマンドラインで使う>コマンドラインで使う</h2>
@@ -125,6 +128,17 @@ const assert = require('assert'); const markdownHeadings = require('markdown-hea
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

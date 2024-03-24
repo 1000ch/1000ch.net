@@ -66,6 +66,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.07.22</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=ランニング環境の最適化>ランニング環境の最適化</h1>
 <p>Q2 の目標で掲げている通り、健康を目的にランニングを定期的にしている。そのランニング環境を最適化してきたので、現状を記録しておく。</p>
 <h2 id=ランニング時の装備>ランニング時の装備</h2>
@@ -135,6 +138,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

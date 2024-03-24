@@ -61,6 +61,9 @@ $ brew install pkg-config go mercurial oniguruma python3 僕の場合Pythonはpy
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.12.12</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=sublime-textの後継を目指すオープンソースのテキストエディタlime-textを使った感想>Sublime Textの後継を目指すオープンソースのテキストエディタLime Textを使った感想</h1>
 <blockquote class=twitter-tweet lang=ja><p>Lime Textのビルドをしてみた <a href=http://t.co/aKbm2dzOAM>http://t.co/aKbm2dzOAM</a> <a href=http://t.co/6U8Q253gkx>pic.twitter.com/6U8Q253gkx</a></p>&mdash; 1000ch (@1000ch) <a href=https://twitter.com/1000ch/status/543280276399337473>2014, 12月 12</a></blockquote>
 <p><a href=http://limetext.org/>Lime Text</a>はSublime Textの後継を目指したオープンソースのテキストエディタ。Goで書かれており、インターフェースはSublime Textとよく似ている。</p>
@@ -148,6 +151,17 @@ $ go run main.go
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

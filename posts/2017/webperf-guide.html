@@ -60,6 +60,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.11.18</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=超速-webページ速度改善ガイドの出版に寄せて>超速! Webページ速度改善ガイドの出版に寄せて</h1>
 <p>事前に各所で告知していた通り、この度 <strong><a href="https://www.amazon.co.jp/dp/477419400X/?tag=1000ch-22">超速! Webページ速度改善ガイド ── 使いやすさは「速さ」から始まる</a></strong> という共著の書籍が、技術評論社より出版されます。名前の通り Web サイトを高速化する知識を得るための本です。</p>
 <p><img src=/img/posts/2017/webperf-guide/cover.png alt="超速! Webページ速度改善ガイドの表紙"></p>
@@ -137,6 +140,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

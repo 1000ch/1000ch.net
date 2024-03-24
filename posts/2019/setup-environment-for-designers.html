@@ -63,6 +63,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2019.01.31</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=デザイナーさん向け開発環境セットアップガイド>デザイナーさん向け開発環境セットアップガイド</h1>
 <p>社内のデザイナーさん向けに書いた資料があったが、読み返していたら特に社内専用という内容でもなかったので、社外向けに公開してみる。やや opinionated な部分があるのはご了承ください。</p>
 <h2 id=1-macos-のアプリ>1. macOS のアプリ</h2>
@@ -168,6 +171,17 @@ npm -v
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

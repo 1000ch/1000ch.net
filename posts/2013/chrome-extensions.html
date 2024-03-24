@@ -57,6 +57,9 @@ CookieManager 業務中にクッキーを消す場面が何回かあって。こ
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.06.10</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=chromeのextensionをウェブストアで公開した>ChromeのExtensionをウェブストアで公開した</h1>
 <p><a href=/posts/2013/history-clear-chrome-extension.html>以前一度作った</a>けど、新しく欲しい機能が出来たのでまた作った。ついでにChrome ウェブストアで公開した。</p>
 <h2 id=oneclickclearhttpschromegooglecomwebstoredetailoneclickclearohhopklkkjljpjhenigiablpgooanpjb><a href=https://chrome.google.com/webstore/detail/oneclickclear/ohhopklkkjljpjhenigiablpgooanpjb>OneClickClear</a></h2>
@@ -101,6 +104,17 @@ CookieManager 業務中にクッキーを消す場面が何回かあって。こ
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

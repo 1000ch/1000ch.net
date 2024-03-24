@@ -59,6 +59,9 @@ Shadow DOM と Custom Elements は API のデザイン変更のステップと�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.07.30</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=rip-web-components-v0>R.I.P. Web Components v0</h1>
 <p>blink から Web Components v0 を deprecate and remove する intent が作成された。</p>
 <blockquote>
@@ -139,6 +142,17 @@ Shadow DOM と Custom Elements は API のデザイン変更のステップと�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

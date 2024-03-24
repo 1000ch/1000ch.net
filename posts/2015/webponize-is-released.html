@@ -61,6 +61,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.04.29</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webponizeをリリースした>WebPonizeをリリースした</h1>
 <p>WebPonizeは<a href=/posts/2015/webponize.html>前に触れた</a>通り、JPEGやPNGをWebPに変換するMacのアプリケーション。App Storeに登録するために色々と試行錯誤していたんだけど、アプリの目的と反する可能性が出てきたので断念し、ダウンロード形式を取ることにした話。</p>
 <h2 id=アプリに掛かる制限が色々と厳しい>アプリに掛かる制限が色々と厳しい</h2>
@@ -130,6 +133,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

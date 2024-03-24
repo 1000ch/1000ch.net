@@ -64,6 +64,9 @@ loggerがeventを拾って出力するようになる stderr/stdout、もしく�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.03.07</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=grunt-ver05に向けてのロードマップ>Grunt ver0.5に向けてのロードマップ</h1>
 <p>先日Grunt0.4がstableになったが、早速<a href=https://github.com/gruntjs/grunt/wiki/Roadmap>0.5に向けてのロードマップ</a>が発表されている。ロードマップもちょくちょく変わるとは思うけど、軽めになぞってみる。</p>
 <h2 id=タスクは全てイベントとして実行されるようになる>タスクは全てイベントとして実行される（ようになる）</h2>
@@ -123,6 +126,17 @@ loggerがeventを拾って出力するようになる stderr/stdout、もしく�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

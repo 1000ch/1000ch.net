@@ -60,6 +60,9 @@ function fn(arg1 = 0, arg2 = 1) { console.">
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.12.27</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=es6のシンタックスを予習復習2-default-parameters-rest-parameters-array-spread-destructuring>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~</h1>
 <p><a href=/posts/2013/es6-features-1.html>先日の記事</a>で、</p>
 <blockquote>
@@ -190,6 +193,17 @@ function fn(arg1 = 0, arg2 = 1) { console.">
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

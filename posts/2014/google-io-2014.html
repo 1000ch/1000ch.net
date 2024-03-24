@@ -57,6 +57,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.06.27</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=google-io-2014httpswwwgooglecomeventsio><a href=https://www.google.com/events/io>Google I/O 2014</a></h1>
 <p>サンフランシスコに来ています。</p>
 <p><img src=/img/posts/2014/google-io-2014/google-io.jpg alt></p>
@@ -160,6 +163,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -61,6 +61,9 @@ App Storeに出す手順が難しい こちらも現在進行中で辛い問題�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.03.11</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webponize>WebPonize</h1>
 <p>最近はSwiftを書いている。</p>
 <p>作っているのはMacアプリでWebPonizeというもの。名前で察しの人もいるかもしれないが、PNGとかJPEGといったフォーマットの画像をアプリにドラッグアンドドロップしてWebPに変換する、というシンプルなアプリ。Swiftの練習できればiOSでも良かったんだけど、こんなのあったら便利だなという妄想をしているとどうしてもディベロッパー向けのツールになる。</p>
@@ -111,6 +114,17 @@ App Storeに出す手順が難しい こちらも現在進行中で辛い問題�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

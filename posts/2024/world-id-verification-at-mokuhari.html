@@ -59,6 +59,9 @@ WLD というデジタル通貨の話もあるが、人間性の証明を掲げ�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2024.03.11</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=工作室もくもくはりねずみで-world-id-の虹彩認証をした>工作室もくもくはりねずみで World ID の虹彩認証をした</h1>
 <p><a href=https://ja-jp.worldcoin.org/>WorldCoin</a> という <a href=https://ja.wikipedia.org/wiki/%E3%82%B5%E3%83%A0%E3%83%BB%E3%82%A2%E3%83%AB%E3%83%88%E3%83%9E%E3%83%B3>OpenAI ファウンダーのサム・アルトマン</a>が率いるデジタル通貨がある。そのコンセプトの詳細については <a href=https://whitepaper.worldcoin.org/>WorldCoin のホワイトペーパー</a>を読むことをおすすめするが、WorldCoin は World ID というデジタルアイデンティティと、<a href=https://ja-jp.worldcoin.org/worldcoin-token>WLD</a> という通貨によって構成される。そのデジタルアイデンティティの核となるのは人間性の証明であり、人間ひとりひとりが持つ一意な虹彩によって World ID は認証される。発展的には、このデジタルアイデンティティ持つ人間性の証明が、今後 AI などのコンピュータと区別する重要な存在になっていく、という話だ。</p>
 <p><a href=https://ja-jp.worldcoin.org/world-app>World App</a> をダウンロードし、アカウントを認証することで配布される $WLD トークンを受け取れるようになる。アカウントの認証には、Orb というデバイスで虹彩を認証する必要がある。</p>
@@ -103,6 +106,17 @@ WLD というデジタル通貨の話もあるが、人間性の証明を掲げ�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

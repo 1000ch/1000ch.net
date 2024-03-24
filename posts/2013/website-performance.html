@@ -65,6 +65,9 @@ Just set up http://t.co/1phATVNerY (by @soulislove) locally on my windows machin
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.06.16</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webサイトのパフォーマンスを調べる>Webサイトのパフォーマンスを調べる</h1>
 <p>一口にWebサイトのパフォーマンスと言っても色々あって、</p>
 <ul>
@@ -142,6 +145,17 @@ $ ./sitespeed.io -u https://1000ch.net
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -57,6 +57,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.03.28</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=pinfeed-for-pinboard>PinFeed for Pinboard</h1>
 <p>趣味で作っていたiOSアプリが完成したので、<a href=https://itunes.apple.com/app/id1090705533>AppStoreで公開した</a>。PinFeedという名前でお察しの通り、Pinboardのラッパーアプリ。巷のPinboardアプリだと<a href=http://pinnerapp.net/>Pinner</a>あたりがデファクトかもしれないけど、使い心地にそこまで満足してなかったのと、<a href=/posts/2015/webponize-is-released.html>Macアプリを作った延長</a>でSwiftの勉強をまたやろうということで作った。</p>
 <p>最新のリリースバージョンはv1.0.1だが、初回申請時は思っていたより面倒くさいこと続きだった。特にキャプチャを画面サイズ毎に用意しなくてはならず、シミュレータを切り替えてはキャプチャをとって、Sketchでサイズを調整を繰り返した。もうやりたくない。けど、UI変えたらやらなきゃいけない。</p>
@@ -99,6 +102,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

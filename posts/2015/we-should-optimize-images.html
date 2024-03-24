@@ -67,6 +67,9 @@ Steve SoudersはHigh Performance Web Siteで、次のように述べています
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.05.25</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=翻訳we-should-optimize-images>【翻訳】We should optimize images</h1>
 <p><strong>※この記事はMediumに投稿した<a href=http://bit.ly/we-should-optimize-images>We should optimize images</a>の日本語訳です。</strong></p>
 <p><a href=http://www.stevesouders.com/>Steve Souders</a>は<a href=http://stevesouders.com/hpws/>High Performance Web Site</a>で、次のように述べています。</p>
@@ -166,6 +169,17 @@ $ npm install —-save-dev gulp-image
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

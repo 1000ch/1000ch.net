@@ -58,6 +58,9 @@ TechFeed では2021年9月にもトライアル企画にお呼ばれしていて
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2022.06.03</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=techfeed-conference-2022-で-web-標準技術の相互運用性について話した>TechFeed Conference 2022 で Web 標準技術の相互運用性について話した</h1>
 <p>掲題の通り、2022年5月14日に開催された <a href=https://techfeed.io/events/techfeed-conference-2022>TechFeed Conference 2022</a> で Web Standards Interop 2022 というタイトルで Web 標準技術の相互運用性について発表した。<a href=https://speakerdeck.com/1000ch/web-standards-interop-2022>セッション資料</a>とセッション動画があるのと、今回はありがたいことに<a href=https://techfeed.io/entries/6298e525ed640020f3f19a58>記事として書き起こし</a>ていただいた。</p>
 <iframe loading=lazy src="https://docs.google.com/presentation/d/e/2PACX-1vR3l-Aevly6pSAy24yJ_AqPv4bWGzUHohhCGyENvF4QqBXRt1TZ7jp-9bejwRBbp02yxjDBO0EKDlSC/embed?start=false&loop=false&delayms=3000" allowfullscreen></iframe>
@@ -103,6 +106,17 @@ TechFeed では2021年9月にもトライアル企画にお呼ばれしていて
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

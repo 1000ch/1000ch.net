@@ -58,6 +58,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.05.04</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=日立ドラム式洗濯乾燥機-bd-nv110bl>日立ドラム式洗濯乾燥機 BD-NV110BL</h1>
 <p><a href=/posts/2015/panasonic-petit-drum.html>Panasonic のプチドラムを買ってパンツが吹っ飛んでから早三年</a>、ドラム式洗濯機を新調した。</p>
 <p>もともとは、手入れはしていたものの3年も使っていると見えていない部分の汚れが気になりはじめて、まるごと洗ってもらおうと、業者を<a href=https://curama.jp/>くらしのマーケット</a>で探していた。しかし、ドラム式洗濯乾燥機の清掃に対応している業者がかなり少ないのと、対応していても料金が 40,000 円 ~ 50,000 円とかなり高額である。更に、<a href=https://twitter.com/oinume/status/992017242391891968>分解掃除してもらった後に壊れてしまった</a>話も聞いていたので、いっそ買い替えてしまおうと思い立った。</p>
@@ -123,6 +126,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

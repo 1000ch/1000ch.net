@@ -58,6 +58,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2019.05.08</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=エンジニア-hub-にてインタビューして頂きました>エンジニア Hub にてインタビューして頂きました</h1>
 <p>エンジニア Hub キャリアの連載企画でインタビューして頂き、自分の Web パフォーマンスに関する取り組みや OSS 活動へのモチベーションについてなど、普段はあまり話さないようなことを話した。</p>
 <blockquote class=twitter-tweet><p lang=ja dir=ltr>インタビューされてました。No ろくろ / "grdの作者が考える、いまフロントエンドエンジニアに求められる「速度という機能」 - エンジニアHub｜若手Webエンジニアのキャリアを考える！" <a href=https://t.co/HcfX9k0bMQ>https://t.co/HcfX9k0bMQ</a></p>&mdash; Shogo SENSUI (@1000ch) <a href="https://twitter.com/1000ch/status/1125953195170074624?ref_src=twsrc%5Etfw">May 8, 2019</a></blockquote>
@@ -101,6 +104,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

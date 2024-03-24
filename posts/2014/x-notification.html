@@ -64,6 +64,9 @@ Re-designed x-notification landing page with Polymer including Paper Elements. h
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.07.15</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=ブラウザのnotification-apiをweb-components化した>ブラウザのNotification APIをWeb Components化した</h1>
 <p>巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。
 XMLHttpRequest部分を抽象化している<a href=https://github.com/Polymer/core-ajax><code>core-ajax</code></a>とか、<a href=https://github.com/Polymer/core-localstorage><code>core-localstorage</code></a>とか。
@@ -147,6 +150,17 @@ HTMLImportやら<code>Document#registerElement()</code>やら、Web Components�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

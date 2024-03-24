@@ -62,6 +62,9 @@ ANAインターコンチネンタル石垣リゾート 今回の旅行でお世�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.11.17</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=沖縄旅行1日目>沖縄旅行1日目</h1>
 <p>前日入りの甲斐あって6:30起床で済んだので、7:00集合を物ともしなかった。</p>
 <p><img src=/img/posts/2016/okinawa-1st-day/haneda.jpg alt=羽田空港で集合></p>
@@ -121,6 +124,17 @@ ANAインターコンチネンタル石垣リゾート 今回の旅行でお世�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

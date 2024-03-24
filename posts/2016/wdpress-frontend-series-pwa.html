@@ -60,6 +60,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.02.10</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webdb-press-vol91-webフロントエンド最前線progressive-web-apps---安全高速オフライン対応した次世代webアプリケーション>WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」</h1>
 <p>「Webフロントエンド最前線」という連載を担当させてもらっている<a href=http://gihyo.jp/magazine/wdpress/archive/2016/vol91>WEB+DB PRESS Vol.91</a>が2月24日に発売されます！連載最終回は、<a href=http://googledevjp.blogspot.jp/2016/01/chrome-dev-summit-2015.html>Chrome Dev Summit 2015でも取り上げられ</a>話題になったProgressive Web Appsについて。</p>
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>さて、<a href=https://twitter.com/ahomu>@ahomu</a>さんと<a href=https://twitter.com/1000ch>@1000ch</a>さんによる「Webフロントエンド最前線」は今回で最終回。プッシュ通知をはじめとするネイティブアプリのような体験を備えた「Progressive Web Apps」を作るためのさまざまな技術についてまとめていただきました！ <a href="https://twitter.com/hashtag/wdpress?src=hash">#wdpress</a></p>&mdash; WEB+DB PRESS編集部 (@wdpress) <a href=https://twitter.com/wdpress/status/702335075518558208>2016年2月24日</a></blockquote>
@@ -110,6 +113,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

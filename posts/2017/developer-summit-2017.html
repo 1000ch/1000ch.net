@@ -60,6 +60,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.01.05</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=developer-summit-2017-に出演します>Developer Summit 2017 に出演します</h1>
 <p>デブサミこと <a href=http://event.shoeisha.jp/devsumi/20170216/>Developer Summit 2017</a> に出演します。<a href=https://www.google.co.jp/maps/place/%E7%9B%AE%E9%BB%92%E9%9B%85%E5%8F%99%E5%9C%92/>目黒雅叙園</a>にて2月の16日・17日の2日間開催されますが、初日の Web セッションを<a href=https://twitter.com/ahomu>鳥の人</a>と担当します。</p>
 <blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>出演します w/ <a href=https://twitter.com/ahomu>@ahomu</a> 初日の E 会場 の 10:00~10:45 です 🙏 / "【16-E-1】 Web フロントエンドの変遷とこれから（仮） | Developers Summit 2017" <a href=https://t.co/28ju9FImos>https://t.co/28ju9FImos</a></p>&mdash; 煎茶🍵 (@1000ch) <a href=https://twitter.com/1000ch/status/816869421771694080>2017年1月5日</a></blockquote>
@@ -109,6 +112,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

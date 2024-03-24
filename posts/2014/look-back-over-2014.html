@@ -67,6 +67,9 @@ http://t.co/ZmBVO31saP 2014でプレゼンしました。無事終わってよ�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.12.16</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=2014年の振り返りと人気記事まとめ>2014年の振り返りと人気記事まとめ</h1>
 <p>もう何回かポストしそうな気もするけど、師走ということで振り返る時間があるうちに振り返る。</p>
 <h2 id=社内で活動してきたこと>社内で活動してきたこと</h2>
@@ -149,6 +152,17 @@ http://t.co/ZmBVO31saP 2014でプレゼンしました。無事終わってよ�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

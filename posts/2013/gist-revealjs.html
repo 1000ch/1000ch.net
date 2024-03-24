@@ -62,6 +62,9 @@ var fontDefinition = '@font-face {' + 'font-family: &#34;League Gothic&#34;;' + 
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.09.11</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=gist--revealjs--gistreveal>gist + Reveal.js = GistReveal</h1>
 <p>以前<a href=/posts/2013/gist-slide.html>Gistを簡易スライドにするGistSlideを作った</a>という記事を書いた。</p>
 <p><a href=https://github.com/hakimel/reveal.js>Reveal.js</a>で作られたスライドをたくさん見るようになってきた。gistにReveal.jsを適用出来ても便利なんじゃないかと思い、<a href=(https://github.com/1000ch/GistReveal)>ChromeのExtensionを作った</a>。</p>
@@ -126,6 +129,17 @@ CSSを常に適用させていると当然レイアウトが壊れてしまう�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

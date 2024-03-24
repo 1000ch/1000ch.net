@@ -72,6 +72,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.06.15</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=html5オールスターズ勉強会>HTML5オールスターズ勉強会</h1>
 <p>2015年6月13日は<a href=http://www.htmlday.jp/>htmlday 2015</a>ということで、因んで開催された<a href=http://eventdots.jp/event/496476>HTML5オールスターズ勉強会</a>に登壇した。<a href=http://html5j.org/>html5j</a>主催・<a href=http://eventdots.jp/>dots.</a>さん協力の下、自分を含めて8つのセッションが行われた。</p>
 <h2 id=当日のスライド>当日のスライド</h2>
@@ -167,6 +170,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

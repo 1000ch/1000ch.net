@@ -58,6 +58,9 @@ Element.prototype.scrollIntoView() と ScrollBehavior 内部的に #bar へは d
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.06.11</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=react-routerのハッシュリンクとスムーススクロール>react-routerのハッシュリンクとスムーススクロール</h1>
 <p>React Router を使っているプロジェクトで、できれば「ハッシュリンクを踏んだ時に、対象位置までスクロールしたい」というのがあり、少し調べていた。そもそも React Router はハッシュリンクが正しく機能しないという不具合があったり、既に公開されているライブラリでは機能を満たせない、メンテナンスが不安、コードがアレ…等等、スクラッチで書くところから始まった。</p>
 <h2 id=react-router-hashlink>react-router-hashlink</h2>
@@ -128,6 +131,17 @@ Element.prototype.scrollIntoView() と ScrollBehavior 内部的に #bar へは d
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

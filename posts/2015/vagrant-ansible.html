@@ -63,6 +63,9 @@ Vagrant.configure(2) do |config| # vagrant box addで取得したboxの指定 co
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.01.10</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=vagrantでcentosの仮想環境を作ってansibleで遊ぶ>VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ</h1>
 <p>Vagrantは今更説明するまでもないけど、仮想環境の作成や起動・破棄を自動化したりするツール。VagrantはChefやAnsibleといったようなプロビジョニングツールとも連携可能なのでそれも少し。</p>
 <h2 id=vagrantで仮想環境を作る>Vagrantで仮想環境を作る</h2>
@@ -195,6 +198,17 @@ $ vagrant ssh
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

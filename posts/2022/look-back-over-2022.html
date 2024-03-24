@@ -64,6 +64,9 @@ VPoE @1000ch による「メルカリアプリのコードベースを置き換�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2022.12.26</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=2022-年の振り返り>2022 年の振り返り</h1>
 <p>すっかり文字を書く時間を取れていない。仕事でドキュメントを読み書きする時間はたくさんあるのだが、ブログを書くことからはすっかり遠ざかってしまっている。そのためのインプットとなる学業や読書の時間は取れておらず、かといって業務上で学びが無いわけでは決してなく、むしろたくさんのことを学習している感覚はある。つまるところ業務外かつ娯楽的に学ぶ領域に時間を使えていないので、時間の配分は見直す必要がある。</p>
 <ul>
@@ -131,6 +134,17 @@ VPoE @1000ch による「メルカリアプリのコードベースを置き換�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

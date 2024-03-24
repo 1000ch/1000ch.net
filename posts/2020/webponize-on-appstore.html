@@ -57,6 +57,9 @@ Web Authentication (Face ID, Touch ID) や http/3 など、色々と実装され
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2020.08.11</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webponize-を-app-store-で公開した>WebPonize を App Store で公開した</h1>
 <p>最近メンテナンスが止まっていた WebPonize だが、<a href=https://developer.apple.com/documentation/safari-release-notes/safari-14-beta-release-notes>Safari が WebP をサポートする</a>との発表がありメンテナンスを再開することにした。</p>
 <blockquote class=twitter-tweet><p lang=ja dir=ltr>Web Authentication (Face ID, Touch ID) や http/3 など、色々と実装されているけど WebP 対応が一番嬉しいかもしれない。うっかり OS 側も macOS 11 からサポートしたりするのかな / "Safari 14 Beta Release Notes | Apple Developer Documentation" <a href=https://t.co/JJNw4OIhhv>https://t.co/JJNw4OIhhv</a></p>&mdash; Shogo ( ˘ω˘) (@1000ch) <a href="https://twitter.com/1000ch/status/1275190209093660672?ref_src=twsrc%5Etfw">June 22, 2020</a></blockquote>
@@ -112,6 +115,17 @@ Web Authentication (Face ID, Touch ID) や http/3 など、色々と実装され
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -61,6 +61,9 @@ DispatchQueue.global().async { // グローバルキューで実行される Dis
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.10.22</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=swift-3における非同期処理>Swift 3における非同期処理</h1>
 <p>自作の <a href=https://itunes.apple.com/app/id1090705533>iOS クライアント</a>のコードを <a href=https://github.com/1000ch/PinFeed/commit/d3332b09f3613867502d851fd0d337284d1c2b16>Swift 3 に移行した</a>。その時に非同期処理について色々調べたのでメモ。</p>
 <h2 id=gcd-grand-central-dispatch>GCD (Grand Central Dispatch)</h2>
@@ -133,6 +136,17 @@ DispatchQueue.global().async { // グローバルキューで実行される Dis
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

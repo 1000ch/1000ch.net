@@ -59,6 +59,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2023.04.24</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=社内の有志で運用していた-qa-システムをオープンソース化した>社内の有志で運用していた QA システムをオープンソース化した</h1>
 <p>社員が一堂に会する全体定例や各種イベントで、相互的な理解を促すためのコミュニケーションツールとして Q&A システムを用いている。元はと言えば、この目的に即した出来物のシステムを使っていたが、社内で求める用途に合わず <a href=https://twitter.com/sinmetal>@sinmetal</a> さんがゼロから作ったことがきっかけで、途中からフロントエンド部分の改善を手伝っていた。</p>
 <p>すると想定以上に様々な場面で利用されるようになり、ツールへの依存が高まる一方で、維持管理をボランティアベースでやっていたため、中長期的に維持が難しくなることが懸念された。実際、当時 Vue.js/Nuxt v2 で実装されていたが長い間そのまま改善されず、Vue.js/Nuxt v3 がリリースされた後もしばらく放置されていた。</p>
@@ -103,6 +106,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

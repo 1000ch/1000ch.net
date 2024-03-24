@@ -68,6 +68,9 @@ Service WorkerのAPIと挙動 Service WorkerはWeb Workerなんかと同じよ�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.12.29</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=service-workerに関する仕様とか機能とか>Service Workerに関する仕様とか機能とか</h1>
 <p>今巷で流行りのService Workerについて調べ物してたので、まとめたメモ。</p>
 <h2 id=service-workerが解決してくれること>Service Workerが解決してくれること</h2>
@@ -269,6 +272,17 @@ Service WorkerのAPIと挙動 Service WorkerはWeb Workerなんかと同じよ�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

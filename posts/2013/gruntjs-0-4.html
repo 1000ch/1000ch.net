@@ -61,6 +61,9 @@ grunt@0.4でstylusのコンパイルを自動化してみよう stylusのファ�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.01.22</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=grunt-ver04に向けての環境の再構築>Grunt ver0.4に向けての環境の再構築</h1>
 <p><a href=/posts/2012/gruntjs-introduction.html>以前の記事</a>が説明足らずだったので補足記事。今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、0.4系と混在すると、うまく動かない。0.4系で整備していく方が今後のために良いと思うのでその説明。<strong>rcなので、あまり文句は言えない。</strong> ということだけあらかじめ断っておくとして。</p>
 <ul>
@@ -221,6 +224,17 @@ $ grunt watch
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

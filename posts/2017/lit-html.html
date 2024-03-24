@@ -60,6 +60,9 @@ import { html } from '.">
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.09.13</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=lit-html-を調べたメモと考えたこと>lit-html を調べたメモと考えたこと</h1>
 <p><a href=https://github.com/PolymerLabs/lit-html>PolymerLabs/lit-html</a> という Polymer チームによる実験的プロジェクトがある。JavaScript のテンプレートリテラルを通して、<code>&lt;template></code> 要素を使いつつテンプレートの機能を実現するライブラリで、API ドキュメントを見たのでそのメモ。</p>
 <h2 id=tagged-template-literals-のおさらい>Tagged template literals のおさらい</h2>
@@ -164,6 +167,17 @@ import { html } from '.">
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

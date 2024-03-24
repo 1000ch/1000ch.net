@@ -67,6 +67,9 @@ docomoからみおふぉんへの乗り換え 買い物とはちょっと違う�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.12.25</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=2015年に買って良かったもの>2015年に買って良かったもの</h1>
 <p>個別で記事を書いているものもあるが、改めて紹介。</p>
 <ul>
@@ -136,6 +139,17 @@ docomoからみおふぉんへの乗り換え 買い物とはちょっと違う�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

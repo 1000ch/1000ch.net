@@ -56,6 +56,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.06.21</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=重用しているmacのアプリ>重用しているMacのアプリ</h1>
 <p>実際にはもう少し色々なアプリをインストールしているが、多用しているものだけピックアップしたリスト（自分用）。</p>
 <h2 id=テキストエディタide>テキストエディタ（IDE）</h2>
@@ -133,6 +136,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

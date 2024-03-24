@@ -65,6 +65,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.10.08</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=技術書典5にサークル参加した>技術書典5にサークル参加した</h1>
 <p><a href=/posts/2018/techbookfest-vol4.html>技術書典4に参加した</a>時に触発されて、<a href=https://twitter.com/1000ch/status/987913586365222912>技術書典5は出店しようと決意していた</a>が、宣言通り技術書典5にサークル参加してきた。サークル参加は共同参加と単独参加の2つで挑み、当日まで色々と苦労しながら、また当日も色々と大変だったが、無事に終えることができた。</p>
 <h2 id=馬クラッカーう18>馬クラッカー（う18）</h2>
@@ -154,6 +157,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

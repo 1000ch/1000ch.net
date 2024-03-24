@@ -62,6 +62,9 @@ var array1 = new Array(); array[25000] = 123; //0~24999 is empty  //[xxxxxxxxxxx
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.01.04</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=google-io-2012発-javascript高速化テクニックの日本語訳と考察>Google I/O 2012発 JavaScript高速化テクニックの日本語訳と考察</h1>
 <ul>
 <li><a href=http://www.jonefox.com/blog/2012/07/10/13-javascript-performance-tips/>13 JavaScript Performance Tips</a></li>
@@ -166,6 +169,17 @@ array2[2] = &quot;value3&quot;;
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

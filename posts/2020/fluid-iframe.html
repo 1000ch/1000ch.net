@@ -58,6 +58,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2020.01.03</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=続レスポンシブなiframe>続・レスポンシブなiframe</h1>
 <p>縦横比を維持して親要素いっぱいに広がる <code>&lt;iframe></code> 要素の実現については、<a href=/posts/2017/responsive-iframe.html>レスポンシブな iframe</a> で解決している。このブログでも、YouTube などの動画を埋め込むことがあるので、この方法を使って対処してきたが、いくつか改善したいポイントがあった。</p>
 <ol>
@@ -117,6 +120,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

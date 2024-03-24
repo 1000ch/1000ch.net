@@ -60,6 +60,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.03.28</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=manabiya--teratail-developer-days--に出演しました>MANABIYA -teratail Developer Days- に出演しました</h1>
 <p>3月23日、24日の二日間で開催された <a href=https://manabiya.tech>MANABIYA -teratail Developer Days-</a> に出演しました。二日目に Web のトピックを集めたトラックがあり、その中で 2018年の Web 標準というセッションで講演しました。</p>
 <h2 id=3331-arts-chiyoda>3331 Arts Chiyoda</h2>
@@ -112,6 +115,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

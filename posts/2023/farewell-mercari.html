@@ -63,6 +63,9 @@ const diff = new Date('2023/6/30') - new Date('2018/3/1'); const days = diff / (
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2023.06.30</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=株式会社メルカリを退職します>株式会社メルカリを退職します</h1>
 <p>2018年3月にジョインして5年4ヶ月が経った。メルカリとの出会いを思い返すと、随分と前から長らく声を掛けていただき、タイミングの折り合いがつかなかったこともありったが、こうして自分のキャリアの中でメルカリを経験できたのは<a href=https://twitter.com/takaya_i>石黒さん</a>のおかげに他ならない。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>diff</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date(<span style=color:#e6db74>&#39;2023/6/30&#39;</span>) <span style=color:#f92672>-</span> <span style=color:#66d9ef>new</span> Date(<span style=color:#e6db74>&#39;2018/3/1&#39;</span>);
@@ -130,6 +133,17 @@ const diff = new Date('2023/6/30') - new Date('2018/3/1'); const days = diff / (
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

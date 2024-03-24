@@ -62,6 +62,9 @@ var windowDomReady = null; var documentDomReady = null; window.addEventListener(
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.05.07</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=domイベントのバブリングについて>DOMイベントのバブリングについて</h1>
 <p>最近はプロジェクトの異動やらなんやらで非常にドタバタしてまして、中々調べものとかに没頭出来ていない。そんな異動先のプロジェクトでイベントのバブリングについて再考したので覚書。</p>
 <h2 id=イベントのバブリング>イベントのバブリング?</h2>
@@ -182,6 +185,17 @@ window:DOMNodeInserted
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

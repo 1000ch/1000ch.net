@@ -59,6 +59,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.07.14</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=開発合宿-in-山喜旅館-2017>開発合宿 in 山喜旅館 2017</h1>
 <p><a href=/posts/2016/yamaki.html>去年もお世話になった山喜旅館</a>に、今年もお世話になることになった。今回は<a href=https://dokusho-ojikan.jp/>読書のお時間です</a>というプロジェクトの技術サポートをしている立場で同行してきた。プロジェクトと私については<a href=https://developers.cyberagent.co.jp/blog/archives/8441/>横断組織の力を借りてプロダクトをより良くするには？電子書籍サービス「読書のお時間です」パフォーマンス改善の進め方 | CyberAgent Developers Blog</a>に詳しく書かれている。</p>
 <p>「読書のお時間です」は Web を主戦場としており、その品質は事業指標に直結してくる。また、リリースから約4年が経過し、様々な負債を抱えている状態でいち早い返済が必要な状況だった。そこで、私が少し前のアーキテクチャ刷新から技術レビュアとして関わる延長で、更なる改善を見据えてコミットしていくことになった。</p>
@@ -107,6 +110,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

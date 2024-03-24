@@ -64,6 +64,9 @@ Simuraiに会ったよ そう、あの世界のUI/UX Designer、@simurai氏に�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.12.10</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=sacss-sp4-frontrend-in-sapporoでリファクタリングについて話してきた>SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた</h1>
 <p>人生初の北海道でした。新千歳空港降りた瞬間に「あ、これはヤバイかも」と思うほど寒かった。でも聞いていたとおり室内とかは暖かくて、とても過ごしやすい。</p>
 <h2 id=simuraiに会ったよ>Simuraiに会ったよ</h2>
@@ -126,6 +129,17 @@ Simuraiに会ったよ そう、あの世界のUI/UX Designer、@simurai氏に�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

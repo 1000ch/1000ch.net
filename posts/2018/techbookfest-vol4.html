@@ -63,6 +63,9 @@ SPA なんぞ要らんと言わんばかりに https://t.co/X0JB9v1vJS が速い
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.04.22</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=技術書典4の戦利品>技術書典4の戦利品</h1>
 <p>会社がスポンサーをしていたり、知り合いや同僚が出展していたりと、行く機運が高まったので技術書典4に初参戦してきた。現地に到着する前から入場制限に関するツイートを観測していて、混雑具合が心配な状態で向かったが、案の定凄い人の数だった。</p>
 <p>入場を果たすも Web っぽいゾーンの混雑が凄まじかったので、一次退散して友人と鮨を食してお茶を濁した。Web ゾーン以外も知り合いがたくさんいて、スタッフとして参加していたり、サークル出展していたり、はたまた参加者として出くわしたり。イベントとしては、お祭り感も然ることながら、いる人が一同に技術で盛り上がっていることがとても良かった。</p>
@@ -118,6 +121,17 @@ SPA なんぞ要らんと言わんばかりに https://t.co/X0JB9v1vJS が速い
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

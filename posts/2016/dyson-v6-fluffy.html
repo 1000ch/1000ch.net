@@ -62,6 +62,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.03.26</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=dyson-v6-fluffy>Dyson V6 Fluffy</h1>
 <p>今まで床の掃除をクイックルワイパーで運用していたが、<a href=https://goo.gl/maps/GJAIK>表参道のdyson</a>で圧倒的なデモンストレーションを見せつけられて、まんまと購入。</p>
 <h2 id=仕様>仕様</h2>
@@ -114,6 +117,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

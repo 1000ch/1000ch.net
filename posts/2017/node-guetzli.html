@@ -57,6 +57,9 @@ Guetzliとは Guetzli は Google が開発している JPEG エンコーダで�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.04.21</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=guetzliをnodejsで使えるモジュール>GuetzliをNode.jsで使えるモジュール</h1>
 <p><a href=https://github.com/imagemin/guetzli-bin>imagemin/guetzli-bin</a> という、Node.js のモジュールを作った。<a href=https://github.com/imagemin/imagemin-guetzli>imagemin のプラグイン</a>もあるし、<a href=https://github.com/1000ch/gulp-image>gulp-image</a> や <a href=https://github.com/1000ch/grunt-image>grunt-image</a> もサポートしている。</p>
 <h2 id=guetzliとは>Guetzliとは</h2>
@@ -105,6 +108,17 @@ Guetzliとは Guetzli は Google が開発している JPEG エンコーダで�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

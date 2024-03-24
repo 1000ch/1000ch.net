@@ -57,6 +57,9 @@ Handheld dynamic microphone with USB digital output and XLR analog output. USB o
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.12.27</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=steinberg-のオーディオインターフェース>Steinberg のオーディオインターフェース</h1>
 <p>今年から細々とはじめた<a href=https://strobo.fm>ポッドキャスト</a>の環境を、少しずつ整え始めた。</p>
 <p>マイクについては <a href="https://www.amazon.co.jp/dp/B004QJOZS4/?tag=1000ch-22">Audio-Technica ATR2100-USB ダイナミック USB/XLR マイク</a>を購入して使っていた。音質はかなりクリアで流石マイクといったところだが、感度が低くパソコンにインプットされたデータはソフトウェアによる増幅が必要で、そのためホワイトノイズが入りがちなのが気になっていた。</p>
@@ -110,6 +113,17 @@ Built-in headphone jack allows you to directly monitor your microphone output wi
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

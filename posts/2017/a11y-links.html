@@ -56,6 +56,9 @@ macOSのアプリ + Sketchのプラグイン  Contrast: コントラストをチ
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.10.03</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=アクセシビリティに関する各種リンク>アクセシビリティに関する各種リンク</h1>
 <p>毎回検索している気がするので、自分用のメモ。</p>
 <h2 id=macosのアプリ--sketchのプラグイン>macOSのアプリ + Sketchのプラグイン</h2>
@@ -128,6 +131,17 @@ macOSのアプリ + Sketchのプラグイン  Contrast: コントラストをチ
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

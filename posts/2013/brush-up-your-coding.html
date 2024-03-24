@@ -60,6 +60,9 @@ $ bower install html-inspector 次に、解析したいページに以下のコ�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.08.01</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=一歩進んだhtmlcssjsを目指すために>一歩進んだHTML/CSS/JSを目指すために</h1>
 <p>「なんとなく書きたくないけど、どう意識してコーディングしていけばいいのかわからない…。それを解消するためのツールがあるので、紹介する。</p>
 <h2 id=htmlinspector>HTMLInspector</h2>
@@ -195,6 +198,17 @@ $ csslint target.css
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

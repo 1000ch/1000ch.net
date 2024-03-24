@@ -58,6 +58,9 @@ Chromum に自動アップデートがないのは何故？ Chrome や Chrome Ca
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.10.12</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=chromiumをインストールする手間を減らしたい>Chromiumをインストールする手間を減らしたい</h1>
 <p>通常 Chromium をインストールするには <a href=https://download-chromium.appspot.com/>Download Chromium</a> からアーカイブをダウンロードして解凍し、アプリケーションフォルダにコピーという手順だが、この手間をどうにか簡略化できないか考えていた。シェルスクリプトでもできるけど <code>npm</code> でインストール出来ても良かろうと、 <a href=https://github.com/1000ch/chromiup>1000ch/chromiup</a> という Node.js 製のコマンドラインツールを作った。</p>
 <h2 id=インストールと使い方>インストールと使い方</h2>
@@ -106,6 +109,17 @@ $ chromiup
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

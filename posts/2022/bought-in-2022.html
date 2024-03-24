@@ -59,6 +59,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2022.12.24</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=2022年に買って良かったもの>2022年に買って良かったもの</h1>
 <p>今年も書きます。</p>
 <ul>
@@ -168,6 +171,17 @@ PowerIQ 4.0搭載： Anker独自技術PowerIQが4.0へ進化。 更なる高出�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

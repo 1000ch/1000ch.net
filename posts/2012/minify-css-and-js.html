@@ -65,6 +65,9 @@ $ uglifyjs /path/jsfile.js /path/jsfile.min.js オンラインツールでminify
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2012.11.28</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=cssファイルとjsファイルを最小化してパフォーマンスを向上させる>CSSファイルとJSファイルを最小化してパフォーマンスを向上させる</h1>
 <p>転送量削減のためのアプローチについてはgzipの他に、テキストファイルそのものの圧縮がある。これを行うと転送にかかる時間が短くなるだけでなく、ブラウザがJavaScriptを評価する時間や、キャッシュされたときのメモリの削減にも繋がるので、是非実施したい。</p>
 <h2 id=最小化最適化>最小化・最適化</h2>
@@ -126,6 +129,17 @@ $ uglifyjs /path/jsfile.js /path/jsfile.min.js オンラインツールでminify
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

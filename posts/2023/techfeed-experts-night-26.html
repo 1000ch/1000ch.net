@@ -57,6 +57,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2023.09.27</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=techfeed-experts-night26-で-2023-年の-web-開発について話した>TechFeed Experts Night#26 で 2023 年の Web 開発について話した</h1>
 <p>掲題の通り、2023年9月27日に開催された <a href=https://techfeed.io/events/techfeed-experts-night-26>TechFeed Experts Night#26</a> で <a href=https://1000ch.github.io/slides/web-development-baseline-2023/>2023 年の Web 開発のベースライン</a>について発表しました。</p>
 <iframe loading=lazy class=dropshadow src=https://1000ch.github.io/slides/web-development-baseline-2023/></iframe>
@@ -100,6 +103,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

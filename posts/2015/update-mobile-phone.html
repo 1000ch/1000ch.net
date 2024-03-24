@@ -70,6 +70,9 @@ iPhone 5sからiPhone 6sへの乗り換え SIMロックのかかったiPhone 5s�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.10.17</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=docomoからみおふぉんへiphone-5sからiphone-6sへ>docomoからみおふぉんへ、iPhone 5sからiPhone 6sへ</h1>
 <p>自分はiPhone 5sを2013年9月から使っている。キャリアはdocomo。
 iPhone 6はサイズ感から見送ったが、同じサイズでiPhone 6sが発売されたので、これでもいいかと思ったのでそろそろ買い換えようと思った。ついでにプロバイダ契約周りも見なおした。</p>
@@ -177,6 +180,17 @@ iPhone 6はサイズ感から見送ったが、同じサイズでiPhone 6sが発
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

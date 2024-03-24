@@ -58,6 +58,9 @@ ES5で書かれた実装 ES5と言っておきながらPromiseを使っている
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.01.06</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=画像をdatauriに変換するライブラリをes6で書きなおす>画像をdataURIに変換するライブラリをES6で書きなおす</h1>
 <p>だいぶ前に書いたコードを掘り当ててそれをES6で書き直したのと、エディタのバグらしき現象にぶつかった話。ライブラリはファイルパスを渡して、Canvasに突っ込んだ後、データをdataURIにして出力する。インターフェースがPromise。特に変わったことしてないです(｡-人-｡)ｺﾞﾒﾝﾅｻｲ</p>
 <p>ちなみに、リポジトリは<a href=https://github.com/1000ch/image-encoder>1000ch/image-encoder</a>です。</p>
@@ -284,6 +287,17 @@ $ 6to5 src/image-encoder-es6.js &gt; transpiled.js
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

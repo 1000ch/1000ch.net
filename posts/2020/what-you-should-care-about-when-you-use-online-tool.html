@@ -59,6 +59,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2020.08.05</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=オンラインで公開されているサービスやツールを使うときに留意していること>オンラインで公開されているサービスやツールを使うときに留意していること</h1>
 <p>先日こちらのツイートに関して同僚と話して、思うところがあったので記事にしてみる。</p>
 <blockquote class=twitter-tweet><p lang=ja dir=ltr>簡単に実装出来そうな機能なら、野良ツールを探すよりは自分で作ったほうが安心して Web で使える（入力データがネットワークを介してどこに保存されるかわからないので）と思っているので、ササッと作ってソースコードと併せて公開するようにしている。</p>&mdash; Shogo ( ˘ω˘) (@1000ch) <a href="https://twitter.com/1000ch/status/1290710326665555968?ref_src=twsrc%5Etfw">August 4, 2020</a></blockquote>
@@ -107,6 +110,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

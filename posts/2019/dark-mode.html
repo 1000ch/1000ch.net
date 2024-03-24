@@ -58,6 +58,9 @@ Firefox については現在の安定版である 67 に ship されている�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2019.06.18</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=prefers-color-scheme-を使った-dark-mode-対応>prefers-color-scheme を使った Dark Mode 対応</h1>
 <p><code>prefers-color-scheme</code> は <a href=https://drafts.csswg.org/mediaqueries-5/>Media Queries Level 5</a> で定義される、システムで明るいテーマ・暗いテーマどちらを要求しているかを参照するメディアクエリである。Safari では 12.1 からサポートされていたが、Chrome の次の安定版である 76 に ship されそうなので、このブログでも申し訳程度に対応した。</p>
 <p>Firefox については現在の安定版である 67 に ship されているし、Mobile Safari についても 13 からサポートされそうなので、ブラウザのサポートは近いうちに広まりそうである。<a href=https://support.apple.com/ja-jp/HT208976>macOS は Mojave から Dark Mode を搭載している</a>ので、試したい人はアップデートしてみて欲しい。</p>
@@ -128,6 +131,17 @@ Firefox については現在の安定版である 67 に ship されている�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

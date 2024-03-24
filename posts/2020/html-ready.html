@@ -60,6 +60,9 @@ if (document.readyState === 'interactive' || document.readyState === 'complete')
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2020.08.04</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=domcontentloaded-イベントや-load-イベントを約束する-promise-オブジェクト>DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト</h1>
 <p><a href=https://developer.mozilla.org/ja/docs/Web/API/Document/DOMContentLoaded_event><code>document</code> の <code>DOMContentLoaded</code> イベント</a> や <a href=https://developer.mozilla.org/ja/docs/Web/API/Window/load_event><code>window</code> の <code>load</code> イベント</a> は Web 開発者にとってお馴染みのブラウザライフサイクルである。</p>
 <p>結論から言うと、これらを簡単にハンドリングするための <a href=https://github.com/1000ch/html-ready>html-ready</a> という小さなライブラリを作ったという話。実装自体はとても簡単で、ここで改めて説明するほどのものではない。ただ、同じことを色んな場面で何度も何度も書いている実感があり、巷にも期待する機能を持ったライブラリがなかったので作った。</p>
@@ -143,6 +146,17 @@ window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

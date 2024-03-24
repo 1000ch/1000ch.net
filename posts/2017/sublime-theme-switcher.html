@@ -58,6 +58,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.07.18</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=sublime-theme-switcherがとても便利>Sublime Theme Switcherがとても便利</h1>
 <p>Sublime Text のテーマやカラースキーマの変更は、メニューの Preferences から Theme ないし Color Scheme を辿るか、<kbd>⌘</kbd> + <kbd>,</kbd> で開く JSON の設定ファイルを編集するか、のいずれかである。そう思っていた時期が私にもありました…。</p>
 <h2 id=コマンドパレットから切り替え出来るプラグインを発見した>コマンドパレットから切り替え出来るプラグインを発見した</h2>
@@ -109,6 +112,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

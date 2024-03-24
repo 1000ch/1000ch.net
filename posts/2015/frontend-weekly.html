@@ -73,6 +73,9 @@ Frontend WeeklyがWebのメインストリームに飛び込むきっかけに�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.08.18</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=frontend-weekly購読のススメ>Frontend Weekly購読のススメ</h1>
 <p>今日は<a href=http://frontendweekly.tokyo>Frontend Weekly</a>というメールマガジンを紹介します。私自身も編集に関わっているので宣伝にはなりますが、Frontend Weeklyが何を目的としているか、Frontend Weeklyを購読することで読者がどんなメリットを得られるかを考えてみます。</p>
 <p><img src=/img/posts/2015/frontend-weekly/logo.png alt="Frontend Weekly"></p>
@@ -146,6 +149,17 @@ Frontend WeeklyがWebのメインストリームに飛び込むきっかけに�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

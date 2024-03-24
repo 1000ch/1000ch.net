@@ -62,6 +62,9 @@ set :css_dir, 'stylesheets' set :js_dir, 'javascripts' set :images_dir, 'images'
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.08.30</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=middlemanとtravis-ciでgh-pagesを運用したら身長が伸びた>MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた</h1>
 <p><code>gh-pages</code>ブランチの更新自動化がゴール。<code>master</code>ブランチにpushするだけで内容を動的に取得して<code>gh-pages</code>ブランチにpushする。今回もTravisの力を借りる。以下がポイント。</p>
 <ul>
@@ -181,6 +184,17 @@ after_success:
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

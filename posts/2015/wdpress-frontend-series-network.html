@@ -60,6 +60,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.06.14</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webdb-press-vol87-webフロントエンド最前線ユーザを待たせない高速なwebサイト>WEB+DB PRESS Vol.87 Webフロントエンド最前線「ユーザを待たせない高速なWebサイト」</h1>
 <p>「Webフロントエンド最前線」という連載を担当させてもらっている<a href=http://gihyo.jp/magazine/wdpress/archive/2015/vol87>WEB+DB PRESS Vol.87</a>が6月24日に発売されます。連載7回目は、Webフロントエンド高速化に於いて最も基本的とも言えるネットワークの最適化について。</p>
 <p><img src=/img/posts/2015/wdpress-frontend-series-network/cover.jpg alt></p>
@@ -111,6 +114,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

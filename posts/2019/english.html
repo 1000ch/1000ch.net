@@ -62,6 +62,9 @@ iKnow! 単独でも契約して利用可能だが、DMM 英会話を契約する
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2019.12.30</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=英語学習事情>英語学習事情</h1>
 <p>2019年の8月頃から英語を本格的に勉強している。<a href=https://eikaiwa.dmm.com/>DMM 英会話</a>と <a href=https://iknow.jp/>iKnow</a> を、余程の事情がない限り毎日実施している。</p>
 <h2 id=dmm-英会話と-iknow>DMM 英会話と iKnow!</h2>
@@ -117,6 +120,17 @@ iKnow! 単独でも契約して利用可能だが、DMM 英会話を契約する
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

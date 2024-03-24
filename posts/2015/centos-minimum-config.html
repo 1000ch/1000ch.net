@@ -69,6 +69,9 @@ $ cd ~ $ mkdir .ssh $ chmod 700 .">
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.01.07</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=centos-6系に対して行う最低限の設定>CentOS 6系に対して行う最低限の設定</h1>
 <p>メモを掘り起こしたので、思い出すついでに記事にしてみる。VPSを借りて、ドメイン充ててみたり、ブログを置いてみたり、メールサーバー立ててみたりしていた当時（2年前）のメモなので、悪しからず。</p>
 <p>ユーザーの作成と、SSHのログイン周りに制限をかけている。もちろん、サーバーを大量に用意するようなWeb現場でこういった設定をコツコツやるなんてことはまず無いけど、前提知識で持っているべきものだとは思う。</p>
@@ -181,6 +184,17 @@ COMMIT
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -58,6 +58,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2022.04.10</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=東京さくらマラソンで-10km-を完走した>東京さくらマラソンで 10km を完走した</h1>
 <p>新型コロナウイルスのパンデミックになってからというものの、身体を動かす機会が劇的に減っていたので、危機感からランニングを再開した。走ってみた時期はあったものの断片的で、今回は習慣として定着した感覚がある。</p>
 <p>折角コンスタントに走っているので、何かわかりやすい成果があると良いなと思っている最中 <a href=https://twitter.com/stormcat24>@stormcat24</a> 氏にそそのかされ、<a href=https://www.sportsentry.ne.jp/event/t/86388>第3回 東京さくらマラソン</a>に参加することになった。</p>
@@ -102,6 +105,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -72,6 +72,9 @@ Webページで発生しているHTTPリクエスト 前述の Webにおける�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.12.03</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webにおけるネットワーク通信>Webにおけるネットワーク通信</h1>
 <p>「ネットワークってなんだろう？」と考えたことはあるだろうか。前職でもプログラマとして働いていたものの、（恥ずかしながら）知識は皆無に近かったし、Webのフロントエンジニアとして舵を切った2年と5ヶ月前は、この手の話がフロントエンドに関わるとは思ってもいなかった。</p>
 <p>HTTPだの、WebSocketだの、言葉は耳にするけど実態はよくわからない
@@ -205,6 +208,17 @@ Webページで発生しているHTTPリクエスト 前述の Webにおける�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

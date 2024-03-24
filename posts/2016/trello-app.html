@@ -59,6 +59,9 @@ Slack のアプリも Electron でラップしているが、 Slack のチーム
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.11.15</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=trelloをelectronでラップしてアプリにした>TrelloをElectronでラップしてアプリにした</h1>
 <p><a href=https://trello.com/>Trello</a> を Electron でラップしただけの単純なアプリケーション、<a href=https://github.com/1000ch/whale>Whale</a> をリリースした。 Trello という名前が付けられないので色から安直に連想して Whale とした。こちらは Mac で起動している様子。</p>
 <p><img src=/img/posts/2016/trello-app/demo.png alt=Whale></p>
@@ -105,6 +108,17 @@ Slack のアプリも Electron でラップしているが、 Slack のチーム
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

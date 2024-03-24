@@ -60,6 +60,9 @@ iojsも--harmonyフラグなしでES6のシンタックスが使えるし、 Nod
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.02.23</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webdb-press-vol85-webフロントエンド最前線ecmascript-6とjavascriptの未来>WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」</h1>
 <p>「Webフロントエンド最前線」という連載を担当させてもらっている<a href=http://gihyo.jp/magazine/wdpress/archive/2015/vol85>WEB+DB PRESS Vol.85</a>が2月24日に発売されます！連載5回目はECMAScript 6の概要・歴史、主要な追加機能、ブラウザサポートが不完全な今どのように取り入れるか等等を書いています。</p>
 <p><img src=/img/posts/2015/wdpress-frontend-series-es6/cover.jpg alt></p>
@@ -115,6 +118,17 @@ iojsも--harmonyフラグなしでES6のシンタックスが使えるし、 Nod
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

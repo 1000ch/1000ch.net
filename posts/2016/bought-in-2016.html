@@ -63,6 +63,9 @@ Magic Keyboard - US と Magic Trackpad 2 を合わせて購入したので、実
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.12.19</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=2016年に買って良かったもの>2016年に買って良かったもの</h1>
 <p><a href=/posts/2015/bought-in-2015.html>2015年</a>に引き続き、2016年バージョン。</p>
 <h2 id=apple-watch-series-2>Apple Watch Series 2</h2>
@@ -129,6 +132,17 @@ Magic Keyboard - US と Magic Trackpad 2 を合わせて購入したので、実
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

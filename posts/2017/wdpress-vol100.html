@@ -58,6 +58,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.08.24</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webdb-press-vol100-に寄稿しました>WEB+DB PRESS Vol.100 に寄稿しました</h1>
 <p>WEB+DB PRESS の Vol.100 というメモリアル号の <strong>「あのときの自分へ ── もし、過去に戻ってアドバイスできるなら」</strong> というエッセイ企画に <strong>「Web 技術の変化に適応し続けるには」</strong> というタイトルで寄稿しました。この業界に飛び込んではや五年が経ちますが、Web の変遷を振り返って思うところを書き綴っています。</p>
 <p><img src=/img/posts/2017/wdpress-vol100/cover.jpg alt="WEB+DB PRESS 100号の表紙"></p>
@@ -103,6 +106,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

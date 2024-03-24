@@ -58,6 +58,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.10.01</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=次世代-web-カンファレンスに出演します>次世代 Web カンファレンスに出演します</h1>
 <p>来たる <strong>2019年1月13日(日)</strong> に開催される <strong>次世代 Web カンファレンス</strong> に出演します。前回が2015年なので、4年に1度の開催ということで、オリンピックみたいですね（もちろん、そんな意図はないと思う）。</p>
 <p>担当が Performance (<code>#nwc_perf</code>) のセッションオーナーということで一応まとめ役を兼ねていますが、いちスピーカーとして、これからの Web パフォーマンスについて色々と議論できればと思います。</p>
@@ -101,6 +104,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -58,6 +58,9 @@ $ npm init $ npm install --save-dev gitbook-cli $ ./node_modules/.bin/gitbook in
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.05.13</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=gitbook-で-markdown-から-pdf-を生成する>gitbook で Markdown から PDF を生成する</h1>
 <p><a href=https://techbookfest.org/event/tbf05>技術書典５</a> への参加を目指して、執筆環境をセットアップしたのでそのメモ。今回は GitBook を使って Markdown から PDF を生成する。選択肢としては更に高機能な <a href=https://github.com/kmuto/review>Re:VIEW</a> もあるが、筆が進みやすいようにとりあえず使い慣れている Markdown を選んだ。足りない機能があったり余力があれば、Re:VIEW のセットアップもしてみるつもり。</p>
 <h2 id=プロジェクトの作成>プロジェクトの作成</h2>
@@ -131,6 +134,17 @@ info: initialization is finished
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

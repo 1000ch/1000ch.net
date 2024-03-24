@@ -57,6 +57,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.11.26</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=es-modulesを優先的にロードするmodulepreload>ES Modulesを優先的にロードするmodulepreload</h1>
 <p><code>&lt;link></code> 要素の <code>rel</code> 属性に、新しく <code>modulepreload</code> という値が ES Modules を先行してロードする仕様として追加され、<a href=https://www.chromestatus.com/feature/5762805915451392>Chrome 64 に実装された</a>。リソースを先行してロードする手段としては既に <code>&lt;link rel="preload"></code> があり、スクリプトファイルには <code>as="script"</code> を指定すれば良いが、ES Modules をロードするためにはいくつか問題があり、新しく <code>rel="modulepreload"</code> が検討されている。</p>
 <h2 id=link-relpreload-asscript-ではダメなのか><code>&lt;link rel="preload" as="script"></code> ではダメなのか</h2>
@@ -122,6 +125,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

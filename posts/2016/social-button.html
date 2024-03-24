@@ -59,6 +59,9 @@ Web Componentsのアップデート関連 Shadow DOM周りは実装されてい�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.06.15</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=ソーシャルボタンのweb-components>ソーシャルボタンのWeb Components</h1>
 <p>世間では久しく聞かなくなったWeb Componentsの話題だが、各種スペックのアップデートは着々と行われている。そんな中、昔作った<a href=https://1000ch.github.io/social-button/><code>&lt;social-button></code></a>というTwitter・Facebook・Google+のソーシャルボタンのWeb Components実装のShadow DOM部分を、<a href=https://github.com/1000ch/social-button/commit/e7764ca88168aa94f491282f1c4500594467991a>アップデートした</a>。</p>
 <h2 id=トランスパイル無しでes2015>トランスパイル無しでES2015</h2>
@@ -105,6 +108,17 @@ Web Componentsのアップデート関連 Shadow DOM周りは実装されてい�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

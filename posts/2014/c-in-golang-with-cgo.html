@@ -61,6 +61,9 @@ Goでコマンドラインのインターフェースを実装するには、os�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.10.09</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=cgoでgoのコードからcの関数を利用する>cgoでGoのコードからCの関数を利用する</h1>
 <p>Goの練習がてらコマンドラインツールを書いている最中に詰まったので作業ログとして残す。</p>
 <p>Goでコマンドラインのインターフェースを実装するには、<code>os</code>や<code>flag</code>等のデフォルトライブラリ群でそこそこ簡単に作れるけど、今回やりたいことに「Cで書かれたバイナリをGoから利用したい」というものがあった。
@@ -238,6 +241,17 @@ jpegoptimのmain関数で行っている処理をGoで再実装しようとも�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

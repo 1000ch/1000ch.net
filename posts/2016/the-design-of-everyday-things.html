@@ -59,6 +59,9 @@ D. A. ノーマン (著), 岡本明 (翻訳), 安村通晃 (翻訳), 伊賀聡�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2016.03.02</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=誰のためのデザイン>誰のためのデザイン？</h1>
 <p>デザインという言葉はとても広義だが、この本に語られてることこそがデザインに他ならないだよなという感想。デザインとアートの区別が付かない人・区別を付けたい人にオススメな本。</p>
 <blockquote>
@@ -107,6 +110,17 @@ D. A. ノーマン (著), 岡本明 (翻訳), 安村通晃 (翻訳), 伊賀聡�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

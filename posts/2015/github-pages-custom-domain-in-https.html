@@ -69,6 +69,9 @@ CloudFlareをDNSサーバーとして利用する GitHub PagesにCNAMEで設定�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.01.12</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=github-pagesに設定しているカスタムドメインをhttps対応させる>GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる</h1>
 <p>このブログはGitHub Pagesで運用している。ホスト名を書いた<code>CNAME</code>ファイルをドキュメントルートに配置してドメインを1000ch.netとしているが、これだと証明書がないせいでGitHub Pagesが対応しているHTTPSを利用できない。つまり、</p>
 <ul>
@@ -139,6 +142,17 @@ CloudFlareをDNSサーバーとして利用する GitHub PagesにCNAMEで設定�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

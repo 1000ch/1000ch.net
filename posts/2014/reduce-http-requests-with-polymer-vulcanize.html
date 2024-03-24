@@ -61,6 +61,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.09.05</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=vulcanizeで減らすhtml-importsのhttpリクエスト>Vulcanizeで減らすHTML ImportsのHTTPリクエスト</h1>
 <p>Web Componentsの旨味はコンポーネントの再利用が出来る所にあるので、そのためにはそのリソースは断片化は避けられない。
 <code>&lt;x-element></code>を構成するリソースは<code>x-element.html</code>に集約し、使うときにはHTML Importsでロードする。
@@ -186,6 +189,17 @@ Web Componentsの謳い文句である <strong>「再利用」</strong> を考�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

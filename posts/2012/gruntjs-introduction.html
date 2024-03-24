@@ -65,6 +65,9 @@ module.exports = function (grunt) { // ターゲットとするcssファイル�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2012.12.08</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=gruntの概要と導入手順とメリット>Gruntの概要と導入手順とメリット</h1>
 <p>もはや説明不要の可能性もあるけど、<a href=http://gruntjs.com/>grunt</a>がコマンドラインのインターフェースを分離して<code>grunt-cli</code>への移行をしたこともあり、まとめてみた。</p>
 <p>GruntはNode.js製のタスクランナー。JavaScriptで記述する設定ファイルに、ファイルの結合（concat）や最小化minifyといったようなタスクを定義し、コマンドラインから実行する。</p>
@@ -201,6 +204,17 @@ $ npm install grunt-contrib-mincss
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

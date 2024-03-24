@@ -58,6 +58,9 @@ HTML Templates HTML Templates は HTML ドキュメントに埋め込まれて�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.09.12</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=web-components-周辺の仕様とかブラウザ互換性-2017年秋>Web Components 周辺の仕様とかブラウザ互換性 2017年秋</h1>
 <p>二週間後の素振り入ってます、連投ですが悪しからず。Web Components v0 から Web Components v1 へのアップデートに関しては、去年の <a href=https://gdg-tokyo.connpass.com/event/38927/>DevFest Tokyo 2016</a> で発表した <a href=https://1000ch.github.io/slide/webcomponents-2016/>Web Components 2016 & Polymer v2</a> にまとめてあるが、それを改めて見直している。</p>
 <h2 id=html-templates>HTML Templates</h2>
@@ -185,6 +188,17 @@ HTML Templates HTML Templates は HTML ドキュメントに埋め込まれて�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

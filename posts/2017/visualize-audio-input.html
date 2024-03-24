@@ -59,6 +59,9 @@ const canvas = document.querySelector('#canvas'); const drawContext = canvas.get
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.06.19</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=ブラウザで音声入力の可視化と録音>ブラウザで音声入力の可視化と録音</h1>
 <p>とある技術相談が舞い込んできて、その時の返答を念のため後で技術検証した話。やりたいことは大まかに「ブラウザで音声入力をリアルタイムに可視化する」「ブラウザで音声入力を記録する」の2点で、音声入力は <code>getUserMedia()</code> で取得できて、可視化はそのデータを Canvas or WebGL でいじり、録音は <code>MediaRecorder</code> でやるのだろうと思いつつ、組み合わせて一応動く状態まで組んだ。</p>
 <h2 id=navigatormediadevicesgetusermedia><code>navigator.mediaDevices.getUserMedia()</code></h2>
@@ -207,6 +210,17 @@ const canvas = document.querySelector('#canvas'); const drawContext = canvas.get
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

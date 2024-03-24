@@ -73,6 +73,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2022.12.23</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=演繹的なエンジニアリングキャリアの形成>演繹的なエンジニアリングキャリアの形成</h1>
 <p>技術顧問として関わっている企業にて「エンジニアのキャリア形成について LT して欲しい」というリクエストを頂き、自分のキャリアについて振り返る機会は今までなかったなと思いながら振り返った。</p>
 <h2 id=キャリア初期sier-への新卒入社事業会社へ転職対外活動>キャリア初期（SIer への新卒入社、事業会社へ転職、対外活動）</h2>
@@ -150,6 +153,17 @@ by Steve Jobs at <a href="https://www.youtube.com/watch?v=UF8uR6Z6KLc">2005 Stan
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

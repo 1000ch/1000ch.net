@@ -67,6 +67,9 @@ Teslong のスコープ付き耳かき いつぞや Twitter のタイムライ�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.12.24</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=2018年に買ってよかったもの>2018年に買ってよかったもの</h1>
 <p>今年も書きます。</p>
 <ul>
@@ -149,6 +152,17 @@ Tenswall 珪藻土速乾バスマットは太古の植物性プランクトン(�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

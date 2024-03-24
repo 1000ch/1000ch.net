@@ -60,6 +60,9 @@ JavaScriptをTypeScriptでビルドする TypeScript と JSX それぞれの Jav
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.05.01</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=babelとの併用を止めてtypescriptビルド一本化へ>Babelとの併用を止めてTypeScriptビルド一本化へ</h1>
 <p>最近は社内で Web おじさん業をやる傍ら、プロジェクトコードなども少し触っている。最近では FRESH! でアレコレしていて、クライアントサイドとサーバーサイドの改善もやったり。</p>
 <ul>
@@ -115,6 +118,17 @@ JavaScriptをTypeScriptでビルドする TypeScript と JSX それぞれの Jav
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

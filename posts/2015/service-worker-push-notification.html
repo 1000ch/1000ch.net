@@ -58,6 +58,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.08.17</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=service-workerでブラウザにプッシュ通知をする>Service Workerでブラウザにプッシュ通知をする</h1>
 <p>Service Worker でブラウザにプッシュ通知をする方法については、既に解説記事が幾つかあるのできっと面白くありません。ただの作業ログです。概論については<a href=https://blog.agektmr.com/2015/03/mobile-web-app.html>ウェブのプッシュ通知、何がそんなにすごいのか？ - Tender Surrender</a>という記事を見てください。</p>
 <h2 id=前提と大まかな手順>前提と大まかな手順</h2>
@@ -205,6 +208,17 @@ document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

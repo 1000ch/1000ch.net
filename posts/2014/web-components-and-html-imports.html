@@ -61,6 +61,9 @@ HTMLを部品として含む場合 HTMLやCSSを部品として含む場合は�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.08.30</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=web-componentsをhtml-importsでロードする必要性>Web ComponentsをHTML Importsでロードする必要性</h1>
 <p>慣例的に<code>&lt;link rel='import' href='x-element.html'></code>な感じでロードされているけど、前提として、 <strong>HTMLImportsである必要はない</strong> 。何故ならば、Web Componentsを構成する4つの仕様はそれぞれ独立しているからである。だから、インポートを使わなくても<code>document.registerElement()</code>でカスタム要素の定義は出来るし、HTMLのひな形を使いたい場合に<code>&lt;template></code>タグを使っても良い。</p>
 <h2 id=htmlを部品として含む場合>HTMLを部品として含む場合</h2>
@@ -149,6 +152,17 @@ HTMLを部品として含む場合 HTMLやCSSを部品として含む場合は�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

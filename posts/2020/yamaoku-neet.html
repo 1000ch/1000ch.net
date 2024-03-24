@@ -60,6 +60,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2020.09.22</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=山奥ニートやってます>「山奥ニート」やってます。</h1>
 <p>きっかけはラジオとして流し聴きしている<a href=https://www.youtube.com/channel/UCFo4kqllbcQ4nV83WCyraiw>中田敦彦の YouTube 大学</a>で、東京でニート生活をしている若者が和歌山の山奥に移住してニートをしているという実話を記録した書籍が解説されていた。</p>
 <p>場所は和歌山の山奥にある限界集落で、もとより社会不適応に至っている人を集めて社会復帰を促進することを目的とした NPO 法人「共生舎」が設立した施設がある。廃校になった小学校が色々あってリフォームされ、そのニートの人達が住んでいる。もともとその集落にいた人達の仕事を手伝ったり、最寄りの駅周辺のビジネスのお手伝いをすることで収入を得ている。「週に何時間働く！」といった概念はなく、あくまで生活に必要な分だけ働いて、その他の時間はそれぞれが思い思いの時間を過ごしている。もっともこのご時世では、インターネットがあれば大抵のことは解決される。</p>
@@ -110,6 +113,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

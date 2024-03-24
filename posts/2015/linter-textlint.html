@@ -64,6 +64,9 @@ Atomで開いているワークスペースのプラグインをロードする 
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.09.20</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=textlintのatomプラグイン>textlintのAtomプラグイン</h1>
 <p><a href=https://github.com/azu/textlint>azu/textlint</a>というテキストのlintエンジンがある。Node.js製なのでCLI周りは既にあるが、エディタでもできたら良いなと思って<a href=https://github.com/1000ch/linter-textlint>Atomのプラグインを作った</a>。TextLintについては「<a href=http://efcl.info/2015/09/10/introduce-textlint/>textlintで日本語の文章をチェックする</a>」という記事を見てもらえると良い。</p>
 <h2 id=プラグインのインストール>プラグインのインストール</h2>
@@ -136,6 +139,17 @@ Atomで開いているワークスペースのプラグインをロードする 
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

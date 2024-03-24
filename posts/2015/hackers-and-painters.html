@@ -62,6 +62,9 @@ Y Combinatorが輩出した企業はDropbox、Airbnb、Heroku、Redditなど、�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.02.04</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=ハッカーと画家>ハッカーと画家</h1>
 <p>これを初めて読んだのはプログラマーとして駆け出しの頃だったと思う。著者は、（当時知らなかったが）かの有名なポール・グレアム（<a href=http://www.paulgraham.com>Paul Graham</a>）だ。</p>
 <p><img src=/img/posts/2015/hackers-and-painters/cover.jpg alt></p>
@@ -114,6 +117,17 @@ Y Combinatorが輩出した企業はDropbox、Airbnb、Heroku、Redditなど、�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -62,6 +62,9 @@ nvm の PATH を変更する方式は、なかなか痒い部分があるのと�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2018.10.16</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=go-で-nodejs-のバージョンマネージャを自作した>Go で Node.js のバージョンマネージャを自作した</h1>
 <p><a href=https://github.com/1000ch/nd>1000ch/nd</a> という Node.js のバージョンマネージャを Go で書いた。車輪の再発明もいいところで、特に今使っているバージョンマネージャから切り替えるメリットは今の所ない。ただの作業ログです、悪しからず。</p>
 <h2 id=それっぽいモチベーション>それっぽいモチベーション</h2>
@@ -173,6 +176,17 @@ $ nd list
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

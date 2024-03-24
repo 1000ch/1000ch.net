@@ -60,6 +60,9 @@ $ apm install atom-csscomb 使い方 CSSファイルを開いて、またはCSS�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.07.20</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=csscombのatomプラグイン>CSSCombのAtomプラグイン</h1>
 <p>CSSのプロパティをソートする<a href=https://github.com/csscomb/csscomb.js>CSSComb</a>というNode.jsのモジュールがある。CSSプロパティのソートは書き順が統一されてコードの可読性が上がるだけではなく、サーバーから配信されるときに実施されるであろうGzipの圧縮効率も高まるというメリットがある。そんなCSSCombを<a href=https://github.com/1000ch/atom-csscomb>Atomのプラグインにした</a>。</p>
 <p><img src=/img/posts/2015/atom-csscomb/demo.gif alt></p>
@@ -115,6 +118,17 @@ $ apm install atom-csscomb 使い方 CSSファイルを開いて、またはCSS�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

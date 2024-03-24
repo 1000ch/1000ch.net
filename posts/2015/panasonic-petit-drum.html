@@ -70,6 +70,9 @@ QoL挙がること間違いなし。">
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2015.02.15</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=ドラム式洗濯乾燥機プチドラムで快適洗濯生活>ドラム式洗濯乾燥機「プチドラム」で快適洗濯生活</h1>
 <p>もともと洗濯は好きだった方だけど、ドラム式洗濯乾燥機という高価な買い物を久々にしたら、快適になり過ぎてパンツが吹っ飛んだ話。</p>
 <h2 id=point1-洗濯から乾燥まで全自動>Point.1 「洗濯から乾燥まで全自動」</h2>
@@ -135,6 +138,17 @@ QoL挙がること間違いなし。">
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

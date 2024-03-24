@@ -56,6 +56,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2023.03.22</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=2023年のフロントエンド高速化手法fastlyとメルカリに学ぶパフォーマンスチューニング最前線に出演した>2023年のフロントエンド高速化手法〜Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線に出演した</h1>
 <p>Findy さんに声をかけていただき、2023 年 3 月 22 日に開催された、<a href=https://findy.connpass.com/event/294482/>フロントエンドの開発生産性〜Online Conference〜</a>というイベントに出演した。</p>
 <iframe loading=lazy class=dropshadow src="https://docs.google.com/presentation/d/e/2PACX-1vR-08iBC2X6dI950B-pZkAygOiYEgD7zTDZkzASE2a6esAwlbnuVx3H0zY4cBoLxYNez6_zoqLKCvMg/embed?start=false&loop=false&delayms=3000" allowfullscreen></iframe>
@@ -98,6 +101,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -59,6 +59,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2020.09.20</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=やめてみた本当に必要なものが見えてくる暮らし方考え方>やめてみた。本当に必要なものが見えてくる、暮らし方・考え方</h1>
 <p>最適化が好きな自分にとって、共感の多い一冊だった。炊飯器、テレビ、ゴミ箱、メイク（自分はやらないけど）、服、コンビニなど、何の気なしにやっている当たり前を見直す良いきっかけになる。</p>
 <p><affiliate-link src=https://m.media-amazon.com/images/I/41ozTJZcJUL.jpg href=https://www.amazon.co.jp/dp/B07N7FD211/ tag=1000ch-22 title="やめてみた。本当に必要なものが見えてくる、暮らし方・考え方 (幻冬舎文庫) Kindle版">
@@ -109,6 +112,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

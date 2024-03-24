@@ -73,6 +73,9 @@ DataURI化する目的としてはリクエストを減らすことがゴール�
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2013.09.18</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=webにおける画像の最適化>Webにおける画像の最適化</h1>
 <p>デリケートと言っても常に最高画質でやるべきなんてことを言うわけではなくて、『こういう場合にはこういう画像』ということをしていくことが必要になってきている。</p>
 <h2 id=ファイルサイズとリクエストの天秤>ファイルサイズとリクエストの天秤</h2>
@@ -173,6 +176,17 @@ DataURI化する目的としてはリクエストを減らすことがゴール�
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

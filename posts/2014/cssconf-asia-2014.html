@@ -62,6 +62,9 @@ NO MORE TOOLS by @fox  ツールっていっぱいあって、どれがベスト
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2014.11.19</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=cssconfasia-2014http2014cssconfasia><a href=http://2014.cssconf.asia/>CSSConf.Asia 2014</a></h1>
 <p>最初のセッションは9:00開始、Registrationが8:00開始、ホテルは会場まで電車で1時間弱という状況だったので、7:00にホテルを出発。
 ディズニーランドを彷彿とさせる電車に乗って、現地へ向かう。</p>
@@ -223,6 +226,17 @@ LevelDBのプロジェクトの<code>package.json</code>等が例示されてい
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

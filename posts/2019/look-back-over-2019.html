@@ -62,6 +62,9 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2019.12.17</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=2019年の振り返り>2019年の振り返り</h1>
 <p>自分用の2019年振り返り。こうして振り返ってみると色々やっているが、業務的なことを含めるともっと色々ある。何せ、弊ペイをリリースしたのがまだ今年の2月というのだから驚きである。正直今年頭のことは記憶が曖昧になってきているが、頑張って書き起こしてみる。</p>
 <h2 id=113-次世代-web-カンファレンスhttpsnextwebconfconnpasscomevent103056-の-nwc_perf-で登壇した>1.13 <a href=https://nextwebconf.connpass.com/event/103056/>次世代 Web カンファレンス</a> の <code>#nwc_perf</code> で登壇した</h2>
@@ -169,6 +172,17 @@
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

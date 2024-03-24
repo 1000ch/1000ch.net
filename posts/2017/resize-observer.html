@@ -60,6 +60,9 @@ const resizeObserver = new ResizeObserver(entries => { for (const entry of entri
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2017.11.21</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=要素のサイズ変化を監視するresizeobserver>要素のサイズ変化を監視するResizeObserver</h1>
 <p>便利な Observer シリーズのひとつ <a href=https://wicg.github.io/ResizeObserver/>ResizeObserver</a> が Chrome 64 に ship された。Chrome 55 からフラグ付きで入っていたが、フラグなしで動作するようになっている。</p>
 <h2 id=旧来のやり方と問題>旧来のやり方と問題</h2>
@@ -147,6 +150,17 @@ const resizeObserver = new ResizeObserver(entries => { for (const entry of entri
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);

@@ -63,6 +63,9 @@ GEL 100は、高濃度の炭水化物を封入するMAURTENが開発した”ハ
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2024.02.17</span>
+<label>
+<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label>
 <h1 id=アミノバイタル-presents-荒川ハーフマラソンを完走した>アミノバイタル presents 荒川ハーフマラソンを完走した</h1>
 <p>東京さくらマラソンには、<a href=/posts/2022/tokyo-sakura-marathon.html>人生初の大会となる 2022 年の第 3 回</a>、<a href=/posts/2023/tokyo-sakura-marathon.html>続く 2023 年の第 4 回</a>と参加してきており、そして<a href=https://www.t-njsf.net/tokyo/sponsored/2023/3402/>第 5 回となる 2024 年</a>も参加予定である。一方、他の大会の様子も気になっていた中で、偶然 Instagram の広告で流れてきたのが<a href=https://boost-inc.jp/arakawa_half/event/ev_20240217.html>アミノバイタル presents 荒川ハーフマラソン 2024</a>である。</p>
 <p>開催の 2 週間前に迫っていたが、かなり直前まで申し込み可能という柔軟な運営になっており、参加者にとってはありがたい限りである。ようやく 10km に慣れてきたところでハーフマラソンは練習でも走ったことがなかったが、思いつきで申し込んだ。とはいえ、今まで走ってきた倍の距離ということで丸腰で挑むのも無謀だと認識しており、まずは練習としてハーフマラソンを走ってみることにした。</p>
@@ -121,6 +124,17 @@ GEL 100は、高濃度の炭水化物を封入するMAURTENが開発した”ハ
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
+
+const input = document.querySelector('#auto-phrase');
+input.checked = localStorage.getItem('auto-phrase');
+
+input.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
