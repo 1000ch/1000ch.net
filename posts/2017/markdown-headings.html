@@ -57,10 +57,7 @@ const assert = require('assert'); const markdownHeadings = require('markdown-hea
 <a href=https://shogosensui.com>🌎 Who is 1000ch</a>
 </div>
 </nav>
-</header>
-<main class=Main>
-<div class=PostHeader>
-<span class="Label Label--gray pull-left">2017.06.05</span>
+<div class=Preference>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
@@ -68,6 +65,9 @@ const assert = require('assert'); const markdownHeadings = require('markdown-hea
 <input type=checkbox switch id=dark-mode> ダークモード
 </label>
 </div>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2017.06.05</span>
 <h1 id=markdownの見出しを抽出するツールを作った>Markdownの見出しを抽出するツールを作った</h1>
 <p>Markdown の見出しだけを抽出したい欲求が高まり <a href=https://github.com/1000ch/markdown-headings><code>1000ch/markdown-headings</code></a> というツールを作った。単純な文法なので正規表現だけでも充分抜いてこれるが、今回は <a href=https://markdown-it/markdown-it><code>markdown-it/markdown-it</code></a> の AST を使うことにした。</p>
 <h2 id=コマンドラインで使う>コマンドラインで使う</h2>

@@ -55,10 +55,7 @@ Firebase Hostings へデプロイする  package.json に記述されている�
 <a href=https://shogosensui.com>🌎 Who is 1000ch</a>
 </div>
 </nav>
-</header>
-<main class=Main>
-<div class=PostHeader>
-<span class="Label Label--gray pull-left">2020.07.20</span>
+<div class=Preference>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
@@ -66,6 +63,9 @@ Firebase Hostings へデプロイする  package.json に記述されている�
 <input type=checkbox switch id=dark-mode> ダークモード
 </label>
 </div>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2020.07.20</span>
 <h1 id=静的ホスティングへのデプロイをgithub-actionsで実行するようにした>静的ホスティングへのデプロイをGitHub Actionsで実行するようにした</h1>
 <p>このブログを含めてホストしている Web ページを、<a href=https://docs.github.com/ja/github/working-with-github-pages/about-github-pages>GitHub Pages</a> や <a href="https://firebase.google.com/docs/hosting?hl=ja">Firebase Hosting</a>、<a href=https://www.netlify.com/>Netlify</a> など様々な静的ホスティングサービスを使って運用している。これらのサービスへのデプロイは、リポジトリに更新があったときに自動的にデプロイするように設定してある。</p>
 <p>Netlify であれば GitHub リポジトリを連携することで、<code>master</code> ブランチの変更を自動的に検知し、任意のデプロイ処理を実行できる。Firebase Hosting や GitHub Pages はこうした便利な連携がないので、CI を使って自動デプロイを設定するのが一般的だろう。</p>

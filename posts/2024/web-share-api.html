@@ -56,10 +56,7 @@ Web Share API はシェアする文言および URL をパラメータとして�
 <a href=https://shogosensui.com>🌎 Who is 1000ch</a>
 </div>
 </nav>
-</header>
-<main class=Main>
-<div class=PostHeader>
-<span class="Label Label--gray pull-left">2024.03.22</span>
+<div class=Preference>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
@@ -67,6 +64,9 @@ Web Share API はシェアする文言および URL をパラメータとして�
 <input type=checkbox switch id=dark-mode> ダークモード
 </label>
 </div>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2024.03.22</span>
 <h1 id=web-share-api-を使った共有機能とフォールバック>Web Share API を使った共有機能とフォールバック</h1>
 <p>元々このブログでは記事ページに、各ソーシャルメディアのインテントへリンクするアイコンを設置していた。これを Web Share API を使ってより汎用的な実装に変更した。</p>
 <p>ソーシャルメディアには <a href=https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent>GET でアクセスできるインテントが用意されている</a>ことが多い。これを用いた Web ページの共有機能は従来からある方法で、これ自体に大きな課題はないが、より利用者の <a href="https://web.dev/articles/web-share?hl=ja">OS コンテキストに適したシェア体験を実現する Web Share API</a> が数年前に発表されている。</p>

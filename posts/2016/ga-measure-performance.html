@@ -56,10 +56,7 @@ window.addEventListener('load', () => { if (window.performance) { ga('send', { h
 <a href=https://shogosensui.com>🌎 Who is 1000ch</a>
 </div>
 </nav>
-</header>
-<main class=Main>
-<div class=PostHeader>
-<span class="Label Label--gray pull-left">2016.12.24</span>
+<div class=Preference>
 <label>
 <input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label>
@@ -67,6 +64,9 @@ window.addEventListener('load', () => { if (window.performance) { ga('send', { h
 <input type=checkbox switch id=dark-mode> ダークモード
 </label>
 </div>
+</header>
+<main class=Main>
+<span class="Label Label--gray pull-left">2016.12.24</span>
 <h1 id=google-analyticsとtiming-apiでブログのサードパーティスクリプトのパフォーマンス計測>Google AnalyticsとTiming APIでブログのサードパーティスクリプトのパフォーマンス計測</h1>
 <p><a href=http://calendar.perfplanet.com/2016/prefer-defer-over-async/>Performance Calendar » Prefer DEFER Over ASYNC</a> を見たのがきっかけ。</p>
 <p>このブログでもサードパーティのスクリプトをいくつかロードしているが、言及されているように <code>&lt;script async></code> と <code>&lt;script defer></code> でパフォーマンスを比較計測してみる。</p>
