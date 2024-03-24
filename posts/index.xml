@@ -219,15 +219,14 @@ Firefox については現在の安定版である 67 に ship されている�
 インタビューされてました。No ろくろ / &amp;quot;grdの作者が考える、いまフロントエンドエンジニアに求められる「速度という機能」 - エンジニアHub｜若手Webエンジニアのキャリアを考える！&amp;quot; https://t.co/HcfX9k0bMQ
 &amp;mdash; Shogo SENSUI (@1000ch) May 8, 2019 ちなみにインタビューの中で「速度という機能」という表現を使っているが、これは Performance is a Feature という記事から拝借して敢えて使っていて、非機能要件としてのパフォーマンスとは異なる文脈のコメントですので悪しからず。
 株式会社はてなの初瀬川さん、スタッフの皆さん、貴重な機会を頂きましてありがとうございました。</description></item><item><title>デザイナーさん向け開発環境セットアップガイド</title><link>https://1000ch.net/posts/2019/setup-environment-for-designers.html</link><pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2019/setup-environment-for-designers.html</guid><description>デザイナーさん向け開発環境セットアップガイド 社内のデザイナーさん向けに書いた資料があったが、読み返していたら特に社内専用という内容でもなかったので、社外向けに公開してみる。やや opinionated な部分があるのはご了承ください。
-1. macOS のアプリ 紹介するのは iTerm と Visual Studio Code です。
-1.1. iTerm 2 標準のターミナルアプリも良いんですが、色々痒いところに手が届く機能が備わっているので、こちらがオススメです。
-1.1.1. フォントを変えたい ダサくてテンションが上がらない人は、まず iTerm のフォントを変えることをオススメします。好みの等幅フォントを Profiles &amp;gt; Text &amp;gt; Change Font から変えてください。macOS にプリインストールされているものだと、 menlo あたりが良いかもしれません。
-1.1.2. カラースキーマを変えたい ダサくてテンションが上がらない人は、カラースキーマも変えると良いかもしれません。
-MartinSeeler/iterm2-material-design 1.1.3. もうちょっとオシャレにしたい ダサくてテンションが上がらない人は、テーマも変えてみると良いです。わからなければエンジニアを捕まえてインストールしましょう。
-robbyrussell/oh-my-zsh sorin-ionescu/prezto sindresorhus/pure 1.2. Visual Studio Code どんなエディタでも構いませんが、「まだエディタをインストールしてない…」ということであれば、これが良いと思います。
-2. ターミナルで使うもの iTerm を起動して、色々なツールをインストールしていきます。Homebrew をインストールして、Git や Node.js を使っていくための nodenv のインストール方法を含んでいます。
-2.1. Homebrew macOS のアプリケーションマネージャです。Sketch でいう Sketchpacks みたいなやつです。
-/usr/bin/ruby -e &amp;#34;$(curl -fsSL https://raw.</description></item><item><title>2019年のWeb標準という記事を寄稿しました</title><link>https://1000ch.net/posts/2019/web-standards-prospect.html</link><pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2019/web-standards-prospect.html</guid><description>2019年のWeb標準という記事を寄稿しました あけましておめでとうございます。今年も宜しくお願い致します。
+1. macOS のアプリ 紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛。
+1.1. iTerm2 標準のターミナルアプリも良いが、色々痒いところに手が届く機能が備わっているので、iTerm2 を推奨する。
+1.1.1. フォントを変えたい ダサくてテンションが上がらない人は、まず iTerm のフォントを Profiles &amp;gt; Text &amp;gt; Change Font から、好みの等幅フォントに変更して欲しい。macOS にプリインストールされているものであれば、menlo あたりが良い。
+1.1.2. カラースキーマを変えたい ダサくてテンションが上がらない人は、カラースキーマも変えると良い。iterm2 のカラースキーマは MartinSeeler/iterm2-material-design 等で配布されている。
+1.1.3. もうちょっとオシャレにしたい ダサくてテンションが上がらない人は、テーマも変えてみると良い。
+robbyrussell/oh-my-zsh sorin-ionescu/prezto sindresorhus/pure 1.2. Visual Studio Code どんなエディタでも構わないが、「まだエディタをインストールしてない…」ということであれば、Visual Studio Code が良い。
+2. ターミナルで使うもの iTerm2 を起動して、色々なツールをインストールしていく。Homebrew をインストールして、Git や Node.js を使っていくための nodenv のインストール方法を含む。
+2.1. Homebrew Homebrew は macOS のアプリケーションマネージャである。Sketch でいう Sketchpacks のようなものだ。</description></item><item><title>2019年のWeb標準という記事を寄稿しました</title><link>https://1000ch.net/posts/2019/web-standards-prospect.html</link><pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate><guid>https://1000ch.net/posts/2019/web-standards-prospect.html</guid><description>2019年のWeb標準という記事を寄稿しました あけましておめでとうございます。今年も宜しくお願い致します。
 各ソーシャルでもシェアしましたが、去年に続いて新春特別企画ということで2019年のWeb標準という記事を gihyo.jp の方へ寄稿しました。ちなみに去年の記事は2018年のWeb標準です。
 内容は2018年の
 W3CによるHTML5.2の勧告とWHATWGの標準化プロセスの整備 Web Components普及への期待 Service WorkerがもたらすWebの変化 クレジットカードのセキュリティとWeb Payments HTTPS化の更なる浸透 から、2019年の

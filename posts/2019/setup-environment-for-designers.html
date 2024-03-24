@@ -19,15 +19,14 @@
 <meta name=author content="Shogo Sensui">
 <meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
 <meta property="og:description" content="デザイナーさん向け開発環境セットアップガイド 社内のデザイナーさん向けに書いた資料があったが、読み返していたら特に社内専用という内容でもなかったので、社外向けに公開してみる。やや opinionated な部分があるのはご了承ください。
-1. macOS のアプリ 紹介するのは iTerm と Visual Studio Code です。
-1.1. iTerm 2 標準のターミナルアプリも良いんですが、色々痒いところに手が届く機能が備わっているので、こちらがオススメです。
-1.1.1. フォントを変えたい ダサくてテンションが上がらない人は、まず iTerm のフォントを変えることをオススメします。好みの等幅フォントを Profiles > Text > Change Font から変えてください。macOS にプリインストールされているものだと、 menlo あたりが良いかもしれません。
-1.1.2. カラースキーマを変えたい ダサくてテンションが上がらない人は、カラースキーマも変えると良いかもしれません。
- MartinSeeler/iterm2-material-design  1.1.3. もうちょっとオシャレにしたい ダサくてテンションが上がらない人は、テーマも変えてみると良いです。わからなければエンジニアを捕まえてインストールしましょう。
- robbyrussell/oh-my-zsh sorin-ionescu/prezto sindresorhus/pure  1.2. Visual Studio Code どんなエディタでも構いませんが、「まだエディタをインストールしてない…」ということであれば、これが良いと思います。
-2. ターミナルで使うもの iTerm を起動して、色々なツールをインストールしていきます。Homebrew をインストールして、Git や Node.js を使っていくための nodenv のインストール方法を含んでいます。
-2.1. Homebrew macOS のアプリケーションマネージャです。Sketch でいう Sketchpacks みたいなやつです。
-/usr/bin/ruby -e &#34;$(curl -fsSL https://raw.">
+1. macOS のアプリ 紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛。
+1.1. iTerm2 標準のターミナルアプリも良いが、色々痒いところに手が届く機能が備わっているので、iTerm2 を推奨する。
+1.1.1. フォントを変えたい ダサくてテンションが上がらない人は、まず iTerm のフォントを Profiles > Text > Change Font から、好みの等幅フォントに変更して欲しい。macOS にプリインストールされているものであれば、menlo あたりが良い。
+1.1.2. カラースキーマを変えたい ダサくてテンションが上がらない人は、カラースキーマも変えると良い。iterm2 のカラースキーマは MartinSeeler/iterm2-material-design 等で配布されている。
+1.1.3. もうちょっとオシャレにしたい ダサくてテンションが上がらない人は、テーマも変えてみると良い。
+ robbyrussell/oh-my-zsh sorin-ionescu/prezto sindresorhus/pure  1.2. Visual Studio Code どんなエディタでも構わないが、「まだエディタをインストールしてない…」ということであれば、Visual Studio Code が良い。
+2. ターミナルで使うもの iTerm2 を起動して、色々なツールをインストールしていく。Homebrew をインストールして、Git や Node.js を使っていくための nodenv のインストール方法を含む。
+2.1. Homebrew Homebrew は macOS のアプリケーションマネージャである。Sketch でいう Sketchpacks のようなものだ。">
 <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
 <meta name=twitter:card content="summary">
 <meta property="og:type" content="article">
@@ -67,82 +66,69 @@
 <h1 id=デザイナーさん向け開発環境セットアップガイド>デザイナーさん向け開発環境セットアップガイド</h1>
 <p>社内のデザイナーさん向けに書いた資料があったが、読み返していたら特に社内専用という内容でもなかったので、社外向けに公開してみる。やや opinionated な部分があるのはご了承ください。</p>
 <h2 id=1-macos-のアプリ>1. macOS のアプリ</h2>
-<p>紹介するのは iTerm と Visual Studio Code です。</p>
-<h3 id=11-iterm-2httpswwwiterm2com>1.1. <a href=https://www.iterm2.com/>iTerm 2</a></h3>
-<p>標準のターミナルアプリも良いんですが、色々痒いところに手が届く機能が備わっているので、こちらがオススメです。</p>
+<p>紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛。</p>
+<h3 id=11-iterm2httpswwwiterm2com>1.1. <a href=https://www.iterm2.com/>iTerm2</a></h3>
+<p>標準のターミナルアプリも良いが、色々痒いところに手が届く機能が備わっているので、<a href=https://www.iterm2.com/>iTerm2</a> を推奨する。</p>
 <h4 id=111-フォントを変えたい>1.1.1. フォントを変えたい</h4>
-<p>ダサくてテンションが上がらない人は、まず iTerm のフォントを変えることをオススメします。好みの等幅フォントを <strong>Profiles</strong> > <strong>Text</strong> > <strong>Change Font</strong> から変えてください。macOS にプリインストールされているものだと、 <code>menlo</code> あたりが良いかもしれません。</p>
+<p>ダサくてテンションが上がらない人は、まず iTerm のフォントを <strong>Profiles</strong> > <strong>Text</strong> > <strong>Change Font</strong> から、好みの等幅フォントに変更して欲しい。macOS にプリインストールされているものであれば、<code>menlo</code> あたりが良い。</p>
 <h4 id=112-カラースキーマを変えたい>1.1.2. カラースキーマを変えたい</h4>
-<p>ダサくてテンションが上がらない人は、カラースキーマも変えると良いかもしれません。</p>
-<ul>
-<li><a href=https://github.com/MartinSeeler/iterm2-material-design>MartinSeeler/iterm2-material-design</a></li>
-</ul>
+<p>ダサくてテンションが上がらない人は、カラースキーマも変えると良い。iterm2 のカラースキーマは <a href=https://github.com/MartinSeeler/iterm2-material-design>MartinSeeler/iterm2-material-design</a> 等で配布されている。</p>
 <h4 id=113-もうちょっとオシャレにしたい>1.1.3. もうちょっとオシャレにしたい</h4>
-<p>ダサくてテンションが上がらない人は、テーマも変えてみると良いです。わからなければエンジニアを捕まえてインストールしましょう。</p>
+<p>ダサくてテンションが上がらない人は、テーマも変えてみると良い。</p>
 <ul>
 <li><a href=https://github.com/robbyrussell/oh-my-zsh>robbyrussell/oh-my-zsh</a></li>
 <li><a href=https://github.com/sorin-ionescu/prezto>sorin-ionescu/prezto</a></li>
 <li><a href=https://github.com/sindresorhus/pure>sindresorhus/pure</a></li>
 </ul>
 <h3 id=12-visual-studio-codehttpscodevisualstudiocom>1.2. <a href=https://code.visualstudio.com/>Visual Studio Code</a></h3>
-<p>どんなエディタでも構いませんが、「まだエディタをインストールしてない…」ということであれば、これが良いと思います。</p>
+<p>どんなエディタでも構わないが、「まだエディタをインストールしてない…」ということであれば、<a href=https://code.visualstudio.com/>Visual Studio Code</a> が良い。</p>
 <h2 id=2-ターミナルで使うもの>2. ターミナルで使うもの</h2>
-<p>iTerm を起動して、色々なツールをインストールしていきます。Homebrew をインストールして、Git や Node.js を使っていくための nodenv のインストール方法を含んでいます。</p>
+<p>iTerm2 を起動して、色々なツールをインストールしていく。Homebrew をインストールして、Git や Node.js を使っていくための nodenv のインストール方法を含む。</p>
 <h3 id=21-homebrewhttpsbrewshindex_ja>2.1. <a href=https://brew.sh/index_ja>Homebrew</a></h3>
-<p>macOS のアプリケーションマネージャです。Sketch でいう Sketchpacks みたいなやつです。</p>
+<p><a href=https://brew.sh/index_ja>Homebrew</a> は macOS のアプリケーションマネージャである。Sketch でいう Sketchpacks のようなものだ。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>/usr/bin/ruby -e <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</code></pre></div><p>Homebrew をインストールすると、 <code>brew</code> コマンドが使えるようになります。</p>
+</code></pre></div><p>Homebrew をインストールすると、 <code>brew</code> コマンドが使えるようになる。</p>
 <h3 id=22-git>2.2. Git</h3>
-<p>システム標準の Git じゃないほうが良さげ。</p>
+<p>システム標準の Git でも構わないが、その後のアップデートなどを考えると Homebrew で配布されている Git を推奨する。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>brew install git
-</code></pre></div><p>Git をインストールすると、 <code>git</code> コマンドが使えるようになります。</p>
+</code></pre></div><p>Git をインストールすると、 <code>git</code> コマンドが使えるようになる。</p>
 <h3 id=23-nodenv>2.3. nodenv</h3>
-<p>Node.js のバージョンマネージャ、つまり Node.js をインストールするためのツールです。Sketch でいう Sketchpacks みたいなやつです。</p>
+<p><a href=https://github.com/nodenv/nodenv><code>nodenv</code></a> は Node.js のバージョンマネージャ、つまり Node.js をインストールするためのツールである。Sketch でいう Sketchpacks のようなものだ。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>brew install nodenv
-</code></pre></div><p>bash の人は <code>~/.bash_profile</code> に、zsh の人は <code>~/.zprofile</code> に以下を追加します。</p>
+</code></pre></div><p>bash の人は <code>~/.bash_profile</code> に、zsh の人は <code>~/.zprofile</code> に以下を追加する。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>nodenv init -<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
 export PATH<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$HOME<span style=color:#e6db74>/.nodenv/bin:</span>$PATH<span style=color:#e6db74>&#34;</span>
-</code></pre></div><p>nodenv をインストールすると、 <code>nodenv</code> コマンドが使えるようになります。</p>
+</code></pre></div><p>nodenv をインストールすると、 <code>nodenv</code> コマンドが使えるようになる。</p>
 <h3 id=24-nodejs>2.4. Node.js</h3>
-<p>ファイルシステムを使える JavaScript の実行環境です。色んな所で使います。先程インストールした <code>nodenv</code> を使ってインストールします。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>nodenv install 14.7.0
-nodenv global 14.7.0
-</code></pre></div><p>Node.js をインストールすると、 <code>node</code> コマンドと <code>npm</code> コマンドが使えるようになります。</p>
+<p>Node.js はファイルシステムを使える JavaScript の実行環境である。先程インストールした <code>nodenv</code> を使ってインストールする。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>nodenv install 20.11.1
+nodenv global 20.11.1
+</code></pre></div><p>Node.js をインストールすると、 <code>node</code> コマンドと <code>npm</code> コマンドが使えるようになる。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>node -v
 npm -v
-</code></pre></div><p>でバージョンが表示されたらバッチリです。 <code>console.log('hello');</code> と書いて <code>foo.js</code> で保存して、 <code>node foo.js</code> で実行すれば、 <code>hello</code> が出力されます。</p>
+</code></pre></div><p>でバージョンが表示されたら完璧だ。 <code>console.log('hello');</code> と書いて <code>foo.js</code> で保存して、 <code>node foo.js</code> で実行すれば、 <code>hello</code> が出力される。</p>
 <h2 id=3-github-にある-git-リポジトリをクローンする>3. GitHub にある Git リポジトリをクローンする</h2>
-<p>GitHub にある Git リポジトリとの対話に必要な認証を、SSH キーを使って認証します。 <code>https</code> で ID/PW を使って認証することもできますが、都度認証を必要とすることや、アプリケーションへの保存を要求されることもあり、個人的にはオススメしません。</p>
+<p>GitHub にある Git リポジトリとの対話に必要な認証を、SSH キーを使って認証する。 <code>https</code> で ID/PW を使って認証することもできるが、都度認証を必要とすることや、アプリケーションへの保存を要求されることもあり、個人的には推奨しない。</p>
 <h3 id=31-ssh-キーを生成する>3.1. SSH キーを生成する</h3>
-<p>以下のコマンドを実行すると、SSH キーの生成が始まります。メールアドレスは自分のものに変更してください。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>ssh-keygen -t rsa -b <span style=color:#ae81ff>4096</span> -C <span style=color:#e6db74>&#34;shogosensui@gmail.com&#34;</span>
-</code></pre></div><p>実行後、以下のように保存先を聞かれます。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Enter a file in which to save the key <span style=color:#f92672>(</span>/Users/1000ch/.ssh/id_rsa<span style=color:#f92672>)</span>: <span style=color:#f92672>[</span>Press enter<span style=color:#f92672>]</span>
-</code></pre></div><p>今から生成しようとしている SSH キーは GitHub とやりとりするものなので、デフォルトの <code>id_rsa</code> ではなく、 <code>github_rsa</code> としておくことをオススメします。つまり <code>/Users/1000ch/.ssh/github_rsa</code> を入力して、実行します。</p>
-<p>実行すると、 <code>/Users/1000ch/.ssh/</code> フォルダに <code>github_rsa</code> と <code>github_rsa.pub</code> というファイルｆが生成されます。　<code>ls ~/.ssh/</code> 等で確認してみてください。</p>
+<p>以下のコマンドを実行すると、SSH キーの生成が始まる。メールアドレスは個人のものに変更して実行する。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>ssh-keygen -t ed25519 -C <span style=color:#e6db74>&#34;shogosensui@gmail.com&#34;</span>
+</code></pre></div><p>実行後、以下のように保存先を聞かれる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Enter a file in which to save the key <span style=color:#f92672>(</span>/Users/1000ch/.ssh/id_ed25519<span style=color:#f92672>)</span>: <span style=color:#f92672>[</span>Press enter<span style=color:#f92672>]</span>
+</code></pre></div><p>今から生成しようとしている SSH キーは GitHub とやりとりするものなので、デフォルトの <code>id_ed25519</code> ではなく、 <code>github_ed25519</code> としておくことをオススメする。つまり <code>/Users/1000ch/.ssh/github_ed25519</code> を入力して、実行する。</p>
+<p>実行すると、 <code>/Users/1000ch/.ssh/</code> フォルダに <code>github_ed25519</code> と <code>github_ed25519.pub</code> というファイルが生成される。<code>ls ~/.ssh/</code> 等を実行すると、生成されたファイルを確認できる。</p>
 <h3 id=32-ssh-キーの公開鍵を-github-に登録する>3.2. SSH キーの公開鍵を GitHub に登録する</h3>
-<p>生成した鍵ペアのうち、 <code>github_rsa.pub</code> の内容を GitHub に登録します。<a href=https://github.com/settings/keys>SSH and GPG keys</a> から <strong>New SSH key</strong> をクリックすると、入力フォームが表示されます。 <code>cat ~/.ssh/github_rsa.pub</code> の結果をコピーするか、以下のコマンドでコピーできます。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>pbcopy &lt; ~/.ssh/github_rsa.pub
-</code></pre></div><p><strong>Title</strong> には、どの公開鍵を登録したかわかる名前を入れておくと良いです。例えば <strong>Personal MacBook Pro</strong> とかだとわかりやすいですが、お好きな名前を。</p>
+<p>生成した鍵ペアのうち、 <code>github_ed25519.pub</code> の内容を GitHub に登録する。<a href=https://github.com/settings/keys>SSH and GPG keys</a> から <strong>New SSH key</strong> をクリックすると、入力フォームが表示される。 <code>cat ~/.ssh/github_ed25519.pub</code> の結果をコピーするか、以下のコマンドでコピーできる。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>pbcopy &lt; ~/.ssh/github_ed25519.pub
+</code></pre></div><p><strong>Title</strong> には、どの公開鍵を登録したかわかる名前を入れておくと良いです。例えば <strong>Personal MacBook Pro</strong> とかだとわかりやすいが、好みの名前で良い。</p>
 <h3 id=33-githubcom-とのやりとりに-ssh-キーを指定する>3.3. <code>github.com</code> とのやりとりに SSH キーを指定する</h3>
-<p><code>github.com</code> との SSH 時に生成した SSH キーを使うように指定します。 <code>~/.ssh/config</code> というファイルにその指定を書きますが、ない場合は <code>touch ~/.ssh/config</code> を実行してファイルを作ってください。 <code>~/.ssh/config</code> には以下の内容を保存します。</p>
+<p><code>github.com</code> との SSH 時に生成した SSH キーを使うように指定する。 <code>~/.ssh/config</code> というファイルで指定するが、ない場合は <code>touch ~/.ssh/config</code> を実行してファイルを作ること。 <code>~/.ssh/config</code> には以下の内容を保存する。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Host github.com
  AddKeysToAgent yes
  UseKeychain yes
- IdentityFile ~/.ssh/github_rsa
+ IdentityFile ~/.ssh/github_ed25519
 </code></pre></div><h3 id=34-git-リポジトリをクローンする>3.4. Git リポジトリをクローンする</h3>
-<p><code>git clone [Git リポジトリの url]</code> でクローンできます。</p>
+<p><code>git clone [Git リポジトリの url]</code> でクローンできる。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>git clone git@github.com:user-name/repo-name.git
-</code></pre></div><h2 id=5-プロジェクトを起動する>5. プロジェクトを起動する</h2>
-<h3 id=51-クローンして移動する>5.1. クローンして移動する</h3>
-<p>プロジェクトが <a href=https://github.com/user-name/repo-name>github.com/user-name/repo-name</a> で管理している場合、この Git リポジトリをクローンして、iTerm2 でリポジトリ配下に移動してください。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cd user-name/repo-name
-</code></pre></div><h3 id=52-依存パッケージをインストールする>5.2. 依存パッケージをインストールする</h3>
-<p>このプロジェクトに限りませんが、昨今の Web アプリケーションは Node.js を使ってビルドしたり実行したりすることが多いです。こうしたプロジェクトには <code>package.json</code> という設定ファイルがあり、そのファイルがある場所で <code>npm install</code> を実行すると、そのプロジェクトで依存しているパッケージを <code>node_modules</code> フォルダにダウンロードします。 <code>node_modules</code> フォルダを削除しても、 <code>npm install</code> を実行すればまたダウンロードできます。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm install
-</code></pre></div><h3 id=53-プロジェクトを起動する>5.3. プロジェクトを起動する</h3>
-<p><code>npm install</code> したあとであれば、 <code>npm run dev</code> コマンドを実行するだけでローカル環境を起動できます。その他に細かな設定が必要な場合もありますが、例えば Vue.js + Nuxt のプロジェクトであれば、 <code>package.json</code> の scripts に <code>npm run dev</code> コマンドが定義されているはずなので、実行すれば起動できるはずです。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm run dev
 </code></pre></div>
 <aside class=Share>
 <div class=Share__Item>
