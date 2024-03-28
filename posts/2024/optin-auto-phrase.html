@@ -20,7 +20,7 @@
 <meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
 <meta property="og:description" content="ダークモードの再実装と日本語のフレーズ改行 このブログでもダークモードを prefers-color-scheme を使って Dark Mode に対応 していたが、諸々の実装を見直すタイミングで削除してあった。今回は、デフォルトでシステムの設定を参照するようにし、ダークモードを優先したい場合はページ上部にあるチェックボックスを on にすると有効化される。
 そのトグル UI の実装は、何の変哲もない <input type=&#34;checkbox> かと思いきや、実は <input type=&#34;checkbox&#34; switch> という新しい仕様で実装している。 switch 属性は長らく GitHub での議論されているが、Safari Technology Preview 185 での実装を経て Safari 17.4 に ship された。
-また CSS に 4 つの新しい国際化機能が導入された。このブログでも英数字と日本語の混在を意識して半角スペースを含めたテキストにしているが、 text-autospace プロパティと text-spacing-trim プロパティによってタイポグラフィは改善される。それぞれのプロパティのデフォルトの挙動が改善されるので、実装を待つのみだが、もう1つ注目しているのが word-break: auto-phrase; である。
+See the Pen <input type=&#34;checkbox&#34; switch> by 1000ch (@1000ch) on CodePen.  また CSS に 4 つの新しい国際化機能が導入された。このブログでも英数字と日本語の混在を意識して半角スペースを含めたテキストにしているが、 text-autospace プロパティと text-spacing-trim プロパティによってタイポグラフィは改善される。それぞれのプロパティのデフォルトの挙動が改善されるので、実装を待つのみだが、もう1つ注目しているのが word-break: auto-phrase; である。
 日本語や中国語といった言語は単語をスペースで区切らず、 word-break プロパティや overflow-wrap プロパティの値に応じて単語そのものが改行され、読みづらさを招く場合がある。auto-phrase 値は、日本語においては文節で改行することで可読性を改善してくれる。
 このブログでも全般的に適用したが、改行位置が各行の日本語文章に依存するため、ブロック要素の右端で改行されずレイアウト上の違和感が残る。これはパラグラフの改行位置でレイアウトのリズムを揃えるのではなく、そのブロック要素そのものの UI を改善するべきだとは思うが、ひとまずダークモードと同様にオプトインで設定できるようにした。">
 <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
@@ -70,6 +70,9 @@
 <h1 id=ダークモードの再実装と日本語のフレーズ改行>ダークモードの再実装と日本語のフレーズ改行</h1>
 <p>このブログでもダークモードを <a href=/posts/2019/dark-mode.html><code>prefers-color-scheme</code> を使って Dark Mode に対応</a> していたが、諸々の実装を見直すタイミングで削除してあった。今回は、デフォルトでシステムの設定を参照するようにし、ダークモードを優先したい場合はページ上部にあるチェックボックスを on にすると有効化される。</p>
 <p>そのトグル UI の実装は、何の変哲もない <code>&lt;input type="checkbox></code> かと思いきや、実は <code>&lt;input type="checkbox" switch></code> という新しい仕様で実装している。 <a href=https://github.com/whatwg/html/issues/4180><code>switch</code> 属性は長らく GitHub での議論されているが</a>、<a href=https://www.webkit.org/blog/14885/release-notes-for-safari-technology-preview-185/>Safari Technology Preview 185</a> での実装を経て <a href=https://webkit.org/blog/15063/webkit-features-in-safari-17-4/>Safari 17.4</a> に ship された。</p>
+<iframe loading=lazy scrolling=no title='<input type="checkbox" switch>' src="https://codepen.io/1000ch/embed/abxyeJB?default-tab=html%2Cresult" frameborder=no allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/abxyeJB>
+&lt;input type="checkbox" switch></a> by 1000ch (<a href=https://codepen.io/1000ch>@1000ch</a>)
+on <a href=https://codepen.io>CodePen</a>.</iframe>
 <p>また <a href="https://developer.chrome.com/blog/css-i18n-features?hl=ja">CSS に 4 つの新しい国際化機能が導入された</a>。このブログでも英数字と日本語の混在を意識して半角スペースを含めたテキストにしているが、 <code>text-autospace</code> プロパティと <code>text-spacing-trim</code> プロパティによってタイポグラフィは改善される。それぞれのプロパティのデフォルトの挙動が改善されるので、実装を待つのみだが、もう1つ注目しているのが <code>word-break: auto-phrase;</code> である。</p>
 <p>日本語や中国語といった言語は単語をスペースで区切らず、 <code>word-break</code> プロパティや <code>overflow-wrap</code> プロパティの値に応じて単語そのものが改行され、読みづらさを招く場合がある。<code>auto-phrase</code> 値は、日本語においては文節で改行することで可読性を改善してくれる。</p>
 <p>このブログでも全般的に適用したが、改行位置が各行の日本語文章に依存するため、ブロック要素の右端で改行されずレイアウト上の違和感が残る。これはパラグラフの改行位置でレイアウトのリズムを揃えるのではなく、そのブロック要素そのものの UI を改善するべきだとは思うが、ひとまずダークモードと同様にオプトインで設定できるようにした。</p>
