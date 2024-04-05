@@ -2,7 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>デザイナーさん向け開発環境セットアップガイド - EagleLand</title>
+<title>デザイナー向け開発環境セットアップガイド - EagleLand</title>
 <link rel=icon href=/favicon.png>
 <link rel="shortcut icon" href=/favicon.png>
 <link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
@@ -18,8 +18,8 @@
 <link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
 <meta name=author content="Shogo Sensui">
 <meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="デザイナーさん向け開発環境セットアップガイド 社内のデザイナーさん向けに書いた資料があったが、読み返していたら特に社内専用という内容でもなかったので、社外向けに公開してみる。やや opinionated な部分があるのはご了承ください。
-1. macOS のアプリ 紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛。
+<meta property="og:description" content="デザイナー向け開発環境セットアップガイド 社内のデザイナー向けに書いた資料があったが、読み返していたら社内専用という内容でもなかったので、社外向けに公開してみる。opinionated な部分があるのはご了承いただきたい。
+1. macOS のアプリ 紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛する。
 1.1. iTerm2 標準のターミナルアプリも良いが、色々痒いところに手が届く機能が備わっているので、iTerm2 を推奨する。
 1.1.1. フォントを変えたい ダサくてテンションが上がらない人は、まず iTerm のフォントを Profiles > Text > Change Font から、好みの等幅フォントに変更して欲しい。macOS にプリインストールされているものであれば、menlo あたりが良い。
 1.1.2. カラースキーマを変えたい ダサくてテンションが上がらない人は、カラースキーマも変えると良い。iterm2 のカラースキーマは MartinSeeler/iterm2-material-design 等で配布されている。
@@ -32,10 +32,10 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://1000ch.net/posts/2019/setup-environment-for-designers.html">
 <meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="デザイナーさん向け開発環境セットアップガイド">
+<meta property="og:title" content="デザイナー向け開発環境セットアップガイド">
 <meta name=twitter:site content="@1000ch">
 <meta name=twitter:url content="https://1000ch.net/posts/2019/setup-environment-for-designers.html">
-<meta name=twitter:title content="デザイナーさん向け開発環境セットアップガイド">
+<meta name=twitter:title content="デザイナー向け開発環境セットアップガイド">
 <meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
 <link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
 <link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
@@ -71,10 +71,10 @@
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2019.01.31</span>
-<h1 id=デザイナーさん向け開発環境セットアップガイド>デザイナーさん向け開発環境セットアップガイド</h1>
-<p>社内のデザイナーさん向けに書いた資料があったが、読み返していたら特に社内専用という内容でもなかったので、社外向けに公開してみる。やや opinionated な部分があるのはご了承ください。</p>
+<h1 id=デザイナー向け開発環境セットアップガイド>デザイナー向け開発環境セットアップガイド</h1>
+<p>社内のデザイナー向けに書いた資料があったが、読み返していたら社内専用という内容でもなかったので、社外向けに公開してみる。opinionated な部分があるのはご了承いただきたい。</p>
 <h2 id=1-macos-のアプリ>1. macOS のアプリ</h2>
-<p>紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛。</p>
+<p>紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛する。</p>
 <h3 id=11-iterm2httpswwwiterm2com>1.1. <a href=https://www.iterm2.com/>iTerm2</a></h3>
 <p>標準のターミナルアプリも良いが、色々痒いところに手が届く機能が備わっているので、<a href=https://www.iterm2.com/>iTerm2</a> を推奨する。</p>
 <h4 id=111-フォントを変えたい>1.1.1. フォントを変えたい</h4>
@@ -122,12 +122,12 @@ npm -v
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>ssh-keygen -t ed25519 -C <span style=color:#e6db74>&#34;shogosensui@gmail.com&#34;</span>
 </code></pre></div><p>実行後、以下のように保存先を聞かれる。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Enter a file in which to save the key <span style=color:#f92672>(</span>/Users/1000ch/.ssh/id_ed25519<span style=color:#f92672>)</span>: <span style=color:#f92672>[</span>Press enter<span style=color:#f92672>]</span>
-</code></pre></div><p>今から生成しようとしている SSH キーは GitHub とやりとりするものなので、デフォルトの <code>id_ed25519</code> ではなく、 <code>github_ed25519</code> としておくことをオススメする。つまり <code>/Users/1000ch/.ssh/github_ed25519</code> を入力して、実行する。</p>
+</code></pre></div><p>今から生成しようとしている SSH キーは GitHub とやりとりするものなので、デフォルトの <code>id_ed25519</code> ではなく、 <code>github_ed25519</code> としておくことを推奨する。つまり <code>/Users/1000ch/.ssh/github_ed25519</code> を入力して、実行する。</p>
 <p>実行すると、 <code>/Users/1000ch/.ssh/</code> フォルダに <code>github_ed25519</code> と <code>github_ed25519.pub</code> というファイルが生成される。<code>ls ~/.ssh/</code> 等を実行すると、生成されたファイルを確認できる。</p>
 <h3 id=32-ssh-キーの公開鍵を-github-に登録する>3.2. SSH キーの公開鍵を GitHub に登録する</h3>
 <p>生成した鍵ペアのうち、 <code>github_ed25519.pub</code> の内容を GitHub に登録する。<a href=https://github.com/settings/keys>SSH and GPG keys</a> から <strong>New SSH key</strong> をクリックすると、入力フォームが表示される。 <code>cat ~/.ssh/github_ed25519.pub</code> の結果をコピーするか、以下のコマンドでコピーできる。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>pbcopy &lt; ~/.ssh/github_ed25519.pub
-</code></pre></div><p><strong>Title</strong> には、どの公開鍵を登録したかわかる名前を入れておくと良いです。例えば <strong>Personal MacBook Pro</strong> とかだとわかりやすいが、好みの名前で良い。</p>
+</code></pre></div><p><strong>Title</strong> には、どの公開鍵を登録したかわかる名前を入れておくと良い。例えば <strong>Personal MacBook Pro</strong> とかだとわかりやすいが、好みの名前で良い。</p>
 <h3 id=33-githubcom-とのやりとりに-ssh-キーを指定する>3.3. <code>github.com</code> とのやりとりに SSH キーを指定する</h3>
 <p><code>github.com</code> との SSH 時に生成した SSH キーを使うように指定する。 <code>~/.ssh/config</code> というファイルで指定するが、ない場合は <code>touch ~/.ssh/config</code> を実行してファイルを作ること。 <code>~/.ssh/config</code> には以下の内容を保存する。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Host github.com
