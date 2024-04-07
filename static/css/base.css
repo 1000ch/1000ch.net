@@ -11,7 +11,7 @@
 body {
   background-color: var(--bgcolor-backdrop);
   color: var(--color);
-  font-family: monospace, sans-serif;
+  font-family: sans-serif;
   font-size: 16px;
   line-height: 1.6;
   overflow-wrap: break-word;
@@ -80,7 +80,6 @@ pre {
 }
 
 code {
-  margin: 0.125em 0.25em;
   padding: 0.125em 0.25em;
   border: 1px solid var(--bordercolor);
   border-radius: 0.25em;
