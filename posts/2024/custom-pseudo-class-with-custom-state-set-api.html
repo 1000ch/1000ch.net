@@ -2,7 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>カスタム要素の状態を定義する CustomStateSet API と参照する擬似クラス :state() - EagleLand</title>
+<title>カスタム要素の状態を定義する CustomStateSet と参照する擬似クラス :state() - EagleLand</title>
 <link rel=icon href=/favicon.png>
 <link rel="shortcut icon" href=/favicon.png>
 <link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
@@ -18,19 +18,19 @@
 <link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
 <meta name=author content="Shogo Sensui">
 <meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="カスタム要素の状態を定義する CustomStateSet API と参照する擬似クラス :state() Safari 17.4 で CustomStateSet API がサポートされた。CustomStateSet は Web Components のカスタム要素の状態を管理する API で、Element Internals の states プロパティに含まれる。Element Internals はカスタム要素の振る舞いを HTML のフォームと連動させるための仕様だ。
+<meta property="og:description" content="カスタム要素の状態を定義する CustomStateSet と参照する擬似クラス :state() Safari 17.4 で CustomStateSet がサポートされた。CustomStateSet は Web Components のカスタム要素の状態を管理する API で、Element Internals の states プロパティに含まれる。Element Internals はカスタム要素の振る舞いを HTML のフォームと連動させるための仕様だ。
 CustomStateSet は JavaScript のグローバルオブジェクトである Set と同様のインターフェースで、CustomStateSet に追加された文字列がカスタム要素の「状態」を定義する。
 次のデモは HTML の minlength 属性を <input type=&#34;number&#34;> で動的に設定し振る舞う Web Components である1。<input type=&#34;text&#34;> や <input type=&#34;number&#34;> の値を変更すると、validate() メソッドで入力値のバリデーションを行い、その結果を Element Internals オブジェクトの setValidity() メソッドで設定するとともに、states プロパティで状態を指定している。
-See the Pen Custom pseudo-classes with CustomStateSet API of Element Internals by 1000ch (@1000ch) on CodePen.">
+See the Pen Custom pseudo-classes with CustomStateSet API of Element Internals by 1000ch (@1000ch) on CodePen.  ここでは、入力値の長さが minlength の値より小さい場合にエラーを報告しつつ、error という値を保存している。これによって、この HTMLElement は Element Internals の states プロパティによって状態が宣言されることになる。:state() 擬似クラスは、CustomStateSet オブジェクトで定義される状態を参照し、任意の識別子として参照できる。ここでは error という状態を :state(error) のように参照し、スタイリングしている。">
 <meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
 <meta name=twitter:card content="summary">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://1000ch.net/posts/2024/custom-pseudo-class-with-custom-state-set-api.html">
 <meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="カスタム要素の状態を定義する CustomStateSet API と参照する擬似クラス :state()">
+<meta property="og:title" content="カスタム要素の状態を定義する CustomStateSet と参照する擬似クラス :state()">
 <meta name=twitter:site content="@1000ch">
 <meta name=twitter:url content="https://1000ch.net/posts/2024/custom-pseudo-class-with-custom-state-set-api.html">
-<meta name=twitter:title content="カスタム要素の状態を定義する CustomStateSet API と参照する擬似クラス :state()">
+<meta name=twitter:title content="カスタム要素の状態を定義する CustomStateSet と参照する擬似クラス :state()">
 <meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
 <link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
 <link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
@@ -66,8 +66,8 @@ See the Pen Custom pseudo-classes with CustomStateSet API of Element Internals b
 </header>
 <main class=Main>
 <span class="Label Label--gray pull-left">2024.04.07</span>
-<h1 id=カスタム要素の状態を定義する-customstateset-api-と参照する擬似クラス-state>カスタム要素の状態を定義する CustomStateSet API と参照する擬似クラス :state()</h1>
-<p>Safari 17.4 で <a href=https://developer.mozilla.org/docs/Web/API/CustomStateSet>CustomStateSet API</a> がサポートされた。<code>CustomStateSet</code> は Web Components のカスタム要素の状態を管理する API で、<a href=https://developer.mozilla.org/docs/Web/API/ElementInternals>Element Internals</a> の <code>states</code> プロパティに含まれる。Element Internals はカスタム要素の振る舞いを HTML のフォームと連動させるための仕様だ。</p>
+<h1 id=カスタム要素の状態を定義する-customstateset-と参照する擬似クラス-state>カスタム要素の状態を定義する <code>CustomStateSet</code> と参照する擬似クラス <code>:state()</code></h1>
+<p>Safari 17.4 で <a href=https://developer.mozilla.org/en-US/docs/Web/API/CustomStateSet>CustomStateSet</a> がサポートされた。<code>CustomStateSet</code> は Web Components のカスタム要素の状態を管理する API で、<a href=https://developer.mozilla.org/docs/Web/API/ElementInternals>Element Internals</a> の <code>states</code> プロパティに含まれる。Element Internals はカスタム要素の振る舞いを HTML のフォームと連動させるための仕様だ。</p>
 <p>CustomStateSet は <a href=https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set>JavaScript のグローバルオブジェクトである <code>Set</code></a> と同様のインターフェースで、CustomStateSet に追加された文字列がカスタム要素の「状態」を定義する。</p>
 <p>次のデモは HTML の <a href=https://developer.mozilla.org/docs/Web/HTML/Attributes/minlength><code>minlength</code> 属性</a>を <code>&lt;input type="number"></code> で動的に設定し振る舞う Web Components である<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>。<code>&lt;input type="text"></code> や <code>&lt;input type="number"></code> の値を変更すると、<code>validate()</code> メソッドで入力値のバリデーションを行い、その結果を Element Internals オブジェクトの <a href=https://developer.mozilla.org/ja/docs/Web/API/ElementInternals/setValidity><code>setValidity()</code></a> メソッドで設定するとともに、<code>states</code> プロパティで状態を指定している。</p>
 <iframe loading=lazy scrolling=no title="Custom pseudo-classes with CustomStateSet API of Element Internals" src="https://codepen.io/1000ch/embed/YzMazyj?default-tab=js%2Cresult" frameborder=no allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/YzMazyj>
