@@ -1,136 +1,22 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>リーン・スタートアップ - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="リーン・スタートアップ リーン・スタートアップという本の読書感想文。 LEAN の付くサービス開発や企業経営に関する本は数多にあるが、中でも評判の良さそうな一冊を選んだ。
-エリック・リース (著), 伊藤 穣一(MITメディアラボ所長) (解説), 井口 耕二 (翻訳) 
- シリコンバレー発 注目のマネジメント手法 リーン・スタートアップとは、新しい製品やサービスを開発する際に、作り手の思い込みによって 顧客にとって価値のないものを作ってしまうことに伴う、時間、労力、資源、情熱のムダをなくし、 時代が求める製品・サービスを、より早く生みだし続けるための方法論です。
- リーン・スタートアップという言葉とそれが示す行動方針は、スタートアップ界隈のみならず色々な開発現場で導入されつつある。導入事例として有名なのはクックパッドあたりだろう。リーン・スタートアップの重要なエッセンスのひとつに「仮説と検証」があるが、A/Bテストのフレームワークも自社開発するなど、成功事例の1つとして挙げられるだろう。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>リーン・スタートアップ - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="リーン・スタートアップ リーン・スタートアップという本の読書感想文。 LEAN の付くサービス開発や企業経営に関する本は数多にあるが、中でも評判の良さそうな一冊を選んだ。
+エリック・リース (著), 伊藤 穣一(MITメディアラボ所長) (解説), 井口 耕二 (翻訳) シリコンバレー発 注目のマネジメント手法 リーン・スタートアップとは、新しい製品やサービスを開発する際に、作り手の思い込みによって 顧客にとって価値のないものを作ってしまうことに伴う、時間、労力、資源、情熱のムダをなくし、 時代が求める製品・サービスを、より早く生みだし続けるための方法論です。
+リーン・スタートアップという言葉とそれが示す行動方針は、スタートアップ界隈のみならず色々な開発現場で導入されつつある。導入事例として有名なのはクックパッドあたりだろう。リーン・スタートアップの重要なエッセンスのひとつに「仮説と検証」があるが、A/Bテストのフレームワークも自社開発するなど、成功事例の1つとして挙げられるだろう。
 スタートアップということでスモールチームに充てがわれる言葉に聞こえるが、チームの大きさに関わらないプロセスだし、チームのリーダー層だけでなくモノづくりに関わる全ての人が読める本。
 「リーン・スタートアップが一体どういったものなのか」がこの本に凝縮されているわけだが、ストーリーを交えていることもありやや冗長（400P超）なので、読んでられないという人は以下のスライドでも要点はわかりそう。
-  10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~  from 圭 進藤  僕自身はスタートアップを率いたわけではないし、プロダクトの先頭に立って成功を収めたこともないけど、検証で示されるデータに納得の元で進める開発をしたいとは思ってる。
+10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~ from 圭 進藤 僕自身はスタートアップを率いたわけではないし、プロダクトの先頭に立って成功を収めたこともないけど、検証で示されるデータに納得の元で進める開発をしたいとは思ってる。
 長年、開発とか仕事とかどういうときに幸せでどういうときに辛いのかと考えてきたが、答えは「納得できてるかどうか」だなと結論づけた。環境の善し悪し、好きか嫌いか、興味あるかないか、技術的にどうこうではなく、やることに納得がいってるかどうか。それさえあれば何であろうと前向きに取り組める
-&mdash; Naoya Ito (@naoya_ito) 2016, 1月 15 これに尽きる（文脈は違うかもしれないけど）。">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2016/the-lean-startup.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="リーン・スタートアップ">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2016/the-lean-startup.html">
-<meta name=twitter:title content="リーン・スタートアップ">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2016.02.05</span>
-<h1 id=リーンスタートアップ>リーン・スタートアップ</h1>
-<p><a href="https://www.amazon.co.jp/dp/4822248976/?tag=1000ch-22">リーン・スタートアップ</a>という本の読書感想文。 <strong>LEAN</strong> の付くサービス開発や企業経営に関する本は数多にあるが、中でも評判の良さそうな一冊を選んだ。</p>
-<p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51bOkHsFFlL._SX336_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4822248976/ tag=1000ch-22 title=リーン・スタートアップ>
-エリック・リース (著), 伊藤 穣一(MITメディアラボ所長) (解説), 井口 耕二 (翻訳)
-</affiliate-link></p>
-<blockquote>
-<p><strong>シリコンバレー発 注目のマネジメント手法</strong>
+&mdash; Naoya Ito (@naoya_ito) 2016, 1月 15 これに尽きる（文脈は違うかもしれないけど）。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/the-lean-startup.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="リーン・スタートアップ"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/the-lean-startup.html"><meta name=twitter:title content="リーン・スタートアップ"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2016.02.05</span><h1 id=リーンスタートアップ>リーン・スタートアップ</h1><p><a href="https://www.amazon.co.jp/dp/4822248976/?tag=1000ch-22">リーン・スタートアップ</a>という本の読書感想文。 <strong>LEAN</strong> の付くサービス開発や企業経営に関する本は数多にあるが、中でも評判の良さそうな一冊を選んだ。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51bOkHsFFlL._SX336_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4822248976/ tag=1000ch-22 title=リーン・スタートアップ>エリック・リース (著), 伊藤 穣一(MITメディアラボ所長) (解説), 井口 耕二 (翻訳)</affiliate-link></p><blockquote><p><strong>シリコンバレー発 注目のマネジメント手法</strong>
 リーン・スタートアップとは、新しい製品やサービスを開発する際に、作り手の思い込みによって
 顧客にとって価値のないものを作ってしまうことに伴う、時間、労力、資源、情熱のムダをなくし、
-時代が求める製品・サービスを、より早く生みだし続けるための方法論です。</p>
-</blockquote>
-<p>リーン・スタートアップという言葉とそれが示す行動方針は、スタートアップ界隈のみならず色々な開発現場で導入されつつある。<a href=http://itpro.nikkeibp.co.jp/article/COLUMN/20120302/384286/>導入事例として有名なのはクックパッド</a>あたりだろう。リーン・スタートアップの重要なエッセンスのひとつに「仮説と検証」があるが、A/Bテストのフレームワークも自社開発するなど、成功事例の1つとして挙げられるだろう。</p>
-<p>スタートアップということでスモールチームに充てがわれる言葉に聞こえるが、チームの大きさに関わらないプロセスだし、チームのリーダー層だけでなくモノづくりに関わる全ての人が読める本。</p>
-<p>「リーン・スタートアップが一体どういったものなのか」がこの本に凝縮されているわけだが、ストーリーを交えていることもありやや冗長（400P超）なので、読んでられないという人は以下のスライドでも要点はわかりそう。</p>
-<iframe src=https://www.slideshare.net/slideshow/embed_code/key/GuPph4hKsSbQD5 scrolling=no style=aspect-ratio:4/3 allowfullscreen></iframe> <div style=margin-bottom:5px> <strong> <a href=//www.slideshare.net/shintokeimail/10lean-startup title="10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~" target=_blank>10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~</a> </strong> from <strong><a href=//www.slideshare.net/shintokeimail target=_blank>圭 進藤</a></strong> </div>
-<p>僕自身はスタートアップを率いたわけではないし、プロダクトの先頭に立って成功を収めたこともないけど、検証で示されるデータに納得の元で進める開発をしたいとは思ってる。</p>
-<blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>長年、開発とか仕事とかどういうときに幸せでどういうときに辛いのかと考えてきたが、答えは「納得できてるかどうか」だなと結論づけた。環境の善し悪し、好きか嫌いか、興味あるかないか、技術的にどうこうではなく、やることに納得がいってるかどうか。それさえあれば何であろうと前向きに取り組める</p>&mdash; Naoya Ito (@naoya_ito) <a href=https://twitter.com/naoya_ito/status/687976306789580800>2016, 1月 15</a></blockquote>
-<p>これに尽きる（文脈は違うかもしれないけど）。</p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2016/og-card-simulator.html>👈 Open Graphのデータをカードでプレビューする</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2016/wdpress-frontend-series-pwa.html>WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+時代が求める製品・サービスを、より早く生みだし続けるための方法論です。</p></blockquote><p>リーン・スタートアップという言葉とそれが示す行動方針は、スタートアップ界隈のみならず色々な開発現場で導入されつつある。<a href=http://itpro.nikkeibp.co.jp/article/COLUMN/20120302/384286/>導入事例として有名なのはクックパッド</a>あたりだろう。リーン・スタートアップの重要なエッセンスのひとつに「仮説と検証」があるが、A/Bテストのフレームワークも自社開発するなど、成功事例の1つとして挙げられるだろう。</p><p>スタートアップということでスモールチームに充てがわれる言葉に聞こえるが、チームの大きさに関わらないプロセスだし、チームのリーダー層だけでなくモノづくりに関わる全ての人が読める本。</p><p>「リーン・スタートアップが一体どういったものなのか」がこの本に凝縮されているわけだが、ストーリーを交えていることもありやや冗長（400P超）なので、読んでられないという人は以下のスライドでも要点はわかりそう。</p><iframe src=https://www.slideshare.net/slideshow/embed_code/key/GuPph4hKsSbQD5 scrolling=no style=aspect-ratio:4/3 allowfullscreen></iframe><div style=margin-bottom:5px><strong><a href=//www.slideshare.net/shintokeimail/10lean-startup title="10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~" target=_blank>10分でわかったつもりになるlean start up ~リーンスタートアップって何ですか？~</a> </strong>from <strong><a href=//www.slideshare.net/shintokeimail target=_blank>圭 進藤</a></strong></div><p>僕自身はスタートアップを率いたわけではないし、プロダクトの先頭に立って成功を収めたこともないけど、検証で示されるデータに納得の元で進める開発をしたいとは思ってる。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>長年、開発とか仕事とかどういうときに幸せでどういうときに辛いのかと考えてきたが、答えは「納得できてるかどうか」だなと結論づけた。環境の善し悪し、好きか嫌いか、興味あるかないか、技術的にどうこうではなく、やることに納得がいってるかどうか。それさえあれば何であろうと前向きに取り組める</p>&mdash; Naoya Ito (@naoya_ito) <a href=https://twitter.com/naoya_ito/status/687976306789580800>2016, 1月 15</a></blockquote><p>これに尽きる（文脈は違うかもしれないけど）。</p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2016/og-card-simulator.html>👈 Open Graphのデータをカードでプレビューする</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2016/wdpress-frontend-series-pwa.html>WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -177,6 +63,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

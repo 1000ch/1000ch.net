@@ -1,190 +1,51 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Go で Node.js のバージョンマネージャを自作した - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="Go で Node.js のバージョンマネージャを自作した 1000ch/nd という Node.js のバージョンマネージャを Go で書いた。車輪の再発明もいいところで、特に今使っているバージョンマネージャから切り替えるメリットは今の所ない。ただの作業ログです、悪しからず。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Go で Node.js のバージョンマネージャを自作した - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Go で Node.js のバージョンマネージャを自作した 1000ch/nd という Node.js のバージョンマネージャを Go で書いた。車輪の再発明もいいところで、特に今使っているバージョンマネージャから切り替えるメリットは今の所ない。ただの作業ログです、悪しからず。
 それっぽいモチベーション Go は Windows、macOS、Linux といった環境へのクロスコンパイルができることと、実行できるシングルバイナリを配布するだけでランタイムへ依存しなくて済む、この2点で選んだ。
 作ったあとに @hokaccha とした答え合わせで、PATH の通し方については少々議論になった。今回作ったツールは Node.js のアーカイブファイルをダウンロードして展開し、あらかじめ通しておいたパスから node にシンボリックリンクを作るだけの単純な実装である。
 代表的な既存ツールは以下のような実装になっている。
- nodenv/nodenv: ~/.nodenv/shim/node を起点に実行する Node.js を探索する hokaccha/nodebrew: パスが通った場所から、対象の Node.js へシンボリックリンクを作成する creationix/nvm: PATH を変更して対象の Node.js へパスを通す  nodenv は rbenv のフォークで、グローバルの node のパスを変更できるだけでなく、カレントディレクトリの .node-version を参照して実行する Node.js を切り替えできる。高機能で良いが、 .node-version でバージョンを固定して運用するには関わる人全てのバージョンマネージャを揃える必要があったりして、中々難しい部分もある。
+nodenv/nodenv: ~/.nodenv/shim/node を起点に実行する Node.js を探索する hokaccha/nodebrew: パスが通った場所から、対象の Node.js へシンボリックリンクを作成する creationix/nvm: PATH を変更して対象の Node.js へパスを通す nodenv は rbenv のフォークで、グローバルの node のパスを変更できるだけでなく、カレントディレクトリの .node-version を参照して実行する Node.js を切り替えできる。高機能で良いが、 .node-version でバージョンを固定して運用するには関わる人全てのバージョンマネージャを揃える必要があったりして、中々難しい部分もある。
 nvm の PATH を変更する方式は、なかなか痒い部分があるのと、欲しい機能があるならフォークして使ってくれというスタンスなので、ツールとして微妙さを感じている。
 思想や作りは nodebrew と最も似ていて、記述言語が違うくらい。
-クロスコンパイルについて Go を選んだ割に、Windows や Linux でのテストをどうしようか考え中なので、まだクロスコンパイル環境は整えている最中である。経緯や概要は Go のクロスコンパイル環境構築で抑えたが、状況は改善されているようで、go のインストール時に --with-cc-all オプションが不要になっていたり、クロスコンパイルに追加で必要だったツールが不要になっている。">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2018/nd.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Go で Node.js のバージョンマネージャを自作した">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2018/nd.html">
-<meta name=twitter:title content="Go で Node.js のバージョンマネージャを自作した">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2018.10.16</span>
-<h1 id=go-で-nodejs-のバージョンマネージャを自作した>Go で Node.js のバージョンマネージャを自作した</h1>
-<p><a href=https://github.com/1000ch/nd>1000ch/nd</a> という Node.js のバージョンマネージャを Go で書いた。車輪の再発明もいいところで、特に今使っているバージョンマネージャから切り替えるメリットは今の所ない。ただの作業ログです、悪しからず。</p>
-<h2 id=それっぽいモチベーション>それっぽいモチベーション</h2>
-<p>Go は Windows、macOS、Linux といった環境へのクロスコンパイルができることと、実行できるシングルバイナリを配布するだけでランタイムへ依存しなくて済む、この2点で選んだ。</p>
-<p>作ったあとに <a href=https://twitter.com/hokaccha>@hokaccha</a> とした答え合わせで、<code>PATH</code> の通し方については少々議論になった。今回作ったツールは Node.js のアーカイブファイルをダウンロードして展開し、あらかじめ通しておいたパスから <code>node</code> にシンボリックリンクを作るだけの単純な実装である。</p>
-<p>代表的な既存ツールは以下のような実装になっている。</p>
-<ul>
-<li><a href=https://github.com/nodenv/nodenv>nodenv/nodenv</a>: <code>~/.nodenv/shim/node</code> を起点に実行する Node.js を探索する</li>
-<li><a href=https://github.com/hokaccha/nodebrew>hokaccha/nodebrew</a>: パスが通った場所から、対象の Node.js へシンボリックリンクを作成する</li>
-<li><a href=https://github.com/creationix/nvm>creationix/nvm</a>: <code>PATH</code> を変更して対象の Node.js へパスを通す</li>
-</ul>
-<p><code>nodenv</code> は <code>rbenv</code> のフォークで、グローバルの <code>node</code> のパスを変更できるだけでなく、カレントディレクトリの <code>.node-version</code> を参照して実行する Node.js を切り替えできる。高機能で良いが、 <code>.node-version</code> でバージョンを固定して運用するには関わる人全てのバージョンマネージャを揃える必要があったりして、中々難しい部分もある。</p>
-<p><code>nvm</code> の <code>PATH</code> を変更する方式は、なかなか痒い部分があるのと、<a href=https://github.com/creationix/nvm/wiki/NVM-Forks>欲しい機能があるならフォークして使ってくれというスタンス</a>なので、ツールとして微妙さを感じている。</p>
-<p>思想や作りは <code>nodebrew</code> と最も似ていて、記述言語が違うくらい。</p>
-<h2 id=クロスコンパイルについて>クロスコンパイルについて</h2>
-<p>Go を選んだ割に、Windows や Linux でのテストをどうしようか考え中なので、まだクロスコンパイル環境は整えている最中である。経緯や概要は <a href=https://qiita.com/Jxck_/items/02185f51162e92759ebe>Go のクロスコンパイル環境構築</a>で抑えたが、状況は改善されているようで、go のインストール時に <code>--with-cc-all</code> オプションが不要になっていたり、クロスコンパイルに追加で必要だったツールが不要になっている。</p>
-<p>引き続きポイントになるのは <a href=https://golang.org/doc/install/source#environment><code>GOOS</code> と <code>GOARCH</code> という2つの環境変数</a>で、 <code>go build</code> 時にこれらが参照されることで各種環境向けのバイナリが出力される。これを踏まえて、クロスコンパイルにはいくつか方法がある。</p>
-<ul>
-<li><a href=https://gist.github.com/nikuyoshi/a6c92119c59144d472ef>nikuyoshi/build-crosscompile-env.sh</a>: <code>GOOS</code> と <code>GOARCH</code> を切り替えながら <code>go build</code> するシェルスクリプト</li>
-<li><a href=https://github.com/mitchellh/gox>mitchellh/gox</a>: <code>gox</code> コマンドだけでクロスコンパイルしてくれるコマンドラインツール</li>
-<li><a href=https://github.com/laher/goxc>laher/goxc</a>: <code>goxc</code> コマンドでクロスコンパイルするだけでなく、zip アーカイブやバージョンニングなどもサポートしている高機能なコマンドラインツール</li>
-</ul>
-<p>よくできていて使いやすいが、先の通り Windows や Linux 向けビルドは検討中なので、結局 <code>Makefile</code> で最小限のビルドをするに留めた。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=color:#a6e22e>.PHONY</span><span style=color:#f92672>:</span> prepare build zip clean
-<span style=color:#a6e22e>all</span><span style=color:#f92672>:</span> prepare build zip clean
-
-<span style=color:#a6e22e>prepare</span><span style=color:#f92672>:</span>
-	mkdir nd_darwin_amd64
-
-<span style=color:#a6e22e>build</span><span style=color:#f92672>:</span>
-	env GOOS<span style=color:#f92672>=</span>darwin GOARCH<span style=color:#f92672>=</span>amd64 go build -ldflags<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-X main.version=</span><span style=color:#66d9ef>$(</span>shell gov<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span> -o nd_darwin_amd64/nd
-
-<span style=color:#a6e22e>zip</span><span style=color:#f92672>:</span>
-	zip nd_darwin_amd64.zip -r nd_darwin_amd64
-
-<span style=color:#a6e22e>clean</span><span style=color:#f92672>:</span>
-	rm -rf nd_darwin_amd64
-</code></pre></div><h2 id=nd-のインストールと使い方>nd のインストールと使い方</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># nd をインストールする</span>
-$ go get github.com/1000ch/nd
-
-<span style=color:#75715e># $HOME/.nd/bin にパスを通す</span>
-export PATH<span style=color:#f92672>=</span>$HOME/.nd/bin:$PATH
-
-<span style=color:#75715e># 対象の Node.js をインストールする</span>
-$ nd install &lt;version&gt;
-
-<span style=color:#75715e># 対象の Node.js をアンインストールする</span>
-$ nd uninstall &lt;version&gt;
-
-<span style=color:#75715e># 対象の Node.js を有効化する</span>
-$ nd use &lt;version&gt;
-
-<span style=color:#75715e># インストールされている Node.js を表示する</span>
-$ nd list
-</code></pre></div><h2 id=バージョニングについて>バージョニングについて</h2>
-<p><a href=https://github.com/ysugimoto/gov>ysugimoto/gov</a> というツールで管理している。</p>
-<ol>
-<li><code>gov init</code> を実行すると <code>.versions</code> という管理ファイルが生成される</li>
-<li><code>gov patch|minor|major</code> を実行するとバージョンが上がり <code>git</code> のタグが作られる</li>
-<li><code>gov</code> を実行すると最新バージョンを出力する</li>
-</ol>
-<p>という、 <code>npm</code> と同じような機能を持っている。これを使って <code>gov</code> で出力されるバージョンを <code>-ldflags="-X main.version=$(shell gov)"</code> という形でビルド時に埋め込んでいる。</p>
-<h2 id=参考文献>参考文献</h2>
-<ul>
-<li><a href=https://github.com/golang/go/issues/21909>proposal: spec: Default / Optional function parameters</a></li>
-<li><a href=https://qiita.com/kamijin_fanta/items/f66724091b699ee71b08>Goのpathとfilepathでは動作が異なる　Windowsでも正しくパスを扱う</a></li>
-<li><a href=https://mattn.kaoriya.net/software/lang/go/20161202095532.htm>Big Sky :: バイナリ一つで zip, tar.gz, tar.bz2, tar.xz が開けるコマンド「archiver」(と go1.8 への対応方法)</a></li>
-<li><a href=https://mattn.kaoriya.net/software/lang/go/20170622160723.htm>Big Sky :: ダウンロードの進捗プログレスバー実装は可能か</a></li>
-<li><a href=https://github.com/tcnksm/ghr>tcnksm/ghr - Upload multiple artifacts to GitHub Release in parallel</a></li>
-<li><a href=https://qiita.com/Jxck_/items/02185f51162e92759ebe>Go のクロスコンパイル環境構築</a></li>
-<li><a href=https://qiita.com/tenntenn/items/7c70e3451ac783999b4f>init関数のふしぎ #golang</a></li>
-</ul>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2018/techbookfest-vol5.html>👈 技術書典5にサークル参加した</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2018/optimize-svg-in-gui.html>SVG ファイルを GUI ツールで最適化する 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+クロスコンパイルについて Go を選んだ割に、Windows や Linux でのテストをどうしようか考え中なので、まだクロスコンパイル環境は整えている最中である。経緯や概要は Go のクロスコンパイル環境構築で抑えたが、状況は改善されているようで、go のインストール時に --with-cc-all オプションが不要になっていたり、クロスコンパイルに追加で必要だったツールが不要になっている。
+引き続きポイントになるのは GOOS と GOARCH という2つの環境変数で、 go build 時にこれらが参照されることで各種環境向けのバイナリが出力される。これを踏まえて、クロスコンパイルにはいくつか方法がある。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2018/nd.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Go で Node.js のバージョンマネージャを自作した"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2018/nd.html"><meta name=twitter:title content="Go で Node.js のバージョンマネージャを自作した"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2018.10.16</span><h1 id=go-で-nodejs-のバージョンマネージャを自作した>Go で Node.js のバージョンマネージャを自作した</h1><p><a href=https://github.com/1000ch/nd>1000ch/nd</a> という Node.js のバージョンマネージャを Go で書いた。車輪の再発明もいいところで、特に今使っているバージョンマネージャから切り替えるメリットは今の所ない。ただの作業ログです、悪しからず。</p><h2 id=それっぽいモチベーション>それっぽいモチベーション</h2><p>Go は Windows、macOS、Linux といった環境へのクロスコンパイルができることと、実行できるシングルバイナリを配布するだけでランタイムへ依存しなくて済む、この2点で選んだ。</p><p>作ったあとに <a href=https://twitter.com/hokaccha>@hokaccha</a> とした答え合わせで、<code>PATH</code> の通し方については少々議論になった。今回作ったツールは Node.js のアーカイブファイルをダウンロードして展開し、あらかじめ通しておいたパスから <code>node</code> にシンボリックリンクを作るだけの単純な実装である。</p><p>代表的な既存ツールは以下のような実装になっている。</p><ul><li><a href=https://github.com/nodenv/nodenv>nodenv/nodenv</a>: <code>~/.nodenv/shim/node</code> を起点に実行する Node.js を探索する</li><li><a href=https://github.com/hokaccha/nodebrew>hokaccha/nodebrew</a>: パスが通った場所から、対象の Node.js へシンボリックリンクを作成する</li><li><a href=https://github.com/creationix/nvm>creationix/nvm</a>: <code>PATH</code> を変更して対象の Node.js へパスを通す</li></ul><p><code>nodenv</code> は <code>rbenv</code> のフォークで、グローバルの <code>node</code> のパスを変更できるだけでなく、カレントディレクトリの <code>.node-version</code> を参照して実行する Node.js を切り替えできる。高機能で良いが、 <code>.node-version</code> でバージョンを固定して運用するには関わる人全てのバージョンマネージャを揃える必要があったりして、中々難しい部分もある。</p><p><code>nvm</code> の <code>PATH</code> を変更する方式は、なかなか痒い部分があるのと、<a href=https://github.com/creationix/nvm/wiki/NVM-Forks>欲しい機能があるならフォークして使ってくれというスタンス</a>なので、ツールとして微妙さを感じている。</p><p>思想や作りは <code>nodebrew</code> と最も似ていて、記述言語が違うくらい。</p><h2 id=クロスコンパイルについて>クロスコンパイルについて</h2><p>Go を選んだ割に、Windows や Linux でのテストをどうしようか考え中なので、まだクロスコンパイル環境は整えている最中である。経緯や概要は <a href=https://qiita.com/Jxck_/items/02185f51162e92759ebe>Go のクロスコンパイル環境構築</a>で抑えたが、状況は改善されているようで、go のインストール時に <code>--with-cc-all</code> オプションが不要になっていたり、クロスコンパイルに追加で必要だったツールが不要になっている。</p><p>引き続きポイントになるのは <a href=https://golang.org/doc/install/source#environment><code>GOOS</code> と <code>GOARCH</code> という2つの環境変数</a>で、 <code>go build</code> 時にこれらが参照されることで各種環境向けのバイナリが出力される。これを踏まえて、クロスコンパイルにはいくつか方法がある。</p><ul><li><a href=https://gist.github.com/nikuyoshi/a6c92119c59144d472ef>nikuyoshi/build-crosscompile-env.sh</a>: <code>GOOS</code> と <code>GOARCH</code> を切り替えながら <code>go build</code> するシェルスクリプト</li><li><a href=https://github.com/mitchellh/gox>mitchellh/gox</a>: <code>gox</code> コマンドだけでクロスコンパイルしてくれるコマンドラインツール</li><li><a href=https://github.com/laher/goxc>laher/goxc</a>: <code>goxc</code> コマンドでクロスコンパイルするだけでなく、zip アーカイブやバージョンニングなどもサポートしている高機能なコマンドラインツール</li></ul><p>よくできていて使いやすいが、先の通り Windows や Linux 向けビルドは検討中なので、結局 <code>Makefile</code> で最小限のビルドをするに留めた。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span><span style=color:#a6e22e>.PHONY</span><span style=color:#f92672>:</span> prepare build zip clean
+</span></span><span style=display:flex><span><span style=color:#a6e22e>all</span><span style=color:#f92672>:</span> prepare build zip clean
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>prepare</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	mkdir nd_darwin_amd64
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>build</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	env GOOS<span style=color:#f92672>=</span>darwin GOARCH<span style=color:#f92672>=</span>amd64 go build -ldflags<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-X main.version=</span><span style=color:#66d9ef>$(</span>shell gov<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span> -o nd_darwin_amd64/nd
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>zip</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	zip nd_darwin_amd64.zip -r nd_darwin_amd64
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clean</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>	rm -rf nd_darwin_amd64
+</span></span></code></pre></div><h2 id=nd-のインストールと使い方>nd のインストールと使い方</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># nd をインストールする</span>
+</span></span><span style=display:flex><span>$ go get github.com/1000ch/nd
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># $HOME/.nd/bin にパスを通す</span>
+</span></span><span style=display:flex><span>export PATH<span style=color:#f92672>=</span>$HOME/.nd/bin:$PATH
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 対象の Node.js をインストールする</span>
+</span></span><span style=display:flex><span>$ nd install &lt;version&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 対象の Node.js をアンインストールする</span>
+</span></span><span style=display:flex><span>$ nd uninstall &lt;version&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 対象の Node.js を有効化する</span>
+</span></span><span style=display:flex><span>$ nd use &lt;version&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># インストールされている Node.js を表示する</span>
+</span></span><span style=display:flex><span>$ nd list
+</span></span></code></pre></div><h2 id=バージョニングについて>バージョニングについて</h2><p><a href=https://github.com/ysugimoto/gov>ysugimoto/gov</a> というツールで管理している。</p><ol><li><code>gov init</code> を実行すると <code>.versions</code> という管理ファイルが生成される</li><li><code>gov patch|minor|major</code> を実行するとバージョンが上がり <code>git</code> のタグが作られる</li><li><code>gov</code> を実行すると最新バージョンを出力する</li></ol><p>という、 <code>npm</code> と同じような機能を持っている。これを使って <code>gov</code> で出力されるバージョンを <code>-ldflags="-X main.version=$(shell gov)"</code> という形でビルド時に埋め込んでいる。</p><h2 id=参考文献>参考文献</h2><ul><li><a href=https://github.com/golang/go/issues/21909>proposal: spec: Default / Optional function parameters</a></li><li><a href=https://qiita.com/kamijin_fanta/items/f66724091b699ee71b08>Goのpathとfilepathでは動作が異なる　Windowsでも正しくパスを扱う</a></li><li><a href=https://mattn.kaoriya.net/software/lang/go/20161202095532.htm>Big Sky :: バイナリ一つで zip, tar.gz, tar.bz2, tar.xz が開けるコマンド「archiver」(と go1.8 への対応方法)</a></li><li><a href=https://mattn.kaoriya.net/software/lang/go/20170622160723.htm>Big Sky :: ダウンロードの進捗プログレスバー実装は可能か</a></li><li><a href=https://github.com/tcnksm/ghr>tcnksm/ghr - Upload multiple artifacts to GitHub Release in parallel</a></li><li><a href=https://qiita.com/Jxck_/items/02185f51162e92759ebe>Go のクロスコンパイル環境構築</a></li><li><a href=https://qiita.com/tenntenn/items/7c70e3451ac783999b4f>init関数のふしぎ #golang</a></li></ul><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2018/techbookfest-vol5.html>👈 技術書典5にサークル参加した</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2018/optimize-svg-in-gui.html>SVG ファイルを GUI ツールで最適化する 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -231,6 +92,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

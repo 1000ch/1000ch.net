@@ -1,24 +1,5 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>CentOS 6系に対して行う最低限の設定 - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="CentOS 6系に対して行う最低限の設定 メモを掘り起こしたので、思い出すついでに記事にしてみる。VPSを借りて、ドメイン充ててみたり、ブログを置いてみたり、メールサーバー立ててみたりしていた当時（2年前）のメモなので、悪しからず。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CentOS 6系に対して行う最低限の設定 - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="CentOS 6系に対して行う最低限の設定 メモを掘り起こしたので、思い出すついでに記事にしてみる。VPSを借りて、ドメイン充ててみたり、ブログを置いてみたり、メールサーバー立ててみたりしていた当時（2年前）のメモなので、悪しからず。
 ユーザーの作成と、SSHのログイン周りに制限をかけている。もちろん、サーバーを大量に用意するようなWeb現場でこういった設定をコツコツやるなんてことはまず無いけど、前提知識で持っているべきものだとは思う。
 ので、chefだのansibleだのfabricだのについては触れていません。
 サーバーへのログイン sshコマンドの引数に、IPアドレスなりドメインなりのホスト名を渡してログインする。
@@ -32,108 +13,31 @@ Port [portnumber] ローカルの秘密鍵を利用してログインする設�
 SSHキーの作成 ローカルでSSHキーを作成。
 $ ssh-keygen -t rsa $ Enter file in which to save the key...: hoge_rsa -tで指定しているのは鍵の種類。ファイル名はhoge_rsaとしている。すると~/.ssh配下にhoge_rsaとその公開鍵hoge_rsa.pubが作成されているはず。
 公開鍵をサーバーに登録する 先程作成した鍵ペアのうち、公開鍵をVPSに持っていてもらう。まず、サーバーにログインし、ホームディレクトリに.sshフォルダを作成。
-$ cd ~ $ mkdir .ssh $ chmod 700 .">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2015/centos-minimum-config.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="CentOS 6系に対して行う最低限の設定">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2015/centos-minimum-config.html">
-<meta name=twitter:title content="CentOS 6系に対して行う最低限の設定">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2015.01.07</span>
-<h1 id=centos-6系に対して行う最低限の設定>CentOS 6系に対して行う最低限の設定</h1>
-<p>メモを掘り起こしたので、思い出すついでに記事にしてみる。VPSを借りて、ドメイン充ててみたり、ブログを置いてみたり、メールサーバー立ててみたりしていた当時（2年前）のメモなので、悪しからず。</p>
-<p>ユーザーの作成と、SSHのログイン周りに制限をかけている。もちろん、サーバーを大量に用意するようなWeb現場でこういった設定をコツコツやるなんてことはまず無いけど、前提知識で持っているべきものだとは思う。</p>
-<p>ので、chefだのansibleだのfabricだのについては触れていません。</p>
-<h2 id=サーバーへのログイン>サーバーへのログイン</h2>
-<p>sshコマンドの引数に、IPアドレスなりドメインなりのホスト名を渡してログインする。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh <span style=color:#f92672>[</span>hostname<span style=color:#f92672>]</span>
-</code></pre></div><p>ログインすると<code>~/.ssh/known_host</code>に、ホスト名とRSA公開鍵のフィンガープリントが記録される。ので、その後、公開鍵を変更して同一のホストにログインしようとすると失敗する。その場合は、<code>~/.ssh/known_host</code>の該当のホスト名が記録されている行を削除してからやると良い。</p>
-<h2 id=ユーザーの作成>ユーザーの作成</h2>
-<p>ログイン先のOSに<code>root</code>ではないユーザーを作成して、パスワードを設定する。</p>
-<h3 id=ユーザーを追加>ユーザーを追加</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ useradd <span style=color:#f92672>[</span>username<span style=color:#f92672>]</span>
-</code></pre></div><p>ユーザーの有効期限とかグループとかログインシェルといったような設定は<code>useradd</code>のオプションで可能なので、ググってみてください。</p>
-<h3 id=パスワードを設定>パスワードを設定</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ passwd <span style=color:#f92672>[</span>username<span style=color:#f92672>]</span>
-</code></pre></div><h2 id=sshログイン周りの設定>SSHログイン周りの設定</h2>
-<p>セキュリティを考慮して以下の2点を実施。<code>sshd</code>の設定を変更したいので<code>/etc/ssh/sshd_config</code>を編集。以下の修正をやったら、忘れずにデーモンの再起動をして変更を適用すること。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># sshdの設定ファイルを編集</span>
-$ vim /etc/ssh/sshd_config
-
-<span style=color:#75715e># sshdを再起動</span>
-$ /etc/init.d/sshd restart
-</code></pre></div><h3 id=rootログインの拒否>rootログインの拒否</h3>
-<p>もし<code>root</code>でサーバーにログインされてしまうと大変なことになるのでやっておく。</p>
-<pre tabindex=0><code>PermitRootLogin no
-</code></pre><h3 id=sshポートの変更>sshポートの変更</h3>
-<p>不正ログインのリスクを低減させる意味で、デフォルトのポートである<code>22</code>から変えるべく<code>Port</code>の値を変更。</p>
-<pre tabindex=0><code>Port [portnumber]
-</code></pre><h2 id=ローカルの秘密鍵を利用してログインする設定>ローカルの秘密鍵を利用してログインする設定</h2>
-<p>今回は、そのサーバー用のSSHキーを用意する。サーバーからログアウトしておく。</p>
-<h3 id=sshキーの作成>SSHキーの作成</h3>
-<p>ローカルでSSHキーを作成。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh-keygen -t rsa
-$ Enter file in which to save the key...: hoge_rsa
-</code></pre></div><p><code>-t</code>で指定しているのは鍵の種類。ファイル名は<code>hoge_rsa</code>としている。すると<code>~/.ssh</code>配下に<code>hoge_rsa</code>とその公開鍵<code>hoge_rsa.pub</code>が作成されているはず。</p>
-<h3 id=公開鍵をサーバーに登録する>公開鍵をサーバーに登録する</h3>
-<p>先程作成した鍵ペアのうち、公開鍵をVPSに持っていてもらう。まず、サーバーにログインし、ホームディレクトリに<code>.ssh</code>フォルダを作成。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ cd ~
-$ mkdir .ssh
-$ chmod <span style=color:#ae81ff>700</span> .ssh
-</code></pre></div><p>再びログアウトして、今度はローカルにある公開鍵<code>hoge_rsa.pub</code>をサーバーにコピー。先程の手順で<code>22</code>ポートではログイン不可になっているので、変更後のポート番号を指定する必要有り。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ scp -P <span style=color:#f92672>[</span>portnumber<span style=color:#f92672>]</span> ~/.ssh/hoge_rsa.pub <span style=color:#f92672>[</span>username<span style=color:#f92672>]</span>@<span style=color:#f92672>[</span>hostname<span style=color:#f92672>]</span>:.
-</code></pre></div><p>またまたサーバーにログインして、<code>scp</code>でコピーした公開鍵を<code>authorized_keys</code>に登録。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ cat hoge_rsa.pub &gt; ~/.ssh/authorized_keys
-$ chmod <span style=color:#ae81ff>600</span> ~/.ssh/authorized_keys
-</code></pre></div><p>これで公開鍵の登録自体はおしまい。後処理として、<code>authorized_keys</code>に登録が済んでいる公開鍵を削除して、<code>sshd</code>を再起動。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ rm hoge_rsa.pub
-$ /etc/init.d/sshd restart
-</code></pre></div><h3 id=実際に秘密鍵でログインする>実際に秘密鍵でログインする</h3>
-<p><code>ssh</code>の<code>-i</code>オプションで秘密鍵を指定。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ssh -p <span style=color:#f92672>[</span>portnumber<span style=color:#f92672>]</span> -i ~/.ssh/hoge_rsa <span style=color:#f92672>[</span>username<span style=color:#f92672>]</span>@<span style=color:#f92672>[</span>hostname<span style=color:#f92672>]</span>
-</code></pre></div><h2 id=ファイアーウォール>ファイアーウォール</h2>
-<p><code>iptables</code>で最低限のファイヤーウォールを設定するべく、<code>/etc/sysconfig</code>配下の<code>iptables</code>ファイルを編集。なかったら作成。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ cd /etc/sysconfig
-$ vim iptables
-</code></pre></div><p><code>iptables</code>ファイルの中身のサンプル。</p>
-<pre tabindex=0><code>*filter
+$ cd ~ $ mkdir .ssh $ chmod 700 ."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/centos-minimum-config.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="CentOS 6系に対して行う最低限の設定"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/centos-minimum-config.html"><meta name=twitter:title content="CentOS 6系に対して行う最低限の設定"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2015.01.07</span><h1 id=centos-6系に対して行う最低限の設定>CentOS 6系に対して行う最低限の設定</h1><p>メモを掘り起こしたので、思い出すついでに記事にしてみる。VPSを借りて、ドメイン充ててみたり、ブログを置いてみたり、メールサーバー立ててみたりしていた当時（2年前）のメモなので、悪しからず。</p><p>ユーザーの作成と、SSHのログイン周りに制限をかけている。もちろん、サーバーを大量に用意するようなWeb現場でこういった設定をコツコツやるなんてことはまず無いけど、前提知識で持っているべきものだとは思う。</p><p>ので、chefだのansibleだのfabricだのについては触れていません。</p><h2 id=サーバーへのログイン>サーバーへのログイン</h2><p>sshコマンドの引数に、IPアドレスなりドメインなりのホスト名を渡してログインする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ssh <span style=color:#f92672>[</span>hostname<span style=color:#f92672>]</span>
+</span></span></code></pre></div><p>ログインすると<code>~/.ssh/known_host</code>に、ホスト名とRSA公開鍵のフィンガープリントが記録される。ので、その後、公開鍵を変更して同一のホストにログインしようとすると失敗する。その場合は、<code>~/.ssh/known_host</code>の該当のホスト名が記録されている行を削除してからやると良い。</p><h2 id=ユーザーの作成>ユーザーの作成</h2><p>ログイン先のOSに<code>root</code>ではないユーザーを作成して、パスワードを設定する。</p><h3 id=ユーザーを追加>ユーザーを追加</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ useradd <span style=color:#f92672>[</span>username<span style=color:#f92672>]</span>
+</span></span></code></pre></div><p>ユーザーの有効期限とかグループとかログインシェルといったような設定は<code>useradd</code>のオプションで可能なので、ググってみてください。</p><h3 id=パスワードを設定>パスワードを設定</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ passwd <span style=color:#f92672>[</span>username<span style=color:#f92672>]</span>
+</span></span></code></pre></div><h2 id=sshログイン周りの設定>SSHログイン周りの設定</h2><p>セキュリティを考慮して以下の2点を実施。<code>sshd</code>の設定を変更したいので<code>/etc/ssh/sshd_config</code>を編集。以下の修正をやったら、忘れずにデーモンの再起動をして変更を適用すること。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># sshdの設定ファイルを編集</span>
+</span></span><span style=display:flex><span>$ vim /etc/ssh/sshd_config
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># sshdを再起動</span>
+</span></span><span style=display:flex><span>$ /etc/init.d/sshd restart
+</span></span></code></pre></div><h3 id=rootログインの拒否>rootログインの拒否</h3><p>もし<code>root</code>でサーバーにログインされてしまうと大変なことになるのでやっておく。</p><pre tabindex=0><code>PermitRootLogin no
+</code></pre><h3 id=sshポートの変更>sshポートの変更</h3><p>不正ログインのリスクを低減させる意味で、デフォルトのポートである<code>22</code>から変えるべく<code>Port</code>の値を変更。</p><pre tabindex=0><code>Port [portnumber]
+</code></pre><h2 id=ローカルの秘密鍵を利用してログインする設定>ローカルの秘密鍵を利用してログインする設定</h2><p>今回は、そのサーバー用のSSHキーを用意する。サーバーからログアウトしておく。</p><h3 id=sshキーの作成>SSHキーの作成</h3><p>ローカルでSSHキーを作成。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ssh-keygen -t rsa
+</span></span><span style=display:flex><span>$ Enter file in which to save the key...: hoge_rsa
+</span></span></code></pre></div><p><code>-t</code>で指定しているのは鍵の種類。ファイル名は<code>hoge_rsa</code>としている。すると<code>~/.ssh</code>配下に<code>hoge_rsa</code>とその公開鍵<code>hoge_rsa.pub</code>が作成されているはず。</p><h3 id=公開鍵をサーバーに登録する>公開鍵をサーバーに登録する</h3><p>先程作成した鍵ペアのうち、公開鍵をVPSに持っていてもらう。まず、サーバーにログインし、ホームディレクトリに<code>.ssh</code>フォルダを作成。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ cd ~
+</span></span><span style=display:flex><span>$ mkdir .ssh
+</span></span><span style=display:flex><span>$ chmod <span style=color:#ae81ff>700</span> .ssh
+</span></span></code></pre></div><p>再びログアウトして、今度はローカルにある公開鍵<code>hoge_rsa.pub</code>をサーバーにコピー。先程の手順で<code>22</code>ポートではログイン不可になっているので、変更後のポート番号を指定する必要有り。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ scp -P <span style=color:#f92672>[</span>portnumber<span style=color:#f92672>]</span> ~/.ssh/hoge_rsa.pub <span style=color:#f92672>[</span>username<span style=color:#f92672>]</span>@<span style=color:#f92672>[</span>hostname<span style=color:#f92672>]</span>:.
+</span></span></code></pre></div><p>またまたサーバーにログインして、<code>scp</code>でコピーした公開鍵を<code>authorized_keys</code>に登録。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ cat hoge_rsa.pub &gt; ~/.ssh/authorized_keys
+</span></span><span style=display:flex><span>$ chmod <span style=color:#ae81ff>600</span> ~/.ssh/authorized_keys
+</span></span></code></pre></div><p>これで公開鍵の登録自体はおしまい。後処理として、<code>authorized_keys</code>に登録が済んでいる公開鍵を削除して、<code>sshd</code>を再起動。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ rm hoge_rsa.pub
+</span></span><span style=display:flex><span>$ /etc/init.d/sshd restart
+</span></span></code></pre></div><h3 id=実際に秘密鍵でログインする>実際に秘密鍵でログインする</h3><p><code>ssh</code>の<code>-i</code>オプションで秘密鍵を指定。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ssh -p <span style=color:#f92672>[</span>portnumber<span style=color:#f92672>]</span> -i ~/.ssh/hoge_rsa <span style=color:#f92672>[</span>username<span style=color:#f92672>]</span>@<span style=color:#f92672>[</span>hostname<span style=color:#f92672>]</span>
+</span></span></code></pre></div><h2 id=ファイアーウォール>ファイアーウォール</h2><p><code>iptables</code>で最低限のファイヤーウォールを設定するべく、<code>/etc/sysconfig</code>配下の<code>iptables</code>ファイルを編集。なかったら作成。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ cd /etc/sysconfig
+</span></span><span style=display:flex><span>$ vim iptables
+</span></span></code></pre></div><p><code>iptables</code>ファイルの中身のサンプル。</p><pre tabindex=0><code>*filter
 -A INPUT -i lo -j ACCEPT
 -A INPUT -s 10.0.0.0/255.0.0.0 -j DROP
 -A INPUT -s 172.16.0.0/255.240.0.0 -j DROP
@@ -144,55 +48,14 @@ $ vim iptables
 -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
-</code></pre><p>保存したら、<code>iptables</code>を再起動して設定を反映。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ /etc/rc.d/init.d/iptables restart
-</code></pre></div><p>ちなみに、CentOS 7からはiptablesサービスではなく、firewalldサービスが同じ<code>/etc/sysconfig/iptables</code>ファイルの設定でパケットフィルタリングをしてくれるみたい。</p>
-<h2 id=余談>余談</h2>
-<p>Webサーバーの環境を用意するには、用途に応じて色々な方法がある。静的ファイルのみを置けたり、Wordpressが設置出来る（php+MySQL+&mldr;）といった所謂レンタルサーバーだったり、<a href=https://parse.com/>Parse</a>のような<a href=http://ja.wikipedia.org/wiki/SaaS>SaaS</a>だったり、<a href=http://heroku.com/>Heroku</a>に代表される<a href=http://ja.wikipedia.org/wiki/Platform_as_a_Service>PaaS</a>だったり。AmazonのS3なりEC2なり。</p>
-<p>とにかく、CentOSを自前で建てる必要がないケースも往々にしてあると思う。でもこうやってVPSを借りてWebサーバーを立ててみるように（もちろんVirtualBox+Vagrantでも）、原始的な部分を経験することは、Webに関する様々な事象の体系的な理解に必ず繋がる。</p>
-<p>転職して間もない頃にインフラの知識がある人をとっ捕まえてやったんだけど、<code>vim</code>の基本操作とかのコマンドラインの初歩的な素養は此処で得たし、今更ながらやっててよかったと思ってる（小並感）。</p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2015/image-encoder-es6.html>👈 画像をdataURIに変換するライブラリをES6で書きなおす</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2015/intention.html>志向性 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+</code></pre><p>保存したら、<code>iptables</code>を再起動して設定を反映。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ /etc/rc.d/init.d/iptables restart
+</span></span></code></pre></div><p>ちなみに、CentOS 7からはiptablesサービスではなく、firewalldサービスが同じ<code>/etc/sysconfig/iptables</code>ファイルの設定でパケットフィルタリングをしてくれるみたい。</p><h2 id=余談>余談</h2><p>Webサーバーの環境を用意するには、用途に応じて色々な方法がある。静的ファイルのみを置けたり、Wordpressが設置出来る（php+MySQL+&mldr;）といった所謂レンタルサーバーだったり、<a href=https://parse.com/>Parse</a>のような<a href=http://ja.wikipedia.org/wiki/SaaS>SaaS</a>だったり、<a href=http://heroku.com/>Heroku</a>に代表される<a href=http://ja.wikipedia.org/wiki/Platform_as_a_Service>PaaS</a>だったり。AmazonのS3なりEC2なり。</p><p>とにかく、CentOSを自前で建てる必要がないケースも往々にしてあると思う。でもこうやってVPSを借りてWebサーバーを立ててみるように（もちろんVirtualBox+Vagrantでも）、原始的な部分を経験することは、Webに関する様々な事象の体系的な理解に必ず繋がる。</p><p>転職して間もない頃にインフラの知識がある人をとっ捕まえてやったんだけど、<code>vim</code>の基本操作とかのコマンドラインの初歩的な素養は此処で得たし、今更ながらやっててよかったと思ってる（小並感）。</p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2015/image-encoder-es6.html>👈 画像をdataURIに変換するライブラリをES6で書きなおす</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2015/intention.html>志向性 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -239,6 +102,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

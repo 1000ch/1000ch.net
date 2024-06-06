@@ -1,139 +1,14 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>ES Modulesを優先的にロードするmodulepreload - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="ES Modulesを優先的にロードするmodulepreload <link> 要素の rel 属性に、新しく modulepreload という値が ES Modules を先行してロードする仕様として追加され、Chrome 64 に実装された。リソースを先行してロードする手段としては既に <link rel=&#34;preload&#34;> があり、スクリプトファイルには as=&#34;script&#34; を指定すれば良いが、ES Modules をロードするためにはいくつか問題があり、新しく rel=&#34;modulepreload&#34; が検討されている。
-<link rel=&#34;preload&#34; as=&#34;script&#34;> ではダメなのか もとい <link rel=&#34;modulepreload&#34;> にすべき理由が Preload and Modules に書かれている。
- <link> 要素によるリクエストの credential が <script> 要素と一致している必要がある 事前に module なのかどうかわかっていないとパースに困る (v8 固有？) <link rel=&#34;preload&#34;> は単一リソースをロードする仕様である 保存先が preload cache ではなく module map である必要がある (chrome 固有？)  <link rel=&#34;preload&#34;> の保存先は preload cache/HTTP cache である   as=&#34;&#34; で対応しようとすると modulescript / moduleworker / modulesharedworker / moduleserviceworker と、様々な値を定義しなくてはならない  つまり Normal Script と Module Script を区別する必要アリということだ。">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2017/module-preload.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="ES Modulesを優先的にロードするmodulepreload">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2017/module-preload.html">
-<meta name=twitter:title content="ES Modulesを優先的にロードするmodulepreload">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2017.11.26</span>
-<h1 id=es-modulesを優先的にロードするmodulepreload>ES Modulesを優先的にロードするmodulepreload</h1>
-<p><code>&lt;link></code> 要素の <code>rel</code> 属性に、新しく <code>modulepreload</code> という値が ES Modules を先行してロードする仕様として追加され、<a href=https://www.chromestatus.com/feature/5762805915451392>Chrome 64 に実装された</a>。リソースを先行してロードする手段としては既に <code>&lt;link rel="preload"></code> があり、スクリプトファイルには <code>as="script"</code> を指定すれば良いが、ES Modules をロードするためにはいくつか問題があり、新しく <code>rel="modulepreload"</code> が検討されている。</p>
-<h2 id=link-relpreload-asscript-ではダメなのか><code>&lt;link rel="preload" as="script"></code> ではダメなのか</h2>
-<p>もとい <code>&lt;link rel="modulepreload"></code> にすべき理由が <a href=https://docs.google.com/document/d/1WebH4IOCswACUbaczx5cGQPVl5mnqcieOd4MRJM2syk/edit>Preload and Modules</a> に書かれている。</p>
-<ul>
-<li><code>&lt;link></code> 要素によるリクエストの credential が <code>&lt;script></code> 要素と一致している必要がある</li>
-<li>事前に module なのかどうかわかっていないとパースに困る (v8 固有？)</li>
-<li><code>&lt;link rel="preload"></code> は単一リソースをロードする仕様である</li>
-<li>保存先が preload cache ではなく module map である必要がある (chrome 固有？)
-<ul>
-<li><code>&lt;link rel="preload"></code> の保存先は preload cache/HTTP cache である</li>
-</ul>
-</li>
-<li><code>as=""</code> で対応しようとすると <code>modulescript</code> / <code>moduleworker</code> / <code>modulesharedworker</code> / <code>moduleserviceworker</code> と、様々な値を定義しなくてはならない</li>
-</ul>
-<p>つまり Normal Script と Module Script を区別する必要アリということだ。</p>
-<p>Module Preload は、Preload では実施しない Module Script が依存するモジュールの解決も行うことで、依存関係を探すレイテンシーを省ける。</p>
-<h2 id=link-relmodulepreload-の振る舞い><code>&lt;link rel="modulepreload"></code> の振る舞い</h2>
-<ol>
-<li>Module Script をロードし module map に追加する</li>
-<li>ゆくゆく必要になる依存モジュールのロードのために、ヒントとして記録する</li>
-<li>ユーザーからは見えない</li>
-</ol>
-<h2 id=es-modulesが抱えるパフォーマンスの問題>ES Modulesが抱えるパフォーマンスの問題</h2>
-<p>現時点で ES Modules は、モジュールの数が多かったり、依存が深かったりするとパフォーマンス上で劣るという課題がある。もちろん実装の最適化はされていくと思うが。</p>
-<blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>モジュール数100以上 or 深さが5以上ならbundleした方がいいとのこと "Loading Performance with (Many) Modules: Summary as of Oct 7, 2017 - Go…" <a href=https://t.co/8gZZBbejMn>https://t.co/8gZZBbejMn</a></p>&mdash; azu (@azu_re) <a href="https://twitter.com/azu_re/status/918675534632042496?ref_src=twsrc%5Etfw">2017年10月13日</a></blockquote>
-<p>対策案はいくつかありそうだが、この <code>&lt;link rel="modulepreload"></code> を使って優先的に Module Script をリクエストしておけば、モジュールをバンドルせずとも改善が見込める。</p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2017/hair-kurukuru-poi.html>👈 髪の毛くるくるポイが革命的だった</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2017/muji-coffee-maker.html>無印良品 豆から挽けるコーヒーメーカー 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ES Modulesを優先的にロードするmodulepreload - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='ES Modulesを優先的にロードするmodulepreload <link> 要素の rel 属性に、新しく modulepreload という値が ES Modules を先行してロードする仕様として追加され、Chrome 64 に実装された。リソースを先行してロードする手段としては既に <link rel="preload"> があり、スクリプトファイルには as="script" を指定すれば良いが、ES Modules をロードするためにはいくつか問題があり、新しく rel="modulepreload" が検討されている。
+<link rel="preload" as="script"> ではダメなのか もとい <link rel="modulepreload"> にすべき理由が Preload and Modules に書かれている。
+<link> 要素によるリクエストの credential が <script> 要素と一致している必要がある 事前に module なのかどうかわかっていないとパースに困る (v8 固有？) <link rel="preload"> は単一リソースをロードする仕様である 保存先が preload cache ではなく module map である必要がある (chrome 固有？) <link rel="preload"> の保存先は preload cache/HTTP cache である as="" で対応しようとすると modulescript / moduleworker / modulesharedworker / moduleserviceworker と、様々な値を定義しなくてはならない つまり Normal Script と Module Script を区別する必要アリということだ。'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/module-preload.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ES Modulesを優先的にロードするmodulepreload"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/module-preload.html"><meta name=twitter:title content="ES Modulesを優先的にロードするmodulepreload"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2017.11.26</span><h1 id=es-modulesを優先的にロードするmodulepreload>ES Modulesを優先的にロードするmodulepreload</h1><p><code>&lt;link></code> 要素の <code>rel</code> 属性に、新しく <code>modulepreload</code> という値が ES Modules を先行してロードする仕様として追加され、<a href=https://www.chromestatus.com/feature/5762805915451392>Chrome 64 に実装された</a>。リソースを先行してロードする手段としては既に <code>&lt;link rel="preload"></code> があり、スクリプトファイルには <code>as="script"</code> を指定すれば良いが、ES Modules をロードするためにはいくつか問題があり、新しく <code>rel="modulepreload"</code> が検討されている。</p><h2 id=link-relpreload-asscript-ではダメなのか><code>&lt;link rel="preload" as="script"></code> ではダメなのか</h2><p>もとい <code>&lt;link rel="modulepreload"></code> にすべき理由が <a href=https://docs.google.com/document/d/1WebH4IOCswACUbaczx5cGQPVl5mnqcieOd4MRJM2syk/edit>Preload and Modules</a> に書かれている。</p><ul><li><code>&lt;link></code> 要素によるリクエストの credential が <code>&lt;script></code> 要素と一致している必要がある</li><li>事前に module なのかどうかわかっていないとパースに困る (v8 固有？)</li><li><code>&lt;link rel="preload"></code> は単一リソースをロードする仕様である</li><li>保存先が preload cache ではなく module map である必要がある (chrome 固有？)<ul><li><code>&lt;link rel="preload"></code> の保存先は preload cache/HTTP cache である</li></ul></li><li><code>as=""</code> で対応しようとすると <code>modulescript</code> / <code>moduleworker</code> / <code>modulesharedworker</code> / <code>moduleserviceworker</code> と、様々な値を定義しなくてはならない</li></ul><p>つまり Normal Script と Module Script を区別する必要アリということだ。</p><p>Module Preload は、Preload では実施しない Module Script が依存するモジュールの解決も行うことで、依存関係を探すレイテンシーを省ける。</p><h2 id=link-relmodulepreload-の振る舞い><code>&lt;link rel="modulepreload"></code> の振る舞い</h2><ol><li>Module Script をロードし module map に追加する</li><li>ゆくゆく必要になる依存モジュールのロードのために、ヒントとして記録する</li><li>ユーザーからは見えない</li></ol><h2 id=es-modulesが抱えるパフォーマンスの問題>ES Modulesが抱えるパフォーマンスの問題</h2><p>現時点で ES Modules は、モジュールの数が多かったり、依存が深かったりするとパフォーマンス上で劣るという課題がある。もちろん実装の最適化はされていくと思うが。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>モジュール数100以上 or 深さが5以上ならbundleした方がいいとのこと "Loading Performance with (Many) Modules: Summary as of Oct 7, 2017 - Go…" <a href=https://t.co/8gZZBbejMn>https://t.co/8gZZBbejMn</a></p>&mdash; azu (@azu_re) <a href="https://twitter.com/azu_re/status/918675534632042496?ref_src=twsrc%5Etfw">2017年10月13日</a></blockquote><p>対策案はいくつかありそうだが、この <code>&lt;link rel="modulepreload"></code> を使って優先的に Module Script をリクエストしておけば、モジュールをバンドルせずとも改善が見込める。</p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2017/hair-kurukuru-poi.html>👈 髪の毛くるくるポイが革命的だった</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2017/muji-coffee-maker.html>無印良品 豆から挽けるコーヒーメーカー 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -180,6 +55,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

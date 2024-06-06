@@ -1,231 +1,68 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Docker事始め作業ログ - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="Docker事始め作業ログ やってみよう系の記事は既にチラホラあるけど、手元の環境に合わせて書き直したただの作業ログ。
-Dockerとは  従来のような物理的な仮想化ではなくコンテナ型仮想化を実現するソフトウェア 例えばLinuxの上に独立したLinuxをシステムを起動できる  ハードウェアをシミュレートするのではなくLXCという技術を使ってリソースを隔離する ファイルシステムやプロセス・CPUを共有するので省メモリ・低コストで仮想化できる    ざっくりこのような感じだが、パッとこない場合は以下の記事が参考になる。
- 15分で分かるLXC（Linux Containers）の仕組みと基本的な使い方 クラウド時代のオープンソース実践活用 | 第41回　Linuxコンテナ(LXC)の基礎をまとめ直す  Mac OS XにDocker環境を準備する 以下のものをインストールする必要アリ。公式で配布されているDocker Toolboxでも良いが、インストーラ使うとroot領域いじられそうなので、VirtualBox以外はHomebrew経由でインストールする。boot2dockerは使わない。
- VirtualBox v5.0.4 docker v1.8.2 docker-machine v0.4.1  $ brew install docker $ brew install docker-machine あとは公式のチュートリアルに沿ってDockerの振る舞いを理解していく。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Docker事始め作業ログ - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='Docker事始め作業ログ やってみよう系の記事は既にチラホラあるけど、手元の環境に合わせて書き直したただの作業ログ。
+Dockerとは 従来のような物理的な仮想化ではなくコンテナ型仮想化を実現するソフトウェア 例えばLinuxの上に独立したLinuxをシステムを起動できる ハードウェアをシミュレートするのではなくLXCという技術を使ってリソースを隔離する ファイルシステムやプロセス・CPUを共有するので省メモリ・低コストで仮想化できる ざっくりこのような感じだが、パッとこない場合は以下の記事が参考になる。
+15分で分かるLXC（Linux Containers）の仕組みと基本的な使い方 クラウド時代のオープンソース実践活用 | 第41回　Linuxコンテナ(LXC)の基礎をまとめ直す Mac OS XにDocker環境を準備する 以下のものをインストールする必要アリ。公式で配布されているDocker Toolboxでも良いが、インストーラ使うとroot領域いじられそうなので、VirtualBox以外はHomebrew経由でインストールする。boot2dockerは使わない。
+VirtualBox v5.0.4 docker v1.8.2 docker-machine v0.4.1 $ brew install docker $ brew install docker-machine あとは公式のチュートリアルに沿ってDockerの振る舞いを理解していく。
 Docker Machineで仮想マシンを作成する Docker Machineで仮想マシンを立てる。VirtualBoxを使うので、--driverで指定し、マシン名も引数に取る（ここではlocalというマシン名を指定）。作成すると~/.docker/machine/machines/localというフォルダが作成され、マシンの各種設定が保存される。
 $ docker-machine create --driver virtualbox local Docker Machineで作成したマシンはlsコマンドでリストアップできる。マシンを削除するにはrmコマンドで。
-$ docker-machine ls NAME ACTIVE DRIVER STATE URL SWARM local virtualbox Running tcp://192.168.99.100:2376 $ docker-machine rm local 仮想マシンの各種環境変数 作成したマシンの各種環境変数はenvコマンドで取得可能。出力結果をevalするとそのまま変数を定義できる。">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2015/docker-introduction.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Docker事始め作業ログ">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2015/docker-introduction.html">
-<meta name=twitter:title content="Docker事始め作業ログ">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2015.09.14</span>
-<h1 id=docker事始め作業ログ>Docker事始め作業ログ</h1>
-<p>やってみよう系の記事は既にチラホラあるけど、手元の環境に合わせて書き直したただの作業ログ。</p>
-<h2 id=dockerhttpswwwdockercomとは><a href=https://www.docker.com>Docker</a>とは</h2>
-<ul>
-<li>従来のような物理的な仮想化ではなくコンテナ型仮想化を実現するソフトウェア</li>
-<li>例えばLinuxの上に独立したLinuxをシステムを起動できる
-<ul>
-<li>ハードウェアをシミュレートするのではなくLXCという技術を使ってリソースを隔離する</li>
-<li>ファイルシステムやプロセス・CPUを共有するので省メモリ・低コストで仮想化できる</li>
-</ul>
-</li>
-</ul>
-<p>ざっくりこのような感じだが、パッとこない場合は以下の記事が参考になる。</p>
-<ul>
-<li><a href=http://knowledge.sakura.ad.jp/tech/2108/>15分で分かるLXC（Linux Containers）の仕組みと基本的な使い方</a></li>
-<li><a href=http://www.school.ctc-g.co.jp/columns/nakai/nakai41.html>クラウド時代のオープンソース実践活用 | 第41回　Linuxコンテナ(LXC)の基礎をまとめ直す</a></li>
-</ul>
-<h2 id=mac-os-xにdocker環境を準備する>Mac OS XにDocker環境を準備する</h2>
-<p>以下のものをインストールする必要アリ。公式で配布されている<a href=https://www.docker.com/toolbox>Docker Toolbox</a>でも良いが、インストーラ使うとroot領域いじられそうなので、VirtualBox以外はHomebrew経由でインストールする。boot2dockerは使わない。</p>
-<ul>
-<li><a href=https://www.virtualbox.org/wiki/Downloads>VirtualBox</a> v5.0.4</li>
-<li><a href=https://github.com/docker/docker>docker</a> v1.8.2</li>
-<li><a href=https://github.com/docker/machine>docker-machine</a> v0.4.1</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ brew install docker
-$ brew install docker-machine
-</code></pre></div><p>あとは<a href=https://docs.docker.com/installation/mac/>公式のチュートリアル</a>に沿ってDockerの振る舞いを理解していく。</p>
-<h2 id=docker-machineで仮想マシンを作成する>Docker Machineで仮想マシンを作成する</h2>
-<p>Docker Machineで仮想マシンを立てる。VirtualBoxを使うので、<code>--driver</code>で指定し、マシン名も引数に取る（ここではlocalというマシン名を指定）。作成すると<code>~/.docker/machine/machines/local</code>というフォルダが作成され、マシンの各種設定が保存される。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker-machine create --driver virtualbox local
-</code></pre></div><p>Docker Machineで作成したマシンは<code>ls</code>コマンドでリストアップできる。マシンを削除するには<code>rm</code>コマンドで。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker-machine ls
-NAME    ACTIVE   DRIVER       STATE     URL                         SWARM
-local            virtualbox   Running   tcp://192.168.99.100:2376
-
-$ docker-machine rm local
-</code></pre></div><h3 id=仮想マシンの各種環境変数>仮想マシンの各種環境変数</h3>
-<p>作成したマシンの各種環境変数は<code>env</code>コマンドで取得可能。出力結果を<code>eval</code>するとそのまま変数を定義できる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker-machine env local
-export DOCKER_TLS_VERIFY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;1&#34;</span>
-export DOCKER_HOST<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tcp://192.168.99.100:2376&#34;</span>
-export DOCKER_CERT_PATH<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/Users/1000ch/.docker/machine/machines/local&#34;</span>
-export DOCKER_MACHINE_NAME<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;local&#34;</span>
-<span style=color:#75715e># Run this command to configure your shell:</span>
-<span style=color:#75715e># eval &#34;$(docker-machine env local)&#34;</span>
-</code></pre></div><h3 id=hello-worldコンテナを実行してみる>hello-worldコンテナを実行してみる</h3>
-<p>先程の<code>env</code>コマンドで得られる環境変数を<code>export</code>した上で、いよいよDockerでコンテナを起動する。今回は<code>hello-world</code>というコンテナを指定しているが、実行に成功するとハローワールドが表示される。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>docker-machine env local<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-$ docker run hello-world
-</code></pre></div><p>ここでは<code>hello-world</code>というコンテナを指定しているが、以下の手順が実施されている。Docketクライアントはコマンドを叩いているターミナルということになる。</p>
-<ol>
-<li>DockerクライアントがDockerデーモンに問い合わせる</li>
-<li>Dockerデーモンが<code>hello-world</code>イメージをDocker Hubからダウンロードする</li>
-<li>Docketデーモンがダウンロードしてきたイメージから新たにコンテナを作成する</li>
-<li>Dockerデーモンがコンテナを標準出力をDocketクライアントに流す</li>
-</ol>
-<h2 id=nginxコンテナを試してみる>nginxコンテナを試してみる</h2>
-<p>バックグラウンドで実行させるために<code>-d</code>（<code>--detach=false</code>）を、ランダムにポートを割り当てるために<code>-P</code>（<code>--publish-all=false</code>）を、明示的に名前を付与すべく<code>--name</code>も付けて実行する。nginxのプロセスは終了するまで実行され続けるので、<code>-d</code>を付けないとターミナルが持っていかれる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker run -d -P --name nginx-web nginx
-</code></pre></div><h3 id=起動中のコンテナ一覧の表示コンテナの開始と停止と削除>起動中のコンテナ一覧の表示、コンテナの開始と停止と削除</h3>
-<p>停止には<code>stop</code>コマンドを、削除には<code>rm</code>コマンドを使う。それぞれコンテナのID指定するが、コンテナIDは先程の<code>run</code>コマンドの<code>-d</code>オプションで出力される他、<code>ps</code>コマンドの出力結果にも表示される。尚、コンテナに名前が指定されていればコンテナIDではなくコンテナ名を指定しても実行できる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 起動中のコンテナ一覧を表示する</span>
-$ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                           NAMES
-ba377526b912        nginx               <span style=color:#e6db74>&#34;nginx -g &#39;daemon off&#34;</span>   <span style=color:#ae81ff>26</span> seconds ago      Up <span style=color:#ae81ff>2</span> seconds        0.0.0.0:32775-&gt;80/tcp, 0.0.0.0:32774-&gt;443/tcp   nginx-web
-
-<span style=color:#75715e># 指定したコンテナを停止する</span>
-$ docker stop ba377526b912
-
-<span style=color:#75715e># 指定したコンテナを開始する</span>
-$ docker start ba377526b912
-
-<span style=color:#75715e># 指定したコンテナを削除する</span>
-$ docker rm ba377526b912
-</code></pre></div><h3 id=nginxがホストしているページをブラウザで表示する>nginxがホストしているページをブラウザで表示する</h3>
-<p><code>port</code>コマンドでコンテナに対してマッピングされているポート番号を一覧化できる。先程<code>nginx-web</code>という名前でコンテナを起動したので、それがどのポートに割り当てられているかを確認してみる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker port nginx-web
-443/tcp -&gt; 0.0.0.0:32774
-80/tcp -&gt; 0.0.0.0:32775
-</code></pre></div><p>コンテナの443ポートがローカルホスト（Dockerクライアント）の32774に、コンテナの80ポートがローカルホスト32775にマッピングされているのがわかる。</p>
-<h3 id=マシンのipアドレスを調べる>マシンのIPアドレスを調べる</h3>
-<p>先程のコンテナのIPアドレスはDockerのホストアドレスではないので、nginxにはアクセスできない。Docker Machineで作成したマシンのIPアドレスを<code>ip</code>コマンドを使って調べる。<code>echo $DOCKER_HOST</code>あたりを実行すると、<code>docker-machine env</code>で出力された<code>DOCKER_HOST</code>のIPと一致しているのがわかる。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker-machine ip local
-192.168.99.100
-
-$ echo $DOCKER_HOST
-tcp://192.168.99.100:2376
-</code></pre></div><h3 id=ブラウザでnginxでホストしているページへアクセスする>ブラウザでnginxでホストしているページへアクセスする</h3>
-<p>ここまででnginxが<code>192.168.99.100:32775</code>を待ち構えていることがわかるので、 http://192.168.99.100:32775 にアクセスしてみる。</p>
-<h3 id=ローカルのディレクトリをコンテナにマウントする>ローカルのディレクトリをコンテナにマウントする</h3>
-<p>次に、ローカルのディレクトリをコンテナにマウントしてみる。適当なディレクトリに<code>index.html</code>を配置して、配置したディレクトリをnginxのホストディレクトリにマウントする。それが出来れば先程のURLで<code>index.html</code>の内容が表示されるはずだ。今回はユーザーディレクトリ配下に<code>foo</code>というフォルダを用意し、その中に<code>index.html</code>を配置した。HTMLの中身は何でも良い。</p>
-<p>コンテナの再作成からやるので、<code>docker ps</code>で起動しているコンテナのコンテナIDを取得し、<code>docker stop [コンテナID]</code>→<code>docker rm [コンテナID]</code>で先程作成したコンテナ（<code>nginx-web</code>）を削除する。削除せずに違う名前でも良いんだけど、テストがてら。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker ps
-...
-
-$ docker stop 4bf9cfc2fe49
-$ docker rm 4bf9cfc2fe49
-</code></pre></div><p>削除したら、以下のコマンドで再度nginxのコンテナを作成する。さっきと違うのは、<code>-v</code>オプションでマウントするディレクトリをしている点。ユーザーディレクトリ配下の<code>foo</code>フォルダをマウントするので<code>$HOME/foo</code>とし、マウント先にはnginxがホストするディレクトリである<code>/usr/share/nginx/html</code>を指定している。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker run -d -P -v $HOME/foo:/usr/share/nginx/html --name nginx-web nginx
-</code></pre></div><p>起動したら再び<code>docker port nginx-web</code>で割り当てられたポート番号をチェックし、ブラウザでアクセスしてみる。用意した<code>index.html</code>の中身が表示されればひと通り成功。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker port nginx-web
-443/tcp -&gt; 0.0.0.0:32776
-80/tcp -&gt; 0.0.0.0:32777
-<span style=color:#75715e># ブラウザで http://192.168.99.100:32777 にアクセスしてみる</span>
-</code></pre></div><h2 id=まとめ>まとめ</h2>
-<ul>
-<li>Docker（<code>docker</code>コマンド）でコンテナとそのホストOSを管理する</li>
-<li>Docker Machine（<code>docker-machine</code>）でホストOSとなるマシンを管理する</li>
-<li>Docker Hubにマシンイメージが集積されている
-<ul>
-<li>DockerからPullしてコンテナとして利用する</li>
-<li>DockerでローカルのイメージをComposeして配布する</li>
-</ul>
-</li>
-</ul>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2015/frontend-weekly.html>👈 Frontend Weekly購読のススメ</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2015/linter-textlint.html>textlintのAtomプラグイン 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+$ docker-machine ls NAME ACTIVE DRIVER STATE URL SWARM local virtualbox Running tcp://192.168.99.100:2376 $ docker-machine rm local 仮想マシンの各種環境変数 作成したマシンの各種環境変数はenvコマンドで取得可能。出力結果をevalするとそのまま変数を定義できる。
+$ docker-machine env local export DOCKER_TLS_VERIFY="1" export DOCKER_HOST="tcp://192.'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/docker-introduction.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Docker事始め作業ログ"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/docker-introduction.html"><meta name=twitter:title content="Docker事始め作業ログ"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2015.09.14</span><h1 id=docker事始め作業ログ>Docker事始め作業ログ</h1><p>やってみよう系の記事は既にチラホラあるけど、手元の環境に合わせて書き直したただの作業ログ。</p><h2 id=dockerhttpswwwdockercomとは><a href=https://www.docker.com>Docker</a>とは</h2><ul><li>従来のような物理的な仮想化ではなくコンテナ型仮想化を実現するソフトウェア</li><li>例えばLinuxの上に独立したLinuxをシステムを起動できる<ul><li>ハードウェアをシミュレートするのではなくLXCという技術を使ってリソースを隔離する</li><li>ファイルシステムやプロセス・CPUを共有するので省メモリ・低コストで仮想化できる</li></ul></li></ul><p>ざっくりこのような感じだが、パッとこない場合は以下の記事が参考になる。</p><ul><li><a href=http://knowledge.sakura.ad.jp/tech/2108/>15分で分かるLXC（Linux Containers）の仕組みと基本的な使い方</a></li><li><a href=http://www.school.ctc-g.co.jp/columns/nakai/nakai41.html>クラウド時代のオープンソース実践活用 | 第41回　Linuxコンテナ(LXC)の基礎をまとめ直す</a></li></ul><h2 id=mac-os-xにdocker環境を準備する>Mac OS XにDocker環境を準備する</h2><p>以下のものをインストールする必要アリ。公式で配布されている<a href=https://www.docker.com/toolbox>Docker Toolbox</a>でも良いが、インストーラ使うとroot領域いじられそうなので、VirtualBox以外はHomebrew経由でインストールする。boot2dockerは使わない。</p><ul><li><a href=https://www.virtualbox.org/wiki/Downloads>VirtualBox</a> v5.0.4</li><li><a href=https://github.com/docker/docker>docker</a> v1.8.2</li><li><a href=https://github.com/docker/machine>docker-machine</a> v0.4.1</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ brew install docker
+</span></span><span style=display:flex><span>$ brew install docker-machine
+</span></span></code></pre></div><p>あとは<a href=https://docs.docker.com/installation/mac/>公式のチュートリアル</a>に沿ってDockerの振る舞いを理解していく。</p><h2 id=docker-machineで仮想マシンを作成する>Docker Machineで仮想マシンを作成する</h2><p>Docker Machineで仮想マシンを立てる。VirtualBoxを使うので、<code>--driver</code>で指定し、マシン名も引数に取る（ここではlocalというマシン名を指定）。作成すると<code>~/.docker/machine/machines/local</code>というフォルダが作成され、マシンの各種設定が保存される。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker-machine create --driver virtualbox local
+</span></span></code></pre></div><p>Docker Machineで作成したマシンは<code>ls</code>コマンドでリストアップできる。マシンを削除するには<code>rm</code>コマンドで。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker-machine ls
+</span></span><span style=display:flex><span>NAME    ACTIVE   DRIVER       STATE     URL                         SWARM
+</span></span><span style=display:flex><span>local            virtualbox   Running   tcp://192.168.99.100:2376
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ docker-machine rm local
+</span></span></code></pre></div><h3 id=仮想マシンの各種環境変数>仮想マシンの各種環境変数</h3><p>作成したマシンの各種環境変数は<code>env</code>コマンドで取得可能。出力結果を<code>eval</code>するとそのまま変数を定義できる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker-machine env local
+</span></span><span style=display:flex><span>export DOCKER_TLS_VERIFY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>export DOCKER_HOST<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tcp://192.168.99.100:2376&#34;</span>
+</span></span><span style=display:flex><span>export DOCKER_CERT_PATH<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/Users/1000ch/.docker/machine/machines/local&#34;</span>
+</span></span><span style=display:flex><span>export DOCKER_MACHINE_NAME<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;local&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Run this command to configure your shell:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># eval &#34;$(docker-machine env local)&#34;</span>
+</span></span></code></pre></div><h3 id=hello-worldコンテナを実行してみる>hello-worldコンテナを実行してみる</h3><p>先程の<code>env</code>コマンドで得られる環境変数を<code>export</code>した上で、いよいよDockerでコンテナを起動する。今回は<code>hello-world</code>というコンテナを指定しているが、実行に成功するとハローワールドが表示される。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>docker-machine env local<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>$ docker run hello-world
+</span></span></code></pre></div><p>ここでは<code>hello-world</code>というコンテナを指定しているが、以下の手順が実施されている。Docketクライアントはコマンドを叩いているターミナルということになる。</p><ol><li>DockerクライアントがDockerデーモンに問い合わせる</li><li>Dockerデーモンが<code>hello-world</code>イメージをDocker Hubからダウンロードする</li><li>Docketデーモンがダウンロードしてきたイメージから新たにコンテナを作成する</li><li>Dockerデーモンがコンテナを標準出力をDocketクライアントに流す</li></ol><h2 id=nginxコンテナを試してみる>nginxコンテナを試してみる</h2><p>バックグラウンドで実行させるために<code>-d</code>（<code>--detach=false</code>）を、ランダムにポートを割り当てるために<code>-P</code>（<code>--publish-all=false</code>）を、明示的に名前を付与すべく<code>--name</code>も付けて実行する。nginxのプロセスは終了するまで実行され続けるので、<code>-d</code>を付けないとターミナルが持っていかれる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker run -d -P --name nginx-web nginx
+</span></span></code></pre></div><h3 id=起動中のコンテナ一覧の表示コンテナの開始と停止と削除>起動中のコンテナ一覧の表示、コンテナの開始と停止と削除</h3><p>停止には<code>stop</code>コマンドを、削除には<code>rm</code>コマンドを使う。それぞれコンテナのID指定するが、コンテナIDは先程の<code>run</code>コマンドの<code>-d</code>オプションで出力される他、<code>ps</code>コマンドの出力結果にも表示される。尚、コンテナに名前が指定されていればコンテナIDではなくコンテナ名を指定しても実行できる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 起動中のコンテナ一覧を表示する</span>
+</span></span><span style=display:flex><span>$ docker ps
+</span></span><span style=display:flex><span>CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                           NAMES
+</span></span><span style=display:flex><span>ba377526b912        nginx               <span style=color:#e6db74>&#34;nginx -g &#39;daemon off&#34;</span>   <span style=color:#ae81ff>26</span> seconds ago      Up <span style=color:#ae81ff>2</span> seconds        0.0.0.0:32775-&gt;80/tcp, 0.0.0.0:32774-&gt;443/tcp   nginx-web
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 指定したコンテナを停止する</span>
+</span></span><span style=display:flex><span>$ docker stop ba377526b912
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 指定したコンテナを開始する</span>
+</span></span><span style=display:flex><span>$ docker start ba377526b912
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 指定したコンテナを削除する</span>
+</span></span><span style=display:flex><span>$ docker rm ba377526b912
+</span></span></code></pre></div><h3 id=nginxがホストしているページをブラウザで表示する>nginxがホストしているページをブラウザで表示する</h3><p><code>port</code>コマンドでコンテナに対してマッピングされているポート番号を一覧化できる。先程<code>nginx-web</code>という名前でコンテナを起動したので、それがどのポートに割り当てられているかを確認してみる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker port nginx-web
+</span></span><span style=display:flex><span>443/tcp -&gt; 0.0.0.0:32774
+</span></span><span style=display:flex><span>80/tcp -&gt; 0.0.0.0:32775
+</span></span></code></pre></div><p>コンテナの443ポートがローカルホスト（Dockerクライアント）の32774に、コンテナの80ポートがローカルホスト32775にマッピングされているのがわかる。</p><h3 id=マシンのipアドレスを調べる>マシンのIPアドレスを調べる</h3><p>先程のコンテナのIPアドレスはDockerのホストアドレスではないので、nginxにはアクセスできない。Docker Machineで作成したマシンのIPアドレスを<code>ip</code>コマンドを使って調べる。<code>echo $DOCKER_HOST</code>あたりを実行すると、<code>docker-machine env</code>で出力された<code>DOCKER_HOST</code>のIPと一致しているのがわかる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker-machine ip local
+</span></span><span style=display:flex><span>192.168.99.100
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ echo $DOCKER_HOST
+</span></span><span style=display:flex><span>tcp://192.168.99.100:2376
+</span></span></code></pre></div><h3 id=ブラウザでnginxでホストしているページへアクセスする>ブラウザでnginxでホストしているページへアクセスする</h3><p>ここまででnginxが<code>192.168.99.100:32775</code>を待ち構えていることがわかるので、 http://192.168.99.100:32775 にアクセスしてみる。</p><h3 id=ローカルのディレクトリをコンテナにマウントする>ローカルのディレクトリをコンテナにマウントする</h3><p>次に、ローカルのディレクトリをコンテナにマウントしてみる。適当なディレクトリに<code>index.html</code>を配置して、配置したディレクトリをnginxのホストディレクトリにマウントする。それが出来れば先程のURLで<code>index.html</code>の内容が表示されるはずだ。今回はユーザーディレクトリ配下に<code>foo</code>というフォルダを用意し、その中に<code>index.html</code>を配置した。HTMLの中身は何でも良い。</p><p>コンテナの再作成からやるので、<code>docker ps</code>で起動しているコンテナのコンテナIDを取得し、<code>docker stop [コンテナID]</code>→<code>docker rm [コンテナID]</code>で先程作成したコンテナ（<code>nginx-web</code>）を削除する。削除せずに違う名前でも良いんだけど、テストがてら。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker ps
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ docker stop 4bf9cfc2fe49
+</span></span><span style=display:flex><span>$ docker rm 4bf9cfc2fe49
+</span></span></code></pre></div><p>削除したら、以下のコマンドで再度nginxのコンテナを作成する。さっきと違うのは、<code>-v</code>オプションでマウントするディレクトリをしている点。ユーザーディレクトリ配下の<code>foo</code>フォルダをマウントするので<code>$HOME/foo</code>とし、マウント先にはnginxがホストするディレクトリである<code>/usr/share/nginx/html</code>を指定している。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker run -d -P -v $HOME/foo:/usr/share/nginx/html --name nginx-web nginx
+</span></span></code></pre></div><p>起動したら再び<code>docker port nginx-web</code>で割り当てられたポート番号をチェックし、ブラウザでアクセスしてみる。用意した<code>index.html</code>の中身が表示されればひと通り成功。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ docker port nginx-web
+</span></span><span style=display:flex><span>443/tcp -&gt; 0.0.0.0:32776
+</span></span><span style=display:flex><span>80/tcp -&gt; 0.0.0.0:32777
+</span></span><span style=display:flex><span><span style=color:#75715e># ブラウザで http://192.168.99.100:32777 にアクセスしてみる</span>
+</span></span></code></pre></div><h2 id=まとめ>まとめ</h2><ul><li>Docker（<code>docker</code>コマンド）でコンテナとそのホストOSを管理する</li><li>Docker Machine（<code>docker-machine</code>）でホストOSとなるマシンを管理する</li><li>Docker Hubにマシンイメージが集積されている<ul><li>DockerからPullしてコンテナとして利用する</li><li>DockerでローカルのイメージをComposeして配布する</li></ul></li></ul><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2015/frontend-weekly.html>👈 Frontend Weekly購読のススメ</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2015/linter-textlint.html>textlintのAtomプラグイン 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -272,6 +109,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

@@ -1,157 +1,25 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Web制作者のためのCSS設計の教科書 - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="Web制作者のためのCSS設計の教科書 ( •́谷•̀)「CSSの本書いたよーヽ(=´▽`=)ﾉ」
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Web制作者のためのCSS設計の教科書 - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Web制作者のためのCSS設計の教科書 ( •́谷•̀)「CSSの本書いたよーヽ(=´▽`=)ﾉ」
 ということで@hilokiさんから頂きました。ありがとうございます。
 著者（@hiloki）について 前著も有名で、私から改めて紹介するまでもないかもしれませんが、カンファレンスや様々な勉強会でCSSについての講演を数多く行ってきており、 CSSが持つ弱点を理解し、設計の重要性を訴えてきた有識者の一人 です。
 スライドを見ると分かる通り、CSSプリプロセッサの話に始まり、CSSの設計の話や、最近ではWeb Componentsを交えた話もされていて、CSSと戦ってきた傷跡が生生と感じられます（大袈裟）。今回の著書は得てきたナレッジの集大成といえるのではないでしょうか。
-谷 拓樹 (著) 
-内容について 各章の概要をざっと振り返ってみます。
- 第1章 CSSにおける設計とは 第2章 CSSの基本を振り返る 第3章 コンポーネント設計のアイデア 第4章 コンポーネント設計の実践 第5章 CSSプリプロセッサを用いた設計と管理 第6章 コンポーネントの運用に必要なツール 第7章 Web Componentsの可能性  第1章 CSSにおける設計とは + 第2章 CSSの基本を振り返る では、CSSの特徴を踏まえた基礎理念について書かれています。この辺りはCode smells in CSSに感化されている部分もあるかもしれません。
+谷 拓樹 (著) 内容について 各章の概要をざっと振り返ってみます。
+第1章 CSSにおける設計とは 第2章 CSSの基本を振り返る 第3章 コンポーネント設計のアイデア 第4章 コンポーネント設計の実践 第5章 CSSプリプロセッサを用いた設計と管理 第6章 コンポーネントの運用に必要なツール 第7章 Web Componentsの可能性 第1章 CSSにおける設計とは + 第2章 CSSの基本を振り返る では、CSSの特徴を踏まえた基礎理念について書かれています。この辺りはCode smells in CSSに感化されている部分もあるかもしれません。
 第3章 コンポーネント設計のアイデア + 第4章 コンポーネント設計の実践 では、HTMLとCSSで作成したUIパーツのコンポーネント化（流用しやすい形にする）について。CSSには、一般的なプログラム言語が備えるスコープが存在せず、同名のクラスが宣言されるとスタイリングが上書きされてしまうという特徴があります。 そういった問題に対しては命名規則を工夫するというアプローチが数多くされてきました。コンポーネント設計を念頭に置きつつ、OOCSS、SMACSS、BEM、MCSSの理念や、それらの手法を咀嚼した谷氏が新たに発案するCSSの手法としてFLOCSSについても触れています。
 第5章 CSSプリプロセッサを用いた設計と管理 + 第6章 コンポーネントの運用に必要なツール では、Sass等のプリプロセッサを用いてCSSの運用を行う際に気をつけることや、StyleStatsやスタイルガイドを用いたCSSの品質管理及びデザイナーとの連携を前提にした運用の手法、そしてGruntに代表されるタスクランナーを使ってそれらの作業をどのように自動化していくか等について触れています。 黎明期のWebは所謂ホームページとしての役割が濃かったですが、昨今のWebはよりアプリケーションとしての性質が強いです。開発規模は比較にならないほど大きくなり、UIも複雑化し、パフォーマンスも重要視されるようになっています。そんな現代のWeb開発に必要な知識がまとまっています。
 第7章 Web Componentsの可能性 第3章と第4章で触れていたCSSの弱点に対する工夫に対し、近年では Web Components というHTMLとCSSにスコープを実現する新しい仕様が策定されつつあります。Web Components によって弱点が補われますが、ブラウザネイティブに実装され、安定して使えるようになるのはまだ先ですし、Web Componentsが実現してもCSSの設計が重要であることは変わりません。第7章では、Web Componentsを構成する4つの新しい仕様と、特徴および具体的に何が解決されるかについて書かれています。
-買いの一冊 各章のサマリーを書きましたが、Web開発におけるCSSの重要性をここまで説いた本は今まで無かったのではないでしょうか。HTMLとCSSのマークアップをする開発者はもちろん、フロントエンドのワークフローを理解して欲しいという個人的な理由で、 デザイナーの方々にもオススメな一冊 です。">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2014/css-architecture-textbook.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Web制作者のためのCSS設計の教科書">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2014/css-architecture-textbook.html">
-<meta name=twitter:title content="Web制作者のためのCSS設計の教科書">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2014.08.04</span>
-<h1 id=web制作者のためのcss設計の教科書>Web制作者のためのCSS設計の教科書</h1>
-<p>( •́谷•̀)「CSSの本書いたよーヽ(=´▽`=)ﾉ」</p>
-<p>ということで<a href=http://twitter.com/hiloki>@hiloki</a>さんから頂きました。ありがとうございます。</p>
-<p><img src=/img/posts/2014/css-architexture-textbook/book.jpg alt></p>
-<h2 id=著者hilokihttptwittercomhilokiについて>著者（<a href=http://twitter.com/hiloki>@hiloki</a>）について</h2>
-<p>前著も有名で、私から改めて紹介するまでもないかもしれませんが、カンファレンスや様々な勉強会でCSSについての講演を数多く行ってきており、 <strong>CSSが持つ弱点を理解し、設計の重要性を訴えてきた有識者の一人</strong> です。</p>
-<p><a href=http://www.slideshare.net/hiloki>スライド</a>を見ると分かる通り、<a href=http://www.slideshare.net/hiloki/css-16247228>CSSプリプロセッサの話</a>に始まり、<a href=http://www.slideshare.net/hiloki/thinking-about-css-architecture>CSSの設計の話</a>や、最近では<a href=http://www.slideshare.net/hiloki/css-components>Web Componentsを交えた話</a>もされていて、CSSと戦ってきた傷跡が生生と感じられます（大袈裟）。今回の著書は得てきたナレッジの集大成といえるのではないでしょうか。</p>
-<p><affiliate-link src=https://images-fe.ssl-images-amazon.com/images/I/51UN5EPk3oL.jpg href=https://www.amazon.co.jp/dp/B00C2ICGPU/ tag=1000ch-22 title="HTML5+CSS3で作る魅せるiPhoneサイト 　 iPhone / iPad　/　iPod touch対応">
-谷 拓樹 (著)
-</affiliate-link></p>
-<h2 id=内容について>内容について</h2>
-<p>各章の概要をざっと振り返ってみます。</p>
-<ul>
-<li>第1章 CSSにおける設計とは</li>
-<li>第2章 CSSの基本を振り返る</li>
-<li>第3章 コンポーネント設計のアイデア</li>
-<li>第4章 コンポーネント設計の実践</li>
-<li>第5章 CSSプリプロセッサを用いた設計と管理</li>
-<li>第6章 コンポーネントの運用に必要なツール</li>
-<li>第7章 Web Componentsの可能性</li>
-</ul>
-<h3 id=第1章-cssにおける設計とは--第2章-cssの基本を振り返る>第1章 CSSにおける設計とは + 第2章 CSSの基本を振り返る</h3>
-<p>では、CSSの特徴を踏まえた基礎理念について書かれています。この辺りは<a href=http://csswizardry.com/2012/11/code-smells-in-css/>Code smells in CSS</a>に感化されている部分もあるかもしれません。</p>
-<h3 id=第3章-コンポーネント設計のアイデア--第4章-コンポーネント設計の実践>第3章 コンポーネント設計のアイデア + 第4章 コンポーネント設計の実践</h3>
-<p>では、HTMLとCSSで作成したUIパーツのコンポーネント化（流用しやすい形にする）について。CSSには、一般的なプログラム言語が備えるスコープが存在せず、同名のクラスが宣言されるとスタイリングが上書きされてしまうという特徴があります。
-そういった問題に対しては命名規則を工夫するというアプローチが数多くされてきました。コンポーネント設計を念頭に置きつつ、<a href=https://github.com/stubbornella/oocss/>OOCSS</a>、<a href=https://smacss.com/ja>SMACSS</a>、<a href=http://bem.info/>BEM</a>、<a href=http://operatino.github.io/MCSS/ja/>MCSS</a>の理念や、それらの手法を咀嚼した谷氏が新たに発案するCSSの手法として<a href=https://github.com/hiloki/flocss>FLOCSS</a>についても触れています。</p>
-<h3 id=第5章-cssプリプロセッサを用いた設計と管理--第6章-コンポーネントの運用に必要なツール>第5章 CSSプリプロセッサを用いた設計と管理 + 第6章 コンポーネントの運用に必要なツール</h3>
-<p>では、<a href=http://sass-lang.com/>Sass</a>等のプリプロセッサを用いてCSSの運用を行う際に気をつけることや、<a href=http://www.stylestats.org/>StyleStats</a>やスタイルガイドを用いたCSSの品質管理及びデザイナーとの連携を前提にした運用の手法、そして<a href=http://gruntjs.com/>Grunt</a>に代表されるタスクランナーを使ってそれらの作業をどのように自動化していくか等について触れています。
-黎明期のWebは所謂ホームページとしての役割が濃かったですが、昨今のWebはよりアプリケーションとしての性質が強いです。開発規模は比較にならないほど大きくなり、UIも複雑化し、パフォーマンスも重要視されるようになっています。そんな現代のWeb開発に必要な知識がまとまっています。</p>
-<h3 id=第7章-web-componentsの可能性>第7章 Web Componentsの可能性</h3>
-<p>第3章と第4章で触れていたCSSの弱点に対する工夫に対し、近年では Web Components というHTMLとCSSにスコープを実現する新しい仕様が策定されつつあります。Web Components によって弱点が補われますが、ブラウザネイティブに実装され、安定して使えるようになるのはまだ先ですし、Web Componentsが実現してもCSSの設計が重要であることは変わりません。第7章では、Web Componentsを構成する4つの新しい仕様と、特徴および具体的に何が解決されるかについて書かれています。</p>
-<h2 id=買いの一冊>買いの一冊</h2>
-<p>各章のサマリーを書きましたが、Web開発におけるCSSの重要性をここまで説いた本は今まで無かったのではないでしょうか。HTMLとCSSのマークアップをする開発者はもちろん、フロントエンドのワークフローを理解して欲しいという個人的な理由で、 <strong>デザイナーの方々にもオススメな一冊</strong> です。</p>
-<p>この本を読んで、より良いWeb開発を。</p>
-<p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51rsbQOrZ0L._SX390_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4844336355/ tag=1000ch-22 title="Web制作者のためのCSS設計の教科書 モダンWeb開発に欠かせない「修正しやすいCSS」の設計手法">
-谷 拓樹 (著)
-</affiliate-link></p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2014/html5-and-other-vol49.html>👈 HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2014/android-development-with-genymotion.html>Android Studio+GenymotionではじめるAndroid開発 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+買いの一冊 各章のサマリーを書きましたが、Web開発におけるCSSの重要性をここまで説いた本は今まで無かったのではないでしょうか。HTMLとCSSのマークアップをする開発者はもちろん、フロントエンドのワークフローを理解して欲しいという個人的な理由で、 デザイナーの方々にもオススメな一冊 です。
+この本を読んで、より良いWeb開発を。
+谷 拓樹 (著) "><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/css-architecture-textbook.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Web制作者のためのCSS設計の教科書"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/css-architecture-textbook.html"><meta name=twitter:title content="Web制作者のためのCSS設計の教科書"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2014.08.04</span><h1 id=web制作者のためのcss設計の教科書>Web制作者のためのCSS設計の教科書</h1><p>( •́谷•̀)「CSSの本書いたよーヽ(=´▽`=)ﾉ」</p><p>ということで<a href=http://twitter.com/hiloki>@hiloki</a>さんから頂きました。ありがとうございます。</p><p><img src=/img/posts/2014/css-architexture-textbook/book.jpg alt></p><h2 id=著者hilokihttptwittercomhilokiについて>著者（<a href=http://twitter.com/hiloki>@hiloki</a>）について</h2><p>前著も有名で、私から改めて紹介するまでもないかもしれませんが、カンファレンスや様々な勉強会でCSSについての講演を数多く行ってきており、 <strong>CSSが持つ弱点を理解し、設計の重要性を訴えてきた有識者の一人</strong> です。</p><p><a href=http://www.slideshare.net/hiloki>スライド</a>を見ると分かる通り、<a href=http://www.slideshare.net/hiloki/css-16247228>CSSプリプロセッサの話</a>に始まり、<a href=http://www.slideshare.net/hiloki/thinking-about-css-architecture>CSSの設計の話</a>や、最近では<a href=http://www.slideshare.net/hiloki/css-components>Web Componentsを交えた話</a>もされていて、CSSと戦ってきた傷跡が生生と感じられます（大袈裟）。今回の著書は得てきたナレッジの集大成といえるのではないでしょうか。</p><p><affiliate-link src=https://images-fe.ssl-images-amazon.com/images/I/51UN5EPk3oL.jpg href=https://www.amazon.co.jp/dp/B00C2ICGPU/ tag=1000ch-22 title="HTML5+CSS3で作る魅せるiPhoneサイト 　 iPhone / iPad　/　iPod touch対応">谷 拓樹 (著)</affiliate-link></p><h2 id=内容について>内容について</h2><p>各章の概要をざっと振り返ってみます。</p><ul><li>第1章 CSSにおける設計とは</li><li>第2章 CSSの基本を振り返る</li><li>第3章 コンポーネント設計のアイデア</li><li>第4章 コンポーネント設計の実践</li><li>第5章 CSSプリプロセッサを用いた設計と管理</li><li>第6章 コンポーネントの運用に必要なツール</li><li>第7章 Web Componentsの可能性</li></ul><h3 id=第1章-cssにおける設計とは--第2章-cssの基本を振り返る>第1章 CSSにおける設計とは + 第2章 CSSの基本を振り返る</h3><p>では、CSSの特徴を踏まえた基礎理念について書かれています。この辺りは<a href=http://csswizardry.com/2012/11/code-smells-in-css/>Code smells in CSS</a>に感化されている部分もあるかもしれません。</p><h3 id=第3章-コンポーネント設計のアイデア--第4章-コンポーネント設計の実践>第3章 コンポーネント設計のアイデア + 第4章 コンポーネント設計の実践</h3><p>では、HTMLとCSSで作成したUIパーツのコンポーネント化（流用しやすい形にする）について。CSSには、一般的なプログラム言語が備えるスコープが存在せず、同名のクラスが宣言されるとスタイリングが上書きされてしまうという特徴があります。
+そういった問題に対しては命名規則を工夫するというアプローチが数多くされてきました。コンポーネント設計を念頭に置きつつ、<a href=https://github.com/stubbornella/oocss/>OOCSS</a>、<a href=https://smacss.com/ja>SMACSS</a>、<a href=http://bem.info/>BEM</a>、<a href=http://operatino.github.io/MCSS/ja/>MCSS</a>の理念や、それらの手法を咀嚼した谷氏が新たに発案するCSSの手法として<a href=https://github.com/hiloki/flocss>FLOCSS</a>についても触れています。</p><h3 id=第5章-cssプリプロセッサを用いた設計と管理--第6章-コンポーネントの運用に必要なツール>第5章 CSSプリプロセッサを用いた設計と管理 + 第6章 コンポーネントの運用に必要なツール</h3><p>では、<a href=http://sass-lang.com/>Sass</a>等のプリプロセッサを用いてCSSの運用を行う際に気をつけることや、<a href=http://www.stylestats.org/>StyleStats</a>やスタイルガイドを用いたCSSの品質管理及びデザイナーとの連携を前提にした運用の手法、そして<a href=http://gruntjs.com/>Grunt</a>に代表されるタスクランナーを使ってそれらの作業をどのように自動化していくか等について触れています。
+黎明期のWebは所謂ホームページとしての役割が濃かったですが、昨今のWebはよりアプリケーションとしての性質が強いです。開発規模は比較にならないほど大きくなり、UIも複雑化し、パフォーマンスも重要視されるようになっています。そんな現代のWeb開発に必要な知識がまとまっています。</p><h3 id=第7章-web-componentsの可能性>第7章 Web Componentsの可能性</h3><p>第3章と第4章で触れていたCSSの弱点に対する工夫に対し、近年では Web Components というHTMLとCSSにスコープを実現する新しい仕様が策定されつつあります。Web Components によって弱点が補われますが、ブラウザネイティブに実装され、安定して使えるようになるのはまだ先ですし、Web Componentsが実現してもCSSの設計が重要であることは変わりません。第7章では、Web Componentsを構成する4つの新しい仕様と、特徴および具体的に何が解決されるかについて書かれています。</p><h2 id=買いの一冊>買いの一冊</h2><p>各章のサマリーを書きましたが、Web開発におけるCSSの重要性をここまで説いた本は今まで無かったのではないでしょうか。HTMLとCSSのマークアップをする開発者はもちろん、フロントエンドのワークフローを理解して欲しいという個人的な理由で、 <strong>デザイナーの方々にもオススメな一冊</strong> です。</p><p>この本を読んで、より良いWeb開発を。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51rsbQOrZ0L._SX390_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4844336355/ tag=1000ch-22 title="Web制作者のためのCSS設計の教科書 モダンWeb開発に欠かせない「修正しやすいCSS」の設計手法">谷 拓樹 (著)</affiliate-link></p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2014/html5-and-other-vol49.html>👈 HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2014/android-development-with-genymotion.html>Android Studio+GenymotionではじめるAndroid開発 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -198,6 +66,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

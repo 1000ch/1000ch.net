@@ -1,25 +1,6 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>iframeの高さを読み込むコンテンツに応じて変える - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="iframeの高さを読み込むコンテンツに応じて変える 前提として
- <iframe>を記述するHTMLドキュメントは外部のモノで触ることは出来ない <iframe>でロードするリソースはこちらの支配下にある  である。Twitterがembed機能を提供しているが、そのTwitter側を想定した話だと思ってもらえると良い。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>iframeの高さを読み込むコンテンツに応じて変える - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="iframeの高さを読み込むコンテンツに応じて変える 前提として
+<iframe>を記述するHTMLドキュメントは外部のモノで触ることは出来ない <iframe>でロードするリソースはこちらの支配下にある である。Twitterがembed機能を提供しているが、そのTwitter側を想定した話だと思ってもらえると良い。
 <iframe>でロードされるリソースが<iframe>の高さを決定出来ない <iframe>の高さは<iframe>を埋め込んでいるHTMLドキュメント側が決定する。HTMLドキュメントの高さはdocument.documentElement.scrollHeightで取得できるが、コンテナ側から<iframe>のsrcに指定されたHTMLドキュメントを参照することが出来ない。HTMLドキュメントを参照する手段自体は<iframe>のcontentWindowを通じてiframe.contentWindow.document.documentElementのようにアクセス出来るが、ロードしているリソースがドメインを跨いでいると例外が発生して出来ない。
 postMessage()で高さをやり取りする 色々読み漁ったが、今のところwindowオブジェクトのpostMessage()を使うのが正攻法っぽい。以下のように<iframe>でロードしているコンテンツ側からコンテナにメッセージを投げることが出来る。
 // iframeでロードされていないケースを考慮し、window.parentの存在をチェックする if (window.parent) { let height = document.documentElement.scrollHeight; window.parent.postMessage(height); } 実際には、複数の<iframe>がロードされている可能性があるので、どの<iframe>とやりとりしているかを管理する必要がある。自分の場合は、まずコンテナ側で<iframe>に割り当てた#idを<iframe>でロードしているHTMLドキュメントにpostMessage()で送って、onmessageのハンドラ内でコンテンツの高さを送られた#idとともにコンテナ側にpostMessage()で返答するというやり方をとった。
@@ -27,142 +8,42 @@ postMessage()で高さをやり取りする 色々読み漁ったが、今のと
 <iframe>でロードされたHTMLドキュメント側のJavaScript window.onmessage = function(e) { let json = { id: e.data, height: document.documentElement.scrollHeight }; window.parent.postMessage(JSON.stringify(json)); }; <iframe>でロードするページが非同期描画しているケースは、それを待たないと正確なコンテンツ高を取得出来ない。描画完了をイベントでハンドリングできればいいが、場合によってはタイマーを使うことにもなりそう…。この辺を上手くやっているライブラリとしてdavidjbradshaw/iframe-resizerというものがあるそう（自分は使ってない）。
 スペックないのか iframe要素にはseamlessという属性が定義されているが、ブラウザのサポートが進んでいなかったこともあり、WHATWG側からは先日削除されている。
 しかし、この流れを受けてか新たな提案もなされている。
-iframe {">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2016/iframe-content-size.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="iframeの高さを読み込むコンテンツに応じて変える">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2016/iframe-content-size.html">
-<meta name=twitter:title content="iframeの高さを読み込むコンテンツに応じて変える">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2016.02.19</span>
-<h1 id=iframeの高さを読み込むコンテンツに応じて変える>iframeの高さを読み込むコンテンツに応じて変える</h1>
-<p>前提として</p>
-<ul>
-<li><code>&lt;iframe></code>を記述するHTMLドキュメントは外部のモノで触ることは出来ない</li>
-<li><code>&lt;iframe></code>でロードするリソースはこちらの支配下にある</li>
-</ul>
-<p>である。<a href=https://dev.twitter.com/ja/web/embedded-tweets>Twitterがembed機能を提供している</a>が、そのTwitter側を想定した話だと思ってもらえると良い。</p>
-<h2 id=iframeでロードされるリソースがiframeの高さを決定出来ない><code>&lt;iframe></code>でロードされるリソースが<code>&lt;iframe></code>の高さを決定出来ない</h2>
-<p><code>&lt;iframe></code>の高さは<code>&lt;iframe></code>を埋め込んでいるHTMLドキュメント側が決定する。HTMLドキュメントの高さは<code>document.documentElement.scrollHeight</code>で取得できるが、コンテナ側から<code>&lt;iframe></code>の<code>src</code>に指定されたHTMLドキュメントを参照することが出来ない。HTMLドキュメントを参照する手段自体は<code>&lt;iframe></code>の<code>contentWindow</code>を通じて<code>iframe.contentWindow.document.documentElement</code>のようにアクセス出来るが、ロードしているリソースがドメインを跨いでいると例外が発生して出来ない。</p>
-<h2 id=postmessageで高さをやり取りする><code>postMessage()</code>で高さをやり取りする</h2>
-<p>色々読み漁ったが、今のところ<code>window</code>オブジェクトの<code>postMessage()</code>を使うのが正攻法っぽい。以下のように<code>&lt;iframe></code>でロードしているコンテンツ側からコンテナにメッセージを投げることが出来る。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// iframeでロードされていないケースを考慮し、window.parentの存在をチェックする
-</span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> (window.<span style=color:#a6e22e>parent</span>) {
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>documentElement</span>.<span style=color:#a6e22e>scrollHeight</span>;
-  window.<span style=color:#a6e22e>parent</span>.<span style=color:#a6e22e>postMessage</span>(<span style=color:#a6e22e>height</span>);
-}
-</code></pre></div><p>実際には、複数の<code>&lt;iframe></code>がロードされている可能性があるので、どの<code>&lt;iframe></code>とやりとりしているかを管理する必要がある。自分の場合は、まずコンテナ側で<code>&lt;iframe></code>に割り当てた<code>#id</code>を<code>&lt;iframe></code>でロードしているHTMLドキュメントに<code>postMessage()</code>で送って、<code>onmessage</code>のハンドラ内でコンテンツの高さを送られた<code>#id</code>とともにコンテナ側に<code>postMessage()</code>で返答するというやり方をとった。</p>
-<h3 id=コンテナ側のjavascript>コンテナ側のJavaScript</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>window.<span style=color:#a6e22e>onmessage</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>e</span>) {
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>json</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>data</span>);
-  document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>`#</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>).<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>height</span><span style=color:#e6db74>}</span><span style=color:#e6db74>px`</span>;
-};
-
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>iframes</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelectorAll</span>(<span style=color:#e6db74>&#39;iframe&#39;</span>);
-<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>iframe</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>iframes</span>) {
-  <span style=color:#a6e22e>iframe</span>.<span style=color:#a6e22e>contentWindow</span>.<span style=color:#a6e22e>postMessage</span>(<span style=color:#a6e22e>iframe</span>.<span style=color:#a6e22e>id</span>);
-}
-</code></pre></div><p><code>&lt;iframe></code>の<code>onload</code>ハンドラでメッセージを送るようにして、<code>src</code>は後程設定するような実装だと◎。</p>
-<h3 id=iframeでロードされたhtmlドキュメント側のjavascript><code>&lt;iframe></code>でロードされたHTMLドキュメント側のJavaScript</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>window.<span style=color:#a6e22e>onmessage</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>e</span>) {
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>json</span> <span style=color:#f92672>=</span> {
-    <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>data</span>,
-    <span style=color:#a6e22e>height</span><span style=color:#f92672>:</span> document.<span style=color:#a6e22e>documentElement</span>.<span style=color:#a6e22e>scrollHeight</span>
-  };
-  window.<span style=color:#a6e22e>parent</span>.<span style=color:#a6e22e>postMessage</span>(<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>json</span>));
-};
-</code></pre></div><p><code>&lt;iframe></code>でロードするページが非同期描画しているケースは、それを待たないと正確なコンテンツ高を取得出来ない。描画完了をイベントでハンドリングできればいいが、場合によってはタイマーを使うことにもなりそう…。この辺を上手くやっているライブラリとして<a href=https://github.com/davidjbradshaw/iframe-resizer>davidjbradshaw/iframe-resizer</a>というものがあるそう（自分は使ってない）。</p>
-<h2 id=スペックないのか>スペックないのか</h2>
-<p><a href=http://w3c.github.io/html/single-page.html#attr-iframe-seamless>iframe要素には<code>seamless</code>という属性が定義されている</a>が、<a href="http://caniuse.com/#search=seamless">ブラウザのサポートが進んでいなかった</a>こともあり、<a href=https://github.com/whatwg/html/issues/331>WHATWG側からは先日削除されている</a>。</p>
-<p>しかし、この流れを受けてか新たな提案もなされている。</p>
-<blockquote class=twitter-tweet data-lang=ja><p lang=en dir=ltr>iframe {<br> height: max-content;<br>}<br><br>The future of iframe height resizing could be that easy with this proposed change <a href=https://t.co/2V2VF1ekJi>https://t.co/2V2VF1ekJi</a></p>&mdash; Ryan Seddon (@ryanseddon) <a href=https://twitter.com/ryanseddon/status/696498269585674240>2016, 2月 8</a></blockquote>
-<p><a href=https://github.com/craigfrancis/iframe-height>iFrame Height</a>は同等のことをCSSで実現しようというものだ。以下のように<code>&lt;iframe></code>の<code>height</code>プロパティに<code>max-content</code>という値を指定しようと言うもの。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>iframe</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://1000ch.net&#34;</span>&gt;&lt;/<span style=color:#f92672>iframe</span>&gt;
-&lt;<span style=color:#f92672>style</span>&gt;
-  <span style=color:#f92672>iframe</span> {
-    <span style=color:#66d9ef>height</span>: max-content;
-  }
-&lt;/<span style=color:#f92672>style</span>&gt;
-</code></pre></div><p>また、<code>&lt;iframe></code>でロードされるコンテンツにはレスポンスヘッダに<code>Expose-Height-Cross-Origin: 1;</code>を含んでいる必要がある。<a href=https://github.com/craigfrancis/iframe-height/blob/master/problems/infinite-loops.md>潜在的な問題を抱えている</a>ものの、ウィンドウ間で<code>postMessage()</code>をしないとダメというのもあまりにナンセンスだと思うので、是非実現されて欲しい。</p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2016/wdpress-frontend-series-pwa.html>👈 WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2016/web-components-es2015-class.html>ES2015のclass構文で書くWeb Components 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+iframe {
+height: max-content;"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/iframe-content-size.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="iframeの高さを読み込むコンテンツに応じて変える"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/iframe-content-size.html"><meta name=twitter:title content="iframeの高さを読み込むコンテンツに応じて変える"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2016.02.19</span><h1 id=iframeの高さを読み込むコンテンツに応じて変える>iframeの高さを読み込むコンテンツに応じて変える</h1><p>前提として</p><ul><li><code>&lt;iframe></code>を記述するHTMLドキュメントは外部のモノで触ることは出来ない</li><li><code>&lt;iframe></code>でロードするリソースはこちらの支配下にある</li></ul><p>である。<a href=https://dev.twitter.com/ja/web/embedded-tweets>Twitterがembed機能を提供している</a>が、そのTwitter側を想定した話だと思ってもらえると良い。</p><h2 id=iframeでロードされるリソースがiframeの高さを決定出来ない><code>&lt;iframe></code>でロードされるリソースが<code>&lt;iframe></code>の高さを決定出来ない</h2><p><code>&lt;iframe></code>の高さは<code>&lt;iframe></code>を埋め込んでいるHTMLドキュメント側が決定する。HTMLドキュメントの高さは<code>document.documentElement.scrollHeight</code>で取得できるが、コンテナ側から<code>&lt;iframe></code>の<code>src</code>に指定されたHTMLドキュメントを参照することが出来ない。HTMLドキュメントを参照する手段自体は<code>&lt;iframe></code>の<code>contentWindow</code>を通じて<code>iframe.contentWindow.document.documentElement</code>のようにアクセス出来るが、ロードしているリソースがドメインを跨いでいると例外が発生して出来ない。</p><h2 id=postmessageで高さをやり取りする><code>postMessage()</code>で高さをやり取りする</h2><p>色々読み漁ったが、今のところ<code>window</code>オブジェクトの<code>postMessage()</code>を使うのが正攻法っぽい。以下のように<code>&lt;iframe></code>でロードしているコンテンツ側からコンテナにメッセージを投げることが出来る。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// iframeでロードされていないケースを考慮し、window.parentの存在をチェックする
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> (window.<span style=color:#a6e22e>parent</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>documentElement</span>.<span style=color:#a6e22e>scrollHeight</span>;
+</span></span><span style=display:flex><span>  window.<span style=color:#a6e22e>parent</span>.<span style=color:#a6e22e>postMessage</span>(<span style=color:#a6e22e>height</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>実際には、複数の<code>&lt;iframe></code>がロードされている可能性があるので、どの<code>&lt;iframe></code>とやりとりしているかを管理する必要がある。自分の場合は、まずコンテナ側で<code>&lt;iframe></code>に割り当てた<code>#id</code>を<code>&lt;iframe></code>でロードしているHTMLドキュメントに<code>postMessage()</code>で送って、<code>onmessage</code>のハンドラ内でコンテンツの高さを送られた<code>#id</code>とともにコンテナ側に<code>postMessage()</code>で返答するというやり方をとった。</p><h3 id=コンテナ側のjavascript>コンテナ側のJavaScript</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>window.<span style=color:#a6e22e>onmessage</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>e</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>json</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>  document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>`#</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>).<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>height</span><span style=color:#e6db74>}</span><span style=color:#e6db74>px`</span>;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>iframes</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelectorAll</span>(<span style=color:#e6db74>&#39;iframe&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>iframe</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>iframes</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>iframe</span>.<span style=color:#a6e22e>contentWindow</span>.<span style=color:#a6e22e>postMessage</span>(<span style=color:#a6e22e>iframe</span>.<span style=color:#a6e22e>id</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><code>&lt;iframe></code>の<code>onload</code>ハンドラでメッセージを送るようにして、<code>src</code>は後程設定するような実装だと◎。</p><h3 id=iframeでロードされたhtmlドキュメント側のjavascript><code>&lt;iframe></code>でロードされたHTMLドキュメント側のJavaScript</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>window.<span style=color:#a6e22e>onmessage</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>e</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>json</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>data</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>height</span><span style=color:#f92672>:</span> document.<span style=color:#a6e22e>documentElement</span>.<span style=color:#a6e22e>scrollHeight</span>
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  window.<span style=color:#a6e22e>parent</span>.<span style=color:#a6e22e>postMessage</span>(<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>json</span>));
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p><code>&lt;iframe></code>でロードするページが非同期描画しているケースは、それを待たないと正確なコンテンツ高を取得出来ない。描画完了をイベントでハンドリングできればいいが、場合によってはタイマーを使うことにもなりそう…。この辺を上手くやっているライブラリとして<a href=https://github.com/davidjbradshaw/iframe-resizer>davidjbradshaw/iframe-resizer</a>というものがあるそう（自分は使ってない）。</p><h2 id=スペックないのか>スペックないのか</h2><p><a href=http://w3c.github.io/html/single-page.html#attr-iframe-seamless>iframe要素には<code>seamless</code>という属性が定義されている</a>が、<a href="http://caniuse.com/#search=seamless">ブラウザのサポートが進んでいなかった</a>こともあり、<a href=https://github.com/whatwg/html/issues/331>WHATWG側からは先日削除されている</a>。</p><p>しかし、この流れを受けてか新たな提案もなされている。</p><blockquote class=twitter-tweet data-lang=ja><p lang=en dir=ltr>iframe {<br>height: max-content;<br>}<br><br>The future of iframe height resizing could be that easy with this proposed change <a href=https://t.co/2V2VF1ekJi>https://t.co/2V2VF1ekJi</a></p>&mdash; Ryan Seddon (@ryanseddon) <a href=https://twitter.com/ryanseddon/status/696498269585674240>2016, 2月 8</a></blockquote><p><a href=https://github.com/craigfrancis/iframe-height>iFrame Height</a>は同等のことをCSSで実現しようというものだ。以下のように<code>&lt;iframe></code>の<code>height</code>プロパティに<code>max-content</code>という値を指定しようと言うもの。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>iframe</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://1000ch.net&#34;</span>&gt;&lt;/<span style=color:#f92672>iframe</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>  <span style=color:#f92672>iframe</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>height</span>: max-content;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>style</span>&gt;
+</span></span></code></pre></div><p>また、<code>&lt;iframe></code>でロードされるコンテンツにはレスポンスヘッダに<code>Expose-Height-Cross-Origin: 1;</code>を含んでいる必要がある。<a href=https://github.com/craigfrancis/iframe-height/blob/master/problems/infinite-loops.md>潜在的な問題を抱えている</a>ものの、ウィンドウ間で<code>postMessage()</code>をしないとダメというのもあまりにナンセンスだと思うので、是非実現されて欲しい。</p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2016/wdpress-frontend-series-pwa.html>👈 WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2016/web-components-es2015-class.html>ES2015のclass構文で書くWeb Components 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -209,6 +90,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

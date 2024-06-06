@@ -1,143 +1,35 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>gist + Reveal.js = GistReveal - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="gist + Reveal.js = GistReveal 以前Gistを簡易スライドにするGistSlideを作ったという記事を書いた。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>gist + Reveal.js = GistReveal - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="gist + Reveal.js = GistReveal 以前Gistを簡易スライドにするGistSlideを作ったという記事を書いた。
 Reveal.jsで作られたスライドをたくさん見るようになってきた。gistにReveal.jsを適用出来ても便利なんじゃないかと思い、ChromeのExtensionを作った。
 インストールしたら、スライドにしたいgistを表示中にボタンをクリックするだけでスライドになる。
 Reveal.jsのリソースを動的にページに gistのページにreveal.jsのリソースをロードさせることを念頭に置くと、JavaScriptはまだしも CSSを常に適用させていると当然レイアウトが壊れてしまうので、クリックを契機にページにCSSをロードさせなければならない。
 chrome.tabs.insertCSS(tab.id, {file: '/hoge.css'}); CSSはこれでOKだが、CSSの中で定義されているフォントへのURLは相対パスで記述されているため、そのままだとhttp://gist.github.com/.../hoge.ttfのようになってしまい、Extension内のリソースをロードしにいくことができない。
 そこでchrome.extension.getURL()でExtension内の絶対パスを使って、CSSを適用させた。
 var fontDefinition = '@font-face {' + 'font-family: &#34;League Gothic&#34;;' + 'src: url(&#34;' + chrome.extension.getURL(&#34;/font/hoge.ttf&#34;) + '&#34;);' + 'font-weight: normal;' + 'font-style: normal;' + '}'; chrome.tabs.insertCSS(tab.id, {code: fontDefinition}); が、適用されない。chrome-extension://スキーマでもローカルリソースとは認識されないためだった。ロードするフォントを、manifest.jsonのweb_accessible_resourcesに追加。
-{ &#34;web_accessible_resources&#34;: [ &#34;/font/hoge.ttf&#34; ] } これでOKだった。">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2013/gist-revealjs.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="gist + Reveal.js = GistReveal">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2013/gist-revealjs.html">
-<meta name=twitter:title content="gist + Reveal.js = GistReveal">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2013.09.11</span>
-<h1 id=gist--revealjs--gistreveal>gist + Reveal.js = GistReveal</h1>
-<p>以前<a href=/posts/2013/gist-slide.html>Gistを簡易スライドにするGistSlideを作った</a>という記事を書いた。</p>
-<p><a href=https://github.com/hakimel/reveal.js>Reveal.js</a>で作られたスライドをたくさん見るようになってきた。gistにReveal.jsを適用出来ても便利なんじゃないかと思い、<a href=(https://github.com/1000ch/GistReveal)>ChromeのExtensionを作った</a>。</p>
-<p>インストールしたら、スライドにしたいgistを表示中にボタンをクリックするだけでスライドになる。</p>
-<h2 id=revealjsのリソースを動的にページに>Reveal.jsのリソースを動的にページに</h2>
-<p>gistのページにreveal.jsのリソースをロードさせることを念頭に置くと、JavaScriptはまだしも
-CSSを常に適用させていると当然レイアウトが壊れてしまうので、クリックを契機にページにCSSをロードさせなければならない。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>chrome</span>.<span style=color:#a6e22e>tabs</span>.<span style=color:#a6e22e>insertCSS</span>(<span style=color:#a6e22e>tab</span>.<span style=color:#a6e22e>id</span>, {<span style=color:#a6e22e>file</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;/hoge.css&#39;</span>});
-</code></pre></div><p>CSSはこれでOKだが、CSSの中で定義されているフォントへのURLは相対パスで記述されているため、そのままだと<code>http://gist.github.com/.../hoge.ttf</code>のようになってしまい、Extension内のリソースをロードしにいくことができない。</p>
-<p>そこで<code>chrome.extension.getURL()</code>でExtension内の絶対パスを使って、CSSを適用させた。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>fontDefinition</span> <span style=color:#f92672>=</span>
-  <span style=color:#e6db74>&#39;@font-face {&#39;</span> <span style=color:#f92672>+</span>
-    <span style=color:#e6db74>&#39;font-family: &#34;League Gothic&#34;;&#39;</span> <span style=color:#f92672>+</span>
-    <span style=color:#e6db74>&#39;src: url(&#34;&#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>chrome</span>.<span style=color:#a6e22e>extension</span>.<span style=color:#a6e22e>getURL</span>(<span style=color:#e6db74>&#34;/font/hoge.ttf&#34;</span>) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;&#34;);&#39;</span> <span style=color:#f92672>+</span>
-    <span style=color:#e6db74>&#39;font-weight: normal;&#39;</span> <span style=color:#f92672>+</span>
-    <span style=color:#e6db74>&#39;font-style: normal;&#39;</span> <span style=color:#f92672>+</span>
-  <span style=color:#e6db74>&#39;}&#39;</span>;
-
-<span style=color:#a6e22e>chrome</span>.<span style=color:#a6e22e>tabs</span>.<span style=color:#a6e22e>insertCSS</span>(<span style=color:#a6e22e>tab</span>.<span style=color:#a6e22e>id</span>, {<span style=color:#a6e22e>code</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>fontDefinition</span>});
-</code></pre></div><p>が、適用されない。<code>chrome-extension://</code>スキーマでもローカルリソースとは認識されないためだった。ロードするフォントを、<code>manifest.json</code>の<code>web_accessible_resources</code>に追加。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
-  <span style=color:#f92672>&#34;web_accessible_resources&#34;</span>: [
-    <span style=color:#e6db74>&#34;/font/hoge.ttf&#34;</span>
-  ]
-}
-</code></pre></div><p>これでOKだった。</p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2013/middleman-travis-ci.html>👈 MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2013/web-image-optimization.html>Webにおける画像の最適化 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+{ &#34;web_accessible_resources&#34;: [ &#34;/font/hoge.ttf&#34; ] } これでOKだった。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/gist-revealjs.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="gist + Reveal.js = GistReveal"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/gist-revealjs.html"><meta name=twitter:title content="gist + Reveal.js = GistReveal"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2013.09.11</span><h1 id=gist--revealjs--gistreveal>gist + Reveal.js = GistReveal</h1><p>以前<a href=/posts/2013/gist-slide.html>Gistを簡易スライドにするGistSlideを作った</a>という記事を書いた。</p><p><a href=https://github.com/hakimel/reveal.js>Reveal.js</a>で作られたスライドをたくさん見るようになってきた。gistにReveal.jsを適用出来ても便利なんじゃないかと思い、<a href=(https://github.com/1000ch/GistReveal)>ChromeのExtensionを作った</a>。</p><p>インストールしたら、スライドにしたいgistを表示中にボタンをクリックするだけでスライドになる。</p><h2 id=revealjsのリソースを動的にページに>Reveal.jsのリソースを動的にページに</h2><p>gistのページにreveal.jsのリソースをロードさせることを念頭に置くと、JavaScriptはまだしも
+CSSを常に適用させていると当然レイアウトが壊れてしまうので、クリックを契機にページにCSSをロードさせなければならない。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>chrome</span>.<span style=color:#a6e22e>tabs</span>.<span style=color:#a6e22e>insertCSS</span>(<span style=color:#a6e22e>tab</span>.<span style=color:#a6e22e>id</span>, {<span style=color:#a6e22e>file</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;/hoge.css&#39;</span>});
+</span></span></code></pre></div><p>CSSはこれでOKだが、CSSの中で定義されているフォントへのURLは相対パスで記述されているため、そのままだと<code>http://gist.github.com/.../hoge.ttf</code>のようになってしまい、Extension内のリソースをロードしにいくことができない。</p><p>そこで<code>chrome.extension.getURL()</code>でExtension内の絶対パスを使って、CSSを適用させた。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>fontDefinition</span> <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#39;@font-face {&#39;</span> <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;font-family: &#34;League Gothic&#34;;&#39;</span> <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;src: url(&#34;&#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>chrome</span>.<span style=color:#a6e22e>extension</span>.<span style=color:#a6e22e>getURL</span>(<span style=color:#e6db74>&#34;/font/hoge.ttf&#34;</span>) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;&#34;);&#39;</span> <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;font-weight: normal;&#39;</span> <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;font-style: normal;&#39;</span> <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#39;}&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>chrome</span>.<span style=color:#a6e22e>tabs</span>.<span style=color:#a6e22e>insertCSS</span>(<span style=color:#a6e22e>tab</span>.<span style=color:#a6e22e>id</span>, {<span style=color:#a6e22e>code</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>fontDefinition</span>});
+</span></span></code></pre></div><p>が、適用されない。<code>chrome-extension://</code>スキーマでもローカルリソースとは認識されないためだった。ロードするフォントを、<code>manifest.json</code>の<code>web_accessible_resources</code>に追加。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;web_accessible_resources&#34;</span>: [
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;/font/hoge.ttf&#34;</span>
+</span></span><span style=display:flex><span>  ]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>これでOKだった。</p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2013/middleman-travis-ci.html>👈 MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2013/web-image-optimization.html>Webにおける画像の最適化 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -184,6 +76,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

@@ -1,203 +1,67 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Vulcanizeで減らすHTML ImportsのHTTPリクエスト - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="Vulcanizeで減らすHTML ImportsのHTTPリクエスト Web Componentsの旨味はコンポーネントの再利用が出来る所にあるので、そのためにはそのリソースは断片化は避けられない。 <x-element>を構成するリソースはx-element.htmlに集約し、使うときにはHTML Importsでロードする。 実際には複数のWeb Componentsを利用したいケースは当たり前にあることなので、素直にやろうとすると以下のように。
-<link rel=&#34;import&#34; href=&#34;x-element.html&#34;> <link rel=&#34;import&#34; href=&#34;y-element.html&#34;> <link rel=&#34;import&#34; href=&#34;z-element.html&#34;> このHTMLではこのWeb Componentsをロードしている というのが明確ではあるけど、インポートには当然HTTPリクエストを伴うので、パフォーマンスの観点からはあまりよろしくない。 今回はPolymerチームが提供しているVulcanizeを使ってこの辺りを最適化してみる。
- Concatenating Web Components with Vulcanize Polymer/vulcanize  インストールと使い方 npmからインストール出来るので早速インストール。
-# vulcanizeのインストール $ npm install -g vulcanize vulcanizeコマンドを使って、インポートを行っているHTMLを指定する。 指定したHTMLファイル中でインポートしているHTMLを、インポート先に書き出して<link rel='import'>を除くような処理をする。
-# index.html内の<link rel='import'>をアレコレしてbuild.htmlとして出力 $ vulcanize -o build.html index.html 実際にビルドされたリソースはインポートするHTMLを<div hidden></div>で挟んである以外は、結合だけされているような感じ。 HTML Importsの仕組みを考えれば、指定しているHTMLファイルを引っ張ってきてパースしているだけなので、直列に繋げた所で実行時に問題が起きないのも納得できる。 以下は、とある<y-elements>に依存している<x-element>のイメージ。
-<link rel=&#34;import&#34; href=&#34;y-element.html&#34;> <template id=&#34;x-element-template&#34;> <x-element> <content></content> </x-element> </template> <script> //... </script> これをVulcanizeしてみると
-<div hidden> <template id=&#34;y-element-template&#34;> <div> <content></content> </div> </template> <script> //.">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2014/reduce-http-requests-with-polymer-vulcanize.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Vulcanizeで減らすHTML ImportsのHTTPリクエスト">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2014/reduce-http-requests-with-polymer-vulcanize.html">
-<meta name=twitter:title content="Vulcanizeで減らすHTML ImportsのHTTPリクエスト">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2014.09.05</span>
-<h1 id=vulcanizeで減らすhtml-importsのhttpリクエスト>Vulcanizeで減らすHTML ImportsのHTTPリクエスト</h1>
-<p>Web Componentsの旨味はコンポーネントの再利用が出来る所にあるので、そのためにはそのリソースは断片化は避けられない。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Vulcanizeで減らすHTML ImportsのHTTPリクエスト - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='Vulcanizeで減らすHTML ImportsのHTTPリクエスト Web Componentsの旨味はコンポーネントの再利用が出来る所にあるので、そのためにはそのリソースは断片化は避けられない。 <x-element>を構成するリソースはx-element.htmlに集約し、使うときにはHTML Importsでロードする。 実際には複数のWeb Componentsを利用したいケースは当たり前にあることなので、素直にやろうとすると以下のように。
+<link rel="import" href="x-element.html"> <link rel="import" href="y-element.html"> <link rel="import" href="z-element.html"> このHTMLではこのWeb Componentsをロードしている というのが明確ではあるけど、インポートには当然HTTPリクエストを伴うので、パフォーマンスの観点からはあまりよろしくない。 今回はPolymerチームが提供しているVulcanizeを使ってこの辺りを最適化してみる。
+Concatenating Web Components with Vulcanize Polymer/vulcanize インストールと使い方 npmからインストール出来るので早速インストール。
+# vulcanizeのインストール $ npm install -g vulcanize vulcanizeコマンドを使って、インポートを行っているHTMLを指定する。 指定したHTMLファイル中でインポートしているHTMLを、インポート先に書き出して<link rel=&#39;import&#39;>を除くような処理をする。
+# index.html内の<link rel=&#39;import&#39;>をアレコレしてbuild.htmlとして出力 $ vulcanize -o build.html index.html 実際にビルドされたリソースはインポートするHTMLを<div hidden></div>で挟んである以外は、結合だけされているような感じ。 HTML Importsの仕組みを考えれば、指定しているHTMLファイルを引っ張ってきてパースしているだけなので、直列に繋げた所で実行時に問題が起きないのも納得できる。 以下は、とある<y-elements>に依存している<x-element>のイメージ。
+<link rel="import" href="y-element.html"> <template id="x-element-template"> <x-element> <content></content> </x-element> </template> <script> //... </script> これをVulcanizeしてみると
+<div hidden> <template id="y-element-template"> <div> <content></content> </div> </template> <script> //.'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/reduce-http-requests-with-polymer-vulcanize.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Vulcanizeで減らすHTML ImportsのHTTPリクエスト"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/reduce-http-requests-with-polymer-vulcanize.html"><meta name=twitter:title content="Vulcanizeで減らすHTML ImportsのHTTPリクエスト"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2014.09.05</span><h1 id=vulcanizeで減らすhtml-importsのhttpリクエスト>Vulcanizeで減らすHTML ImportsのHTTPリクエスト</h1><p>Web Componentsの旨味はコンポーネントの再利用が出来る所にあるので、そのためにはそのリソースは断片化は避けられない。
 <code>&lt;x-element></code>を構成するリソースは<code>x-element.html</code>に集約し、使うときにはHTML Importsでロードする。
-実際には複数のWeb Componentsを利用したいケースは当たり前にあることなので、素直にやろうとすると以下のように。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-element.html&#34;</span>&gt;
-&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;y-element.html&#34;</span>&gt;
-&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;z-element.html&#34;</span>&gt;
-</code></pre></div><p><strong>このHTMLではこのWeb Componentsをロードしている</strong> というのが明確ではあるけど、インポートには当然HTTPリクエストを伴うので、パフォーマンスの観点からはあまりよろしくない。
-今回はPolymerチームが提供しているVulcanizeを使ってこの辺りを最適化してみる。</p>
-<ul>
-<li><a href=http://www.polymer-project.org/articles/concatenating-web-components.html>Concatenating Web Components with Vulcanize</a></li>
-<li><a href=https://github.com/Polymer/vulcanize>Polymer/vulcanize</a></li>
-</ul>
-<h2 id=インストールと使い方>インストールと使い方</h2>
-<p>npmからインストール出来るので早速インストール。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># vulcanizeのインストール</span>
-$ npm install -g vulcanize
-</code></pre></div><p><code>vulcanize</code>コマンドを使って、インポートを行っているHTMLを指定する。
-指定したHTMLファイル中でインポートしているHTMLを、インポート先に書き出して<code>&lt;link rel='import'></code>を除くような処理をする。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># index.html内の&lt;link rel=&#39;import&#39;&gt;をアレコレしてbuild.htmlとして出力</span>
-$ vulcanize -o build.html index.html
-</code></pre></div><p>実際にビルドされたリソースはインポートするHTMLを<code>&lt;div hidden>&lt;/div></code>で挟んである以外は、結合だけされているような感じ。
+実際には複数のWeb Componentsを利用したいケースは当たり前にあることなので、素直にやろうとすると以下のように。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-element.html&#34;</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;y-element.html&#34;</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;z-element.html&#34;</span>&gt;
+</span></span></code></pre></div><p><strong>このHTMLではこのWeb Componentsをロードしている</strong> というのが明確ではあるけど、インポートには当然HTTPリクエストを伴うので、パフォーマンスの観点からはあまりよろしくない。
+今回はPolymerチームが提供しているVulcanizeを使ってこの辺りを最適化してみる。</p><ul><li><a href=http://www.polymer-project.org/articles/concatenating-web-components.html>Concatenating Web Components with Vulcanize</a></li><li><a href=https://github.com/Polymer/vulcanize>Polymer/vulcanize</a></li></ul><h2 id=インストールと使い方>インストールと使い方</h2><p>npmからインストール出来るので早速インストール。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># vulcanizeのインストール</span>
+</span></span><span style=display:flex><span>$ npm install -g vulcanize
+</span></span></code></pre></div><p><code>vulcanize</code>コマンドを使って、インポートを行っているHTMLを指定する。
+指定したHTMLファイル中でインポートしているHTMLを、インポート先に書き出して<code>&lt;link rel='import'></code>を除くような処理をする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># index.html内の&lt;link rel=&#39;import&#39;&gt;をアレコレしてbuild.htmlとして出力</span>
+</span></span><span style=display:flex><span>$ vulcanize -o build.html index.html
+</span></span></code></pre></div><p>実際にビルドされたリソースはインポートするHTMLを<code>&lt;div hidden>&lt;/div></code>で挟んである以外は、結合だけされているような感じ。
 HTML Importsの仕組みを考えれば、指定しているHTMLファイルを引っ張ってきてパースしているだけなので、直列に繋げた所で実行時に問題が起きないのも納得できる。
-以下は、とある<code>&lt;y-elements></code>に依存している<code>&lt;x-element></code>のイメージ。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;y-element.html&#34;</span>&gt;
-&lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-element-template&#34;</span>&gt;
-  &lt;<span style=color:#f92672>x-element</span>&gt;
-    &lt;<span style=color:#f92672>content</span>&gt;&lt;/<span style=color:#f92672>content</span>&gt;
-  &lt;/<span style=color:#f92672>x-element</span>&gt;
-&lt;/<span style=color:#f92672>template</span>&gt;
-&lt;<span style=color:#f92672>script</span>&gt;
-  <span style=color:#75715e>//...
-</span><span style=color:#75715e></span>&lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>これをVulcanizeしてみると</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>hidden</span>&gt;
-  &lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;y-element-template&#34;</span>&gt;
-    &lt;<span style=color:#f92672>div</span>&gt;
-      &lt;<span style=color:#f92672>content</span>&gt;&lt;/<span style=color:#f92672>content</span>&gt;
-    &lt;/<span style=color:#f92672>div</span>&gt;
-  &lt;/<span style=color:#f92672>template</span>&gt;
-  &lt;<span style=color:#f92672>script</span>&gt;
-    <span style=color:#75715e>//...
-</span><span style=color:#75715e></span>  &lt;/<span style=color:#f92672>script</span>&gt;
-&lt;/<span style=color:#f92672>div</span>&gt;
-&lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-element-template&#34;</span>&gt;
-  &lt;<span style=color:#f92672>x-element</span>&gt;
-    &lt;<span style=color:#f92672>content</span>&gt;&lt;/<span style=color:#f92672>content</span>&gt;
-  &lt;/<span style=color:#f92672>x-element</span>&gt;
-&lt;/<span style=color:#f92672>template</span>&gt;
-&lt;<span style=color:#f92672>script</span>&gt;
-  <span style=color:#75715e>//...
-</span><span style=color:#75715e></span>&lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>のように展開される。</p>
-<p>Polymerのコアモジュールのように複数のWeb Componentsから依存されるような場合も、Polymerコアが何度も展開されることはなく、よしなにやってくれる。</p>
-<h2 id=ビルドフローに組み込んでみる>ビルドフローに組み込んでみる</h2>
-<ul>
-<li>ロードしているコンポーネント群を全て結合したい</li>
-<li>あくまで<code>&lt;link rel='import'></code>を頼りにビルドするので、Vulcanizeの対象は単一のHTML</li>
-</ul>
-<p>という前提があるので、Web Componentsをロードしてる<code>&lt;link></code>だけを抜き出して別ファイルに用意。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-element.html&#34;</span>&gt;
-&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;y-element.html&#34;</span>&gt;
-&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;z-element.html&#34;</span>&gt;
-&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;twitter-button/twitter-button.html&#34;</span>&gt;
-&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;facebook-butotn/facebook-button.html&#34;</span>&gt;
-</code></pre></div><p>デバッグ時にはこのHTMLをインポートし、デプロイ時にはこのHTMLをVulcanizeでビルドしたものをロードすれば良い。
+以下は、とある<code>&lt;y-elements></code>に依存している<code>&lt;x-element></code>のイメージ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;y-element.html&#34;</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-element-template&#34;</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>x-element</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>content</span>&gt;&lt;/<span style=color:#f92672>content</span>&gt;
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>x-element</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>template</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><p>これをVulcanizeしてみると</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>hidden</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;y-element-template&#34;</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>content</span>&gt;&lt;/<span style=color:#f92672>content</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>template</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  &lt;/<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-element-template&#34;</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>x-element</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>content</span>&gt;&lt;/<span style=color:#f92672>content</span>&gt;
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>x-element</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>template</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><p>のように展開される。</p><p>Polymerのコアモジュールのように複数のWeb Componentsから依存されるような場合も、Polymerコアが何度も展開されることはなく、よしなにやってくれる。</p><h2 id=ビルドフローに組み込んでみる>ビルドフローに組み込んでみる</h2><ul><li>ロードしているコンポーネント群を全て結合したい</li><li>あくまで<code>&lt;link rel='import'></code>を頼りにビルドするので、Vulcanizeの対象は単一のHTML</li></ul><p>という前提があるので、Web Componentsをロードしてる<code>&lt;link></code>だけを抜き出して別ファイルに用意。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;x-element.html&#34;</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;y-element.html&#34;</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;z-element.html&#34;</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;twitter-button/twitter-button.html&#34;</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;facebook-butotn/facebook-button.html&#34;</span>&gt;
+</span></span></code></pre></div><p>デバッグ時にはこのHTMLをインポートし、デプロイ時にはこのHTMLをVulcanizeでビルドしたものをロードすれば良い。
 インポートをしているHTML（実際にカスタム要素を使っているHTML）そのもののビルドも出来るわけで、HTTPリクエストだけを考えればそれが一番良いかもしれない。
-でも、テンプレートエンジンを使ってたり、他のページに展開されたりすることを考えてみると、Web Componentsだけをまとめておくのがバランス良さそう。発想は外部CSSファイルの扱いと同じ。</p>
-<p>ビルドして展開されたHTMLも圧縮したらいいんじゃねと思って今回はそれもやった。</p>
-<ul>
-<li><a href=https://github.com/Polymer/grunt-vulcanize>https://github.com/Polymer/grunt-vulcanize</a></li>
-<li><a href=https://github.com/gruntjs/grunt-contrib-htmlmin>https://github.com/gruntjs/grunt-contrib-htmlmin</a>
-<ul>
-<li><a href=https://github.com/kangax/html-minifier>https://github.com/kangax/html-minifier</a></li>
-</ul>
-</li>
-</ul>
-<h2 id=最適化前後の例>最適化前後の例</h2>
-<p>小さすぎて見えにくいですが、リクエストが8つほど削減出来た。ペイロードサイズがネックにならないとは言い切れないけど、用法用量を守れば効果的なよう。</p>
-<h3 id=before>Before</h3>
-<p><img src=/img/posts/2014/reduce-http-requests-with-polymer-vulcanize/before.png alt></p>
-<h3 id=after>After</h3>
-<p><img src=/img/posts/2014/reduce-http-requests-with-polymer-vulcanize/after.png alt></p>
-<h2 id=所感>所感</h2>
-<p>リソースの断片化によるHTTPリクエストの増加はVulcanizeで解決出来る。でも事前にビルドするということが前提になる。
+でも、テンプレートエンジンを使ってたり、他のページに展開されたりすることを考えてみると、Web Componentsだけをまとめておくのがバランス良さそう。発想は外部CSSファイルの扱いと同じ。</p><p>ビルドして展開されたHTMLも圧縮したらいいんじゃねと思って今回はそれもやった。</p><ul><li><a href=https://github.com/Polymer/grunt-vulcanize>https://github.com/Polymer/grunt-vulcanize</a></li><li><a href=https://github.com/gruntjs/grunt-contrib-htmlmin>https://github.com/gruntjs/grunt-contrib-htmlmin</a><ul><li><a href=https://github.com/kangax/html-minifier>https://github.com/kangax/html-minifier</a></li></ul></li></ul><h2 id=最適化前後の例>最適化前後の例</h2><p>小さすぎて見えにくいですが、リクエストが8つほど削減出来た。ペイロードサイズがネックにならないとは言い切れないけど、用法用量を守れば効果的なよう。</p><h3 id=before>Before</h3><p><img src=/img/posts/2014/reduce-http-requests-with-polymer-vulcanize/before.png alt></p><h3 id=after>After</h3><p><img src=/img/posts/2014/reduce-http-requests-with-polymer-vulcanize/after.png alt></p><h2 id=所感>所感</h2><p>リソースの断片化によるHTTPリクエストの増加はVulcanizeで解決出来る。でも事前にビルドするということが前提になる。
 Web Componentsの謳い文句である <strong>「再利用」</strong> を考えれば、npmやbowerのようなパッケージマネージャを使って落とすのではなく、ネットワークからダイレクトにコンポーネントをロードしたいという発想も出てくる。
-それがorigamiのようなCDNで配信側でビルドされて返却されるようになるのか、はたまたHTTP2の普及で気にしなくなる時が来るのかわからないけど、それまではVulcanize使うと良さそう。</p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2014/html5-links-rel.html>👈 linkのrelの種類と効能等</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2014/philips-wide-display-23inch.html>PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+それがorigamiのようなCDNで配信側でビルドされて返却されるようになるのか、はたまたHTTP2の普及で気にしなくなる時が来るのかわからないけど、それまではVulcanize使うと良さそう。</p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2014/html5-links-rel.html>👈 linkのrelの種類と効能等</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2014/philips-wide-display-23inch.html>PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -244,6 +108,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

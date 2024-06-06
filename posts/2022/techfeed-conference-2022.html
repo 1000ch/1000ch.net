@@ -1,120 +1,15 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>TechFeed Conference 2022 で Web 標準技術の相互運用性について話した - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="TechFeed Conference 2022 で Web 標準技術の相互運用性について話した 掲題の通り、2022年5月14日に開催された TechFeed Conference 2022 で Web Standards Interop 2022 というタイトルで Web 標準技術の相互運用性について発表した。セッション資料とセッション動画があるのと、今回はありがたいことに記事として書き起こしていただいた。
- 事前練習のファーストテイクで 15min 程度かかったので、「これはまずい」ということで大幅に圧縮したバージョンがこちら。ぶっつけ本番で挑まなくて本当に良かった。
- TechFeed はエンジニア向けの技術情報プラットフォームで、鮮度の品質の高い技術情報がキュレートされて配信されている。技術情報を集める手段は RSS を使ったり Twitter を眺めるなど色々あるが、各分野のエキスパートが関心を持っている情報や、より多くの人が注目している情報が優先されるようになっており、より低コストで高品質な技術情報を集めるためのプラットフォームと言える。「RSS を管理するのが面倒！」「Twitter では雑音が多い！」という方に良さそう。
-TechFeed では2021年9月にもトライアル企画にお呼ばれしていて、Web 標準技術のエキスパートということでその時も最近の Web について話している。結果的に、今回のカンファレンスではその延長線にあたるセッションになった。">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2022/techfeed-conference-2022.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="TechFeed Conference 2022 で Web 標準技術の相互運用性について話した">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2022/techfeed-conference-2022.html">
-<meta name=twitter:title content="TechFeed Conference 2022 で Web 標準技術の相互運用性について話した">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2022.06.03</span>
-<h1 id=techfeed-conference-2022-で-web-標準技術の相互運用性について話した>TechFeed Conference 2022 で Web 標準技術の相互運用性について話した</h1>
-<p>掲題の通り、2022年5月14日に開催された <a href=https://techfeed.io/events/techfeed-conference-2022>TechFeed Conference 2022</a> で Web Standards Interop 2022 というタイトルで Web 標準技術の相互運用性について発表した。<a href=https://speakerdeck.com/1000ch/web-standards-interop-2022>セッション資料</a>とセッション動画があるのと、今回はありがたいことに<a href=https://techfeed.io/entries/6298e525ed640020f3f19a58>記事として書き起こし</a>ていただいた。</p>
-<iframe loading=lazy src="https://docs.google.com/presentation/d/e/2PACX-1vR3l-Aevly6pSAy24yJ_AqPv4bWGzUHohhCGyENvF4QqBXRt1TZ7jp-9bejwRBbp02yxjDBO0EKDlSC/embed?start=false&loop=false&delayms=3000" allowfullscreen></iframe>
-<p>事前練習のファーストテイクで 15min 程度かかったので、「これはまずい」ということで大幅に圧縮したバージョンがこちら。ぶっつけ本番で挑まなくて本当に良かった。</p>
-<iframe loading=lazy src="https://www.youtube.com/embed/OcnBnie2XpA?si=PPEO8tV-mYTQRpMl" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<p><a href=https://techfeed.io/>TechFeed</a> はエンジニア向けの技術情報プラットフォームで、鮮度の品質の高い技術情報がキュレートされて配信されている。技術情報を集める手段は RSS を使ったり Twitter を眺めるなど色々あるが、各分野のエキスパートが関心を持っている情報や、より多くの人が注目している情報が優先されるようになっており、より低コストで高品質な技術情報を集めるためのプラットフォームと言える。「RSS を管理するのが面倒！」「Twitter では雑音が多い！」という方に良さそう。</p>
-<p>TechFeed では<a href=https://techfeed.io/entries/6140b08c21fbaf70489303fe>2021年9月にもトライアル企画にお呼ばれ</a>していて、<a href=https://techfeed.io/people/@1000ch>Web 標準技術のエキスパート</a>ということでその時も最近の Web について話している。結果的に、今回のカンファレンスではその延長線にあたるセッションになった。</p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2022/tokyo-sakura-marathon.html>👈 東京さくらマラソンで 10km を完走した</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2022/lg-ultrafine-display-27inch.html>LG UltraFine 5K Display 27インチ 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>TechFeed Conference 2022 で Web 標準技術の相互運用性について話した - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="TechFeed Conference 2022 で Web 標準技術の相互運用性について話した 掲題の通り、2022年5月14日に開催された TechFeed Conference 2022 で Web Standards Interop 2022 というタイトルで Web 標準技術の相互運用性について発表した。セッション資料とセッション動画があるのと、今回はありがたいことに記事として書き起こしていただいた。
+事前練習のファーストテイクで 15min 程度かかったので、「これはまずい」ということで大幅に圧縮したバージョンがこちら。ぶっつけ本番で挑まなくて本当に良かった。
+TechFeed はエンジニア向けの技術情報プラットフォームで、鮮度の品質の高い技術情報がキュレートされて配信されている。技術情報を集める手段は RSS を使ったり Twitter を眺めるなど色々あるが、各分野のエキスパートが関心を持っている情報や、より多くの人が注目している情報が優先されるようになっており、より低コストで高品質な技術情報を集めるためのプラットフォームと言える。「RSS を管理するのが面倒！」「Twitter では雑音が多い！」という方に良さそう。
+TechFeed では2021年9月にもトライアル企画にお呼ばれしていて、Web 標準技術のエキスパートということでその時も最近の Web について話している。結果的に、今回のカンファレンスではその延長線にあたるセッションになった。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2022/techfeed-conference-2022.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="TechFeed Conference 2022 で Web 標準技術の相互運用性について話した"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2022/techfeed-conference-2022.html"><meta name=twitter:title content="TechFeed Conference 2022 で Web 標準技術の相互運用性について話した"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2022.06.03</span><h1 id=techfeed-conference-2022-で-web-標準技術の相互運用性について話した>TechFeed Conference 2022 で Web 標準技術の相互運用性について話した</h1><p>掲題の通り、2022年5月14日に開催された <a href=https://techfeed.io/events/techfeed-conference-2022>TechFeed Conference 2022</a> で Web Standards Interop 2022 というタイトルで Web 標準技術の相互運用性について発表した。<a href=https://speakerdeck.com/1000ch/web-standards-interop-2022>セッション資料</a>とセッション動画があるのと、今回はありがたいことに<a href=https://techfeed.io/entries/6298e525ed640020f3f19a58>記事として書き起こし</a>ていただいた。</p><iframe loading=lazy src="https://docs.google.com/presentation/d/e/2PACX-1vR3l-Aevly6pSAy24yJ_AqPv4bWGzUHohhCGyENvF4QqBXRt1TZ7jp-9bejwRBbp02yxjDBO0EKDlSC/embed?start=false&loop=false&delayms=3000" allowfullscreen></iframe><p>事前練習のファーストテイクで 15min 程度かかったので、「これはまずい」ということで大幅に圧縮したバージョンがこちら。ぶっつけ本番で挑まなくて本当に良かった。</p><iframe loading=lazy src="https://www.youtube.com/embed/OcnBnie2XpA?si=PPEO8tV-mYTQRpMl" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><a href=https://techfeed.io/>TechFeed</a> はエンジニア向けの技術情報プラットフォームで、鮮度の品質の高い技術情報がキュレートされて配信されている。技術情報を集める手段は RSS を使ったり Twitter を眺めるなど色々あるが、各分野のエキスパートが関心を持っている情報や、より多くの人が注目している情報が優先されるようになっており、より低コストで高品質な技術情報を集めるためのプラットフォームと言える。「RSS を管理するのが面倒！」「Twitter では雑音が多い！」という方に良さそう。</p><p>TechFeed では<a href=https://techfeed.io/entries/6140b08c21fbaf70489303fe>2021年9月にもトライアル企画にお呼ばれ</a>していて、<a href=https://techfeed.io/people/@1000ch>Web 標準技術のエキスパート</a>ということでその時も最近の Web について話している。結果的に、今回のカンファレンスではその延長線にあたるセッションになった。</p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2022/tokyo-sakura-marathon.html>👈 東京さくらマラソンで 10km を完走した</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2022/lg-ultrafine-display-27inch.html>LG UltraFine 5K Display 27インチ 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -161,6 +56,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>

@@ -1,175 +1,50 @@
-<!doctype html><html lang=ja>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>Web Components を本番投入する（2018年春） - EagleLand</title>
-<link rel=icon href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.png>
-<link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css>
-<link rel=stylesheet href=/css/settings.css>
-<link rel=stylesheet href=/css/tools.css>
-<link rel=stylesheet href=/css/generic.css>
-<link rel=stylesheet href=/css/base.css>
-<link rel=stylesheet href=/css/objects.css>
-<link rel=stylesheet href=/css/components.css>
-<link rel=stylesheet href=/css/trumps.css>
-<link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml>
-<meta name=author content="Shogo Sensui">
-<meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan">
-<meta property="og:description" content="Web Components を本番投入する（2018年春） とあるプロジェクトの技術監修をして、大まかに Web Components + Payment Request API な構成で進めてみたのでその話を思い出しながら書く。ちなみに FRESH! ではないです。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Web Components を本番投入する（2018年春） - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Web Components を本番投入する（2018年春） とあるプロジェクトの技術監修をして、大まかに Web Components + Payment Request API な構成で進めてみたのでその話を思い出しながら書く。ちなみに FRESH! ではないです。
 決済基盤をサービスで使うための SDK Payment Request API でお察しの通り、新たな決済基盤のプロジェクトで、それを使うための SDK を読み込んでボタンを配置すれば決済できる…みたいなものを作った。Payment Request API は、対応している環境ではそれで、対応していない環境では旧来の通り決済代行業者が用意しているフォーム付きページへ遷移させるという形でビジネスサイドへ提案した。
 技術面に関しても、FRESH! で導入済みだったこともあり、いざとなればサポートできるという意味で心配はあまりないつもりだった。実際には iOS Chrome の Payment Request API 実装に幾つかバグがあったり、決済代行業者との通信時にデータを指定のフォーマットで暗号化しなければいけなかったりと、いくつか地雷は踏みぬいたが…。
- 806272 - Cannot type sonant mark (Japanese) on any input area of Payment Request API dialog - chromium - Monorail 806666 - Total amount validation is wrong on Payment Request API - chromium - Monorail  ボタンを Web Components で配布したい 配布したい機能を含む JavaScript と CSS をロードさせて使ってもらう、昔ながらの形ではなく、Web Components で定義し配布させることにした。">
-<meta property="og:image" content="https://1000ch.net/img/apple-touch-icon.png">
-<meta name=twitter:card content="summary">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://1000ch.net/posts/2018/webcomponents-in-production.html">
-<meta property="og:site_name" content="EagleLand">
-<meta property="og:title" content="Web Components を本番投入する（2018年春）">
-<meta name=twitter:site content="@1000ch">
-<meta name=twitter:url content="https://1000ch.net/posts/2018/webcomponents-in-production.html">
-<meta name=twitter:title content="Web Components を本番投入する（2018年春）">
-<meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y">
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png>
-<link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png>
-<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','UA-49530352-1','1000ch.net'),ga('send','pageview')</script>
-</head>
-<body>
-<div class=Container>
-<header class=Header>
-<h1 class=Header__Title>
-<a href=/>EagleLand</a>
-</h1>
-<nav class=Header__Menu>
-<div class=Header__MenuItem>
-<a href=/rss.xml>📻 RSS</a>
-</div>
-<div class=Header__MenuItem>
-<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-</div>
-<div class=Header__MenuItem>
-<a href=https://shogosensui.com>🌎 Who is 1000ch</a>
-</div>
-</nav>
-<div class=Preference>
-<label>
-<input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label>
-<label>
-<input type=checkbox switch id=dark-mode> ダークモード
-</label>
-</div>
-</header>
-<main class=Main>
-<span class="Label Label--gray pull-left">2018.02.16</span>
-<h1 id=web-components-を本番投入する2018年春>Web Components を本番投入する（2018年春）</h1>
-<p>とあるプロジェクトの技術監修をして、大まかに Web Components + Payment Request API な構成で進めてみたのでその話を思い出しながら書く。ちなみに FRESH! ではないです。</p>
-<h2 id=決済基盤をサービスで使うための-sdk>決済基盤をサービスで使うための SDK</h2>
-<p>Payment Request API でお察しの通り、新たな決済基盤のプロジェクトで、それを使うための SDK を読み込んでボタンを配置すれば決済できる…みたいなものを作った。Payment Request API は、対応している環境ではそれで、対応していない環境では旧来の通り決済代行業者が用意しているフォーム付きページへ遷移させるという形でビジネスサイドへ提案した。</p>
-<p>技術面に関しても、FRESH! で導入済みだったこともあり、いざとなればサポートできるという意味で心配はあまりないつもりだった。実際には iOS Chrome の Payment Request API 実装に幾つかバグがあったり、決済代行業者との通信時にデータを指定のフォーマットで暗号化しなければいけなかったりと、いくつか地雷は踏みぬいたが…。</p>
-<ul>
-<li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=806272">806272 - Cannot type sonant mark (Japanese) on any input area of Payment Request API dialog - chromium - Monorail</a></li>
-<li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=806666">806666 - Total amount validation is wrong on Payment Request API - chromium - Monorail</a></li>
-</ul>
-<h2 id=ボタンを-web-components-で配布したい>ボタンを Web Components で配布したい</h2>
-<p>配布したい機能を含む JavaScript と CSS をロードさせて使ってもらう、昔ながらの形ではなく、Web Components で定義し配布させることにした。</p>
-<ul>
-<li><code>&lt;pay-button>購入する&lt;/pay-button></code> で機能を提供でき、わかりやすい</li>
-<li>ロードした JavaScript や CSS が Shadow DOM に閉じるので、グローバル空間を汚さない</li>
-</ul>
-<p>サービスを丸々 Web Components で構成するとなると大掛かりだが、範囲としてはまずまず小さく、おあつらえ向きだったと言える。2016年末に Safari が Custom Elements v1 と Shadow DOM v1 をサポートしたあたりからモバイル Web ならネイティブで使えることは何度か言ってきたが、2018年末ではサポート環境が更に充実してきた。モダンブラウザでは Firefox が <a href="https://caniuse.com/#feat=custom-elementsv1">v59 で Custom Elements v1 をサポートし</a>、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1205323">Shadow DOM v1 も v59 か v60 に間に合わせたい</a>様子。</p>
-<blockquote class=twitter-tweet data-lang=ja><p lang=en dir=ltr>Happy to say that support for Custom Elements and Shadow DOM is coming to Gecko in the Firefox 59/60 time frame. Web Components FTW! 🦎🚀</p>&mdash; Andreas Bovens (@andreasbovens) <a href="https://twitter.com/andreasbovens/status/935870321386754048?ref_src=twsrc%5Etfw">2017年11月29日</a></blockquote>
-<p>IE11 は仕方ないとして、残すところは Edge のみとなった。これらの非対応ブラウザでも動いてもらうために、 <a href=https://github.com/webcomponents/webcomponentsjs>webcomponents/webcomponentsjs</a> をロードさせる。Shadow DOM の振る舞いを完全にはエミュレートできず、具体的には、Shadow DOM にぶら下がる予定の <code>&lt;style></code> などが Light DOM にむき出しになるので、読み込んだ先でクラス名が衝突しないようにある程度のケアは必要である。</p>
-<h2 id=es-modules-でロードしてもらう>ES Modules でロードしてもらう</h2>
-<p>Web Components で作ったコンポーネントを ES Modules とそのフォールバックでロードしてもらう。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>pay-button</span>&gt;購入する&lt;/<span style=color:#f92672>pay-button</span>&gt;
-&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>nomodule</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;polyfill.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
-&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;module&#34;</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sdk.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
-&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>nomodule</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bundle.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>これで、ES Modules に対応しているブラウザは <code>sdk.js</code> をロードし、内部の <code>import</code> や <code>export</code> もブラウザネイティブで解決する。対応していないブラウザ向けには、<code>sdk.js</code> をエントリポイントにして依存モジュールをまとめた <code>bundle.js</code> を、 <code>nomodule</code> 属性付きの <code>&lt;script></code> 要素でロードする。</p>
-<p>バンドルには <a href=https://github.com/rollup/rollup>rollup/rollup</a> を、トランスパイルには <a href=https://github.com/babel/babel>babel/babel</a> を使った（ここでも地雷はいくつかあったが、単なる rollup.config.js の書き方の話なので割愛する）。Edge 向けのトランスパイルはある程度省いても良いはずだが、IE11 とエントリポイントとなるファイルが分かれるより、一律トランスパイルして単純化する。どのスペックについても中長期的に Edge のサポートを期待できるので、バンドルもトランスパイルもされていない <code>sdk.js</code> 側を ES Modules をロードしてくれる日が来るはずである。「ES Modules はサポートしたけど、あのシンタックスをサポートしていない」みたいな状況になって部分的にトランスパイルする、などの微調整は要るかもしれないが。</p>
-<h2 id=導入する側でのボタン-ui-のカスタマイズ>導入する側でのボタン UI のカスタマイズ</h2>
-<p>SDK 側でカスタマイズされたくない、あるいはしても良いというレギュレーションはさておき、Shadow DOM 内部のスタイルも closed な Shadow DOM でない限り上書きできる。仮にボタンの UI を上書きできないとしても、JavaScript のメソッドを直接実行すれば機能を使える。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>PayButton</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./pay-button.js&#39;</span>;
-
-<span style=color:#75715e>// window に宣言する
-</span><span style=color:#75715e></span>window.<span style=color:#a6e22e>PayButton</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>PayButton</span>;
-
-<span style=color:#75715e>// &lt;pay-button&gt; 要素を宣言する
-</span><span style=color:#75715e></span><span style=color:#a6e22e>customElements</span>.<span style=color:#a6e22e>define</span>(<span style=color:#e6db74>&#39;pay-button&#39;</span>, <span style=color:#a6e22e>PayButton</span>);
-
-<span style=color:#75715e>// PayButton クラスを命令的に使う
-</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>payButton</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>PayButton</span>();
-<span style=color:#a6e22e>payButton</span>.<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;...&#39;</span>;
-<span style=color:#a6e22e>payButton</span>.<span style=color:#a6e22e>pay</span>();
-</code></pre></div><p>なので、ボタンの <code>click</code> イベントで実行すれば、提供している UI は自由である。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// 望ましくない？
-</span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Component</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>Component</span> {
-  <span style=color:#a6e22e>onClick</span>() {
-    <span style=color:#75715e>// window.PayButton を命令的に使う
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>payButton</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>PayButton</span>();
-    <span style=color:#a6e22e>payButton</span>.<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>foo</span>;
-    <span style=color:#a6e22e>payButton</span>.<span style=color:#a6e22e>pay</span>();
-  }
-
-  <span style=color:#a6e22e>render</span>() {
-    <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>onClick</span>}<span style=color:#f92672>&gt;</span><span style=color:#a6e22e>購入する</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/button&gt;;</span>
-  }
-}
-</code></pre></div><p>が、これだと Web Components もへったくれもない使い方ではあるので、次のように宣言的に使って欲しい所ではある（使って欲しいというか、Web Components の流儀はこういうものだと解釈している）。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>// 望ましい
-</span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Component</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>Component</span> {
-  <span style=color:#a6e22e>render</span>() {
-    <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>pay</span><span style=color:#f92672>-</span><span style=color:#a6e22e>button</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>foo</span>}<span style=color:#f92672>&gt;</span><span style=color:#a6e22e>購入する</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/pay-button&gt;;</span>
-  }
-}
-</code></pre></div><p>こうした他のライブラリとの共存については、<a href=https://qiita.com/mizchi/items/053f5b42a6d0902e9412>JSフレームワークの末端がWebComponentsになるのか、なれるのか、検証してみた</a> という記事を最近見かけた。JSX は結局 JavaScript の世界なので、HTML と JavaScript でやり取りをしようとした時にどうしてもモヤモヤは残る。</p>
-<aside class=Share>
-<div class=Share__Item>
-<button type=button class=Share__Button>🔗 この記事をシェアする</a>
-</div>
-</aside>
-<div popover=auto id=Popover>タイトルと URL をコピーしました</div>
-<nav class=Pager>
-<div class="Pager__Item Pager__Item--left">
-<a href=/posts/2018/inside-frontend-vol2.html>👈 Inside Frontend vol2の感想</a>
-</div>
-<div class="Pager__Item Pager__Item--right">
-<a href=/posts/2018/leave-cyberagent.html>株式会社サイバーエージェントを退職します 👉</a>
-</div>
-</nav>
-</main>
-<aside class=Aside></aside>
-<footer class=Footer style=margin-bottom:2%>
-<h1>Author</h1>
-<div class=Media>
-<picture>
-<source srcset=/img/1000ch.avif type=image/avif>
-<img class=Media__Figure src=/img/1000ch.jpg alt>
-</picture>
-<div class=Media__Body>
-<h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3>
-<p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p>
-</div>
-</div>
-</footer>
-</div>
-<script defer src=https://platform.twitter.com/widgets.js></script>
-<script defer src=https://platform.instagram.com/en_US/embeds.js></script>
-<script defer src=https://strava-embeds.com/embed.js></script>
-<script defer src=https://embed.bsky.app/static/embed.js></script>
-<script type=module>
+806272 - Cannot type sonant mark (Japanese) on any input area of Payment Request API dialog - chromium - Monorail 806666 - Total amount validation is wrong on Payment Request API - chromium - Monorail ボタンを Web Components で配布したい 配布したい機能を含む JavaScript と CSS をロードさせて使ってもらう、昔ながらの形ではなく、Web Components で定義し配布させることにした。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2018/webcomponents-in-production.html"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Web Components を本番投入する（2018年春）"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2018/webcomponents-in-production.html"><meta name=twitter:title content="Web Components を本番投入する（2018年春）"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=Container><header class=Header><h1 class=Header__Title><a href=/>EagleLand</a></h1><nav class=Header__Menu><div class=Header__MenuItem><a href=/rss.xml>📻 RSS</a></div><div class=Header__MenuItem><a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a></div><div class=Header__MenuItem><a href=https://shogosensui.com>🌎 Who is 1000ch</a></div></nav><div class=Preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></header><main class=Main><span class="Label Label--gray pull-left">2018.02.16</span><h1 id=web-components-を本番投入する2018年春>Web Components を本番投入する（2018年春）</h1><p>とあるプロジェクトの技術監修をして、大まかに Web Components + Payment Request API な構成で進めてみたのでその話を思い出しながら書く。ちなみに FRESH! ではないです。</p><h2 id=決済基盤をサービスで使うための-sdk>決済基盤をサービスで使うための SDK</h2><p>Payment Request API でお察しの通り、新たな決済基盤のプロジェクトで、それを使うための SDK を読み込んでボタンを配置すれば決済できる…みたいなものを作った。Payment Request API は、対応している環境ではそれで、対応していない環境では旧来の通り決済代行業者が用意しているフォーム付きページへ遷移させるという形でビジネスサイドへ提案した。</p><p>技術面に関しても、FRESH! で導入済みだったこともあり、いざとなればサポートできるという意味で心配はあまりないつもりだった。実際には iOS Chrome の Payment Request API 実装に幾つかバグがあったり、決済代行業者との通信時にデータを指定のフォーマットで暗号化しなければいけなかったりと、いくつか地雷は踏みぬいたが…。</p><ul><li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=806272">806272 - Cannot type sonant mark (Japanese) on any input area of Payment Request API dialog - chromium - Monorail</a></li><li><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=806666">806666 - Total amount validation is wrong on Payment Request API - chromium - Monorail</a></li></ul><h2 id=ボタンを-web-components-で配布したい>ボタンを Web Components で配布したい</h2><p>配布したい機能を含む JavaScript と CSS をロードさせて使ってもらう、昔ながらの形ではなく、Web Components で定義し配布させることにした。</p><ul><li><code>&lt;pay-button>購入する&lt;/pay-button></code> で機能を提供でき、わかりやすい</li><li>ロードした JavaScript や CSS が Shadow DOM に閉じるので、グローバル空間を汚さない</li></ul><p>サービスを丸々 Web Components で構成するとなると大掛かりだが、範囲としてはまずまず小さく、おあつらえ向きだったと言える。2016年末に Safari が Custom Elements v1 と Shadow DOM v1 をサポートしたあたりからモバイル Web ならネイティブで使えることは何度か言ってきたが、2018年末ではサポート環境が更に充実してきた。モダンブラウザでは Firefox が <a href="https://caniuse.com/#feat=custom-elementsv1">v59 で Custom Elements v1 をサポートし</a>、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1205323">Shadow DOM v1 も v59 か v60 に間に合わせたい</a>様子。</p><blockquote class=twitter-tweet data-lang=ja><p lang=en dir=ltr>Happy to say that support for Custom Elements and Shadow DOM is coming to Gecko in the Firefox 59/60 time frame. Web Components FTW! 🦎🚀</p>&mdash; Andreas Bovens (@andreasbovens) <a href="https://twitter.com/andreasbovens/status/935870321386754048?ref_src=twsrc%5Etfw">2017年11月29日</a></blockquote><p>IE11 は仕方ないとして、残すところは Edge のみとなった。これらの非対応ブラウザでも動いてもらうために、 <a href=https://github.com/webcomponents/webcomponentsjs>webcomponents/webcomponentsjs</a> をロードさせる。Shadow DOM の振る舞いを完全にはエミュレートできず、具体的には、Shadow DOM にぶら下がる予定の <code>&lt;style></code> などが Light DOM にむき出しになるので、読み込んだ先でクラス名が衝突しないようにある程度のケアは必要である。</p><h2 id=es-modules-でロードしてもらう>ES Modules でロードしてもらう</h2><p>Web Components で作ったコンポーネントを ES Modules とそのフォールバックでロードしてもらう。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>pay-button</span>&gt;購入する&lt;/<span style=color:#f92672>pay-button</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>nomodule</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;polyfill.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;module&#34;</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sdk.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>nomodule</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bundle.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><p>これで、ES Modules に対応しているブラウザは <code>sdk.js</code> をロードし、内部の <code>import</code> や <code>export</code> もブラウザネイティブで解決する。対応していないブラウザ向けには、<code>sdk.js</code> をエントリポイントにして依存モジュールをまとめた <code>bundle.js</code> を、 <code>nomodule</code> 属性付きの <code>&lt;script></code> 要素でロードする。</p><p>バンドルには <a href=https://github.com/rollup/rollup>rollup/rollup</a> を、トランスパイルには <a href=https://github.com/babel/babel>babel/babel</a> を使った（ここでも地雷はいくつかあったが、単なる rollup.config.js の書き方の話なので割愛する）。Edge 向けのトランスパイルはある程度省いても良いはずだが、IE11 とエントリポイントとなるファイルが分かれるより、一律トランスパイルして単純化する。どのスペックについても中長期的に Edge のサポートを期待できるので、バンドルもトランスパイルもされていない <code>sdk.js</code> 側を ES Modules をロードしてくれる日が来るはずである。「ES Modules はサポートしたけど、あのシンタックスをサポートしていない」みたいな状況になって部分的にトランスパイルする、などの微調整は要るかもしれないが。</p><h2 id=導入する側でのボタン-ui-のカスタマイズ>導入する側でのボタン UI のカスタマイズ</h2><p>SDK 側でカスタマイズされたくない、あるいはしても良いというレギュレーションはさておき、Shadow DOM 内部のスタイルも closed な Shadow DOM でない限り上書きできる。仮にボタンの UI を上書きできないとしても、JavaScript のメソッドを直接実行すれば機能を使える。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>PayButton</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./pay-button.js&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// window に宣言する
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>window.<span style=color:#a6e22e>PayButton</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>PayButton</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// &lt;pay-button&gt; 要素を宣言する
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>customElements</span>.<span style=color:#a6e22e>define</span>(<span style=color:#e6db74>&#39;pay-button&#39;</span>, <span style=color:#a6e22e>PayButton</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// PayButton クラスを命令的に使う
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>payButton</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>PayButton</span>();
+</span></span><span style=display:flex><span><span style=color:#a6e22e>payButton</span>.<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;...&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>payButton</span>.<span style=color:#a6e22e>pay</span>();
+</span></span></code></pre></div><p>なので、ボタンの <code>click</code> イベントで実行すれば、提供している UI は自由である。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// 望ましくない？
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Component</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>Component</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>onClick</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// window.PayButton を命令的に使う
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>payButton</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>PayButton</span>();
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>payButton</span>.<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>foo</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>payButton</span>.<span style=color:#a6e22e>pay</span>();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>render</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>onClick</span>}<span style=color:#f92672>&gt;</span><span style=color:#a6e22e>購入する</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/button&gt;;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>が、これだと Web Components もへったくれもない使い方ではあるので、次のように宣言的に使って欲しい所ではある（使って欲しいというか、Web Components の流儀はこういうものだと解釈している）。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// 望ましい
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Component</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>Component</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>render</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>pay</span><span style=color:#f92672>-</span><span style=color:#a6e22e>button</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>foo</span>}<span style=color:#f92672>&gt;</span><span style=color:#a6e22e>購入する</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/pay-button&gt;;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>こうした他のライブラリとの共存については、<a href=https://qiita.com/mizchi/items/053f5b42a6d0902e9412>JSフレームワークの末端がWebComponentsになるのか、なれるのか、検証してみた</a> という記事を最近見かけた。JSX は結局 JavaScript の世界なので、HTML と JavaScript でやり取りをしようとした時にどうしてもモヤモヤは残る。</p><aside class=Share><div class=Share__Item><button type=button class=Share__Button>🔗 この記事をシェアする</a></div></aside><div popover=auto id=Popover>タイトルと URL をコピーしました</div><nav class=Pager><div class="Pager__Item Pager__Item--left"><a href=/posts/2018/inside-frontend-vol2.html>👈 Inside Frontend vol2の感想</a></div><div class="Pager__Item Pager__Item--right"><a href=/posts/2018/leave-cyberagent.html>株式会社サイバーエージェントを退職します 👉</a></div></nav></main><aside class=Aside></aside><footer class=Footer style=margin-bottom:2%><h1>Author</h1><div class=Media><picture><source srcset=/img/1000ch.avif type=image/avif><img class=Media__Figure src=/img/1000ch.jpg alt></picture><div class=Media__Body><h3 class=Media__Title>1000ch <a href=https://twitter.com/1000ch class=twitter-follow-button data-show-count=false data-show-screen-name=false>Follow @1000ch</a></h3><p>Web アプリケーション開発を専門とするソフトウェアエンジニア。企業で働く傍ら、技術顧問として複数企業のエンジニアリングに関わり、高品質で維持しやすい Web アプリケーションを作るための活動を続けている。</p></div></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(block => {
   hljs.highlightBlock(block);
 });
-</script>
-<script type=module>
+</script><script type=module>
 import AffiliateLink from '/js/affiliate-link.js';
 
 customElements.define('affiliate-link', AffiliateLink);
@@ -216,6 +91,4 @@ document.querySelector('.Share__Item button').addEventListener('click', async ev
     }, 2000);
   }
 });
-</script>
-</body>
-</html>
+</script></body></html>
