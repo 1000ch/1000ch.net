@@ -2,7 +2,7 @@ import {
   LitElement,
   html,
   css
-} from 'https://unpkg.com/lit@3.1.4/index.js?module';
+} from 'https://cdn.jsdelivr.net/gh/lit/dist@3.2.0/core/lit-core.min.js';
 
 export default class AffiliateLink extends LitElement {
   static get properties() {
