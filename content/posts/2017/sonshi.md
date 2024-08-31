@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 新訂 孫子 (岩波文庫)
 date: 2017-12-29
 ---

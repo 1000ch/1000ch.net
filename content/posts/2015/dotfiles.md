@@ -1,5 +1,4 @@
 ---
-layout: post
 title: dotfilesを整理した
 date: 2015-04-05
 ---

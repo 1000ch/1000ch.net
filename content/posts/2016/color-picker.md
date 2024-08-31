@@ -1,5 +1,4 @@
 ---
-layout: post
 title: D3.jsでColor Pickerを作った
 date: 2016-05-02
 ---

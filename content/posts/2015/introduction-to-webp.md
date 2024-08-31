@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 【翻訳】Introduction to WebP
 date: 2015-05-22
 ---

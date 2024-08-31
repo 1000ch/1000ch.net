@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Gistを簡易スライドにするGistSlideを作った
 date: 2013-07-05
 ---

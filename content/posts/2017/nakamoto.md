@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 味噌卵麺の豆腐変更 at 中本渋谷店
 date: 2017-12-12
 ---

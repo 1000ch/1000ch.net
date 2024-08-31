@@ -1,5 +1,4 @@
 ---
-layout: post
 title: QCY QY8 ワイヤレスイヤホン
 date: 2016-03-24
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WEB+DB PRESS総集編[Vol.1~120] に寄稿しました
 date: 2021-08-01
 ---

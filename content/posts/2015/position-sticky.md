@@ -1,5 +1,4 @@
 ---
-layout: post
 title: position-stickyについて調べたメモ
 date: 2015-03-31
 ---

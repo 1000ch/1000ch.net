@@ -1,5 +1,4 @@
 ---
-layout: post
 title: カスタム要素の状態を定義する CustomStateSet と参照する擬似クラス :state()
 date: 2024-04-07
 ---

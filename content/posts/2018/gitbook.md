@@ -1,5 +1,4 @@
 ---
-layout: post
 title: gitbook で Markdown から PDF を生成する
 date: 2018-05-13
 ---

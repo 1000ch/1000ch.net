@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Babelとの併用を止めてTypeScriptビルド一本化へ
 date: 2017-05-01
 ---

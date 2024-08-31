@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 複数の Google アカウントを統合管理する Shift というアプリが良い
 date: 2018-08-21
 ---

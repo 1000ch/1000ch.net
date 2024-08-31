@@ -1,5 +1,4 @@
 ---
-layout: post
 title: esaをElectronでラップしてアプリにした
 date: 2016-12-01
 image: /img/posts/2016/esa-app/demo.png

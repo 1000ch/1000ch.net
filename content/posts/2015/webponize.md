@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WebPonize
 date: 2015-03-11
 ---

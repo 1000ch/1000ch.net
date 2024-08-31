@@ -1,5 +1,4 @@
 ---
-layout: post
 title: HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた
 date: 2014-07-31
 ---

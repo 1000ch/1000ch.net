@@ -1,5 +1,4 @@
 ---
-layout: post
 title: DevFest Tokyo 2016でWeb Componentsの話をした
 date: 2016-10-10
 ---

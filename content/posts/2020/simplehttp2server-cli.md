@@ -1,5 +1,4 @@
 ---
-layout: post
 title: simplehttp2serverをnpmからインストールできるようにした
 date: 2020-06-04
 ---

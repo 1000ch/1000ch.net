@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 2023年の振り返り
 date: 2023-12-31
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 超速! Webページ速度改善ガイドの出版に寄せて
 date: 2017-11-18
 image: /img/posts/2017/webperf-guide/cover.png

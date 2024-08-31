@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 実践してるライフハック
 date: 2017-01-02
 ---

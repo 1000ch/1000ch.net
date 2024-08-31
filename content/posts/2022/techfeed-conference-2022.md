@@ -1,5 +1,4 @@
 ---
-layout: post
 title: TechFeed Conference 2022 で Web 標準技術の相互運用性について話した
 date: 2022-06-03
 ---

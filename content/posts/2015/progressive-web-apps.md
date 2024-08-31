@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Progressive Web Appsとは
 date: 2015-12-24
 ---

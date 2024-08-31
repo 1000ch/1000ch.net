@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Polymer Japan Meetupに出演しました
 date: 2017-11-05
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Webにおけるネットワーク通信
 date: 2014-12-03
 ---

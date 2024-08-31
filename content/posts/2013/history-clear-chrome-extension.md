@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 閲覧履歴を簡単に消せるGoogle Chromeの拡張機能を作った
 date: 2013-03-09
 ---

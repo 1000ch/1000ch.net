@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ハッカーと画家
 date: 2015-02-04
 ---

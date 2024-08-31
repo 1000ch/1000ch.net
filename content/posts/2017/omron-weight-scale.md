@@ -1,5 +1,4 @@
 ---
-layout: post
 title: オムロンの体重計
 date: 2017-07-10
 image: /img/posts/2017/omron-weight-scale/omron.jpg

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: MANABIYA -teratail Developer Days- に出演しました
 date: 2018-03-28
 ---

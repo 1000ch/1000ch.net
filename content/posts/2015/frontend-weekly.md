@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Frontend Weekly購読のススメ
 date: 2015-08-18
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Font Awesome の利用をやめた
 date: 2016-12-26
 ---

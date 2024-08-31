@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Google I/O 2014
 date: 2014-06-27
 ---

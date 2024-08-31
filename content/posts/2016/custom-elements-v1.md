@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Custom Elements v1
 date: 2016-09-16
 ---

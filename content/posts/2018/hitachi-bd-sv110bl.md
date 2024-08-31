@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 日立ドラム式洗濯乾燥機 BD-NV110BL
 date: 2018-05-04
 ---

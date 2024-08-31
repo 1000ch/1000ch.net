@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Speed IndexというWebパフォーマンスの指標
 date: 2017-05-29
 ---

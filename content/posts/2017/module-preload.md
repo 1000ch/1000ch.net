@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ES Modulesを優先的にロードするmodulepreload
 date: 2017-11-26
 ---

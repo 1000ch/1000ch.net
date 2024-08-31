@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WEB+DB PRESS Vol.100 に寄稿しました
 date: 2017-08-24
 image: /img/posts/2017/wdpress-vol100/cover.jpg

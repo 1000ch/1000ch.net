@@ -1,5 +1,4 @@
 ---
-layout: post
 title: SOFT SKILLS　ソフトウェア開発者の人生マニュアル
 date: 2016-09-04
 ---

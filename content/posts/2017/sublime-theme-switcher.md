@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Sublime Theme Switcherがとても便利
 date: 2017-07-18
 image: /img/posts/2017/sublime-theme-switcher/demo.gif

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: CentOS 6系に対して行う最低限の設定
 date: 2015-01-07
 ---

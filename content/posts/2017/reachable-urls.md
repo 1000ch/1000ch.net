@@ -1,5 +1,4 @@
 ---
-layout: post
 title: テキストファイル中に含まれるURLが有効かどうかチェックするツールを作った
 date: 2017-02-15
 image: /img/posts/2017/reachable-urls/demo.gif

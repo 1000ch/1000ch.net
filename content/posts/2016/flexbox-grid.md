@@ -1,5 +1,4 @@
 ---
-layout: post
 title: FlexboxでCSSのグリッドフレームワークの再発明
 date: 2016-03-16
 ---

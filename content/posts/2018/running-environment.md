@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ランニング環境の最適化
 date: 2018-07-22
 ---

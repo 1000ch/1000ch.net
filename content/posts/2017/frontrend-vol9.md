@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Frontrend Vol.9 を開催しました
 date: 2017-04-30
 ---

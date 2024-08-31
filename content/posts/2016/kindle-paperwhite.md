@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Kindle Paperwhiteを買った
 date: 2016-09-24
 ---

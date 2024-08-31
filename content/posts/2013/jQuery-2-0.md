@@ -1,5 +1,4 @@
 ---
-layout: post
 title: jQuery 2.0がリリースされた
 date: 2013-04-19
 ---

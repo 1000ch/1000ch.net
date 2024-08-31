@@ -1,5 +1,4 @@
 ---
-layout: post
 title: DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト
 date: 2020-08-04
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Inside Frontend vol2の感想
 date: 2018-02-14
 ---

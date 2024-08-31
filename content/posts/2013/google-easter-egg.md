@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Googleの隠しコマンド
 date: 2013-05-14
 ---

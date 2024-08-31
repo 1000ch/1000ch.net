@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 沖縄旅行1日目
 date: 2016-11-17
 image: /img/posts/2016/okinawa-1st-day/goya.jpg

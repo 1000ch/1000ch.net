@@ -1,5 +1,4 @@
 ---
-layout: post
 title: HTML ImportsするHTMLのコンテキストになるdocument
 date: 2014-08-25
 ---

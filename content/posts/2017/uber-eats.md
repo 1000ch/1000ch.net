@@ -1,5 +1,4 @@
 ---
-layout: post
 title: UberEATSを使ってみたらとても良かった
 date: 2017-02-02
 ---

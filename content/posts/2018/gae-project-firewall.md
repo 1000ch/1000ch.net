@@ -1,5 +1,4 @@
 ---
-layout: post
 title: GAE のプロジェクトに Firewall を設定する
 date: 2018-11-12
 ---

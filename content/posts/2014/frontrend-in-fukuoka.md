@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた
 date: 2014-02-02
 ---

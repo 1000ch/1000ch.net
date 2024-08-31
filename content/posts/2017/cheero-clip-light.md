@@ -1,5 +1,4 @@
 ---
-layout: post
 title: cheero CLIP Lightがなかなか便利
 date: 2017-06-04
 ---

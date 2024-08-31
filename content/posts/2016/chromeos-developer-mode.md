@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Chrome OSをDeveloper Modeで起動する
 date: 2016-01-02
 ---

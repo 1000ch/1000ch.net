@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Apple WatchでApple Payを便利に使っている話
 date: 2016-12-09
 ---

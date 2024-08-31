@@ -1,5 +1,4 @@
 ---
-layout: post
 title: R.I.P. Web Components v0
 date: 2018-07-30
 ---

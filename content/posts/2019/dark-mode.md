@@ -1,5 +1,4 @@
 ---
-layout: post
 title: prefers-color-scheme を使った Dark Mode 対応
 date: 2019-06-18
 ---

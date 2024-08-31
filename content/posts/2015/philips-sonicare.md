@@ -1,5 +1,4 @@
 ---
-layout: post
 title: PHILIPS ソニッケアーで快適歯磨き生活
 date: 2015-07-01
 ---

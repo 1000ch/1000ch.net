@@ -1,5 +1,4 @@
 ---
-layout: post
 title: スマートロックを SESAME 4 から SwitchBot ロックに移行した
 date: 2023-01-30
 ---

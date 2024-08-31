@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Pinput ~PinboardユーザーのためのChrome Extension~
 date: 2013-11-13
 ---

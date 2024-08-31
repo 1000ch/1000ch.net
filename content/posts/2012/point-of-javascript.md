@@ -1,5 +1,4 @@
 ---
-layout: post
 title: jQueryでコーディングをする際気をつけたいポイント
 date: 2012-12-02
 ---

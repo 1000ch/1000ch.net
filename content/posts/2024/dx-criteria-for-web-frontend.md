@@ -1,5 +1,4 @@
 ---
-layout: post
 title: DX Criteria for Web Frontend の公開に寄せて
 date: 2024-04-24
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: img要素とiframe要素のlazyload属性
 date: 2018-08-18
 ---

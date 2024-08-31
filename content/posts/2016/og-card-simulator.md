@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Open Graphのデータをカードでプレビューする
 date: 2016-01-29
 ---

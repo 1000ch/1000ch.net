@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Polymerについての所感
 date: 2015-01-30
 ---

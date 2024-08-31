@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WEB+DB PRESS Vol.89 特集「詳解 Chrome Developer Tools」
 date: 2015-10-19
 image: /img/posts/2015/wdpress-devtools/cover.jpg

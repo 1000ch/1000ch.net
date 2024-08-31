@@ -1,5 +1,4 @@
 ---
-layout: post
 title: MacのMarkdownアプリ
 date: 2016-01-12
 image: /img/posts/2016/markdown-mac-app/macdown.png

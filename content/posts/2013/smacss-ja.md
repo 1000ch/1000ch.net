@@ -1,5 +1,4 @@
 ---
-layout: post
 title: SMACSSが日本語に翻訳された
 date: 2013-07-03
 ---

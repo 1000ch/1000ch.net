@@ -1,5 +1,4 @@
 ---
-layout: post
 title: JavaScriptで起こるメモリリークのパターン
 date: 2017-02-17
 ---

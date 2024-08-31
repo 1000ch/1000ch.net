@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Google のソフトウェアエンジニアリングを読んだ
 date: 2024-01-14
 ---

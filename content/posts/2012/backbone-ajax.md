@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Backbone.jsのAjaxについて
 date: 2012-12-18
 ---

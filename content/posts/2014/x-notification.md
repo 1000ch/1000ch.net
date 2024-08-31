@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ブラウザのNotification APIをWeb Components化した
 date: 2014-07-15
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Inside Frontend に出演します
 date: 2017-01-29
 ---

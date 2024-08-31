@@ -1,5 +1,4 @@
 ---
-layout: post
 title: PinFeed for Pinboard
 date: 2016-03-28
 ---

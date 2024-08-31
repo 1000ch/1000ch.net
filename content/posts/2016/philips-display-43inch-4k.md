@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Philips 43型 4K ワイドディスプレイ
 date: 2016-08-08
 ---

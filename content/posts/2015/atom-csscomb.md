@@ -1,5 +1,4 @@
 ---
-layout: post
 title: CSSCombのAtomプラグイン
 date: 2015-07-20
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Docker事始め作業ログ
 date: 2015-09-14
 ---

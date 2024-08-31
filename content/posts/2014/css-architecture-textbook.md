@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Web制作者のためのCSS設計の教科書
 date: 2014-08-04
 ---

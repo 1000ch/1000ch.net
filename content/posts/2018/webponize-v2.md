@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WebPonize v2
 date: 2018-01-03
 ---

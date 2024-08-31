@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WebPonizeをリリースした
 date: 2015-04-29
 ---

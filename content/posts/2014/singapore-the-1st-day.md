@@ -1,5 +1,4 @@
 ---
-layout: post
 title: シンガポール遠征初日
 date: 2014-11-18
 ---

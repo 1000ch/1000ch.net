@@ -1,5 +1,4 @@
 ---
-layout: post
 title: TrelloをElectronでラップしてアプリにした
 date: 2016-11-15
 image: /img/posts/2016/trello-app/demo.png

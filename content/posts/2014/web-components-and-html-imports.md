@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Web ComponentsをHTML Importsでロードする必要性
 date: 2014-08-30
 ---

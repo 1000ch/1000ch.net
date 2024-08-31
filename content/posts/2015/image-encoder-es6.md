@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 画像をdataURIに変換するライブラリをES6で書きなおす
 date: 2015-01-06
 ---

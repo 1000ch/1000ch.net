@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 英語環境
 date: 2014-05-19
 ---

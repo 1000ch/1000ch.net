@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ghqとpecoを使ったリポジトリの管理またはコマンドラインの話
 date: 2017-05-23
 image: /img/posts/2017/dotfiles/ghq-peco.gif

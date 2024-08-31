@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Grunt ver0.4に向けての環境の再構築
 date: 2013-01-22
 ---

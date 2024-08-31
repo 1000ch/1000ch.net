@@ -1,5 +1,4 @@
 ---
-layout: post
 title: AbemaTVのランタイムパフォーマンスのAudit
 date: 2016-05-17
 image: /img/posts/2016/abematv-runtime-perf-audit/timeline.png

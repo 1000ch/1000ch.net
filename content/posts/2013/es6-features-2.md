@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~
 date: 2013-12-27
 ---

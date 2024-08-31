@@ -1,5 +1,4 @@
 ---
-layout: post
 title: cote&cielのバックパックを買った
 date: 2017-02-19
 image: img/posts/2017/cote-et-ciel-isar-rucksack/front.jpg

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: アミノバイタル presents 荒川ハーフマラソンを完走した
 date: 2024-02-17
 ---

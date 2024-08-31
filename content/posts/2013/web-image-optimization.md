@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Webにおける画像の最適化
 date: 2013-09-18
 ---

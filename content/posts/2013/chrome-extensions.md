@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ChromeのExtensionをウェブストアで公開した
 date: 2013-06-10
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Fuglen Tokyoのテストロースト
 date: 2017-12-25
 image: /img/posts/2017/fuglen-tokyo-test-roast/pack.jpg

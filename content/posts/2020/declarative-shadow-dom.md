@@ -1,5 +1,4 @@
 ---
-layout: post
 title: template 要素の shadowroot 属性による宣言的な Shadow DOM
 date: 2020-10-07
 ---

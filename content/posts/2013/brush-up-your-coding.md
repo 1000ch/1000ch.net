@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 一歩進んだHTML/CSS/JSを目指すために
 date: 2013-08-01
 ---

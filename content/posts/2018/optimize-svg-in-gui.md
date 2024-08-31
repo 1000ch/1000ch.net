@@ -1,5 +1,4 @@
 ---
-layout: post
 title: SVG ファイルを GUI ツールで最適化する
 date: 2018-11-11
 ---

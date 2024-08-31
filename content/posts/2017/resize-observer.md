@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 要素のサイズ変化を監視するResizeObserver
 date: 2017-11-21
 ---

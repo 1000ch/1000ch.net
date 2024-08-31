@@ -1,5 +1,4 @@
 ---
-layout: post
 title: SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた
 date: 2013-12-10
 ---

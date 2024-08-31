@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」
 date: 2015-02-23
 image: /img/posts/2015/wdpress-frontend-series-es6/cover.jpg

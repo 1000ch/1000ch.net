@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Web App Manifest
 date: 2016-06-23
 image: /img/posts/2016/web-app-manifest/devtools.png

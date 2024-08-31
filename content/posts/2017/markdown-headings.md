@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Markdownの見出しを抽出するツールを作った
 date: 2017-06-05
 ---

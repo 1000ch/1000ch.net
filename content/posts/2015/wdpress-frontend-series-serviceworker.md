@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WEB+DB PRESS Vol.86 Webフロントエンド最前線「Service Workerで実現するオフラインWebアプリケーション」
 date: 2015-04-15
 image: /img/posts/2015/wdpress-frontend-series-serviceworker/cover.jpg

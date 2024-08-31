@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Google AnalyticsとTiming APIでブログのサードパーティスクリプトのパフォーマンス計測
 date: 2016-12-24
 image: /img/posts/2016/ga-measure-performance/custom-speed.png

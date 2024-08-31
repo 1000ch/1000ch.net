@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ハイパフォーマンスJavaScript
 date: 2015-01-24
 ---

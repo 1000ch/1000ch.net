@@ -1,5 +1,4 @@
 ---
-layout: post
 title: inputやtextareaの入力補助
 date: 2015-06-22
 ---

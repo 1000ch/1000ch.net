@@ -1,5 +1,4 @@
 ---
-layout: post
 title: SaCSS Special4 Frontrend in Sapporoに出演します
 date: 2013-11-11
 ---

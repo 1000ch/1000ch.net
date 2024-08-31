@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Web Components 周辺の仕様とか 2017年秋
 date: 2017-09-12
 ---

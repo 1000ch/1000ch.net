@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Bonfire Frontend vol2 に出演しました
 date: 2018-08-25
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 英語学習事情
 date: 2019-12-30
 ---

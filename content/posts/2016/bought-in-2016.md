@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 2016年に買って良かったもの
 date: 2016-12-19
 image: /img/posts/2016/bought-in-2016/apple-watch-series-2.jpg

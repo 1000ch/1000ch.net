@@ -1,5 +1,4 @@
 ---
-layout: post
 title: パフォーマンスに関する各種ブラウザAPI
 date: 2016-06-14
 ---

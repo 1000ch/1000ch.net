@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Akamai Edge Japan 2017 に出演します
 date: 2017-09-25
 ---

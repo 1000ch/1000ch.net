@@ -1,5 +1,4 @@
 ---
-layout: post
 title: HTML5クックブック
 date: 2015-01-22
 ---

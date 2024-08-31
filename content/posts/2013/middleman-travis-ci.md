@@ -1,5 +1,4 @@
 ---
-layout: post
 title: MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた
 date: 2013-08-30
 ---

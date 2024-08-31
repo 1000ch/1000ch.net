@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 開発合宿 in 山喜旅館
 date: 2016-11-04
 image: /img/posts/2016/yamaki/outside.jpg

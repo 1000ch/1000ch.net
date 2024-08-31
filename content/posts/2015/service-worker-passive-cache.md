@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Service Workerを使った消極的なキャッシュ
 date: 2015-02-27
 ---

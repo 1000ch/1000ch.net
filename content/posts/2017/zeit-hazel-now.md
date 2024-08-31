@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Electronアプリの自動アップデートサーバーをhazelとnowで作る
 date: 2017-08-05
 ---

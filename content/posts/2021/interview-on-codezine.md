@@ -1,5 +1,4 @@
 ---
-layout: post
 title: CodeZine にてインタビューして頂きました
 date: 2021-03-20
 ---

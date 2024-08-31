@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ES2015のclass構文で書くWeb Components
 date: 2016-02-28
 ---

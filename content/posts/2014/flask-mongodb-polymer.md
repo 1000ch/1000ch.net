@@ -1,5 +1,4 @@
 ---
-layout: post
 title: PythonとMongoDBとPolymerでRSSリーダーを作った
 date: 2014-03-12
 ---

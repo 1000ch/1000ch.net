@@ -1,5 +1,4 @@
 ---
-layout: post
 title: メッセージングによるService Workerのコントロール
 date: 2016-05-13
 ---

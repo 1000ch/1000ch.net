@@ -1,5 +1,4 @@
 ---
-layout: post
 title: TechFeed Experts Night#26 で 2023 年の Web 開発について話した
 date: 2023-09-27
 ---

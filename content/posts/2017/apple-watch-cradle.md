@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Apple Watchの充電クレードルを購入した
 date: 2017-01-08
 image: /img/posts/2017/apple-watch-cradle/unpacked.jpg

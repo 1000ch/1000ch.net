@@ -1,5 +1,4 @@
 ---
-layout: post
 title: jQuery 1.9リリース候補版がリリースされた
 date: 2013-01-11
 ---

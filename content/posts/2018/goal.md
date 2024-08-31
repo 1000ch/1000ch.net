@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 2018年の目標
 date: 2018-01-01
 ---

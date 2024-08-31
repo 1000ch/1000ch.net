@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Macのアプリにバイナリをバンドルする
 date: 2015-03-21
 ---

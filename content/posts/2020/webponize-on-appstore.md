@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WebPonize を App Store で公開した
 date: 2020-08-11
 ---

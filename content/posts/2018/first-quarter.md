@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 2018年のQ1
 date: 2018-04-04
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: HTML Importsでインポート先に引き継がれる内容
 date: 2014-10-07
 ---

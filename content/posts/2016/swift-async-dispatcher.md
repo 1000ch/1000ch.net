@@ -1,5 +1,4 @@
 ---
-layout: post
 title: iOS+Swiftの非同期処理のヘルパークラス
 date: 2016-03-09
 ---

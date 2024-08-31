@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Webフォントのロードをやめた
 date: 2016-08-22
 ---

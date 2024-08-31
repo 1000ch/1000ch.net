@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Swift 3 における非同期処理
 date: 2016-10-22
 ---

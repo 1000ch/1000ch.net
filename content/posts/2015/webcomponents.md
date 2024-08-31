@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Web Components に対する問題提起
 date: 2015-03-23
 ---

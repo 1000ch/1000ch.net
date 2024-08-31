@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Dyson V6 Fluffy
 date: 2016-03-26
 image: /img/posts/2016/dyson-v6-fluffy/dyson-v6-fluffy.jpg

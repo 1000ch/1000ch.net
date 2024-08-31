@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 志向性
 date: 2015-01-08
 ---

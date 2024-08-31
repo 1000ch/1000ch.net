@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Frontrend ConferenceでService Workerについて話してきた
 date: 2015-02-22
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: LG UltraFine 5K Display 27インチ
 date: 2022-06-20
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Raspberry PiにChromiumとかJenkinsを入れてみた
 date: 2013-12-02
 ---

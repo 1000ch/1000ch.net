@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 続・ハイパフォーマンスWebサイト
 date: 2015-06-28
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 珪藻土バスマット
 date: 2016-08-01
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Web Components を本番投入する（2018年春）
 date: 2018-02-16
 ---

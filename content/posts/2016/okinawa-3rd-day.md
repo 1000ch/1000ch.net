@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 沖縄旅行最終日
 date: 2016-11-19
 image: /img/posts/2016/okinawa-3rd-day/kabira.jpg

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: なるほどデザイン
 date: 2018-01-02
 ---

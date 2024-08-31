@@ -1,5 +1,4 @@
 ---
-layout: post
 title: GuetzliをNode.jsで使えるモジュール
 date: 2017-04-21
 ---

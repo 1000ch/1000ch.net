@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 画像の最適化をCLIだけで行うgrunt-imageを作った
 date: 2014-02-03
 ---

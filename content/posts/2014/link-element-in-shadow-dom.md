@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Shadow DOMにおけるlink要素の扱い
 date: 2014-08-27
 ---

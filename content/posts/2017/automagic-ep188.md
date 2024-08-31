@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Automagic Podcast 188に出演しました
 date: 2017-03-28
 ---

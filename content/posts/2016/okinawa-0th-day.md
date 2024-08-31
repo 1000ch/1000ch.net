@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 沖縄旅行0日目
 date: 2016-11-16
 image: /img/posts/2016/okinawa-0th-day/rounge.jpg

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: メルペイエンジニアリングのこれまでとこれから at Merpay Tech Fest 2022
 date: 2022-08-24
 ---

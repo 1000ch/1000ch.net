@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Grunt ver0.5に向けてのロードマップ
 date: 2013-03-07
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Obsidian を使ったデバイスを問わないメモ運用
 date: 2023-09-26
 ---

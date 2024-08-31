@@ -1,5 +1,4 @@
 ---
-layout: post
 title: GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる
 date: 2015-01-12
 ---

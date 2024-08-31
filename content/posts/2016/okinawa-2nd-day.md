@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 沖縄旅行2日目
 date: 2016-11-18
 image: /img/posts/2016/okinawa-2nd-day/hibiscus.jpg

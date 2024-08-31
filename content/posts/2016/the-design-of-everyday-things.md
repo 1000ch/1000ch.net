@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 誰のためのデザイン？
 date: 2016-03-02
 ---

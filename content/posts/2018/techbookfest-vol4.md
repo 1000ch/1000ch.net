@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 技術書典4の戦利品
 date: 2018-04-22
 ---

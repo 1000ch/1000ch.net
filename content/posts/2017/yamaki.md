@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 開発合宿 in 山喜旅館 2017
 date: 2017-07-14
 image: /img/posts/2017/yamaki/ito-orange-beach.jpg

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Amazonに費やした金額を年毎に集計して表示するChromeの拡張機能
 date: 2016-08-20
 image: /img/posts/2016/amazon-payment-history/capture.png

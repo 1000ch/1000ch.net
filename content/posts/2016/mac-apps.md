@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 重用しているMacのアプリ
 date: 2016-06-21
 ---

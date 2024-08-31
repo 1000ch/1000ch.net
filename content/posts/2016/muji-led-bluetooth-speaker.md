@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 無印良品のペンダントライトとLED電球型Bluetoothスピーカー
 date: 2016-07-31
 ---

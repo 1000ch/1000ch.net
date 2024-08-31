@@ -1,5 +1,4 @@
 ---
-layout: post
 title: HTML5オールスターズ勉強会
 date: 2015-06-15
 ---

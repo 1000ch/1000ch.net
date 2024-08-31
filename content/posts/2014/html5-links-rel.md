@@ -1,5 +1,4 @@
 ---
-layout: post
 title: linkのrelの種類と効能等
 date: 2014-09-01
 ---

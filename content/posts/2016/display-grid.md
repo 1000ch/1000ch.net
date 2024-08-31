@@ -1,5 +1,4 @@
 ---
-layout: post
 title: CSS Grid Layout Moduleについて調べたメモ
 date: 2016-03-12
 image: /img/posts/2016/display-grid/display-grid-positive.svg

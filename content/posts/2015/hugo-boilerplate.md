@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Hugo Boilerplate
 date: 2015-03-22
 ---

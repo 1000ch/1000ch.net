@@ -1,5 +1,4 @@
 ---
-layout: post
 title: JSConf.Asia 2014を振り返って
 date: 2014-11-22
 ---

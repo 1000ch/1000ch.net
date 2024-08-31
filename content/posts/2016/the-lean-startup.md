@@ -1,5 +1,4 @@
 ---
-layout: post
 title: リーン・スタートアップ
 date: 2016-02-05
 ---

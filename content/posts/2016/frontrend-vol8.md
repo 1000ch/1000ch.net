@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Frontrend Vol.8でResource Hintsの話をした
 date: 2016-12-08
 ---

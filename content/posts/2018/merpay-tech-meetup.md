@@ -1,5 +1,4 @@
 ---
-layout: post
 title: merpay Tech Meetup vol.5 に出演します
 date: 2018-05-12
 ---

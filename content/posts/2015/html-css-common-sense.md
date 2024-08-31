@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 現場のプロが教えるHTML+CSSコーディングの最新常識
 date: 2015-03-27
 ---

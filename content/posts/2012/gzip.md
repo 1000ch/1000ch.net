@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Gzipを有効にしてサイト表示速度を向上させる
 date: 2012-12-06
 ---

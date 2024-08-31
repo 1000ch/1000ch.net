@@ -1,5 +1,4 @@
 ---
-layout: post
 title: IntersectionObserverを使ってlazyload-imageを書き直した
 date: 2016-05-15
 image: /img/posts/2016/intersection-observer-lazyload/demo.gif

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: react-routerのハッシュリンクとスムーススクロール
 date: 2017-06-11
 ---

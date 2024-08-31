@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Developer Summit 2017 に出演します
 date: 2017-01-05
 ---

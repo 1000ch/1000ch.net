@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 画像を便利に扱うReactコンポーネント
 date: 2017-08-11
 ---

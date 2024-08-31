@@ -1,5 +1,4 @@
 ---
-layout: post
 title: BOSE SoundLink Mini
 date: 2015-03-20
 ---

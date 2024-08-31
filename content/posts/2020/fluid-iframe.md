@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 続・レスポンシブなiframe
 date: 2020-01-03
 ---

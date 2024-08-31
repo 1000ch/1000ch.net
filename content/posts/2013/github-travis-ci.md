@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Travis CIを使ったGitHubプロジェクトの継続的インテグレーション
 date: 2013-08-19
 ---

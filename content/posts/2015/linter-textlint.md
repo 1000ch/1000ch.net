@@ -1,5 +1,4 @@
 ---
-layout: post
 title: textlintのAtomプラグイン
 date: 2015-09-20
 ---

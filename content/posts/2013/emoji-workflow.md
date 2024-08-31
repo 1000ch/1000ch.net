@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Emojiを選べるAlfredのWorkflowを作った
 date: 2013-10-27
 ---

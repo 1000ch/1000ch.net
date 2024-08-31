@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Web Share API を使った共有機能とフォールバック
 date: 2024-03-22
 ---

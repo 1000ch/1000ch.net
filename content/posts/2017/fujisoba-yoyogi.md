@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 富士そば代々木店
 date: 2017-12-07
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: SharedPreferenceへのアクセスがつらい
 date: 2018-01-18
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Vulcanizeで減らすHTML ImportsのHTTPリクエスト
 date: 2014-09-05
 ---

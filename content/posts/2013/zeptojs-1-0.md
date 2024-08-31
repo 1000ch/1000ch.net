@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Zepto.js ver1.0がリリースされた
 date: 2013-03-05
 ---

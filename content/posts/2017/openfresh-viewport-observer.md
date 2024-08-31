@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Intersection Observerを使った要素の出現を検出するReactコンポーネント
 date: 2017-05-17
 ---

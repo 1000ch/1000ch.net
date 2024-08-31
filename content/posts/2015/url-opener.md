@@ -1,5 +1,4 @@
 ---
-layout: post
 title: URL Opener
 date: 2015-03-10
 ---

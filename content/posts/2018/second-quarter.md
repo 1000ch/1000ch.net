@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 2018年のQ2
 date: 2018-06-30
 ---

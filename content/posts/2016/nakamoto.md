@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 蒙古タンメン中本 新宿店の味噌卵麺
 date: 2016-12-10
 image: /img/posts/2016/nakamoto/misoranmen.jpg

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: cgoでGoのコードからCの関数を利用する
 date: 2014-10-09
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 工作室もくもくはりねずみで World ID の虹彩認証をした
 date: 2024-03-11
 ---

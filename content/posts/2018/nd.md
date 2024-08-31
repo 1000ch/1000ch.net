@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Go で Node.js のバージョンマネージャを自作した
 date: 2018-10-16
 ---

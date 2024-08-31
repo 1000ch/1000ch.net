@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Webサイトのパフォーマンスを調べる
 date: 2013-06-16
 ---

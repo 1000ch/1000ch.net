@@ -1,5 +1,4 @@
 ---
-layout: post
 title: lit-html を調べたメモと考えたこと
 date: 2017-09-13
 ---

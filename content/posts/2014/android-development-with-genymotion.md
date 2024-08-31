@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Android Studio+GenymotionではじめるAndroid開発
 date: 2014-08-08
 ---

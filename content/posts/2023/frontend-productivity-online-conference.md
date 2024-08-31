@@ -1,5 +1,4 @@
 ---
-layout: post
 title: フロントエンドの開発生産性〜Online Conference〜に出演した
 date: 2023-09-21
 ---

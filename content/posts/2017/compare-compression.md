@@ -1,5 +1,4 @@
 ---
-layout: post
 title: gzipとzopfliとbrotliによる圧縮データのサイズを簡易的に比較する
 date: 2017-04-11
 ---

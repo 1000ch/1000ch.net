@@ -1,5 +1,4 @@
 ---
-layout: post
 title: gist + Reveal.js = GistReveal
 date: 2013-09-11
 ---

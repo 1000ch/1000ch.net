@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Gruntの概要と導入手順とメリット
 date: 2012-12-08
 ---

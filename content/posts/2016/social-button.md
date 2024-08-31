@@ -1,5 +1,4 @@
 ---
-layout: post
 title: ソーシャルボタンのWeb Components
 date: 2016-06-15
 ---

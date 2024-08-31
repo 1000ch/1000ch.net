@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 転職してから1年たった
 date: 2013-07-01
 ---

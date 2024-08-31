@@ -1,5 +1,4 @@
 ---
-layout: post
 title: iframeの高さを読み込むコンテンツに応じて変える
 date: 2016-02-19
 ---

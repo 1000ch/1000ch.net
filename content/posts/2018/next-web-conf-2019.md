@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 次世代 Web カンファレンスに出演します
 date: 2018-10-01
 ---

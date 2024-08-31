@@ -1,5 +1,4 @@
 ---
-layout: post
 title: GitHubのリポジトリをHerokuに自動でデプロイする
 date: 2016-10-21
 ---

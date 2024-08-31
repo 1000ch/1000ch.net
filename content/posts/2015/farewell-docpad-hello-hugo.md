@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Farewell DocPad, Hello Hugo.
 date: 2015-02-24
 ---

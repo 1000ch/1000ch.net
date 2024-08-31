@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Nature RemoとGoogle Homeで家電を操作する
 date: 2017-12-24
 ---

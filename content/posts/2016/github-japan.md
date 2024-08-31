@@ -1,5 +1,4 @@
 ---
-layout: post
 title: GitHub Japanを訪問してきた
 date: 2016-09-20
 image: /img/posts/2016/github-japan/poster.jpg

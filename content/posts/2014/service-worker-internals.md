@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Service Workerに関する仕様とか機能とか
 date: 2014-12-29
 ---

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 超撥水傘「Nu-Rain（ヌレイン）」
 date: 2016-06-06
 ---

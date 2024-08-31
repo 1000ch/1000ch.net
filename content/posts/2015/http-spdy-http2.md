@@ -1,5 +1,4 @@
 ---
-layout: post
 title: HTTP1.1とSPDYとHTTP2
 date: 2015-01-29
 ---

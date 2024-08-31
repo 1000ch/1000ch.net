@@ -1,5 +1,4 @@
 ---
-layout: post
 title: PinFeedを色々手直しした
 date: 2017-05-05
 ---

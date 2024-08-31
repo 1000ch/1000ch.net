@@ -1,5 +1,4 @@
 ---
-layout: post
 title: クラス関数をthrottleするデコレータ
 date: 2017-07-15
 ---

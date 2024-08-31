@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 【翻訳】We should optimize images
 date: 2015-05-25
 ---

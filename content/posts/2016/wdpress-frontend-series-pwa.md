@@ -1,5 +1,4 @@
 ---
-layout: post
 title: WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」
 date: 2016-02-10
 image: /img/posts/2016/wdpress-frontend-series-pwa/cover.jpg

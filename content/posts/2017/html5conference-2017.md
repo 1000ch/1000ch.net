@@ -1,5 +1,4 @@
 ---
-layout: post
 title: HTML5 Conference 2017 に出演します
 date: 2017-09-10
 ---
