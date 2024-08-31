@@ -7,14 +7,14 @@
 <div popover="auto" id="Popover">タイトルと URL をコピーしました</div>
 
 <nav class="Pager">
-  {{ with .PrevPage }}
+  {{ with .Prev }}
     <div class="Pager__Item Pager__Item--left">
       <a href="{{ .RelPermalink }}">👈 {{ .Title }}</a>
     </div>
   {{ else }}
   {{ end }}
 
-  {{ with .NextPage }}
+  {{ with .Next }}
     <div class="Pager__Item Pager__Item--right">
       <a href="{{ .RelPermalink }}">{{ .Title }} 👉</a>
     </div>
