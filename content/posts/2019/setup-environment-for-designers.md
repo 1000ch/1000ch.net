@@ -31,6 +31,20 @@ date: 2019-01-31
 - [sorin-ionescu/prezto](https://github.com/sorin-ionescu/prezto)
 - [sindresorhus/pure](https://github.com/sindresorhus/pure)
 
+ここでは [pure](https://github.com/sindresorhus/pure) を Homebrew 経由でインストールする。
+
+```sh
+brew install pure
+```
+
+zsh の人は `~/.zshrc` に以下を追加する。
+
+```sh
+# .zshrc
+autoload -U promptinit; promptinit
+prompt pure
+```
+
 ### 1.2. [Visual Studio Code](https://code.visualstudio.com/)
 
 どんなエディタでも構わないが、「まだエディタをインストールしてない…」ということであれば、[Visual Studio Code](https://code.visualstudio.com/) が良い。
@@ -39,12 +53,12 @@ date: 2019-01-31
 
 iTerm2 を起動して、色々なツールをインストールしていく。Homebrew をインストールして、Git や Node.js を使っていくための nodenv のインストール方法を含む。
 
-### 2.1. [Homebrew](https://brew.sh/index_ja)
+### 2.1. [Homebrew](https://brew.sh/ja)
 
-[Homebrew](https://brew.sh/index_ja) は macOS のアプリケーションマネージャである。Sketch でいう Sketchpacks のようなものだ。
+[Homebrew](https://brew.sh/ja) は macOS のアプリケーションマネージャである。Sketch でいう Sketchpacks のようなものだ。
 
 ```sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 Homebrew をインストールすると、 `brew` コマンドが使えるようになる。
@@ -112,7 +126,7 @@ ssh-keygen -t ed25519 -C "shogosensui@gmail.com"
 Enter a file in which to save the key (/Users/1000ch/.ssh/id_ed25519): [Press enter]
 ```
 
-今から生成しようとしている SSH キーは GitHub とやりとりするものなので、デフォルトの `id_ed25519` ではなく、 `github_ed25519` としておくことを推奨する。つまり `/Users/1000ch/.ssh/github_ed25519` を入力して、実行する。
+今から生成しようとしている SSH キーは GitHub とやりとりするものなので、ここではデフォルトの `id_ed25519` ではなく `github_ed25519` としておくことを提案する。つまり `/Users/1000ch/.ssh/github_ed25519` を入力して、実行する。
 
 実行すると、 `/Users/1000ch/.ssh/` フォルダに `github_ed25519` と `github_ed25519.pub` というファイルが生成される。`ls ~/.ssh/` 等を実行すると、生成されたファイルを確認できる。
 
@@ -124,7 +138,7 @@ Enter a file in which to save the key (/Users/1000ch/.ssh/id_ed25519): [Press en
 pbcopy < ~/.ssh/github_ed25519.pub
 ```
 
-**Title** には、どの公開鍵を登録したかわかる名前を入れておくと良い。例えば **Personal MacBook Pro** とかだとわかりやすいが、好みの名前で良い。
+**Title** には、どの公開鍵を登録したかわかる名前を入れておく。例えば **Personal MacBook Pro** 等だとわかりやすいが、好みの名前で良い。
 
 ### 3.3. `github.com` とのやりとりに SSH キーを指定する
 
