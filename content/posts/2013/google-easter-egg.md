@@ -3,8 +3,6 @@ title: Googleの隠しコマンド
 date: 2013-05-14
 ---
 
-# Googleの隠しコマンド
-
 昔のメモ書きを掘り起こしたので再度まとめる。これらの[イースターエッグ](http://ja.wikipedia.org/wiki/イースターエッグ)は検索のみだが、Google Mapsなどにもあるっぽい。
 
 ## [tilt](https://www.google.co.jp/search?q=tilt)

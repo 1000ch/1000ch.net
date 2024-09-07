@@ -4,8 +4,6 @@ date: 2014-12-15
 image: /img/posts/2014/wdpress-frontend-series-modulesystem/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.84 Webフロントエンド最前線「Webフロントエンドのモジュール管理」
-
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.84](http://gihyo.jp/magazine/wdpress/archive/2014/vol84)が12月23日に発売されます。
 
 ![](/img/posts/2014/wdpress-frontend-series-modulesystem/cover.jpg)

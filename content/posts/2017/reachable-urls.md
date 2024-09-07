@@ -4,8 +4,6 @@ date: 2017-02-15
 image: /img/posts/2017/reachable-urls/demo.gif
 ---
 
-# テキストファイル中に含まれるURLが有効かどうかチェックするツールを作った
-
 前略、 [`1000ch/reachable-urls`](https://github.com/1000ch/reachable-urls) というテキストファイルに含まれる URL が有効かどうかチェックするツールを作った。一応程度に [@inao](https://twitter.com/inao) さんに報告したらなんと使ってくれて、案外便利だったようで色々フィードバックをもらいながらコツコツ直した。今はバグも取れてきて安定してきたので、そろそろメジャーリリースしようかと考えている。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">原稿中のURLが有効かどうかを調べてくれるツールを <a href="https://twitter.com/1000ch">@1000ch</a> さんが公開してくださった！ <a href="https://t.co/6qG3wpTJYu">https://t.co/6qG3wpTJYu</a></p>&mdash; 稲尾尚徳 (@inao) <a href="https://twitter.com/inao/status/829268297698906112">2017年2月8日</a></blockquote>

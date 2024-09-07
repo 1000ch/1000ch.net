@@ -3,8 +3,6 @@ title: 東京さくらマラソンで 10km を完走した
 date: 2023-04-09
 ---
 
-# 東京さくらマラソンで 10km を完走した
-
 [去年に引き続き](/posts/2022/tokyo-sakura-marathon.html)、[第4回 東京さくらマラソン](https://www.sportsentry.ne.jp/event/t/89856)に参加して 10km を完走した。去年はとても暑くて途中でバテて 5km 時点でペースダウンした記憶があり、今年は少し抑えめのペースで走り切ることを目標にしたところ、[10km を 55:48](https://www.t-njsf.net/tokyo/wp-content/uploads/2023/04/20230402sakura-1.pdf) という結果で、去年より 1:26 遅かった。
 
 <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="8816299078"></div>

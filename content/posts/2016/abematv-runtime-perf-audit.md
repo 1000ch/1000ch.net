@@ -4,8 +4,6 @@ date: 2016-05-17
 image: /img/posts/2016/abematv-runtime-perf-audit/timeline.png
 ---
 
-# AbemaTVのランタイムパフォーマンスのAudit
-
 最近業務で、巷で話題の[AbemaTV](https://abema.tv/)のパフォーマンス改善をしている。個別具体性が高いが調査改善の雰囲気を感じ取ってもらえればそれで良いかと思い、記事にした。
 
 ## AbemaTVのフロントエンドの構成

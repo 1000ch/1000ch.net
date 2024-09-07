@@ -3,8 +3,6 @@ title: SMACSSが日本語に翻訳された
 date: 2013-07-03
 ---
 
-# SMACSSが日本語に翻訳された
-
 [@cssradar](https://twitter.com/cssradar)氏翻訳によるSMACSSの日本語書籍が発売された。
 
 - [Scalable and Modular Architecture for CSS(日本語訳サイト)](https://smacss.com/ja)

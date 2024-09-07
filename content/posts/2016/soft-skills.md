@@ -3,8 +3,6 @@ title: SOFT SKILLS　ソフトウェア開発者の人生マニュアル
 date: 2016-09-04
 ---
 
-# SOFT SKILLS　ソフトウェア開発者の人生マニュアル
-
 ソフトウェア開発者のキャリアマネジメントについて書かれた啓発本。原著は[Soft Skills: The Software Developer's Life Manual](https://www.amazon.co.jp/dp/1617292397/?tag=1000ch-22)で、今年の6月に発売された和訳版にあたる。
 
 <affiliate-link

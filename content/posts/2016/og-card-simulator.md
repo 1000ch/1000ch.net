@@ -3,8 +3,6 @@ title: Open Graphのデータをカードでプレビューする
 date: 2016-01-29
 ---
 
-# Open Graphのデータをカードでプレビューする
-
 オープングラフのデータを取得して表示する機能は、FacebookやらTwitter、Google+では当たり前のようにある機能だが、業務上必要になったので調査して、ツールを作った話。
 
 文字列や画像のURLといった表示させたいデータを`<meta>`や`<link>`で記述するのは御存知の通りだが、HTMLにどのように記述するかは各プラットフォーム毎に定義がなされている。Facebookであれば[Open Graph](http://ogp.me/)、Twitterであれば[Twitter Cards](https://dev.twitter.com/cards/markup)といった名前が付いている。

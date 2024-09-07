@@ -4,8 +4,6 @@ date: 2016-09-20
 image: /img/posts/2016/github-japan/poster.jpg
 ---
 
-# GitHub Japanを訪問してきた
-
 芝大門にある GitHub Japan を訪問してきた。
 
 ![エントランス](/img/posts/2016/github-japan/entrance.jpg)

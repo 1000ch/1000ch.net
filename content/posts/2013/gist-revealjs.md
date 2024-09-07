@@ -3,8 +3,6 @@ title: gist + Reveal.js = GistReveal
 date: 2013-09-11
 ---
 
-# gist + Reveal.js = GistReveal
-
 以前[Gistを簡易スライドにするGistSlideを作った](/posts/2013/gist-slide.html)という記事を書いた。
 
 [Reveal.js](https://github.com/hakimel/reveal.js)で作られたスライドをたくさん見るようになってきた。gistにReveal.jsを適用出来ても便利なんじゃないかと思い、[ChromeのExtensionを作った]((https://github.com/1000ch/GistReveal))。

@@ -3,8 +3,6 @@ title: BOSE SoundLink Mini
 date: 2015-03-20
 ---
 
-# BOSE SoundLink Mini
-
 BOSEのSoundLink Miniがとてもオススメ。
 
 ![](/img/posts/2015/bose-soundlink-mini/soundlink-mini.jpg)

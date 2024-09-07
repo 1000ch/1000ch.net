@@ -3,8 +3,6 @@ title: MANABIYA -teratail Developer Days- に出演しました
 date: 2018-03-28
 ---
 
-# MANABIYA -teratail Developer Days- に出演しました
-
 3月23日、24日の二日間で開催された [MANABIYA -teratail Developer Days-](https://manabiya.tech) に出演しました。二日目に Web のトピックを集めたトラックがあり、その中で 2018年の Web 標準というセッションで講演しました。
 
 ## 3331 Arts Chiyoda

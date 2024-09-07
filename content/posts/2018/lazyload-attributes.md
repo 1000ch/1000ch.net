@@ -3,8 +3,6 @@ title: img要素とiframe要素のlazyload属性
 date: 2018-08-18
 ---
 
-# img要素とiframe要素のlazyload属性
-
 `<img>` 要素と `<iframe>` 要素に `lazyload` 属性を定義する Pull Request が [`whatwg/html`](https://github.com/whatwg/html) に出されている。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">&lt;img&gt; 要素と &lt;iframe&gt; 要素の lazyload 属性 / &quot;Lazyload images and iframes by bengreenstein · Pull Request #3752 · whatwg/html&quot; <a href="https://t.co/3gJ9BVNRJc">https://t.co/3gJ9BVNRJc</a></p>&mdash; Shogo 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1030832747114192898?ref_src=twsrc%5Etfw">2018年8月18日</a></blockquote>

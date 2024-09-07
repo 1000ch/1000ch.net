@@ -3,8 +3,6 @@ title: スマートロックを SESAME 4 から SwitchBot ロックに移行し�
 date: 2023-01-30
 ---
 
-# スマートロックを SESAME 4 から SwitchBot ロックに移行した
-
 自宅のスマートロックを「[SESAME 4](https://jp.candyhouse.co/products/sesame4) + [WiFi Module 2](https://jp.candyhouse.co/products/new-wifi) + NFC タグ」から「SwitchBot ロック + SwitchBot キーパッド」にしたら、施錠時と解錠時にスマートフォンを取り出す手間がなくなり、かなり快適になった。
 
 <affiliate-link 

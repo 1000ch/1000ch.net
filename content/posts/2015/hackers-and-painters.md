@@ -3,8 +3,6 @@ title: ハッカーと画家
 date: 2015-02-04
 ---
 
-# ハッカーと画家
-
 これを初めて読んだのはプログラマーとして駆け出しの頃だったと思う。著者は、（当時知らなかったが）かの有名なポール・グレアム（[Paul Graham](http://www.paulgraham.com)）だ。
 
 ![](/img/posts/2015/hackers-and-painters/cover.jpg)

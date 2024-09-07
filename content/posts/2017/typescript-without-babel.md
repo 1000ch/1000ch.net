@@ -3,8 +3,6 @@ title: Babelとの併用を止めてTypeScriptビルド一本化へ
 date: 2017-05-01
 ---
 
-# Babelとの併用を止めてTypeScriptビルド一本化へ
-
 最近は社内で Web おじさん業をやる傍ら、プロジェクトコードなども少し触っている。最近では FRESH! でアレコレしていて、クライアントサイドとサーバーサイドの改善もやったり。
 
 - [FRESH! Web パフォーマンス改善 〜クライアントサイド編〜 | CyberAgent Developers Blog](https://developers.cyberagent.co.jp/blog/archives/6057/)

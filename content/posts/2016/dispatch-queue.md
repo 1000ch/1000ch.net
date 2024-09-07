@@ -3,8 +3,6 @@ title: Swift 3 における非同期処理
 date: 2016-10-22
 ---
 
-# Swift 3における非同期処理
-
 自作の [iOS クライアント](https://itunes.apple.com/app/id1090705533)のコードを [Swift 3 に移行した](https://github.com/1000ch/PinFeed/commit/d3332b09f3613867502d851fd0d337284d1c2b16)。その時に非同期処理について色々調べたのでメモ。
 
 ## GCD (Grand Central Dispatch)

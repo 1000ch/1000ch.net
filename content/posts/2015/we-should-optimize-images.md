@@ -3,8 +3,6 @@ title: 【翻訳】We should optimize images
 date: 2015-05-25
 ---
 
-# 【翻訳】We should optimize images
-
 **※この記事はMediumに投稿した[We should optimize images](http://bit.ly/we-should-optimize-images)の日本語訳です。**
 
 [Steve Souders](http://www.stevesouders.com/)は[High Performance Web Site](http://stevesouders.com/hpws/)で、次のように述べています。

@@ -3,8 +3,6 @@ title: Progressive Web Appsとは
 date: 2015-12-24
 ---
 
-# Progressive Web Appsとは
-
 今年の Chrome Dev Summit でもセッションにあった [Progressive Web Apps](https://www.youtube.com/watch?v=MyQ8mtR9WxI) について。Progressive Web Apps は特定の技術を指す言葉ではなく、 **Web の進化していくべき姿** を提唱しているものだ。[Alex Russell 氏が自身のブログで綴った](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/)のが事の始まりで、Chrome Dev Summit でも初日は Progressive Web Apps をテーマにセッションが組まれた。
 
 <iframe loading="lazy" src="https://www.youtube.com/embed/MyQ8mtR9WxI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="aspect-ratio: 16/9;"></iframe>

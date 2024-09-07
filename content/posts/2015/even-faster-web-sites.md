@@ -3,8 +3,6 @@ title: 続・ハイパフォーマンスWebサイト
 date: 2015-06-28
 ---
 
-# 続・ハイパフォーマンスWebサイト
-
 読みなおす機会があったので、簡単だけどレビューを書いてみる。
 
 ![続・ハイパフォーマンスWebサイト](/img/posts/2015/even-faster-web-sites/cover.jpg)

@@ -3,8 +3,6 @@ title: ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, G
 date: 2013-12-26
 ---
 
-# ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~
-
 ES6のフォローについては書こうとしていたものの後手に回っていて、ようやく書くに至る。SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてるけど、`let`とか`const`、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておく。
 
 ## この段階での実装状況はNightly > Canary

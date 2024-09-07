@@ -3,8 +3,6 @@ title: アクセシビリティへの取り組みについてのインタビュ�
 date: 2017-05-13
 ---
 
-# アクセシビリティへの取り組みについてのインタビュー
-
 インタビュー記事が公開された。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">「アメブロ」や映像配信プラットフォーム「FRESH!」でアクセシビリティに取り組む技術者たちに話を聞きました。<br>『「アクセシビリティに取り組むことが価値あるサービスづくりにつながる」サイバーエージェント技術者たちの取り組み』<a href="https://t.co/gZC4IqQSs0">https://t.co/gZC4IqQSs0</a></p>&mdash; サイバーエージェント　広報＆IR担当 (@CyberAgent_PR) <a href="https://twitter.com/CyberAgent_PR/status/862869891530936320">2017年5月12日</a></blockquote>

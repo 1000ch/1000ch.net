@@ -3,8 +3,6 @@ title: SharedPreferenceへのアクセスがつらい
 date: 2018-01-18
 ---
 
-# SharedPreferenceへのアクセスがつらい
-
 Android のアプリケーションでデータの永続化をしてくれる [SharedPreference](https://developer.android.com/training/basics/data-storage/shared-preferences.html?hl=ja) だが、これがなかなかつらい。SharedPreference はコンストラクタに ApplicationContext を渡してインスタンスを生成するが、肝心の値の取得と保存が面倒である。
 
 ## 値の取得と保存

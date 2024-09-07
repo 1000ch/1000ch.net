@@ -3,8 +3,6 @@ title: Webフロントエンドの変遷とこれから at デブサミ2017
 date: 2017-02-21
 ---
 
-# Webフロントエンドの変遷とこれから at デブサミ2017
-
 [Developer Summit 2017](http://event.shoeisha.jp/devsumi/20170216/) にて [Web フロントエンドの変遷とこれから](http://event.shoeisha.jp/devsumi/20170216/session/1270/) というタイトルで講演した。
 
 ## 前後半のスライド

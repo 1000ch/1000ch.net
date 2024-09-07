@@ -3,8 +3,6 @@ title: Hugo Boilerplate
 date: 2015-03-22
 ---
 
-# Hugo Boilerplate
-
 [Hugo](http://gohugo.io/)の[ドキュメンテーション](http://gohugo.io/overview/introduction/)はとても充実していて良いのだが、最小構成がそもそも小さいのでコードレベルで把握してしまったほうがわかりやすい可能性がある。
 
 [1000ch/hugo-boilerplate](https://github.com/1000ch/hugo-boilerplate)は、Hugoの主な機能を最小限の形にまとめたリポジトリ。

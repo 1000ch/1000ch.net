@@ -3,8 +3,6 @@ title: Custom Elements v1
 date: 2016-09-16
 ---
 
-# Custom Elements v1
-
 Custom Elements v1 が [Chrome の 54 からサポートされた](https://www.chromestatus.com/features/4696261944934400)。
 
 これまでの `document.registerElement('custom-element')` によるカスタム要素の定義は v0 にあたり、 v1 は様々な見直しがなされた Custom Elements の新しいバージョンである。

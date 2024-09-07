@@ -4,8 +4,6 @@ date: 2017-12-25
 image: /img/posts/2017/fuglen-tokyo-test-roast/pack.jpg
 ---
 
-# Fuglen Tokyoのテストロースト
-
 [Coffee Advent Calendar 2017](https://adventar.org/calendars/2165) の5日目の記事「[コスパの良い豆を入手できるお店](http://aibou.hateblo.jp/entry/2017/12/07/125216)」で紹介されている、[Fuglen Tokyo](https://tabelog.com/tokyo/A1318/A131810/13141002/) のテストローストの豆を購入した。
 
 ## パッケージ

@@ -4,8 +4,6 @@ date: 2016-05-15
 image: /img/posts/2016/intersection-observer-lazyload/demo.gif
 ---
 
-# IntersectionObserverを使ってlazyload-imageを書き直した
-
 画像をスクロール同期でロードする[`<lazyload-image>`](https://1000ch.github.io/lazyload-image/)というWeb Componentsの内部処理を、[`IntersectionObserver`](https://github.com/WICG/IntersectionObserver)で書き直した。
 
 ## 可視領域に要素が入っているかどうかの判定

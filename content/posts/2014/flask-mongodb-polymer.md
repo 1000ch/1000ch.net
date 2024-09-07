@@ -3,8 +3,6 @@ title: PythonとMongoDBとPolymerでRSSリーダーを作った
 date: 2014-03-12
 ---
 
-# PythonとMongoDBとPolymerでRSSリーダーを作った
-
 Pythonで何かアプリ書きたいなと思ってはいたので、[RSSリーダー](http://cobra.herokuapp.com)を作った。フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。
 
 Flask + MongoDBのところまで実装して暫く放置していたけど、最近思いつきでPolymerをねじ込んだので記事にしてみる。

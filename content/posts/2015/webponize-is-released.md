@@ -3,8 +3,6 @@ title: WebPonizeをリリースした
 date: 2015-04-29
 ---
 
-# WebPonizeをリリースした
-
 WebPonizeは[前に触れた](/posts/2015/webponize.html)通り、JPEGやPNGをWebPに変換するMacのアプリケーション。App Storeに登録するために色々と試行錯誤していたんだけど、アプリの目的と反する可能性が出てきたので断念し、ダウンロード形式を取ることにした話。
 
 ## アプリに掛かる制限が色々と厳しい

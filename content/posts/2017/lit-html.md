@@ -3,8 +3,6 @@ title: lit-html を調べたメモと考えたこと
 date: 2017-09-13
 ---
 
-# lit-html を調べたメモと考えたこと
-
 [PolymerLabs/lit-html](https://github.com/PolymerLabs/lit-html) という Polymer チームによる実験的プロジェクトがある。JavaScript のテンプレートリテラルを通して、`<template>` 要素を使いつつテンプレートの機能を実現するライブラリで、API ドキュメントを見たのでそのメモ。
 
 ## Tagged template literals のおさらい

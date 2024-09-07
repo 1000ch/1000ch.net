@@ -3,8 +3,6 @@ title: Nature RemoとGoogle Homeで家電を操作する
 date: 2017-12-24
 ---
 
-# Nature Remo と Google Home で家電を操作する
-
 既に情報は出回っており目新しいものではないが、ようやく Google Home と Nature Remo を連携して声で家電を操作できるようになったので、その作業ログをまとめておく。
 
 ## Nature Remo とは

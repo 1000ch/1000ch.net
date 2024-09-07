@@ -3,8 +3,6 @@ title: PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った
 date: 2014-09-11
 ---
 
-# PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った
-
 良いという噂が飛び交っているPHILIPSのAH-IPSパネルディスプレイを購入した。
 
 ![](/img/posts/2014/philips-wide-display-23inch/packed.jpg)

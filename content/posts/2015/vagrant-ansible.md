@@ -3,8 +3,6 @@ title: VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ
 date: 2015-01-10
 ---
 
-# VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ
-
 Vagrantは今更説明するまでもないけど、仮想環境の作成や起動・破棄を自動化したりするツール。VagrantはChefやAnsibleといったようなプロビジョニングツールとも連携可能なのでそれも少し。
 
 ## Vagrantで仮想環境を作る

@@ -4,8 +4,6 @@ date: 2015-06-14
 image: /img/posts/2015/wdpress-frontend-series-network/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.87 Webフロントエンド最前線「ユーザを待たせない高速なWebサイト」
-
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.87](http://gihyo.jp/magazine/wdpress/archive/2015/vol87)が6月24日に発売されます。連載7回目は、Webフロントエンド高速化に於いて最も基本的とも言えるネットワークの最適化について。
 
 ![](/img/posts/2015/wdpress-frontend-series-network/cover.jpg)

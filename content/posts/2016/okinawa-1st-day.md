@@ -4,8 +4,6 @@ date: 2016-11-17
 image: /img/posts/2016/okinawa-1st-day/goya.jpg
 ---
 
-# 沖縄旅行1日目
-
 前日入りの甲斐あって6:30起床で済んだので、7:00集合を物ともしなかった。
 
 ![羽田空港で集合](/img/posts/2016/okinawa-1st-day/haneda.jpg)

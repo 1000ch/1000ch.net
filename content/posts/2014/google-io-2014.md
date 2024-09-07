@@ -3,8 +3,6 @@ title: Google I/O 2014
 date: 2014-06-27
 ---
 
-# [Google I/O 2014](https://www.google.com/events/io)
-
 サンフランシスコに来ています。
 
 ![](/img/posts/2014/google-io-2014/google-io.jpg)

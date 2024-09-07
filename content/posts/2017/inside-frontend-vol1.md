@@ -3,8 +3,6 @@ title: Inside Frontend に出演します
 date: 2017-01-29
 ---
 
-# Inside Frontend に出演します
-
 [Inside Frontend #1](https://inside-frontend.connpass.com/event/47920/) に「Web フロントエンドにおけるコンポーネント化のアプローチ」というセッションで出演します。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">「Webフロントエンドの現場とこれからをつなぐカンファレンス」 Inside Frontend #1 を開催します。多様化している現場と、Webのこれからを一緒に考えていく場です。是非お越しください！ <a href="https://twitter.com/hashtag/insideFE?src=hash">#insideFE</a><a href="https://t.co/BWtG0nMDQg">https://t.co/BWtG0nMDQg</a> <a href="https://t.co/OizFjQOaL4">pic.twitter.com/OizFjQOaL4</a></p>&mdash; Inside Frontend (@insidefrontend) <a href="https://twitter.com/insidefrontend/status/824839759583326208">2017年1月27日</a></blockquote>

@@ -1,23 +1,23 @@
-<aside class="Share">
-  <div class="Share__Item">
-    <button type="button" class="Share__Button">🔗 この記事をシェアする</a>
-  </div>
+<aside class="share">
+  <p>
+    <button type="button" id="share-button">🔗 この記事をシェアする</a>
+  </p>
 </aside>
 
-<div popover="auto" id="Popover">タイトルと URL をコピーしました</div>
+<div popover="auto" id="popover">タイトルと URL をコピーしました</div>
 
-<nav class="Pager">
-  {{ with .Prev }}
-    <div class="Pager__Item Pager__Item--left">
+<nav class="pager">
+  <div>
+    {{ with .Prev }}
       <a href="{{ .RelPermalink }}">👈 {{ .Title }}</a>
-    </div>
-  {{ else }}
-  {{ end }}
+    {{ else }}
+    {{ end }}
+  </div>
 
-  {{ with .Next }}
-    <div class="Pager__Item Pager__Item--right">
+  <div>
+    {{ with .Next }}
       <a href="{{ .RelPermalink }}">{{ .Title }} 👉</a>
-    </div>
-  {{ else }}
-  {{ end }}
+    {{ else }}
+    {{ end }}
+  </div>
 </nav>

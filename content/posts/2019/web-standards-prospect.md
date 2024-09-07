@@ -3,8 +3,6 @@ title: 2019年のWeb標準という記事を寄稿しました
 date: 2019-01-08
 ---
 
-# 2019年のWeb標準という記事を寄稿しました
-
 あけましておめでとうございます。今年も宜しくお願い致します。
 
 各ソーシャルでもシェアしましたが、去年に続いて新春特別企画ということで[2019年のWeb標準](https://gihyo.jp/design/column/newyear/2019/web-standards-prospect)という記事を gihyo.jp の方へ寄稿しました。ちなみに去年の記事は[2018年のWeb標準](https://gihyo.jp/design/column/newyear/2018/web-standards-prospect)です。

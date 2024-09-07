@@ -4,8 +4,6 @@ date: 2015-08-14
 image: /img/posts/2015/wdpress-frontend-series-render/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.88 Webフロントエンド最前線「スムーズなUIを実現するレンダリング速度の改善ノウハウ」
-
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.88](http://gihyo.jp/magazine/wdpress/archive/2015/vol88)が8月22日に発売されます。連載8回目は、スムーズなWeb体験を実現するためのレンダリングのパフォーマンスについて。
 
 ![](/img/posts/2015/wdpress-frontend-series-render/cover.jpg)

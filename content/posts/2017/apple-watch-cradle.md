@@ -4,8 +4,6 @@ date: 2017-01-08
 image: /img/posts/2017/apple-watch-cradle/unpacked.jpg
 ---
 
-# Apple Watch の充電クレードルを購入した
-
 [Apple Watch](/posts/2016/apple-watch-series-2.html) には[磁気充電ケーブル](http://www.apple.com/jp/shop/product/MKLG2AM/A/)が付属されているが、予備を兼ねて会社にも欲しいと思いクレードルを購入した。
 
 ## iVAPO Apple Watch / iPhone 充電スタンド

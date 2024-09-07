@@ -4,8 +4,6 @@ date: 2016-11-15
 image: /img/posts/2016/trello-app/demo.png
 ---
 
-# TrelloをElectronでラップしてアプリにした
-
 [Trello](https://trello.com/) を Electron でラップしただけの単純なアプリケーション、[Whale](https://github.com/1000ch/whale) をリリースした。 Trello という名前が付けられないので色から安直に連想して Whale とした。こちらは Mac で起動している様子。
 
 ![Whale](/img/posts/2016/trello-app/demo.png)

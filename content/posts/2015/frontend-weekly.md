@@ -3,8 +3,6 @@ title: Frontend Weekly購読のススメ
 date: 2015-08-18
 ---
 
-# Frontend Weekly購読のススメ
-
 今日は[Frontend Weekly](http://frontendweekly.tokyo)というメールマガジンを紹介します。私自身も編集に関わっているので宣伝にはなりますが、Frontend Weeklyが何を目的としているか、Frontend Weeklyを購読することで読者がどんなメリットを得られるかを考えてみます。
 
 ![Frontend Weekly](/img/posts/2015/frontend-weekly/logo.png)

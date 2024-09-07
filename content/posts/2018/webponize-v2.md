@@ -3,8 +3,6 @@ title: WebPonize v2
 date: 2018-01-03
 ---
 
-# WebPonize v2
-
 大晦日と正月で WebPonize を色々アップデートし `v2.0.0` としてリリースした。
 
 ## Swift-WebP

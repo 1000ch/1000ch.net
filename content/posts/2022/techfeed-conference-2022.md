@@ -3,8 +3,6 @@ title: TechFeed Conference 2022 で Web 標準技術の相互運用性につい�
 date: 2022-06-03
 ---
 
-# TechFeed Conference 2022 で Web 標準技術の相互運用性について話した
-
 掲題の通り、2022年5月14日に開催された [TechFeed Conference 2022](https://techfeed.io/events/techfeed-conference-2022) で Web Standards Interop 2022 というタイトルで Web 標準技術の相互運用性について発表した。[セッション資料](https://speakerdeck.com/1000ch/web-standards-interop-2022)とセッション動画があるのと、今回はありがたいことに[記事として書き起こし](https://techfeed.io/entries/6298e525ed640020f3f19a58)ていただいた。
 
 <iframe loading="lazy" src="https://docs.google.com/presentation/d/e/2PACX-1vR3l-Aevly6pSAy24yJ_AqPv4bWGzUHohhCGyENvF4QqBXRt1TZ7jp-9bejwRBbp02yxjDBO0EKDlSC/embed?start=false&loop=false&delayms=3000" allowfullscreen="true"></iframe>

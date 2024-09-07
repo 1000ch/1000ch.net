@@ -3,8 +3,6 @@ title: Service Workerに関する仕様とか機能とか
 date: 2014-12-29
 ---
 
-# Service Workerに関する仕様とか機能とか
-
 今巷で流行りのService Workerについて調べ物してたので、まとめたメモ。
 
 ## Service Workerが解決してくれること

@@ -4,8 +4,6 @@ date: 2015-12-23
 image: /img/posts/2015/wdpress-frontend-series-svg/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.90 Webフロントエンド最前線「SVG … マルチデバイスに強く、アニメーションもできる画像フォーマット」
-
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.90](http://gihyo.jp/magazine/wdpress/archive/2015/vol90)が12月23日に発売されます。今回は、ベクター形式の画像フォーマットとして良さが見直されてきているSVGについてです。
 
 <blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">お次は<a href="https://twitter.com/ahomu">@ahomu</a>さん、<a href="https://twitter.com/1000ch">@1000ch</a>さんによる連載「Webフロントエンド最前線」のご紹介。今回は、古参ながらも最近ついに（？）注目を集めるようになってきた画像形式、SVGについて解説いただきました！ アニメーションもできるというのは強いですね…… <a href="https://twitter.com/hashtag/wdpress?src=hash">#wdpress</a></p>&mdash; WEB+DB PRESS編集部 (@wdpress) <a href="https://twitter.com/wdpress/status/679862792954851329">2015, 12月 24</a></blockquote>

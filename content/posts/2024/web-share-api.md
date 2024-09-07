@@ -3,8 +3,6 @@ title: Web Share API を使った共有機能とフォールバック
 date: 2024-03-22
 ---
 
-# Web Share API を使った共有機能とフォールバック
-
 元々このブログでは記事ページに、各ソーシャルメディアのインテントへリンクするアイコンを設置していた。これを Web Share API を使ってより汎用的な実装に変更した。
 
 ソーシャルメディアには [GET でアクセスできるインテントが用意されている](https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent)ことが多い。これを用いた Web ページの共有機能は従来からある方法で、これ自体に大きな課題はないが、より利用者の [OS コンテキストに適したシェア体験を実現する Web Share API](https://web.dev/articles/web-share?hl=ja) が数年前に発表されている。

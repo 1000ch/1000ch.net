@@ -4,8 +4,6 @@ date: 2016-11-19
 image: /img/posts/2016/okinawa-3rd-day/kabira.jpg
 ---
 
-# 沖縄旅行最終日
-
 最終日は飛行機の時間もあり、観光に取れた時間は少なかった。
 
 ## 川平湾

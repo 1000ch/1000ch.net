@@ -3,8 +3,6 @@ title: JavaScriptで起こるメモリリークのパターン
 date: 2017-02-17
 ---
 
-# JavaScriptで起こるメモリリークのパターン
-
 2014年1月25日に [Frontrend in Fukuoka](http://frontendfrogs.org/frontrend/) というイベントが開催された（もう3年前か…）。その時に [Browser Computing Structure](https://speakerdeck.com/1000ch/browser-computing-structure) というタイトルで、ブラウザの仕組みやらスクリプト処理について発表している。
 
 たまたま当時の資料を掘り起こす機会があったので、メモリリークのサンプルを直したついでにリークする JavaScript のパターンについて書き起こしてみる。サンプルは [1000ch/memory-leak](https://1000ch.github.io/memory-leak) に公開してあり、手順通り操作するとメモリリークを再現できるようになっている。

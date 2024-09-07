@@ -3,8 +3,6 @@ title: template 要素の shadowroot 属性による宣言的な Shadow DOM
 date: 2020-10-07
 ---
 
-# template 要素の shadowroot 属性による宣言的な Shadow DOM
-
 Shadow DOM は、代替要素を除いた任意の HTML 要素を DOM API で参照して `attachShadow({ ... })` メソッドを呼び出すことで命令的に生成できる。これを新たに `<template>` 要素の `shadowroot` 属性によって、対象の HTML 要素の Shadow DOM を宣言的に生やせるようになる仕様が提案されている。既に [Chrome 85 で試験的に実装されており](https://www.chromestatus.com/feature/5191745052606464)、フラグ付きで利用できるようになっている。この記事は自分用にまとめたメモ。
 
 - [Add declarative Shadow DOM features by mfreed7 · Pull Request #892 · whatwg/dom](https://github.com/whatwg/dom/pull/892)

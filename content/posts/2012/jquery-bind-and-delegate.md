@@ -3,8 +3,6 @@ title: jQueryにおけるbindとdelegateの違い
 date: 2012-12-12
 ---
 
-# jQueryにおけるbindとdelegateの違い
-
 この記事は、[軽めのjQuery Advent Calendar](http://www.adventar.org/calendars/29) 12日目の記事です。
 
 曖昧な認識のまま進みがちなjQueryのイベントハンドリングについて。軽めということだが、あまり簡潔にまとまっていないかも。

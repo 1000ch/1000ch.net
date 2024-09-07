@@ -4,8 +4,6 @@ date: 2015-10-17
 image: /img/posts/2015/update-mobile-phone/iijmio.jpg
 ---
 
-# docomoからみおふぉんへ、iPhone 5sからiPhone 6sへ
-
 自分はiPhone 5sを2013年9月から使っている。キャリアはdocomo。
 iPhone 6はサイズ感から見送ったが、同じサイズでiPhone 6sが発売されたので、これでもいいかと思ったのでそろそろ買い換えようと思った。ついでにプロバイダ契約周りも見なおした。
 

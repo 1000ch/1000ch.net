@@ -3,8 +3,6 @@ title: ソーシャルボタンのWeb Components
 date: 2016-06-15
 ---
 
-# ソーシャルボタンのWeb Components
-
 世間では久しく聞かなくなったWeb Componentsの話題だが、各種スペックのアップデートは着々と行われている。そんな中、昔作った[`<social-button>`](https://1000ch.github.io/social-button/)というTwitter・Facebook・Google+のソーシャルボタンのWeb Components実装のShadow DOM部分を、[アップデートした](https://github.com/1000ch/social-button/commit/e7764ca88168aa94f491282f1c4500594467991a)。
 
 ## トランスパイル無しでES2015

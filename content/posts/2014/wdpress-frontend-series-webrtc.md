@@ -4,8 +4,6 @@ date: 2014-06-19
 image: /img/posts/2014/wdpress-frontend-series-webrtc/cover.jpg
 ---
 
-# WEB+DB PRESS 新連載「Webフロントエンド最前線」
-
 来たる6月24日に発売する[WEB+DB PRESS Vol.81](http://www.amazon.co.jp/gp/product/4774165069/)から「Webフロントエンド最前線」という連載を担当させていただくことになりました。巷に溢れかえっているフロントエンド技術の中でも特に注目すべきモノを、 **「流行に乗り遅れず、そして踊らされないようにキャッチアップしていく」** というコンセプトの連載です。
 
 ![](/img/posts/2014/wdpress-frontend-series-webrtc/cover.jpg)

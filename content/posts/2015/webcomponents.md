@@ -3,8 +3,6 @@ title: Web Components に対する問題提起
 date: 2015-03-23
 ---
 
-# Web Components に対する問題提起
-
 Web Components については暫く理想を語ってきたが、正直そうは上手くいかないと思っている。
 
 - [Web Componentsが変えるWeb開発の未来](https://html5experts.jp/1000ch/8906/)

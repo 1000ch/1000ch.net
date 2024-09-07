@@ -4,8 +4,6 @@ date: 2016-12-01
 image: /img/posts/2016/esa-app/demo.png
 ---
 
-# esaをElectronでラップしてアプリにした
-
 ※この記事は [Electron Advent Calendar 2016](http://qiita.com/advent-calendar/2016/electron) 1日目の記事です。
 
 プロジェクトで esa を頻繁に使っているので、 Electron でラップして Dock に常駐できるようにした。鳥から連想して、ウズラを意味する Quail という名前にしてみたが、深い意味はない。

@@ -3,8 +3,6 @@ title: Electronアプリの自動アップデートサーバーをhazelとnowで
 date: 2017-08-05
 ---
 
-# Electronアプリの自動アップデートサーバーをhazelとnowで作る
-
 Trello のデスクトップアプリ [1000ch/whale](https://github.com/1000ch/whale) や [esa.io](https://esa.io/) のデスクトップアプリ [1000ch/quail](https://github.com/1000ch/quail) は Electron 製だが、この macOS バージョンに、重い腰を上げて自動アップデート機能を実装した。
 
 ## Electronの自動アップデート機能

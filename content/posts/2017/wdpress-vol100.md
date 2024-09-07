@@ -4,8 +4,6 @@ date: 2017-08-24
 image: /img/posts/2017/wdpress-vol100/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.100 に寄稿しました
-
 WEB+DB PRESS の Vol.100 というメモリアル号の **「あのときの自分へ ── もし、過去に戻ってアドバイスできるなら」** というエッセイ企画に **「Web 技術の変化に適応し続けるには」** というタイトルで寄稿しました。この業界に飛び込んではや五年が経ちますが、Web の変遷を振り返って思うところを書き綴っています。
 
 ![WEB+DB PRESS 100号の表紙](/img/posts/2017/wdpress-vol100/cover.jpg)

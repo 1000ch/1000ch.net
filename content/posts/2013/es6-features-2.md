@@ -3,8 +3,6 @@ title: ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Para
 date: 2013-12-27
 ---
 
-# ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~
-
 [先日の記事](/posts/2013/es6-features-1.html)で、
 
 > 続き(?)はまた新年

@@ -4,8 +4,6 @@ date: 2017-07-18
 image: /img/posts/2017/sublime-theme-switcher/demo.gif
 ---
 
-# Sublime Theme Switcherがとても便利
-
 Sublime Text のテーマやカラースキーマの変更は、メニューの Preferences から Theme ないし Color Scheme を辿るか、<kbd>⌘</kbd> + <kbd>,</kbd> で開く JSON の設定ファイルを編集するか、のいずれかである。そう思っていた時期が私にもありました…。
 
 ## コマンドパレットから切り替え出来るプラグインを発見した

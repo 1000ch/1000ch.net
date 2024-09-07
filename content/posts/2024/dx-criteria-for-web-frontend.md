@@ -3,8 +3,6 @@ title: DX Criteria for Web Frontend の公開に寄せて
 date: 2024-04-24
 ---
 
-# DX Criteria for Web Frontend の公開に寄せて
-
 [日本 CTO 協会](https://cto-a.org/)からの[プレスリリース](https://prtimes.jp/main/html/rd/p/000000024.000081310.html)の通り、[Web フロントエンド版 DX Criteria](https://dxcriteria.cto-a.org/frontend) がリリースされました。公開に向けて、監修者として関わりました。
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">新DX Criteria 本日リリース<br>Webフロントエンド版DX Criteria（プロダクトのユーザー体験と変化に適応するチームのためのガイドライン）<a href="https://t.co/LHA61cgajF">https://t.co/LHA61cgajF</a><br><br>この度 <a href="https://twitter.com/hashtag/%E6%97%A5%E6%9C%ACCTO%E5%8D%94%E4%BC%9A?src=hash&amp;ref_src=twsrc%5Etfw">#日本CTO協会</a> からWebフロントエンドに関するDX Criteriaをリリースいたしました。…</p>&mdash; 日本CTO協会公式アカウント (@ctoa_ja) <a href="https://twitter.com/ctoa_ja/status/1782954626733724017?ref_src=twsrc%5Etfw">April 24, 2024</a></blockquote>

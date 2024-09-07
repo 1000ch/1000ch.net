@@ -3,8 +3,6 @@ title: Frontrend in Fukuokaでブラウザの仕組みとComputingについて�
 date: 2014-02-02
 ---
 
-# Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた
-
 2014年1月25日にFrontrend in Fukuokaが開催されました。
 
 - [Frontrend/fukuoka](http://frontrend.github.io/events/fukuoka/)

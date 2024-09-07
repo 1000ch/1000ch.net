@@ -3,8 +3,6 @@ title: クラス関数をthrottleするデコレータ
 date: 2017-07-15
 ---
 
-# クラス関数をthrottleするデコレータ
-
 掲題の通り、throttle してくれる [1000ch/throttle-decorator](https://github.com/1000ch/throttle-decorator) というモジュールを作った。ES Decorator については[全力で ES Decorator使ってみた](http://qiita.com/mizchi/items/6bdf9d100f564a5c5b08)が参考になると思う。標準化されるか問題は一旦さておいて。
 
 ## インストールと使い方

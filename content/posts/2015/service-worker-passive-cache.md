@@ -3,8 +3,6 @@ title: Service Workerを使った消極的なキャッシュ
 date: 2015-02-27
 ---
 
-# Service Workerを使った消極的なキャッシュ
-
 前略（Service Workerとはなんぞやという方は[こちら](/posts/2014/service-worker-internals.html)）、キャッシュさせたいリソースをService Workerのインストール中に全てインストールさせている例が多いが、そのリソース全てをキャッシュさせることを保証しなくても良いケースが大半だと思う（オフライン化ではなくパフォーマンス向上という観点だと特に）。
 
 ## 優先度を付ける

@@ -3,8 +3,6 @@ title: R.I.P. Web Components v0
 date: 2018-07-30
 ---
 
-# R.I.P. Web Components v0
-
 blink から Web Components v0 を deprecate and remove する intent が作成された。
 
 > [Intent to Deprecate and Remove: Shadow DOM V0, Custom Elements V0, HTML Imports](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/h-JwMiPUnuU)

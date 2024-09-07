@@ -3,8 +3,6 @@ title: カスタム要素の状態を定義する CustomStateSet と参照する
 date: 2024-04-07
 ---
 
-# カスタム要素の状態を定義する `CustomStateSet` と参照する擬似クラス `:state()`
-
 [Safari 17.4 で CustomStateSet がサポートされた](https://webkit.org/blog/15063/webkit-features-in-safari-17-4/)。[`CustomStateSet`](https://developer.mozilla.org/en-US/docs/Web/API/CustomStateSet) は Web Components のカスタム要素の状態を管理する API で、[Element Internals](https://developer.mozilla.org/docs/Web/API/ElementInternals) の `states` プロパティに含まれる。Element Internals はカスタム要素の振る舞いを HTML のフォームと連動させるための仕様だ。
 
 CustomStateSet は [JavaScript のグローバルオブジェクトである `Set`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set) と同様のインターフェースで、CustomStateSet に追加された文字列がカスタム要素の「状態」を定義する。

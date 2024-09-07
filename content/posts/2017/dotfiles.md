@@ -4,8 +4,6 @@ date: 2017-05-23
 image: /img/posts/2017/dotfiles/ghq-peco.gif
 ---
 
-# ghqとpecoを使ったリポジトリの管理またはコマンドラインの話
-
 ghqとpecoを使ったプロジェクト管理が便利なのは真新しくないが、コマンドラインを見られて質問されたこともあり、自分の運用方法などを記しておく。
 
 - [ghq: リモートリポジトリのローカルクローンをシンプルに管理する - 詩と創作・思索のひろば](http://motemen.hatenablog.com/entry/2014/06/01/introducing-ghq)

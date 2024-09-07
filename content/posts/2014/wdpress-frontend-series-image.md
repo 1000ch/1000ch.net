@@ -4,8 +4,6 @@ date: 2014-10-15
 image: /img/posts/2014/wdpress-frontend-series-image/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.83 Webフロントエンド最前線「Webフロントエンドの画像形式と最適化」
-
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.83](http://gihyo.jp/magazine/wdpress/archive/2014/vol83)が10月24日に発売されます！
 連載の第3回目ということで「Webフロントエンドの画像形式と最適化」という、その名の通りWebにおける画像について執筆しました。
 

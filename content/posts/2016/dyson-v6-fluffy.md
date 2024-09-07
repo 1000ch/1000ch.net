@@ -4,8 +4,6 @@ date: 2016-03-26
 image: /img/posts/2016/dyson-v6-fluffy/dyson-v6-fluffy.jpg
 ---
 
-# Dyson V6 Fluffy
-
 今まで床の掃除をクイックルワイパーで運用していたが、[表参道のdyson](https://goo.gl/maps/GJAIK)で圧倒的なデモンストレーションを見せつけられて、まんまと購入。
 
 ## 仕様

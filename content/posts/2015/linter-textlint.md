@@ -3,8 +3,6 @@ title: textlintのAtomプラグイン
 date: 2015-09-20
 ---
 
-# textlintのAtomプラグイン
-
 [azu/textlint](https://github.com/azu/textlint)というテキストのlintエンジンがある。Node.js製なのでCLI周りは既にあるが、エディタでもできたら良いなと思って[Atomのプラグインを作った](https://github.com/1000ch/linter-textlint)。TextLintについては「[textlintで日本語の文章をチェックする](http://efcl.info/2015/09/10/introduce-textlint/)」という記事を見てもらえると良い。
 
 ## プラグインのインストール

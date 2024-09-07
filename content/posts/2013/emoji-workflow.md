@@ -3,8 +3,6 @@ title: Emojiを選べるAlfredのWorkflowを作った
 date: 2013-10-27
 ---
 
-# Emojiを選べるAlfredのWorkflowを作った
-
 ## GitHubとかTrelloとかで使える絵文字
 
 GitHubで使える絵文字はどうやらこんなにあるらしい。とても覚えきれん。

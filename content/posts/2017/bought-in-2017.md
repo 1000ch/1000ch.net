@@ -3,8 +3,6 @@ title: 2017年に買って良かったもの
 date: 2017-12-05
 ---
 
-# 2017年に買って良かったもの
-
 [今年買ってよかったもの Advent Calendar 2017](https://adventar.org/calendars/2240) 5日目の記事です。ちなみに去年は [Apple Watch の話を書きました](/posts/2016/apple-watch-series-2.html)。
 
 ## 髪の毛くるくるポイ

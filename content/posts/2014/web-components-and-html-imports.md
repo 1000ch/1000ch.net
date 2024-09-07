@@ -3,8 +3,6 @@ title: Web ComponentsをHTML Importsでロードする必要性
 date: 2014-08-30
 ---
 
-# Web ComponentsをHTML Importsでロードする必要性
-
 慣例的に`<link rel='import' href='x-element.html'>`な感じでロードされているけど、前提として、 **HTMLImportsである必要はない** 。何故ならば、Web Componentsを構成する4つの仕様はそれぞれ独立しているからである。だから、インポートを使わなくても`document.registerElement()`でカスタム要素の定義は出来るし、HTMLのひな形を使いたい場合に`<template>`タグを使っても良い。
 
 ## HTMLを部品として含む場合

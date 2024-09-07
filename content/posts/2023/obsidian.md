@@ -3,8 +3,6 @@ title: Obsidian を使ったデバイスを問わないメモ運用
 date: 2023-09-26
 ---
 
-# Obsidian を使ったデバイスを問わないメモ運用
-
 仕事用なのかプライベート用なのか、はたまた両方なのか、端末を問わずに共有されるメモを望む人は多い。こうした目的に対しては [Evernote](https://evernote.com/ja-jp) や [Day One](https://dayoneapp.com/)、[Inkdrop](https://www.inkdrop.app/) といったプロダクトがあるが、手に馴染みききらず public な [scrapbox](https://scrapbox.io/1000ch) を使っている。
 
 scrapbox 独自の記法はあるものの、メモがてら公開したいものを管理する目的に対して scrapbox はとても良い一方で、タッチデバイスで編集するには使い心地が難しい部分があったり、Markdown で書きたいニーズを満たせていなかった。

@@ -3,8 +3,6 @@ title: ES2015のclass構文で書くWeb Components
 date: 2016-02-28
 ---
 
-# ES2015のclass構文で書くWeb Components
-
 ## これまでのボイラープレート
 
 指定したオブジェクトのプロパティを持たせるべく、`Object.create()`でオブジェクトで生成し、そこにCustom Elementsのライフサイクル関数（`createdCallback`・`attachedCallback`・`detachedCallback`・`attributeChangedCallback`）を生やしたり、永続的なプロパティを定義したりしている。

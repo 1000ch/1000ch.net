@@ -3,8 +3,6 @@ title: Macのアプリにバイナリをバンドルする
 date: 2015-03-21
 ---
 
-# Macのアプリにバイナリをバンドルする
-
 [WebPonize](/posts/2015/weponize.html)には画像をWebPフォーマットに変換するために、WebM Projectにて配布されているWebPのライブラリ群をバンドルする必要があった。
 
 - [A new image format for the Web - WebP — Google Developers](https://developers.google.com/speed/webp/?csw=1)

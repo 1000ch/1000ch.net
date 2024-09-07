@@ -3,8 +3,6 @@ title: simplehttp2serverをnpmからインストールできるようにした
 date: 2020-06-04
 ---
 
-# simplehttp2serverをnpmからインストールできるようにした
-
 ディレクトリを簡易的にローカル環境でホストする Python 3 系の [`http.server`](https://docs.python.org/ja/3/library/http.server.html) という標準ライブラリがある。Python 2 系では [SimpleHTTPServer](https://docs.python.org/ja/2.7/library/simplehttpserver.html) として提供されており、ローカル環境で簡易的に Web ページをホストするのに重宝していた。
 
 ## simplehttp2server

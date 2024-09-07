@@ -1,29 +1,29 @@
 {{ define "main" }}
-  <main class="Main">
-    <h1>Posts</h1>
+  <main class="main">
+    <h2>Posts</h2>
     {{ $paginator := .Paginate .Site.RegularPages 20 }}
-    <ul class="List">
+    <ul class="list">
       {{ range $paginator.Pages }}
-        <li class="List__Item">
-          <span class="Label Label--gray">{{ .Date.Format "2006.01.02" }}</span>
+        <li>
+          <span class="label gray">{{ .Date.Format "2006-01-02" }}</span>
           <a href="{{ .RelPermalink }}">{{ .Title }}</a>
         </li>
       {{ end }}
     </ul>
-    <nav class="Pager">
-      {{ if .Paginator.HasPrev }}
-        <div class="Pager__Item Pager__Item--left">
+    <nav class="pager">
+      <div>
+        {{ if .Paginator.HasPrev }}
           <a href="{{ .Paginator.Prev.URL }}">👈 Prev</a>
-        </div>
-      {{ else }}
-      {{ end }}
+        {{ else }}
+        {{ end }}
+      </div>
 
-      {{ if .Paginator.HasNext }}
-        <div class="Pager__Item Pager__Item--right">
+      <div>
+        {{ if .Paginator.HasNext }}
           <a href="{{ .Paginator.Next.URL }}">Next 👉</a>
-        </div>
-      {{ else }}
-      {{ end }}
+        {{ else }}
+        {{ end }}
+      </div>
     </nav>
   </main>
 {{ end }}

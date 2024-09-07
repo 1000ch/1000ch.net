@@ -4,8 +4,6 @@ date: 2016-11-16
 image: /img/posts/2016/okinawa-0th-day/rounge.jpg
 ---
 
-# 沖縄旅行0日目
-
 明日からプロジェクトメンバーでの沖縄旅行が始まる。集合が7:00ということで朝が辛いことが予想されるので前日入りしようと考え、羽田空港に併設されている[FIRST CABIN 羽田ターミナル1](http://first-cabin.jp/locationlist/haneda-terminal1.html)に宿泊することにした。
 
 ![羽田空港](/img/posts/2016/okinawa-0th-day/haneda.jpg)

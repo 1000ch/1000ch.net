@@ -3,8 +3,6 @@ title: GAE のプロジェクトに Firewall を設定する
 date: 2018-11-12
 ---
 
-# GAE のプロジェクトに Firewall を設定する
-
 GAE のプロジェクトには Console から Firewall の設定ができる。
 
 GAE を利用している GCP のプロジェクトを [GCP Console](https://console.cloud.google.com/) から選択し、ハンバーガーメニューをクリックして表示されるドロワーメニューの、 **App Engine** → **Firewall rules** を選択する。

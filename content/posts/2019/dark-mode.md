@@ -3,8 +3,6 @@ title: prefers-color-scheme を使った Dark Mode 対応
 date: 2019-06-18
 ---
 
-# prefers-color-scheme を使った Dark Mode 対応
-
 `prefers-color-scheme` は [Media Queries Level 5](https://drafts.csswg.org/mediaqueries-5/) で定義される、システムで明るいテーマ・暗いテーマどちらを要求しているかを参照するメディアクエリである。Safari では 12.1 からサポートされていたが、Chrome の次の安定版である 76 に ship されそうなので、このブログでも申し訳程度に対応した。
 
 Firefox については現在の安定版である 67 に ship されているし、Mobile Safari についても 13 からサポートされそうなので、ブラウザのサポートは近いうちに広まりそうである。[macOS は Mojave から Dark Mode を搭載している](https://support.apple.com/ja-jp/HT208976)ので、試したい人はアップデートしてみて欲しい。

@@ -3,8 +3,6 @@ title: 【翻訳】Introduction to WebP
 date: 2015-05-22
 ---
 
-# 【翻訳】Introduction to WebP
-
 **※この記事はMediumに投稿した[Introduction to WebP](http://bit.ly/introduction-to-webp)の日本語訳です。**
 
 [以前述べたように](http://bit.ly/we-should-optimize-images)、画像はWebにおけるネットワーク帯域の約60%~70%を占めています。これは、画像がWebパフォーマンスにおいて最も重要な因子の1つであることを意味します。そんな画像の中でも、WebPは他のフォーマットに比べて幾つかの点において優っています。

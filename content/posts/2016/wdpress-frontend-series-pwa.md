@@ -4,8 +4,6 @@ date: 2016-02-10
 image: /img/posts/2016/wdpress-frontend-series-pwa/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.91 Webフロントエンド最前線「Progressive Web Apps - 安全、高速、オフライン対応した次世代Webアプリケーション」
-
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.91](http://gihyo.jp/magazine/wdpress/archive/2016/vol91)が2月24日に発売されます！連載最終回は、[Chrome Dev Summit 2015でも取り上げられ](http://googledevjp.blogspot.jp/2016/01/chrome-dev-summit-2015.html)話題になったProgressive Web Appsについて。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">さて、<a href="https://twitter.com/ahomu">@ahomu</a>さんと<a href="https://twitter.com/1000ch">@1000ch</a>さんによる「Webフロントエンド最前線」は今回で最終回。プッシュ通知をはじめとするネイティブアプリのような体験を備えた「Progressive Web Apps」を作るためのさまざまな技術についてまとめていただきました！ <a href="https://twitter.com/hashtag/wdpress?src=hash">#wdpress</a></p>&mdash; WEB+DB PRESS編集部 (@wdpress) <a href="https://twitter.com/wdpress/status/702335075518558208">2016年2月24日</a></blockquote>

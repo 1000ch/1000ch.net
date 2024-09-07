@@ -4,8 +4,6 @@ date: 2015-10-19
 image: /img/posts/2015/wdpress-devtools/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.89 特集「詳解 Chrome Developer Tools」
-
 [WEB+DB PRESS Vol.89](http://gihyo.jp/magazine/wdpress/archive/2015/vol89)が10月24日に発売されます！Vol.89は連載「Webフロントエンド最前線」をお休みして特集1の 「[詳細] Chrome Developer Tools」を[@ahomu](http://twitter.com/ahomu)さんと担当させていただきました。
 
 <blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">特集1は「詳解Chrome Developer Tools」。著者は<a href="https://twitter.com/ahomu">@ahomu</a>さん、<a href="https://twitter.com/1000ch">@1000ch</a>さんという、連載「Webフロントエンド最前線」のお二人です。連載のほうはお休みですが、そのぶん「まさに詳解！」という網羅的な特集となっておりますので、お楽しみに！ <a href="https://twitter.com/hashtag/wdpress?src=hash">#wdpress</a></p>&mdash; WEB+DB PRESS編集部 (@wdpress) <a href="https://twitter.com/wdpress/status/658580867850223616">2015, 10月 26</a></blockquote>

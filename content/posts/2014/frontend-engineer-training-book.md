@@ -3,8 +3,6 @@ title: フロントエンドエンジニア養成読本
 date: 2014-06-16
 ---
 
-# フロントエンドエンジニア養成読本
-
 フロントエンドエンジニア養成読本という本を共著で執筆しました。技術評論社さんから刊行されます。
 
 <blockquote class="twitter-tweet" lang="ja"><p>7/2発売です！ / “<a href="http://t.co/cxQm0qCTFU">http://t.co/cxQm0qCTFU</a>： フロントエンドエンジニア養成読本 [HTML、CSS、JavaScriptの基本から現場で役立つ技術まで満載! ] (Software Design plus…” <a href="http://t.co/IeOxwfY1ZY">http://t.co/IeOxwfY1ZY</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/statuses/477357597029199874">2014, 6月 13</a></blockquote>

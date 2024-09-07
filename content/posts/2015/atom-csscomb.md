@@ -3,8 +3,6 @@ title: CSSCombのAtomプラグイン
 date: 2015-07-20
 ---
 
-# CSSCombのAtomプラグイン
-
 CSSのプロパティをソートする[CSSComb](https://github.com/csscomb/csscomb.js)というNode.jsのモジュールがある。CSSプロパティのソートは書き順が統一されてコードの可読性が上がるだけではなく、サーバーから配信されるときに実施されるであろうGzipの圧縮効率も高まるというメリットがある。そんなCSSCombを[Atomのプラグインにした](https://github.com/1000ch/atom-csscomb)。
 
 ![](/img/posts/2015/atom-csscomb/demo.gif)

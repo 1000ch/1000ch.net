@@ -4,8 +4,6 @@ date: 2016-03-12
 image: /img/posts/2016/display-grid/display-grid-positive.svg
 ---
 
-# CSS Grid Layout Moduleについて調べたメモ
-
 CSSによるレイアウトの問題はFlexboxでほとんどが解決されたと言って良いが、複雑なグリッドレイアウトを実現するために[CSS Grid Layout Module](https://www.w3.org/TR/css3-grid-layout/)の策定が進められている。`display: grid;`ないし`display: inline-grid;`といったように、`display`プロパティに値が追加されており、それらが指定された要素はブロック要素またはインライン要素のように振る舞い、内包されるコンテンツがグリッドモデルに従ってレイアウトされる。
 
 [Chromeは50から、Firefoxは46から対応している](http://caniuse.com/#search=grid)が、Chromeは現安定バージョンの49でも`chrome://flags/`で`Experimental Web Platform features`を有効にすれば使える。

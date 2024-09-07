@@ -3,8 +3,6 @@ title: 要素のサイズ変化を監視するResizeObserver
 date: 2017-11-21
 ---
 
-# 要素のサイズ変化を監視するResizeObserver
-
 便利な Observer シリーズのひとつ [ResizeObserver](https://wicg.github.io/ResizeObserver/) が Chrome 64 に ship された。Chrome 55 からフラグ付きで入っていたが、フラグなしで動作するようになっている。
 
 ## 旧来のやり方と問題

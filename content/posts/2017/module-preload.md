@@ -3,8 +3,6 @@ title: ES Modulesを優先的にロードするmodulepreload
 date: 2017-11-26
 ---
 
-# ES Modulesを優先的にロードするmodulepreload
-
 `<link>` 要素の `rel` 属性に、新しく `modulepreload` という値が ES Modules を先行してロードする仕様として追加され、[Chrome 64 に実装された](https://www.chromestatus.com/feature/5762805915451392)。リソースを先行してロードする手段としては既に `<link rel="preload">` があり、スクリプトファイルには `as="script"` を指定すれば良いが、ES Modules をロードするためにはいくつか問題があり、新しく `rel="modulepreload"` が検討されている。
 
 ## `<link rel="preload" as="script">` ではダメなのか

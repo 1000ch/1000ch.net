@@ -3,8 +3,6 @@ title: ブラウザのNotification APIをWeb Components化した
 date: 2014-07-15
 ---
 
-# ブラウザのNotification APIをWeb Components化した
-
 巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。
 XMLHttpRequest部分を抽象化している[`core-ajax`](https://github.com/Polymer/core-ajax)とか、[`core-localstorage`](https://github.com/Polymer/core-localstorage)とか。
 そんなわけで試しにNotification API周りをラップした`x-notification`を作ってみた。

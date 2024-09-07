@@ -3,8 +3,6 @@ title: GuetzliをNode.jsで使えるモジュール
 date: 2017-04-21
 ---
 
-# GuetzliをNode.jsで使えるモジュール
-
 [imagemin/guetzli-bin](https://github.com/imagemin/guetzli-bin) という、Node.js のモジュールを作った。[imagemin のプラグイン](https://github.com/imagemin/imagemin-guetzli)もあるし、[gulp-image](https://github.com/1000ch/gulp-image) や [grunt-image](https://github.com/1000ch/grunt-image) もサポートしている。
 
 ## Guetzliとは

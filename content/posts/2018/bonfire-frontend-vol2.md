@@ -3,8 +3,6 @@ title: Bonfire Frontend vol2 に出演しました
 date: 2018-08-25
 ---
 
-# Bonfire Frontend vol2 に出演しました
-
 2018年8月23日に開催された [Bonfire Frontend #2](https://yj-meetup.connpass.com/event/97695/) に出演して、「PWA 対応戦略と現実解」というタイトルで PWA についてお話しました。
 
 <iframe loading="lazy" class="dropshadow" src="https://docs.google.com/presentation/d/e/2PACX-1vTJKE7pbxy7limVmICK8UF7lH1FVwN1wUiq-eSeKUh1NwigvjUltmH1yLQEl-xeUJQ6HhS1B0KBXahX/embed?start=false&loop=false&delayms=3000" allowfullscreen="true"></iframe>

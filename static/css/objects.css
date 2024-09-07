@@ -2,14 +2,14 @@
  * Objects...............Cosmetic-free design patterns.
  */
 
-.Label {
+.label {
   margin: 0.25em;
   padding: 0.25em;
   border-radius: 0.25em;
   font-size: 12px;
   vertical-align: text-bottom;
 
-  &.Label--gray {
+  &.gray {
     background: var(--bgcolor-backdrop);
     color: var(--color);
   }

@@ -4,8 +4,6 @@ date: 2015-04-15
 image: /img/posts/2015/wdpress-frontend-series-serviceworker/cover.jpg
 ---
 
-# WEB+DB PRESS Vol.86 Webフロントエンド最前線「Service Workerで実現するオフラインWebアプリケーション」
-
 「Webフロントエンド最前線」という連載を担当させてもらっている[WEB+DB PRESS Vol.86](http://gihyo.jp/magazine/wdpress/archive/2015/vol86)が4月23日に発売されます！連載6回目は、HTTPリクエストの操作・サーバープッシュの受信・バックグラウンドスケジューラといった、Webに長らく求められてきた機能の基盤となるService Workerについて。
 
 ![](/img/posts/2015/wdpress-frontend-series-serviceworker/cover.jpg)

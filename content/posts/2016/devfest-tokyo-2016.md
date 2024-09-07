@@ -3,8 +3,6 @@ title: DevFest Tokyo 2016でWeb Componentsの話をした
 date: 2016-10-10
 ---
 
-# DevFest Tokyo 2016でWeb Componentsの話をした
-
 10月9日に開催された [DevFest Tokyo 2016](http://gdg-tokyo.connpass.com/event/38927/) に出演しました。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">先程の Web セッションのスライドです！ / &quot;Web Components 2016 &amp; Polymer v2&quot; <a href="https://t.co/hPlKgYINdP">https://t.co/hPlKgYINdP</a> <a href="https://twitter.com/hashtag/devfest16?src=hash">#devfest16</a></p>&mdash; 1000ch (@1000ch) <a href="https://twitter.com/1000ch/status/785015190576173056">2016年10月9日</a></blockquote>

@@ -4,8 +4,6 @@ date: 2017-02-19
 image: img/posts/2017/cote-et-ciel-isar-rucksack/front.jpg
 ---
 
-# cote&cielのバックパックを買った
-
 結局 M サイズを買った。Black 、Black Melange 、Gray Melange の三色があるが、Black Melange を選択。使っている人もチラホラ見かけるけど、まぁいいかという想い。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">Apple で買った Incase のバックパックが壊れて以来、headporter の 3way を使ってきたけど、急に cote&amp;ciel のバックパックが欲しくなってきた… M と L でサイズどのくらい違うんだろう… <a href="https://t.co/3eDayZO2DB">https://t.co/3eDayZO2DB</a></p>&mdash; 煎茶 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/830985742054674433">2017年2月13日</a></blockquote>

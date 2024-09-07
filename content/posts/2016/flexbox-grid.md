@@ -3,8 +3,6 @@ title: FlexboxでCSSのグリッドフレームワークの再発明
 date: 2016-03-16
 ---
 
-# FlexboxでCSSのグリッドフレームワークの再発明
-
 [Grd](http://1000ch.github.io/grd/)というFlexboxを使ったCSSグリッドフレームワークを使った。Flexboxで実装しているグリッドフレームワークは既にたくさんあるし、何かに困ったからというわけでもなく、 **もし自分が実装したらどうなるかなー** くらいのノリで作った。
 
 ![Grd](/img/posts/2016/flexbox-grid/logo.png)

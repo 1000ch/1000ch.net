@@ -3,8 +3,6 @@ title: TechFeed Experts Night#26 で 2023 年の Web 開発について話した
 date: 2023-09-27
 ---
 
-# TechFeed Experts Night#26 で 2023 年の Web 開発について話した
-
 掲題の通り、2023年9月27日に開催された [TechFeed Experts Night#26](https://techfeed.io/events/techfeed-experts-night-26) で [2023 年の Web 開発のベースライン](https://1000ch.github.io/slides/web-development-baseline-2023/)について発表しました。
 
 <iframe loading="lazy" class="dropshadow" src="https://1000ch.github.io/slides/web-development-baseline-2023/"></iframe>

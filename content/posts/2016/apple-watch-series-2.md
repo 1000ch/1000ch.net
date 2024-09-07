@@ -3,8 +3,6 @@ title: Apple WatchでApple Payを便利に使っている話
 date: 2016-12-09
 ---
 
-# Apple WatchでApple Payを便利に使っている話
-
 昔から腕時計を付けないタイプだが、人様の Pebble を見てからスマートウォッチに興味を持ちはじめ、その Pebble の新しいバージョンである [Pebble 2 および上位モデルの Time 2 のプロジェクト](https://www.kickstarter.com/projects/597507018/pebble-2-time-2-and-core-an-entirely-new-3g-ultra)が、今年5月に Kickstarter で発表された。
 
 Time 2 の Pledge を $179 で募集していたので衝動的に back して楽しみにしていた所で、今年の9月に Apple Watch Series 2 が発表される。

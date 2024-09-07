@@ -3,8 +3,6 @@ title: メッセージングによるService Workerのコントロール
 date: 2016-05-13
 ---
 
-# メッセージングによるService Workerのコントロール
-
 Service Workerでハンドルするリソースは、Service Workerのスクリプトに静的に記述しているケースが多い。Service Workerでやっているアレコレをメッセージングで動的にできないか試行錯誤したログ。
 
 ## よくある?キャッシュパターン

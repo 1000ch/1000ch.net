@@ -3,8 +3,6 @@ title: Polymer Japan Meetupに出演しました
 date: 2017-11-05
 ---
 
-# Polymer Japan Meetupに出演しました
-
 11月4日に開催された [Polymer Japan Meetup #1](https://polymer-japan.connpass.com/event/69080/) に出演しました。トップバッターだったので、発表までハラハラすることなく、イチ参加者として楽しめました。
 
 ## Web Components Re-Introduction

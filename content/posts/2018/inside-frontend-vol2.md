@@ -3,8 +3,6 @@ title: Inside Frontend vol2の感想
 date: 2018-02-14
 ---
 
-# Inside Frontend vol2の感想
-
 第二回となる [Inside Frontend](https://inside-frontend.connpass.com/event/74625/) を2月11日に開催しました。今年は超速 AMA 枠で出演しつつ、スタッフ業をこなしました。
 
 ## 会場は日本経済新聞社

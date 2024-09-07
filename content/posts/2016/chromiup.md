@@ -4,8 +4,6 @@ date: 2016-10-12
 image: /img/posts/2016/chromiup/chromiup.gif
 ---
 
-# Chromiumをインストールする手間を減らしたい
-
 通常 Chromium をインストールするには [Download Chromium](https://download-chromium.appspot.com/) からアーカイブをダウンロードして解凍し、アプリケーションフォルダにコピーという手順だが、この手間をどうにか簡略化できないか考えていた。シェルスクリプトでもできるけど `npm` でインストール出来ても良かろうと、 [1000ch/chromiup](https://github.com/1000ch/chromiup) という Node.js 製のコマンドラインツールを作った。
 
 ## インストールと使い方

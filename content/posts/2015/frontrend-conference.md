@@ -3,8 +3,6 @@ title: Frontrend ConferenceでService Workerについて話してきた
 date: 2015-02-22
 ---
 
-# Frontrend ConferenceでService Workerについて話してきた
-
 [Frontrend Conference](http://frontrend.github.io/conference/)を以って、Frontrendが活動を休止。過去最大規模に因んで、カンファレンスという名前で開催された。そんな中、スピーカーとして混じって参加してきた。
 
 ## Introduction to Service Worker

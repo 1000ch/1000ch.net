@@ -3,8 +3,6 @@ title: Android Studio+GenymotionではじめるAndroid開発
 date: 2014-08-08
 ---
 
-# Android Studio+GenymotionではじめるAndroid開発
-
 クライアントサイドのネイティブアプリを作れればiOSでもAndroidでも良かったのだけど、プラットフォームへの興味もあるし、Javaのリハビリもしたかったし、そんなこんなでAndroidをはじめた。
 
 今回はAndroidの開発を始めるにあたり、どんな環境を構築したかのお話。

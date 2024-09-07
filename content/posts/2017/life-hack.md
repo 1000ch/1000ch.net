@@ -3,8 +3,6 @@ title: 実践してるライフハック
 date: 2017-01-02
 ---
 
-# 実践してるライフハック
-
 ライフハックというものでもないが、[お金を節約するワザ - oinume journal](http://oinume.hatenablog.com/entry/techniques-to-save-money) に感化されたので、普段実践していることを書いてみる。
 
 ## Amazonへ依存する

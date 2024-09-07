@@ -3,8 +3,6 @@ title: 味噌卵麺の豆腐変更 at 中本渋谷店
 date: 2017-12-12
 ---
 
-# 味噌卵麺の豆腐変更 at 中本渋谷店
-
 [蒙古タンメン中本 Advent Calendar 2017](https://adventar.org/calendars/2135) 12日目の記事です。
 
 ちなみに去年も [蒙古タンメン中本 2016 Advent Calendar 2016](https://adventar.org/calendars/1344) に参加して[味噌卵麺について書いた](/posts/2016/nakamoto.html)。今年も味噌卵麺ですが、最近ハマっている豆腐変更オプションについて。

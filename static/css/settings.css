@@ -11,7 +11,6 @@
   --dark-bgcolor: #222;
   --dark-bgcolor-backdrop: #444;
   --dark-bordercolor: #ccc;
-
   --color: var(--light-color);
   --bgcolor: var(--light-bgcolor);
   --bgcolor-backdrop: var(--light-bgcolor-backdrop);
@@ -20,6 +19,7 @@
 
 :root:has(#dark-mode:checked) {
   color-scheme: dark;
+
   --color: var(--dark-color);
   --bgcolor: var(--dark-bgcolor);
   --bgcolor-backdrop: var(--dark-bgcolor-backdrop);
@@ -29,6 +29,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
+
     --color: var(--dark-color);
     --bgcolor: var(--dark-bgcolor);
     --bgcolor-backdrop: var(--dark-bgcolor-backdrop);

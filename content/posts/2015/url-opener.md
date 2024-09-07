@@ -3,8 +3,6 @@ title: URL Opener
 date: 2015-03-10
 ---
 
-# URL Opener
-
 自分用に作ってしばらく放置していたChrome Extension「[URL Opener](http://bit.ly/url-opener
 )」をアップデートした。
 

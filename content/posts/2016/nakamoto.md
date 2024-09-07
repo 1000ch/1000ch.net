@@ -4,8 +4,6 @@ date: 2016-12-10
 image: /img/posts/2016/nakamoto/misoranmen.jpg
 ---
 
-# 蒙古タンメン中本 新宿店の味噌卵麺
-
 [蒙古タンメン中本 アドベントカレンダー 2016](http://www.adventar.org/calendars/1344) 4日目の記事です。
 
 中本に行って注文するのは基本的に味噌卵麺。普段は[渋谷店](https://tabelog.com/tokyo/A1303/A130301/13094387/)で食べているが、今日は[新宿店](https://tabelog.com/tokyo/A1304/A130401/13001010/)で食べてきた。今気づいたが、食べログの評価、両方とも3.5以上なのね。

@@ -3,8 +3,6 @@ title: HTML Importsでインポート先に引き継がれる内容
 date: 2014-10-07
 ---
 
-# HTML Importsでインポート先に引き継がれる内容
-
 > https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html
 > これってなんで`doc.registerElement`になってるんだろう・・
 

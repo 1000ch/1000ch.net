@@ -3,8 +3,6 @@ title: DOMContentLoaded イベントや load イベントを約束する Promise
 date: 2020-08-04
 ---
 
-# DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト
-
 [`document` の `DOMContentLoaded` イベント](https://developer.mozilla.org/ja/docs/Web/API/Document/DOMContentLoaded_event) や [`window` の `load` イベント](https://developer.mozilla.org/ja/docs/Web/API/Window/load_event) は Web 開発者にとってお馴染みのブラウザライフサイクルである。
 
 結論から言うと、これらを簡単にハンドリングするための [html-ready](https://github.com/1000ch/html-ready) という小さなライブラリを作ったという話。実装自体はとても簡単で、ここで改めて説明するほどのものではない。ただ、同じことを色んな場面で何度も何度も書いている実感があり、巷にも期待する機能を持ったライブラリがなかったので作った。

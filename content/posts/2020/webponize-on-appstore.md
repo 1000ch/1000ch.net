@@ -3,8 +3,6 @@ title: WebPonize を App Store で公開した
 date: 2020-08-11
 ---
 
-# WebPonize を App Store で公開した
-
 最近メンテナンスが止まっていた WebPonize だが、[Safari が WebP をサポートする](https://developer.apple.com/documentation/safari-release-notes/safari-14-beta-release-notes)との発表がありメンテナンスを再開することにした。
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Web Authentication (Face ID, Touch ID) や http/3 など、色々と実装されているけど WebP 対応が一番嬉しいかもしれない。うっかり OS 側も macOS 11 からサポートしたりするのかな / &quot;Safari 14 Beta Release Notes | Apple Developer Documentation&quot; <a href="https://t.co/JJNw4OIhhv">https://t.co/JJNw4OIhhv</a></p>&mdash; Shogo ( ˘ω˘) (@1000ch) <a href="https://twitter.com/1000ch/status/1275190209093660672?ref_src=twsrc%5Etfw">June 22, 2020</a></blockquote>

@@ -3,8 +3,6 @@ title: 画像を便利に扱うReactコンポーネント
 date: 2017-08-11
 ---
 
-# 画像を便利に扱うReactコンポーネント
-
 React を使った Web プロダクト開発では、遅延ロードやアクセシビリティといった画像として基本的な機能を備えつつ、ステートレスな `<Image>` コンポーネントを実装することがしばしある。
 
 [FRESH!](https://freshlive.tv) の Web 開発チームでは以前[Intersection Observerを使った要素の出現を検出するReactコンポーネント](/posts/2017/openfresh-viewport-observer.html)を公開したが、今度は画像を扱う汎用 React コンポーネントを公開した。今日はその紹介と、それらを組み合わせた `<Image>` コンポーネントの実装をしてみる。

@@ -3,8 +3,6 @@ title: 誰のためのデザイン？
 date: 2016-03-02
 ---
 
-# 誰のためのデザイン？
-
 デザインという言葉はとても広義だが、この本に語られてることこそがデザインに他ならないだよなという感想。デザインとアートの区別が付かない人・区別を付けたい人にオススメな本。
 
 >Design is not just what it looks like and feels like. Design is how it works.

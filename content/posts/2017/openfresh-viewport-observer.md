@@ -3,8 +3,6 @@ title: Intersection Observerを使った要素の出現を検出するReactコ�
 date: 2017-05-17
 ---
 
-# Intersection Observerを使った要素の出現を検出するReactコンポーネント
-
 Intersection Observer を使った要素の検出については、[過去に記事にしていたり](/posts/2016/intersection-observer-lazyload.html)、[Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io](https://blog.jxck.io/entries/2016-06-25/intersection-observer.html)などでより具体的に触れられている。また[最近関わっている FRESH! でも導入した](https://developers.cyberagent.co.jp/blog/archives/6057/)経緯があるが、今回はその React 実装部分を切り出し、オープンソースとして公開した話。
 
 ## ViewportObserver

@@ -3,8 +3,6 @@ title: Shadow DOMにおけるlink要素の扱い
 date: 2014-08-27
 ---
 
-# Shadow DOMにおけるlink要素の扱い
-
 [@nakajmg](http://twitter.com/nakajmg) 氏が[Web Components使うときにハマったポイント3つ](http://nakajmg.github.io/blog/2014-08-25/start-webcomponents.html)という記事を書いてて気になったので調べてたメモ。
 
 Web Componentsを構成する中でコンポーネントのスタイリングをするのは往々にしてあるけど、それに`<link>`は使えないので`<style>`にCSSを書くしかなさ気な話。

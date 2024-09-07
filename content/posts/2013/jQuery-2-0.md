@@ -3,8 +3,6 @@ title: jQuery 2.0がリリースされた
 date: 2013-04-19
 ---
 
-# jQuery 2.0がリリースされた
-
 - [jQuery 2.0 Released](http://blog.jquery.com/2013/04/18/jquery-2-0-released/)
 
 IE6~8のサポートを切って、再設計されたjQuery 2.0がリリースされた。開発には10ヶ月程かかったそう。

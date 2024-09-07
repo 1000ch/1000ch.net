@@ -2,7 +2,7 @@
  * Components............Designed components, chunks of UI.
  */
 
-.Container {
+.container {
   display: flex;
   flex-direction: column;
   min-width: 320px;
@@ -12,58 +12,62 @@
   background-color: var(--bgcolor);
 }
 
-.Header,
-.Main,
-.Aside,
-.Footer {
-  padding: 0 8%;
+.header,
+.main,
+.aside,
+.footer {
+  padding: 0 2em;
 }
 
-@media (max-width: 640px) {
-  .Header,
-  .Main,
-  .Aside,
-  .Footer {
-    padding: 0 6%;
+@media (width <= 800px) {
+  .header,
+  .main,
+  .aside,
+  .footer {
+    padding: 0 1em;
   }
 }
 
-@media (max-width: 480px) {
-  .Header,
-  .Main,
-  .Aside,
-  .Footer {
-    padding: 0 4%;
-  }
-}
-
-.Header__Title {
-  margin: 1em 0;
-  border-bottom: none;
-  font-size: 48px;
-  font-weight: bold;
-
-  a,
-  a:visited,
-  a:active {
-    color: var(--color);
-    text-decoration: none;
-  }
-}
-
-.Header__Menu {
+.header {
   display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+
+  h1 {
+    margin-bottom: 0;
+    border-bottom: none;
+    font-size: 3em;
+    font-weight: bold;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      color: var(--color);
+      text-decoration: none;
+
+      img {
+        width: 48px;
+        height: 48px;
+        margin-right: 0.125em;
+      }
+    }
+  }
+
+  nav {
+    display: inline-flex;
+    gap: 0.5em;
+  }
 }
 
-.Header__MenuItem {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5em;
+.footer {
+  margin-bottom: 4em;
 }
 
-.Preference {
+.preference {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   column-gap: 0.5em;
 
   label {
@@ -76,88 +80,51 @@
   }
 }
 
-.Media {
-  display: flex;
-  align-items: flex-start;
-}
-
-.Media__Figure {
-  width: 120px;
-  min-width: 120px;
-  margin-right: 16px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.Media__Body {
-  font-size: 14px;
-}
-
-.Media__Title {
-  display: flex;
-  align-items: center;
-  margin: 0;
-}
-
-.Media__Title iframe {
-  margin-left: 0.5em;
-}
-
-.List {
+.list {
   padding-left: 0 !important;
   list-style-type: none;
 }
 
-.Share {
+.share {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 
-  .Share__Item {
-    padding: 0.5em;
+  #share-button {
+    border: 0;
+    background-color: var(--bgcolor);
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: pointer;
 
-    button {
-      border: 0;
-      background-color: var(--bgcolor);
-      text-decoration: underline;
-      color: -webkit-link;
-      cursor: pointer;
-
-      &:active {
-        color: -webkit-activelink;
-      }
+    &:active {
+      color: -webkit-activelink;
     }
   }
 }
 
-.Pager {
+.pager {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5em;
 
-  .Pager__Item {
-    display: flex;
+  :first-child {
     flex-grow: 1;
+    text-align: left;
+  }
 
-    a {
-      align-self: center;
-    }
-
-    &.Pager__Item--left {
-      justify-content: flex-start;
-    }
-
-    &.Pager__Item--right {
-      justify-content: flex-end;
-    }
+  :last-child {
+    flex-grow: 1;
+    text-align: right;
   }
 }
 
-#Popover {
+#popover {
   inset: unset;
   right: 1em;
   bottom: 1em;
   padding: 0.5em;
-  color: #eee;
-  background-color: #333;
   border: 0;
+  background-color: #333;
+  color: #eee;
 }

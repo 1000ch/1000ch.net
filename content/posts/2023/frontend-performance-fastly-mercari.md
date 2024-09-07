@@ -3,8 +3,6 @@ title: 2023年のフロントエンド高速化手法〜Fastlyとメルカリに
 date: 2023-03-22
 ---
 
-# 2023年のフロントエンド高速化手法〜Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線に出演した
-
 Findy さんに声をかけていただき、2023 年 3 月 22 日に開催された、[フロントエンドの開発生産性〜Online Conference〜](https://findy.connpass.com/event/294482/)というイベントに出演した。
 
 <iframe loading="lazy" class="dropshadow" src="https://docs.google.com/presentation/d/e/2PACX-1vR-08iBC2X6dI950B-pZkAygOiYEgD7zTDZkzASE2a6esAwlbnuVx3H0zY4cBoLxYNez6_zoqLKCvMg/embed?start=false&loop=false&delayms=3000" allowfullscreen="true"></iframe>

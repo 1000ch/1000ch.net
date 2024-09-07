@@ -4,8 +4,6 @@ date: 2016-08-20
 image: /img/posts/2016/amazon-payment-history/capture.png
 ---
 
-# Amazonに費やした金額を年毎に集計して表示するChromeの拡張機能
-
 ブックマークレットが流行ったが、拡張機能として作りなおした。[APH - Chrome Web Store](https://chrome.google.com/webstore/detail/pgccjlmicdpgkbllgiafapgbnciodipb/related)からダウンロードできる。
 
 ![](/img/posts/2016/amazon-payment-history/capture.png)

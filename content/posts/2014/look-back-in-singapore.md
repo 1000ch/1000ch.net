@@ -3,8 +3,6 @@ title: JSConf.Asia 2014を振り返って
 date: 2014-11-22
 ---
 
-# JSConf.Asia 2014を振り返って
-
 とりあえず脳内メモリを書き出しておく。追記するかもしれない。
 
 ## CSSConf.Asia+JSConf.Asia

@@ -3,8 +3,6 @@ title: Kindle Paperwhiteを買った
 date: 2016-09-24
 ---
 
-# Kindle Paperwhiteを買った
-
 先月に [Kindle Paperwhite](https://www.amazon.co.jp/dp/B00QJDQM9U/?tag=1000ch-22) を購入していた。 [Kindle Oasis](https://www.amazon.co.jp/dp/B010EJWHUC/?tag=1000ch-22) と迷ったが、最終的には両者価格差がアップグレード内容に見合わない気がして Paperwhite を選んだ。 Kindle と Kindle Paperwhite は、時折開催されるプライム会員セールの割引対象になるので、それを狙うのも良い。
 
 ![Kindle Paperwhite](/img/posts/2016/kindle-paperwhite/paperwhite.jpg)

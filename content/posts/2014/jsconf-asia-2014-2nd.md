@@ -3,8 +3,6 @@ title: JSConf.Asia 2014 2日目
 date: 2014-11-21
 ---
 
-# JSConf.Asia 2014 2日目
-
 ## [Intro to BitTorrent & WebTorrent](https://speakerdeck.com/feross/intro-to-bittorrent-and-webtorrent) by [@feross](http://twitter.com/feross)
 
 BitTorrentをWebで実現するのが[WebTorrent](https://github.com/feross/webtorrent)だ的な話だった。元々PeerJSを手がけていた人っぽい？WebRTCの素のAPIは確かに使いにくいので、その隠蔽策は参考になる。

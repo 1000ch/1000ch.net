@@ -3,8 +3,6 @@ title: gzipとzopfliとbrotliによる圧縮データのサイズを簡易的に
 date: 2017-04-11
 ---
 
-# gzipとzopfliとbrotliによる圧縮データのサイズを簡易的に比較する
-
 圧縮アルゴリズムは gzip・[zopfli](https://github.com/google/zopfli)・[brotli](https://github.com/google/brotli) と色々あるが、それらによる圧縮効果を簡易的に試したいときがしばしばあったので、関数にしてみた。
 
 ```bash

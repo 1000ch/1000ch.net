@@ -3,8 +3,6 @@ title: パフォーマンスに関する各種ブラウザAPI
 date: 2016-06-14
 ---
 
-# パフォーマンスに関する各種ブラウザAPI
-
 ◯◯ Timing APIはW3CのWeb Performance Working GroupのIlya Grigorikを中心に策定が進められている、ブラウザのパフォーマンスを計測するブラウザAPIである。
 
 - [User Timing API](http://w3c.github.io/user-timing/): 任意のラベルを用いてプログラムの実行にかかったを取得する

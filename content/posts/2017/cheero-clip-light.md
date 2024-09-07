@@ -3,8 +3,6 @@ title: cheero CLIP Lightがなかなか便利
 date: 2017-06-04
 ---
 
-# cheero CLIP Lightがなかなか便利
-
 デスクが何かとケーブルで散乱しがちなので、まとめるべく試しに買ってみたら思いの外便利だった。
 
 <affiliate-link

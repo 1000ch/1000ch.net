@@ -4,8 +4,6 @@ date: 2017-11-18
 image: /img/posts/2017/webperf-guide/cover.png
 ---
 
-# 超速! Webページ速度改善ガイドの出版に寄せて
-
 事前に各所で告知していた通り、この度 **[超速! Webページ速度改善ガイド ── 使いやすさは「速さ」から始まる](https://www.amazon.co.jp/dp/477419400X/?tag=1000ch-22)** という共著の書籍が、技術評論社より出版されます。名前の通り Web サイトを高速化する知識を得るための本です。
 
 ![超速! Webページ速度改善ガイドの表紙](/img/posts/2017/webperf-guide/cover.png)

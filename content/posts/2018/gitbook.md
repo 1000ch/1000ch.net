@@ -3,8 +3,6 @@ title: gitbook で Markdown から PDF を生成する
 date: 2018-05-13
 ---
 
-# gitbook で Markdown から PDF を生成する
-
 [技術書典５](https://techbookfest.org/event/tbf05) への参加を目指して、執筆環境をセットアップしたのでそのメモ。今回は GitBook を使って Markdown から PDF を生成する。選択肢としては更に高機能な [Re:VIEW](https://github.com/kmuto/review) もあるが、筆が進みやすいようにとりあえず使い慣れている Markdown を選んだ。足りない機能があったり余力があれば、Re:VIEW のセットアップもしてみるつもり。
 
 ## プロジェクトの作成

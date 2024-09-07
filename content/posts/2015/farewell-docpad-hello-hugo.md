@@ -3,8 +3,6 @@ title: Farewell DocPad, Hello Hugo.
 date: 2015-02-24
 ---
 
-# Farewell DocPad, Hello Hugo.
-
 Hugoはじめました。
 
 ## DocPadからHugoへ

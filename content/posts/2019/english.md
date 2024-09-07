@@ -3,8 +3,6 @@ title: 英語学習事情
 date: 2019-12-30
 ---
 
-# 英語学習事情
-
 2019年の8月頃から英語を本格的に勉強している。[DMM 英会話](https://eikaiwa.dmm.com/)と [iKnow](https://iknow.jp/) を、余程の事情がない限り毎日実施している。
 
 ## DMM 英会話と iKnow!

@@ -3,8 +3,6 @@ title: オンライン英会話の学習時間が 10,000 分に到達した
 date: 2021-03-12
 ---
 
-# オンライン英会話の学習時間が 10,000 分に到達した
-
 2019 年の8月頃から DMM 英会話を使って英語学習を続けており、つい先日レッスン時間が 10,000 分に到達した。1レッスン 25 分なので、10,000 分までに 400 レッスンを受けたことになる。毎日受講しても1年1ヶ月かかることになるが、自分の場合は、ほぼ毎日受講してきた中で約1ヶ月間のスランプに2回程陥っていたりして、結局1年半かかった。
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">constantly, consistently or continuously. <a href="https://t.co/dpA0YsN27A">pic.twitter.com/dpA0YsN27A</a></p>&mdash; Shogo SENSUI (@1000ch) <a href="https://twitter.com/1000ch/status/1370224370388365317?ref_src=twsrc%5Etfw">March 12, 2021</a></blockquote>

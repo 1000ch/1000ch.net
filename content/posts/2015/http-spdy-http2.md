@@ -3,8 +3,6 @@ title: HTTP1.1とSPDYとHTTP2
 date: 2015-01-29
 ---
 
-# HTTP1.1とSPDYとHTTP2
-
 Webの通信プロトコルとして普及するHTTPも、HTTP2に向かって大きな変貌を遂げようとしている。最初期のHTTP0.9からどういう変化をたどってきたのか気になったので、調べたメモ。ネットワーク・HTTPの予備知識に[Webにおけるネットワーク通信](/posts/2014/networking-in-web.html)もどうぞ。
 
 ## 各プロトコルの特徴

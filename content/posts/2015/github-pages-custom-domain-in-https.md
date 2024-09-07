@@ -3,8 +3,6 @@ title: GitHub Pagesに設定しているカスタムドメインをHTTPS対応�
 date: 2015-01-12
 ---
 
-# GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる
-
 このブログはGitHub Pagesで運用している。ホスト名を書いた`CNAME`ファイルをドキュメントルートに配置してドメインを1000ch.netとしているが、これだと証明書がないせいでGitHub Pagesが対応しているHTTPSを利用できない。つまり、
 
 - http://1000ch.github.io → http://1000ch.net

@@ -3,8 +3,6 @@ title: position-stickyについて調べたメモ
 date: 2015-03-31
 ---
 
-# position-stickyについて調べたメモ
-
 業務中に`position: sticky;`的な表現をする必要があって、JavaScriptで実装したり、その辺の仕様がどうなってるのか調べたメモ。スティッキーの挙動を言葉で説明するのは難しいので、デモを見てもらったほうが話が早い。
 
 - [Fixed-sticky - filamentgroup](http://filamentgroup.github.io/fixed-sticky/demos/demo.html)

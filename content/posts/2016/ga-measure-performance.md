@@ -4,8 +4,6 @@ date: 2016-12-24
 image: /img/posts/2016/ga-measure-performance/custom-speed.png
 ---
 
-# Google AnalyticsとTiming APIでブログのサードパーティスクリプトのパフォーマンス計測
-
 [Performance Calendar &raquo; Prefer DEFER Over ASYNC](http://calendar.perfplanet.com/2016/prefer-defer-over-async/) を見たのがきっかけ。
 
 このブログでもサードパーティのスクリプトをいくつかロードしているが、言及されているように `<script async>` と `<script defer>` でパフォーマンスを比較計測してみる。

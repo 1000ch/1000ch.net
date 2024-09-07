@@ -3,8 +3,6 @@ title: Vulcanizeで減らすHTML ImportsのHTTPリクエスト
 date: 2014-09-05
 ---
 
-# Vulcanizeで減らすHTML ImportsのHTTPリクエスト
-
 Web Componentsの旨味はコンポーネントの再利用が出来る所にあるので、そのためにはそのリソースは断片化は避けられない。
 `<x-element>`を構成するリソースは`x-element.html`に集約し、使うときにはHTML Importsでロードする。
 実際には複数のWeb Componentsを利用したいケースは当たり前にあることなので、素直にやろうとすると以下のように。

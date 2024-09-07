@@ -3,8 +3,6 @@ title: Web Components 周辺の仕様とか 2017年秋
 date: 2017-09-12
 ---
 
-# Web Components 周辺の仕様とかブラウザ互換性 2017年秋
-
 二週間後の素振り入ってます、連投ですが悪しからず。Web Components v0 から Web Components v1 へのアップデートに関しては、去年の [DevFest Tokyo 2016](https://gdg-tokyo.connpass.com/event/38927/) で発表した [Web Components 2016 & Polymer v2](https://1000ch.github.io/slide/webcomponents-2016/) にまとめてあるが、それを改めて見直している。
 
 ## HTML Templates

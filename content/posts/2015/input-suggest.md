@@ -3,8 +3,6 @@ title: inputやtextareaの入力補助
 date: 2015-06-22
 ---
 
-# inputやtextareaの入力補助
-
 `<input>`の入力補助には`<datalist>`を使ったものがある。補助候補を`<datalist>`と`<option>`を使って定義し、そのIDを適用先の`<input>`の`list`属性に付与する。以下サンプル。
 
 <iframe loading="lazy" scrolling="no" title="Input suggestion using datalist" src="https://codepen.io/1000ch/embed/ZGJVJL?theme-id=light&default-tab=html,result" allowtransparency="true" allowfullscreen="true">

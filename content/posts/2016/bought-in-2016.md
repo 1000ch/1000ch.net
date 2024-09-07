@@ -4,8 +4,6 @@ date: 2016-12-19
 image: /img/posts/2016/bought-in-2016/apple-watch-series-2.jpg
 ---
 
-# 2016年に買って良かったもの
-
 [2015年](/posts/2015/bought-in-2015.html)に引き続き、2016年バージョン。
 
 ## Apple Watch Series 2

@@ -3,8 +3,6 @@ title: PinFeedを色々手直しした
 date: 2017-05-05
 ---
 
-# PinFeedを色々手直しした
-
 PinFeed は趣味で作っている Pinboard の iOS クライアントで、自分がフォローしているユーザーのブックマークにフォーカスしているのが特徴（[HBFav に強くインスパイアされている](http://d.hatena.ne.jp/naoya/20111111/1320965898)、というかそのまま）。[リリース自体はかれこれ1年以上前](/posts/2016/pinfeed-for-pinboard.html)だが、こつこつメンテナンスを続けていて、Swift のメジャーアップデートなどにも追従している。
 
 <img src="/img/posts/2017/update-pinfeed/timeline.png" style="width: 50%;"><img src="/img/posts/2017/update-pinfeed/setting.png" style="width: 50%;">

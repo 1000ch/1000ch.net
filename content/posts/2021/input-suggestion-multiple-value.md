@@ -3,8 +3,6 @@ title: フォームに複数の値を入力するときの入力補完
 date: 2021-03-14
 ---
 
-# フォームに複数の値を入力するときの入力補完
-
 `<input type="text">` の入力補完は `<datalist>` 要素と組み合わせることで簡単に実現できる。ただし、これは単一の値に対する補完で、複数の値を入力しようとしたときに適用されない。というのも、ブラウザとしては `<input>` 要素の `value` プロパティをひとつの値として扱い、それを `<datalist>` 要素の入力候補と比較しているため、当たり前といえば当たり前である。つまり `<input>` 要素に複数の値を保持するという概念がそもそもない。
 
 次のデモは `<input type="text">` と `<datalist>` 要素を組み合わせた挙動である。 [`<input>` 要素の `list` 属性](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input#htmlattrdeflist)に、[`<datalist>` 要素](https://developer.mozilla.org/ja/docs/Web/HTML/Element/datalist)の `id` 属性の値を指定している。

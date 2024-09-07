@@ -3,8 +3,6 @@ title: HTML5オールスターズ勉強会
 date: 2015-06-15
 ---
 
-# HTML5オールスターズ勉強会
-
 2015年6月13日は[htmlday 2015](http://www.htmlday.jp/)ということで、因んで開催された[HTML5オールスターズ勉強会](http://eventdots.jp/event/496476)に登壇した。[html5j](http://html5j.org/)主催・[dots.](http://eventdots.jp/)さん協力の下、自分を含めて8つのセッションが行われた。
 
 ## 当日のスライド

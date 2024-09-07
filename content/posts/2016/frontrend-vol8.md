@@ -3,8 +3,6 @@ title: Frontrend Vol.8でResource Hintsの話をした
 date: 2016-12-08
 ---
 
-# Frontrend Vol.8でResource Hintsの話をした
-
 ファイナルを謳った Frontrend Conference を開催した2015年2月21日からしばらくぶりの [Frontrend Vol.8](https://frontrend.connpass.com/event/45238/) を開催した。およそ1年8ヶ月の充電期間を経て復活した Frontrend には約100名の参加者にご来場頂き、アンケートの結果もまずまずで、主催側としてはやや安心。
 
 ## Introduction to Resource Hints

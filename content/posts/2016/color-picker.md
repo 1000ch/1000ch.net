@@ -3,8 +3,6 @@ title: D3.jsでColor Pickerを作った
 date: 2016-05-02
 ---
 
-# D3.jsでColor Pickerを作った
-
 D3.jsの素振りをしていて、何か練習台になるものはと探していたら[A Simple Web Developer’s Guide To Color](https://www.smashingmagazine.com/2016/04/web-developer-guide-color/)で[Dribbble](https://dribbble.com/colors/)やら[Designspiration](http://designspiration.net/)にあるようなカラーピッカーが紹介されていたので、真似て[Color Picker](https://1000ch.github.io/color-picker/)を実装した。機能としては、予め用意してある色がパレットのように陳列されていて、クリックするとそのカラーコードをコピー出来るという単純なもの。ある程度整頓された色の中から選んで使いたいことは多々あったので、その個人的な問題はコレで解決できそう。
 
 クリックでコピーできる機能については[clipboard.js](https://clipboardjs.com/)を使っているのでFlashに依存していない代わりに、`execCommand`がアレなSafariではコピーは機能しない。

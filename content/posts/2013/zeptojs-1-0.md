@@ -3,8 +3,6 @@ title: Zepto.js ver1.0がリリースされた
 date: 2013-03-05
 ---
 
-# Zepto.js ver1.0がリリースされた
-
 v1.0rcが11ヶ月間も続いていたが、ようやくRelease Candidateではなくなり正式リリースとなった。
 
 - [http://zeptojs.com/](http://zeptojs.com/)

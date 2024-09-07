@@ -4,8 +4,6 @@ date: 2016-06-23
 image: /img/posts/2016/web-app-manifest/devtools.png
 ---
 
-# Web App Manifest
-
 [Web App Manifest](https://developer.mozilla.org/ja/docs/Web/Manifest)は、Webページのメタ情報をJSON形式でフォーマット化したものである。
 
 ## Web App Manifestのサンプル

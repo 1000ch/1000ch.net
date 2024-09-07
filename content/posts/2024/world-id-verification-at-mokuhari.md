@@ -3,8 +3,6 @@ title: 工作室もくもくはりねずみで World ID の虹彩認証をした
 date: 2024-03-11
 ---
 
-# 工作室もくもくはりねずみで World ID の虹彩認証をした
-
 [WorldCoin](https://ja-jp.worldcoin.org/) という [OpenAI ファウンダーのサム・アルトマン](https://ja.wikipedia.org/wiki/%E3%82%B5%E3%83%A0%E3%83%BB%E3%82%A2%E3%83%AB%E3%83%88%E3%83%9E%E3%83%B3)が率いるデジタル通貨がある。そのコンセプトの詳細については [WorldCoin のホワイトペーパー](https://whitepaper.worldcoin.org/)を読むことをおすすめするが、WorldCoin は World ID というデジタルアイデンティティと、[WLD](https://ja-jp.worldcoin.org/worldcoin-token) という通貨によって構成される。そのデジタルアイデンティティの核となるのは人間性の証明であり、人間ひとりひとりが持つ一意な虹彩によって World ID は認証される。発展的には、このデジタルアイデンティティ持つ人間性の証明が、今後 AI などのコンピュータと区別する重要な存在になっていく、という話だ。
 
 [World App](https://ja-jp.worldcoin.org/world-app) をダウンロードし、アカウントを認証することで配布される $WLD トークンを受け取れるようになる。アカウントの認証には、Orb というデバイスで虹彩を認証する必要がある。

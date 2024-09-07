@@ -3,8 +3,6 @@ title: Webフォントのロードをやめた
 date: 2016-08-22
 ---
 
-# Webフォントのロードをやめた
-
 このサイトではフォントに Roboto と Roboto Mono を適用している。以前までは [Google Fonts](https://fonts.google.com/) で配信されているそれぞれのフォントをロードしていたが、それをやめて `font-family` の指定のみに変更した。
 
 ## プログレッシブな適用とOS共通フォントの選択

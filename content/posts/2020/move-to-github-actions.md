@@ -3,8 +3,6 @@ title: 静的ホスティングへのデプロイをGitHub Actionsで実行す�
 date: 2020-07-20
 ---
 
-# 静的ホスティングへのデプロイをGitHub Actionsで実行するようにした
-
 このブログを含めてホストしている Web ページを、[GitHub Pages](https://docs.github.com/ja/github/working-with-github-pages/about-github-pages) や [Firebase Hosting](https://firebase.google.com/docs/hosting?hl=ja)、[Netlify](https://www.netlify.com/) など様々な静的ホスティングサービスを使って運用している。これらのサービスへのデプロイは、リポジトリに更新があったときに自動的にデプロイするように設定してある。
 
 Netlify であれば GitHub リポジトリを連携することで、`master` ブランチの変更を自動的に検知し、任意のデプロイ処理を実行できる。Firebase Hosting や GitHub Pages はこうした便利な連携がないので、CI を使って自動デプロイを設定するのが一般的だろう。
