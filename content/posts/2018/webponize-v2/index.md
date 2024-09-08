@@ -11,7 +11,7 @@ libwebp を自前でラップしていたが、[ainame/Swift-WebP](https://githu
 
 libwebp のオプションはたくさんありラップするのも一苦労だったが、Swift-WebP はかなり丁寧にラップしてあったので、重い腰をあげて実行時オプションを設定できるようにした。
 
-![WebPonizeの設定画面](/img/posts/2018/webponize-v2/preferences.png)
+![WebPonizeの設定画面](./preferences.png)
 
 主に使うと思われる設定を General タブに、フィルタ関連は Filter タブ、アルファ関連は Alpha タブにコントロールを配置した。余程細かく設定したいときを除けば、Filter タブと Alpha タブを使う必要はない。
 

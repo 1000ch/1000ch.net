@@ -7,7 +7,7 @@ GAE のプロジェクトには Console から Firewall の設定ができる。
 
 GAE を利用している GCP のプロジェクトを [GCP Console](https://console.cloud.google.com/) から選択し、ハンバーガーメニューをクリックして表示されるドロワーメニューの、 **App Engine** → **Firewall rules** を選択する。
 
-![""](/img/posts/2018/gae-project-firewall/gcp-console.png)
+![](./gcp-console.png)
 
 default のルールとして、全てのドメイン `*` に対して **Allow** が設定されているので、適用するルールを [Create Rule](https://console.cloud.google.com/appengine/firewall/create) から作成する。
 
