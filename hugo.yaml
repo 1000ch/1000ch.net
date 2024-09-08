@@ -5,7 +5,6 @@ contentdir: "content"
 layoutdir: "layout"
 staticdir: "static"
 publishdir: "public"
-uglyUrls: true
 metaDataFormat: "yaml"
 params:
   author: "1000ch"
