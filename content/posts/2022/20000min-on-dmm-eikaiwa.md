@@ -3,7 +3,7 @@ title: オンライン英会話の学習時間が 20,000 分に到達した
 date: 2022-12-30
 ---
 
-昨年[オンライン英会話の学習時間が 10,000 分に到達した](/posts/2021/10000min-on-dmm-eikaiwa.html)が、今年はそれが 20,000 分に到達した。1回25分のレッスンなので、1日1レッスンのプランだと 25min * 365days で 9125min/year が最大である。スランプに陥っていた時期などもあるので日数に換算すると足りていないが、DMM 英会話で勉強をはじめてから丸3年が経過したことになる。
+昨年[オンライン英会話の学習時間が 10,000 分に到達した](/posts/2021/10000min-on-dmm-eikaiwa/)が、今年はそれが 20,000 分に到達した。1回25分のレッスンなので、1日1レッスンのプランだと 25min * 365days で 9125min/year が最大である。スランプに陥っていた時期などもあるので日数に換算すると足りていないが、DMM 英会話で勉強をはじめてから丸3年が経過したことになる。
 
 <blockquote class="twitter-tweet"><p lang="zxx" dir="ltr"><a href="https://t.co/2Ig1q5tMR1">pic.twitter.com/2Ig1q5tMR1</a></p>&mdash; Shogo 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1608689341685207041?ref_src=twsrc%5Etfw">December 30, 2022</a></blockquote>
 
