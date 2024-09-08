@@ -1,0 +1,96 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="document の DOMContentLoaded イベント や window の load イベント は Web 開発者にとってお馴染みのブラウザライフサイクルである。
+結論から言うと、これらを簡単にハンドリングするための html-ready という小さなライブラリを作ったという話。実装自体はとても簡単で、ここで改めて説明するほどのものではない。ただ、同じことを色んな場面で何度も何度も書いている実感があり、巷にも期待する機能を持ったライブラリがなかったので作った。
+イベントのタイミングとハンドリング方法 簡単におさらいすると、それぞれ以下のような条件で発火する。
+document の DOMContentLoaded イベント: HTML ドキュメントのロードが完了したタイミング window の load イベント: ページが参照する CSS や画像などのサブリソースのロードが完了したタイミング これらのタイミングを取得するためには、以下のように addEventListener を使ってコールバック内に任意の処理を記述すれば良い。
+document.addEventListener('DOMContentLoaded', () => { console.log('DOMContentLoaded is fired'); }); window.addEventListener('load', () => { console.log('load is fired'); }); ただし、これらはイベントが発火されたあとに実行されるとコールバックが実行されないので、より丁寧にハンドリングしようとすると document.readyState を参照して HTML ドキュメントの読み込み状態をチェックしなくてはならない。
+if (document.readyState === 'interactive' || document.readyState === 'complete') { console.log('DOMContentLoaded is already fired'); } else { document."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2020/html-ready/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2020/html-ready/"><meta name=twitter:title content="DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>DOMContentLoaded イベントや load イベントを約束する Promise オブジェクト</h1><p style=margin:0;text-align:right>Published at 2020-08-04</p><p><a href=https://developer.mozilla.org/ja/docs/Web/API/Document/DOMContentLoaded_event><code>document</code> の <code>DOMContentLoaded</code> イベント</a> や <a href=https://developer.mozilla.org/ja/docs/Web/API/Window/load_event><code>window</code> の <code>load</code> イベント</a> は Web 開発者にとってお馴染みのブラウザライフサイクルである。</p><p>結論から言うと、これらを簡単にハンドリングするための <a href=https://github.com/1000ch/html-ready>html-ready</a> という小さなライブラリを作ったという話。実装自体はとても簡単で、ここで改めて説明するほどのものではない。ただ、同じことを色んな場面で何度も何度も書いている実感があり、巷にも期待する機能を持ったライブラリがなかったので作った。</p><h2 id=イベントのタイミングとハンドリング方法>イベントのタイミングとハンドリング方法</h2><p>簡単におさらいすると、それぞれ以下のような条件で発火する。</p><ul><li><code>document</code> の <code>DOMContentLoaded</code> イベント: HTML ドキュメントのロードが完了したタイミング</li><li><code>window</code> の <code>load</code> イベント: ページが参照する CSS や画像などのサブリソースのロードが完了したタイミング</li></ul><p>これらのタイミングを取得するためには、以下のように <code>addEventListener</code> を使ってコールバック内に任意の処理を記述すれば良い。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;DOMContentLoaded&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;DOMContentLoaded is fired&#39;</span>);
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;load&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;load is fired&#39;</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><p>ただし、これらはイベントが発火されたあとに実行されるとコールバックが実行されないので、より丁寧にハンドリングしようとすると <a href=https://developer.mozilla.org/ja/docs/Web/API/Document/readyState><code>document.readyState</code></a> を参照して HTML ドキュメントの読み込み状態をチェックしなくてはならない。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>if</span> (document.<span style=color:#a6e22e>readyState</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;interactive&#39;</span> <span style=color:#f92672>||</span> document.<span style=color:#a6e22e>readyState</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;complete&#39;</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;DOMContentLoaded is already fired&#39;</span>);
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>  document.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;DOMContentLoaded&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;DOMContentLoaded is fired&#39;</span>);
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (document.<span style=color:#a6e22e>readyState</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;complete&#39;</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;load is already fired&#39;</span>);
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>  window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;load&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;load is fired&#39;</span>);
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=html-ready-を使って-promise-で待機する方法>html-ready を使って Promise で待機する方法</h2><p><a href=https://github.com/1000ch/html-ready>html-ready</a> に <code>documentReady</code> オブジェクトと <code>windowReady</code> オブジェクトが含まれており、これらを使うと以下のように記述できる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>documentReady</span>, <span style=color:#a6e22e>windowReady</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;https://unpkg.com/html-ready&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>documentReady</span>.<span style=color:#a6e22e>then</span>(() =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;DOMContentLoaded is fired&#39;</span>);
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>windowReady</span>.<span style=color:#a6e22e>then</span>(() =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;load is fired&#39;</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><p>これは unpkg を直接参照して <a href=https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules>ESM でロードしている</a>例だが、もちろん <code>npm install html-ready</code> を実行してモジュールバンドラに依存関係を解決させることも可能である。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2020/move-to-github-actions/>👈 静的ホスティングへのデプロイをGitHub Actionsで実行するようにした</a>
+<a href=/posts/2020/what-you-should-care-about-when-you-use-online-tool/>オンラインで公開されているサービスやツールを使うときに留意していること 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

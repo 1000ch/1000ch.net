@@ -1,0 +1,92 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>クラス関数をthrottleするデコレータ - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="掲題の通り、throttle してくれる 1000ch/throttle-decorator というモジュールを作った。ES Decorator については全力で ES Decorator使ってみたが参考になると思う。標準化されるか問題は一旦さておいて。
+インストールと使い方 npm でインストールする。
+$ npm install --save-dev throttle-decorator 旧来 throttle() するときは宣言してあるイベントハンドラに throttle() を挟んで新たな名前付き関数を宣言していたと思う。React のコンポーネントの例だと次のようになる。
+import throttle from 'lodash.throttle'; class Foo extends React.Component { constructor() { this.onChange = throttle(this.onChange, 100); } onChange() { console.log('changeイベントを間引きたい'); } render() { return <input onChange={this.onChange} />; } } そこで throttle-decorator を使うと、次のように書ける。
+import throttle from 'throttle-decorator'; class Foo extends React.Component { @throttle(100) onChange() { console.log('changeイベントを間引きたい'); } render() { return <input onChange={this."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/throttle-decorator/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="クラス関数をthrottleするデコレータ"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/throttle-decorator/"><meta name=twitter:title content="クラス関数をthrottleするデコレータ"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>クラス関数をthrottleするデコレータ</h1><p style=margin:0;text-align:right>Published at 2017-07-15</p><p>掲題の通り、throttle してくれる <a href=https://github.com/1000ch/throttle-decorator>1000ch/throttle-decorator</a> というモジュールを作った。ES Decorator については<a href=http://qiita.com/mizchi/items/6bdf9d100f564a5c5b08>全力で ES Decorator使ってみた</a>が参考になると思う。標準化されるか問題は一旦さておいて。</p><h2 id=インストールと使い方>インストールと使い方</h2><p>npm でインストールする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ npm install --save-dev throttle-decorator
+</span></span></code></pre></div><p>旧来 <code>throttle()</code> するときは宣言してあるイベントハンドラに <code>throttle()</code> を挟んで新たな名前付き関数を宣言していたと思う。React のコンポーネントの例だと次のようになる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>throttle</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;lodash.throttle&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Foo</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>Component</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>onChange</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>throttle</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>onChange</span>, <span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>onChange</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;changeイベントを間引きたい&#39;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>render</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>onChange</span>} /&gt;;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>そこで <code>throttle-decorator</code> を使うと、次のように書ける。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>throttle</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;throttle-decorator&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Foo</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>Component</span> {  
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>throttle</span>(<span style=color:#ae81ff>100</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>onChange</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;changeイベントを間引きたい&#39;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>render</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>onChange</span>} /&gt;;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><a href=https://github.com/tc39/proposal-decorators>Class と Property のデコレータ</a>は現在策定中で、今は Stage 2 である。まだ仕様が未完成な状態だが、Angular もモリモリ使っているようだしそのうち来るだろう（…と楽観している）。このご時世トランスパイラ前提になるのは諦めているので、互換性は然程気にしていないが、ECMAScript なら Safari もそこそこスピード感ありそうだし、心配していない。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2017/yamaki/>👈 開発合宿 in 山喜旅館 2017</a>
+<a href=/posts/2017/sublime-theme-switcher/>Sublime Theme Switcherがとても便利 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

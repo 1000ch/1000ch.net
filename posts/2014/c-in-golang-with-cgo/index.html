@@ -1,0 +1,145 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>cgoでGoのコードからCの関数を利用する - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='Goの練習がてらコマンドラインツールを書いている最中に詰まったので作業ログとして残す。
+Goでコマンドラインのインターフェースを実装するには、osやflag等のデフォルトライブラリ群でそこそこ簡単に作れるけど、今回やりたいことに「Cで書かれたバイナリをGoから利用したい」というものがあった。 同じことをNode.jsでやろうとするなら、スクリプトを含めたパッケージ群としてnpmで配布することが可能なので、postinstallあたりで 都度ソースコードをダウンロードしコンパイル 、あるいは コンパイル済みバイナリをダウンロード くらいで良かった。以下Node.jsの例。
+https://github.com/imagemin/pngcrush-bin https://github.com/imagemin/jpegoptim-bin Goの場合はどうだろう。
+@1000ch linkすればいいんじゃないかな。Cのライブラリみたいに
+&mdash; すぎもと@ (@sugimoto1981) 2014, 10月 2 色々ググっててもcgoというワードが出てくるけど、これはgoのコンパイラでcのプログラムも一緒にコンパイルするみたい。詳しい内部処理わからないけど、GoからコンパイルされたバイナリとCからコンパイルされたバイナリをリンクという処理は見えない。表面上は。
+Command cgo - The Go Programming Language C? Go? Cgo! - The Go Blog cgoを使ったミニマルな例 main.cとmain.goというファイル名で用意。
+#include <stdio.h> void func_to_export(const char* message) { printf("(✌՞ټ՞)✌ %s!!!\n", message); } package main /* #include <stdlib.h> extern void func_to_export(const char*); */ import "C" import "unsafe" func main() { p := C.CString("lorem ipsum") defer C.free(unsafe.Pointer(p)) C.func_to_export(p) } このくらい単純なら僕でもわかるんだけど、やりたいのは既存のcで書かれたライブラリをgo buildでコンパイル。'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/c-in-golang-with-cgo/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="cgoでGoのコードからCの関数を利用する"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/c-in-golang-with-cgo/"><meta name=twitter:title content="cgoでGoのコードからCの関数を利用する"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>cgoでGoのコードからCの関数を利用する</h1><p style=margin:0;text-align:right>Published at 2014-10-09</p><p>Goの練習がてらコマンドラインツールを書いている最中に詰まったので作業ログとして残す。</p><p>Goでコマンドラインのインターフェースを実装するには、<code>os</code>や<code>flag</code>等のデフォルトライブラリ群でそこそこ簡単に作れるけど、今回やりたいことに「Cで書かれたバイナリをGoから利用したい」というものがあった。
+同じことをNode.jsでやろうとするなら、スクリプトを含めたパッケージ群としてnpmで配布することが可能なので、<code>postinstall</code>あたりで <strong>都度ソースコードをダウンロードしコンパイル</strong> 、あるいは <strong>コンパイル済みバイナリをダウンロード</strong> くらいで良かった。以下Node.jsの例。</p><ul><li><a href=https://github.com/imagemin/pngcrush-bin>https://github.com/imagemin/pngcrush-bin</a></li><li><a href=https://github.com/imagemin/jpegoptim-bin>https://github.com/imagemin/jpegoptim-bin</a></li></ul><p>Goの場合はどうだろう。</p><blockquote class=twitter-tweet lang=ja><p><a href=https://twitter.com/1000ch>@1000ch</a> linkすればいいんじゃないかな。Cのライブラリみたいに</p>&mdash; すぎもと@ (@sugimoto1981) <a href=https://twitter.com/sugimoto1981/status/517631315563122688>2014, 10月 2</a></blockquote><p>色々ググっててもcgoというワードが出てくるけど、これはgoのコンパイラでcのプログラムも一緒にコンパイルするみたい。詳しい内部処理わからないけど、GoからコンパイルされたバイナリとCからコンパイルされたバイナリをリンクという処理は見えない。表面上は。</p><ul><li><a href=http://golang.org/cmd/cgo/>Command cgo - The Go Programming Language</a></li><li><a href=http://blog.golang.org/c-go-cgo>C? Go? Cgo! - The Go Blog</a></li></ul><h2 id=cgoを使ったミニマルな例>cgoを使ったミニマルな例</h2><p><code>main.c</code>と<code>main.go</code>というファイル名で用意。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>func_to_export</span>(<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> message) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>printf</span>(<span style=color:#e6db74>&#34;(✌՞ټ՞)✌ %s!!!</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, message);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include &lt;stdlib.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>extern void func_to_export(const char*);
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> <span style=color:#e6db74>&#34;C&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> <span style=color:#e6db74>&#34;unsafe&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>p</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>C</span>.<span style=color:#a6e22e>CString</span>(<span style=color:#e6db74>&#34;lorem ipsum&#34;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>C</span>.<span style=color:#a6e22e>free</span>(<span style=color:#a6e22e>unsafe</span>.<span style=color:#a6e22e>Pointer</span>(<span style=color:#a6e22e>p</span>))
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>C</span>.<span style=color:#a6e22e>func_to_export</span>(<span style=color:#a6e22e>p</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>このくらい単純なら僕でもわかるんだけど、やりたいのは既存のcで書かれたライブラリを<code>go build</code>でコンパイル。</p><h2 id=jpegoptimをgoでラップしたい>jpegoptimをGoでラップしたい</h2><ul><li><a href=https://github.com/tjko/jpegoptim>https://github.com/tjko/jpegoptim</a></li></ul><p>本当は画像をアレするライブラリを全てまとめたものを作るという大いなる野望を持っているけど、いきなりは無理なのでまずは単一ライブラリをラップするところから。
+CとMakefileのお作法が絡みまくっており、このラップ作業ですらさっぱりわからなくて、多方面にご教授頂きました（特に<a href=https://twitter.com/vitaminless>@vitaminless</a>氏には大部分のデバッグを助けていただきましたorz）。</p><h3 id=アーカイブファイルを作る>アーカイブファイルを作る</h3><p>jpegoptimそのものはもちろんそれだけで実行可能形式にコンパイル可能だが、<code>.o</code>ファイルをくっつけた<code>.a</code>ファイルを出力するビルドが用意されていない。
+なので<code>libjpegoptim.a</code>というアーカイブファイルを生成するビルドをMakefile中に追加したい。具体的には以下の3行を然るべきところに追加するパッチファイルを作る。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span>PKGLIB <span style=color:#f92672>=</span> libjpegoptim.a
+</span></span><span style=display:flex><span><span style=color:#a6e22e>$(PKGLIB)</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>$(</span>OBJS<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>  ar crsv <span style=color:#66d9ef>$(</span>PKGLIB<span style=color:#66d9ef>)</span> <span style=color:#66d9ef>$(</span>OBJS<span style=color:#66d9ef>)</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ diff -u jpegoptim/Makefile Makefile-updated &gt; Makefile.patch
+</span></span></code></pre></div><p>で、このパッチを適用する処理をGoラッパー側のMakefileに追加した。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ patch -u jpegoptim/Makefile &lt; Makefile.patch
+</span></span></code></pre></div><h3 id=jpegoptimcのmain関数の削除><code>jpegoptim.c</code>のmain関数の削除</h3><p>また、今回はGoラッパーを作るので、Go側にmain関数が必要だが、そのままだとjpegoptim側のmain関数とバッティングしてコンパイルができなくなる。
+そのため、<code>jpegoptim.c</code>のmain関数を削除する処理が必要になるが、こちらもGoラッパー側のMakefileに追加しておく。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sed -e <span style=color:#e6db74>&#34;287,854d&#34;</span> jpegoptim/jpegoptim.c
+</span></span></code></pre></div><p>っていう雑なことをしていたら精神衛生的に汚されてきたので、こちらもパッチを作った。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ patch -u jpegoptim/jpegoptim.c &lt; jpegoptim.c.patch
+</span></span></code></pre></div><h3 id=出来上がったmakefile>出来上がったMakefile</h3><p>このGo側のmain関数に何も処理を書いていない時点で、ひとまずコンパイルまでは通せるようになった。</p><pre tabindex=0><code>GO=go
+REPO=git@github.com:tjko/jpegoptim.git
+SRC=jpegoptim-src
+
+default: patch build
+
+$(SRC):
+  # prepare source
+  @mkdir $(SRC)
+  @git clone $(REPO) $(SRC)
+
+build: $(SRC) jpegoptim.go
+  # make
+  @cd $(SRC);make libjpegoptim.a
+
+  # build
+  @$(GO) build jpegoptim.go
+
+patch: $(SRC)
+  # configure
+  @cd $(SRC);./configure --prefix=`pwd`/local
+
+  # apply patch to jpegoptim/Makefile
+  @patch -u $(SRC)/Makefile &lt; Makefile.patch
+
+  # apply patch to jpegoptim/jpegoptim.c
+  @patch -u $(SRC)/jpegoptim.c &lt; jpegoptim.c.patch
+
+.PHONY: patch build
+</code></pre><h2 id=削除したc側のmain関数>削除したC側のmain関数</h2><p>コマンドラインのインターフェースと最適化実行部分がmain関数内にがっちり書かれていたので、今度はこれをどうにかしなければならならず、しばし考える。
+jpegoptimのmain関数で行っている処理をGoで再実装しようとも考えたけど、長いし、一部だけexternするというのも微妙かと考え、main関数をリネームしGo側のmain関数からコールすることに。
+それに応じて、<code>jpegoptim.c.patch</code>も、<code>main()</code>の削除ではなく<code>jpegoptim_main()</code>とリネームするように作りなおす。</p><p><code>jpegoptim_main()</code>とリネームしたCのmain関数を、<code>jpegoptim.go</code>内でexternする。
+その上で、Goで受け取るコマンドライン引数を<code>jpegoptim_main()</code>にそのまま受け渡すことに。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>argc</span> <span style=color:#a6e22e>C</span>.<span style=color:#66d9ef>int</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>argv</span> []<span style=color:#f92672>*</span><span style=color:#a6e22e>C</span>.<span style=color:#a6e22e>char</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>argc</span> = <span style=color:#a6e22e>C</span>.int(len(<span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Args</span>))
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>argv</span> = make([]<span style=color:#f92672>*</span><span style=color:#a6e22e>C</span>.<span style=color:#a6e22e>char</span>, <span style=color:#a6e22e>argc</span>)
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>i</span>, <span style=color:#a6e22e>arg</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Args</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>argv</span>[<span style=color:#a6e22e>i</span>] = <span style=color:#a6e22e>C</span>.<span style=color:#a6e22e>CString</span>(<span style=color:#a6e22e>arg</span>)
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>C</span>.<span style=color:#a6e22e>jpegoptim_main</span>(<span style=color:#a6e22e>argc</span>, (<span style=color:#f92672>**</span><span style=color:#a6e22e>C</span>.<span style=color:#a6e22e>char</span>)(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>argv</span>[<span style=color:#ae81ff>0</span>]))
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>そのままだと渡せないので、Goの型をCの型に変換している。Goの<code>os.Args</code>のそれぞれを<code>*C.char</code>にするのは正攻法で良さそうだけど、
+ポインタのポインタに変換どうすればいいのこれというところで、<a href=http://r9y9.github.io/blog/2014/03/22/cgo-tips/>Cgo の基本的な使い方とポインタ周りのTips (Go v1.2)</a>というエントリに助けてもらった。
+ここでやりたい、「<code>[]*C.type</code>から<code>**type</code>へのキャストができる」ということがずばり書いてある。先人の力は偉大だ。</p><h2 id=go-jpegoptim>go-jpegoptim</h2><p>一応動く形になったものがこちら。</p><ul><li><a href=https://github.com/1000ch/go-jpegoptim>https://github.com/1000ch/go-jpegoptim</a></li></ul><p>ビルドはリポジトリをクローンして、<code>make</code>すれば実行可能バイナリ作成までされる。Goのv1.3.2で確認済み。</p><h2 id=所感>所感</h2><p>終わってみればGoのコードは殆どなくなってしまったわけだけど、何かの足しになればと思って記事として残す。
+今のところはCLIツールを書くにもNode.jsのほうがお手軽感あるし、漠然とバイナリのほうが速いだろうと思っている実行速度もどこまで差が出るのかわからない。
+お手軽云々に関しては慣れの問題もあるだろうから、コレを期に、今までNode.jsで書いていたようなWebアプリもGoで書くようにしようかな。実行速度に関してはまた今度。</p><p>以下お世話になった資料です。</p><p>Cのmain関数をGo側に移植しようと頑張ってた最中</p><ul><li><a href=http://tdoc.info/blog/2013/04/11/go_flag.html>Go言語でコマンドラインオプションを扱う</a></li><li><a href=http://uokada.hatenablog.jp/entry/2013/08/13/011203>Go言語でコマンドライン引数を取り扱う</a></li><li><a href=http://yuroyoro.hatenablog.com/entry/2014/06/11/180801>ʕ　 ﾟ皿ﾟ ʔ Golangからv8を使う</a></li><li><a href=http://golang.org/pkg/path/filepath/>Package filepath - The Go Programming Language</a></li></ul><p>諦めた辺あたりから</p><ul><li><a href=http://r9y9.github.io/blog/2014/03/22/cgo-tips/>Cgo の基本的な使い方とポインタ周りのTips (Go v1.2)</a></li></ul><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2014/inherited-content-with-html-imports/>👈 HTML Importsでインポート先に引き継がれる内容</a>
+<a href=/posts/2014/wdpress-frontend-series-image/>WEB+DB PRESS Vol.83 Webフロントエンド最前線「Webフロントエンドの画像形式と最適化」 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

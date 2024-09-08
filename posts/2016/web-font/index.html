@@ -1,0 +1,93 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Webフォントのロードをやめた - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='このサイトではフォントに Roboto と Roboto Mono を適用している。以前までは Google Fonts で配信されているそれぞれのフォントをロードしていたが、それをやめて font-family の指定のみに変更した。
+プログレッシブな適用とOS共通フォントの選択 まず前提として、テキストのベースフォントとして明朝（serif）を、 <h1> ~ <h6> の見出しにはゴシック（sans-serif）を、コードには等幅（monospace）を適用する前提方針がある。明朝・ゴシック・等幅の中から自分の好みに近く、尚且つ Mac と Windows にインストールされているものを優先的に選ぶようにした。
+body { font-family: YuMincho, serif; font-weight: normal; } h1, h2, h3, h4, h5, h6 { font-family: Roboto, Helvetica, Arial, sans-serif; font-weight: bold; } code { font-family: "Roboto Mono", "Source Code Pro", Consolas, "Courier New", monospace; font-weight: normal; } 最も広域になるであろう <body> には Mac にも Windows にもインストールされている可能性が高い游明朝体（YuMincho）を指定した。游明朝体は Mac であれば OS X Mavericks (10.'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/web-font/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Webフォントのロードをやめた"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/web-font/"><meta name=twitter:title content="Webフォントのロードをやめた"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Webフォントのロードをやめた</h1><p style=margin:0;text-align:right>Published at 2016-08-22</p><p>このサイトではフォントに Roboto と Roboto Mono を適用している。以前までは <a href=https://fonts.google.com/>Google Fonts</a> で配信されているそれぞれのフォントをロードしていたが、それをやめて <code>font-family</code> の指定のみに変更した。</p><h2 id=プログレッシブな適用とos共通フォントの選択>プログレッシブな適用とOS共通フォントの選択</h2><p>まず前提として、テキストのベースフォントとして明朝（<code>serif</code>）を、 <code>&lt;h1></code> ~ <code>&lt;h6></code> の見出しにはゴシック（<code>sans-serif</code>）を、コードには等幅（<code>monospace</code>）を適用する前提方針がある。明朝・ゴシック・等幅の中から自分の好みに近く、尚且つ Mac と Windows にインストールされているものを優先的に選ぶようにした。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css><span style=display:flex><span><span style=color:#f92672>body</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>font-family</span>: YuMincho, <span style=color:#66d9ef>serif</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>font-weight</span>: <span style=color:#66d9ef>normal</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>h1</span><span style=color:#f92672>,</span> <span style=color:#f92672>h2</span><span style=color:#f92672>,</span> <span style=color:#f92672>h3</span><span style=color:#f92672>,</span> <span style=color:#f92672>h4</span><span style=color:#f92672>,</span> <span style=color:#f92672>h5</span><span style=color:#f92672>,</span> <span style=color:#f92672>h6</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>font-family</span>: Roboto, Helvetica, Arial, <span style=color:#66d9ef>sans-serif</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>font-weight</span>: <span style=color:#66d9ef>bold</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>code</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>font-family</span>: <span style=color:#e6db74>&#34;Roboto Mono&#34;</span>, <span style=color:#e6db74>&#34;Source Code Pro&#34;</span>, Consolas, <span style=color:#e6db74>&#34;Courier New&#34;</span>, <span style=color:#66d9ef>monospace</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>font-weight</span>: <span style=color:#66d9ef>normal</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>最も広域になるであろう <code>&lt;body></code> には Mac にも Windows にもインストールされている可能性が高い游明朝体（<code>YuMincho</code>）を指定した。游明朝体は Mac であれば OS X Mavericks (10.9)から、 Windows であれば Windows 8.1 から標準搭載されているので、大半の環境でこちらが適用される。</p><p>個人的に好きな Roboto と Roboto Mono の指定も残しておいて、閲覧者の環境にインストールされている場合は優先するようにしている。 Roboto と Helvetica はそこそこ近い見た目なので Mac ユーザーであれば Roboto をインストールしてなくともソツのない見た目になるはず。あとはシェアの大きい Arial でフォールバックさせている。</p><p>等幅フォントにも多少のこだわりがあって、 <a href=https://fonts.google.com/specimen/Roboto>Roboto Mono</a> と <a href=https://github.com/adobe-fonts/source-code-pro>Source Code Pro</a> と <a href=https://en.wikipedia.org/wiki/Consolas>Consolas</a> が並んでいるのはそのせい。 Source Code Pro は Adobe 製で視認性の高い等幅フォントとして一時期流行ったので、インストールしている人も多そう。 Consolas は Windows 発の等幅フォントで Mac でも Office 製品のインストールと共にもれなくインストールされる、個人的にはイチオシの等幅フォント。どれもない人には Courier New が適用されるようにしている。</p><h2 id=flash-of-unstyled-text>Flash of Unstyled Text</h2><p>Web フォントのロードを避けた最大の理由は FOUT (<em>Flash of Unstyled Text</em>) である。</p><p>FOUT は、テキストに指定されている <code>font-family</code> のフォントが Web フォントとして指定されている場合に、ブラウザが <strong>フォントのロードが完了するまでテキストの描画を行わない</strong> 、もしくは <strong>代替フォントで描画しておきロードが完了した時点で切り替える</strong> ことによってテキストがちらつく現象のこと。厳密に言えば前者の振る舞いは表示が遅延しているだけだが、フォントのロード待ちによって発生するテキストの描画遅延に変わりはないので今回はまとめて言及する。</p><h2 id=foutにまつわる各ブラウザの挙動>FOUTにまつわる各ブラウザの挙動</h2><p>現時点で次のような実装になっている。っぽい。</p><ul><li>Chrome, Firefox: フォントのダウンロード完了まで最大3秒間描画を保留し、完了した時点でテキストを描画する</li><li>Safari: フォントのダウンロード完了までテキストの描画を保留する</li><li>Internet Explorer: フォントのダウンロード完了まで代替フォントでテキストを描画する</li></ul><p>このように実装がブラウザによってまちまちなのも Web 開発者にとって悩ましいところ。これを見る限りは Internet Explorer の「ダウンロード完了まで代替フォントで表示する」のがパフォーマンス（ATF）の観点から言えば一番良さそうに見える。特にブログのようにテキストが主なサイトであれば、いち早く文字を表示しておきたいところだし、フォントのダウンロードに失敗したときに真っ白で終わるリスクが少ない。</p><p>問題は、ダウンロードが完了しフォントを切り替えるタイミングでレイアウトが発生する点である。フォント間でサイズギャップが大きいと読んでいる最中にガタつきが発生して、ユーザーにとってのストレスは大きい。 Chrome と Firefox はこれを避けるために3秒間の保留を選んでいるのだろう。</p><h2 id=font-loading-api>Font Loading API</h2><p>この3秒間の保留をできる限り短くしたいとすれば、読み込むフォントのそのものを軽量化するのはもちろんのこと、フォントのリクエストからダウンロードまで早めることが重要である。 Web フォントは通常 CSS で定義するので、 CSS のダウンロードと評価に依存するが、これを打破するために JavaScript で命令的にフォントのロードをコントロールする <a href=https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API>Font Loading API</a> というものがある。必要になるのがわかっているフォントはなるべく早いタイミングで Font Loading API を駆使してロード開始を早めておくと良い。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>font</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>FontFace</span>(<span style=color:#e6db74>&#39;Font Name&#39;</span>, <span style=color:#e6db74>&#39;url(/font-name.woff2)&#39;</span>, {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>style</span>        <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;normal&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>unicodeRange</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;U+000-5FF&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>weight</span>       <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;400&#39;</span>
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>font</span>.<span style=color:#a6e22e>load</span>();
+</span></span><span style=display:flex><span><span style=color:#a6e22e>font</span>.<span style=color:#a6e22e>ready</span>().<span style=color:#a6e22e>then</span>(() =&gt; {
+</span></span><span style=display:flex><span>  document.<span style=color:#a6e22e>fonts</span>.<span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>font</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><p>Font Loading API には <a href=https://github.com/bramstein/fontloader>bramstein/fontloader</a> というポリフィルがあるので、ブラウザの実装が進むまではそちらを使うのも手。</p><h2 id=font-displayプロパティ>font-displayプロパティ</h2><p>また、フォントの表示に関してはブラウザの実装に依存しないように CSS でコントロールできるべきだとということで、 <code>font-display</code> というプロパティもある。 <code>font-display</code> はフォントの定義をする <code>@font-face</code> と共に使う。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css><span style=display:flex><span>@<span style=color:#66d9ef>font-face</span> {
+</span></span><span style=display:flex><span>  <span style=color:#f92672>font-family</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Font Name&#34;</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>font-weight</span><span style=color:#f92672>:</span> <span style=color:#f92672>400</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>font-style</span><span style=color:#f92672>:</span> <span style=color:#f92672>normal</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>src</span><span style=color:#f92672>:</span> <span style=color:#f92672>url</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;font-name.woff2&#34;</span><span style=color:#f92672>)</span> <span style=color:#f92672>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;woff2&#34;</span><span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>font-display</span><span style=color:#f92672>:</span> <span style=color:#f92672>swap</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><code>font-display</code> の値は次の通り。</p><ul><li><code>auto</code>: デフォルト値。ブラウザの実装に準ずる</li><li><code>swap</code>: 即座に代替フォントを表示し、フォントのダウンロード完了後に切り替える</li><li><code>fallback</code>: フォントのダウンロードを最大 100ms 待機し、その間に完了しなければ代替フォントで表示する。3秒経過までにダウンロードが完了すればフォントを切り替える</li><li><code>optional</code>: フォントのダウンロードを最大 100ms 待機し、その間に完了しなければ代替フォントで表示する</li></ul><p><code>swap</code> は Internet Explorer の振る舞いで、 Chrome や Firefox に近いのは <code>fallback</code> ないし <code>optional</code> あたりだろうか。さらなる詳細については、 CSS-Tricks の <a href=https://css-tricks.com/font-display-masses/><code>font-display</code> for the Masses</a> という記事が詳しいのでそちらを参考に。</p><h2 id=webフォントを使わない選択>Webフォントを使わない選択</h2><p>Font Loading API や font-display を駆使すると共に、 Cache API などを使ってフォントファイルを完全にキャッシュさせればバンドルフォントの参照に近い振る舞いを期待できそうではあるが、このブログでは冒頭の <strong>プログレッシブな適用とOS共通フォントの選択</strong> で充分だったし、管理コストも考えて Web フォントを使わない選択をとった。自分は必要性に駆られなかったが、 Web フォントを使いたい場合は <a href=https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html>Noto Sans の Web Font 対応とサブセットによる最適化</a> の内容を理解した上で利用すべきだろう。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2016/amazon-payment-history/>👈 Amazonに費やした金額を年毎に集計して表示するChromeの拡張機能</a>
+<a href=/posts/2016/soft-skills/>SOFT SKILLS　ソフトウェア開発者の人生マニュアル 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

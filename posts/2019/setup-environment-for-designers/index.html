@@ -1,0 +1,89 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>デザイナー向け開発環境セットアップガイド - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="社内のデザイナー向けに書いた資料があったが、読み返していたら社内専用という内容でもなかったので、社外向けに公開してみる。opinionated な部分があるのはご了承いただきたい。
+1. macOS のアプリ 紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛する。
+1.1. iTerm2 標準のターミナルアプリも良いが、色々痒いところに手が届く機能が備わっているので、iTerm2 を推奨する。
+1.1.1. フォントを変えたい ダサくてテンションが上がらない人は、まず iTerm のフォントを Profiles > Text > Change Font から、好みの等幅フォントに変更して欲しい。macOS にプリインストールされているものであれば、menlo あたりが良い。
+1.1.2. カラースキーマを変えたい ダサくてテンションが上がらない人は、カラースキーマも変えると良い。iterm2 のカラースキーマは MartinSeeler/iterm2-material-design 等で配布されている。
+1.1.3. もうちょっとオシャレにしたい ダサくてテンションが上がらない人は、テーマも変えてみると良い。
+robbyrussell/oh-my-zsh sorin-ionescu/prezto sindresorhus/pure ここでは pure を Homebrew 経由でインストールする。
+brew install pure zsh の人は ~/.zshrc に以下を追加する。
+# .zshrc autoload -U promptinit; promptinit prompt pure 1.2. Visual Studio Code どんなエディタでも構わないが、「まだエディタをインストールしてない…」ということであれば、Visual Studio Code が良い。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2019/setup-environment-for-designers/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="デザイナー向け開発環境セットアップガイド"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2019/setup-environment-for-designers/"><meta name=twitter:title content="デザイナー向け開発環境セットアップガイド"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>デザイナー向け開発環境セットアップガイド</h1><p style=margin:0;text-align:right>Published at 2019-01-31</p><p>社内のデザイナー向けに書いた資料があったが、読み返していたら社内専用という内容でもなかったので、社外向けに公開してみる。opinionated な部分があるのはご了承いただきたい。</p><h2 id=1-macos-のアプリ>1. macOS のアプリ</h2><p>紹介するのは コマンドラインインターフェースとして iTerm と、テキストエディタとして Visual Studio Code である。より AI ファーストなエディタとして Cursor などもあるが、今回は割愛する。</p><h3 id=11-iterm2httpswwwiterm2com>1.1. <a href=https://www.iterm2.com/>iTerm2</a></h3><p>標準のターミナルアプリも良いが、色々痒いところに手が届く機能が備わっているので、<a href=https://www.iterm2.com/>iTerm2</a> を推奨する。</p><h4 id=111-フォントを変えたい>1.1.1. フォントを変えたい</h4><p>ダサくてテンションが上がらない人は、まず iTerm のフォントを <strong>Profiles</strong> > <strong>Text</strong> > <strong>Change Font</strong> から、好みの等幅フォントに変更して欲しい。macOS にプリインストールされているものであれば、<code>menlo</code> あたりが良い。</p><h4 id=112-カラースキーマを変えたい>1.1.2. カラースキーマを変えたい</h4><p>ダサくてテンションが上がらない人は、カラースキーマも変えると良い。iterm2 のカラースキーマは <a href=https://github.com/MartinSeeler/iterm2-material-design>MartinSeeler/iterm2-material-design</a> 等で配布されている。</p><h4 id=113-もうちょっとオシャレにしたい>1.1.3. もうちょっとオシャレにしたい</h4><p>ダサくてテンションが上がらない人は、テーマも変えてみると良い。</p><ul><li><a href=https://github.com/robbyrussell/oh-my-zsh>robbyrussell/oh-my-zsh</a></li><li><a href=https://github.com/sorin-ionescu/prezto>sorin-ionescu/prezto</a></li><li><a href=https://github.com/sindresorhus/pure>sindresorhus/pure</a></li></ul><p>ここでは <a href=https://github.com/sindresorhus/pure>pure</a> を Homebrew 経由でインストールする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>brew install pure
+</span></span></code></pre></div><p>zsh の人は <code>~/.zshrc</code> に以下を追加する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># .zshrc</span>
+</span></span><span style=display:flex><span>autoload -U promptinit; promptinit
+</span></span><span style=display:flex><span>prompt pure
+</span></span></code></pre></div><h3 id=12-visual-studio-codehttpscodevisualstudiocom>1.2. <a href=https://code.visualstudio.com/>Visual Studio Code</a></h3><p>どんなエディタでも構わないが、「まだエディタをインストールしてない…」ということであれば、<a href=https://code.visualstudio.com/>Visual Studio Code</a> が良い。</p><h2 id=2-ターミナルで使うもの>2. ターミナルで使うもの</h2><p>iTerm2 を起動して、色々なツールをインストールしていく。Homebrew をインストールして、Git や Node.js を使っていくための nodenv のインストール方法を含む。</p><h3 id=21-homebrewhttpsbrewshja>2.1. <a href=https://brew.sh/ja>Homebrew</a></h3><p><a href=https://brew.sh/ja>Homebrew</a> は macOS のアプリケーションマネージャである。Sketch でいう Sketchpacks のようなものだ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>/bin/bash -c <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
+</span></span></code></pre></div><p>Homebrew をインストールすると、 <code>brew</code> コマンドが使えるようになる。</p><h3 id=22-git>2.2. Git</h3><p>システム標準の Git でも構わないが、その後のアップデートなどを考えると Homebrew で配布されている Git を推奨する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>brew install git
+</span></span></code></pre></div><p>Git をインストールすると、 <code>git</code> コマンドが使えるようになる。</p><h3 id=23-nodenv>2.3. nodenv</h3><p><a href=https://github.com/nodenv/nodenv><code>nodenv</code></a> は Node.js のバージョンマネージャ、つまり Node.js をインストールするためのツールである。Sketch でいう Sketchpacks のようなものだ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>brew install nodenv
+</span></span></code></pre></div><p>bash の人は <code>~/.bash_profile</code> に、zsh の人は <code>~/.zprofile</code> に以下を追加する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>nodenv init -<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>export PATH<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$HOME<span style=color:#e6db74>/.nodenv/bin:</span>$PATH<span style=color:#e6db74>&#34;</span>
+</span></span></code></pre></div><p>nodenv をインストールすると、 <code>nodenv</code> コマンドが使えるようになる。</p><h3 id=24-nodejs>2.4. Node.js</h3><p>Node.js はファイルシステムを使える JavaScript の実行環境である。先程インストールした <code>nodenv</code> を使ってインストールする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>nodenv install 20.11.1
+</span></span><span style=display:flex><span>nodenv global 20.11.1
+</span></span></code></pre></div><p>Node.js をインストールすると、 <code>node</code> コマンドと <code>npm</code> コマンドが使えるようになる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>node -v
+</span></span><span style=display:flex><span>npm -v
+</span></span></code></pre></div><p>でバージョンが表示されたら完璧だ。 <code>console.log('hello');</code> と書いて <code>foo.js</code> で保存して、 <code>node foo.js</code> で実行すれば、 <code>hello</code> が出力される。</p><h2 id=3-github-にある-git-リポジトリをクローンする>3. GitHub にある Git リポジトリをクローンする</h2><p>GitHub にある Git リポジトリとの対話に必要な認証を、SSH キーを使って認証する。 <code>https</code> で ID/PW を使って認証することもできるが、都度認証を必要とすることや、アプリケーションへの保存を要求されることもあり、個人的には推奨しない。</p><h3 id=31-ssh-キーを生成する>3.1. SSH キーを生成する</h3><p>以下のコマンドを実行すると、SSH キーの生成が始まる。メールアドレスは個人のものに変更して実行する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>ssh-keygen -t ed25519 -C <span style=color:#e6db74>&#34;shogosensui@gmail.com&#34;</span>
+</span></span></code></pre></div><p>実行後、以下のように保存先を聞かれる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>Enter a file in which to save the key <span style=color:#f92672>(</span>/Users/1000ch/.ssh/id_ed25519<span style=color:#f92672>)</span>: <span style=color:#f92672>[</span>Press enter<span style=color:#f92672>]</span>
+</span></span></code></pre></div><p>今から生成しようとしている SSH キーは GitHub とやりとりするものなので、ここではデフォルトの <code>id_ed25519</code> ではなく <code>github_ed25519</code> としておくことを提案する。つまり <code>/Users/1000ch/.ssh/github_ed25519</code> を入力して、実行する。</p><p>実行すると、 <code>/Users/1000ch/.ssh/</code> フォルダに <code>github_ed25519</code> と <code>github_ed25519.pub</code> というファイルが生成される。<code>ls ~/.ssh/</code> 等を実行すると、生成されたファイルを確認できる。</p><h3 id=32-ssh-キーの公開鍵を-github-に登録する>3.2. SSH キーの公開鍵を GitHub に登録する</h3><p>生成した鍵ペアのうち、 <code>github_ed25519.pub</code> の内容を GitHub に登録する。<a href=https://github.com/settings/keys>SSH and GPG keys</a> から <strong>New SSH key</strong> をクリックすると、入力フォームが表示される。 <code>cat ~/.ssh/github_ed25519.pub</code> の結果をコピーするか、以下のコマンドでコピーできる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>pbcopy &lt; ~/.ssh/github_ed25519.pub
+</span></span></code></pre></div><p><strong>Title</strong> には、どの公開鍵を登録したかわかる名前を入れておく。例えば <strong>Personal MacBook Pro</strong> 等だとわかりやすいが、好みの名前で良い。</p><h3 id=33-githubcom-とのやりとりに-ssh-キーを指定する>3.3. <code>github.com</code> とのやりとりに SSH キーを指定する</h3><p><code>github.com</code> との SSH 時に生成した SSH キーを使うように指定する。 <code>~/.ssh/config</code> というファイルで指定するが、ない場合は <code>touch ~/.ssh/config</code> を実行してファイルを作ること。 <code>~/.ssh/config</code> には以下の内容を保存する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>Host github.com
+</span></span><span style=display:flex><span> AddKeysToAgent yes
+</span></span><span style=display:flex><span> UseKeychain yes
+</span></span><span style=display:flex><span> IdentityFile ~/.ssh/github_ed25519
+</span></span></code></pre></div><h3 id=34-git-リポジトリをクローンする>3.4. Git リポジトリをクローンする</h3><p><code>git clone [Git リポジトリの url]</code> でクローンできる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>git clone git@github.com:user-name/repo-name.git
+</span></span></code></pre></div><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2019/web-standards-prospect/>👈 2019年のWeb標準という記事を寄稿しました</a>
+<a href=/posts/2019/interview-on-engineer-hub/>エンジニア Hub にてインタビューして頂きました 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

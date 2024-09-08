@@ -1,0 +1,161 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ブラウザで音声入力の可視化と録音 - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="とある技術相談が舞い込んできて、その時の返答を念のため後で技術検証した話。やりたいことは大まかに「ブラウザで音声入力をリアルタイムに可視化する」「ブラウザで音声入力を記録する」の2点で、音声入力は getUserMedia() で取得できて、可視化はそのデータを Canvas or WebGL でいじり、録音は MediaRecorder でやるのだろうと思いつつ、組み合わせて一応動く状態まで組んだ。
+navigator.mediaDevices.getUserMedia() ユーザーのカメラやマイクの入力は getUserMedia() で取得できるが、一昔前までは navigator から生えていて、これが MediaDevices というメディア接続をまとめたオブジェクトへ移動したとともに、API も Promise インターフェースになっている。
+navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(stream => { console.log(stream); }).catch(error => { console.log(error); }); 音声入力ストリームを解析し波形表示 次に AudioContext を利用して音声入力を解析し、Canvas に描画していく。AudioContext から音声入力のノードと解析ノードを生やしてそれぞれ接続する。AutioContext の destination へ接続すればブラウザから音声として出力されるが、ハウリングするので避けている。
+解析ノードを参照して描画しているのが draw() で、これを requestAnimationFrame() 経由でドローコールしている。
+const canvas = document.querySelector('#canvas'); const drawContext = canvas.getContext('2d'); navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(stream => { const audioContext = new AudioContext(); const sourceNode = audioContext."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/visualize-audio-input/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ブラウザで音声入力の可視化と録音"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/visualize-audio-input/"><meta name=twitter:title content="ブラウザで音声入力の可視化と録音"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ブラウザで音声入力の可視化と録音</h1><p style=margin:0;text-align:right>Published at 2017-06-19</p><p>とある技術相談が舞い込んできて、その時の返答を念のため後で技術検証した話。やりたいことは大まかに「ブラウザで音声入力をリアルタイムに可視化する」「ブラウザで音声入力を記録する」の2点で、音声入力は <code>getUserMedia()</code> で取得できて、可視化はそのデータを Canvas or WebGL でいじり、録音は <code>MediaRecorder</code> でやるのだろうと思いつつ、組み合わせて一応動く状態まで組んだ。</p><h2 id=navigatormediadevicesgetusermedia><code>navigator.mediaDevices.getUserMedia()</code></h2><p>ユーザーのカメラやマイクの入力は <code>getUserMedia()</code> で取得できるが、一昔前までは <code>navigator</code> から生えていて、これが <a href=https://developer.mozilla.org/ja/docs/Web/API/MediaDevices><code>MediaDevices</code></a> というメディア接続をまとめたオブジェクトへ移動したとともに、API も <code>Promise</code> インターフェースになっている。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#a6e22e>navigator</span>.<span style=color:#a6e22e>mediaDevices</span>.<span style=color:#a6e22e>getUserMedia</span>({
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>audio</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}).<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>stream</span> =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>stream</span>);
+</span></span><span style=display:flex><span>}).<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>error</span> =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>error</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><h2 id=音声入力ストリームを解析し波形表示>音声入力ストリームを解析し波形表示</h2><p>次に <a href=https://developer.mozilla.org/ja/docs/Web/API/AudioContext><code>AudioContext</code></a> を利用して音声入力を解析し、Canvas に描画していく。<code>AudioContext</code> から音声入力のノードと解析ノードを生やしてそれぞれ接続する。<code>AutioContext</code> の <code>destination</code> へ接続すればブラウザから音声として出力されるが、ハウリングするので避けている。</p><p>解析ノードを参照して描画しているのが <code>draw()</code> で、これを <code>requestAnimationFrame()</code> 経由でドローコールしている。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>canvas</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#canvas&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>drawContext</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>canvas</span>.<span style=color:#a6e22e>getContext</span>(<span style=color:#e6db74>&#39;2d&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>navigator</span>.<span style=color:#a6e22e>mediaDevices</span>.<span style=color:#a6e22e>getUserMedia</span>({
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>audio</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}).<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>stream</span> =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>audioContext</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AudioContext</span>();
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>sourceNode</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>audioContext</span>.<span style=color:#a6e22e>createMediaStreamSource</span>(<span style=color:#a6e22e>stream</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>analyserNode</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>audioContext</span>.<span style=color:#a6e22e>createAnalyser</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>analyserNode</span>.<span style=color:#a6e22e>fftSize</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2048</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>sourceNode</span>.<span style=color:#a6e22e>connect</span>(<span style=color:#a6e22e>analyserNode</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>draw</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>barWidth</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>canvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>analyserNode</span>.<span style=color:#a6e22e>fftSize</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>array</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Uint8Array</span>(<span style=color:#a6e22e>analyserNode</span>.<span style=color:#a6e22e>fftSize</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>analyserNode</span>.<span style=color:#a6e22e>getByteTimeDomainData</span>(<span style=color:#a6e22e>array</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>drawContext</span>.<span style=color:#a6e22e>fillStyle</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;rgba(0, 0, 0, 1)&#39;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>drawContext</span>.<span style=color:#a6e22e>fillRect</span>(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>canvas</span>.<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>ch</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>analyserNode</span>.<span style=color:#a6e22e>fftSize</span>; <span style=color:#f92672>++</span><span style=color:#a6e22e>i</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>value</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>array</span>[<span style=color:#a6e22e>i</span>];
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>percent</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>value</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>255</span>;
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>canvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>percent</span>;
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>offset</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>canvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>height</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>drawContext</span>.<span style=color:#a6e22e>fillStyle</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;lime&#39;</span>;
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>drawContext</span>.<span style=color:#a6e22e>fillRect</span>(<span style=color:#a6e22e>i</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>barWidth</span>, <span style=color:#a6e22e>offset</span>, <span style=color:#a6e22e>barWidth</span>, <span style=color:#ae81ff>2</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>requestAnimationFrame</span>(<span style=color:#a6e22e>draw</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>draw</span>();
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><h2 id=mediarecorderでメディアデータを保存する>MediaRecorderでメディアデータを保存する</h2><p>あとは <code>#start</code> と <code>#stop</code> なボタンを用意して、それぞれを契機に音声入力をキャプチャして保存するということを <a href=https://developer.mozilla.org/ja/docs/Web/API/MediaRecorder><code>MediaRecorder</code></a> を使ってやってみる。入力ストリームは既に Canvas への描画のために参照しているので、再度参照できるのか疑問だったが、結論同じストリームからキャプチャ操作などを実施できた。</p><p><code>MediaRecorder</code> のインスタンスから音声入力ストリームを参照し、<code>start()</code> でキャプチャを開始する。<code>dataavailable</code> イベントで音声データが拾えるので配列に保存しておき、キャプチャの終了時に <code>Blob</code> でファイル化する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#start&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>stop</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;#stop&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>mediaRecorder</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>mediaStream</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>start</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;click&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>start</span>.<span style=color:#a6e22e>disabled</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>stop</span>.<span style=color:#a6e22e>disabled</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>chunks</span> <span style=color:#f92672>=</span> [];
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>mediaRecorder</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>MediaRecorder</span>(<span style=color:#a6e22e>mediaStream</span>, {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mimeType</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;audio/webm&#39;</span>
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>mediaRecorder</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;dataavailable&#39;</span>, <span style=color:#a6e22e>e</span> =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>size</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>chunks</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>mediaRecorder</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;stop&#39;</span>, ()　=&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#39;a&#39;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>href</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>URL</span>.<span style=color:#a6e22e>createObjectURL</span>(<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Blob</span>(<span style=color:#a6e22e>chunks</span>));
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>download</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;test.webm&#39;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>click</span>();
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>mediaRecorder</span>.<span style=color:#a6e22e>start</span>();
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>stop</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#39;click&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>mediaRecorder</span> <span style=color:#f92672>===</span> <span style=color:#66d9ef>null</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>start</span>.<span style=color:#a6e22e>disabled</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>stop</span>.<span style=color:#a6e22e>disabled</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>mediaRecorder</span>.<span style=color:#a6e22e>stop</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>mediaRecorder</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>navigator</span>.<span style=color:#a6e22e>mediaDevices</span>.<span style=color:#a6e22e>getUserMedia</span>({ 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>audio</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}).<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>stream</span> =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>mediaStream</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>stream</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}).<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>error</span> =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>error</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><p>音声フォーマットに <code>audio/webm</code> を指定しているが、対応状況的に最も安心なコーデックは最近だと一体何なんでしょう。</p><h2 id=デモ>デモ</h2><iframe loading=lazy scrolling=no title=Webで音声を描画・録音したい src="https://codepen.io/1000ch/embed/OgbwEe?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/OgbwEe>Webで音声を描画・録音したい</a> by 1000ch
+(<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2017/react-router-hashlink/>👈 react-routerのハッシュリンクとスムーススクロール</a>
+<a href=/posts/2017/omron-weight-scale/>オムロンの体重計 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

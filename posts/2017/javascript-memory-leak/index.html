@@ -1,0 +1,115 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>JavaScriptで起こるメモリリークのパターン - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="2014年1月25日に Frontrend in Fukuoka というイベントが開催された（もう3年前か…）。その時に Browser Computing Structure というタイトルで、ブラウザの仕組みやらスクリプト処理について発表している。
+たまたま当時の資料を掘り起こす機会があったので、メモリリークのサンプルを直したついでにリークする JavaScript のパターンについて書き起こしてみる。サンプルは 1000ch/memory-leak に公開してあり、手順通り操作するとメモリリークを再現できるようになっている。
+GCで回収されないオブジェクト JavaScript はランタイム上で動的にメモリを確保する GC（ガベージコレクション）を採用しているので、JavaScript の書き手がメモリの確保・開放を意識することは少ない。しかしプログラムの書き方によっては、確保したメモリが GC によって開放されずにメモリが肥大化し、内部処理を圧迫していくことになる。
+開放されないメモリは、対象の変数への参照が残っている場合である。どこかで使われている変数であれば GC で回収してはまずいが、不要になった変数が回収されないのはプログラム上のミスと言える。
+class Leaker {} let leaker = new Leaker(); この JavaScript を実行してみる。実行は Chrome DevTools の Console 上で問題ない。実行したら Memory パネルを開いて Take Heap Snapshot を選択して実行すると、ヒープのスナップショットを保存できる。保存したスナップショットの内部を Leaker で検索すると、オブジェクトが見つかる。グローバルに存在する Leaker インスタンスが GC によって回収されていないためだ。
+次に leaker = null; を Console で実行すると leaker は参照元がなくなり GC による回収対象となる。再度ヒープのスナップショットを保存してみてみると、先程検出された Leaker オブジェクトはいなくなっているはず。これがメモリリークの単純な例、もとい GC の基本的な仕組みである。
+解除されないタイマーやイベントリスナー null を代入して GC による回収を促しても、実行したタイマーや登録したイベントリスナは暗黙的に解除されない。次の Leaker はインスタンスを作成した時点でタイマーが発動するが、そのインスタンスに null を代入してもタイマーは実行され続ける。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/javascript-memory-leak/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="JavaScriptで起こるメモリリークのパターン"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/javascript-memory-leak/"><meta name=twitter:title content="JavaScriptで起こるメモリリークのパターン"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>JavaScriptで起こるメモリリークのパターン</h1><p style=margin:0;text-align:right>Published at 2017-02-17</p><p>2014年1月25日に <a href=http://frontendfrogs.org/frontrend/>Frontrend in Fukuoka</a> というイベントが開催された（もう3年前か…）。その時に <a href=https://speakerdeck.com/1000ch/browser-computing-structure>Browser Computing Structure</a> というタイトルで、ブラウザの仕組みやらスクリプト処理について発表している。</p><p>たまたま当時の資料を掘り起こす機会があったので、メモリリークのサンプルを直したついでにリークする JavaScript のパターンについて書き起こしてみる。サンプルは <a href=https://1000ch.github.io/memory-leak>1000ch/memory-leak</a> に公開してあり、手順通り操作するとメモリリークを再現できるようになっている。</p><h2 id=gcで回収されないオブジェクト>GCで回収されないオブジェクト</h2><p>JavaScript はランタイム上で動的にメモリを確保する GC（<a href=https://ja.wikipedia.org/wiki/%E3%82%AC%E3%83%99%E3%83%BC%E3%82%B8%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3>ガベージコレクション</a>）を採用しているので、JavaScript の書き手がメモリの確保・開放を意識することは少ない。しかしプログラムの書き方によっては、確保したメモリが GC によって開放されずにメモリが肥大化し、内部処理を圧迫していくことになる。</p><p>開放されないメモリは、対象の変数への参照が残っている場合である。どこかで使われている変数であれば GC で回収してはまずいが、不要になった変数が回収されないのはプログラム上のミスと言える。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Leaker</span> {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>leaker</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Leaker</span>();
+</span></span></code></pre></div><p>この JavaScript を実行してみる。実行は Chrome DevTools の Console 上で問題ない。実行したら Memory パネルを開いて <strong>Take Heap Snapshot</strong> を選択して実行すると、ヒープのスナップショットを保存できる。保存したスナップショットの内部を <code>Leaker</code> で検索すると、オブジェクトが見つかる。グローバルに存在する <code>Leaker</code> インスタンスが GC によって回収されていないためだ。</p><p>次に <code>leaker = null;</code> を Console で実行すると <code>leaker</code> は参照元がなくなり GC による回収対象となる。再度ヒープのスナップショットを保存してみてみると、先程検出された <code>Leaker</code> オブジェクトはいなくなっているはず。これがメモリリークの単純な例、もとい GC の基本的な仕組みである。</p><h2 id=解除されないタイマーやイベントリスナー>解除されないタイマーやイベントリスナー</h2><p><code>null</code> を代入して GC による回収を促しても、実行したタイマーや登録したイベントリスナは暗黙的に解除されない。次の <code>Leaker</code> はインスタンスを作成した時点でタイマーが発動するが、そのインスタンスに <code>null</code> を代入してもタイマーは実行され続ける。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Leaker</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>timerId</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>setInterval</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>onInterval</span>, <span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>onInterval</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;interval&#39;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>leaker</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Leaker</span>();
+</span></span><span style=display:flex><span><span style=color:#a6e22e>leaker</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span></code></pre></div><p>先の例と同じように <code>leaker = null;</code> を Console で実行した後にヒープのスナップショットを取ってみると、ヒープには <code>Leaker</code> オブジェクトが残っていないことが確認できる。デストラクタの機構が JavaScript にあればその中で解除処理を入れれば良さそうだが、<a href=http://stackoverflow.com/questions/29333017/ecmascript-6-class-destructor>残念ながらない</a>。自前の <code>dispose()</code> 関数などを用意して呼び出すことをルール化するなどの工夫が必要になる。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>ふと、なぜ JavaScript には destructor がないんだろうと...</p>&mdash; 煎茶 🍵 (@1000ch) <a href=https://twitter.com/1000ch/status/828601998488383488>2017年2月6日</a></blockquote><h2 id=循環参照>循環参照</h2><p>自分で自分を参照してしまったり、2つのオブジェクトが互いに参照しあうなど、オブジェクトの参照がループすることを循環参照と言う。</p><p>次のコードは <code>Registry</code> というオブジェクトを保持するクラスと、 <code>Leaker</code> という親・子への参照と <code>Registry</code> のインスタンスを持つクラス。 <code>Leaker</code> オブジェクトは親が存在しない場合のみ、新たに <code>Leaker</code> のインスタンスを作成して子供として参照する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Registry</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>subscribers</span> <span style=color:#f92672>=</span> [];
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>subscriber</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>subscribers</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#a6e22e>subscriber</span>)) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>subscribers</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>subscriber</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>remove</span>(<span style=color:#a6e22e>subscriber</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>subscribers</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#a6e22e>subscriber</span>)) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>subscribers</span>.<span style=color:#a6e22e>splice</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>subscribers</span>.<span style=color:#a6e22e>indexOf</span>(<span style=color:#a6e22e>subscriber</span>), <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Leaker</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>(<span style=color:#a6e22e>parent</span>, <span style=color:#a6e22e>registry</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>parent</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>parent</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>registry</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>registry</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>child</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>registry</span>.<span style=color:#a6e22e>add</span>(<span style=color:#66d9ef>this</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>parent</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>child</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Leaker</span>(<span style=color:#66d9ef>this</span>, <span style=color:#a6e22e>registry</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>registry</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Registry</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>leaker</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Leaker</span>(<span style=color:#66d9ef>null</span>, <span style=color:#a6e22e>registry</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>leaker</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span></code></pre></div><p><code>Registry</code> と <code>Leaker</code> のそれぞれを初期化すると次のようになる。</p><ul><li>[1] <code>Registry</code> インスタンス</li><li>[2] <code>Leaker</code> インスタンス<ul><li>[1] の <code>Registry</code> インスタンスを参照<ul><li>[2] の <code>Leaker</code> インスタンスを参照</li></ul></li><li>[3] <code>Leaker</code> 子インスタンス<ul><li>[1] の <code>Registry</code> インスタンスを参照</li><li>[2] の <code>Leaker</code> 親インスタンスを参照</li></ul></li></ul></li></ul><p>次に [2] の <code>Leaker</code> インスタンスに <code>null</code> を代入するが、<code>Registry</code> インスタンスや <code>Leaker</code> 子インスタンスなどから再帰的に参照されているので、GC によって回収されない。これは複雑かつ露骨な例だが、ヒープのスナップショットなどに開放されているはずのオブジェクトが残っている場合は要注意。</p><h2 id=コンソールから参照されるオブジェクト>コンソールから参照されるオブジェクト</h2><p><code>console.log(object)</code> などで出力しているオブジェクトは、コンソールから参照していることで GC によってメモリが開放されないケースがあった。しかし最新の Chrome では確認できず、どうやら解消されたようだ。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>Chrome の `console.log(object)` で参照してるせいで GC で回収されない現象、無くなってるぽい（前も解消されてるなーという記憶はあったけど改めて確認した） <a href=https://t.co/grkBbHHqNQ>https://t.co/grkBbHHqNQ</a></p>&mdash; 煎茶 🍵 (@1000ch) <a href=https://twitter.com/1000ch/status/827067019451199488>2017年2月2日</a></blockquote><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2017/reachable-urls/>👈 テキストファイル中に含まれるURLが有効かどうかチェックするツールを作った</a>
+<a href=/posts/2017/cote-et-ciel-isar-rucksack/>cote&amp;cielのバックパックを買った 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

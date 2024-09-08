@@ -1,0 +1,137 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>template 要素の shadowroot 属性による宣言的な Shadow DOM - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Shadow DOM は、代替要素を除いた任意の HTML 要素を DOM API で参照して attachShadow({ ... }) メソッドを呼び出すことで命令的に生成できる。これを新たに <template> 要素の shadowroot 属性によって、対象の HTML 要素の Shadow DOM を宣言的に生やせるようになる仕様が提案されている。既に Chrome 85 で試験的に実装されており、フラグ付きで利用できるようになっている。この記事は自分用にまとめたメモ。
+Add declarative Shadow DOM features by mfreed7 · Pull Request #892 · whatwg/dom Add declarative Shadow DOM features by mfreed7 · Pull Request #5465 · whatwg/html declarative-shadow-dom/README.md at master · mfreed7/declarative-shadow-dom Chrome 85 以降のオムニボックスに chrome://flags/#enable-experimental-web-platform-features を入力し、 Experimental Web Platform Features flag を Enabled にして Chrome を再起動すると、有効化される。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2020/declarative-shadow-dom/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="template 要素の shadowroot 属性による宣言的な Shadow DOM"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2020/declarative-shadow-dom/"><meta name=twitter:title content="template 要素の shadowroot 属性による宣言的な Shadow DOM"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>template 要素の shadowroot 属性による宣言的な Shadow DOM</h1><p style=margin:0;text-align:right>Published at 2020-10-07</p><p>Shadow DOM は、代替要素を除いた任意の HTML 要素を DOM API で参照して <code>attachShadow({ ... })</code> メソッドを呼び出すことで命令的に生成できる。これを新たに <code>&lt;template></code> 要素の <code>shadowroot</code> 属性によって、対象の HTML 要素の Shadow DOM を宣言的に生やせるようになる仕様が提案されている。既に <a href=https://www.chromestatus.com/feature/5191745052606464>Chrome 85 で試験的に実装されており</a>、フラグ付きで利用できるようになっている。この記事は自分用にまとめたメモ。</p><ul><li><a href=https://github.com/whatwg/dom/pull/892>Add declarative Shadow DOM features by mfreed7 · Pull Request #892 · whatwg/dom</a></li><li><a href=https://github.com/whatwg/html/pull/5465>Add declarative Shadow DOM features by mfreed7 · Pull Request #5465 · whatwg/html</a></li><li><a href=https://github.com/mfreed7/declarative-shadow-dom/blob/master/README.md>declarative-shadow-dom/README.md at master · mfreed7/declarative-shadow-dom</a></li></ul><p>Chrome 85 以降のオムニボックスに <code>chrome://flags/#enable-experimental-web-platform-features</code> を入力し、 <strong>Experimental Web Platform Features flag</strong> を Enabled にして Chrome を再起動すると、有効化される。</p><h2 id=template-要素の-shadowroot-属性-でホスト要素に-shadow-root-を生やす>template 要素の shadowroot 属性 でホスト要素に Shadow Root を生やす</h2><p>代替要素を除いた任意の要素の子要素に <code>&lt;template shadowroot></code> を配置することで、Shadow Root を生やせる。 <code>shadowroot</code> 属性の値は <code>attachShadow()</code> メソッドの <code>mode</code> オプションと同様に <code>open</code> と <code>closed</code> を指定できる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>h2</span>&gt;outside host element without Shadow DOM&lt;/<span style=color:#f92672>h2</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>shadowroot</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;open&#34;</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>      ::<span style=color:#a6e22e>slotted</span><span style=color:#f92672>(</span><span style=color:#f92672>h2</span><span style=color:#f92672>)</span> { <span style=color:#66d9ef>color</span>: <span style=color:#66d9ef>skyblue</span>; }
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>slot</span>&gt;&lt;/<span style=color:#f92672>slot</span>&gt;
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>template</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>h2</span>&gt;inside host element with Shadow DOM&lt;/<span style=color:#f92672>h2</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span></code></pre></div><p>先の例では通常の HTML 要素に対して Shadow Root を生やしているが、もちろんカスタム要素に対しても生成できる。カスタム要素の場合は <code>customElements.define()</code> で登録したクラスのコンストラクタが実行されるので、既にホスト要素に <code>shadowRoot</code> プロパティが生えているかどうかをチェックしておく必要がある。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>h2</span>&gt;outside host custom element without Shadow DOM&lt;/<span style=color:#f92672>h2</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>host-element</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>shadowroot</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;open&#34;</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>      ::<span style=color:#a6e22e>slotted</span><span style=color:#f92672>(</span><span style=color:#f92672>h2</span><span style=color:#f92672>)</span> { <span style=color:#66d9ef>color</span>: <span style=color:#66d9ef>skyblue</span>; }
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>slot</span>&gt;&lt;/<span style=color:#f92672>slot</span>&gt;
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>template</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>h2</span>&gt;inside host custom element with Shadow DOM&lt;/<span style=color:#f92672>h2</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>host-element</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HostElement</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>HTMLElement</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>super</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>shadowRoot</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>attachShadow</span>({
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>mode</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;open&#39;</span>
+</span></span><span style=display:flex><span>      }).<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`&lt;style&gt;::slotted(h2) { color: skyblue; }&lt;/style&gt;`</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>slot</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#39;slot&#39;</span>);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>shadowRoot</span>.<span style=color:#a6e22e>appendChild</span>(<span style=color:#a6e22e>slot</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>customElements</span>.<span style=color:#a6e22e>define</span>(<span style=color:#e6db74>&#39;host-element&#39;</span>, <span style=color:#a6e22e>HostElement</span>);
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><p>既に <code>attachShadow()</code> メソッドで生やした <code>shadowRoot</code> プロパティがある状態で <code>attachShadow()</code> メソッドを実行すると <code>DOMException</code> が発生するが、<code>&lt;template shadowroot></code> で生やした <code>shadowRoot</code> プロパティの場合、<strong>例外は発生しない</strong> 。いずれにせよ、<code>shadowRoot</code> プロパティが <code>null</code> かどうかのチェックは必要になってくる。</p><p>その他の関連する API については <a href=https://web.dev/declarative-shadow-dom/>web.dev で公開されている Declarative Shadow DOM</a> という記事を参照してもらうとして、宣言的に Shadow DOM を使えると何が良いのかを説明してみる。</p><h2 id=カスタム要素のライフサイクルの実行を待たずに評価される>カスタム要素のライフサイクルの実行を待たずに評価される</h2><p>Shadow DOM の生成をカスタム要素のライフサイクルで実行する、いわゆる Web Components 的なユースケースを想定する。これまでは、カスタム要素の振る舞いとなる JavaScript ファイルをカスタム要素として登録し、それが HTML から参照されて初めて Shadow DOM が生成されるのが普通だった。</p><p>通常、JavaScript の実行はメインスレッドをブロックするので、初期描画を抑止しないように <code>&lt;script defer></code> などを用いてロード処理上の後ろに持ってくることが多い。そのため、カスタム要素で提供しているスタイルは遅れて評価されてしまう。これは、ファーストビュー内の重要なコンテンツがカスタム要素であれば <a href=https://web.dev/lcp/>Largest Contentful Paint</a> を遅延させるし、ページコンテンツとして利用されていれば <a href=https://web.dev/cls/>Cumulative Layout Shift</a> の悪化を招く要因になる。これに対して <code>&lt;template shadowroot></code> で宣言的に宣言できると、HTML を評価する段階で Shadow DOM が生成されるのでパフォーマンス上の懸念が減る。</p><h2 id=server-side-rendering-と-declarative-shadow-dom>Server-Side Rendering と Declarative Shadow DOM</h2><p>Web Components を使う上で最も弊害があったのが、Server-Side Rendering との相性の悪さだろう。旧来の Web Components を表示するためには、カスタム要素のクラスとなる JavaScript のロードと、アップグレードによるライフサイクルの実行が必要になる。そのため、初期レスポンスに含まれる HTML だけではカスタム要素で表現される UI を描画できなかった。</p><p>ところが <code>&lt;template shadowroot></code> は HTML であり、HTML パーサーに評価されることで即座に Shadow DOM を生成するので、JavaScript の実行を待たずに表示される。つまり、Server-Side Rendering による恩恵を受けることができる。何をどこまでコンポーネントの責務とするかは実装に依るが、ここでは <code>&lt;style></code> や <code>&lt;link rel="stylesheet"></code> によるスタイリングのみをカプセル化した Web Components をイメージしてみる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// fancy-button.js
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FancyButton</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>HTMLElement</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>super</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>shadowRoot</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>attachShadow</span>({
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>mode</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;open&#39;</span>
+</span></span><span style=display:flex><span>      }).<span style=color:#a6e22e>innerHTML</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &lt;style&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          button { color: skyblue; }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &lt;/style&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &lt;button&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          &lt;slot /&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &lt;/button&gt;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      `</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span><span style=color:#75715e>&lt;!-- Server-Side Rendering で返す HTML --&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>fancy-button</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>template</span> <span style=color:#a6e22e>shadowroot</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;open&#34;</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>      <span style=color:#f92672>button</span> { <span style=color:#66d9ef>color</span>: <span style=color:#66d9ef>skyblue</span>; }
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>style</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>slot</span> /&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>template</span>&gt;
+</span></span><span style=display:flex><span>  Click me!
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>fancy-button</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;module&#34;</span>&gt;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>FancyButton</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./fancy-button.js&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>customElements</span>.<span style=color:#a6e22e>define</span>(<span style=color:#e6db74>&#39;fancy-button&#39;</span>, <span style=color:#a6e22e>FancyButton</span>);
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><p>これで Server-Side Rendering でも初期表示のパフォーマンスを損なわずに Web Components を実現できることになる。しかし見ての通り、実現のために埋め込んだ <code>&lt;template shadowroot></code> の HTML は <code>fancy-button.js</code> で生成している Shadow Root の <code>.innerHTML</code> と同じ値を与えており、このためにビルドの仕組みを用意していくのが現実的になるだろう。<code>&lt;template shadowroot="open"></code> の部分を別の HTML ファイルとして管理して、Server-Side Rendering と Web Components の両方から参照してビルドする…のは煩雑そうだが、既にある技術 (Webpack 等) でも実現できそうだし、専用のツールキットを <a href=https://www.polymer-project.org/>Polymer</a> なり <a href=https://stenciljs.com/>Stencil</a> なりが提供してくれるかもしれない。</p><p>この例では同じ値を用意しているが、もちろんそういう決まりがあるわけではない。JAMStack のように、骨組みとなる HTML はビルド時に生成して初期レスポンスとして返却し、動的なデータはクライアントサイド側から非同期で取得して描画するような実装であれば、宣言的に埋め込んでおく <code>&lt;template shadowroot></code> はカスタム要素のスタイルをそのままコピーせず、代替となる UI プレースホルダーを埋め込んでおくような形でも良いように思う。</p><p>SEO のためのデータを初期レスポンスに含めたいという目的であれば、旧来の Web Components 実装でも <code>&lt;slot></code> から参照される部分に必要なデータを埋め込んでおけば、理論上はカバーできたと思っている。が、パフォーマンス評価もページランクに含まれることが明言されているので、SEO としても、もちろん実際にアクセスするユーザーにとってのパフォーマンスも維持した形で Web Components を使っていけるようになる。…かもしれない。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2020/yamaoku-neet/>👈 「山奥ニート」やってます。</a>
+<a href=/posts/2020/bought-in-2020/>2020年に買って良かったもの 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

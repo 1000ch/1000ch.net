@@ -1,0 +1,99 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Raspberry PiにChromiumとかJenkinsを入れてみた - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="この記事はFrontrend Advent Calendar 2013 2日目の記事です。
+この前フロントエンドな同僚の方々にRaspberry Piをプレゼントしていただいたので、アレコレしてみたログを晒してみる。Frontrendのアドベントカレンダーに書いて良いのか些か迷ったものの、フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！
+そのまま飾っておくのは勿体無いので周辺機器買い揃えて動くようにしてみた。そもそもラズベリーパイとは、
+Raspberry Pi（ラズベリーパイ）は、ラズベリーパイ財団によって英国で開発されたARMプロセッサを搭載したシングルボードコンピュータ。 via Wikipedia
+となっている。
+手のひらサイズで非常に小さいながらも、CPU、GPU、メモリ、USB2.0 x 2、HDMI、イーサネット等を備えている。SDカードが挿せるようになっており、OSのイメージをSDカードに焼いて、 USBケーブルから電源を供給し、起動するようなイメージ。
+Raspberry Pi Raspberry Pi - Wikipedia 用意したもの 電源を供給しなければ始まらないのでMicro-USB(A-MicroB)という規格(?)のケーブルを購入。あと、OSイメージを焼くSDカードがないと話にならないのでそれも購入。
+USB(Aタイプ:オス)のインターフェイスを持つパソコンに、USB(MicroBタイプ:オス)のインターフェイスを持つスマートフォン(Xperia(TM)やDesire)などの機器を接続し、充電やデータ転送ができるMicro-USBケーブルです。 ブランド: SanDisk、モデル名: Extreme SD、フラッシュメモリタイプ: SDHCカード、メモリストレージ容量: 32 GB、色: ブラック|ゴールド USBは2口しかないけど、ハブ等駆使すればラズパイだけでそれなりに楽しめそうな。
+OSイメージをSDカードに焼く Linuxなら何でも動くっぽいけど、基本の Raspbian をDownloads | Raspberry Piからダウンロードしてみる。ダウンロードしてきたzipを解凍すると、.img拡張子のイメージファイルがある。そのイメージファイルをSDカードに焼けばRaspbianの起動ディスクの完成。ということで、MacにSDカードを挿し込む。
+挿す前 $ df -h Filesystem Size Used Avail Capacity iused ifree %iused Mounted on /dev/disk1 233Gi 106Gi 126Gi 46% 27952569 33026246 46% / 挿した後 $ df -h Filesystem Size Used Avail Capacity iused ifree %iused Mounted on /dev/disk1 233Gi 106Gi 126Gi 46% 27973543 33005272 46% / /dev/disk2s1 15Gi 2."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/try-raspberry-pi/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Raspberry PiにChromiumとかJenkinsを入れてみた"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/try-raspberry-pi/"><meta name=twitter:title content="Raspberry PiにChromiumとかJenkinsを入れてみた"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Raspberry PiにChromiumとかJenkinsを入れてみた</h1><p style=margin:0;text-align:right>Published at 2013-12-02</p><p>この記事は<a href=http://www.adventar.org/calendars/62>Frontrend Advent Calendar 2013</a> 2日目の記事です。</p><p>この前フロントエンドな同僚の方々にRaspberry Piをプレゼントしていただいたので、アレコレしてみたログを晒してみる。Frontrendのアドベントカレンダーに書いて良いのか些か迷ったものの、フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！</p><p><img src=./raspberrypi.jpg alt></p><p>そのまま飾っておくのは勿体無いので周辺機器買い揃えて動くようにしてみた。そもそもラズベリーパイとは、</p><blockquote><p>Raspberry Pi（ラズベリーパイ）は、ラズベリーパイ財団によって英国で開発されたARMプロセッサを搭載したシングルボードコンピュータ。 via Wikipedia</p></blockquote><p>となっている。</p><p>手のひらサイズで非常に小さいながらも、CPU、GPU、メモリ、USB2.0 x 2、HDMI、イーサネット等を備えている。SDカードが挿せるようになっており、OSのイメージをSDカードに焼いて、
+USBケーブルから電源を供給し、起動するようなイメージ。</p><ul><li><a href=http://www.raspberrypi.org/>Raspberry Pi</a></li><li><a href=http://ja.wikipedia.org/wiki/Raspberry_Pi>Raspberry Pi - Wikipedia</a></li></ul><h2 id=用意したもの>用意したもの</h2><p>電源を供給しなければ始まらないのでMicro-USB(A-MicroB)という規格(?)のケーブルを購入。あと、OSイメージを焼くSDカードがないと話にならないのでそれも購入。</p><p><affiliate-link src=https://m.media-amazon.com/images/I/71xLL2jT47L._AC_SL1500_.jpg href=https://www.amazon.co.jp/dp/B003UIRIFY tag=1000ch-22 title="エレコム マイクロUSBケーブル microUSB 転送・充電 1A出力 1.0m ブラック MPA-AMB10BK">USB(Aタイプ:オス)のインターフェイスを持つパソコンに、USB(MicroBタイプ:オス)のインターフェイスを持つスマートフォン(Xperia(TM)やDesire)などの機器を接続し、充電やデータ転送ができるMicro-USBケーブルです。</affiliate-link></p><p><affiliate-link src=https://m.media-amazon.com/images/I/61s-6bZrcxL._AC_SL1500_.jpg href=https://www.amazon.co.jp/dp/B0B21F8RQ5 tag=1000ch-22 title="SDカード 32GB SDHC Class10 UHS-I U3 V30 SanDisk Extreme SDSDXVT-032G-GHJIN">ブランド: SanDisk、モデル名: Extreme SD、フラッシュメモリタイプ: SDHCカード、メモリストレージ容量: 32 GB、色: ブラック|ゴールド</affiliate-link></p><p>USBは2口しかないけど、ハブ等駆使すればラズパイだけでそれなりに楽しめそうな。</p><h2 id=osイメージをsdカードに焼く>OSイメージをSDカードに焼く</h2><p>Linuxなら何でも動くっぽいけど、基本の <strong>Raspbian</strong> を<a href=http://www.raspberrypi.org/downloads>Downloads | Raspberry Pi</a>からダウンロードしてみる。ダウンロードしてきたzipを解凍すると、<code>.img</code>拡張子のイメージファイルがある。そのイメージファイルをSDカードに焼けばRaspbianの起動ディスクの完成。ということで、MacにSDカードを挿し込む。</p><h3 id=挿す前>挿す前</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ df -h
+</span></span><span style=display:flex><span>Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
+</span></span><span style=display:flex><span>/dev/disk1     233Gi  106Gi  126Gi    46% <span style=color:#ae81ff>27952569</span> <span style=color:#ae81ff>33026246</span>   46%   /
+</span></span></code></pre></div><h3 id=挿した後>挿した後</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ df -h
+</span></span><span style=display:flex><span>Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
+</span></span><span style=display:flex><span>/dev/disk1     233Gi  106Gi  126Gi    46% <span style=color:#ae81ff>27973543</span> <span style=color:#ae81ff>33005272</span>   46%   /
+</span></span><span style=display:flex><span>/dev/disk2s1    15Gi  2.2Mi   15Gi     1%        <span style=color:#ae81ff>0</span>        <span style=color:#ae81ff>0</span>  100%   /Volumes/NO NAME
+</span></span></code></pre></div><p>どうやら<code>/dev/disk2s1</code>がSDカードらしい。それをアンマウントする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ diskutil unmount /dev/disk2s1
+</span></span></code></pre></div><p>ダウンロードしてきたイメージをSDに焼く。<code>/dev/disk2s1</code>の場合は<code>/dev/rdisk2</code>のように、先頭に<code>r</code>を付与し、最後の<code>s1</code>を除く。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo dd <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>/path/to/2013-09-25-wheezy-raspbian.img of<span style=color:#f92672>=</span>/dev/rdisk2 bs<span style=color:#f92672>=</span>1m
+</span></span><span style=display:flex><span>2825+0 records in
+</span></span><span style=display:flex><span>2825+0 records out
+</span></span><span style=display:flex><span><span style=color:#ae81ff>2962227200</span> bytes transferred in 610.198031 secs <span style=color:#f92672>(</span><span style=color:#ae81ff>4854534</span> bytes/sec<span style=color:#f92672>)</span>
+</span></span></code></pre></div><p>思ったより時間かかった（10分弱くらい）。中身を確認してみる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ fd -h
+</span></span><span style=display:flex><span>Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
+</span></span><span style=display:flex><span>/dev/disk2s1    56Mi   18Mi   38Mi    33%      <span style=color:#ae81ff>512</span>        <span style=color:#ae81ff>0</span>  100%   /Volumes/boot
+</span></span></code></pre></div><p>書き込まれてるっぽい。SDカードのセットアップにはMacだと<a href=http://alltheware.wordpress.com/2012/12/11/easiest-way-sd-card-setup/>こういう便利なアプリ</a>もあるっぽい。</p><h2 id=送電して起動>送電して起動</h2><p>手元にあったHDMIでディスプレイに繋いで、USBキーボードも接続する。Raspberry Piには電源ボタンはなくて、前述のように給電を開始すると起動する。</p><p><img src=./raspbian-cli.jpg alt></p><p>起動すると初期設定画面が表示されるので、キーボードで設定をしていく。項目もそんなに複雑ではない。やった設定は以下の通り。</p><ul><li><strong>Expand Filesystem</strong> - SDの残り領域をOS用に使う。</li><li><strong>Enable Boot to Desktop/Scratch</strong> - CUIで起動するかGUIで起動するかの設定。</li><li><strong>Internationalisation Options</strong> - Location等の設定。 <strong>Asia/Tokyo</strong> だけ設定。</li><li><strong>Advanced Options</strong> - SSHを有効にした。</li></ul><p>CUIからでも<code>startx</code>でGUIを起動できるし、GUIからでもXterminalというソフトでCUIを起動できる。ただし、マウスがない状態でGUIを立ち上げると身動きとれなくなる。かも。僕はGUIを少し楽しんだら、CUIをデフォルト起動にした。これでこのRaspberry PiにSSHでログイン出来るようになったはず。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ raspberrypi login:pi
+</span></span><span style=display:flex><span>Password raspberry（デフォルトのままの場合）
+</span></span></code></pre></div><p>何か困って初期設定画面に戻りたい場合は<code>sudo raspi-config</code>を実行すれば良い。</p><h2 id=ネットワークに接続>ネットワークに接続</h2><p>Raspberry Piをネットワークに繋げるべく、AirMac Expressからイーサネット経由で接続。</p><p><affiliate-link src=https://m.media-amazon.com/images/I/51Utf90oy5L._AC_SL1204_.jpg href=https://www.amazon.co.jp/dp/B076J9NL4D tag=1000ch-22 title="エレコム LANケーブル CAT6A 3m 爪折れ防止コネクタ cat6a対応 やわらか ホワイト LD-GPAYC/WH3">高速光通信に適した、10ギガビット・イーサネットの「10GBASE-T」に対応した、Cat6A準拠LANケーブルです。
+Cat6の2倍である500MHzまでの高周波帯域まで対応しており、ノイズ干渉にも強く、高速で安定したネットワーク環境を実現します。</affiliate-link></p><p>LANケーブルでAirMac Expressと接続して<code>sudo reboot</code>でRaspberry Pi再起動。</p><p>そうするとIPアドレスが勝手に割り振られて、起動ログの最後にIPアドレスが出力される。<code>ifconfig</code>とかでももちろん表示される。これは後ほどMacからのログインに使うので覚えておく。</p><p>ネットワークに繋がっているかどうか、<code>ping</code>で確認。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ping google.com
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from kix01s04-in-f7.1e100.net <span style=color:#f92672>(</span>173.194.38.39<span style=color:#f92672>)</span>: icmp_req<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>51</span> time<span style=color:#f92672>=</span>13.6 ms
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from kix01s04-in-f7.1e100.net <span style=color:#f92672>(</span>173.194.38.39<span style=color:#f92672>)</span>: icmp_req<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>52</span> time<span style=color:#f92672>=</span>12.7 ms
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from kix01s04-in-f7.1e100.net <span style=color:#f92672>(</span>173.194.38.39<span style=color:#f92672>)</span>: icmp_req<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>52</span> time<span style=color:#f92672>=</span>13.4 ms
+</span></span><span style=display:flex><span><span style=color:#ae81ff>64</span> bytes from kix01s04-in-f7.1e100.net <span style=color:#f92672>(</span>173.194.38.39<span style=color:#f92672>)</span>: icmp_req<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>52</span> time<span style=color:#f92672>=</span>12.8 ms
+</span></span></code></pre></div><p>大丈夫そう。</p><p>折角なのでGUIでGoogle Chromeをインストールしようとしたら、アーカイブファイルがどうのこうのとエラーが出るので諦めてChromiumをインストール（ちゃんと<code>.deb</code>パッケージが落ちてくるんだけど何故かダメだった）。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo apt-get update
+</span></span><span style=display:flex><span>$ sudo apt-get install chromium
+</span></span><span style=display:flex><span>$ startx
+</span></span></code></pre></div><p>ちょっと重たいけど、ブラウジングを出来るところまで確認した。<code>.deb</code>パッケージがメンテナンスされていないようで、Chromium古いけど。</p><p><img src=./raspbian-chromium-1.jpg alt>
+<img src=./raspbian-chromium-2.jpg alt></p><h2 id=sshの確認>SSHの確認</h2><p>今度は、さっきメモしておいたRaspberry PiのIPアドレスにMacからSSHしてみる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ ssh pi@<span style=color:#f92672>[</span>Raspberry PiのIPアドレス<span style=color:#f92672>]</span>
+</span></span></code></pre></div><p>パスワード聞かれるので、初期値あるいは設定したパスワードを入力すればOK。IPアドレスがもし変わらないのであれば、この時点で一応ディスプレイなしで楽しめるようになった。あと、無線LANでRaspberry Piにアクセスも<a href=http://www.myu.ac.jp/~xkozima/lab/raspTutorial1.html>WPA使えばいけそう</a>。</p><h2 id=最後にjenkinsを入れてみる>最後にJenkinsを入れてみる</h2><p>かなり重いのが予想できるけど、やってみる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ sudo apt-get install jenkins
+</span></span></code></pre></div><p>時間かかったけど、インストール完了。Macから<code>[Raspberry PiのIPアドレス]:8080</code>にアクセスしてみると…</p><p><img src=./raspberrypi-jenkins.png alt></p><p>OK!!!</p><p>今回触れていないが、デフォルトだと <strong>iptablesの設定はされていない</strong> 。ので、ネットワークに繋げている以上、最低限のファイアーウォールは設定した方が良いとは思う。攻撃されて深刻な被害を受けるような使い方は、されなそうではあるけど。</p><h2 id=まとめ>まとめ</h2><p>ここまで出来れば、あとはある程度自由に遊べそう。node.jsでアプリサーバーたてるもよし、Jenkinsサーバーにするもよし、Chromiumで海外記事を読み漁るもよし。Raspberry Piとパトランプ的な何かを繋げて、 <strong>Jenkinsのビルド成功をトリガーにパトランプを光らせる</strong> なんてことも。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2013/pinput-for-pinboard/>👈 Pinput ~PinboardユーザーのためのChrome Extension~</a>
+<a href=/posts/2013/sacss-follow-up/>SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

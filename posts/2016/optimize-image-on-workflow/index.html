@@ -1,0 +1,105 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ワークフローにおける画像の最適化 - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="画像の最適化をビルドプロセスでやるのか、コミット前にやるのかという話。
+ビルド時の画像の最適化 ビルドプロセスに画像の最適化を行うことはしばしばある。 Gulp や Grunt のプラグインとしては sindresorhus/gulp-imagemin や gruntjs/grunt-contrib-imagemin があったり、追加プラグインのインストールやオプションの設定が面倒な人のために、拙作の gulp-image と grunt-image などもある。その他の CSS や JavaScript といったアセットのビルドと併せて、こうしたツールを実行するのが一般的である。
+👍 Pros 最適化し忘れのリスクを防げる 大抵の場合は glob でパス指定してあるはず?だし、少なくとも手作業よりは抜け漏れは少ない 手動で行うという作業の手間が発生しない 👎 Cons 画像それぞれの特徴に併せた細やかな最適化処理を施せない 問答無用に png を 8bit ダウンコンバートしている場合に、透過でフルカラーな png があると　意図せず 劣化する（本来的にはこういった画像を運用上作らない努力をすべきだし、大抵の場合選ばずに済む） 対象の画像が多くなると処理にかかる時間が長くなる ビルドパイプライン的に個別に実施してリリースが出来れば良いが、フルビルドしないというのもそれはそれで（個人的に）微妙 処理にかかる時間が長くなるというのは中々に厄介で、リリース作業の長時間化だけでなくローカル開発時の効率にも関わる問題で、中長期的な生産性に関わる恐れもある（やや大げさかもしれないが）。
+バージョン管理時の画像の最適化 他の解決策としては、バージョン管理に含める段階で最適化をしておくというものがある。つまり、 JPEG ・ PNG ・ GIF ・ SVG ・ WebP を処理した上でgit commitして、デプロイ時には行わないというものだ。
+👍 Pros ビルド時に最適化処理を行わないのでビルドにかかる時間が短く済む（実際には成果物フォルダへのコピーなどはあるかもしれないが、それでも最適化に比べれば微細である） 軽いファイルを扱うので、 git への負担が少ない（git clone時やgit push時のコストが小さく済む） 👎 Cons 最適化処理の手間が発生する 作業漏れにより、最適化されていないファイルがリリースされてしまう恐れがある ペイロードが大きくなるのでダウンロードに時間がかかる ビットマップを扱うコストが高くなりメモリを圧迫する 一度リリースされてサーバーやクライアントのキャッシュされてしまうとそれらをパージするのは不可能に近いケースも多くある コミットに含まれる画像を git の pre-commit で最適化する バージョン管理する段階で実施すると問題のある程度が解決するので、何か方法はないかと思っていたところ、 git の pre-commit でやったらいいよねという話になる。 pre-commit で画像を最適化するサンプルを編集長が教えてくれたので、それを改変したのがこちら。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/optimize-image-on-workflow/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ワークフローにおける画像の最適化"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/optimize-image-on-workflow/"><meta name=twitter:title content="ワークフローにおける画像の最適化"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ワークフローにおける画像の最適化</h1><p style=margin:0;text-align:right>Published at 2016-07-26</p><p>画像の最適化をビルドプロセスでやるのか、コミット前にやるのかという話。</p><h2 id=ビルド時の画像の最適化>ビルド時の画像の最適化</h2><p>ビルドプロセスに画像の最適化を行うことはしばしばある。 Gulp や Grunt のプラグインとしては <a href=https://github.com/sindresorhus/gulp-imagemin>sindresorhus/gulp-imagemin</a> や <a href=https://github.com/gruntjs/grunt-contrib-imagemin>gruntjs/grunt-contrib-imagemin</a> があったり、追加プラグインのインストールやオプションの設定が面倒な人のために、拙作の <a href=https://github.com/1000ch/gulp-image>gulp-image</a> と <a href=https://github.com/1000ch/grunt-image>grunt-image</a> などもある。その他の CSS や JavaScript といったアセットのビルドと併せて、こうしたツールを実行するのが一般的である。</p><h3 id=-pros>👍 Pros</h3><ul><li>最適化し忘れのリスクを防げる<ul><li>大抵の場合は glob でパス指定してあるはず?だし、少なくとも手作業よりは抜け漏れは少ない</li></ul></li><li>手動で行うという作業の手間が発生しない</li></ul><h3 id=-cons>👎 Cons</h3><ul><li>画像それぞれの特徴に併せた細やかな最適化処理を施せない<ul><li>問答無用に png を 8bit ダウンコンバートしている場合に、透過でフルカラーな png があると　<strong>意図せず</strong> 劣化する（本来的にはこういった画像を運用上作らない努力をすべきだし、大抵の場合選ばずに済む）</li></ul></li><li><strong>対象の画像が多くなると処理にかかる時間が長くなる</strong><ul><li>ビルドパイプライン的に個別に実施してリリースが出来れば良いが、フルビルドしないというのもそれはそれで（個人的に）微妙</li></ul></li></ul><p>処理にかかる時間が長くなるというのは中々に厄介で、リリース作業の長時間化だけでなくローカル開発時の効率にも関わる問題で、中長期的な生産性に関わる恐れもある（やや大げさかもしれないが）。</p><h2 id=バージョン管理時の画像の最適化>バージョン管理時の画像の最適化</h2><p>他の解決策としては、バージョン管理に含める段階で最適化をしておくというものがある。つまり、 JPEG ・ PNG ・ GIF ・ SVG ・ WebP を処理した上で<code>git commit</code>して、デプロイ時には行わないというものだ。</p><h3 id=-pros-1>👍 Pros</h3><ul><li>ビルド時に最適化処理を行わないのでビルドにかかる時間が短く済む（実際には成果物フォルダへのコピーなどはあるかもしれないが、それでも最適化に比べれば微細である）</li><li>軽いファイルを扱うので、 git への負担が少ない（<code>git clone</code>時や<code>git push</code>時のコストが小さく済む）</li></ul><h3 id=-cons-1>👎 Cons</h3><ul><li>最適化処理の手間が発生する</li><li>作業漏れにより、最適化されていないファイルがリリースされてしまう恐れがある<ul><li>ペイロードが大きくなるのでダウンロードに時間がかかる</li><li>ビットマップを扱うコストが高くなりメモリを圧迫する</li><li>一度リリースされてサーバーやクライアントのキャッシュされてしまうとそれらをパージするのは不可能に近いケースも多くある</li></ul></li></ul><h2 id=コミットに含まれる画像を-git-の-pre-commit-で最適化する>コミットに含まれる画像を git の <code>pre-commit</code> で最適化する</h2><p>バージョン管理する段階で実施すると問題のある程度が解決するので、何か方法はないかと思っていたところ、 git の <code>pre-commit</code> でやったらいいよねという話になる。 <a href=https://gist.github.com/arnaud-lb/4181829><code>pre-commit</code> で画像を最適化するサンプル</a>を編集長が教えてくれたので、それを改変したのがこちら。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e>#!/bin/sh
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e># to use, save this file as .git/hooks/pre-commit in your git repo</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># make sure to add execute permissions using: chmod +x .git/hooks/pre-commit</span>
+</span></span><span style=display:flex><span>command -v imgo &gt;/dev/null 2&gt;&amp;<span style=color:#ae81ff>1</span> <span style=color:#f92672>||</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;\033[1mPlease install imgo to reduce images size before commit\033[0m&#34;</span>
+</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;Install imgo with the following:&#34;</span>
+</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;\t \033[1mnpm install -g imgo\033[0m&#34;</span>
+</span></span><span style=display:flex><span>  exit 1;
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> file in <span style=color:#e6db74>`</span>git diff --cached --name-status | awk <span style=color:#e6db74>&#39;$1 ~ /[AM]/ &amp;&amp; tolower($2) ~ /\.png$/ {print $2}&#39;</span><span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Optimizing </span>$file<span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>  cat $file | imgo --pngquant --zopflipng &gt; <span style=color:#e6db74>${</span>file%.png<span style=color:#e6db74>}</span>.new
+</span></span><span style=display:flex><span>  mv -f <span style=color:#e6db74>${</span>file%.png<span style=color:#e6db74>}</span>.new $file
+</span></span><span style=display:flex><span>  git add $file
+</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> file in <span style=color:#e6db74>`</span>git diff --cached --name-status | awk <span style=color:#e6db74>&#39;$1 ~ /[AM]/ &amp;&amp; tolower($2) ~ /\.jpe?g$/ {print $2}&#39;</span><span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Optimizing </span>$file<span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>  cat $file | imgo --jpegoptim --jpegRecompress --mozjpeg &gt; <span style=color:#e6db74>${</span>file%.jpg<span style=color:#e6db74>}</span>.new
+</span></span><span style=display:flex><span>  mv -f <span style=color:#e6db74>${</span>file%.jpg<span style=color:#e6db74>}</span>.new $file
+</span></span><span style=display:flex><span>  git add $file
+</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> file in <span style=color:#e6db74>`</span>git diff --cached --name-status | awk <span style=color:#e6db74>&#39;$1 ~ /[AM]/ &amp;&amp; tolower($2) ~ /\.gif$/ {print $2}&#39;</span><span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Optimizing </span>$file<span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>  cat $file | imgo --gifsicle &gt; <span style=color:#e6db74>${</span>file%.gif<span style=color:#e6db74>}</span>.new
+</span></span><span style=display:flex><span>  mv -f <span style=color:#e6db74>${</span>file%.gif<span style=color:#e6db74>}</span>.new $file
+</span></span><span style=display:flex><span>  git add $file
+</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> file in <span style=color:#e6db74>`</span>git diff --cached --name-status | awk <span style=color:#e6db74>&#39;$1 ~ /[AM]/ &amp;&amp; tolower($2) ~ /\.svg$/ {print $2}&#39;</span><span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Optimizing </span>$file<span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>  cat $file | imgo --svgo &gt; <span style=color:#e6db74>${</span>file%.svg<span style=color:#e6db74>}</span>.new
+</span></span><span style=display:flex><span>  mv -f <span style=color:#e6db74>${</span>file%.svg<span style=color:#e6db74>}</span>.new $file
+</span></span><span style=display:flex><span>  git add $file
+</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
+</span></span></code></pre></div><p>元ネタでは <code>pngcrush</code> と <code>jpegtran</code> のみで処理しているが、改変バージョンでは自作の <a href=https://www.npmjs.com/package/imgo>imgo</a> というツールを通すようにし、 JPEG と PNG に加えて GIF と SVG も最適化するようにしてある。 <code>imgo</code> は <code>npm install -g imgo</code> でインストールできる。</p><p>この <code>pre-commit</code> を対象プロジェクトの <code>.git/hooks</code> に配置しておけば <code>git commit</code> しようとした時に、自動で最適化して <code>git add</code> しなおしてくれる。</p><h2 id=バージョン管理時とビルド時の両方に実施する>バージョン管理時とビルド時の両方に実施する？</h2><p>両方のメリットを享受したいところだが、単に両方で実施すると、</p><blockquote><ul><li>画像それぞれの特徴に併せた細やかな最適化処理を施せない</li><li><strong>対象の画像が多くなると処理にかかる時間が長くなる</strong></li></ul></blockquote><p>の問題が残る。</p><p><strong>対象の画像が最適化されているかどうか</strong> をチェックできれば、未実施の画像ファイルに対してだけ処理すれば良い。が、現実解が見当たらない。チャンクや更新日時のチェックなども考えられるが、それが全ケースで完璧に機能してくれるのかどうかに自信がない。</p><p>ビルド時の実施はセーフティネットとしても有効なので、これらの問題を解決できればバージョン管理時・ビルド時の両実施が望ましい形だと思われる。</p><h2 id=オンザフライで最適化するおまけ>オンザフライで最適化する？（おまけ）</h2><p>画像へのリクエスト時に最適化してからクライアントに返すという発想もある。実現するソリューションとして、弊社では <a href=http://hayabusa.io>hayabusa</a> というものがある。</p><p>画像サーバーのプロキシとして動作し、画像の URL にクエリパラメータを付与すると応じて最適化された画像が返却されるという仕組み。最適化処理はその URL へのリクエストのうち初回のみ実施されてキャッシュされるので、最適化にかかるコストは無視できる程度である。うっかりクエリを付け忘れなければ、いつでもどこでも適切に処理された画像をダウンロードできるというわけだ。</p><p>大掛かりな仕組みではあるので、導入は比較的困難である。多くの Web 制作現場では、こうしたツールの導入は難しいだろう。</p><p>hayabusa のコンセプトはやや富豪的にも感じていて、アップロード時にきっちり処理してあげれば、それが良いのではと思っている。 hayabusa のようにリクエスト時に処理を行うのとは逆に、サーバーへのアップロード時に自動で最適化してはどうだろうということで、 AWS Lambda で動作する <a href=https://github.com/ysugimoto/aws-lambda-image>ysugimoto/aws-lambda-image</a> というツールがある。</p><p>リサイズやクロップが必要なケースは?という話では、きっちり最適化した一枚を扱う方が効率よいケースもあると思っている。例えば、大きな画像とそれをリサイズしたサムネイルの2枚をダウンロードするより、大きな画像をダウンロードすればそれだけで済む。オンメモリでリサイズするほうがトータルコストが安そう?だし、サムネイルとしてダウンロードすればそのまま大きな画像のキャッシュになるので無駄にならない。クロップに関してはCSSでやるほうが筋だと思う。とは言え、大きな画像とサムネイルのサイズに差異が大きければドデカイ画像をサムネイルとしてダウンロードする羽目になるので、結局は時と場合に依ってしまう。</p><p>ぶっちゃけ hayabusa のような仕組みはとても便利なので、使えるならそれが一番楽。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2016/web-app-manifest/>👈 Web App Manifest</a>
+<a href=/posts/2016/muji-led-bluetooth-speaker/>無印良品のペンダントライトとLED電球型Bluetoothスピーカー 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

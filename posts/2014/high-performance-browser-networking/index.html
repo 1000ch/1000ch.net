@@ -1,0 +1,74 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ハイパフォーマンス ブラウザネットワーキング - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="オライリー・ジャパン様より本を頂きましたので、その感想を。 頂いたのは ハイパフォーマンス ブラウザネットワーキング という、Ilya Grigorik氏執筆の日本語訳本。
+サブタイトルに ネットワークアプリケーションのためのパフォーマンス最適化 と付いている通り、TCP、UDPといったトランスポートレイヤからアプリケーションレイヤまでのプロトコルの原理に始まり、Webアプリのパフォーマンス最適化アプローチ、ブラウザの通信系API（XHR・WebSocket・WebRTC）と現存のネットワーク技術を幅広く、そして詳細に取り扱っている書籍です。
+Webパフォーマンスとしてのネットワーク Webサイトのパフォーマンスの重要性についてはもとより、それを構成するファクターは複雑化を辿る一方です。Webサイトのあり方が凄まじい勢いで変化している中で、とある1つのWebサイトにおいてどれが重要なパフォーマンスファクターになるのかは事の次第によります。
+スマートフォンの性能が瞬く間に向上してきたように、クライアントデバイスの進化が早いことに対し、ネットワークの進化はとても遅いです。そして、モバイルであれば基地局との距離や、周辺の建物の電波状態に左右されるように、非常に不安定な状況にあります。
+そのような背景に加え、ネットワークはユーザーにコンテンツを届けるフローの最初に当たる、一番始めに最適化するべき指標と考えます。本書ではそのネットワークに関するアプローチも、サーバーの配信の最適化からブラウザの挙動の観点からのコンテンツ要求の接続管理に至るまで、網羅的に解説してあります。
+本書の読者ターゲット ネットワークについては各所で仕入れて用語と概要がなんとなくわかるレベルの私にとっては、第Ⅰ章のネットワークの基礎や第Ⅲ章のHTTPのような低レイヤに触れている章が、特に読んでて非常に面白い内容でした。この辺りのTCP、UDP、TLSといった基礎理論も多いので、本当に真っさらな状態（IPやHTTPリクエストと言った用語がぼんやりレベルですらわからない）だと辛いかもしれません。
+モバイルネットワークにおける最適化・Webパフォーマンス・アプリケーション配信最適化についてもそれまでの基礎理論を踏まえた内容になっているので、最適化の章だけ読むよりはネットワークのコンテキストを得てから読む方が効果的です。業務でもWebサービスのパフォーマンス改善をやっているので、掘り下げて併せて理解することが出来ました。
+約360ページで内容も非常に濃いものになっており、お手軽とは言えませんが、4000円と時間を投じて消化する価値があります。フロントエンドのエンジニアにとっても、バックエンドのエンジニアにとっても、双方のレイヤを理解するきっかけになる、抑えておくべき一冊です。
+Ilya Grigorik (著), 和田 祐一郎 (翻訳), 株式会社プログラミングシステム社 (翻訳) 英語版であればWeb上で閲覧可能ですが、ボリュームもありますし、日本語訳を読めるのはやはりありがたいです。
+HPBNj #HPBNjがハッシュタグです。流れているツイートの通り、いわゆる 絶対読め系の本 です。
+10章「Webパフォーマンス入門」が大変良かったので書きました / フロントエンドエンジニアから見た『ハイパフォーマンス ブラウザネットワーキング』 - じまぐてっく http://t.co/fXHAXorK2e #HPBNj
+&mdash; じまぐ (@nakajmg) 2014, 5月 13 読了ハイパフォーマンス「ブラウザ」ネットワーキング ::ハブろぐ http://t.co/hYFX0ZgMHr ありがとうございました #HPBNj
+&mdash; あほむ (@ahomu) 2014, 5月 19 余談 余談ですが、本書の冒頭で、現在FastlyでChief Performance Officerを務めるSteve Souders氏（以前までGoogleでHead Performance Engineerとして働いていた）は、著者のIlya Grigorick氏を「ネットワークの神様」と称賛しています。
+Steve Souders (著), 武舎 広幸 (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳) Steve Souders (著), 武舎 広幸 (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳) "><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/high-performance-browser-networking/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ハイパフォーマンス ブラウザネットワーキング"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/high-performance-browser-networking/"><meta name=twitter:title content="ハイパフォーマンス ブラウザネットワーキング"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ハイパフォーマンス ブラウザネットワーキング</h1><p style=margin:0;text-align:right>Published at 2014-05-22</p><p>オライリー・ジャパン様より本を頂きましたので、その感想を。
+頂いたのは <strong>ハイパフォーマンス ブラウザネットワーキング</strong> という、<a href=https://www.igvita.com/>Ilya Grigorik</a>氏執筆の日本語訳本。</p><p><img src=./book.jpg alt></p><p>サブタイトルに <strong>ネットワークアプリケーションのためのパフォーマンス最適化</strong> と付いている通り、TCP、UDPといったトランスポートレイヤからアプリケーションレイヤまでのプロトコルの原理に始まり、Webアプリのパフォーマンス最適化アプローチ、ブラウザの通信系API（XHR・WebSocket・WebRTC）と現存のネットワーク技術を幅広く、そして詳細に取り扱っている書籍です。</p><h2 id=webパフォーマンスとしてのネットワーク>Webパフォーマンスとしてのネットワーク</h2><p>Webサイトのパフォーマンスの重要性についてはもとより、それを構成するファクターは複雑化を辿る一方です。Webサイトのあり方が凄まじい勢いで変化している中で、とある1つのWebサイトにおいてどれが重要なパフォーマンスファクターになるのかは事の次第によります。</p><p>スマートフォンの性能が瞬く間に向上してきたように、クライアントデバイスの進化が早いことに対し、ネットワークの進化はとても遅いです。そして、モバイルであれば基地局との距離や、周辺の建物の電波状態に左右されるように、非常に不安定な状況にあります。</p><p>そのような背景に加え、ネットワークはユーザーにコンテンツを届けるフローの最初に当たる、一番始めに最適化するべき指標と考えます。本書ではそのネットワークに関するアプローチも、サーバーの配信の最適化からブラウザの挙動の観点からのコンテンツ要求の接続管理に至るまで、網羅的に解説してあります。</p><h2 id=本書の読者ターゲット>本書の読者ターゲット</h2><p>ネットワークについては各所で仕入れて用語と概要がなんとなくわかるレベルの私にとっては、第Ⅰ章のネットワークの基礎や第Ⅲ章のHTTPのような低レイヤに触れている章が、特に読んでて非常に面白い内容でした。この辺りのTCP、UDP、TLSといった基礎理論も多いので、本当に真っさらな状態（IPやHTTPリクエストと言った用語がぼんやりレベルですらわからない）だと辛いかもしれません。</p><p>モバイルネットワークにおける最適化・Webパフォーマンス・アプリケーション配信最適化についてもそれまでの基礎理論を踏まえた内容になっているので、最適化の章だけ読むよりはネットワークのコンテキストを得てから読む方が効果的です。業務でもWebサービスのパフォーマンス改善をやっているので、掘り下げて併せて理解することが出来ました。</p><p>約360ページで内容も非常に濃いものになっており、お手軽とは言えませんが、4000円と時間を投じて消化する価値があります。フロントエンドのエンジニアにとっても、バックエンドのエンジニアにとっても、双方のレイヤを理解するきっかけになる、抑えておくべき一冊です。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51x2sA8N%2BTL._SX389_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4873116767/ tag=1000ch-22 title="ハイパフォーマンス ブラウザネットワーキング ―ネットワークアプリケーションのためのパフォーマンス最適化">Ilya Grigorik (著), 和田 祐一郎 (翻訳), 株式会社プログラミングシステム社 (翻訳)</affiliate-link></p><p><a href=http://chimera.labs.oreilly.com/books/1230000000545/index.html>英語版であればWeb上で閲覧可能</a>ですが、ボリュームもありますし、日本語訳を読めるのはやはりありがたいです。</p><h2 id=hpbnj>HPBNj</h2><p><a href="https://twitter.com/search?q=%23HPBNj">#HPBNjがハッシュタグ</a>です。流れているツイートの通り、いわゆる <strong>絶対読め系の本</strong> です。</p><blockquote class=twitter-tweet lang=ja><p>10章「Webパフォーマンス入門」が大変良かったので書きました / フロントエンドエンジニアから見た『ハイパフォーマンス ブラウザネットワーキング』 - じまぐてっく <a href=http://t.co/fXHAXorK2e>http://t.co/fXHAXorK2e</a> <a href="https://twitter.com/search?q=%23HPBNj&amp;src=hash">#HPBNj</a></p>&mdash; じまぐ (@nakajmg) <a href=https://twitter.com/nakajmg/statuses/466031579534331904>2014, 5月 13</a></blockquote><blockquote class=twitter-tweet lang=ja><p>読了ハイパフォーマンス「ブラウザ」ネットワーキング ::ハブろぐ <a href=http://t.co/hYFX0ZgMHr>http://t.co/hYFX0ZgMHr</a> ありがとうございました <a href="https://twitter.com/search?q=%23HPBNj&amp;src=hash">#HPBNj</a></p>&mdash; あほむ (@ahomu) <a href=https://twitter.com/ahomu/statuses/468274067745681408>2014, 5月 19</a></blockquote><h2 id=余談>余談</h2><p>余談ですが、本書の冒頭で、現在FastlyでChief Performance Officerを務める<a href=http://www.stevesouders.com/>Steve Souders</a>氏（以前までGoogleでHead Performance Engineerとして働いていた）は、著者のIlya Grigorick氏を「ネットワークの神様」と称賛しています。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51hIDIWHmYL._SX389_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/487311361X/ tag=1000ch-22 title="ハイパフォーマンスWebサイト ―高速サイトを実現する14のルール">Steve Souders (著), 武舎 広幸 (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)</affiliate-link></p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51GQNCMJsZL._SX383_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4873114462/ tag=1000ch-22 title="続・ハイパフォーマンスWebサイト ―ウェブ高速化のベストプラクティス">Steve Souders (著), 武舎 広幸 (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)</affiliate-link></p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2014/english/>👈 英語環境</a>
+<a href=/posts/2014/frontend-engineer-training-book/>フロントエンドエンジニア養成読本 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

@@ -1,0 +1,85 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>jQueryにおけるbindとdelegateの違い - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='この記事は、軽めのjQuery Advent Calendar 12日目の記事です。
+曖昧な認識のまま進みがちなjQueryのイベントハンドリングについて。軽めということだが、あまり簡潔にまとまっていないかも。
+jQueryのbindとdelegate 現在は2つともonによってカバーされているイベントバインドだが、敢えてこの2つのメソッドで説明。どちらも要素に対するイベントの定義に使用するメソッドだが性質が異なる。
+bindは要素に対して直接イベントハンドラの登録をし（いわゆるaddEventListenerとかattachEventで）、delegateは親要素に対しイベントハンドラを登録しバブリングで呼び出し元の要素を判定する間接的な方法。
+$element.bind(type, callback) イベントハンドラはその要素に対して紐付き、保持される。
+<body> <button id="foo">ボタン</button> </body> // 要素押下時のイベントを定義する $("#foo").bind("click", function() { console.log("#fooがクリックされました"); }); $element.delegate(selector, type, callback) 引数には、イベントの種類とセレクタとイベントハンドラを渡す。上の例と同様に#fooの要素押下時のイベントを定義するには、#fooの要素を内包する要素に対してdelegateを定義する。
+<body> <button id="foo">ボタン</button> </body> // bodyがid=fooの要素を内包するため、bodyからdelegateを実行する。documentなどでもOK $("body").delegate("#foo", "click", function() { console.log("#fooがクリックされました"); }); イベントハンドラはbodyに対してバインドされる。つまりbodyの押下時に毎回コールされることになり、発生するイベント（この場合はclick）が、bodyが内包する要素から伝播（バブリング）する。
+jQueryのdelegateは、呼び出し元の要素をチェック（ここでは#fooが呼び出しものかどうか）し、一致する場合にイベントハンドラが実行される、といった流れになる。
+両者の特徴と$element.on() bindは要素に直接登録するため、イベントハンドラの実行が即座に行われる。それに対し、delegateは指定されたCSSセレクタとの一致検索を都度行うため、追加された要素に対してもCSSセレクタが一致すれば適用される。
+$element.on()は引数のによってどのようにハンドルするかを振り分けており、引数の与え方によってbindあるいはdelegateとして振る舞う。尚、jQueryはonを推奨しており、Zeptoもこの流れを踏襲している。
+非推奨なやつら $element.bind() $element.unbind() $element.live() $element.die() $element.delegate() $element.undelegate() bindとdelegateの方がわかりやすいのに、と思ったりもする。$element.live()はdocumentからのdelegateになる。ちなみにどれも内部でonを通る。
+まとめ delegateするためにセレクタのマッチング処理とundelegateのためにクロージャを内部的に保持するので、処理は増加する。それでも、Ajaxなどで動的に生成するコンテンツに対してイベントを定義する場合は、都度bindするよりdelegateを1つ貼っておく方がブラウザに優しいと言える。'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2012/jquery-bind-and-delegate/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="jQueryにおけるbindとdelegateの違い"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2012/jquery-bind-and-delegate/"><meta name=twitter:title content="jQueryにおけるbindとdelegateの違い"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>jQueryにおけるbindとdelegateの違い</h1><p style=margin:0;text-align:right>Published at 2012-12-12</p><p>この記事は、<a href=http://www.adventar.org/calendars/29>軽めのjQuery Advent Calendar</a> 12日目の記事です。</p><p>曖昧な認識のまま進みがちなjQueryのイベントハンドリングについて。軽めということだが、あまり簡潔にまとまっていないかも。</p><h2 id=jqueryのbindとdelegate>jQueryのbindとdelegate</h2><p>現在は2つともonによってカバーされているイベントバインドだが、敢えてこの2つのメソッドで説明。どちらも要素に対するイベントの定義に使用するメソッドだが性質が異なる。</p><p>bindは要素に対して直接イベントハンドラの登録をし（いわゆる<code>addEventListener</code>とか<code>attachEvent</code>で）、delegateは親要素に対しイベントハンドラを登録しバブリングで呼び出し元の要素を判定する間接的な方法。</p><h2 id=elementbindtype-callback><code>$element.bind(type, callback)</code></h2><p>イベントハンドラはその要素に対して紐付き、保持される。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;foo&#34;</span>&gt;ボタン&lt;/<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>body</span>&gt;
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// 要素押下時のイベントを定義する
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#foo&#34;</span>).<span style=color:#a6e22e>bind</span>(<span style=color:#e6db74>&#34;click&#34;</span>, <span style=color:#66d9ef>function</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;#fooがクリックされました&#34;</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><h2 id=elementdelegateselector-type-callback><code>$element.delegate(selector, type, callback)</code></h2><p>引数には、イベントの種類とセレクタとイベントハンドラを渡す。上の例と同様に<code>#foo</code>の要素押下時のイベントを定義するには、<code>#foo</code>の要素を内包する要素に対してdelegateを定義する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;foo&#34;</span>&gt;ボタン&lt;/<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>body</span>&gt;
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// bodyがid=fooの要素を内包するため、bodyからdelegateを実行する。documentなどでもOK
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;body&#34;</span>).<span style=color:#a6e22e>delegate</span>(<span style=color:#e6db74>&#34;#foo&#34;</span>, <span style=color:#e6db74>&#34;click&#34;</span>, <span style=color:#66d9ef>function</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;#fooがクリックされました&#34;</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><p>イベントハンドラはbodyに対してバインドされる。つまりbodyの押下時に毎回コールされることになり、発生するイベント（この場合は<code>click</code>）が、bodyが内包する要素から伝播（バブリング）する。</p><p>jQueryのdelegateは、呼び出し元の要素をチェック（ここでは<code>#foo</code>が呼び出しものかどうか）し、一致する場合にイベントハンドラが実行される、といった流れになる。</p><h2 id=両者の特徴とelementon>両者の特徴と<code>$element.on()</code></h2><p>bindは要素に直接登録するため、イベントハンドラの実行が即座に行われる。それに対し、delegateは指定されたCSSセレクタとの一致検索を都度行うため、追加された要素に対してもCSSセレクタが一致すれば適用される。</p><p><code>$element.on()</code>は引数のによってどのようにハンドルするかを振り分けており、引数の与え方によってbindあるいはdelegateとして振る舞う。尚、jQueryはonを推奨しており、Zeptoもこの流れを踏襲している。</p><h2 id=非推奨なやつら>非推奨なやつら</h2><ul><li><code>$element.bind()</code></li><li><code>$element.unbind()</code></li><li><code>$element.live()</code></li><li><code>$element.die()</code></li><li><code>$element.delegate()</code></li><li><code>$element.undelegate()</code></li></ul><p>bindとdelegateの方がわかりやすいのに、と思ったりもする。<code>$element.live()</code>はdocumentからのdelegateになる。ちなみにどれも内部でonを通る。</p><h2 id=まとめ>まとめ</h2><p><code>delegate</code>するためにセレクタのマッチング処理と<code>undelegate</code>のためにクロージャを内部的に保持するので、処理は増加する。それでも、Ajaxなどで動的に生成するコンテンツに対してイベントを定義する場合は、都度bindするよりdelegateを1つ貼っておく方がブラウザに優しいと言える。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2012/gruntjs-introduction/>👈 Gruntの概要と導入手順とメリット</a>
+<a href=/posts/2012/backbone-ajax/>Backbone.jsのAjaxについて 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

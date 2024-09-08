@@ -1,0 +1,113 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="gh-pagesブランチの更新自動化がゴール。masterブランチにpushするだけで内容を動的に取得してgh-pagesブランチにpushする。今回もTravisの力を借りる。以下がポイント。
+gh-pagesブランチの内容はmiddlemanによる出力 masterブランチにコミットしたあと、Travisからmiddlemanのビルドを実行 生成された内容をgh-pagesブランチへpush middlemanのインストール middlemanはrubyで動く静的サイトジェネジェネレータ。テンプレートをほぼHTMLで記述することが出来て、ブログ等の管理を非常に簡単にすることが可能。jekyll使ったことのある人なら学習コストはさらに低め。詳しくはこの辺りが参考になる。
+まずはmiddlemanのインストールから。
+$ gem install middleman プロジェクト名を指定し、middleman init。
+$ middleman init middleman-playground カレントディレクトリにmiddleman-playgroundというディレクトリが作成され、その配下に色々とファイルが生成されている。
+├─ source │ ├- images │ │ └... │ ├- javascripts │ │ └... │ ├- layouts │ │ └... │ ├- stylesheets │ │ └... │ └- index.html.erb ├─ .gitignore ├─ config.rb ├─ Gemfile └─ Gemfile.lock middleman buildを実行するとsourceフォルダ下を出力のリソースとし、buildフォルダに静的ファイルが生成される。このbuild配下をデプロイすることになる。
+config.rb ルートディレクトリに、config.rbという設定ファイルがあるので、設定を自分好みに変えてみる。
+set :css_dir, 'stylesheets' set :js_dir, 'javascripts' set :images_dir, 'images' お分かりの通り、何をCSSディレクトリとして扱うかの設定。ただし、source配下のディレクトリはそのままbuildに出力されるだけで、システム内部で扱う変数に過ぎない。ということで、source配下のディレクトリ名とconfig.rbをそれぞれ以下のように編集。
+set :css_dir, 'css' set :js_dir, 'js' set :images_dir, 'img' コメントアウトすればjsやcssの圧縮もしてくれそうな行もチラホラ。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/middleman-travis-ci/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/middleman-travis-ci/"><meta name=twitter:title content="MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>MiddlemanとTravis CIでgh-pagesを運用したら身長が伸びた</h1><p style=margin:0;text-align:right>Published at 2013-08-30</p><p><code>gh-pages</code>ブランチの更新自動化がゴール。<code>master</code>ブランチにpushするだけで内容を動的に取得して<code>gh-pages</code>ブランチにpushする。今回もTravisの力を借りる。以下がポイント。</p><ul><li><code>gh-pages</code>ブランチの内容はmiddlemanによる出力</li><li>masterブランチにコミットしたあと、Travisからmiddlemanのビルドを実行</li><li>生成された内容を<code>gh-pages</code>ブランチへpush</li></ul><h2 id=middlemanのインストール>middlemanのインストール</h2><p>middlemanはrubyで動く静的サイトジェネジェネレータ。テンプレートをほぼHTMLで記述することが出来て、ブログ等の管理を非常に簡単にすることが可能。jekyll使ったことのある人なら学習コストはさらに低め。詳しくは<a href=http://middleman-guides.e2esound.com/>この辺りが参考になる</a>。</p><p>まずはmiddlemanのインストールから。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ gem install middleman
+</span></span></code></pre></div><p>プロジェクト名を指定し、<code>middleman init</code>。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ middleman init middleman-playground
+</span></span></code></pre></div><p>カレントディレクトリに<code>middleman-playground</code>というディレクトリが作成され、その配下に色々とファイルが生成されている。</p><pre tabindex=0><code>├─ source
+│   ├- images
+│   │   └...
+│   ├- javascripts
+│   │   └...
+│   ├- layouts
+│   │   └...
+│   ├- stylesheets
+│   │   └...
+│   └- index.html.erb
+├─ .gitignore
+├─ config.rb
+├─ Gemfile
+└─ Gemfile.lock
+</code></pre><p><code>middleman build</code>を実行すると<code>source</code>フォルダ下を出力のリソースとし、<code>build</code>フォルダに静的ファイルが生成される。この<code>build</code>配下をデプロイすることになる。</p><h2 id=configrb>config.rb</h2><p>ルートディレクトリに、<code>config.rb</code>という設定ファイルがあるので、設定を自分好みに変えてみる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=display:flex><span>set <span style=color:#e6db74>:css_dir</span>, <span style=color:#e6db74>&#39;stylesheets&#39;</span>
+</span></span><span style=display:flex><span>set <span style=color:#e6db74>:js_dir</span>, <span style=color:#e6db74>&#39;javascripts&#39;</span>
+</span></span><span style=display:flex><span>set <span style=color:#e6db74>:images_dir</span>, <span style=color:#e6db74>&#39;images&#39;</span>
+</span></span></code></pre></div><p>お分かりの通り、何をCSSディレクトリとして扱うかの設定。ただし、source配下のディレクトリはそのままbuildに出力されるだけで、システム内部で扱う変数に過ぎない。ということで、source配下のディレクトリ名と<code>config.rb</code>をそれぞれ以下のように編集。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ruby data-lang=ruby><span style=display:flex><span>set <span style=color:#e6db74>:css_dir</span>, <span style=color:#e6db74>&#39;css&#39;</span>
+</span></span><span style=display:flex><span>set <span style=color:#e6db74>:js_dir</span>, <span style=color:#e6db74>&#39;js&#39;</span>
+</span></span><span style=display:flex><span>set <span style=color:#e6db74>:images_dir</span>, <span style=color:#e6db74>&#39;img&#39;</span>
+</span></span></code></pre></div><p>コメントアウトすればjsやcssの圧縮もしてくれそうな行もチラホラ。</p><h2 id=middleman-server>middleman server</h2><p><code>soruce</code>配下の変更を監視して、適時ビルドしてくれる。このあたりもjekyllと似てる。サイトの構築デバッグ時に使うことになりそうな感じ。</p><h2 id=travis側の設定>Travis側の設定</h2><p>Travisからgithubにコミットするには、GitHubにOAuthトークンを利用しTravisのセキュアキーを使用する必要がある。GitHubのトークンを設定ファイルに記述するのは良くないので、travisコマンドラインから暗号化する。</p><p>まずはGitHubのトークンを<a href=https://github.com/settings/applications>Applications</a>から、Personal Access TokensのCreateで作成。次にtravisのコマンドラインツールからsecureキーを取得。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ gem install travis
+</span></span><span style=display:flex><span>$ travis encrypt -r 1000ch/middleman-playground <span style=color:#e6db74>&#34;GH_TOKEN=&lt;生成したGitHubトークン&gt;&#34;</span>
+</span></span></code></pre></div><p>生成されたキーを<code>.travis.yml</code>に追記。</p><pre tabindex=0><code>language: ruby
+rvm: 2.0.0
+env:
+  global:
+    - GIT_COMMITTER_NAME=1000ch
+    - GIT_COMMITTER_EMAIL=shogo.sensui@gmail.com
+    - GIT_AUTHOR_NAME=1000ch
+    - GIT_AUTHOR_EMAIL=shogo.sensui@gmail.com
+    - secure: [トークン]
+before_script:
+    - git clone --quiet https://github.com/1000ch/middleman-playground.git build
+    - pushd build
+    - git checkout -b gh-pages
+    - popd
+script:
+    - bundle exec middleman build
+after_success:
+    - cd build
+    - git add -A
+    - git commit -m &#39;Update&#39;
+    - &#39;[ &#34;$TRAVIS_BRANCH&#34; == &#34;master&#34; ] &amp;&amp; [ $GH_TOKEN ] &amp;&amp; git push --quiet https://$GH_TOKEN@github.com/1000ch/middleman-playground.git gh-pages 2&gt; /dev/null&#39;
+</code></pre><p><code>git push</code>時に<code>--quiet</code>をつけないと、トークンが表示されてしまうので注意。</p><h2 id=以上を踏まえたサンプル>以上を踏まえたサンプル</h2><p><a href=https://github.com/1000ch/middleman-playground>1000ch/middleman-playground</a>に成果物を置いた。Gruntでsassファイルをコンパイルするというのを追加している。Travis上でcloneしてきた<code>master</code>ブランチで、Grunt周りをひと通りインストールして（rakeでいいじゃんというツッコミは一旦なしで）、<code>grunt-contrib-sass</code>でコンパイルされたcssをgh-pagesにコミットするという手順になってる。</p><p>が、このままだとrubyプロジェクトなので、Travis上で<code>bundle install --deployment</code>した場合に、Sassが<code>vendor/bundle</code>配下にインストールされて、gruntから参照出来ずにビルドがこける。最初、<code>--binstub</code>をつけて解決したかと思ったが、これを付けて解決したというよりは、<code>--deployment</code>が外れたせいだった。</p><h2 id=所感>所感</h2><p>今回やったGruntによるsassのコンパイルは正直な所微妙なやり方で、middlemanはcompassの機能を含んでいるので、middleman + Gruntの組み合わせがそもそもという話がある。Sassのコンパイルをするだけならmiddleman + rakeのほうが自然ぽい。</p><p>ジェネレータとしてのmiddlemanはjekyllと似ている。ブログモードとかもあったり、初期設定がjekyllより気が利いているかもしれない。あと、本来の目的であるTravisからの<code>gh-pages</code>ブランチへの<code>git push</code>は、middlemanなしでももちろん出来る。</p><p>尚、身長が伸びるかどうかは個人差があります。</p><h2 id=参考>参考</h2><ul><li><a href=https://help.github.com/articles/creating-an-access-token-for-command-line-use>Creating an access token for command-line use</a></li><li><a href=http://tricknotes.hateblo.jp/entry/2013/06/17/020229>Middleman で作った web サイトを Travis + GitHub pages でお手軽に運用する</a></li></ul><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2013/github-travis-ci/>👈 Travis CIを使ったGitHubプロジェクトの継続的インテグレーション</a>
+<a href=/posts/2013/gist-revealjs/>gist + Reveal.js = GistReveal 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

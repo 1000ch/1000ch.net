@@ -1,0 +1,96 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Web App Manifest - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='Web App Manifestは、Webページのメタ情報をJSON形式でフォーマット化したものである。
+Web App Manifestのサンプル 次のようなJSONファイルを用意して、<link rel="manifest" href="manigest.json">な感じでHTMLから参照する。<link>で指定するのでルートになくても動きそうだが、ファイルの性質的にルートに置いておきたい気持ちになる。
+{ "name": "Awesome Example App", "short_name": "Example App", "start_url": "index.html", "icons": [ { "src": "images/icon-144x144.png", "sizes": "144x144", "type": "image/png", "density": "3.0" }], "display": "standalone" } Webページの振る舞いを直接制御する機能は持ちあわせておらず、ブラウザがロードしたときにWeb App Manifestがあるとそれに基づいて機能を補助するような位置付け。
+具体的には、AndroidのChromeでWeb App Manifestが配信されているページを複数回訪問すると、バナーが表示されモバイルデスクトップへのインストールを促される。iOS Safariで実装が進んだ時にどのように機能するか不明だが、Progressive Web Appsの流れが進めば近い振る舞いが予想できる。が、Appleの場合はiOSのマーケットの事情もあると思うのでなんとも…。
+Web App Manifestに定義されている属性 dir: テキストの向きを表す属性。ltr（左から右）・rtl（右から左）・auto（自動判定）のいずれか lang: 日本語ならja、フランス語ならfrのようにページで使っている言語。値はTags for Identifying Languagesに準ずる name: Webアプリの名前 short_name: Webアプリの名前の短縮形 description: Webアプリの説明 scope: アプリケーションのコンテキストとなるページのURLスコープ。サブディレクトリなどを指定したい場合など icons: WebアプリのアイコンのサイトやURL。詳細を後述 display: Webアプリ起動時の表示モード。fullscreen・standalone・minimal-ui・browserのいずれか orientation: Webアプリ起動時の画面の向き。any・natural・landscape・portrait・portrait-primary・portrait-secondary・landscape-primary・landscape-secondaryのいずれか start_url: Webアプリ起動時のURL theme_color: Webアプリのテーマ色。実装に依ってブラウザUIに適用され、Chromeではアドレスバーに適用される模様 related_applications: 関連するアプリケーションのURL。詳細を後述 prefer_related_applications: related_applicationsで指定された関連するアプリケーションを推奨するか否か。true・falseのいずれか background_color: Webアプリの背景色。起動時のスプラッシュに使われたり、プレースホルダー色になったり icons インストールバナーなどに使われるアイコンを指定する。少なくとも 144x144のPNG がひとつ指定されている必要がある。某アプリでJPGだけをiconsに指定したところ、インストールバナーが表示されなかった。'><meta property="og:image" content="https://1000ch.net/./devtools.png"><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/web-app-manifest/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Web App Manifest"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/web-app-manifest/"><meta name=twitter:title content="Web App Manifest"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Web App Manifest</h1><p style=margin:0;text-align:right>Published at 2016-06-23</p><p><a href=https://developer.mozilla.org/ja/docs/Web/Manifest>Web App Manifest</a>は、Webページのメタ情報をJSON形式でフォーマット化したものである。</p><h2 id=web-app-manifestのサンプル>Web App Manifestのサンプル</h2><p>次のようなJSONファイルを用意して、<code>&lt;link rel="manifest" href="manigest.json"></code>な感じでHTMLから参照する。<code>&lt;link></code>で指定するのでルートになくても動きそうだが、ファイルの性質的にルートに置いておきたい気持ちになる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Awesome Example App&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;short_name&#34;</span>: <span style=color:#e6db74>&#34;Example App&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;start_url&#34;</span>: <span style=color:#e6db74>&#34;index.html&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;icons&#34;</span>: [ {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;images/icon-144x144.png&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;144x144&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;image/png&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;density&#34;</span>: <span style=color:#e6db74>&#34;3.0&#34;</span>
+</span></span><span style=display:flex><span>  }],
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;display&#34;</span>: <span style=color:#e6db74>&#34;standalone&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Webページの振る舞いを直接制御する機能は持ちあわせておらず、ブラウザがロードしたときにWeb App Manifestがあるとそれに基づいて機能を補助するような位置付け。</p><p>具体的には、AndroidのChromeでWeb App Manifestが配信されているページを複数回訪問すると、バナーが表示されモバイルデスクトップへのインストールを促される。iOS Safariで実装が進んだ時にどのように機能するか不明だが、Progressive Web Appsの流れが進めば近い振る舞いが予想できる。が、Appleの場合はiOSのマーケットの事情もあると思うのでなんとも…。</p><h2 id=web-app-manifestに定義されている属性>Web App Manifestに定義されている属性</h2><ul><li><code>dir</code>: テキストの向きを表す属性。<code>ltr</code>（左から右）・<code>rtl</code>（右から左）・<code>auto</code>（自動判定）のいずれか</li><li><code>lang</code>: 日本語なら<code>ja</code>、フランス語なら<code>fr</code>のようにページで使っている言語。値は<a href=https://tools.ietf.org/html/bcp47>Tags for Identifying Languages</a>に準ずる</li><li><code>name</code>: Webアプリの名前</li><li><code>short_name</code>: Webアプリの名前の短縮形</li><li><code>description</code>: Webアプリの説明</li><li><code>scope</code>: アプリケーションのコンテキストとなるページのURLスコープ。サブディレクトリなどを指定したい場合など</li><li><code>icons</code>: WebアプリのアイコンのサイトやURL。詳細を後述</li><li><code>display</code>: Webアプリ起動時の表示モード。<code>fullscreen</code>・<code>standalone</code>・<code>minimal-ui</code>・<code>browser</code>のいずれか</li><li><code>orientation</code>: Webアプリ起動時の画面の向き。<code>any</code>・<code>natural</code>・<code>landscape</code>・<code>portrait</code>・<code>portrait-primary</code>・<code>portrait-secondary</code>・<code>landscape-primary</code>・<code>landscape-secondary</code>のいずれか</li><li><code>start_url</code>: Webアプリ起動時のURL</li><li><code>theme_color</code>: Webアプリのテーマ色。実装に依ってブラウザUIに適用され、Chromeではアドレスバーに適用される模様</li><li><code>related_applications</code>: 関連するアプリケーションのURL。詳細を後述</li><li><code>prefer_related_applications</code>: <code>related_applications</code>で指定された関連するアプリケーションを推奨するか否か。<code>true</code>・<code>false</code>のいずれか</li><li><code>background_color</code>: Webアプリの背景色。起動時のスプラッシュに使われたり、プレースホルダー色になったり</li></ul><h3 id=icons><code>icons</code></h3><p>インストールバナーなどに使われるアイコンを指定する。少なくとも <strong>144x144のPNG</strong> がひとつ指定されている必要がある。某アプリでJPGだけを<code>icons</code>に指定したところ、インストールバナーが表示されなかった。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;icons&#34;</span>: [{
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;images/icon-144x144.png&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;144x144&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;image/png&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;density&#34;</span>: <span style=color:#e6db74>&#34;3.0&#34;</span>
+</span></span><span style=display:flex><span>  }]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=related_applications><code>related_applications</code></h3><p>ネイティブアプリがある場合に、Google PlayやiTunesのURLを指定しておくと促されたりする。<code>web</code>を指定すると、<code>start_url</code>にもとづいてインストールが行われる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;related_applications&#34;</span>: [{
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;platform&#34;</span>: <span style=color:#e6db74>&#34;web&#34;</span>
+</span></span><span style=display:flex><span>  }, {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;platform&#34;</span>: <span style=color:#e6db74>&#34;play&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://play.google.com/store/apps/details?id=com.example.app1&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;com.example.app1&#34;</span>
+</span></span><span style=display:flex><span>  }, {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;platform&#34;</span>: <span style=color:#e6db74>&#34;itunes&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://itunes.apple.com/app/example-app1/id123456789&#34;</span>
+</span></span><span style=display:flex><span>  }]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=web-app-manifestのデバッグ>Web App Manifestのデバッグ</h2><p>JSONがWeb App Manifestとして妥当かどうかは<a href=https://manifest-validator.appspot.com/>Web Manifest Validator</a>を使ってチェックできる。ファイルのアップロードでも、テキストのペーストでも、配信されているURLでもOK。</p><p>Webページで配信されているWeb App Manifestのデバッグには、DevToolsに搭載されているApplicationタブが便利で、ApplicationセクションのManifest項目に詳細が表示される。ホームスクリーンへの追加もここでエミュレートできる。</p><p><img src=./devtools.png alt></p><h2 id=参考資料>参考資料</h2><p>最後に、Totally Tooling Tipsでの紹介動画と<a href=https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android>Google Developersの記事</a>を。</p><iframe loading=lazy src=https://www.youtube.com/embed/yQhFmPExcbs title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2016/mac-apps/>👈 重用しているMacのアプリ</a>
+<a href=/posts/2016/optimize-image-on-workflow/>ワークフローにおける画像の最適化 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>

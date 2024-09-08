@@ -1,0 +1,130 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ - EagleLand</title>
+<link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/tools.css><link rel=stylesheet href=/css/generic.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/objects.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/trumps.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="先日の記事で、
+続き(?)はまた新年
+と、言ったばかりだけど、続きを。引き続きFirefox Nightlyで試していく。
+Default Parameters 関数の引数にデフォルト値を与えることが出来る。今まではこのような形で引数のチェックをする必要があった。
+function fn(arg1, arg2) { arg1 = arg1 || 0; arg2 = arg2 || 1; console.log('arg1 is ' + arg1); console.log('arg2 is ' + arg2); } fn(10); // arg1 is 10 // arg2 is 1 fn(undefined, 5); // arg1 is 0 // arg2 is 5 Default Parameterを使うと、
+function fn(arg1 = 0, arg2 = 1) { console.log('arg1 is ' + arg1); console.log('arg2 is ' + arg2); } fn(10); // arg1 is 10 // arg2 is 1 fn(undefined, 5); // arg1 is 0 // arg2 is 5 うーん、便利だ。が、厳密に言うと上下でやっていることは違っていて、例えば、nullを入れるとデフォルト値は代入されずに評価される。nullはnullという値なので当たり前といえばそれまでだけど、挙動を理解した上で使ったほうが良い。デフォルトパラメータの挙動はアレコレやってるみたいなのでこの先も要チェック。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/es6-features-2/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/es6-features-2/"><meta name=twitter:title content="ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~</h1><p style=margin:0;text-align:right>Published at 2013-12-27</p><p><a href=/posts/2013/es6-features-1.html>先日の記事</a>で、</p><blockquote><p>続き(?)はまた新年</p></blockquote><p>と、言ったばかりだけど、続きを。引き続き<a href=http://nightly.mozilla.org/>Firefox Nightly</a>で試していく。</p><h2 id=default-parameters>Default Parameters</h2><p>関数の引数にデフォルト値を与えることが出来る。今まではこのような形で引数のチェックをする必要があった。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn</span>(<span style=color:#a6e22e>arg1</span>, <span style=color:#a6e22e>arg2</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>arg1</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arg1</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>arg2</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arg2</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;arg1 is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>arg1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;arg2 is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>arg2</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#a6e22e>fn</span>(<span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// arg1 is 10
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// arg2 is 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>fn</span>(<span style=color:#66d9ef>undefined</span>, <span style=color:#ae81ff>5</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// arg1 is 0
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// arg2 is 5
+</span></span></span></code></pre></div><p>Default Parameterを使うと、</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn</span>(<span style=color:#a6e22e>arg1</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>arg2</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;arg1 is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>arg1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;arg2 is &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>arg2</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#a6e22e>fn</span>(<span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// arg1 is 10
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// arg2 is 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>fn</span>(<span style=color:#66d9ef>undefined</span>, <span style=color:#ae81ff>5</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// arg1 is 0
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// arg2 is 5
+</span></span></span></code></pre></div><p>うーん、便利だ。が、厳密に言うと上下でやっていることは違っていて、例えば、<code>null</code>を入れるとデフォルト値は代入されずに評価される。<code>null</code>は<code>null</code>という値なので当たり前といえばそれまでだけど、挙動を理解した上で使ったほうが良い。<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=781422">デフォルトパラメータの挙動はアレコレやってるみたい</a>なのでこの先も要チェック。</p><h2 id=rest-parameters>Rest Parameters</h2><p>今まで引数を可変長っぽく評価したい場合は<code>arguments</code>オブジェクトでやっていたが、Rest Parametersシンタックスを使うことで、引数を可変長で受け取ることが可能になる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>rest</span>(...<span style=color:#a6e22e>r</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>r</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#a6e22e>rest</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// [1, 2, 3]
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>rest</span>(<span style=color:#ae81ff>10</span>, <span style=color:#e6db74>&#39;foo&#39;</span>, [<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>20</span>]);
+</span></span><span style=display:flex><span><span style=color:#75715e>// [10, &#34;foo&#34;, Array[2]]
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>rest</span>(<span style=color:#e6db74>&#39;bar&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// [&#34;bar&#34;]
+</span></span></span></code></pre></div><p>色々気になったのが、この場合の<code>r</code>の型と何も渡さないケースだが、rは <strong>常に配列(Array LikeではなくArray)</strong> で、 <strong>パラメータを渡さない場合も長さ0の配列</strong> になった。また、Rest Parametersは引数の最後でなければならないという制約もある。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>rest</span>(...<span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>a</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>r</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#75715e>// SyntaxError: parameter after rest parameter
+</span></span></span></code></pre></div><p>上のように書くと、エラーが出る。以下の様な形ならOK。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>rest</span>(<span style=color:#a6e22e>a</span>, ...<span style=color:#a6e22e>r</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>r</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=array-spread>Array Spread</h2><p>Rest Parametersと同じように、代入時にも使用することができる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>array1</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>];
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>array2</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, ...<span style=color:#a6e22e>array1</span>];
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>array1</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// [1, 2, 7, 8, 9]
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn1</span>(...<span style=color:#a6e22e>r</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>r</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fn2</span>(...<span style=color:#a6e22e>g</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fn1</span>(<span style=color:#a6e22e>g</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>fn2</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>).<span style=color:#a6e22e>toString</span>());
+</span></span><span style=display:flex><span><span style=color:#75715e>// 1,2,3
+</span></span></span></code></pre></div><h2 id=変数の分割代入>変数の分割代入</h2><p>新しい変数代入の方法。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>var</span> [<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>] <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>];
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> {<span style=color:#a6e22e>y</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>year</span>, <span style=color:#a6e22e>m</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>month</span>} <span style=color:#f92672>=</span> {<span style=color:#a6e22e>y</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2013</span>, <span style=color:#a6e22e>m</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>12</span>};
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>a</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>b</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// 2
+</span></span></span></code></pre></div><p>左辺に配列・オブジェクトがあって違和感がある。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>array</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>];
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> [<span style=color:#a6e22e>c</span>, <span style=color:#a6e22e>d</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>array</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>c</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>d</span>);
+</span></span><span style=display:flex><span><span style=color:#75715e>// 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(Array.<span style=color:#a6e22e>isArray</span>(<span style=color:#a6e22e>array</span>));
+</span></span><span style=display:flex><span><span style=color:#75715e>// true
+</span></span></span></code></pre></div><p>右辺は配列ないしオブジェクトなので、左辺だけちょっと見慣れる必要がありそう（そんなに大げさでもないけど）。</p><h2 id=あと試したいやつ>あと試したいやつ</h2><ul><li><a href="http://wiki.ecmascript.org/doku.php?id=strawman:maximally_minimal_classes">class</a> - 個人的には待ち望んでる</li><li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:modules">Modules</a> - <strong>import</strong> と <code>&lt;module></code>のやつ</li><li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:quasis">Template Strings</a> - テンプレート</li></ul><p>プラットフォームが開発側でコントロール出来ないJavaScriptを進化させるのは難しいよなぁと、今更ながら思った。JavaもC#もRubyもPythonも、サーバーの環境で完結させることが出来るけど、JSはそうもいかない。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2013/es6-features-1/>👈 ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~</a>
+<a href=/posts/2014/frontrend-in-fukuoka/>Frontrend in Fukuokaでブラウザの仕組みとComputingについて話してきた 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+document.querySelector('.share button').addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>
