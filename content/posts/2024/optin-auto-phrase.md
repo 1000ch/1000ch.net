@@ -3,7 +3,7 @@ title: ダークモードの再実装と日本語のフレーズ改行
 date: 2024-03-28
 ---
 
-このブログでもダークモードを [`prefers-color-scheme` を使って Dark Mode に対応](/posts/2019/dark-mode.html) していたが、諸々の実装を見直すタイミングで削除してあった。今回は、デフォルトでシステムの設定を参照するようにし、ダークモードを優先したい場合はページ上部にあるチェックボックスを on にすると有効化される。
+このブログでもダークモードを [`prefers-color-scheme` を使って Dark Mode に対応](/posts/2019/dark-mode/) していたが、諸々の実装を見直すタイミングで削除してあった。今回は、デフォルトでシステムの設定を参照するようにし、ダークモードを優先したい場合はページ上部にあるチェックボックスを on にすると有効化される。
 
 そのトグル UI の実装は、何の変哲もない `<input type="checkbox>` かと思いきや、実は `<input type="checkbox" switch>` という新しい仕様で実装している。 [`switch` 属性は長らく GitHub での議論されているが](https://github.com/whatwg/html/issues/4180)、[Safari Technology Preview 185](https://www.webkit.org/blog/14885/release-notes-for-safari-technology-preview-185/) での実装を経て [Safari 17.4](https://webkit.org/blog/15063/webkit-features-in-safari-17-4/) に ship された。
 
