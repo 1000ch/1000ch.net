@@ -118,7 +118,7 @@ document:DOMNodeInserted
 window:DOMNodeInserted
 ```
 
-伝播している。[jQueryなどで実装されているイベントの`delegate`](/posts/2012/bind-and-delegate.html)は、このイベントの伝播する性質を利用して実装している。
+伝播している。[jQueryなどで実装されているイベントの`delegate`](/posts/2012/bind-and-delegate/)は、このイベントの伝播する性質を利用して実装している。
 
 ## でも結局・・・
 

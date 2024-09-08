@@ -34,7 +34,7 @@ stderr/stdout、もしくはビルドインのロガーを使うそう。
 
 ## そういえば
 
-動かないと騒いでいた[grunt-contrib-stylusの記事](/posts/2013/gruntjs-0-4.html)だけど、`grunt-contrib-stylus`の不具合だったらしい。
+動かないと騒いでいた[grunt-contrib-stylusの記事](/posts/2013/gruntjs-0-4/)だけど、`grunt-contrib-stylus`の不具合だったらしい。
 
 - [Gruntによる継続的なビルド環境を求めて 〜 package.jsonと0.4.0のこと](http://havelog.ayumusato.com/develop/others/e539-manage_grunt_build_env.html)
 

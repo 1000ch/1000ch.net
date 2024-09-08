@@ -78,7 +78,7 @@ $ csslint target.css
 $ npm install grunt-contrib-csslint --save-dev
 ```
 
-Gruntの使い方は[ここ](/posts/2013/gruntjs-0-4.html)とか[ここ](/posts/2012/gruntjs-introduction.html)を見ていただけると。こちらもlintの方針を指定することができるけど、デフォルトで注意される内容を直すだけでもだいぶキレイになる。
+Gruntの使い方は[ここ](/posts/2013/gruntjs-0-4/)とか[ここ](/posts/2012/gruntjs-introduction/)を見ていただけると。こちらもlintの方針を指定することができるけど、デフォルトで注意される内容を直すだけでもだいぶキレイになる。
 
 ## JSHint
 

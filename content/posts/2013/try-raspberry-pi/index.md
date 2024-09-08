@@ -7,7 +7,7 @@ date: 2013-12-02
 
 この前フロントエンドな同僚の方々にRaspberry Piをプレゼントしていただいたので、アレコレしてみたログを晒してみる。Frontrendのアドベントカレンダーに書いて良いのか些か迷ったものの、フロントエンドディベロッパーたるものLinuxやらJenkinsやらも触れるようにならないとね！
 
-![](/img/posts/2013/raspberry-pi/raspberrypi.jpg)
+![](./raspberrypi.jpg)
 
 そのまま飾っておくのは勿体無いので周辺機器買い揃えて動くようにしてみた。そもそもラズベリーパイとは、
 
@@ -93,7 +93,7 @@ Filesystem      Size   Used  Avail Capacity  iused    ifree %iused  Mounted on
 
 手元にあったHDMIでディスプレイに繋いで、USBキーボードも接続する。Raspberry Piには電源ボタンはなくて、前述のように給電を開始すると起動する。
 
-![](/img/posts/2013/raspberry-pi/raspbian-cli.jpg)
+![](./raspbian-cli.jpg)
 
 起動すると初期設定画面が表示されるので、キーボードで設定をしていく。項目もそんなに複雑ではない。やった設定は以下の通り。
 
@@ -150,8 +150,8 @@ $ startx
 
 ちょっと重たいけど、ブラウジングを出来るところまで確認した。`.deb`パッケージがメンテナンスされていないようで、Chromium古いけど。
 
-![](/img/posts/2013/raspberry-pi/raspbian-chromium-1.jpg)
-![](/img/posts/2013/raspberry-pi/raspbian-chromium-2.jpg)
+![](./raspbian-chromium-1.jpg)
+![](./raspbian-chromium-2.jpg)
 
 ## SSHの確認
 
@@ -173,7 +173,7 @@ $ sudo apt-get install jenkins
 
 時間かかったけど、インストール完了。Macから`[Raspberry PiのIPアドレス]:8080`にアクセスしてみると…
 
-![](/img/posts/2013/raspberry-pi/raspberrypi-jenkins.png)
+![](./raspberrypi-jenkins.png)
 
 OK!!!
 

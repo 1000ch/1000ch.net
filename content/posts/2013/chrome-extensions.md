@@ -3,7 +3,7 @@ title: ChromeのExtensionをウェブストアで公開した
 date: 2013-06-10
 ---
 
-[以前一度作った](/posts/2013/history-clear-chrome-extension.html)けど、新しく欲しい機能が出来たのでまた作った。ついでにChrome ウェブストアで公開した。
+[以前一度作った](/posts/2013/history-clear-chrome-extension/)けど、新しく欲しい機能が出来たのでまた作った。ついでにChrome ウェブストアで公開した。
 
 ## [OneClickClear](https://chrome.google.com/webstore/detail/oneclickclear/ohhopklkkjljpjhenigiablpgooanpjb)
 

@@ -5,7 +5,7 @@ date: 2013-01-11
 
 - [JQUERY 1.9 RC1 AND MIGRATE RC1 RELEASED](http://blog.jquery.com/2013/01/09/jquery-1-9-rc1-and-migrate-rc1-released/)
 
-jQuery1.9のリリース候補版ver1が公開された。[beta1の続き](/posts/2012/jQuery-1-9.html)ということで、懲りずに変更とか追っかけてみる。
+jQuery1.9のリリース候補版ver1が公開された。[beta1の続き](/posts/2012/jQuery-1-9/)ということで、懲りずに変更とか追っかけてみる。
 
 ## Sizzleが対応するCSS3セレクタが増えた
 

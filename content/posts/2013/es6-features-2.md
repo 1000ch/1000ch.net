@@ -3,7 +3,7 @@ title: ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Para
 date: 2013-12-27
 ---
 
-[先日の記事](/posts/2013/es6-features-1.html)で、
+[先日の記事](/posts/2013/es6-features-1/)で、
 
 > 続き(?)はまた新年
 

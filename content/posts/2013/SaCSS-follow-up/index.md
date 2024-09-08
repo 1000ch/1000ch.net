@@ -25,11 +25,11 @@ date: 2013-12-10
 
 滞在期間は2.5日ほどでしたが、かなり濃かった。参加者の皆さん、とても勉強熱心で温かい人達ばかりで、とても楽しかった。また機会があれば是非行きたい。札幌の皆さんありがとうございました！
 
-![](/img/posts/2013/frontrend-in-sapporo/sacss-sp4-portrait.jpg)
+![](./sacss-sp4-portrait.jpg)
 
 こちら石山さんよりの頂きものの絵。私は左下。平木さんは左上。何かがおかしい気もするけどよく似てる！
 
-![](/img/posts/2013/frontrend-in-sapporo/sacss-sp4-frontrend.jpg)
+![](./sacss-sp4-frontrend.jpg)
 
 こちら@nakajmgさんより。いい写真！
 
