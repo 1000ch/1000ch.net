@@ -110,11 +110,11 @@ Polymerのコアモジュールのように複数のWeb Componentsから依存�
 
 ### Before
 
-![](/img/posts/2014/reduce-http-requests-with-polymer-vulcanize/before.png)
+![](./before.png)
 
 ### After
 
-![](/img/posts/2014/reduce-http-requests-with-polymer-vulcanize/after.png)
+![](./after.png)
 
 ## 所感
 

@@ -4,7 +4,7 @@ date: 2014-07-31
 ---
 
 [第49回 HTML5とか勉強会 -HTML5最新情報 @Google I/O-](https://atnd.org/events/53826) でWeb ComponentsとPolymerについてお話してきました。
-[Google I/O 2014に参加した](/posts/2014/google-io-2014.html)ことは前段の通りで、
+[Google I/O 2014に参加した](/posts/2014/google-io-2014/)ことは前段の通りで、
 今回はEric Bidelmanによる、 [**Polymer and Web Components change everything you know about Web development**](http://youtu.be/8OJ7ih8EE7s) のフィードバックという形でセッションしました。
 会場はグリー@六本木ヒルズで開催されましたが、そのセミナールームをほぼ埋める300人超の参加者がいまして戦々恐々としてました。
 

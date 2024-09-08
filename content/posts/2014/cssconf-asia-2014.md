@@ -121,8 +121,8 @@ CSS3の3Dレンダラーを使ったパースペクティブについての話�
 [ギンペイさん](http://twitter.com/ginpei_jp)が海賊にビールを突然奪われたりするハプニングに見舞われながらも、他の国の人ともそれなりに交流を深めた。
 ネイティブスピーカーと話すのは、相手のストレスにもなっている気がして申し訳なかったが、英語が母国語じゃない人ならそれなりに会話出来るような気がした。
 
-- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day.html)
+- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day/)
 - CSSConf.Asia 2014
-- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st.html)
-- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd.html)
-- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore.html)
+- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st/)
+- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd/)
+- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore/)

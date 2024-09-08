@@ -185,11 +185,3 @@ Cのmain関数をGo側に移植しようと頑張ってた最中
 諦めた辺あたりから
 
 - [Cgo の基本的な使い方とポインタ周りのTips (Go v1.2)](http://r9y9.github.io/blog/2014/03/22/cgo-tips/)
-
-## 余談
-
-関係ないけど、Gopherって架空マスコットかと思ったら[実在する動物](http://ejje.weblio.jp/content/Gopher)なのね…知らなかった_:(´ཀ`」 ∠):
-
-![](/img/posts/2014/c-in-golang-with-cgo/gopher.jpg)
-
-> via https://www.flickr.com/photos/103509254@N05/14859452109

@@ -19,7 +19,7 @@ date: 2014-08-08
 
 **Preferences** (`cmd + ,`)を開いて、 **Updates** を選択すると、更新チェックするチャネルを選べるので、 **Canary Channel** を選択。
 
-![](/img/posts/2014/android-development-with-genymotion/android-studio-preferences-updates.png)
+![](./android-studio-preferences-updates.png)
 
 ## スタンドアロンなSDKを用意する
 
@@ -31,7 +31,7 @@ IDEにバンドルされているSDKでも基本的に問題は無さそうだ�
 
 Android StudioからスタンドアロンなSDKを参照するので、 **Project Structure** (`cmd + ;`)を開いて、 **SDK Location > Android SDK Location** にダウンロードして解凍したディレクトリルートを指定する。
 
-![](/img/posts/2014/android-development-with-genymotion/android-studio-project-structure.png)
+![](./android-studio-project-structure.png)
 
 ## エミュレータの設定
 
@@ -50,7 +50,7 @@ Android StudioからスタンドアロンなSDKを参照するので、 **Projec
 
 [ココ](https://cloud.genymotion.com/page/customer/login/)からサインアップすると、[ダウンロード画面](https://cloud.genymotion.com/page/launchpad/download/)からGenymotionアプリを入手することが出来る。アプリからは予め用意されたAndroidイメージを選択して入手することが可能で、セットアップが非常に簡単なうえ、 **Play** での起動も比較的軽快である。
 
-![](/img/posts/2014/android-development-with-genymotion/genymotion.png)
+![](./genymotion.png)
 
 GenymotionはVirtualBoxに依存しており、予めVirtualBoxをインストールしておく必要がある。Androidの仮想環境を用意するという意味では、改めて疑問を抱く余地はない。
 
@@ -58,10 +58,10 @@ GenymotionはVirtualBoxに依存しており、予めVirtualBoxをインスト�
 
 Genymotionで仮想デバイスを起動したあとは、 **Choose a running device** の一覧にその端末が追加されているはずなので、それを選ぶだけ。
 
-![](/img/posts/2014/android-development-with-genymotion/android-studio-choose-device.png)
+![](./android-studio-choose-device.png)
 
 つまり、Android StudioのAVDと同じように仮想デバイスを作るけど、動作としてはリモートデバッギングしているような感じになる。
 
-![](/img/posts/2014/android-development-with-genymotion/genymotion-nexus5.png)
+![](./genymotion-nexus5.png)
 
 以上、備忘録でした。

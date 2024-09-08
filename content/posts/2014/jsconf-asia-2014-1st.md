@@ -116,8 +116,8 @@ Airbnbの[Spike Brehm](http://twitter.com/spikebrehm)のセッション。英語
 
 プレゼンが終わった後のビールは格別だ。
 
-- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day.html)
-- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014.html)
+- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day/)
+- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014/)
 - JSConf.Asia 2014 1日目
-- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd.html)
-- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore.html)
+- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd/)
+- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore/)

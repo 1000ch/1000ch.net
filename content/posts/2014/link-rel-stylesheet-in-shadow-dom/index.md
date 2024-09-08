@@ -155,4 +155,4 @@ http://hiloki.github.io/su-shi/ あたりを見てみよう。こちらはPolyme
 
 [su-shi.html](https://github.com/hiloki/su-shi/blob/master/su-shi.html#l19)を見るとわかるように、`<template>`の中で`<link>`でCSSファイルを参照しているが、DevToolsでShadowDOMを見てみると、ご覧のようにCSSが`<style>`に展開されている。
 
-![](/img/posts/2014/link-rel-stylesheet-in-shadow-dom/su-shi.png)
+![](./su-shi.png)

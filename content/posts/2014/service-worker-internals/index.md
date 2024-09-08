@@ -190,7 +190,7 @@ $ python -m http.server
 
 URLに対し登録されたService Workerは、[`chrome://serviceworker-internals`](chrome://serviceworker-internals)でどういう状態かを確認することが出来る。 **Opens the DevTools window for ServiceWorker on start for debugging.** のチェックをオンにしておくと、Service Workerが登録された時にワーカースレッドに対するDevToolsが自動で開くのでデバッグ時はオンにしておくと良さげ。
 
-![Service Worker Internalsから起動するDevTools](/img/posts/2014/service-worker-internals/service-worker-devtools.png)
+![Service Worker Internalsから起動するDevTools](./service-worker-devtools.png)
 
 起動した[`localhost:8000`](http://localhost:8000)をCanaryで開くとService Workerの登録（`service-worker.js`）が`index.html`で行われる。Service WorkerのDevTools上でステップ実行をしていくと、各イベントハンドラが登録されていくのがわかる。最後まで実行されると、`index.html`に実行スレッドが戻ってくるのが確認出来る。
 

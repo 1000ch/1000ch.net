@@ -14,7 +14,7 @@ date: 2014-02-02
 福岡のWebコミュニティ[Fukuoka Frontend Frogs](http://frontendfrogs.org/)、[特定非営利活動法人 AIP](http://www.npo-aip.or.jp/)、弊社CyberAgentの福岡オフィスの皆さんのご協力の元、
 最終的には約200名という規模の勉強会でした。
 
-![](/img/posts/2014/frontrend-in-fukuoka/frontrend-in-fukuoka-all.jpg)
+![](./frontrend-in-fukuoka-all.jpg)
 
 ## 感想とか
 

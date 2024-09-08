@@ -6,7 +6,7 @@ date: 2014-10-07
 > https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html
 > これってなんで`doc.registerElement`になってるんだろう・・
 
-っていう質問をされたので調べたメモ。内容的には[HTML ImportsするHTMLのコンテキストになるdocument](/posts/2014/html-imports-context.html)の続きにあたるかも。
+っていう質問をされたので調べたメモ。内容的には[HTML ImportsするHTMLのコンテキストになるdocument](/posts/2014/html-imports-context/)の続きにあたるかも。
 
 ## registerElementの実行者とカスタム要素の登録先
 
@@ -49,13 +49,13 @@ date: 2014-10-07
 感覚の話はさておき、`<github-card>`を見る限り`registerElement()`したカスタム要素は引き継がれるよう。
 `sample-element.html`でわざとらしく宣言した`variable`という変数も見てみる。引き継がれないだろうけど、一応。
 
-![](/img/posts/2014/content-to-import-with-html-imports/console.png)
+![](./console.png)
 
 当然のごとく`variable`は`doc`にしかない。が、`document.createElement('sample-element')`は両方とも成功している。
 
 Firefox Nightly 35.0a1でも試してみた。
 
-![](/img/posts/2014/content-to-import-with-html-imports/scratchpad.png)
+![](./scratchpad.png)
 
 インポートしている`sample-element.html`内で宣言している`doc`が`undefined`になってしまっているんだけど、`doc`に登録している`<sample-element>`はちゃんとインポート先の`document`に登録されていた。
 
@@ -63,7 +63,7 @@ Firefox Nightly 35.0a1でも試してみた。
 
 `sample-element.html`内で`sample-element.css`をロードし、その`sample-element.html`をインポートするとインポート先で`sample-element.css`で定義しているクラスは利用出来る。
 
-![](/img/posts/2014/content-to-import-with-html-imports/stylesheet.png)
+![](./stylesheet.png)
 
 このとき、`sample-element.css`は`doc.styleSheets`にぶら下がっているけど、当然`document.styleSheets`には属さない。
 

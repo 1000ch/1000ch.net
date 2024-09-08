@@ -9,15 +9,15 @@ date: 2014-11-22
 
 各セッションの様子は、ざっくりであれば前日のポストを見てもらえれば大丈夫かと思う。
 
-- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014.html)
-- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st.html)
-- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd.html)
+- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014/)
+- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st/)
+- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd/)
 
 セッション動画は、後日YouTubeなどで公開されると思うので、公開され次第そちらへのリンクも追記する。
 
 CSSConfもJSConfも、良かった。技術の先端を取り扱っているというよりは、各シーンにおけるWebの立ち振舞のようなセッションだった。最先端技術のキャッチアップなら[Chrome Dev Summit](https://developer.chrome.com/devsummit/)、パフォーマンスに関することなら[Velocity](http://velocityconf.com/)、プラットフォーム云々なら[Fluent](http://fluentconf.com)に参加するのが良いのだろう。カンファレンス毎のコンセプトがあるんだなというのを体感した。
 
-[日本で開催されないかなと初日に呟いた](/posts/2014/singapore-the-1st-day.html)が、同じアジアの日本で開催するには何が障壁になるのだろう。
+[日本で開催されないかなと初日に呟いた](/posts/2014/singapore-the-1st-day/)が、同じアジアの日本で開催するには何が障壁になるのだろう。
 
 アクセス的な話は飛行機が前提になると思うので、マニラ（JSConf.Asia 2013）だろうとシンガポールだろうと、そして日本だろうと差はないような気がしている。幸い、日本は地下鉄も充実しているし。
 
@@ -66,8 +66,8 @@ Google I/Oの時はスピーカーもスタッフも、何から何までネイ�
 
 <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="4" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://instagram.com/p/vss-nghpxE/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_top">何か降臨しそう</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A photo posted by 1000ch (@1000ch) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2014-11-22T10:22:09+00:00">Nov 11, 2014 at 2:22am PST</time></p></div></blockquote>
 
-- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day.html)
-- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014.html)
-- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st.html)
-- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd.html)
+- [シンガポール遠征初日](/posts/2014/singapore-the-1st-day/)
+- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014/)
+- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st/)
+- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd/)
 - JSConf.Asia 2014を振り返って

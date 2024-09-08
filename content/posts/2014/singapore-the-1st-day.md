@@ -9,7 +9,7 @@ date: 2014-11-18
 
 ## JSConf.AsiaとCSSConf.Asiaと、待ち望まれる日本版
 
-海外遠征経験は今年の夏に[Google I/O 2014に参加した](/posts/2014/google-io-2014.html)のみで、今回は2度目になる。その時にはアメリカだったので、次は違う場所にも行ってみたいと思っていたこともあり（サンフランシスコは治安的問題で怖かったのもあるが）、JSConf.AsiaとCSSConf.Asiaに参加する運びとなった。
+海外遠征経験は今年の夏に[Google I/O 2014に参加した](/posts/2014/google-io-2014/)のみで、今回は2度目になる。その時にはアメリカだったので、次は違う場所にも行ってみたいと思っていたこともあり（サンフランシスコは治安的問題で怖かったのもあるが）、JSConf.AsiaとCSSConf.Asiaに参加する運びとなった。
 
 JSConf.AsiaとCSSConf.Asiaの立て付けについての詳しいところはよくわかっていない。[JSConf](http://jsconf.com/)を見る限りは、フランチャイズのようなものではあるようだ。
 
@@ -80,7 +80,7 @@ Marina Bay SandsからGardens by the Bayという植物園が望める。
 初日おしまい。
 
 - シンガポール遠征初日
-- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014.html)
-- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st.html)
-- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd.html)
-- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore.html)
+- [CSSConf.Asia 2014](/posts/2014/cssconf-asia-2014/)
+- [JSConf.Asia 2014 1日目](/posts/2014/jsconf-asia-2014-1st/)
+- [JSConf.Asia 2014 2日目](/posts/2014/jsconf-asia-2014-2nd/)
+- [JSConf.Asia 2014を振り返って](/posts/2014/look-back-in-singapore/)

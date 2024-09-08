@@ -3,7 +3,7 @@ title: 画像の最適化をCLIだけで行うgrunt-imageを作った
 date: 2014-02-03
 ---
 
-Webにおける画像については[以前記事にした](/posts/2013/web-image-optimization.html)が、
+Webにおける画像については[以前記事にした](/posts/2013/web-image-optimization/)が、
 そのフローをより良くするべく最近gruntのモジュールを作ったのでその話を。
 
 ## 前置き
