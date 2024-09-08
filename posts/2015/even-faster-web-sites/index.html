@@ -6,10 +6,9 @@ Cometというワードを初めて目にした気がする。Ajaxとロング�
 感想 高速化アプローチとして、現在のWeb技術事情と大きく差分が出てくるのはやはりネットワーク部分かと思うが、それについてはハイパフォーマンスブラウザネットワーキングを見てもらうと良い。とは言え、本書に書いてある内容も、HTTP1.1の特性を考慮したアプローチとして理解して損はない内容ではある。
 Web開発に関わる人なら、職種を問わず読んでおきたい一冊。
 Steve Souders (著), 武舎 広幸 (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳) "><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/even-faster-web-sites/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="続・ハイパフォーマンスWebサイト"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/even-faster-web-sites/"><meta name=twitter:title content="続・ハイパフォーマンスWebサイト"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>続・ハイパフォーマンスWebサイト</h1><p style=margin:0;text-align:right>Published at 2015-06-28</p><p>読みなおす機会があったので、簡単だけどレビューを書いてみる。</p><p><img src=./cover.jpg alt=続・ハイパフォーマンスWebサイト></p><h2 id=目次>目次</h2><ol><li>Ajaxアプリケーションとパフォーマンス</li><li>応答性の高いアプリケーション</li><li>初期ロードの分割</li><li>実行をブロックしないスクリプトのロード</li><li>非同期スクリプトの組み合わせ</li><li>インラインスクリプトの適切な位置</li><li>効率的なJavaScriptコード</li><li>Comet</li><li>gzip圧縮再考</li><li>画像の最適化</li><li>主ドメインの細分化</li><li>ドキュメントのフラッシュ</li><li>iframeの取り扱い</li><li>CSSセレクタの単純化</li><li>付録A パフォーマンス関連ツール</li><li>付録B Yahoo! JAPANが実践するWebの高速化</li><li>付録C ブラウザの最新技術を活用したWebの高速化</li><li>付録D Web高速化に対するGoogleのアプローチ</li></ol><p>2010年の4月に発売された本なので、今と比較するのも微妙な話だが気になる点が少々あったものの、基本的な高速化理論については広い範囲をカバーしていて染み染み良書だなと思い知らされる。</p><p><a href=https://ja.wikipedia.org/wiki/Comet>Comet</a>というワードを初めて目にした気がする。Ajaxとロングポーリングを使ってリクエストのオーバーヘッドを感じにくくするアプローチのようだ。恐らくWebSocketの台頭によって去っていった技術だろう。今後はWebSocketだけでなく、httpでも双方向通信は実現していく。</p><p>例によって、画像の最適化の章を興味深く見ていたわけだが、Stoyanが担当した章であることを初めて知ったのだった。Stoyanこそ、私が画像に取り組むきっかけになった<a href=http://article.enja.io/articles/give-png-a-chance.html>Give PNG a chance</a>という記事を書いた人である。また、JPEGについてはファイルサイズの観点からプログレッシブではなくベースラインでの保存を推奨していた。今どきはATFにおける体感速度を優先してプログレッシブが主流になっているので、Web高速化分野の進化を感じる部分でもある。</p><h2 id=感想>感想</h2><p>高速化アプローチとして、現在のWeb技術事情と大きく差分が出てくるのはやはりネットワーク部分かと思うが、それについては<a href=/posts/2014/high-performance-browser-networking.html>ハイパフォーマンスブラウザネットワーキング</a>を見てもらうと良い。とは言え、本書に書いてある内容も、HTTP1.1の特性を考慮したアプローチとして理解して損はない内容ではある。</p><p>Web開発に関わる人なら、職種を問わず読んでおきたい一冊。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51GQNCMJsZL._SX383_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4873114462/ tag=1000ch-22 title="続・ハイパフォーマンスWebサイト ―ウェブ高速化のベストプラクティス">Steve Souders (著), 武舎 広幸 (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)</affiliate-link></p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2015/input-suggest/>👈 inputやtextareaの入力補助</a>
-<a href=/posts/2015/philips-sonicare/>PHILIPS ソニッケアーで快適歯磨き生活 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>続・ハイパフォーマンスWebサイト</h1><p style=margin:0;text-align:right>Published at 2015-06-28</p><p>読みなおす機会があったので、簡単だけどレビューを書いてみる。</p><p><img src=./cover.jpg alt=続・ハイパフォーマンスWebサイト></p><h2 id=目次>目次</h2><ol><li>Ajaxアプリケーションとパフォーマンス</li><li>応答性の高いアプリケーション</li><li>初期ロードの分割</li><li>実行をブロックしないスクリプトのロード</li><li>非同期スクリプトの組み合わせ</li><li>インラインスクリプトの適切な位置</li><li>効率的なJavaScriptコード</li><li>Comet</li><li>gzip圧縮再考</li><li>画像の最適化</li><li>主ドメインの細分化</li><li>ドキュメントのフラッシュ</li><li>iframeの取り扱い</li><li>CSSセレクタの単純化</li><li>付録A パフォーマンス関連ツール</li><li>付録B Yahoo! JAPANが実践するWebの高速化</li><li>付録C ブラウザの最新技術を活用したWebの高速化</li><li>付録D Web高速化に対するGoogleのアプローチ</li></ol><p>2010年の4月に発売された本なので、今と比較するのも微妙な話だが気になる点が少々あったものの、基本的な高速化理論については広い範囲をカバーしていて染み染み良書だなと思い知らされる。</p><p><a href=https://ja.wikipedia.org/wiki/Comet>Comet</a>というワードを初めて目にした気がする。Ajaxとロングポーリングを使ってリクエストのオーバーヘッドを感じにくくするアプローチのようだ。恐らくWebSocketの台頭によって去っていった技術だろう。今後はWebSocketだけでなく、httpでも双方向通信は実現していく。</p><p>例によって、画像の最適化の章を興味深く見ていたわけだが、Stoyanが担当した章であることを初めて知ったのだった。Stoyanこそ、私が画像に取り組むきっかけになった<a href=http://article.enja.io/articles/give-png-a-chance.html>Give PNG a chance</a>という記事を書いた人である。また、JPEGについてはファイルサイズの観点からプログレッシブではなくベースラインでの保存を推奨していた。今どきはATFにおける体感速度を優先してプログレッシブが主流になっているので、Web高速化分野の進化を感じる部分でもある。</p><h2 id=感想>感想</h2><p>高速化アプローチとして、現在のWeb技術事情と大きく差分が出てくるのはやはりネットワーク部分かと思うが、それについては<a href=/posts/2014/high-performance-browser-networking.html>ハイパフォーマンスブラウザネットワーキング</a>を見てもらうと良い。とは言え、本書に書いてある内容も、HTTP1.1の特性を考慮したアプローチとして理解して損はない内容ではある。</p><p>Web開発に関わる人なら、職種を問わず読んでおきたい一冊。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51GQNCMJsZL._SX383_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4873114462/ tag=1000ch-22 title="続・ハイパフォーマンスWebサイト ―ウェブ高速化のベストプラクティス">Steve Souders (著), 武舎 広幸 (翻訳), 福地 太郎 (翻訳), 武舎 るみ (翻訳)</affiliate-link></p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2015/input-suggest/>👈 inputやtextareaの入力補助</a></div><div><a href=/posts/2015/philips-sonicare/>PHILIPS ソニッケアーで快適歯磨き生活 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -26,7 +25,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -34,7 +33,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -42,7 +41,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

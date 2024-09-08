@@ -9,7 +9,7 @@ Atomで開いているワークスペースのプラグインをロードする 
 textlintが配置されているパスにあるプラグインを自動でロードする textlintコマンドを実行しているパスの.textlintrcを読み込んで実施するルールを選ぶ のようになっている。プロジェクトディレクトリで各種コマンドを実行したりGulpのプラグインを使う場合は、これで何の問題も無いがAtomのプラグインを作ろうとすると
 AtomがバンドルしているNode.jsの実行パス（/Applications/Atom.app/Contents/Resources/app.asar）にtextlintを配置する Atomで開いているディレクトリにあるプラグインを自動でロードする Atomで開いているディレクトリにある.textlintrcを自動でロードする という振る舞いを実装しなければならなそう。IssueやらPull Request投げたらazuさんが光速で対応してくれた。
 feat(engine): add TextLintEngine#loadRule · azu/textlint@b23a91e resolve path with context if passed · azu/textlint@901fabe setRulesBaseDirectory() and addRule() #23 '><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/linter-textlint/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="textlintのAtomプラグイン"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/linter-textlint/"><meta name=twitter:title content="textlintのAtomプラグイン"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>textlintのAtomプラグイン</h1><p style=margin:0;text-align:right>Published at 2015-09-20</p><p><a href=https://github.com/azu/textlint>azu/textlint</a>というテキストのlintエンジンがある。Node.js製なのでCLI周りは既にあるが、エディタでもできたら良いなと思って<a href=https://github.com/1000ch/linter-textlint>Atomのプラグインを作った</a>。TextLintについては「<a href=http://efcl.info/2015/09/10/introduce-textlint/>textlintで日本語の文章をチェックする</a>」という記事を見てもらえると良い。</p><h2 id=プラグインのインストール>プラグインのインストール</h2><p><code>apm</code>コマンドでインストール、または <strong>Settings</strong> → <strong>Install</strong> から <a href=https://atom.io/packages/linter-textlint><strong>linter-textlint</strong></a> で検索してもらうと出てくる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ apm install linter-textlint
 </span></span></code></pre></div><h2 id=使い方>使い方</h2><p>Atomで開くプロジェクトに<code>.textlintrc</code>を配置し、プラグインやらオリジナルのルールを配置する。</p><p>例えば<a href=https://github.com/azu/textlint-rule-max-ten>textlint-rule-max-ten</a>という一文に句点を3つ以上入れるなよというルールを使う場合、プロジェクトディレクトリで<code>npm install [--save] textlint-rule-max-ten</code>を実行し、<code>node_modules</code>配下にルールをインストールする。次に<code>.textlintrc</code>を以下のように記述し、<code>max-ten</code>ルールを有効にする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
@@ -17,8 +17,7 @@ feat(engine): add TextLintEngine#loadRule · azu/textlint@b23a91e resolve path w
 </span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;max-ten&#34;</span>: <span style=color:#66d9ef>true</span>
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>あとは、マークダウン形式を含めたプレーンテキストを開くだけ。</p><p><img src=./atom.png alt></p><p>このようにチェックしてくれる。</p><h2 id=atomで開いているワークスペースのプラグインをロードする>Atomで開いているワークスペースのプラグインをロードする</h2><p>textlintの基本的な作りとして、</p><ol><li>textlintが配置されているパスにあるプラグインを自動でロードする</li><li>textlintコマンドを実行しているパスの<code>.textlintrc</code>を読み込んで実施するルールを選ぶ</li></ol><p>のようになっている。プロジェクトディレクトリで各種コマンドを実行したり<a href=http://github.com/nakajmg/gulp-textlint>Gulpのプラグイン</a>を使う場合は、これで何の問題も無いがAtomのプラグインを作ろうとすると</p><ul><li>AtomがバンドルしているNode.jsの実行パス（<code>/Applications/Atom.app/Contents/Resources/app.asar</code>）にtextlintを配置する</li><li>Atomで開いているディレクトリにあるプラグインを自動でロードする</li><li>Atomで開いているディレクトリにある<code>.textlintrc</code>を自動でロードする</li></ul><p>という振る舞いを実装しなければならなそう。IssueやらPull Request投げたらazuさんが光速で対応してくれた。</p><ul><li><a href=https://github.com/azu/textlint/commit/b23a91e8aca3b2caf085faefbf1bd90d22d2f4fe>feat(engine): add <code>TextLintEngine#loadRule</code> · azu/textlint@b23a91e</a></li><li><a href=https://github.com/azu/textlint/commit/901fabe26158f0ca1fae53d01a8a3695a4a1e68e>resolve path with context if passed · azu/textlint@901fabe</a></li><li><a href=https://github.com/azu/textlint/pull/23>setRulesBaseDirectory() and addRule() #23</a></li></ul><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2015/docker-introduction/>👈 Docker事始め作業ログ</a>
-<a href=/posts/2015/update-mobile-phone/>docomoからみおふぉんへ、iPhone 5sからiPhone 6sへ 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><p>あとは、マークダウン形式を含めたプレーンテキストを開くだけ。</p><p><img src=./atom.png alt></p><p>このようにチェックしてくれる。</p><h2 id=atomで開いているワークスペースのプラグインをロードする>Atomで開いているワークスペースのプラグインをロードする</h2><p>textlintの基本的な作りとして、</p><ol><li>textlintが配置されているパスにあるプラグインを自動でロードする</li><li>textlintコマンドを実行しているパスの<code>.textlintrc</code>を読み込んで実施するルールを選ぶ</li></ol><p>のようになっている。プロジェクトディレクトリで各種コマンドを実行したり<a href=http://github.com/nakajmg/gulp-textlint>Gulpのプラグイン</a>を使う場合は、これで何の問題も無いがAtomのプラグインを作ろうとすると</p><ul><li>AtomがバンドルしているNode.jsの実行パス（<code>/Applications/Atom.app/Contents/Resources/app.asar</code>）にtextlintを配置する</li><li>Atomで開いているディレクトリにあるプラグインを自動でロードする</li><li>Atomで開いているディレクトリにある<code>.textlintrc</code>を自動でロードする</li></ul><p>という振る舞いを実装しなければならなそう。IssueやらPull Request投げたらazuさんが光速で対応してくれた。</p><ul><li><a href=https://github.com/azu/textlint/commit/b23a91e8aca3b2caf085faefbf1bd90d22d2f4fe>feat(engine): add <code>TextLintEngine#loadRule</code> · azu/textlint@b23a91e</a></li><li><a href=https://github.com/azu/textlint/commit/901fabe26158f0ca1fae53d01a8a3695a4a1e68e>resolve path with context if passed · azu/textlint@901fabe</a></li><li><a href=https://github.com/azu/textlint/pull/23>setRulesBaseDirectory() and addRule() #23</a></li></ul><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2015/docker-introduction/>👈 Docker事始め作業ログ</a></div><div><a href=/posts/2015/update-mobile-phone/>docomoからみおふぉんへ、iPhone 5sからiPhone 6sへ 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -35,7 +34,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -43,7 +42,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -51,7 +50,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

@@ -10,7 +10,7 @@ Re-designed x-notification landing page with Polymer including Paper Elements. h
 &mdash; 1000ch (@1000ch_en) 2014, 7月 2 x-notification自体はピュアなWeb Componentsだけど、デモ用にx-notification-editorというPolymerを使ったWeb Componentsを作った。 x-notification-editor内にx-notificationを内包し、PaperElementsを駆使して動的にx-notificationの属性値をいじれるようにしている。
 http://1000ch.github.io/x-notification/ - デモページ https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html - x-notification-editor要素 Customize Example の所にソースコードを表示するようにしてあって、 そこはPolymerが提供している2-way bindingをたっぷり使っている。これは便利だと思った。
 CustomElements.io You can find x-notification on http://t."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/x-notification/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ブラウザのNotification APIをWeb Components化した"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/x-notification/"><meta name=twitter:title content="ブラウザのNotification APIをWeb Components化した"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ブラウザのNotification APIをWeb Components化した</h1><p style=margin:0;text-align:right>Published at 2014-07-15</p><p>巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。
 XMLHttpRequest部分を抽象化している<a href=https://github.com/Polymer/core-ajax><code>core-ajax</code></a>とか、<a href=https://github.com/Polymer/core-localstorage><code>core-localstorage</code></a>とか。
@@ -27,8 +27,7 @@ HTMLImportやら<code>Document#registerElement()</code>やら、Web Components�
 <code>x-notification-editor</code>内に<code>x-notification</code>を内包し、PaperElementsを駆使して動的に<code>x-notification</code>の属性値をいじれるようにしている。</p><ul><li><a href=http://1000ch.github.io/x-notification/>http://1000ch.github.io/x-notification/</a> - デモページ</li><li><a href=https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html>https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html</a> - x-notification-editor要素</li></ul><p><strong>Customize Example</strong> の所にソースコードを表示するようにしてあって、
 そこはPolymerが提供している2-way bindingをたっぷり使っている。これは便利だと思った。</p><h2 id=customelementsiohttpcustomelementsio><a href=http://customelements.io/>CustomElements.io</a></h2><blockquote class=twitter-tweet lang=ja><p>You can find x-notification on <a href=http://t.co/PbWp0Gxp0a>http://t.co/PbWp0Gxp0a</a> <a href="https://twitter.com/hashtag/WebComponents?src=hash">#WebComponents</a> <a href="https://twitter.com/hashtag/Notification?src=hash">#Notification</a> <a href="https://twitter.com/hashtag/CustomElements?src=hash">#CustomElements</a></p>&mdash; 1000ch (@1000ch_en) <a href=https://twitter.com/1000ch_en/statuses/485281852144381954>2014, 7月 5</a></blockquote><p>CustomElements.ioはBowerで登録されているWeb Componentsのギャラリーサイト。
 サイトの上部にあたかも登録フォームがあるのでここから申請するのかと思ったら、
-<code>bower.json</code>の<code>keywords</code>に <strong>web-components</strong> が含まれていると自動で追加されるそう。</p><ul><li><a href=https://github.com/webcomponents/customelements.io/issues/237>https://github.com/webcomponents/customelements.io/issues/237</a></li></ul><h2 id=参考資料>参考資料</h2><ul><li><a href=http://www.w3.org/TR/notifications/>Web Notifications</a></li><li><a href=https://developer.mozilla.org/ja/docs/Web/API/notification>Notification - Web API Interfaces | MDN</a></li><li><a href=http://www.html5rocks.com/en/tutorials/notifications/quick/>Using the Notifications API</a></li></ul><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2014/google-io-2014/>👈 Google I/O 2014</a>
-<a href=/posts/2014/html5-and-other-vol49/>HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+<code>bower.json</code>の<code>keywords</code>に <strong>web-components</strong> が含まれていると自動で追加されるそう。</p><ul><li><a href=https://github.com/webcomponents/customelements.io/issues/237>https://github.com/webcomponents/customelements.io/issues/237</a></li></ul><h2 id=参考資料>参考資料</h2><ul><li><a href=http://www.w3.org/TR/notifications/>Web Notifications</a></li><li><a href=https://developer.mozilla.org/ja/docs/Web/API/notification>Notification - Web API Interfaces | MDN</a></li><li><a href=http://www.html5rocks.com/en/tutorials/notifications/quick/>Using the Notifications API</a></li></ul><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2014/google-io-2014/>👈 Google I/O 2014</a></div><div><a href=/posts/2014/html5-and-other-vol49/>HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -45,7 +44,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -53,7 +52,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -61,7 +60,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

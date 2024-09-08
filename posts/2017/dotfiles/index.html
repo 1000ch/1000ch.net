@@ -4,7 +4,7 @@ ghq: リモートリポジトリのローカルクローンをシンプルに管
 # Homebrewでghqをインストールする $ brew install ghq # リポジトリをクローン $ ghq get git@github.com:1000ch/grd.git $ ghq get 1000ch/grd # ghqでクローンしたリポジトリのリスト表示 $ ghq list -p 他にも機能はあるが、リポジトリのクローンやリスト表示を、カレントディレクトリを選ばずに実行できるだけでもありがたいツール。
 クローン先はデフォルトで ~/.ghq だが、 .gitconfig の [ghq] で指定できる。なので、 ~/dev にリポジトリをクローンしているのであれば git config --global ghq.root ~/dev を実行すればそのまま移行できるし、今の Go 環境をシームレスに使いたければ $GOPATH/src でも良さそう。
 [ghq] root = ~/dev ghqをpecoと連携する peco/peco は入力をインタラクティブにフィルタリングするツール。同種のツールで Python 製の mooz/percol があるが、peco は Go 製なので単一バイナリで動いてくれるのがありがたい。"><meta property="og:image" content="https://1000ch.net//img/posts/2017/dotfiles/ghq-peco.gif"><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/dotfiles/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ghqとpecoを使ったリポジトリの管理またはコマンドラインの話"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/dotfiles/"><meta name=twitter:title content="ghqとpecoを使ったリポジトリの管理またはコマンドラインの話"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ghqとpecoを使ったリポジトリの管理またはコマンドラインの話</h1><p style=margin:0;text-align:right>Published at 2017-05-23</p><p>ghqとpecoを使ったプロジェクト管理が便利なのは真新しくないが、コマンドラインを見られて質問されたこともあり、自分の運用方法などを記しておく。</p><ul><li><a href=http://motemen.hatenablog.com/entry/2014/06/01/introducing-ghq>ghq: リモートリポジトリのローカルクローンをシンプルに管理する - 詩と創作・思索のひろば</a></li><li><a href=http://webtech-walker.com/archive/2014/06/peco-ghq-gh-open.html>peco、ghq、gh-openの組み合わせが捗る - Webtech Walker</a></li></ul><h2 id=ghqを使ってgitプロジェクトを管理する>ghqを使ってgitプロジェクトを管理する</h2><p><a href=https://github.com/motemen/ghq>motemen/ghq</a> はクローンした git リポジトリを管理する Go 製のコマンドラインツール。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Homebrewでghqをインストールする</span>
 </span></span><span style=display:flex><span>$ brew install ghq
@@ -33,8 +33,7 @@ ghq: リモートリポジトリのローカルクローンをシンプルに管
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> sublime<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>  open -a Sublime<span style=color:#ae81ff>\ </span>Text <span style=color:#66d9ef>$(</span>get_target_repo $1<span style=color:#66d9ef>)</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><p>これで <code>sublime</code> だけを打ち込めば、ghq で一覧されるリポジトリを peco で絞りつつ、選択したリポジトリを Sublime Text で開くし、 <code>sublime .</code> を実行すればカレントディレクトリを Sublime Text で開く。</p><p>捗る。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2017/openfresh-viewport-observer/>👈 Intersection Observerを使った要素の出現を検出するReactコンポーネント</a>
-<a href=/posts/2017/speedindex-for-web-performance/>Speed IndexというWebパフォーマンスの指標 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><p>これで <code>sublime</code> だけを打ち込めば、ghq で一覧されるリポジトリを peco で絞りつつ、選択したリポジトリを Sublime Text で開くし、 <code>sublime .</code> を実行すればカレントディレクトリを Sublime Text で開く。</p><p>捗る。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2017/openfresh-viewport-observer/>👈 Intersection Observerを使った要素の出現を検出するReactコンポーネント</a></div><div><a href=/posts/2017/speedindex-for-web-performance/>Speed IndexというWebパフォーマンスの指標 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -51,7 +50,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -59,7 +58,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -67,7 +66,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

@@ -8,7 +8,7 @@ Pythonは、プロパティアクセスとかリテラル（配列・オブジ�
 // JavaScriptでのArrayとObject var array = [0, 1, 2]; var object = { key: 'value' }; // 出力 console.log(object.key); # PythonでのArrayとObject array = [0, 1, 2] object = { key: 'value' } # 出力 print(object.key); 言語レベルでインデントを強制されるので、実装がばらつかない。
 MongoDBへのアクセス MongoDBへのアクセスはpymongoで実装。MongoDBを使ったことはなかったが、ここに関してもあまり悩まず実装できた。ローカルでデバッグするときはHomebrewでインストールしたMongoDBをデーモン実行しておくのと、Herokuのときは環境変数からURLを得るようにする。
 # install mongodb $ brew install mongo # run mongo $ mongod # run application $ python run."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/flask-mongodb-polymer/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="PythonとMongoDBとPolymerでRSSリーダーを作った"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/flask-mongodb-polymer/"><meta name=twitter:title content="PythonとMongoDBとPolymerでRSSリーダーを作った"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>PythonとMongoDBとPolymerでRSSリーダーを作った</h1><p style=margin:0;text-align:right>Published at 2014-03-12</p><p>Pythonで何かアプリ書きたいなと思ってはいたので、<a href=http://cobra.herokuapp.com>RSSリーダー</a>を作った。フレームワークは薄いやつが良かったのでFlaskを、データはMongoDBに突っ込んでいる。</p><p>Flask + MongoDBのところまで実装して暫く放置していたけど、最近思いつきでPolymerをねじ込んだので記事にしてみる。</p><h2 id=やってること>やってること</h2><ul><li>スケジューラでopmlに登録してあるRSSから記事を取得しMongoDBに保存</li><li>トップページで50件ずつ記事の表示 & 非同期で50件づつ取得</li><li>購読しているRSSで表示する記事をフィルタ</li></ul><p><strong>Opml(XML)のパース→記事の取得</strong> に非常に時間が掛かるので、データストアに入れておいてそこから取得しないとRSSリーダーとして非実用的。この定期的な取得処理を<a href=https://addons.heroku.com/marketplace/scheduler>Heroku Scheduler</a>で実行している。あと遊び半分でNew Relicも入れてある。ここまで色々遊べて無料。Heroku良い。</p><p>最初は格納してあるデータを全件取得して表示していたが、50件ずつ表示にしたことで使い心地はやや下がった。Polymerを使いたかっただけ。</p><h2 id=pythonとflask>PythonとFlask</h2><p><a href=http://flask.pocoo.org/>Flask</a>は、軽量なWebアプリケーションフレームワーク。マイクロフレームワークの意味するところはシンプルなコアな機能と拡張性を持たせている点であり、それ自体にはデータベースレイヤへのアクセスモジュールなどはないが、様々な拡張モジュールが存在する。例えば、これについてはSQLAlchemyというORマッパーがある。<a href=http://methane.github.io/flask-handson/>日本語のハンズオン</a>と<a href=http://flask-docs-ja.readthedocs.org/>ドキュメント</a>も充実している。</p><p>Pythonは、プロパティアクセスとかリテラル（配列・オブジェクト）がJavaScriptとほぼ同じだし、JavaScriptやってる人ならあまり違和感なくやれるのではと思ったり。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// JavaScriptでのArrayとObject
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>array</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>];
@@ -78,8 +78,7 @@ MongoDBへのアクセス MongoDBへのアクセスはpymongoで実装。MongoDB
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>object</span> <span style=color:#f92672>=</span> {};
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>});
-</span></span></code></pre></div><ul><li><a href=http://www.polymer-project.org/docs/polymer/polymer.html#propertiesmethods>Adding public properties and methods</a></li></ul><h2 id=その他感想>その他感想</h2><p>Polymer要素が多めな割に、あまりスコープの恩恵は受けていない作りだが、普段触らない技術を試してみるのは良いもの。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2014/grunt-image/>👈 画像の最適化をCLIだけで行うgrunt-imageを作った</a>
-<a href=/posts/2014/english/>英語環境 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><ul><li><a href=http://www.polymer-project.org/docs/polymer/polymer.html#propertiesmethods>Adding public properties and methods</a></li></ul><h2 id=その他感想>その他感想</h2><p>Polymer要素が多めな割に、あまりスコープの恩恵は受けていない作りだが、普段触らない技術を試してみるのは良いもの。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2014/grunt-image/>👈 画像の最適化をCLIだけで行うgrunt-imageを作った</a></div><div><a href=/posts/2014/english/>英語環境 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -96,7 +95,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -104,7 +103,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -112,7 +111,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

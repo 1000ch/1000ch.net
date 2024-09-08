@@ -6,7 +6,7 @@ let letを使うことでブロックスコープの変数宣言が可能にな�
 まず、今までのvarを使ったパターン。（これだとそもそもlintで怒られるけど、挙動のテストということで。）
 var x = 1; if (true) { var x = 2; console.log('x is ' + x); // x is 2 } console.log('x is ' + x); // x is 2 このケースだと最初に宣言したxがif内で上書きされ、2回とも2が出力される。ここでletを使ってみる。
 let x = 1; if (true) { let x = 2; console.log('x is ' + x); // x is 2 } console."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/es6-features-1/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/es6-features-1/"><meta name=twitter:title content="ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ES6のシンタックスを予習復習(1) ~let, const, Arrow Function, Generators, for of~</h1><p style=margin:0;text-align:right>Published at 2013-12-26</p><p>ES6のフォローについては書こうとしていたものの後手に回っていて、ようやく書くに至る。SetやらMapやら、追加クラスのあたりは実装されても試そうとした時にそんなに障壁にならない気がしてるけど、<code>let</code>とか<code>const</code>、アローファンクション等々、シンタックスが関わる辺はつっかえ棒になりかねないので消化しておく。</p><h2 id=この段階での実装状況はnightly--canary>この段階での実装状況はNightly > Canary</h2><ul><li>Chrome Canary 34.0.1760.0</li><li>Firefox Nightly 29.0a1 (2013-12-25)</li></ul><p>この2つを<a href=http://kangax.github.io/es5-compat-table/es6/>ECMAScript 6 compatibility table</a>で比較するとNightlyのほうが先行実装は進んでいるのでNightlyでアレコレする。Canaryだと試したいシンタックス部分がまだ実装されていないので断念。</p><p>Canaryでデバッグしたい人はES6実装を有効にするフラグをたてる必要があるので、<code>chrome://flags</code>にアクセスして<code>#enable-javascript-harmony</code>でページを検索すると <strong>JavaScript の試験運用機能を有効にする</strong> という項目があるのでそれを有効にする。あとはDevTool開いてConsoleでいつも通り試せる。が、今回はFirefoxなのでScratchpadでやる。使い慣れてない…。</p><h2 id=let><code>let</code></h2><p><code>let</code>を使うことでブロックスコープの変数宣言が可能になる。</p><p>まず、今までの<code>var</code>を使ったパターン。（これだとそもそもlintで怒られるけど、挙動のテストということで。）</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
 </span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>true</span>) {
@@ -134,8 +134,7 @@ let x = 1; if (true) { let x = 2; console.log('x is ' + x); // x is 2 } console.
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>item</span>);
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span><span style=color:#75715e>// 10, 20, 30
-</span></span></span></code></pre></div><h2 id=所感>所感</h2><p>一番試したかったclassが未実装で書けなかった（ただの糖衣構文だが）。でも実装も色々と進んできているし、試すレベルでは色々と楽しめそうな予感。</p><p>ES6をES5にコンパイルしてくれる<a href=https://github.com/google/traceur-compiler>google / traceur-compiler</a>とかもあるが、プロダクトで <strong>「ES6をゴリゴリ使って後方互換にES5ソースを用意する」</strong> みたいなことをするのはちょっとだけ早いかなとは思った。</p><p>続き(?)はまた新年。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2013/sacss-follow-up/>👈 SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた</a>
-<a href=/posts/2013/es6-features-2/>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></span></code></pre></div><h2 id=所感>所感</h2><p>一番試したかったclassが未実装で書けなかった（ただの糖衣構文だが）。でも実装も色々と進んできているし、試すレベルでは色々と楽しめそうな予感。</p><p>ES6をES5にコンパイルしてくれる<a href=https://github.com/google/traceur-compiler>google / traceur-compiler</a>とかもあるが、プロダクトで <strong>「ES6をゴリゴリ使って後方互換にES5ソースを用意する」</strong> みたいなことをするのはちょっとだけ早いかなとは思った。</p><p>続き(?)はまた新年。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2013/sacss-follow-up/>👈 SaCSS SP4 Frontrend in Sapporoでリファクタリングについて話してきた</a></div><div><a href=/posts/2013/es6-features-2/>ES6のシンタックスを予習復習(2) ~Default Parameters, Rest Parameters, Array Spread, Destructuring~ 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -152,7 +151,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -160,7 +159,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -168,7 +167,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

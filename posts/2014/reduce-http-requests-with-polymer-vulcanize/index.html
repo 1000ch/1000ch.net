@@ -6,7 +6,7 @@ Concatenating Web Components with Vulcanize Polymer/vulcanize インストール
 # index.html内の<link rel=&#39;import&#39;>をアレコレしてbuild.htmlとして出力 $ vulcanize -o build.html index.html 実際にビルドされたリソースはインポートするHTMLを<div hidden></div>で挟んである以外は、結合だけされているような感じ。 HTML Importsの仕組みを考えれば、指定しているHTMLファイルを引っ張ってきてパースしているだけなので、直列に繋げた所で実行時に問題が起きないのも納得できる。 以下は、とある<y-elements>に依存している<x-element>のイメージ。
 <link rel="import" href="y-element.html"> <template id="x-element-template"> <x-element> <content></content> </x-element> </template> <script> //... </script> これをVulcanizeしてみると
 <div hidden> <template id="y-element-template"> <div> <content></content> </div> </template> <script> //.'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/reduce-http-requests-with-polymer-vulcanize/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Vulcanizeで減らすHTML ImportsのHTTPリクエスト"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/reduce-http-requests-with-polymer-vulcanize/"><meta name=twitter:title content="Vulcanizeで減らすHTML ImportsのHTTPリクエスト"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Vulcanizeで減らすHTML ImportsのHTTPリクエスト</h1><p style=margin:0;text-align:right>Published at 2014-09-05</p><p>Web Componentsの旨味はコンポーネントの再利用が出来る所にあるので、そのためにはそのリソースは断片化は避けられない。
 <code>&lt;x-element></code>を構成するリソースは<code>x-element.html</code>に集約し、使うときにはHTML Importsでロードする。
@@ -57,8 +57,7 @@ HTML Importsの仕組みを考えれば、指定しているHTMLファイルを�
 インポートをしているHTML（実際にカスタム要素を使っているHTML）そのもののビルドも出来るわけで、HTTPリクエストだけを考えればそれが一番良いかもしれない。
 でも、テンプレートエンジンを使ってたり、他のページに展開されたりすることを考えてみると、Web Componentsだけをまとめておくのがバランス良さそう。発想は外部CSSファイルの扱いと同じ。</p><p>ビルドして展開されたHTMLも圧縮したらいいんじゃねと思って今回はそれもやった。</p><ul><li><a href=https://github.com/Polymer/grunt-vulcanize>https://github.com/Polymer/grunt-vulcanize</a></li><li><a href=https://github.com/gruntjs/grunt-contrib-htmlmin>https://github.com/gruntjs/grunt-contrib-htmlmin</a><ul><li><a href=https://github.com/kangax/html-minifier>https://github.com/kangax/html-minifier</a></li></ul></li></ul><h2 id=最適化前後の例>最適化前後の例</h2><p>小さすぎて見えにくいですが、リクエストが8つほど削減出来た。ペイロードサイズがネックにならないとは言い切れないけど、用法用量を守れば効果的なよう。</p><h3 id=before>Before</h3><p><img src=./before.png alt></p><h3 id=after>After</h3><p><img src=./after.png alt></p><h2 id=所感>所感</h2><p>リソースの断片化によるHTTPリクエストの増加はVulcanizeで解決出来る。でも事前にビルドするということが前提になる。
 Web Componentsの謳い文句である <strong>「再利用」</strong> を考えれば、npmやbowerのようなパッケージマネージャを使って落とすのではなく、ネットワークからダイレクトにコンポーネントをロードしたいという発想も出てくる。
-それがorigamiのようなCDNで配信側でビルドされて返却されるようになるのか、はたまたHTTP2の普及で気にしなくなる時が来るのかわからないけど、それまではVulcanize使うと良さそう。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2014/html5-links-rel/>👈 linkのrelの種類と効能等</a>
-<a href=/posts/2014/philips-wide-display-23inch/>PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+それがorigamiのようなCDNで配信側でビルドされて返却されるようになるのか、はたまたHTTP2の普及で気にしなくなる時が来るのかわからないけど、それまではVulcanize使うと良さそう。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2014/html5-links-rel/>👈 linkのrelの種類と効能等</a></div><div><a href=/posts/2014/philips-wide-display-23inch/>PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -75,7 +74,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -83,7 +82,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -91,7 +90,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

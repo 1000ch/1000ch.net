@@ -6,10 +6,9 @@ WebPonizeという命名については、名詞に~izeという接尾語をつ�
 Cocoa + Swiftの情報がネット上に少ない MacのアプリはCocoaというフレームワークを使うのだけど、iOSのSDKやらに比べると圧倒的に記事の量が少なくて調べるのに苦労した。本家のドキュメントはあるもののコード例が少なくて試すことすら出来ないし、所々古かったりして辛い。Objective-Cでもいいんだけど、それすらない（あっても古いSDKの記事だったりする）。
 Xcodeが難しい 最初はSwiftでプログラムを書くことよりXcodeの操作が辛かった（特にAutoLayout周りとIBOutlet / IBAction周り）。GUIをエディタで作っていく作業は、WindowsのクライアントアプリをVisualStudio + C#で作った以来だけど、操作云々については慣れの問題だと思うので先程の問題と違ってどうにでもなる。
 App Storeに出す手順が難しい こちらも現在進行中で辛い問題で、解決出来ていない。実際、アプリの実装自体は2週間くらいでおおよそ終わっていたけど、いざストアに公開しようとすると、Developer登録とかアプリの認証情報とか、バンドルするバイナリにサンドボックス情報を追加するだとかで、色々難航している。iTunesコネクトがイマイチ分からない。さらに、これまたネット上に新しい情報が少なくて辛い。なので、App Storeへの公開は今暫くお待ちください。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/webponize/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="WebPonize"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/webponize/"><meta name=twitter:title content="WebPonize"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>WebPonize</h1><p style=margin:0;text-align:right>Published at 2015-03-11</p><p>最近はSwiftを書いている。</p><p>作っているのはMacアプリでWebPonizeというもの。名前で察しの人もいるかもしれないが、PNGとかJPEGといったフォーマットの画像をアプリにドラッグアンドドロップしてWebPに変換する、というシンプルなアプリ。Swiftの練習できればiOSでも良かったんだけど、こんなのあったら便利だなという妄想をしているとどうしてもディベロッパー向けのツールになる。</p><p>WebPonizeという命名については、名詞に~izeという接尾語をつけることで「〜らしくなる」のような形容詞になることをもじってWebP + nizeに。尚且つ、同僚のアメリカ人に発音を考慮してもらってWebPonizeになった。WebPはbを発音しないので、weapon（武器・兵器） + izeになることを想定。</p><p><img src=./webponize.jpg alt></p><p>見ての通り、<a href=https://imageoptim.com/>ImageOptim</a>の見た目を<del>パクって</del>踏襲している。</p><h2 id=cocoa--swiftの情報がネット上に少ない>Cocoa + Swiftの情報がネット上に少ない</h2><p>MacのアプリはCocoaというフレームワークを使うのだけど、iOSのSDKやらに比べると圧倒的に記事の量が少なくて調べるのに苦労した。本家のドキュメントはあるもののコード例が少なくて試すことすら出来ないし、所々古かったりして辛い。Objective-Cでもいいんだけど、それすらない（あっても古いSDKの記事だったりする）。</p><h2 id=xcodeが難しい>Xcodeが難しい</h2><p>最初はSwiftでプログラムを書くことよりXcodeの操作が辛かった（特にAutoLayout周りと<code>IBOutlet</code> / <code>IBAction</code>周り）。GUIをエディタで作っていく作業は、WindowsのクライアントアプリをVisualStudio + C#で作った以来だけど、操作云々については慣れの問題だと思うので先程の問題と違ってどうにでもなる。</p><h2 id=app-storeに出す手順が難しい>App Storeに出す手順が難しい</h2><p>こちらも現在進行中で辛い問題で、解決出来ていない。実際、アプリの実装自体は2週間くらいでおおよそ終わっていたけど、いざストアに公開しようとすると、Developer登録とかアプリの認証情報とか、バンドルするバイナリにサンドボックス情報を追加するだとかで、色々難航している。iTunesコネクトがイマイチ分からない。さらに、これまたネット上に新しい情報が少なくて辛い。なので、App Storeへの公開は今暫くお待ちください。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2015/url-opener/>👈 URL Opener</a>
-<a href=/posts/2015/bose-soundlink-mini/>BOSE SoundLink Mini 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>WebPonize</h1><p style=margin:0;text-align:right>Published at 2015-03-11</p><p>最近はSwiftを書いている。</p><p>作っているのはMacアプリでWebPonizeというもの。名前で察しの人もいるかもしれないが、PNGとかJPEGといったフォーマットの画像をアプリにドラッグアンドドロップしてWebPに変換する、というシンプルなアプリ。Swiftの練習できればiOSでも良かったんだけど、こんなのあったら便利だなという妄想をしているとどうしてもディベロッパー向けのツールになる。</p><p>WebPonizeという命名については、名詞に~izeという接尾語をつけることで「〜らしくなる」のような形容詞になることをもじってWebP + nizeに。尚且つ、同僚のアメリカ人に発音を考慮してもらってWebPonizeになった。WebPはbを発音しないので、weapon（武器・兵器） + izeになることを想定。</p><p><img src=./webponize.jpg alt></p><p>見ての通り、<a href=https://imageoptim.com/>ImageOptim</a>の見た目を<del>パクって</del>踏襲している。</p><h2 id=cocoa--swiftの情報がネット上に少ない>Cocoa + Swiftの情報がネット上に少ない</h2><p>MacのアプリはCocoaというフレームワークを使うのだけど、iOSのSDKやらに比べると圧倒的に記事の量が少なくて調べるのに苦労した。本家のドキュメントはあるもののコード例が少なくて試すことすら出来ないし、所々古かったりして辛い。Objective-Cでもいいんだけど、それすらない（あっても古いSDKの記事だったりする）。</p><h2 id=xcodeが難しい>Xcodeが難しい</h2><p>最初はSwiftでプログラムを書くことよりXcodeの操作が辛かった（特にAutoLayout周りと<code>IBOutlet</code> / <code>IBAction</code>周り）。GUIをエディタで作っていく作業は、WindowsのクライアントアプリをVisualStudio + C#で作った以来だけど、操作云々については慣れの問題だと思うので先程の問題と違ってどうにでもなる。</p><h2 id=app-storeに出す手順が難しい>App Storeに出す手順が難しい</h2><p>こちらも現在進行中で辛い問題で、解決出来ていない。実際、アプリの実装自体は2週間くらいでおおよそ終わっていたけど、いざストアに公開しようとすると、Developer登録とかアプリの認証情報とか、バンドルするバイナリにサンドボックス情報を追加するだとかで、色々難航している。iTunesコネクトがイマイチ分からない。さらに、これまたネット上に新しい情報が少なくて辛い。なので、App Storeへの公開は今暫くお待ちください。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2015/url-opener/>👈 URL Opener</a></div><div><a href=/posts/2015/bose-soundlink-mini/>BOSE SoundLink Mini 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -26,7 +25,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -34,7 +33,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -42,7 +41,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

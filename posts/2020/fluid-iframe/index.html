@@ -3,7 +3,7 @@
 <iframe> の親に、特定のクラスを付与した要素を必要とする 縦横比に応じた padding-top を用意し、付け替えを必要とする これを Web Components で実装して解決した。
 <fluid-iframe> 要素による単純化 <fluid-iframe> としてカスタム要素にして汎用化した。npm install fluid-iframe でもインストールできるが、直接 jsDeliver や unpkg などの CDN からモジュールスクリプトとしてインポートできる。あとは customElements.define() でカスタム要素として登録し、 <iframe> のように使うだけで良い。
 <fluid-iframe src="https://www.youtube.com/embed/EqNHSrHzSOU" title="Santa Tracker: Out Like A Light" aspect="16/9"> </fluid-iframe> <script type="module"> import FluidIframe from &#39;https://unpkg.com/fluid-iframe&#39;; customElements.define(&#39;fluid-iframe&#39;, FluidIframe); </script> <iframe is="fluid-iframe"> のように、<iframe> 要素の拡張として <iframe> 要素をフォールバックとして動作させたかったが、要素を親子関係にしないとレスポンシブを実現できないため、断念した。'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2020/fluid-iframe/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="続・レスポンシブなiframe"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2020/fluid-iframe/"><meta name=twitter:title content="続・レスポンシブなiframe"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>続・レスポンシブなiframe</h1><p style=margin:0;text-align:right>Published at 2020-01-03</p><p>縦横比を維持して親要素いっぱいに広がる <code>&lt;iframe></code> 要素の実現については、<a href=/posts/2017/responsive-iframe.html>レスポンシブな iframe</a> で解決している。このブログでも、YouTube などの動画を埋め込むことがあるので、この方法を使って対処してきたが、いくつか改善したいポイントがあった。</p><ol><li><code>&lt;iframe></code> の親に、特定のクラスを付与した要素を必要とする</li><li>縦横比に応じた <code>padding-top</code> を用意し、付け替えを必要とする</li></ol><p>これを Web Components で実装して解決した。</p><h2 id=fluid-iframe-要素による単純化><code>&lt;fluid-iframe></code> 要素による単純化</h2><p><a href=https://1000ch.github.io/fluid-iframe/><code>&lt;fluid-iframe></code></a> としてカスタム要素にして汎用化した。<code>npm install fluid-iframe</code> でもインストールできるが、直接 jsDeliver や unpkg などの CDN からモジュールスクリプトとしてインポートできる。あとは <code>customElements.define()</code> でカスタム要素として登録し、 <code>&lt;iframe></code> のように使うだけで良い。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>fluid-iframe</span>
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://www.youtube.com/embed/EqNHSrHzSOU&#34;</span>
@@ -16,8 +16,7 @@
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#a6e22e>customElements</span>.<span style=color:#a6e22e>define</span>(<span style=color:#e6db74>&#39;fluid-iframe&#39;</span>, <span style=color:#a6e22e>FluidIframe</span>);
 </span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
-</span></span></code></pre></div><p><code>&lt;iframe is="fluid-iframe"></code> のように、<code>&lt;iframe></code> 要素の拡張として <code>&lt;iframe></code> 要素をフォールバックとして動作させたかったが、要素を親子関係にしないとレスポンシブを実現できないため、断念した。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2019/english/>👈 英語学習事情</a>
-<a href=/posts/2020/web-standards-prospect/>2020年のWeb標準という記事を寄稿しました 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><p><code>&lt;iframe is="fluid-iframe"></code> のように、<code>&lt;iframe></code> 要素の拡張として <code>&lt;iframe></code> 要素をフォールバックとして動作させたかったが、要素を親子関係にしないとレスポンシブを実現できないため、断念した。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2019/english/>👈 英語学習事情</a></div><div><a href=/posts/2020/web-standards-prospect/>2020年のWeb標準という記事を寄稿しました 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -34,7 +33,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -42,7 +41,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -50,7 +49,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

@@ -6,7 +6,7 @@ grunt-contrib-xxx/master grunt-contrib-xxx/grunt-3.0-stable というように�
 grunt-contrib-watchのgitリポジトリをクローンする # 作業ディレクトリに移動 $ cd /Users/[UserName]/workspace/[ProjectName]/ # gruntfile.jsがあるディレクトリ $ ls -la # grunt-contrib-watchを配置するディレクトリに $ cd ./node_modules/ # リポジトリをクローン $ git clone https://github.com/gruntjs/grunt-contrib-watch.git npm経由でインストールされるリソースはnode_modulesに配置されるので、その場所にクローンしてgruntに参照してもらう。私の場合はconcat/mincss/uglify/watchの5つを使用しているが、問題なく動いている。package.jsonも作り直したけど、前述の通りlink出来ないものもアリ。
 grunt@0.4でstylusのコンパイルを自動化してみよう stylusのファイルに変更がかかった場合に自動でコンパイルされるタスクを作ってみる。animate.css をフォークしてstylusから生成するという無駄なことをしながら実践したので、サンプルとしてgithubに置いておく。
 1000ch / animate.css 必要なモジュールとgruntfile.js grunt@0.4.0rc7 grunt-contrib-watch@0.4.0rc5 grunt-contrib-stylus0.2.0rc5 module.exports = function(grunt) { grunt.initConfig({ stylus: { compile: { files: { "animate.css": "animate.styl" } } }, watch: { files: ["animate.styl"], tasks: ["stylus"] } }); grunt.loadNpmTasks(&#39;grunt-contrib-stylus&#39;); grunt.'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/gruntjs-0-4/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Grunt ver0.4に向けての環境の再構築"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/gruntjs-0-4/"><meta name=twitter:title content="Grunt ver0.4に向けての環境の再構築"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Grunt ver0.4に向けての環境の再構築</h1><p style=margin:0;text-align:right>Published at 2013-01-22</p><p><a href=/posts/2012/gruntjs-introduction.html>以前の記事</a>が説明足らずだったので補足記事。今npmからgrunt周りのモジュールを素直にインストールすると0.3系stableが落ちてくるので、0.4系と混在すると、うまく動かない。0.4系で整備していく方が今後のために良いと思うのでその説明。<strong>rcなので、あまり文句は言えない。</strong> ということだけあらかじめ断っておくとして。</p><ul><li><strong>grunt-cliをグローバルインストール</strong></li><li><strong>gruntコアをローカルインストール</strong></li><li><strong>モジュールをローカルインストール</strong></li><li><strong>gruntfile.jsに設定を記述する</strong></li></ul><p>という流れはそのまま。モジュールをローカルインストールの辺りを詳しく説明。<code>package.json</code>も修正するなり、作り直すなり。</p><h2 id=grunt-contrib-xxx>grunt-contrib-xxx</h2><p><a href=http://github.com/gruntjs>公式</a>で配布しているモジュール群は</p><ul><li><strong>grunt-contrib-xxx/master</strong></li><li><strong>grunt-contrib-xxx/grunt-3.0-stable</strong></li></ul><p>というように安定版ブランチと開発ブランチが切られている。開発ブランチは0.4系に向けた開発が行われているので、この開発ブランチを手に入れる。登録されていればnpm経由でもインストールできるが、GitHubのリポジトリからであれば、常に最新のものを入手できる。</p><h2 id=grunt-contrib-watchのgitリポジトリをクローンする>grunt-contrib-watchのgitリポジトリをクローンする</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 作業ディレクトリに移動</span>
 </span></span><span style=display:flex><span>$ cd /Users/<span style=color:#f92672>[</span>UserName<span style=color:#f92672>]</span>/workspace/<span style=color:#f92672>[</span>ProjectName<span style=color:#f92672>]</span>/
@@ -84,8 +84,7 @@ grunt@0.4でstylusのコンパイルを自動化してみよう stylusのファ�
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># watchを実行しstylファイルを編集する</span>
 </span></span><span style=display:flex><span>$ grunt watch
-</span></span></code></pre></div><p>色々依存関係を解決後も、相変わらず同じエラーが出る。</p><h2 id=stylusのcompile出来なかった>stylusのcompile出来なかった</h2><p>stylファイルが間違っているのか、stylusがedgeであるからなのか、はたまた<code>grunt-contrib-stylus</code>がedgeであるからなのか。わからない。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2013/jquery-1-9-rc/>👈 jQuery 1.9リリース候補版がリリースされた</a>
-<a href=/posts/2013/zeptojs-1-0/>Zepto.js ver1.0がリリースされた 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><p>色々依存関係を解決後も、相変わらず同じエラーが出る。</p><h2 id=stylusのcompile出来なかった>stylusのcompile出来なかった</h2><p>stylファイルが間違っているのか、stylusがedgeであるからなのか、はたまた<code>grunt-contrib-stylus</code>がedgeであるからなのか。わからない。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2013/jquery-1-9-rc/>👈 jQuery 1.9リリース候補版がリリースされた</a></div><div><a href=/posts/2013/zeptojs-1-0/>Zepto.js ver1.0がリリースされた 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -102,7 +101,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -110,7 +109,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -118,7 +117,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

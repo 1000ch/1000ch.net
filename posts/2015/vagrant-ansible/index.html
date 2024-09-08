@@ -8,7 +8,7 @@ Vagrant Oracle VM VirtualBox CentOS 6のBoxファイルをダウンロード 今
 # 仮想環境の起動 $ vagrant up # 仮想環境の終了 $ vagrant halt # 仮想環境の終了と削除 $ vagrant destroy ログインはsshコマンド。vagrantユーザーでログインし、もちろんルートにもスイッチできる。sudo su -とか。
 # 仮想環境へSSHログイン $ vagrant ssh Vagrantfileの中身 vagrant initで作成されたファイルは設定可能な箇所が色々とコメントアウトされている。コメントアウトされている内容が、各項目の初期値におおよそなっている。以下は抜粋。
 Vagrant.configure(2) do |config| # vagrant box addで取得したboxの指定 config.vm.box = "centos6" # ローカルの8080へのアクセスが仮想環境の80へポートフォワードされる config.'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/vagrant-ansible/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/vagrant-ansible/"><meta name=twitter:title content="VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>VagrantでCentOSの仮想環境を作ってAnsibleで遊ぶ</h1><p style=margin:0;text-align:right>Published at 2015-01-10</p><p>Vagrantは今更説明するまでもないけど、仮想環境の作成や起動・破棄を自動化したりするツール。VagrantはChefやAnsibleといったようなプロビジョニングツールとも連携可能なのでそれも少し。</p><h2 id=vagrantで仮想環境を作る>Vagrantで仮想環境を作る</h2><p>自身には仮想化する機能を備えておらず、仮想化ソフトウェアとしてVirtualBoxやVMWareなどを使う。今回はVagrant + VirtualBoxでCentOSの仮想環境を作ってみる。</p><p>以下のサイトに環境ごとのインストーラがあるので、ダウンロードしてインストールする。</p><ul><li><a href=https://www.vagrantup.com/>Vagrant</a></li><li><a href=https://www.virtualbox.org/>Oracle VM VirtualBox</a></li></ul><h3 id=centos-6のboxファイルをダウンロード>CentOS 6のBoxファイルをダウンロード</h3><p>今度はどのOSで仮想化するか決める。VagrantではOSイメージをBoxと呼ばれる形式で管理する。有志で配布されているBoxの一覧は<a href=http://www.vagrantbox.es/>Vagrantbox.es</a>にあるので、違うOSで試したい場合はそちらを。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># boxファイルのダウンロード</span>
 </span></span><span style=display:flex><span>$ vagrant box add centos6 https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
@@ -68,8 +68,7 @@ Vagrant.configure(2) do |config| # vagrant box addで取得したboxの指定 co
     - common
 </code></pre><p><code>hosts</code>は適用先のホスト名で、<code>sudo</code>は管理者実行するかどうか。設定の実行は<code>tasks</code>ないし、それらを分割管理する<code>roles</code>という属性に指定する。<code>tasks</code>には実行したいことをシェルっぽく書ける。<code>yum</code>を実行したいのであれば、以下の様な雰囲気。</p><pre tabindex=0><code>- name: be sure httpd is installed using yum
   yum: name=httpd state=installed
-</code></pre><p>タスクを羅列するだけでも良いけど、項目ごとに単位化したくなるのがエンジニアの性なので、<code>roles</code>を使う。今回は<code>common</code>というロールを作った。このロールの構成には、<code>roles/common/tasks</code>というフォルダ階層が要る。その中に、実行のエントリポイントとなる<code>main.yml</code>を配置するだけ。この<code>main.yml</code>も<code>tasks</code>と同じ要領で記述出来る。</p><p>Ansibleとしては、他のタスクをインクルード出来たり、変数宣言等が可能。詳細は公式サイトを確認してください。</p><ul><li><a href=http://docs.ansible.com/playbooks_best_practices.html>Best Practices - Ansible Documentation</a></li><li><a href=http://docs.ansible.com/YAMLSyntax.html>YAML Syntax - Ansible Documentation</a></li></ul><p>また、今回やったような最低限の連携を少し応用して、WebPageTestを仮想環境に立てるサンプルが<a href=https://github.com/1000ch/webpagetest-local>1000ch/webpagetest-local</a>に置いてある。と、言っても、テストエージェントとの疎通まではしておらず、Webアプリ側だけ閲覧可能というだけだけど、悪しからず。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2015/intention/>👈 志向性</a>
-<a href=/posts/2015/github-pages-custom-domain-in-https/>GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</code></pre><p>タスクを羅列するだけでも良いけど、項目ごとに単位化したくなるのがエンジニアの性なので、<code>roles</code>を使う。今回は<code>common</code>というロールを作った。このロールの構成には、<code>roles/common/tasks</code>というフォルダ階層が要る。その中に、実行のエントリポイントとなる<code>main.yml</code>を配置するだけ。この<code>main.yml</code>も<code>tasks</code>と同じ要領で記述出来る。</p><p>Ansibleとしては、他のタスクをインクルード出来たり、変数宣言等が可能。詳細は公式サイトを確認してください。</p><ul><li><a href=http://docs.ansible.com/playbooks_best_practices.html>Best Practices - Ansible Documentation</a></li><li><a href=http://docs.ansible.com/YAMLSyntax.html>YAML Syntax - Ansible Documentation</a></li></ul><p>また、今回やったような最低限の連携を少し応用して、WebPageTestを仮想環境に立てるサンプルが<a href=https://github.com/1000ch/webpagetest-local>1000ch/webpagetest-local</a>に置いてある。と、言っても、テストエージェントとの疎通まではしておらず、Webアプリ側だけ閲覧可能というだけだけど、悪しからず。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2015/intention/>👈 志向性</a></div><div><a href=/posts/2015/github-pages-custom-domain-in-https/>GitHub Pagesに設定しているカスタムドメインをHTTPS対応させる 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -86,7 +85,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -94,7 +93,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -102,7 +101,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

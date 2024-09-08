@@ -6,7 +6,7 @@
 16:9な親要素を用意して子要素で満たす タイトルの通り、任意の縦横比の親要素を用意して <iframe> 要素をその中に縦横一杯に満たすのが解のようだ。
 キモとなるのは親要素の高さの取り方で、素直に height プロパティで指定しようとすると先に述べた通り親要素に対するパーセンテージになってしまうので、padding-top を指定することで高さを確保している。横幅は親要素いっぱいにするので、100% で問題ない。
 .YouTube { position: relative; width: 100%; padding-top: 56.25%; } .YouTube iframe { position: absolute; top: 0; right: 0; width: 100%; height: 100%; } 親要素を用意せず <iframe> 要素に対して padding-top を指定しても、読み込んでいるコンテンツに対してパディングが用意されるだけである。'><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/responsive-iframe/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="レスポンシブなiframe"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/responsive-iframe/"><meta name=twitter:title content="レスポンシブなiframe"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>レスポンシブなiframe</h1><p style=margin:0;text-align:right>Published at 2017-11-22</p><p>当ブログのようなシングルカラムレイアウトに、外部のコンテンツを <code>&lt;iframe></code> 要素で埋め込む場合、要素の横幅を 100% にして親要素の幅いっぱいに広げたいが、その時に縦横比を維持して縦幅を追従させる場合に工夫が必要である。</p><h2 id=デフォルトの埋め込みコード>デフォルトの埋め込みコード</h2><p>YouTube などの動画コンテンツを <code>&lt;iframe></code> 要素でエンベッドする場合、次のようなものが用意される。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>iframe</span> 
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>width</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;560&#34;</span> 
@@ -30,8 +30,7 @@
 </span></span></code></pre></div><p>親要素を用意せず <code>&lt;iframe></code> 要素に対して <code>padding-top</code> を指定しても、読み込んでいるコンテンツに対してパディングが用意されるだけである。</p><p>あとは、埋め込みコードで指定されていた <code>width</code> 属性と <code>height</code> 属性を取り除けば、期待通りに動いてくれた。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;YouTube&#34;</span>&gt;
 </span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>iframe</span>  <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://www.youtube.com/embed/gTHAn-nkQnI&#34;</span> <span style=color:#a6e22e>allowfullscreen</span>&gt;&lt;/<span style=color:#f92672>iframe</span>&gt;
 </span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>div</span>&gt;
-</span></span></code></pre></div><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2017/resize-observer/>👈 要素のサイズ変化を監視するResizeObserver</a>
-<a href=/posts/2017/hair-kurukuru-poi/>髪の毛くるくるポイが革命的だった 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2017/resize-observer/>👈 要素のサイズ変化を監視するResizeObserver</a></div><div><a href=/posts/2017/hair-kurukuru-poi/>髪の毛くるくるポイが革命的だった 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -48,7 +47,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -56,7 +55,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -64,7 +63,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

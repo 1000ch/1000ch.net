@@ -5,7 +5,7 @@ $ npm install --save viewport-observer でインストールして、
 import { Component } from 'react'; import ViewportObserver from 'viewport-observer'; export default class Foo extends Component { render() { return ( <ViewportObserver onChange={() => console.log('onChange')} onEnter={() => console.log('onEnter')} onLeave={() => console.log('onLeave')} /> ); } } な感じで使う。詳しくは README を参照のこと。
 内部実装は IntersectionObserver に依存しているが、このパッケージにはポリフィルを含んでいないので、別途 WICG/IntersectionObserver あたりでポリフィルしておく必要アリ。
 openfreshでのソフトウェアの公開 FRESH! の開発で生まれた副産物は github.com/openfresh での公開を徐々に進めていて、Web クライアントサイドだと ESLint の設定や stylelint の設定なども公開されている。これだけでも、マイクロサービス化されている FRESH!"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/openfresh-viewport-observer/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Intersection Observerを使った要素の出現を検出するReactコンポーネント"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/openfresh-viewport-observer/"><meta name=twitter:title content="Intersection Observerを使った要素の出現を検出するReactコンポーネント"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Intersection Observerを使った要素の出現を検出するReactコンポーネント</h1><p style=margin:0;text-align:right>Published at 2017-05-17</p><p>Intersection Observer を使った要素の検出については、<a href=/posts/2016/intersection-observer-lazyload.html>過去に記事にしていたり</a>、<a href=https://blog.jxck.io/entries/2016-06-25/intersection-observer.html>Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io</a>などでより具体的に触れられている。また<a href=https://developers.cyberagent.co.jp/blog/archives/6057/>最近関わっている FRESH! でも導入した</a>経緯があるが、今回はその React 実装部分を切り出し、オープンソースとして公開した話。</p><h2 id=viewportobserver>ViewportObserver</h2><p>元々付けていたものや目ぼしい名前空間は軒並み取られていて、結局 <code>ViewportObserver</code> というコンポーネント名に着地した。<a href=https://github.com/openfresh/viewport-observer><code>openfresh/viewport-observer</code></a> にて公開されている。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ npm install --save viewport-observer
 </span></span></code></pre></div><p>でインストールして、</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Component</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;react&#39;</span>;
@@ -22,8 +22,7 @@ openfreshでのソフトウェアの公開 FRESH! の開発で生まれた副産
 </span></span><span style=display:flex><span>    );
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>な感じで使う。詳しくは README を参照のこと。</p><p>内部実装は <a href=https://wicg.github.io/IntersectionObserver/><code>IntersectionObserver</code></a> に依存しているが、このパッケージにはポリフィルを含んでいないので、別途 <a href=https://github.com/WICG/IntersectionObserver/tree/gh-pages/polyfill><code>WICG/IntersectionObserver</code></a> あたりでポリフィルしておく必要アリ。</p><h2 id=openfreshでのソフトウェアの公開>openfreshでのソフトウェアの公開</h2><p>FRESH! の開発で生まれた副産物は <a href=https://github.com/openfresh><code>github.com/openfresh</code></a> での公開を徐々に進めていて、Web クライアントサイドだと <a href=https://github.com/openfresh/eslint-config-fresh>ESLint の設定</a>や <a href=https://github.com/openfresh/stylelint-config-fresh>stylelint の設定</a>なども公開されている。これだけでも、マイクロサービス化されている FRESH! 内の他プロジェクトで使う時に <code>.eslintrc</code> をメンテナンスする必要がなくなるし、ViewportObserver のように社内の他のプロジェクトでも使える（もちろん、社内に限らず！）。</p><p>小さいことだけど、需要に応えられる可能性があるし、メンテナンスコストを分散できるかもしれない。実際 <code>ViewportObserver</code> に関しては、もともと作りがシンプルだったので公開できたら良さそうだなとは思っていた矢先、社内の近隣のプロジェクトから欲しいという声を複数もらったので公開に踏み切った。この辺りの気持ちについては <a href=https://github.com/openfresh/plasma><code>openfresh/plasma</code></a> の公開に際して書かれている <a href=http://blog.stormcat.io/entry/openfresh-plasma>gRPCとServer-Sent Eventsでサーバプッシュできるplasmaを公開しました - tehepero note(・ω&lt;)</a>でも似たような言及がある。</p><p>他の人に使われているプレッシャーによる、ある種義務のような保守意識を持つため…というと色々違うような気もするけど、中途半端にコストかけてプライベートに使い続けて闇に葬られる…よりはマシだと信じたい。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2017/a11y-interview/>👈 アクセシビリティへの取り組みについてのインタビュー</a>
-<a href=/posts/2017/dotfiles/>ghqとpecoを使ったリポジトリの管理またはコマンドラインの話 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><p>な感じで使う。詳しくは README を参照のこと。</p><p>内部実装は <a href=https://wicg.github.io/IntersectionObserver/><code>IntersectionObserver</code></a> に依存しているが、このパッケージにはポリフィルを含んでいないので、別途 <a href=https://github.com/WICG/IntersectionObserver/tree/gh-pages/polyfill><code>WICG/IntersectionObserver</code></a> あたりでポリフィルしておく必要アリ。</p><h2 id=openfreshでのソフトウェアの公開>openfreshでのソフトウェアの公開</h2><p>FRESH! の開発で生まれた副産物は <a href=https://github.com/openfresh><code>github.com/openfresh</code></a> での公開を徐々に進めていて、Web クライアントサイドだと <a href=https://github.com/openfresh/eslint-config-fresh>ESLint の設定</a>や <a href=https://github.com/openfresh/stylelint-config-fresh>stylelint の設定</a>なども公開されている。これだけでも、マイクロサービス化されている FRESH! 内の他プロジェクトで使う時に <code>.eslintrc</code> をメンテナンスする必要がなくなるし、ViewportObserver のように社内の他のプロジェクトでも使える（もちろん、社内に限らず！）。</p><p>小さいことだけど、需要に応えられる可能性があるし、メンテナンスコストを分散できるかもしれない。実際 <code>ViewportObserver</code> に関しては、もともと作りがシンプルだったので公開できたら良さそうだなとは思っていた矢先、社内の近隣のプロジェクトから欲しいという声を複数もらったので公開に踏み切った。この辺りの気持ちについては <a href=https://github.com/openfresh/plasma><code>openfresh/plasma</code></a> の公開に際して書かれている <a href=http://blog.stormcat.io/entry/openfresh-plasma>gRPCとServer-Sent Eventsでサーバプッシュできるplasmaを公開しました - tehepero note(・ω&lt;)</a>でも似たような言及がある。</p><p>他の人に使われているプレッシャーによる、ある種義務のような保守意識を持つため…というと色々違うような気もするけど、中途半端にコストかけてプライベートに使い続けて闇に葬られる…よりはマシだと信じたい。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2017/a11y-interview/>👈 アクセシビリティへの取り組みについてのインタビュー</a></div><div><a href=/posts/2017/dotfiles/>ghqとpecoを使ったリポジトリの管理またはコマンドラインの話 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -40,7 +39,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -48,7 +47,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -56,7 +55,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

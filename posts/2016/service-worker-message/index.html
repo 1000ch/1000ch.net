@@ -6,7 +6,7 @@ GoogleChrome/sw-precacheはService Workerのスクリプトを書き出すツー
 fetchイベントでリクエスト内容を見て動的に判断するなどはできるが、後述の Service Workerが最長24時間更新されない問題 などもあるので、コントロール手段のひとつとして覚えておくのは良さ気。
 メッセージングでService Workerのコントロール Service WorkerはJavaScript Workerのひとつ。なので、ブラウザスレッドとService Workerとでメッセージのやり取りが可能。Cache APIもPromiseな設計なので、e.waitUntil()もあることだし処理はPromiseで書くと良さ気。
 // browser.js function sendMessage(message) { return new Promise((resolve, reject) => { const channel = new MessageChannel(); channel."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2016/service-worker-message/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="メッセージングによるService Workerのコントロール"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2016/service-worker-message/"><meta name=twitter:title content="メッセージングによるService Workerのコントロール"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>メッセージングによるService Workerのコントロール</h1><p style=margin:0;text-align:right>Published at 2016-05-13</p><p>Service Workerでハンドルするリソースは、Service Workerのスクリプトに静的に記述しているケースが多い。Service Workerでやっているアレコレをメッセージングで動的にできないか試行錯誤したログ。</p><h2 id=よくあるキャッシュパターン>よくある?キャッシュパターン</h2><p>チュートリアル等でもよく見かける、Service Workerのインストール時に指定のリソースをキャッシュしているパターン。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>CACHE_KEY</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;cache-key&#39;</span>;
 </span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>CACHE_LIST</span> <span style=color:#f92672>=</span> [
@@ -83,8 +83,7 @@ fetchイベントでリクエスト内容を見て動的に判断するなどは
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>waitUntil</span>(<span style=color:#a6e22e>promise</span>);
 </span></span><span style=display:flex><span>});
-</span></span></code></pre></div><p>こんな感じで、キャッシュのリソース追加だけでなくリソース削除やキャッシュそのものの削除まで出来ることを確認した。</p><h2 id=使いどころ>使いどころ</h2><p>メッセージングでリソースの追加・削除をする不都合は、 <strong>何をキャッシュさせているか</strong> を管理しにくくなるところか。キャッシュにヒットするかどうかだけなら<code>fetch</code>イベント内でハンドルすれば十分だが、Service Workerはブラウザが必要に応じて起動・終了するので、メッセージの内容を変数に格納して保持しておくことは出来ない。やるならIndexedDBを使うことになりそうだが、キャッシュリストの管理のために、Cache APIとIndexedDBを併用するのも微妙に思う。</p><p>Service Workerで唯一使いにくい可能性があるのは、<a href=http://blog.nhiroki.jp/2015/06/22/service-worker-update>Service Worker自体の更新チェックが最大24時間になってしまう点</a>。Service Worker自体に更新があるかどうかは<a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-update-method><code>ServiceWorkerRegistration#update()</code></a>を介してチェックが可能だが、Cache-Controlで長生き設定されていると、たとえページロードのタイミングで毎回呼んだとしてもブラウザキャッシュが効いてしまう（長生き設定しなければ良いという話でもあるんだけど）。</p><p>その点、メッセージ経由でキャッシュの全クリアとかもできるので、<code>purge</code>コマンドを用意して失敗ビルドを配信してキャッシュされてしまったような状況に備えるのは悪くないかもしれない。パージの他にも、キャッシュ追加・キャッシュ削除・キャッシュリストの取得といった処理のミニマム実装は<a href=https://github.com/1000ch/sw-sandbox>1000ch/sw-sandbox</a>にあげた。</p><p>良い使い方が浮かんだら書き足す。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2016/color-picker/>👈 D3.jsでColor Pickerを作った</a>
-<a href=/posts/2016/intersection-observer-lazyload/>IntersectionObserverを使ってlazyload-imageを書き直した 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><p>こんな感じで、キャッシュのリソース追加だけでなくリソース削除やキャッシュそのものの削除まで出来ることを確認した。</p><h2 id=使いどころ>使いどころ</h2><p>メッセージングでリソースの追加・削除をする不都合は、 <strong>何をキャッシュさせているか</strong> を管理しにくくなるところか。キャッシュにヒットするかどうかだけなら<code>fetch</code>イベント内でハンドルすれば十分だが、Service Workerはブラウザが必要に応じて起動・終了するので、メッセージの内容を変数に格納して保持しておくことは出来ない。やるならIndexedDBを使うことになりそうだが、キャッシュリストの管理のために、Cache APIとIndexedDBを併用するのも微妙に思う。</p><p>Service Workerで唯一使いにくい可能性があるのは、<a href=http://blog.nhiroki.jp/2015/06/22/service-worker-update>Service Worker自体の更新チェックが最大24時間になってしまう点</a>。Service Worker自体に更新があるかどうかは<a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-update-method><code>ServiceWorkerRegistration#update()</code></a>を介してチェックが可能だが、Cache-Controlで長生き設定されていると、たとえページロードのタイミングで毎回呼んだとしてもブラウザキャッシュが効いてしまう（長生き設定しなければ良いという話でもあるんだけど）。</p><p>その点、メッセージ経由でキャッシュの全クリアとかもできるので、<code>purge</code>コマンドを用意して失敗ビルドを配信してキャッシュされてしまったような状況に備えるのは悪くないかもしれない。パージの他にも、キャッシュ追加・キャッシュ削除・キャッシュリストの取得といった処理のミニマム実装は<a href=https://github.com/1000ch/sw-sandbox>1000ch/sw-sandbox</a>にあげた。</p><p>良い使い方が浮かんだら書き足す。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2016/color-picker/>👈 D3.jsでColor Pickerを作った</a></div><div><a href=/posts/2016/intersection-observer-lazyload/>IntersectionObserverを使ってlazyload-imageを書き直した 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -101,7 +100,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -109,7 +108,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -117,7 +116,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {

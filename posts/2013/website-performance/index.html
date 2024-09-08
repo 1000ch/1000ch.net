@@ -10,14 +10,13 @@ Show paint rectangles（赤がpaint rectangle） Show composited layer borders�
 Sitespeed.ioを使って解析する これはAriyaのRTで今日知った。
 Just set up http://t.co/1phATVNerY (by @soulislove) locally on my windows machine. Up and running in 5 minutes. Great tool.
 &mdash; Thomas Puppe (@thomaspuppe) June 14, 2013 こちらはコマンドラインから使うツールで、サイトのURLを指定して実行し、解析結果はhtmlで出力される。観点としては前述のPageSpeedと大差ないが、より細かく、関連ページの解析までしてくれるツール。PhantomJS1.9とJava1.6~が必要。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2013/website-performance/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Webサイトのパフォーマンスを調べる"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2013/website-performance/"><meta name=twitter:title content="Webサイトのパフォーマンスを調べる"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
-<span>EagleLand</span></a></h1><nav class=header-menu><a href=/rss.xml>📻 RSS</a>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Webサイトのパフォーマンスを調べる</h1><p style=margin:0;text-align:right>Published at 2013-06-16</p><p>一口にWebサイトのパフォーマンスと言っても色々あって、</p><ul><li>通信部分のパフォーマンス（Networking）</li><li>スクリプト部分などの実行パフォーマンス（Computing）</li><li>表示に関するパフォーマンス（Rendering）</li></ul><p>などなど。今回はWebサイトのどこがボトルネックになっているかなどの調べ方とか。</p><h2 id=googlechromeのpagespeedを使う>GoogleChromeのPageSpeedを使う</h2><p>Dev Tools(<code>command</code> + <code>option</code> + <code>i</code>で開くやつ)の進化が凄まじすぎて追いかけるのが大変な今日このごろ、その中のアドオンとして働くPageSpeed Insightsというものがある。</p><ul><li><a href=https://chrome.google.com/webstore/detail/pagespeed-insights-by-goo/gplegfbjlmmehdoakndmohflojccocli>PageSpeed Insights (by Google) - Chromeウェブストア</a></li><li><a href=https://developers.google.com/speed/docs/insights/using_chrome>Using PageSpeed Insights for Google Chrome</a></li></ul><p>これをインストールすると、Dev ToolsのパネルにPageSpeedが追加されるので、あとは検証したいページを開いてAnalyzeするだけ。すると、そのページの検証が行われて、何が改善可能かを教えてくれる。Gzip効かせろだとか、minifyしろだとか、<code>&lt;script></code>は後ろでロードせいだとか、リダイレクト減らせだとか、cssスプライトにしろよだとか…、手軽に色んなことを教えてくれる。まずはこのツールでScoreを伸ばすことが先決です。</p><h2 id=devtoolsについて>DevToolsについて</h2><p>前述の、NetworkingやComputingなどの細かい解析は、デフォルトで搭載されているDevToolsの各機能で行う。NetworkパネルでAjaxのタイミングとか見たり、画像のダウンロードにかかってる時間を見たり。タイムライン見てるだけでも、「ここ時間かかってるなー」っていうのが見えるかと。</p><p>あと、Timelineでペインティングコスト見たり、ProfilesでJavaScriptの実行コスト見たり。これらに関しては各パネルでレコーディングをする必要がある。下部の虫眼鏡の右にあるアイコンでレコーディングの開始と終了をする。それぞれ、レコーディングされている間に行われた描画や、スクリプトの実行をプロファイルとして閲覧することができる。</p><p>CompositeLayerの生成に関してはあんまりこのパネルで見てなくて、<code>Settings</code>の<code>General</code>の<code>Render</code>の</p><ul><li>Show paint rectangles（赤がpaint rectangle）</li><li>Show composited layer borders（オレンジがcomposite layer）</li></ul><p>にチェックをすることで得られる視覚的なほうで確認して、リフロー多いなおい…ってこととかをTimelineパネルで見たりしている。果たしてこれが常套手段なのかどうかは、不明。</p><h2 id=sitespeedioを使って解析する>Sitespeed.ioを使って解析する</h2><p>これはAriyaのRTで今日知った。</p><blockquote class=twitter-tweet><p>Just set up <a href=http://t.co/1phATVNerY>http://t.co/1phATVNerY</a> (by <a href=https://twitter.com/soulislove>@soulislove</a>) locally on my windows machine. Up and running in 5 minutes. Great tool.</p>&mdash; Thomas Puppe (@thomaspuppe) <a href=https://twitter.com/thomaspuppe/statuses/345596762804854785>June 14, 2013</a></blockquote><p>こちらはコマンドラインから使うツールで、サイトのURLを指定して実行し、解析結果はhtmlで出力される。観点としては前述のPageSpeedと大差ないが、より細かく、関連ページの解析までしてくれるツール。PhantomJS1.9とJava1.6~が必要。</p><ul><li><a href=http://sitespeed.io/>sitespeed.io</a></li><li><a href=https://github.com/soulgalore/sitespeed.io>soulgalore / sitespeed.io</a></li></ul><p>PhantomJSとJavaのインストールはしてもらうとして、その後も、githubからcloneしてくるだけ。もちろんダウンロードでもOK。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ git clone https://github.com/soulgalore/sitespeed.io.git
 </span></span></code></pre></div><p>あとは、サイト名を指定して実行。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ cd sitespeed.io
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>$ ./sitespeed.io -u https://1000ch.net
-</span></span></code></pre></div><p>すると、<code>sitespeed-result</code>というフォルダに解析結果が出力される。ドメイン別で出力されるのと、その下は解析した日付時刻でフォルダが生成されるので、継続的に解析して比較するということもできそう。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><a href=/posts/2013/chrome-extensions/>👈 ChromeのExtensionをウェブストアで公開した</a>
-<a href=/posts/2013/one-year-has-passed/>転職してから1年たった 👉</a></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</span></span></code></pre></div><p>すると、<code>sitespeed-result</code>というフォルダに解析結果が出力される。ドメイン別で出力されるのと、その下は解析した日付時刻でフォルダが生成されるので、継続的に解析して比較するということもできそう。</p><aside class=share><p><button type=button id=share-button>🔗 この記事をシェアする</a></p></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div><nav class=pager><div><a href=/posts/2013/chrome-extensions/>👈 ChromeのExtensionをウェブストアで公開した</a></div><div><a href=/posts/2013/one-year-has-passed/>転職してから1年たった 👉</a></div></nav></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 
@@ -34,7 +33,7 @@ const darkMode =  document.querySelector('#dark-mode');
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
 
-autoPhrase.addEventListener('change', event => {
+autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('auto-phrase', true);
   } else {
@@ -42,7 +41,7 @@ autoPhrase.addEventListener('change', event => {
   }
 });
 
-darkMode.addEventListener('change', event => {
+darkMode?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('dark-mode', true);
   } else {
@@ -50,7 +49,8 @@ darkMode.addEventListener('change', event => {
   }
 });
 
-document.querySelector('.share button').addEventListener('click', async event => {
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
   event.preventDefault();
 
   const data = {
