@@ -5,12 +5,12 @@ date: 2021-12-30
 
 今年も書きます。
 
-- [2015年に買って良かったもの](/posts/2015/bought-in-2015.html)
-- [2016年に買って良かったもの](/posts/2016/bought-in-2016.html)
-- [2017年に買って良かったもの](/posts/2017/bought-in-2017.html)
-- [2018年に買って良かったもの](/posts/2018/bought-in-2018.html)
-- [2019年に買って良かったもの](/posts/2019/bought-in-2019.html)
-- [2020年に買って良かったもの](/posts/2020/bought-in-2020.html)
+- [2015年に買って良かったもの](/posts/2015/bought-in-2015/)
+- [2016年に買って良かったもの](/posts/2016/bought-in-2016/)
+- [2017年に買って良かったもの](/posts/2017/bought-in-2017/)
+- [2018年に買って良かったもの](/posts/2018/bought-in-2018/)
+- [2019年に買って良かったもの](/posts/2019/bought-in-2019/)
+- [2020年に買って良かったもの](/posts/2020/bought-in-2020/)
 
 ## Kindle Paperwhite 第11世代
 
