@@ -3,7 +3,7 @@ title: Font Awesome の利用をやめた
 date: 2016-12-26
 ---
 
-このブログでは [Font Awesome](http://fontawesome.io/) を使っていたが、それをやめた。[Webフォントのロードをやめた](/posts/2016/web-font.html)ことに引き続いて、これで Web フォントの利用から脱却したことになる。
+このブログでは [Font Awesome](http://fontawesome.io/) を使っていたが、それをやめた。[Webフォントのロードをやめた](/posts/2016/web-font/)ことに引き続いて、これで Web フォントの利用から脱却したことになる。
 
 ## Font Awesome を使っていた箇所の修正
 

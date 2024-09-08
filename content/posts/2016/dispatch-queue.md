@@ -27,7 +27,7 @@ Swift の GCD については[Swift GCD入門](http://qiita.com/ShoichiKuraoka/i
 
 ## DispatchQueueクラスが追加された
 
-これを[iOS+Swiftの非同期処理のヘルパークラス](/posts/2016/swift-async-dispatcher.html)のような形でラップしていたが、 Swift 3 からは [`DispatchQueue`](https://developer.apple.com/reference/dispatch/dispatchqueue) というクラスが追加されている。これを使うと非同期処理は次のように書ける。
+これを[iOS+Swiftの非同期処理のヘルパークラス](/posts/2016/swift-async-dispatcher/)のような形でラップしていたが、 Swift 3 からは [`DispatchQueue`](https://developer.apple.com/reference/dispatch/dispatchqueue) というクラスが追加されている。これを使うと非同期処理は次のように書ける。
 
 ```swift
 DispatchQueue.global().async {

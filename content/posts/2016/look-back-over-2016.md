@@ -16,10 +16,10 @@ date: 2016-12-31
 
 ## QoL活動
 
-- [QCY QY8 ワイヤレスイヤホン](/posts/2016/qcy-qy8.html): コストパフォーマンスが良い
-- [Dyson V6 Fluffy](/posts/2016/dyson-v6-fluffy.html): 高いけどそれに値する品質
-- [珪藻土バスマット](/posts/2016/keisodo-bath-mat.html): 布製のバスマットなんて要らなかった
-- [Philips 43型 4K ワイドディスプレイ](/posts/2016/philips-display-43inch-4k.html): 大は小を兼ねる
+- [QCY QY8 ワイヤレスイヤホン](/posts/2016/qcy-qy8/): コストパフォーマンスが良い
+- [Dyson V6 Fluffy](/posts/2016/dyson-v6-fluffy/): 高いけどそれに値する品質
+- [珪藻土バスマット](/posts/2016/keisodo-bath-mat/): 布製のバスマットなんて要らなかった
+- [Philips 43型 4K ワイドディスプレイ](/posts/2016/philips-display-43inch-4k/): 大は小を兼ねる
 
 ## 美食活動
 
@@ -51,7 +51,7 @@ date: 2016-12-31
 - [JAGMO「伝説の交響組曲」](http://jagmo.jp/performance/legend)を観た: 超良かった
 - [表参道から代々木に引っ越した](https://1000ch.tumblr.com/post/152507149210/): 代々木良い
 - Amazon MasterCardをクラシックからゴールドに切り替えた: Amazonへの依存が進んだ
-- [静岡県伊豆伊東の山喜旅館で開発合宿した](/posts/2016/yamaki.html): ♨良い
+- [静岡県伊豆伊東の山喜旅館で開発合宿した](/posts/2016/yamaki/): ♨良い
 - プロジェクトの達成旅行で沖縄へ行った: 酷く体調を崩した
 
 <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="7" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div> <p style=" margin:8px 0 0 0; padding:0 4px;"> <a href="https://www.instagram.com/p/BIMZIHTjVov/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">夏だ</a></p> <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">Shogo Sensuiさん(@1000ch)が投稿した写真 - <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-07-23T06:17:51+00:00">2016 7月 22 11:17午後 PDT</time></p></div></blockquote>

@@ -7,7 +7,7 @@ date: 2016-06-15
 
 ## トランスパイル無しでES2015
 
-[ES2015のclass構文で書くWeb Components](/posts/2016/web-components-es2015-class.html)でも書いているように、`class`シンタックスを使ってリライトしている。ES2015のブラウザサポートも、Safari TPが100%、Chromeがtail call optimisation以外、FirefoxとEdgeも頑張っているのでそろそろ良かろうということで、トランスパイルなしで書くようになってきている（バベるの面倒）。
+[ES2015のclass構文で書くWeb Components](/posts/2016/web-components-es2015-class/)でも書いているように、`class`シンタックスを使ってリライトしている。ES2015のブラウザサポートも、Safari TPが100%、Chromeがtail call optimisation以外、FirefoxとEdgeも頑張っているのでそろそろ良かろうということで、トランスパイルなしで書くようになってきている（バベるの面倒）。
 
 世間では阿鼻叫喚のWindows 10への強制アップデートを僕は密かに応援していて、アレが進めば進むほどIEがいなくなってくれるので、Microsoftさん頑張ってくれないかなぁと思っている。アップデートを嫌がるエンプラ業界やら世間一般の人、どうしたら説得されてくれるんでしょう。Chrome・Firefox・Safari・Edgeのブラウザ群雄割拠時代になればもっとWebは良くなる気もするので、どうにかなって欲しい。
 

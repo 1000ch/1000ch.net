@@ -74,7 +74,7 @@ customElements.whenDefined('baz-element')
 
 ## class ベースの要素定義
 
-v0 から [ES2015 の `class` で定義可能だった](/posts/2016/web-components-es2015-class.html)が、 先のように `constructor` がライフサイクルに含むこともあり、改めて次のようになる。
+v0 から [ES2015 の `class` で定義可能だった](/posts/2016/web-components-es2015-class/)が、 先のように `constructor` がライフサイクルに含むこともあり、改めて次のようになる。
 
 ```javascript
 customElements.define('header-tab', class HeaderTab extends HTMLElement {
