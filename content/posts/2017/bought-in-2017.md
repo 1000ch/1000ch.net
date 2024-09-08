@@ -3,11 +3,11 @@ title: 2017年に買って良かったもの
 date: 2017-12-05
 ---
 
-[今年買ってよかったもの Advent Calendar 2017](https://adventar.org/calendars/2240) 5日目の記事です。ちなみに去年は [Apple Watch の話を書きました](/posts/2016/apple-watch-series-2.html)。
+[今年買ってよかったもの Advent Calendar 2017](https://adventar.org/calendars/2240) 5日目の記事です。ちなみに去年は [Apple Watch の話を書きました](/posts/2016/apple-watch-series-2/)。
 
 ## 髪の毛くるくるポイ
 
-[髪の毛くるくるポイが革命的だった](/posts/2017/hair-kurukuru-poi.html)で書いてある通り、これで風呂場の排水口の問題の大半が解決された。
+[髪の毛くるくるポイが革命的だった](/posts/2017/hair-kurukuru-poi/)で書いてある通り、これで風呂場の排水口の問題の大半が解決された。
 
 <affiliate-link
   src="https://images-na.ssl-images-amazon.com/images/I/81q-bt0I%2B0L._SX425_.jpg"
@@ -39,7 +39,7 @@ MacBook Pro とあるが、底面が凸凹していなければ他のノート�
 
 ## CARRY saKASA
 
-ビニール傘だと大切にする気持ちが薄れてしまうため、ある時からしっかりした傘を買うようになった。ここ最近は [Makuake](https://www.makuake.com/) で購入した [超撥水傘「Nu-Rain（ヌレイン）」](/posts/2016/nu-rain.html) を持ち歩いていたが、折りたたみではない傘を持っていても良いかなと思い、評判を知っていたこちらの CARRY saKASA を買った。
+ビニール傘だと大切にする気持ちが薄れてしまうため、ある時からしっかりした傘を買うようになった。ここ最近は [Makuake](https://www.makuake.com/) で購入した [超撥水傘「Nu-Rain（ヌレイン）」](/posts/2016/nu-rain/) を持ち歩いていたが、折りたたみではない傘を持っていても良いかなと思い、評判を知っていたこちらの CARRY saKASA を買った。
 
 <affiliate-link
   src="https://images-na.ssl-images-amazon.com/images/I/8165ATdiNpL._SX654_.jpg"
