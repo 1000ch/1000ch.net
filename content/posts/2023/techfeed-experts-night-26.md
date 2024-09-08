@@ -7,6 +7,6 @@ date: 2023-09-27
 
 <iframe loading="lazy" class="dropshadow" src="https://1000ch.github.io/slides/web-development-baseline-2023/"></iframe>
 
-TechFeed のイベントに出演したのは、[昨年開催された TechFeed Conference 2022 ぶり](/posts/2022/techfeed-conference-2022.html)で、ちょうど IE11 のサポート終了に関してアナウンスされた前後でした。それを踏まえて、これまで Web 開発がどういう変化を遂げてきたのかをおさらいしながら、これからの Web 開発のベースラインをどこに置くべきかという問について話しました。
+TechFeed のイベントに出演したのは、[昨年開催された TechFeed Conference 2022 ぶり](/posts/2022/techfeed-conference-2022/)で、ちょうど IE11 のサポート終了に関してアナウンスされた前後でした。それを踏まえて、これまで Web 開発がどういう変化を遂げてきたのかをおさらいしながら、これからの Web 開発のベースラインをどこに置くべきかという問について話しました。
 
 <iframe loading="lazy" src="https://www.youtube.com/embed/Q0dX-hzr3QI?si=AYXfkIARQNxvjC_j" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

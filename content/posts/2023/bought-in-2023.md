@@ -5,18 +5,18 @@ date: 2023-12-06
 
 今年も書きます。
 
-- [2015年に買って良かったもの](/posts/2015/bought-in-2015.html)
-- [2016年に買って良かったもの](/posts/2016/bought-in-2016.html)
-- [2017年に買って良かったもの](/posts/2017/bought-in-2017.html)
-- [2018年に買って良かったもの](/posts/2018/bought-in-2018.html)
-- [2019年に買って良かったもの](/posts/2019/bought-in-2019.html)
-- [2020年に買って良かったもの](/posts/2020/bought-in-2020.html)
-- [2021年に買って良かったもの](/posts/2021/bought-in-2021.html)
-- [2022年に買って良かったもの](/posts/2022/bought-in-2022.html)
+- [2015年に買って良かったもの](/posts/2015/bought-in-2015/)
+- [2016年に買って良かったもの](/posts/2016/bought-in-2016/)
+- [2017年に買って良かったもの](/posts/2017/bought-in-2017/)
+- [2018年に買って良かったもの](/posts/2018/bought-in-2018/)
+- [2019年に買って良かったもの](/posts/2019/bought-in-2019/)
+- [2020年に買って良かったもの](/posts/2020/bought-in-2020/)
+- [2021年に買って良かったもの](/posts/2021/bought-in-2021/)
+- [2022年に買って良かったもの](/posts/2022/bought-in-2022/)
 
 ## SwitchBot スマートロック 指紋認証パッド
 
-これは[記事を書いた](/posts/2023/to-switchbot-lock-from-sesame4.html)通り、改めて振り返っても良い買い物だった。他の人にもこの話をしたところ、2人ほど購入してくれて、感想を聞いてみたところ QoL がとても高まったとのこと。
+これは[記事を書いた](/posts/2023/to-switchbot-lock-from-sesame4/)通り、改めて振り返っても良い買い物だった。他の人にもこの話をしたところ、2人ほど購入してくれて、感想を聞いてみたところ QoL がとても高まったとのこと。
 
 <affiliate-link 
   src="https://m.media-amazon.com/images/I/61+YU0a-KUL._AC_SL1500_.jpg"
@@ -81,7 +81,7 @@ COROS PACE 2 を購入したのが 2023/6 だったが、その 3 ヶ月後に [
 
 ## Shokz OpenRun Pro 骨伝導イヤホン
 
-これは[去年に購入した AfterShokz Aeropex 骨伝導イヤホン](/posts/2022/bought-in-2022.html) の買い替えで、マルチポイント接続の利便性と充電時間の短さが気に入っている。基本的にはランニング時に音楽やポッドキャストを聴くために使っている。
+これは[去年に購入した AfterShokz Aeropex 骨伝導イヤホン](/posts/2022/bought-in-2022/) の買い替えで、マルチポイント接続の利便性と充電時間の短さが気に入っている。基本的にはランニング時に音楽やポッドキャストを聴くために使っている。
 
 <affiliate-link 
   src="https://m.media-amazon.com/images/I/41j8SGptutL._AC_SL1500_.jpg"
@@ -136,7 +136,7 @@ BODUM PAVINA ダブルウォールグラス 250ml を贈り物として頂き、
 
 ## 無印良品 肩の負担を軽くする 撥水リュックサック
 
-今年もバックパックを試行錯誤してきた。[去年に購入した Air Fit Pack 3](/posts/2022/bought-in-2022.html)は容量が大きく使い勝手も悪くなかったが、より収納性を求めて [THE NORTH FACE のシングルショット](https://www.goldwin.co.jp/ap/item/i/m/NM72303) を使っていた。
+今年もバックパックを試行錯誤してきた。[去年に購入した Air Fit Pack 3](/posts/2022/bought-in-2022/)は容量が大きく使い勝手も悪くなかったが、より収納性を求めて [THE NORTH FACE のシングルショット](https://www.goldwin.co.jp/ap/item/i/m/NM72303) を使っていた。
 
 MacBook Pro を持ち歩かない時に、小物などを持ち運ぶために THE NORTH FACE のポーチを使っていたが、中身の入れ替える運用に無理があり、この無印良品のリュックサックで一本化することにした。ポーチに入れていた財布も[無印良品のポリエステルトラベル用ウォレット](https://www.muji.com/jp/ja/store/cmdty/detail/4550002547783)にしたことで、ポケットに収めるコストを極小化できた。
 

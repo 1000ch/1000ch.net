@@ -5,14 +5,14 @@ date: 2023-12-31
 
 2023 年は激動とは言わないまでも、様々な変化があった 1 年だった。雑でも書かないよりはマシだと信じて、2023 年の振り返りを書き残しておく。
 
-- [2022 年の振り返り](/posts/2022/look-back-over-2022.html)
-- [2021 年の振り返り](/posts/2021/look-back-over-2021.html)
-- [2020 年の振り返り](/posts/2020/look-back-over-2020.html)
-- [2019 年の振り返り](/posts/2019/look-back-over-2019.html)
+- [2022 年の振り返り](/posts/2022/look-back-over-2022/)
+- [2021 年の振り返り](/posts/2021/look-back-over-2021/)
+- [2020 年の振り返り](/posts/2020/look-back-over-2020/)
+- [2019 年の振り返り](/posts/2019/look-back-over-2019/)
 
 ## 転職と複業
 
-[2023 年 6 月に、5 年と 4 ヶ月勤めたメルカリを退職した](/posts/2023/farewell-mercari.html)。そして 2023 年 7 月に、技術顧問として関わっていたハウテレビジョンに転職した。転職後の話は[ハウテレビジョンのプロダクトの現在地](https://blog.howtelevision.co.jp/entry/2023/10/23/180000)や[技術負債解消プロジェクト・ツールやリソースの全社的な統廃合・イシューに向き合う部門再編などの話](https://blog.howtelevision.co.jp/entry/2023/12/01/000000)に綴っている。その記事でも触れているように、キャリアを重ねる中で自分なりに向き合いたいテーマが出てきたことが、今回の転職のきっかけである。
+[2023 年 6 月に、5 年と 4 ヶ月勤めたメルカリを退職した](/posts/2023/farewell-mercari/)。そして 2023 年 7 月に、技術顧問として関わっていたハウテレビジョンに転職した。転職後の話は[ハウテレビジョンのプロダクトの現在地](https://blog.howtelevision.co.jp/entry/2023/10/23/180000)や[技術負債解消プロジェクト・ツールやリソースの全社的な統廃合・イシューに向き合う部門再編などの話](https://blog.howtelevision.co.jp/entry/2023/12/01/000000)に綴っている。その記事でも触れているように、キャリアを重ねる中で自分なりに向き合いたいテーマが出てきたことが、今回の転職のきっかけである。
 
 > 様々な業務を様々なレイヤで関わる中で、日本社会のボトルネックは何なのかを自問する日々が続きました。当然、こうした壮大なテーマの答えが簡単に出る訳もありませんが、いくつか感じていた課題のひとつに「雇用」がありました。
 > ここ 30 年間、日本経済は停滞が続いていますが、その要因にあらゆる組織に存在する既得権益があり、必要な新陳代謝を妨げています。企業の営みにおいては、就職した会社に終身で勤め上げる慣習や正社員の雇用保護などがそれに当たるでしょう。戦後の教育制度もこれらの文化的背景に強く影響していますが、昨今では転職や副業が一般化してきたことで転換期を迎えています。
@@ -31,7 +31,7 @@ date: 2023-12-31
 ### 2023年のフロントエンド高速化手法〜Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線
 
 > - [2023年のフロントエンド高速化手法~Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線](https://findy.connpass.com/event/276615/)
-> - [2023年のフロントエンド高速化手法〜Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線に出演した](/posts/2023/frontend-performance-fastly-mercari.html)
+> - [2023年のフロントエンド高速化手法〜Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線に出演した](/posts/2023/frontend-performance-fastly-mercari/)
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">2023年のフロントエンド高速化手法~Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線<a href="https://twitter.com/merpay_official?ref_src=twsrc%5Etfw">@merpay_official</a> 執行役員VP of Engineeringの泉水氏<a href="https://twitter.com/1000ch?ref_src=twsrc%5Etfw">@1000ch</a> とFastly 大室<a href="https://twitter.com/katsuyukiomuro?ref_src=twsrc%5Etfw">@katsuyukiomuro</a> によるが登壇・パネルディスカッション！ <br><br>明日開催 今すぐ登録👇<a href="https://t.co/3pCekhBz1e">https://t.co/3pCekhBz1e</a> <a href="https://twitter.com/hashtag/%E9%AB%98%E9%80%9F%E5%8C%96_findy?src=hash&amp;ref_src=twsrc%5Etfw">#高速化_findy</a></p>&mdash; Fastly Japan (@FastlyJapan) <a href="https://twitter.com/FastlyJapan/status/1638021363075104769?ref_src=twsrc%5Etfw">March 21, 2023</a></blockquote>
 
@@ -47,13 +47,13 @@ date: 2023-12-31
 
 > - [フロントエンドの開発生産性〜Online Conference〜](https://findy.connpass.com/event/294482/)
 > - [9/21(木)開催！「フロントエンドの開発生産性-Online Conference-」〜これからのフロントエンドの未来〜](https://findy-code.io/engineer-lab/front-dev-productivity)
-> - [フロントエンドの開発生産性〜Online Conference〜に出演して開発生産性と組織について話した](/posts/2023/frontend-productivity-online-conference.html)
+> - [フロントエンドの開発生産性〜Online Conference〜に出演して開発生産性と組織について話した](/posts/2023/frontend-productivity-online-conference/)
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">超久しぶりのポストですが、これから話します！ / &quot;フロントエンドの開発生産性〜Online Conference〜&quot; <a href="https://t.co/5EaKQn5vgH">https://t.co/5EaKQn5vgH</a> <a href="https://twitter.com/hashtag/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89%E9%96%8B%E7%99%BA%E7%94%9F%E7%94%A3%E6%80%A7_findy?src=hash&amp;ref_src=twsrc%5Etfw">#フロントエンド開発生産性_findy</a></p>&mdash; Shogo SENSUI 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1704716338307207230?ref_src=twsrc%5Etfw">September 21, 2023</a></blockquote>
 
 ### TechFeed Experts Night#26 〜 Web標準技術最前線 ー HTML/CSS/JSの「いま」
 
-> - [TechFeed Experts Night#26 で 2023 年の Web 開発について話した](/posts/2023/techfeed-experts-night-26.html)
+> - [TechFeed Experts Night#26 で 2023 年の Web 開発について話した](/posts/2023/techfeed-experts-night-26/)
 > - [TechFeed Experts Night#26 〜 Web標準技術最前線 ー HTML/CSS/JSの「いま」](https://techfeed.io/events/techfeed-experts-night-26)
 > - [Sass は役目を終えつつある!? 2023年、Web 開発の「ベースライン」とは](https://techfeed.io/entries/651e14beb02d5068a4db1eac)
 
@@ -61,11 +61,11 @@ date: 2023-12-31
 
 ## ランニングの強度
 
-例年通り[東京さくらマラソンで 10km を完走した](/posts/2023/tokyo-sakura-marathon.html)ことを皮切りに、走行ペースを 20km/week にした。その結果、[867km の距離と 5375m の高低と、141 日間で 98 時間の運動を記録し](https://www.strava.com/athletes/66731970/posts/27011356)、順調にできることが増えてきている感覚がある。一方、出場したレースは東京さくらマラソンのみだったので、他のレースに出場したり距離もハーフマラソンやフルマラソンに挑戦してみたい。
+例年通り[東京さくらマラソンで 10km を完走した](/posts/2023/tokyo-sakura-marathon/)ことを皮切りに、走行ペースを 20km/week にした。その結果、[867km の距離と 5375m の高低と、141 日間で 98 時間の運動を記録し](https://www.strava.com/athletes/66731970/posts/27011356)、順調にできることが増えてきている感覚がある。一方、出場したレースは東京さくらマラソンのみだったので、他のレースに出場したり距離もハーフマラソンやフルマラソンに挑戦してみたい。
 
 ## ほぼ毎日のオンライン英会話
 
-去年末に[学習時間が 20,000 分に到達したオンライン英会話](/posts/2022/20000min-on-dmm-eikaiwa.html)だが、2023 年 12 月 31 日の時点で、28,700 分に到達した。文字通り毎日やっていれば 29,100 分になっていたはずだが、16 日ほどサボってしまったということになる。
+去年末に[学習時間が 20,000 分に到達したオンライン英会話](/posts/2022/20000min-on-dmm-eikaiwa/)だが、2023 年 12 月 31 日の時点で、28,700 分に到達した。文字通り毎日やっていれば 29,100 分になっていたはずだが、16 日ほどサボってしまったということになる。
 
 <blockquote class="twitter-tweet"><p lang="zxx" dir="ltr"><a href="https://t.co/IPVaOPYdWP">pic.twitter.com/IPVaOPYdWP</a></p>&mdash; Shogo SENSUI 🍵 (@1000ch) <a href="https://twitter.com/1000ch/status/1741438955554549926?ref_src=twsrc%5Etfw">December 31, 2023</a></blockquote>
 

@@ -5,7 +5,7 @@ date: 2023-09-21
 
 Findy さんに声をかけていただき、2023 年 9 月 21 日に開催された、[フロントエンドの開発生産性〜Online Conference〜](https://findy.connpass.com/event/294482/)というイベントに出演した。
 
-半年前にも、同じく Findy さん主催の [2023年のフロントエンド高速化手法~Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線というイベントにも出演させていただいた](/posts/2023/frontend-performance-fastly-mercari.html)が、今回は「開発生産性と組織」という難しいテーマで話すことになった。
+半年前にも、同じく Findy さん主催の [2023年のフロントエンド高速化手法~Fastlyとメルカリに学ぶ、パフォーマンスチューニング最前線というイベントにも出演させていただいた](/posts/2023/frontend-performance-fastly-mercari/)が、今回は「開発生産性と組織」という難しいテーマで話すことになった。
 
 <iframe loading="lazy" class="dropshadow" src="https://1000ch.github.io/slides/productivity-and-organization/"></iframe>
 
