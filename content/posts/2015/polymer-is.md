@@ -37,7 +37,7 @@ via http://www.w3.org/TR/shadow-dom/#inert-html-elements
 
 via http://www.w3.org/TR/custom-elements/#extensions-to-document-interface-to-register
 
-いずれも素のWeb Componentsだと不可能になっているところなのに、[`link`要素はCSSファイルをリクエストして`<style>`で埋め込み](/posts/2014/link-element-in-shadow-dom.html)してしまうし、[`extends`にカスタム要素の指定も出来てしまう](https://www.polymer-project.org/docs/polymer/polymer.html#extending-other-elements)。
+いずれも素のWeb Componentsだと不可能になっているところなのに、[`link`要素はCSSファイルをリクエストして`<style>`で埋め込み](/posts/2014/link-element-in-shadow-dom/)してしまうし、[`extends`にカスタム要素の指定も出来てしまう](https://www.polymer-project.org/docs/polymer/polymer.html#extending-other-elements)。
 
 便利な半面、W3Cの仕様と反する挙動でもあるので、ブラウザデフォルトの振る舞いを勘違いすらさせてしまう副作用を感じる。賛否両論というよりは、利用シーンに応じた使い分けの問題であり、つまるところ開発者のリテラシーに行き着いてしまう。
 

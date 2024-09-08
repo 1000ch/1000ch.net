@@ -3,7 +3,7 @@ title: HTTP1.1とSPDYとHTTP2
 date: 2015-01-29
 ---
 
-Webの通信プロトコルとして普及するHTTPも、HTTP2に向かって大きな変貌を遂げようとしている。最初期のHTTP0.9からどういう変化をたどってきたのか気になったので、調べたメモ。ネットワーク・HTTPの予備知識に[Webにおけるネットワーク通信](/posts/2014/networking-in-web.html)もどうぞ。
+Webの通信プロトコルとして普及するHTTPも、HTTP2に向かって大きな変貌を遂げようとしている。最初期のHTTP0.9からどういう変化をたどってきたのか気になったので、調べたメモ。ネットワーク・HTTPの予備知識に[Webにおけるネットワーク通信](/posts/2014/networking-in-web/)もどうぞ。
 
 ## 各プロトコルの特徴
 
@@ -46,7 +46,7 @@ HTTP1.0からHTTP1.1にかけてとそれ以降は、急速に進化し肥大化
 
 ## HTTP/2とService Workerで実現するWeb Push
 
-[Service Workerに関する仕様とか機能とか](/posts/2014/service-worker-internals.html)の最後で触れているが、[Push API](https://w3c.github.io/push-api/)というものがある。こちらはお待ちかねのWebでPushを実現するAPIだが、このサーバーから送られるメッセージはService Workerが受け取る、つまりPush APIの利用にはService Workerが要るわけだ。更に、HTTP1.1まで出来なかったサーバーからのPushは、HTTP2の双方向シーケンスによって可能になる。何が言いたいかというと、Web Pushは両者によって初めて成り立つ機能ということ。以下、ざっくりとした手順。
+[Service Workerに関する仕様とか機能とか](/posts/2014/service-worker-internals/)の最後で触れているが、[Push API](https://w3c.github.io/push-api/)というものがある。こちらはお待ちかねのWebでPushを実現するAPIだが、このサーバーから送られるメッセージはService Workerが受け取る、つまりPush APIの利用にはService Workerが要るわけだ。更に、HTTP1.1まで出来なかったサーバーからのPushは、HTTP2の双方向シーケンスによって可能になる。何が言いたいかというと、Web Pushは両者によって初めて成り立つ機能ということ。以下、ざっくりとした手順。
 
 1. Service Workerがプッシュサーバーに対し、クライアントの登録をする
 2. プッシュサーバーにポーリングしつつ、通知用のプッシュチャネルを作成する

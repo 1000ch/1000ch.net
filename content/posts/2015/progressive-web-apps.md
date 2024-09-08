@@ -27,19 +27,19 @@ date: 2015-12-24
 
 ネイティブにはない Web のメリットもたくさんある。ストアから探してインストールせずとも使えるし、見つけ出したら URL で簡単にシェアできる。また、Google Play や App Store といったベンダープラットフォームに縛られないというメリットもある。これは見方によっては、エコシステムの恩恵を享受できない（アプリのカテゴライズ・配布されるアプリの品質担保・ストアからのプロモートなど）とも捉えられるが、大半は Web でも補うことができるだろう。
 
-Web がプラットフォームとしてネイティブアプリ同等の機能を提供できれば良いということは、Web のエヴァンジェリスト達が唱え続けてきたことだ。[パフォーマンスモデルとして RAIL](https://havelog.aho.mu/develop/performance/e664-rail_performance_model.html) が唱えられたり、[Service Worker](/posts/2014/service-worker-internals.html) も Web の機能性を大きく前進させるために生まれた。これらで実現されることを標榜したのが Progressive Web Apps であると理解している。マーケティング色も強いが、認知拡大も技術推進のために必要なことだろう。
+Web がプラットフォームとしてネイティブアプリ同等の機能を提供できれば良いということは、Web のエヴァンジェリスト達が唱え続けてきたことだ。[パフォーマンスモデルとして RAIL](https://havelog.aho.mu/develop/performance/e664-rail_performance_model.html) が唱えられたり、[Service Worker](/posts/2014/service-worker-internals/) も Web の機能性を大きく前進させるために生まれた。これらで実現されることを標榜したのが Progressive Web Apps であると理解している。マーケティング色も強いが、認知拡大も技術推進のために必要なことだろう。
 
 ## Progressive Web Apps を表す特徴
 
 では具体的にどういったことを提供すればいいかという話になるが、Alex Russell 氏は先に紹介したブログの記事で以下のように挙げている。しかし、これらを全て満たす必要があるとかではなく、Web としてより良い特徴が羅列されているとも捉えられる。
 
 - **レスポンシブである**: どんな閲覧環境にも最適化されたレイアウトで表示されること
-- **オンラインでもオフラインでも動作する**: オフライン時でもオンライン時に近い振る舞いをすること。[Service Worker による通信のハンドルと Cache API によるリソースの制御](/posts/2015/service-worker-passive-cache.html)でオフライン化を実現できる
+- **オンラインでもオフラインでも動作する**: オフライン時でもオンライン時に近い振る舞いをすること。[Service Worker による通信のハンドルと Cache API によるリソースの制御](/posts/2015/service-worker-passive-cache/)でオフライン化を実現できる
 - **ネイティブアプリのようなインタラクション**
 - **最新に更新されている**: Service Worker の Background Sync 等で、常に最新が提供できること
 - **安全である**: 傍受されないよう暗号化され、セキュアであること。Service Worker も HTTPS 環境下のみ配信可能である
 - **発見・特定できる**: [Web App Manifest](https://w3c.github.io/manifest/)によってアプリケーションとして確認されること
-- **エンゲージの機会を提供できる**: プッシュ通知などを通じてアプリを使ってもらう機会を促すことができること。[Web のプッシュ通知は Service Worker で実現される](/posts/2015/service-worker-push-notification.html)
+- **エンゲージの機会を提供できる**: プッシュ通知などを通じてアプリを使ってもらう機会を促すことができること。[Web のプッシュ通知は Service Worker で実現される](/posts/2015/service-worker-push-notification/)
  - **ネイティブアプリのようにインストールできる**: ホームスクリーンに追加され、ユーザーに使ってもらう機会があること。アプリのアイコンを予め用意しておくのはもちろんのこと、[Web App Manifest](https://w3c.github.io/manifest/)というマニフェストファイルをアプリに定義しておくことで、[ブラウザがインストールを促すダイアログを表示](https://developers.google.com/web/updates/2015/03/increasing-engagement-with-app-install-banners-in-chrome-for-android)できる
 - **URL でリンクできる**: インストールが要らず、URL でアクセスできるという Web の基本であり根幹
 

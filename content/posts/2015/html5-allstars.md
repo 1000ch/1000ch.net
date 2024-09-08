@@ -37,7 +37,7 @@ date: 2015-06-15
 
 <blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">第2セッションお二人目！&#10;『ついに来たぞ！Polymer1.0!!!』小松 健作氏（<a href="https://twitter.com/komasshu">@komasshu</a>）&#10;<a href="https://twitter.com/hashtag/dotshtml5?src=hash">#dotshtml5</a> <a href="https://twitter.com/hashtag/htmlday?src=hash">#htmlday</a> <a href="http://t.co/tUnzJEZo4X">pic.twitter.com/tUnzJEZo4X</a></p>&mdash; eventdots (@eventdots) <a href="https://twitter.com/eventdots/status/609604951916982272">2015, 6月 13</a></blockquote>
 
-Polymer 1.0の素晴らしさの説明で`<google-map>`が出てたんだけど、自分が同じ例示を去年の[HTML5とか勉強会49](/posts/2014/html5-and-other-vol49.html)でしたときに「Google Map使ったことある人〜！？」とドヤ顔で会場に質問した（ホントはGoogle Maps APIと聞きたかった）のを思い出して辛かった。もし去年の私のセッションを聴いた人は小松さんのセッションで記憶を清めてもらえると嬉しいです。
+Polymer 1.0の素晴らしさの説明で`<google-map>`が出てたんだけど、自分が同じ例示を去年の[HTML5とか勉強会49](/posts/2014/html5-and-other-vol49/)でしたときに「Google Map使ったことある人〜！？」とドヤ顔で会場に質問した（ホントはGoogle Maps APIと聞きたかった）のを思い出して辛かった。もし去年の私のセッションを聴いた人は小松さんのセッションで記憶を清めてもらえると嬉しいです。
 
 ### 『Reactがいかに素晴らしいか語る20分』 増井 雄一郎氏
 

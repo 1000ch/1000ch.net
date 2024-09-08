@@ -64,7 +64,7 @@ CSS の問題を取り払いたいだけのはずなのに、Shadow DOM を使�
 </polymer-element>
 ```
 
-この Polymer のお作法は[Polymerについての所感](/posts/2015/polymer-is.html)では Polymer のアレなところっていう話をしたが、Web Components の敷居を下げること必要だろう。
+この Polymer のお作法は[Polymerについての所感](/posts/2015/polymer-is/)では Polymer のアレなところっていう話をしたが、Web Components の敷居を下げること必要だろう。
 
 この敷居を取り払うために、仕様が開発者に優しくなるか、または Polymer のようなライブラリで解決するのかは、Extensible Web に沿って API を低水準に維持することが望ましい。一方で Sizzle で実装されたクエリ表現からの `.querySelectorAll()` の例もあるので、どちらが正解かは何とも言い難い。両者の溝が時間とともに自然と埋まる可能性はある。
 
