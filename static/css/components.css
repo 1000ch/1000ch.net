@@ -64,6 +64,10 @@
   margin-bottom: 4em;
 }
 
+.notice {
+  font-size: 0.8em;
+}
+
 .preference {
   display: flex;
   flex-direction: column;
