@@ -6,11 +6,13 @@
   --light-color: #444;
   --light-bgcolor: #fff;
   --light-bgcolor-backdrop: #eee;
-  --light-bordercolor: #ccc;
+  --light-bordercolor: #ddd;
+  --light-primary: #efda5a;
   --dark-color: #eee;
   --dark-bgcolor: #222;
   --dark-bgcolor-backdrop: #444;
   --dark-bordercolor: #ccc;
+  --dark-primary: #efda5a;
   --color: var(--light-color);
   --bgcolor: var(--light-bgcolor);
   --bgcolor-backdrop: var(--light-bgcolor-backdrop);
