@@ -11,6 +11,8 @@ Shadow DOM は、代替要素を除いた任意の HTML 要素を DOM API で参
 
 Chrome 85 以降のオムニボックスに `chrome://flags/#enable-experimental-web-platform-features` を入力し、 **Experimental Web Platform Features flag** を Enabled にして Chrome を再起動すると、有効化される。
 
+<baseline-status featureId="declarative-shadow-dom"></baseline-status>
+
 ## template 要素の shadowroot 属性 でホスト要素に Shadow Root を生やす
 
 代替要素を除いた任意の要素の子要素に `<template shadowroot>` を配置することで、Shadow Root を生やせる。 `shadowroot` 属性の値は `attachShadow()` メソッドの `mode` オプションと同様に `open` と `closed` を指定できる。
