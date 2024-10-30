@@ -11,7 +11,11 @@ date: 2024-03-22
 
 従来の Web ページにおけるコピー機能の実装はシンプルとは言い難い。コピーさせるテキストを `<input type="text">` に埋め込み、そのテキストを選択状態にした上で `document.execCommand('copy')` を呼び出す、という手順が必要だったからだ。そういった実装の煩雑さに加えて同期処理という課題も相まって、[Clipboard API](https://developer.mozilla.org/ja/docs/Web/API/Clipboard_API) が考案された。これは Web Share API より新しいが、OS のインターフェースに絡みづらい話であることもあり、[サポートが進んでいる](https://caniuse.com/async-clipboard)。
 
+<baseline-status featureId="async-clipboard"></baseline-status>
+
 さらに最近では [Popover API](https://developer.mozilla.org/ja/docs/Web/API/Popover_API) が話題である。[Popover API は HTML ネイティブでトップレイヤーの HTML 表示・非表示を切り替える](https://zenn.dev/yusukehirao/articles/popover-api-and-attributes)、Web 業界が待ち望んだ仕様だ。近しい HTML 技術としては [`<dialog>` 要素](https://developer.mozilla.org/ja/docs/Web/HTML/Element/dialog)があるが、[細かな機能差があること](https://blog.logrocket.com/comparing-popover-api-dialog-element/)に加えて「それがダイアログなのかどうか」といったメンタリティにも及ぶので、使い所は時と場合に依るだろう。
+
+<baseline-status featureId="popover"></baseline-status>
 
 これらの話を踏まえて、Web Share API がサポートしている環境では Web Share API を呼び出し、対応していない環境では URL を含むシェア文言をクリップボードにコピーし、その UI フィードバックとしてポップオーバーを表示するという仕様にした。前置きからお察しの通り、コピー機能の実装に Clipboard API を、ポップオーバーの表示に Popover API をそれぞれ呼び出しているというわけだ。[Safari v17 が Popover API をサポートした](https://webkit.org/blog/14445/webkit-features-in-safari-17-0/)ことも、状況として大きい。
 
