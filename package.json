@@ -1,5 +1,6 @@
 {
   "name": "1000ch.net",
+  "type": "module",
   "private": true,
   "description": "Happens on me, Happens from me.",
   "license": "MIT",
@@ -13,11 +14,10 @@
     "start": "hugo server",
     "dev": "hugo server & npm run css -- --watch",
     "lint": "stylelint static/css/*.css",
-    "css": "postcss static/css/*.css --dir public/css/",
-    "build": "npm run css"
+    "build:css": "postcss static/css/*.css --dir public/css/",
+    "build": "npm run build:css"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^11.0.0",
