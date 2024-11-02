@@ -1,6 +1,9 @@
-module.exports = {
+import cssnano from 'cssnano';
+
+export default {
   plugins: [
-    require('autoprefixer'),
-    require('cssnano')
+    cssnano({
+      preset: 'default'
+    })
   ]
 };
