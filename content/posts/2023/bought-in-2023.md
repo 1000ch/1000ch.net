@@ -141,8 +141,9 @@ BODUM PAVINA ダブルウォールグラス 250ml を贈り物として頂き、
 MacBook Pro を持ち歩かない時に、小物などを持ち運ぶために THE NORTH FACE のポーチを使っていたが、中身の入れ替える運用に無理があり、この無印良品のリュックサックで一本化することにした。ポーチに入れていた財布も[無印良品のポリエステルトラベル用ウォレット](https://www.muji.com/jp/ja/store/cmdty/detail/4550002547783)にしたことで、ポケットに収めるコストを極小化できた。
 
 <affiliate-link 
-  src="https://www.muji.com/public/media/img/item/4550512992264_1260.jpg"
-  href="https://www.muji.com/jp/ja/store/cmdty/detail/4550512992264"
+  src="https://m.media-amazon.com/images/I/71sghUuj14L._AC_SY695_.jpg"
+  href="https://www.amazon.co.jp/dp/B0BH8BSMX5"
+  tag="1000ch-22"
   title="無印良品 肩の負担を軽くする 撥水リュックサック">
 無印良品オリジナルの肩紐が肩の負担を軽減します。重い荷物を背負った時に、肩にかかる荷重が肩紐幅全体にかかるよう設計しました。実際の荷重以上の重みを感じたり、肩紐が肩に食い込んで痛みが生じるなどの事象が軽減され、「肩の負担を軽くする」効果が得られます。PC収納ポケット手前に仕切りポケットとキャリーバーに取り付けられるようにベルトを追加しました。生地には再生素材を使い、撥水加工を施しました。
 </affiliate-link>
@@ -158,6 +159,7 @@ Grid-It を一言で言えば、小物をゴムで抑えて収納する板であ
 <affiliate-link 
   src="https://m.media-amazon.com/images/I/71qHwyx83UL._AC_SL1500_.jpg"
   href="https://www.amazon.co.jp/dp/B07FYY3GSZ"
+  tag="1000ch-22"
   title="Grid-It A4サイズ ガジェット固定ツール">
 その秘密は縦横に無数に走るゴムバンド。どこでも、どんな大きさのものでも挟むことができます。その日の予定に合わせて、必要なモノをGRID-ITにはさむだけ。そのままカバンに入れて持ち運べば、必要なものがサッと取り出せるのでとても便利！ どこに入れたか分かりにくいデジモノアクセサリなどもすっきりと整頓されて一目瞭然！取り出しやすさも抜群です。 どんな大きさ・形のものでも挟むことができます。デジモノアクセサリ以外にもステーショナリーや工具類、おもちゃ、化粧品まで…色々なものがはさめるので自由な発送で使い方が広がる新感覚のインナーケースです。
 </affiliate-link>
@@ -187,24 +189,31 @@ iPhone 12 から実装されている MagSafe に対応している充電器が�
 しかし、リングを貼る位置が正確でなかったり、リング自体が少々不格好ではあるので、もっと良いソリューションを探していたところ、[Pixel 7 でクレジットカードを持ち歩くケースを新調した](https://hori-ryota.com/blog/pixel-7-case-with-creditcard/)ブログを発見し、Peak Design のエコシステムの存在を知る。安くはないがデザインも美しく、ネイティブに近い形で MagSafe に対応させることができた。
 
 <affiliate-link 
-  src="https://jp.peakdesign.com/cdn/shop/products/02-LIGHTBOX-Case-Pixel8-Pro-Charcoal-01_1024x1024.jpg?v=1696273303"
-  href="https://jp.peakdesign.com/collections/mobile/products/everyday-case-pixel"
+  src="https://m.media-amazon.com/images/I/712moH151QL._AC_SL1500_.jpg"
+  href="https://www.amazon.co.jp/dp/B0CG2FZK3M/"
+  tag="1000ch-22"
   title="Peak Design Everyday Case">
-A Pixel phone case with the perfect balance of slimness, smart aesthetics, and protection, plus it brilliantly connects to the entire Peak Design Mobile Ecosystem.
+ブランド	ピークデザイン
+対応電話モデル	Google Pixel 8
+色	ミッドナイト(Midnight)
+対応デバイス	Pixel 8
+材質	ナイロン
 </affiliate-link>
 
 せっかく Pixel を MagSafe に対応できたので、自転車に乗っているときに接続して固定するための Bar Mount と、キャッシュレス時代に合わせてカード類を最低限収納できる Mobile Wallet も購入した。デザインも使い心地も、とても気に入っている。
 
 <affiliate-link 
-  src="https://jp.peakdesign.com/cdn/shop/products/1-LIGHTBOX-Bar-Universal-01_d2a9b306-fdc2-4653-bf22-b3c312769940_1024x1024.jpg"
-  href="https://jp.peakdesign.com/products/universal-bar-mount"
+  src="https://m.media-amazon.com/images/I/61MmGxW9JWL._AC_SL1500_.jpg"
+  href="https://www.amazon.co.jp/dp/B09FS816LN/"
+  tag="1000ch-22"
   title="Peak Design Universal Bar Mount">
 Designed for a wide variety of mounting setups, the Universal Bar Mount securely holds your phone on the handlebars, stem, or frame of any bike, scooter, stroller, motorcycle, golf cart, and more.
 </affiliate-link>
 
 <affiliate-link 
-  src="https://jp.peakdesign.com/cdn/shop/products/PeakDesign_iPhone15Pro_Stand-Wallet_Charcoal-Charcoal-v2_00000_1024x1024.jpg"
-  href="https://jp.peakdesign.com/products/mobile-wallet"
+  src="https://m.media-amazon.com/images/I/71JSXnNVQsL._AC_SL1500_.jpg"
+  href="https://www.amazon.co.jp/dp/B0CG2R3MC7"
+  tag="1000ch-22"
   title="Peak Design Mobile Wallet">
 Designed by the award-winning Peak Design softgoods team, the Mobile Wallet magnetically consolidates your wallet and phone while adding brilliant utility that you won't want to live without.
 </affiliate-link>
