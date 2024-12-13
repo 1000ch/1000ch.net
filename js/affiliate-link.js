@@ -19,7 +19,7 @@ export default class AffiliateLink extends LitElement {
       .AffiliateLink {
         padding: 16px;
         border: 1px solid var(--bordercolor, #ddd);
-        font-size: 14px;
+        font-size: 12px;
       }
 
       .AffiliateLink::after {
