@@ -2,70 +2,17 @@
  * Components............Designed components, chunks of UI.
  */
 
-.container {
-  display: flex;
-  flex-direction: column;
-  min-width: 320px;
-  max-width: 800px;
-  min-height: 100vh;
-  margin: 0 auto;
-  background-color: var(--bgcolor);
-}
+.label {
+  margin: 0.25em;
+  padding: 0.25em;
+  border-radius: 0.25em;
+  font-size: 12px;
+  vertical-align: text-bottom;
 
-.header,
-.main,
-.aside,
-.footer {
-  padding: 0 2em;
-}
-
-@media (width <= 800px) {
-  .header,
-  .main,
-  .aside,
-  .footer {
-    padding: 0 1em;
+  &.gray {
+    background: var(--bgcolor-backdrop);
+    color: var(--color);
   }
-}
-
-.header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: space-between;
-
-  h1 {
-    margin-bottom: 0;
-    border-bottom: none;
-    font-size: 3em;
-    font-weight: bold;
-
-    a {
-      display: inline-flex;
-      align-items: center;
-      color: var(--color);
-      text-decoration: none;
-
-      img {
-        width: 48px;
-        height: 48px;
-        margin-right: 0.125em;
-      }
-    }
-  }
-
-  nav {
-    display: inline-flex;
-    gap: 0.5em;
-  }
-}
-
-.footer {
-  margin-bottom: 4em;
-}
-
-.notice {
-  font-size: 0.8em;
 }
 
 .preference {
@@ -91,14 +38,19 @@
 
 .share {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 1em 0;
+  gap: 0.5em;
 
   #share-button {
+    padding: 0;
     border: 0;
     background-color: var(--bgcolor);
     color: -webkit-link;
     text-decoration: underline;
+    text-decoration-color: oklch(67% 0 0deg);
+    text-decoration-thickness: 1px;
     cursor: pointer;
 
     &:active {
@@ -110,6 +62,7 @@
 .pager {
   display: flex;
   justify-content: space-between;
+  margin: 1em 0;
   gap: 0.5em;
 
   :first-child {

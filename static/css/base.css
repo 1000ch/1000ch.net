@@ -8,13 +8,18 @@
   box-sizing: border-box;
 }
 
+html {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-underline-offset: 0.3em;
+}
+
 body {
   background-color: var(--bgcolor-backdrop);
   color: var(--color);
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  overflow-wrap: break-word;
 
   :has(#auto-phrase:checked) {
     word-break: auto-phrase;
@@ -25,6 +30,12 @@ h1,
 h2,
 h3 {
   margin: 1em 0 0.5em;
+}
+
+a:any-link {
+  text-decoration: underline;
+  text-decoration-color: oklch(67% 0 0deg);
+  text-decoration-thickness: 1px;
 }
 
 li > p {
