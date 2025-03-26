@@ -1,1 +1,87 @@
-.label{border-radius:.25em;font-size:12px;margin:.25em;padding:.25em;vertical-align:text-bottom;&.gray{background:var(--bgcolor-backdrop);color:var(--color)}}.preference{align-items:flex-start;column-gap:.5em;display:flex;flex-direction:column;label{align-items:center;display:flex;input{margin-right:.25em}}}.list{list-style-type:none;padding-left:0!important}.share{align-items:flex-end;display:flex;flex-direction:column;gap:.5em;margin:1em 0;#share-button{background-color:var(--bgcolor);border:0;color:-webkit-link;cursor:pointer;padding:0;text-decoration:underline;text-decoration-color:oklch(67% 0 0deg);text-decoration-thickness:1px;&:active{color:-webkit-activelink}}}.pager{display:flex;gap:.5em;justify-content:space-between;margin:1em 0;:first-child{flex-grow:1;text-align:left}:last-child{flex-grow:1;text-align:right}}#popover{background-color:#333;border:0;inset:unset;bottom:1em;color:#eee;padding:.5em;right:1em}
+/**
+ * Components............Designed components, chunks of UI.
+ */
+
+.label {
+  margin: 0.25em;
+  padding: 0.25em;
+  border-radius: 0.25em;
+  font-size: 12px;
+  vertical-align: text-bottom;
+
+  &.gray {
+    background: var(--bgcolor-backdrop);
+    color: var(--color);
+  }
+}
+
+.preference {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  column-gap: 0.5em;
+
+  label {
+    display: flex;
+    align-items: center;
+
+    input {
+      margin-right: 0.25em;
+    }
+  }
+}
+
+.list {
+  padding-left: 0 !important;
+  list-style-type: none;
+}
+
+.share {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 1em 0;
+  gap: 0.5em;
+
+  #share-button {
+    padding: 0;
+    border: 0;
+    background-color: var(--bgcolor);
+    color: -webkit-link;
+    text-decoration: underline;
+    text-decoration-color: oklch(67% 0 0deg);
+    text-decoration-thickness: 1px;
+    cursor: pointer;
+
+    &:active {
+      color: -webkit-activelink;
+    }
+  }
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+  gap: 0.5em;
+
+  :first-child {
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  :last-child {
+    flex-grow: 1;
+    text-align: right;
+  }
+}
+
+#popover {
+  inset: unset;
+  right: 1em;
+  bottom: 1em;
+  padding: 0.5em;
+  border: 0;
+  background-color: #333;
+  color: #eee;
+}
