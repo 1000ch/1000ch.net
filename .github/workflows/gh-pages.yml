@@ -22,7 +22,6 @@ jobs:
           hugo-version: '0.133.1'
       - run: hugo --minify
       - run: npm install
-      - run: npm run build
       - run: cp ./public/posts/index.xml ./public/rss.xml
       - uses: peaceiris/actions-gh-pages@v4
         with:
