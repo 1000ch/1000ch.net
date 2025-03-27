@@ -10,7 +10,7 @@
         </li>
       {{ end }}
     </ul>
-    <nav class="pager">
+    <nav class="nav">
       <div>
         {{ if .Paginator.HasPrev }}
           <a href="{{ .Paginator.Prev.URL }}">👈 Prev</a>
@@ -20,7 +20,7 @@
 
       <div>
         {{ if .Paginator.HasNext }}
-          <a href="{{ .Paginator.Next.URL }}">Next 👉</a>
+          <a href="{{ .Paginator.Next.URL }}">👉 Next</a>
         {{ else }}
         {{ end }}
       </div>
