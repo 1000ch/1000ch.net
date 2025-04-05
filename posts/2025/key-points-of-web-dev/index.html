@@ -1,0 +1,70 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>望ましい Frontend 開発環境の勘所 - EagleLand</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="ここで言う望ましさ
+先進的で安定した技術を用い、実行環境を問わない動作 型安全かつ高速で、簡略化されたビルド 合理的に厳しく運用保守コストの少ない Lint と Format ESM による実装と実行環境による最適化 JavaScript の言語標準のモジュールシステムである ESM を前提とすることで、Node.js やブラウザといったランタイムレベルで将来的な最適化を期待できる。ESM かどうかを意識するのは、ビルドツールとしての Node.js だけでなく、実行環境としての Node.js やブラウザでもある。
+Node.js であれば package.json の type プロパティに module を指定し、ブラウザであれば <script type=module> で指定することでモジュールシステムに ESM を用いることを宣言する。npm パッケージとして配布する場合は、main プロパティなどを考慮する必要があるが、詳しくはこちらの資料を参考にして欲しい。
+あくまで要点は JavaScript ネイティブのモジュールシステムに倣うことであり、実装においては module.exports や require() といった旧来の CommonJS ではなく、import / export や import() を用いる ESM を使う。これをベースにしているバンドラーが、Vite に内包される Rolldown であり、遡れば Rollup だろう。
+ここでの ESM は実装時点のコードベースを焦点としており、実行時を含まない。つまり、実行する JavaScript ファイルが依存関係に基づいて結合されているべきか等については論点に含まない。Web ページのパフォーマンスの重要要素にネットワーク処理があるが、HTTP/1.1 が主流だった頃はリクエスト数がボトルネックだったため JavaScript ファイルを結合するといったプラクティスがあった。しかし、HTTP/2 が普及し HTTP/3 も広がり、Web ページの性質も多様化する昨今でベストプラクティスも変化している。
+最終的にはバンドルなどの中間処理を介さず、モジュール同士が ESM で連携する基本的な構造を前提とした仕様の議論が行われていることを踏まえ、状況に応じた技術や設計を選択していく。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2025/key-points-of-web-dev/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="望ましい Frontend 開発環境の勘所"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2025/key-points-of-web-dev/"><meta name=twitter:title content="望ましい Frontend 開発環境の勘所"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>望ましい Frontend 開発環境の勘所</h1><p style=margin:0;text-align:right>Published at 2025-04-05</p><p>ここで言う望ましさ</p><ul><li>先進的で安定した技術を用い、実行環境を問わない動作</li><li>型安全かつ高速で、簡略化されたビルド</li><li>合理的に厳しく運用保守コストの少ない Lint と Format</li></ul><h2 id=esm-による実装と実行環境による最適化>ESM による実装と実行環境による最適化</h2><p><a href=https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Modules>JavaScript の言語標準のモジュールシステムである ESM</a> を前提とすることで、Node.js やブラウザといったランタイムレベルで将来的な最適化を期待できる。ESM かどうかを意識するのは、ビルドツールとしての Node.js だけでなく、実行環境としての Node.js やブラウザでもある。</p><p>Node.js であれば <a href=https://nodejs.org/api/packages.html#type><code>package.json</code> の <code>type</code> プロパティ</a>に <code>module</code> を指定し、ブラウザであれば <a href=https://html.spec.whatwg.org/multipage/scripting.html#dom-script-type><code>&lt;script type=module></code></a> で指定することでモジュールシステムに ESM を用いることを宣言する。npm パッケージとして配布する場合は、<code>main</code> プロパティなどを考慮する必要があるが、詳しくは<a href=https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c>こちらの資料</a>を参考にして欲しい。</p><p>あくまで要点は JavaScript ネイティブのモジュールシステムに倣うことであり、実装においては <code>module.exports</code> や <code>require()</code> といった旧来の <a href=https://nodejs.org/api/modules.html>CommonJS</a> ではなく、<code>import</code> / <code>export</code> や <code>import()</code> を用いる <a href=https://nodejs.org/api/esm.html>ESM</a> を使う。これをベースにしているバンドラーが、Vite に内包される <a href=https://rolldown.rs/>Rolldown</a> であり、遡れば <a href=https://rollupjs.org/>Rollup</a> だろう。</p><p>ここでの ESM は実装時点のコードベースを焦点としており、実行時を含まない。つまり、実行する JavaScript ファイルが依存関係に基づいて結合されているべきか等については論点に含まない。Web ページのパフォーマンスの重要要素にネットワーク処理があるが、<a href=https://www.stevesouders.com/blog/2012/02/10/the-performance-golden-rule/>HTTP/1.1 が主流だった頃はリクエスト数がボトルネックだったため JavaScript ファイルを結合する</a>といったプラクティスがあった。しかし、HTTP/2 が普及し HTTP/3 も広がり、<a href=https://gihyo.jp/admin/serial/01/http3/0001>Web ページの性質も多様化する昨今でベストプラクティスも変化</a>している。</p><p>最終的にはバンドルなどの中間処理を介さず、モジュール同士が ESM で連携する基本的な構造を前提とした仕様の議論が行われていることを踏まえ、状況に応じた技術や設計を選択していく。</p><h2 id=厳格な型安全と高速で効率的なビルド>厳格な型安全と高速で効率的なビルド</h2><p>TypeScript の型機構は、人間によるミスを減らし実装を補助する。VSCode で提供される提案は、<a href=https://github.com/typescript-language-server/typescript-language-server>TypeScript の LSP 実装</a>によって実現されており、今やこれなしには開発できない程である。</p><p>「厳格」が何を意味するかと言えば、端的には <code>any</code> や <code>as</code> を使わないことを指す。厳格に拘ることで型安全性が高まり、開発生産性そして継続的なデリバリーに寄与することは言うまでもない。型に関するオプションは幾つかあるが、設定としては <a href=https://www.typescriptlang.org/tsconfig/#strict><code>strict</code> オプション</a>を <code>true</code> を設定するのみで良い。</p><p>型厳格性の他には、<a href=https://devblogs.microsoft.com/typescript/announcing-typescript-5-8/>TypeScript 5.8</a> で導入された <a href=https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly><code>erasableSyntaxOnly</code> オプション</a>を有効化したい。TypeScript は JavaScript のスーパーセットだが、<a href=https://www.typescriptlang.org/docs/handbook/namespaces.html><code>namespace</code></a> や <a href=https://www.typescriptlang.org/docs/handbook/enums.html><code>enum</code></a> といった現時点の JavaScript には存在しない文法が幾つか存在する。<code>erasableSyntaxOnly</code> オプションはこれらの文法が使えなくなるオプションだが、この設定によって <code>tsc</code> でトランスパイルをせずに、Node.js の <a href=https://nodejs.org/api/typescript.html#type-stripping>Type stripping</a> で直接 TypeScript ファイルを実行できる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json:tsconfig.json data-lang=json:tsconfig.json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;strict&#34;</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;erasableSyntaxOnly&#34;</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Node.js の発展を受けて、<a href=https://deno.com/>Deno</a> や <a href=https://bun.sh/>Bun</a> といった次なる JavaScript 実行環境が誕生した。これらは Node.js の課題を踏まえて様々な点が改善されているが、大きな差分としてネイティブの TypeScript サポートがある。エコシステムでも <a href=https://github.com/TypeStrong/ts-node><code>ts-node</code></a> などのモジュールをはじめ TypeScript との親和が図られてきたが、<a href=https://gist.github.com/azu/ac5dafbf211ef8b5ecf386930ac75250>Node.js ネイティブとしても TypeScript サポートが長らく議論</a>されてきた。そして最終的に実装された <a href=https://github.com/nodejs/node/pull/53725>Type stripping</a> が「型チェックをせずに型情報を削除して実行する」という機能という訳だ。既に <a href=https://nodejs.org/en/blog/release/v23.6.0>v23.6.0 で有効化</a>されており、次の v24 系をはじめ、徐々に安定していくはずだ。</p><p>TypeScript は Node.js で実装されてきたが、その実行速度は常々課題視されてきた。コミュニティでは <a href=https://swc.rs/>swc</a> や <a href=https://esbuild.github.io/>esbuild</a> といったサードパーティのビルドツールが誕生し開発体験を大きく向上させてきた。しかし、TypeScript の根幹とも言える巨大な型システムを含む <code>tsc</code> 実装を移管することは困難であり、これらのツールは型チェックの機構を持たない。これに対する TypeScript チームのアンサーソングが、型システムの移管を含めてネイティブで実装することで高速化を目指した <a href=https://devblogs.microsoft.com/typescript/typescript-native-port/>TypeScript の Go ポート</a>である。</p><p>現在は <a href=https://github.com/microsoft/typescript-go>microsoft/typescript-go</a> という別リポジトリで開発されているが、v6 での移行期間を経て v7 で <a href=https://github.com/microsoft/typescript>microsoft/typescript</a> に合流することを目指して開発されている。実現した暁には、型チェックやトランスパイルが高速化されることはもちろんのこと、<code>tsc --noEmit</code> で型チェックのみ行って JavaScript ファイルへ変換せずに <code>node index.ts</code> で実行するという未来もあるだろう。</p><h2 id=厳格な-lintformat-と持続可能なエコシステム>厳格な Lint/Format と持続可能なエコシステム</h2><p>言語レベルでの型チェックに加えて Linter と Formatter を導入することで、コードベースに指針を造り品質をボトムアップする。JavaScript や TypeScript には、Go 言語における <a href=https://pkg.go.dev/cmd/gofmt><code>gofmt</code></a> のように有無を言わせない標準ツールがないため、Lint および Formatter のエコシステムが非常に多様化している。<a href=https://www.jslint.com/>JSLint</a> に始まり <a href=https://jshint.com/>JSHint</a>・<a href=https://esprima.org/>Esprima</a>・<a href=https://eslint.org/>ESLint</a>・<a href=https://prettier.io/>Prettier</a>、最近では <a href=https://biomejs.dev/ja/>Biome</a> といったように、様々なツールが勃興しては衰退してきた。</p><p>標準がない故に Lint や Format は「開発者の好み」の議論になりがちで、生産的な時間とは言い難い。だからこそ Prettier や Biome のように opinionated なルールを持ち、設定余地をなるべく与えないツールが誕生し、支持されてきたのだろう。この点を対比すると、言わば ESLint は「Lint ルールの実装拡張性を持った JavaScript のパーサー」であり、このコンセプトがコミュニティによるエコシステムの発展に寄与してきた。CSS では <a href=https://postcss.org/>PostCSS</a> を用いた <a href=https://stylelint.io/>Stylelint</a> も同じ思想である。</p><p>こうした<a href=https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%BC%E3%82%AD%E3%83%B3%E3%82%BD%E3%83%B3%E3%81%AE%E5%87%A1%E4%BF%97%E6%B3%95%E5%89%87>自転車置き場の議論</a>を減らす意図において「Web 開発に関する Lint や Format は全部お任せあれ」という Biome の思想は合理的で、Rust による実装も実行速度に大きく寄与している。しかし、外部拡張性を持たない中央集権的な構造なので、要求が多様化し続ける Web 開発全域をカバーし得ない予感がある。Prettier のように Format 機能だけならまだしも、Lint 機能を考えると例えば <a href=https://nextjs.org/docs/app/api-reference/config/eslint>Next.js 専用の Lint ルール</a>を取り込む未来は考え難い。</p><p>その点、拡張されることを前提とした ESLint は、こうした個別具体性の高い Lint ルールの需要にも対応する。設定余地を省いた <a href=https://github.com/standard/standard>standard/standard</a> や <a href=https://github.com/neostandard/neostandard>neostandard/neostandard</a>、あるいは Prettier も内蔵する <a href=https://github.com/xojs/xo>xojs/xo</a> も、ルールセットを含む ESLint をラップしたライブラリである。このように Lint ルールや周辺ツールの開発をコミュニティに委ね、ESLint としてはエンジン自体のメンテナンスに集中したことが、持続可能なエコシステムとしての成功要因だろう。</p><p>TypeScript と同様に、ESLint の課題として実行速度がある。他力本願だが、eslint-go のような ESLint のネイティブ実装を待つしかないのかもしれない。もう少し希望的観測をするなら、前述の <a href=https://github.com/microsoft/typescript-go>typescript-go</a> が JavaScript/TypeScript の AST を再利用できる形で公開するとなれば、eslint-go の実現への期待がやや高まる。</p><aside class=nav><button type=button id=share-button>🔗 この記事をシェアする</button>
+<a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2025/key-points-of-web-dev.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2025/customizable-select/>👈 カスタマイズ可能な &lt;select> 要素</a></div><div></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(block => {
+  hljs.highlightBlock(block);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+
+autoPhrase?.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode?.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+const shareButton = document.querySelector('.share button');
+shareButton?.addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>
