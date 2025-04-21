@@ -12,12 +12,18 @@ html {
   word-wrap: break-word;
   overflow-wrap: break-word;
   text-underline-offset: 0.3em;
+
+  /* Therse are specifically defined besides upcoming Chromium behaves as default */
+  text-autospace: normal;
+  text-spacing-trim: auto;
 }
 
 body {
   background-color: var(--bgcolor-backdrop);
   color: var(--color);
-  font-family: Arial, sans-serif;
+
+  /* Noto Sans is bundled on Windows 10/11 https://blogs.windows.com/windows-insider/2025/03/13/releasing-windows-11-build-22631-5116-to-the-release-preview-channel/ */
+  font-family: "Noto Sans", "Noto Sans CJK JP", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
 
