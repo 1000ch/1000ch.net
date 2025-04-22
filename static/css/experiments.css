@@ -1,0 +1,35 @@
+:root:has(#dark-mode:checked) {
+  color-scheme: dark;
+
+  --color: var(--dark-color);
+  --bgcolor: var(--dark-bgcolor);
+  --bgcolor-backdrop: var(--dark-bgcolor-backdrop);
+  --bordercolor: var(--dark-bordercolor);
+}
+
+body:has(#auto-phrase:checked) {
+  word-break: auto-phrase;
+}
+
+body:has(#rainbow-link:checked) {
+  a:hover,
+  .link:hover {
+    background-clip: text;
+    background-image: linear-gradient(
+      45deg,
+      hsl(0deg 75% 65%),
+      hsl(30deg 80% 65%),
+      hsl(60deg 80% 60%),
+      hsl(120deg 70% 65%),
+      hsl(210deg 75% 70%),
+      hsl(270deg 70% 70%),
+      hsl(300deg 70% 70%)
+    );
+    background-size: cover;
+    -webkit-text-fill-color: transparent;
+
+    code {
+      background: unset;
+    }
+  }
+}

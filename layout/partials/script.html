@@ -17,8 +17,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
+const rainbowLink =  document.querySelector('#rainbow-link');
+
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -33,6 +36,14 @@ darkMode?.addEventListener('change', event => {
     localStorage.setItem('dark-mode', true);
   } else {
     localStorage.removeItem('dark-mode');
+  }
+});
+
+rainbowLink?.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('rainbow-link', true);
+  } else {
+    localStorage.removeItem('rainbow-link');
   }
 });
 
