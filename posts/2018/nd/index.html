@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Go で Node.js のバージョンマネージャを自作した - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="1000ch/nd という Node.js のバージョンマネージャを Go で書いた。車輪の再発明もいいところで、特に今使っているバージョンマネージャから切り替えるメリットは今の所ない。ただの作業ログです、悪しからず。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="1000ch/nd という Node.js のバージョンマネージャを Go で書いた。車輪の再発明もいいところで、特に今使っているバージョンマネージャから切り替えるメリットは今の所ない。ただの作業ログです、悪しからず。
 それっぽいモチベーション Go は Windows、macOS、Linux といった環境へのクロスコンパイルができることと、実行できるシングルバイナリを配布するだけでランタイムへ依存しなくて済む、この2点で選んだ。
 作ったあとに @hokaccha とした答え合わせで、PATH の通し方については少々議論になった。今回作ったツールは Node.js のアーカイブファイルをダウンロードして展開し、あらかじめ通しておいたパスから node にシンボリックリンクを作るだけの単純な実装である。
 代表的な既存ツールは以下のような実装になっている。
@@ -41,9 +41,10 @@ nvm の PATH を変更する方式は、なかなか痒い部分があるのと�
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># インストールされている Node.js を表示する</span>
 </span></span><span style=display:flex><span>$ nd list
-</span></span></code></pre></div><h2 id=バージョニングについて>バージョニングについて</h2><p><a href=https://github.com/ysugimoto/gov>ysugimoto/gov</a> というツールで管理している。</p><ol><li><code>gov init</code> を実行すると <code>.versions</code> という管理ファイルが生成される</li><li><code>gov patch|minor|major</code> を実行するとバージョンが上がり <code>git</code> のタグが作られる</li><li><code>gov</code> を実行すると最新バージョンを出力する</li></ol><p>という、 <code>npm</code> と同じような機能を持っている。これを使って <code>gov</code> で出力されるバージョンを <code>-ldflags="-X main.version=$(shell gov)"</code> という形でビルド時に埋め込んでいる。</p><h2 id=参考文献>参考文献</h2><ul><li><a href=https://github.com/golang/go/issues/21909>proposal: spec: Default / Optional function parameters</a></li><li><a href=https://qiita.com/kamijin_fanta/items/f66724091b699ee71b08>Goのpathとfilepathでは動作が異なる　Windowsでも正しくパスを扱う</a></li><li><a href=https://mattn.kaoriya.net/software/lang/go/20161202095532.htm>Big Sky :: バイナリ一つで zip, tar.gz, tar.bz2, tar.xz が開けるコマンド「archiver」(と go1.8 への対応方法)</a></li><li><a href=https://mattn.kaoriya.net/software/lang/go/20170622160723.htm>Big Sky :: ダウンロードの進捗プログレスバー実装は可能か</a></li><li><a href=https://github.com/tcnksm/ghr>tcnksm/ghr - Upload multiple artifacts to GitHub Release in parallel</a></li><li><a href=https://qiita.com/Jxck_/items/02185f51162e92759ebe>Go のクロスコンパイル環境構築</a></li><li><a href=https://qiita.com/tenntenn/items/7c70e3451ac783999b4f>init関数のふしぎ #golang</a></li></ul><aside class=nav><button type=button id=share-button>🔗 この記事をシェアする</button>
+</span></span></code></pre></div><h2 id=バージョニングについて>バージョニングについて</h2><p><a href=https://github.com/ysugimoto/gov>ysugimoto/gov</a> というツールで管理している。</p><ol><li><code>gov init</code> を実行すると <code>.versions</code> という管理ファイルが生成される</li><li><code>gov patch|minor|major</code> を実行するとバージョンが上がり <code>git</code> のタグが作られる</li><li><code>gov</code> を実行すると最新バージョンを出力する</li></ol><p>という、 <code>npm</code> と同じような機能を持っている。これを使って <code>gov</code> で出力されるバージョンを <code>-ldflags="-X main.version=$(shell gov)"</code> という形でビルド時に埋め込んでいる。</p><h2 id=参考文献>参考文献</h2><ul><li><a href=https://github.com/golang/go/issues/21909>proposal: spec: Default / Optional function parameters</a></li><li><a href=https://qiita.com/kamijin_fanta/items/f66724091b699ee71b08>Goのpathとfilepathでは動作が異なる　Windowsでも正しくパスを扱う</a></li><li><a href=https://mattn.kaoriya.net/software/lang/go/20161202095532.htm>Big Sky :: バイナリ一つで zip, tar.gz, tar.bz2, tar.xz が開けるコマンド「archiver」(と go1.8 への対応方法)</a></li><li><a href=https://mattn.kaoriya.net/software/lang/go/20170622160723.htm>Big Sky :: ダウンロードの進捗プログレスバー実装は可能か</a></li><li><a href=https://github.com/tcnksm/ghr>tcnksm/ghr - Upload multiple artifacts to GitHub Release in parallel</a></li><li><a href=https://qiita.com/Jxck_/items/02185f51162e92759ebe>Go のクロスコンパイル環境構築</a></li><li><a href=https://qiita.com/tenntenn/items/7c70e3451ac783999b4f>init関数のふしぎ #golang</a></li></ul><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2018/nd.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2018/techbookfest-vol5/>👈 技術書典5にサークル参加した</a></div><div><a href=/posts/2018/optimize-svg-in-gui/>👉 SVG ファイルを GUI ツールで最適化する</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=dark-mode> ダークモード
+</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -56,8 +57,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
+const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
+rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -72,6 +76,14 @@ darkMode?.addEventListener('change', event => {
     localStorage.setItem('dark-mode', true);
   } else {
     localStorage.removeItem('dark-mode');
+  }
+});
+
+rainbowAnchor.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('rainbow-anchor', true);
+  } else {
+    localStorage.removeItem('rainbow-anchor');
   }
 });
 

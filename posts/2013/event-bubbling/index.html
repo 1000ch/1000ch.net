@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>DOMイベントのバブリングについて - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="最近はプロジェクトの異動やらなんやらで非常にドタバタしてまして、中々調べものとかに没頭出来ていない。そんな異動先のプロジェクトでイベントのバブリングについて再考したので覚書。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="最近はプロジェクトの異動やらなんやらで非常にドタバタしてまして、中々調べものとかに没頭出来ていない。そんな異動先のプロジェクトでイベントのバブリングについて再考したので覚書。
 イベントのバブリング? イベントは発火元のノードから、親のノードにどんどん伝播していく。親のノードで発火元のイベントを拾う事が出来る。
 例 5: イベント伝播 (propagation) バインドのターゲットと発火順 以下のような記述を見つけた。
 window.addEventListener('DOMContentLoaded', function() { console.log('document is ready.'); }); windowにバインドされてる。バブリングすることを考えれば納得出来るが、意図はわからないまま…。
@@ -66,9 +66,10 @@ window:load
 </span></span><span style=display:flex><span>});
 </span></span></code></pre></div><p>実行すると、</p><pre tabindex=0><code>document:DOMNodeInserted
 window:DOMNodeInserted
-</code></pre><p>伝播している。<a href=/posts/2012/bind-and-delegate/>jQueryなどで実装されているイベントの<code>delegate</code></a>は、このイベントの伝播する性質を利用して実装している。</p><h2 id=でも結局>でも結局・・・</h2><p>なんでwindowで拾っているのかはわからなかった…(´・ω・｀)</p><aside class=nav><button type=button id=share-button>🔗 この記事をシェアする</button>
+</code></pre><p>伝播している。<a href=/posts/2012/bind-and-delegate/>jQueryなどで実装されているイベントの<code>delegate</code></a>は、このイベントの伝播する性質を利用して実装している。</p><h2 id=でも結局>でも結局・・・</h2><p>なんでwindowで拾っているのかはわからなかった…(´・ω・｀)</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2013/event-bubbling.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2013/jquery-2-0/>👈 jQuery 2.0がリリースされた</a></div><div><a href=/posts/2013/google-easter-egg/>👉 Googleの隠しコマンド</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=dark-mode> ダークモード
+</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -81,8 +82,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
+const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
+rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -97,6 +101,14 @@ darkMode?.addEventListener('change', event => {
     localStorage.setItem('dark-mode', true);
   } else {
     localStorage.removeItem('dark-mode');
+  }
+});
+
+rainbowAnchor.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('rainbow-anchor', true);
+  } else {
+    localStorage.removeItem('rainbow-anchor');
   }
 });
 

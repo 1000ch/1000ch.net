@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ブラウザのNotification APIをWeb Components化した - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。 XMLHttpRequest部分を抽象化しているcore-ajaxとか、core-localstorageとか。 そんなわけで試しにNotification API周りをラップしたx-notificationを作ってみた。 これを使えば、今までJavaScriptから実行していた部分を、HTML内で宣言的に記述することが可能になる。有意義かどうかは、さておき。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。 XMLHttpRequest部分を抽象化しているcore-ajaxとか、core-localstorageとか。 そんなわけで試しにNotification API周りをラップしたx-notificationを作ってみた。 これを使えば、今までJavaScriptから実行していた部分を、HTML内で宣言的に記述することが可能になる。有意義かどうかは、さておき。
 ダウンロード npmかbowerでどうぞ。もちろんリポジトリをクローンでも。
 $ npm install x-notification $ bower install x-notification 使い方 使いたいページで、x-notification.htmlをインポートする。
 <link rel='import' href='x-notification.html'> あとは<x-notification>タグを記述する。
@@ -27,9 +27,10 @@ HTMLImportやら<code>Document#registerElement()</code>やら、Web Components�
 <code>x-notification-editor</code>内に<code>x-notification</code>を内包し、PaperElementsを駆使して動的に<code>x-notification</code>の属性値をいじれるようにしている。</p><ul><li><a href=http://1000ch.github.io/x-notification/>http://1000ch.github.io/x-notification/</a> - デモページ</li><li><a href=https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html>https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html</a> - x-notification-editor要素</li></ul><p><strong>Customize Example</strong> の所にソースコードを表示するようにしてあって、
 そこはPolymerが提供している2-way bindingをたっぷり使っている。これは便利だと思った。</p><h2 id=customelementsiohttpcustomelementsio><a href=http://customelements.io/>CustomElements.io</a></h2><blockquote class=twitter-tweet lang=ja><p>You can find x-notification on <a href=http://t.co/PbWp0Gxp0a>http://t.co/PbWp0Gxp0a</a> <a href="https://twitter.com/hashtag/WebComponents?src=hash">#WebComponents</a> <a href="https://twitter.com/hashtag/Notification?src=hash">#Notification</a> <a href="https://twitter.com/hashtag/CustomElements?src=hash">#CustomElements</a></p>&mdash; 1000ch (@1000ch_en) <a href=https://twitter.com/1000ch_en/statuses/485281852144381954>2014, 7月 5</a></blockquote><p>CustomElements.ioはBowerで登録されているWeb Componentsのギャラリーサイト。
 サイトの上部にあたかも登録フォームがあるのでここから申請するのかと思ったら、
-<code>bower.json</code>の<code>keywords</code>に <strong>web-components</strong> が含まれていると自動で追加されるそう。</p><ul><li><a href=https://github.com/webcomponents/customelements.io/issues/237>https://github.com/webcomponents/customelements.io/issues/237</a></li></ul><h2 id=参考資料>参考資料</h2><ul><li><a href=http://www.w3.org/TR/notifications/>Web Notifications</a></li><li><a href=https://developer.mozilla.org/ja/docs/Web/API/notification>Notification - Web API Interfaces | MDN</a></li><li><a href=http://www.html5rocks.com/en/tutorials/notifications/quick/>Using the Notifications API</a></li></ul><aside class=nav><button type=button id=share-button>🔗 この記事をシェアする</button>
+<code>bower.json</code>の<code>keywords</code>に <strong>web-components</strong> が含まれていると自動で追加されるそう。</p><ul><li><a href=https://github.com/webcomponents/customelements.io/issues/237>https://github.com/webcomponents/customelements.io/issues/237</a></li></ul><h2 id=参考資料>参考資料</h2><ul><li><a href=http://www.w3.org/TR/notifications/>Web Notifications</a></li><li><a href=https://developer.mozilla.org/ja/docs/Web/API/notification>Notification - Web API Interfaces | MDN</a></li><li><a href=http://www.html5rocks.com/en/tutorials/notifications/quick/>Using the Notifications API</a></li></ul><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2014/x-notification.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2014/google-io-2014/>👈 Google I/O 2014</a></div><div><a href=/posts/2014/html5-and-other-vol49/>👉 HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=dark-mode> ダークモード
+</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -42,8 +43,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
+const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
+rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -58,6 +62,14 @@ darkMode?.addEventListener('change', event => {
     localStorage.setItem('dark-mode', true);
   } else {
     localStorage.removeItem('dark-mode');
+  }
+});
+
+rainbowAnchor.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('rainbow-anchor', true);
+  } else {
+    localStorage.removeItem('rainbow-anchor');
   }
 });
 

@@ -42,21 +42,21 @@
   align-items: flex-end;
   margin: 2em 0;
   gap: 0.5em;
+}
 
-  #share-button {
-    padding: 0;
-    border: 0;
-    background-color: var(--bgcolor);
-    color: -webkit-link;
-    line-height: 1.6;
-    text-decoration: underline;
-    text-decoration-color: oklch(67% 0 0deg);
-    text-decoration-thickness: 1px;
-    cursor: pointer;
+.link {
+  padding: 0;
+  border: 0;
+  background-color: var(--bgcolor);
+  color: -webkit-link;
+  line-height: 1.6;
+  text-decoration: underline;
+  text-decoration-color: oklch(67% 0 0deg);
+  text-decoration-thickness: 1px;
+  cursor: pointer;
 
-    &:active {
-      color: -webkit-activelink;
-    }
+  &:active {
+    color: -webkit-activelink;
   }
 }
 

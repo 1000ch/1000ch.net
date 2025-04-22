@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Web Components に対する問題提起 - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='Web Components については暫く理想を語ってきたが、正直そうは上手くいかないと思っている。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='Web Components については暫く理想を語ってきたが、正直そうは上手くいかないと思っている。
 Web Componentsが変えるWeb開発の未来 Web Componentsを構成する4つの仕様 ー Web Components基礎編 Web Componentsでカルーセルギャラリーを作る ー Web Components実践編 Web Componentsを簡単・便利にするライブラリ「Polymer」を使いこなそう 基本的な要素・機能を提供するCore ElementsとMaterial Designを実現するPaper Elements Web Components を司る4つの仕様、Custom Elements・Template・Shadow DOM・HTML Importsは、確かに HTML/CSS の弱点を解決してくれる。
 しかし、作られた・配布されているコンポーネントを使う側はともかく、Web Components の仕様を抑えてコンポーネントを構築していくのは、HTMLにCSSでスタイリングをしていく従来のやり方に比べていささか敷居が高い。CSS の言語としての簡易さと引き換えに顕在化してきた弱点にフォーカスされているから Shadow DOM のありがたみがあるものの、Web Components によるコンポーネント実装と配布が一般化するかについては、いささか疑問符が残る。
 CSS の設計に悩まなくなる点は前進しつつ、コンポーネント化する単位といったような Web Components を使っていく難しさに問題は引き続きあるだろう。
@@ -42,9 +42,10 @@ Web Componentsの技術そのものへの敷居 CSS の問題を取り払いた�
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>button</span>&gt;Button&lt;/<span style=color:#f92672>button</span>&gt;
 </span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>template</span>&gt;
 </span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>polymer-element</span>&gt;
-</span></span></code></pre></div><p>この Polymer のお作法は<a href=/posts/2015/polymer-is/>Polymerについての所感</a>では Polymer のアレなところっていう話をしたが、Web Components の敷居を下げること必要だろう。</p><p>この敷居を取り払うために、仕様が開発者に優しくなるか、または Polymer のようなライブラリで解決するのかは、Extensible Web に沿って API を低水準に維持することが望ましい。一方で Sizzle で実装されたクエリ表現からの <code>.querySelectorAll()</code> の例もあるので、どちらが正解かは何とも言い難い。両者の溝が時間とともに自然と埋まる可能性はある。</p><p>てんこ盛りで重いと思っていた Polymer の機能も、v0.8 以降はプラガブル（カスタムビルド？）になるようだし、着々と準備が進んでいる。jQuery のように爆発的に流行るかどうかはわからないけど、流れがよく似ていると思う。</p><h2 id=コンポーネント化の難しさ>コンポーネント化の難しさ</h2><p>どこからどこまでをコンポーネントとするかはノウハウが少なく、時と場合によるける部分が大きいので、実装者の経験則によって良し悪しが左右される。</p><ul><li>ひとつのコンポーネントに何の要素を含めるのか</li><li>どういった機能を公開属性とするのか</li><li>抽象化の難しさ・汎用性の持たせ方</li><li>ドキュメントを今まで以上に整備しないとダメだろうな</li><li>他のコンポーネントとの一貫性</li></ul><p>Shadow DOM に入れたスタイルが外に漏れないのは素晴らしいが、それでも完璧ではないことは覚えておく必要がある。Shadow DOM は <code>/deep/</code> やら <code>::shadow</code> などの専用のセレクタを通じてスタイリング可能になっている。外部からのスタイリングを完璧に遮断してしまってはコンポーネントの汎用性を著しく失うことになるからだ。</p><p>一時的な修正にそういったセレクタの追加を繰り返していれば今までの二の舞だ。結局のところはリファクタリングの繰り返しと、コンポーネント開発者と利用者のリテラシーに委ねられることに変わりない。</p><aside class=nav><button type=button id=share-button>🔗 この記事をシェアする</button>
+</span></span></code></pre></div><p>この Polymer のお作法は<a href=/posts/2015/polymer-is/>Polymerについての所感</a>では Polymer のアレなところっていう話をしたが、Web Components の敷居を下げること必要だろう。</p><p>この敷居を取り払うために、仕様が開発者に優しくなるか、または Polymer のようなライブラリで解決するのかは、Extensible Web に沿って API を低水準に維持することが望ましい。一方で Sizzle で実装されたクエリ表現からの <code>.querySelectorAll()</code> の例もあるので、どちらが正解かは何とも言い難い。両者の溝が時間とともに自然と埋まる可能性はある。</p><p>てんこ盛りで重いと思っていた Polymer の機能も、v0.8 以降はプラガブル（カスタムビルド？）になるようだし、着々と準備が進んでいる。jQuery のように爆発的に流行るかどうかはわからないけど、流れがよく似ていると思う。</p><h2 id=コンポーネント化の難しさ>コンポーネント化の難しさ</h2><p>どこからどこまでをコンポーネントとするかはノウハウが少なく、時と場合によるける部分が大きいので、実装者の経験則によって良し悪しが左右される。</p><ul><li>ひとつのコンポーネントに何の要素を含めるのか</li><li>どういった機能を公開属性とするのか</li><li>抽象化の難しさ・汎用性の持たせ方</li><li>ドキュメントを今まで以上に整備しないとダメだろうな</li><li>他のコンポーネントとの一貫性</li></ul><p>Shadow DOM に入れたスタイルが外に漏れないのは素晴らしいが、それでも完璧ではないことは覚えておく必要がある。Shadow DOM は <code>/deep/</code> やら <code>::shadow</code> などの専用のセレクタを通じてスタイリング可能になっている。外部からのスタイリングを完璧に遮断してしまってはコンポーネントの汎用性を著しく失うことになるからだ。</p><p>一時的な修正にそういったセレクタの追加を繰り返していれば今までの二の舞だ。結局のところはリファクタリングの繰り返しと、コンポーネント開発者と利用者のリテラシーに委ねられることに変わりない。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2015/webcomponents.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2015/hugo-boilerplate/>👈 Hugo Boilerplate</a></div><div><a href=/posts/2015/html-css-common-sense/>👉 現場のプロが教えるHTML+CSSコーディングの最新常識</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=dark-mode> ダークモード
+</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -57,8 +58,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
+const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
+rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -73,6 +77,14 @@ darkMode?.addEventListener('change', event => {
     localStorage.setItem('dark-mode', true);
   } else {
     localStorage.removeItem('dark-mode');
+  }
+});
+
+rainbowAnchor.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('rainbow-anchor', true);
+  } else {
+    localStorage.removeItem('rainbow-anchor');
   }
 });
 

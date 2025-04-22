@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CSS Grid Layout Moduleについて調べたメモ - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="CSSによるレイアウトの問題はFlexboxでほとんどが解決されたと言って良いが、複雑なグリッドレイアウトを実現するためにCSS Grid Layout Moduleの策定が進められている。display: grid;ないしdisplay: inline-grid;といったように、displayプロパティに値が追加されており、それらが指定された要素はブロック要素またはインライン要素のように振る舞い、内包されるコンテンツがグリッドモデルに従ってレイアウトされる。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="CSSによるレイアウトの問題はFlexboxでほとんどが解決されたと言って良いが、複雑なグリッドレイアウトを実現するためにCSS Grid Layout Moduleの策定が進められている。display: grid;ないしdisplay: inline-grid;といったように、displayプロパティに値が追加されており、それらが指定された要素はブロック要素またはインライン要素のように振る舞い、内包されるコンテンツがグリッドモデルに従ってレイアウトされる。
 Chromeは50から、Firefoxは46から対応しているが、Chromeは現安定バージョンの49でもchrome://flags/でExperimental Web Platform featuresを有効にすれば使える。
 そんなdisplay: grid;について調べたメモ。
 大まかな構造 display: grid;によって定義されるグリッド要素と、その子要素として配置されるセルから構成する。例えば、よくあるヘッダー・フッター・メインコンテンツ・サイドカラムがあるページ構造を作るとすると、次のようなHTMLとCSSになる。
@@ -120,9 +120,10 @@ Chromeは50から、Firefoxは46から対応しているが、Chromeは現安定
 </span></span><span style=display:flex><span>  <span style=color:#66d9ef>grid-column</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>/</span> span <span style=color:#ae81ff>2</span>;
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>このように<code>span</code>キーワードを使って、セルの数を指定可能。もちろんショートハンドプロパティだけでなく、<code>grid-row-end</code>プロパティに<code>span 2</code>と指定も出来るが、開始点と距離がペアになっている方が一見わかりやすそう。ケースバイケースだけど。</p><iframe loading=lazy scrolling=no title="display: grid; spanning" src="https://codepen.io/1000ch/embed/dMXxOZ?theme-id=light&default-tab=html,result" allowtransparency=true allowfullscreen>See the Pen <a href=https://codepen.io/1000ch/pen/dMXxOZ>display: grid; spanning</a> by 1000ch
-(<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe><h2 id=グリッド要素における子要素の整列>グリッド要素における子要素の整列</h2><p>グリッド要素に対して、<a href=https://developer.mozilla.org/ja/docs/Web/CSS/justify-content><code>justify-content</code></a>ないし<a href=https://developer.mozilla.org/ja/docs/Web/CSS/align-content><code>align-content</code></a>を使う。Flexboxと同じ要領。</p><h2 id=親要素に対するセル要素自身の整列>親要素に対するセル要素自身の整列</h2><p>セル要素に対して、<a href=https://developer.mozilla.org/ja/docs/Web/CSS/justify-self><code>justify-self</code></a>ないし<a href=https://developer.mozilla.org/ja/docs/Web/CSS/align-self><code>align-self</code></a>を使う。こちらもFlexboxと同じ要領。</p><aside class=nav><button type=button id=share-button>🔗 この記事をシェアする</button>
+(<a href=https://codepen.io/1000ch>@1000ch</a>) on <a href=https://codepen.io>CodePen</a>.</iframe><h2 id=グリッド要素における子要素の整列>グリッド要素における子要素の整列</h2><p>グリッド要素に対して、<a href=https://developer.mozilla.org/ja/docs/Web/CSS/justify-content><code>justify-content</code></a>ないし<a href=https://developer.mozilla.org/ja/docs/Web/CSS/align-content><code>align-content</code></a>を使う。Flexboxと同じ要領。</p><h2 id=親要素に対するセル要素自身の整列>親要素に対するセル要素自身の整列</h2><p>セル要素に対して、<a href=https://developer.mozilla.org/ja/docs/Web/CSS/justify-self><code>justify-self</code></a>ないし<a href=https://developer.mozilla.org/ja/docs/Web/CSS/align-self><code>align-self</code></a>を使う。こちらもFlexboxと同じ要領。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2016/display-grid/index.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2016/swift-async-dispatcher/>👈 iOS+Swiftの非同期処理のヘルパークラス</a></div><div><a href=/posts/2016/flexbox-grid/>👉 FlexboxでCSSのグリッドフレームワークの再発明</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
-</label><label><input type=checkbox switch id=dark-mode> ダークモード</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=dark-mode> ダークモード
+</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -135,8 +136,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
+const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
+rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -151,6 +155,14 @@ darkMode?.addEventListener('change', event => {
     localStorage.setItem('dark-mode', true);
   } else {
     localStorage.removeItem('dark-mode');
+  }
+});
+
+rainbowAnchor.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('rainbow-anchor', true);
+  } else {
+    localStorage.removeItem('rainbow-anchor');
   }
 });
 
