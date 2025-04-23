@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>LINE/メルペイ/一休 フロントエンドエンジニア採用説明会 - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="2022年10月6日に開催された LINE・メルペイ・一休の三社合同のフロントエンドエンジニア採用説明会に出演した。LINE は福島さん、メルペイは私、一休は naoya さんから、それぞれ会社の事業状況やそれらに対するフロントエンド領域の関わり・課題・魅力などについてセッションがあった。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="2022年10月6日に開催された LINE・メルペイ・一休の三社合同のフロントエンドエンジニア採用説明会に出演した。LINE は福島さん、メルペイは私、一休は naoya さんから、それぞれ会社の事業状況やそれらに対するフロントエンド領域の関わり・課題・魅力などについてセッションがあった。
 メルペイのパートで私が話した内容はエンジニアリングブログに書き起こしていただいた。会社や事業の概況、ミッション、フロントエンドの開発体制や技術構成、課題や取り組みなど、2022年11月時点のスナップショットとしてまずまず網羅的にまとまっているので、興味のある方はご覧頂きたい。
 また、3社のセッションの後はモデレータを交えて、パネルディスカッションが行われた。技術や組織の課題・求める人材像（マインド・スキル要件）・評価や育成などのマネジメントトピックについて肩肘張らずに議論し、特に組織運営について共感できる部分が多かったのと、フロントエンドエンジニアというキャリア選択についても需要が減ることは考えづらく、むしろ重要度は増していくだろうという話もあった。こちらのパネルディスカッションについてもログミーにて書き起こしていただいているので、是非ご覧ください。前編後編の2記事です。
 先日 @linecorp_jp @merpayinc @ikyu_saiyo の合同で行われたフロントエンドエンジニア採用説明会のパネルディスカッションを @logmi_tech で書き起こして頂きました / “採用時に見ているのは技術と、経歴よりもコミュニケーション能力　LINE・メルペイ・一休の入社前後の…” https://t.co/UQrZK7picn
@@ -44,7 +44,7 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowLink.addEventListener('change', event => {
+rainbowLink?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('rainbow-link', true);
   } else {

@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>WEB+DB PRESS Vol.87 Webフロントエンド最前線「ユーザを待たせない高速なWebサイト」 - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="「Webフロントエンド最前線」という連載を担当させてもらっているWEB+DB PRESS Vol.87が6月24日に発売されます。連載7回目は、Webフロントエンド高速化に於いて最も基本的とも言えるネットワークの最適化について。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="「Webフロントエンド最前線」という連載を担当させてもらっているWEB+DB PRESS Vol.87が6月24日に発売されます。連載7回目は、Webフロントエンド高速化に於いて最も基本的とも言えるネットワークの最適化について。
 いくらカッコよくても遅かったら台無し Webサイトのパフォーマンスがユーザー体験にどれほど影響されるかは今囁かれ始めた話ではありません。GoogleとMicrosoftはページロードが2秒遅くなるたびサービスにとって4.3%の減益につながるとの研究を示したり、Amazonだと売上が数%落ちるだとか、定番的に話されている話も多いので耳タコの人もいるでしょう。
 ページロードはWebページの閲覧フローのうち、ユーザーが最初に体験するフェーズです。ページロードで10秒かかったらユーザーはそのサイトへ二度と帰ってこないかもしれません。
 HTTP/2の台頭でフロントエンドの最適化が要らなくなる と誤変換された情報が流れているのをたまーに見ますが、変化するだけで要らなくなるわけではありません。そのことについても書いてます。
@@ -45,7 +45,7 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowLink.addEventListener('change', event => {
+rainbowLink?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('rainbow-link', true);
   } else {

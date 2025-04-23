@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Web App Manifest - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='Web App Manifestは、Webページのメタ情報をJSON形式でフォーマット化したものである。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content='Web App Manifestは、Webページのメタ情報をJSON形式でフォーマット化したものである。
 Web App Manifestのサンプル 次のようなJSONファイルを用意して、<link rel="manifest" href="manigest.json">な感じでHTMLから参照する。<link>で指定するのでルートになくても動きそうだが、ファイルの性質的にルートに置いておきたい気持ちになる。
 { "name": "Awesome Example App", "short_name": "Example App", "start_url": "index.html", "icons": [ { "src": "images/icon-144x144.png", "sizes": "144x144", "type": "image/png", "density": "3.0" }], "display": "standalone" } Webページの振る舞いを直接制御する機能は持ちあわせておらず、ブラウザがロードしたときにWeb App Manifestがあるとそれに基づいて機能を補助するような位置付け。
 具体的には、AndroidのChromeでWeb App Manifestが配信されているページを複数回訪問すると、バナーが表示されモバイルデスクトップへのインストールを促される。iOS Safariで実装が進んだ時にどのように機能するか不明だが、Progressive Web Appsの流れが進めば近い振る舞いが予想できる。が、Appleの場合はiOSのマーケットの事情もあると思うのでなんとも…。
@@ -76,7 +76,7 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowLink.addEventListener('change', event => {
+rainbowLink?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('rainbow-link', true);
   } else {

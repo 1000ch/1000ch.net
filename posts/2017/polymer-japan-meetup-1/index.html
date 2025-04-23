@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Polymer Japan Meetupに出演しました - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="11月4日に開催された Polymer Japan Meetup #1 に出演しました。トップバッターだったので、発表までハラハラすることなく、イチ参加者として楽しめました。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="11月4日に開催された Polymer Japan Meetup #1 に出演しました。トップバッターだったので、発表までハラハラすることなく、イチ参加者として楽しめました。
 Web Components Re-Introduction Polymer のイベントとはいえ前提技術として Web Components の話が必要ということで、Web Components の基礎部分について解説しました。HTML5 Conference 2017 で話した内容と被るところもありますが、全体感をまとめてお届けしました。
 Polymer もとい Web Components の良さについては、このデモが一番わかりやすいです。
 Web Componentsでできること。タグ一発でこんなノブやスライダーが表示できたりします。 #polymer_jphttps://t.co/9enKsWalkL pic.twitter.com/7TJDx7MBKg
@@ -46,7 +46,7 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowLink.addEventListener('change', event => {
+rainbowLink?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('rainbow-link', true);
   } else {

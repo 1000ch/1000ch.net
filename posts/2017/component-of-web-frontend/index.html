@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Webフロントエンドにおけるコンポーネント化のアプローチ - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="株式会社サイバーエージェント、日本経済新聞社、ヤフー株式会社の三社共催の Web フロントエンドの技術カンファレンス Inside Frontend が 2017/2/25 に開催され、スピーカー兼スタッフで参加してきた。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="株式会社サイバーエージェント、日本経済新聞社、ヤフー株式会社の三社共催の Web フロントエンドの技術カンファレンス Inside Frontend が 2017/2/25 に開催され、スピーカー兼スタッフで参加してきた。
 発表資料と雑感 技術寄りな話をすることが多いけど、今回は Web クライアントサイドのエンジニアとデザイナーの協業について話した。
 コンポーネント化は、開発や運用のコストを小さくしたり、アプリケーションの品質を高める上で欠かせない。成果物を整理・抽象化したいのはデザイナー・エンジニアを問わず開発者皆が思うところ。でも今までの Web フロントエンドにおけるコンポーネント化したい欲求は、エンジニアの心の中にしかなくて、うまくいってなかった。開発プロセスにおいて、全体像を求められるデザイナーとモジュラーにプログラムを構築していく職能間の意識の齟齬や、Web フロントエンド固有の技術課題である CSS もある。そういった背景がある中で、コンポーネント化を進めるには何に取り組めばいいか、という話をした。
 コンポーネント化の話は、やはりデザイナーにもその概念を理解してもらうのが肝なんだな、と。再利用性、保守性、開発コストなど、エンジニアが楽したいからじゃなくメリットがあるんだよという説得材料を示すのが大事、とのこと。#insideFE
@@ -53,7 +53,7 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowLink.addEventListener('change', event => {
+rainbowLink?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('rainbow-link', true);
   } else {

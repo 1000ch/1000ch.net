@@ -1,5 +1,5 @@
 <!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>メッセージングによるService Workerのコントロール - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experimental.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Service Workerでハンドルするリソースは、Service Workerのスクリプトに静的に記述しているケースが多い。Service Workerでやっているアレコレをメッセージングで動的にできないか試行錯誤したログ。
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Service Workerでハンドルするリソースは、Service Workerのスクリプトに静的に記述しているケースが多い。Service Workerでやっているアレコレをメッセージングで動的にできないか試行錯誤したログ。
 よくある?キャッシュパターン チュートリアル等でもよく見かける、Service Workerのインストール時に指定のリソースをキャッシュしているパターン。
 const CACHE_KEY = 'cache-key'; const CACHE_LIST = [ 'index.html', 'app.js', 'app.css' ]; self.addEventListener('install', e => { // CACHE_KEYをキーにとるCacheオブジェクトを開いて // CACHE_LISTをキャッシュするPromise let promise = caches.open(CACHE_KEY) .then(cache => cache.addAll(CACHE_LIST)) .catch(error => console.log(error)); e.waitUntil(promise); }); 小さい用途であれば、これで何ら問題はない気はする。開発規模が大きくなってくるとリソースの増加やらで人力でメンテナンスするのが辛くなってくる。
 GoogleChrome/sw-precacheはService Workerのスクリプトを書き出すツールで、キャッシュしたいパスのパターン指定などが可能。これでひとまず人力で管理していくリスクは低減できるが、細かい処理を書くには不向き。なので、Service Workerの処理内容を自由に書く余地を残しつつ、何をキャッシュするかを動的にできないかを模索したところ、手段の1つとしてメッセージングを使う方法が浮かんだ。
@@ -121,7 +121,7 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowLink.addEventListener('change', event => {
+rainbowLink?.addEventListener('change', event => {
   if (event.target.checked) {
     localStorage.setItem('rainbow-link', true);
   } else {
