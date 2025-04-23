@@ -9,7 +9,7 @@
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>東京さくらマラソンで 10km を完走した</h1><p style=margin:0;text-align:right>Published at 2024-03-31</p><p>去年に引き続き、<a href=https://www.sportsentry.ne.jp/event/t/93968>第5回 東京さくらマラソン</a>に参加して 10km を完走した。2024 年は 3 月半ばを越えても寒く、今週に至っては雨続きでどうなることやらと思いきや、打って変わって当日は快晴どころか最高 26 度という夏日での開催になった。</p><p><a href=/posts/2022/tokyo-sakura-marathon/>2022 年が 54:22</a> で <a href=/posts/2023/tokyo-sakura-marathon/>2023 年が 55:48</a> という結果だったので、それは越えたいなと思い、今年はいくつか対策を凝らした。まず、レース前とレース中にちゃんとエネルギーを補給する。朝食を取っても良いが、よりエネルギーになりやすいゼリー飲料をレース前に取りつつ、<a href=/posts/2024/arakawa-half-marathon/>荒川ハーフマラソンでも実践したように</a>、レース中に <a href="https://www.amazon.co.jp/dp/B07RMGPRJJ?tag=1000ch-22">MAURTEN のジェル</a>を食べて、<a href="https://www.amazon.co.jp/dp/B00NAS8XMQ?tag=1000ch-22">ZAMST の膝サポーター</a>を着用して挑んだ。</p><p>それが功を奏してか、今年は 51:51 という自己ベストでゴールできた。</p><div class=strava-embed-placeholder data-embed-type=activity data-embed-id=11073273616></div><p>10km ではなく 10.2km を走っているのは御愛嬌だが、レースの途中からコース内の案内板と手元の時計の計測がズレていることには気付いており、恐らくコースの測量ミスなのではないかと予想している。</p><p>走行記録を遡ってみると、何を思い立ったのか <a href=https://www.strava.com/activities/4962407750>2017 年末に走り始めており</a>、コンスタントに走り始めたのはここ数年のことである。加齢に抵抗しながらハーフマラソンまで走れるようになったことを思えば、一定の成長はあったと信じたい。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2024/tokyo-sakura-marathon.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2024/optin-auto-phrase/>👈 ダークモードの再実装と日本語のフレーズ改行</a></div><div><a href=/posts/2024/custom-pseudo-class-with-custom-state-set-api/>👉 カスタム要素の状態を定義する CustomStateSet と参照する擬似クラス :state()</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -22,11 +22,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -44,11 +44,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

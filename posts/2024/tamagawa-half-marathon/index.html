@@ -7,7 +7,7 @@
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>アミノバイタル presents 多摩川ハーフマラソンを完走した</h1><p style=margin:0;text-align:right>Published at 2024-12-01</p><p>本日開催された<a href=https://boost-inc.jp/tama_half/event/ev_20241201.html>多摩川ハーフマラソン</a>のハーフマラソン部門に参加し、完走した。<a href=https://boost-inc.jp/run_info/>BOOST RUNNNING</a> の主催するイベントに参加するのは、今年の頭に参加した<a href=/posts/2024/arakawa-half-marathon/>荒川ハーフマラソン</a>以来だ。</p><div class=strava-embed-placeholder data-embed-type=activity data-embed-id=13019929098 data-style=standard data-from-embed=false></div><p>前回のハーフマラソンでは 17km 付近で膝を痛めて失速しタイムは 2:05:15 だった。今回はそういったアクシデントもなく気候も良好な中で気持ちよく走ることが出来て、前回を上回るタイムで完走できた。</p><p>明朗でテキパキとした進行、充分数の給水地点、ペーサーや医療班の皆さんのサポート、走行記録のデジタル配信など、前回に引き続き満足度は高い。しかし今回は唯一、<a href=https://www.city.kawasaki.jp/530/page/0000020718.html>多摩川沿いの諏訪いこいの広場</a>に設営されていたトイレが維持管理されておらず辛いものがあった。行政側なのか大会側なのか不明だが、公衆のトイレを頼りにしないくらいの割り切りが必要かもしれない。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2024/tamagawa-half-marathon.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2024/google-account-url/>👈 Google アカウントを複数利用する場合の URL</a></div><div><a href=/posts/2024/bought-in-2024/>👉 2024年に買って良かったもの</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -20,11 +20,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -42,11 +42,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

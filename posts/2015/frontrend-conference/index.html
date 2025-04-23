@@ -17,7 +17,7 @@ Service Workerコンテキストのデバッグ @1000ch ServiceWorkerについ�
 最終セッションの疲れ+暗闇による眠気とセッションへの興味でせめぎ合い。</p><p>そして<a href=http://twitter.com/cssradar>@cssradar</a>氏による安定の逐次翻訳。翻訳して頭を使うと後頭部が痛いらしい。</p><blockquote class=twitter-tweet lang=ja><p><a href="https://twitter.com/hashtag/frontrend?src=hash">#frontrend</a> Atomでpngだったりテキストだったりを表示してるｗ</p>&mdash; あほむ@消費豚 (@ahomu) <a href=https://twitter.com/ahomu/status/569052667567165441>2015, 2月 21</a></blockquote><blockquote class=twitter-tweet lang=ja><p>Atomに部屋の明るさに応じてコントラストを調整するメディアクエリーが入るとな。 <a href="https://twitter.com/hashtag/frontrend?src=hash">#frontrend</a></p>&mdash; Yosuke FURUKAWA (@yosuke_furukawa) <a href=https://twitter.com/yosuke_furukawa/status/569063910554214401>2015, 2月 21</a></blockquote><blockquote class=twitter-tweet lang=ja><p>まー、光度取れるハードがどの程度あるのかって話ではあるけど。限定的環境でAPIとしてつかいたい。 <a href="https://twitter.com/hashtag/frontrend?src=hash">#frontrend</a></p>&mdash; ＆（あんどー） (@ampersand_xyz) <a href=https://twitter.com/ampersand_xyz/status/569064441267924992>2015, 2月 21</a></blockquote><blockquote class=twitter-tweet lang=ja><p>光度量って多分ユーザ確認なしで使えると思うけど、これ実際にはカメラにアクセスすることになるからなんかセキュリティ的に色入りできる気がする <a href="https://twitter.com/hashtag/frontrend?src=hash">#frontrend</a></p>&mdash; 過激派 (@kyo_ago) <a href=https://twitter.com/kyo_ago/status/569065506075881472>2015, 2月 21</a></blockquote><p>光のメディアクエリ、<a href=http://www.girliemac.com/blog/2014/01/12/luminosity/>Responsive UI with Luminosity Level</a>で記憶にはあったけど、CSSのメディアクエリにも入るのは見逃してた。</p><h2 id=おつかれさまでした>おつかれさまでした</h2><p>参加者の皆様、スピーカーの皆様、運営に際して協力していただいたスタッフ・スポンサーの皆様お疲れ様でした＆ありがとうございました。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2015/frontrend-conference.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2015/panasonic-petit-drum/>👈 ドラム式洗濯乾燥機「プチドラム」で快適洗濯生活</a></div><div><a href=/posts/2015/wdpress-frontend-series-es6/>👉 WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -30,11 +30,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -52,11 +52,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

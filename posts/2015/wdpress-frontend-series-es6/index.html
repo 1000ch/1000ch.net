@@ -10,7 +10,7 @@ iojsも--harmonyフラグなしでES6のシンタックスが使えるし、 Nod
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」</h1><p style=margin:0;text-align:right>Published at 2015-02-23</p><p>「Webフロントエンド最前線」という連載を担当させてもらっている<a href=http://gihyo.jp/magazine/wdpress/archive/2015/vol85>WEB+DB PRESS Vol.85</a>が2月24日に発売されます！連載5回目はECMAScript 6の概要・歴史、主要な追加機能、ブラウザサポートが不完全な今どのように取り入れるか等等を書いています。</p><p><img src=./cover.jpg alt></p><h2 id=はじめようトランスパイラ生活>はじめようトランスパイラ生活</h2><p>JSerならES6を聞いたこと無いっていう人は流石にいないと思うが、もう「まだ先だからいいでしょ」って言ってられる段階ではなくなってきてると思う。</p><p>現状ブラウザサポートは弱いけど、今から使っていくために出来る工夫はいくらでもあって、Chrome ExtensionsやFirefox Add-onのように実行環境が限定されるツールを作る時に書いてみるとか。比較的大きめプロダクトだとしても、トランスパイラが賢くやってくれるのでビルド前提でコード書いていくのもコスパの良い投資。</p><p>iojsも<a href=https://iojs.org/en/es6.html><code>--harmony</code>フラグなしでES6のシンタックスが使える</a>し、 Node.js 0.12向けでもブラウザ向けでもトランスパイル前提で書いていくとか、いくらでもやりようはある。</p><ul><li><a href=/posts/2015/image-encoder-es6/>画像をdataURIに変換するライブラリをES6で書きなおす</a></li><li><a href=http://havelog.ayumusato.com/develop/javascript/e651-es2015.html>もうES6 (ES2015) でいいんじゃないか</a></li></ul><h2 id=6to5がbabelに>6to5がbabelに</h2><p>記事内で紹介しているES6→ES5のトランスパイラである6to5が、原稿が入稿された後に<a href=https://github.com/babel/babel>babel</a>に名前が変わるという悲劇が起こってしまったのでご注意ください。こちらは別途アナウンスがあると思います。どこかから。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/611JK2E4TZL._SX352_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4774171417/ tag=1000ch-22 title="WEB+DB PRESS Vol.85">菅原 元気 (著), 磯辺 和彦 (著), 山口 与力 (著), 澤登 亨彦 (著), 濱田 章吾 (著), 宮田 淳平 (著), 松本 亮介 (著), 海野 弘成 (著), 佐藤 歩 (著), 泉水 翔吾 (著), 佐藤 太一 (著), hide_o_55 (著), 青木 良樹 (著), 武本 将英 (著), 道井 俊介 (著), 伊藤 直也 (著), 橋本 翔 (著), 渡邊 恵太 (著), 舘野 祐一 (著), 中島 聡 (著), はまちや2 (著), 竹原 (著), 牧 大輔 (著), 工藤 春奈 (著), WEB+DB PRESS編集部 (編集)</affiliate-link></p><p>よろしくお願いします(´・ω・`)</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2015/wdpress-frontend-series-es6/index.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2015/frontrend-conference/>👈 Frontrend ConferenceでService Workerについて話してきた</a></div><div><a href=/posts/2015/farewell-docpad-hello-hugo/>👉 Farewell DocPad, Hello Hugo.</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -23,11 +23,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -45,11 +45,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

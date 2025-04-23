@@ -10,7 +10,7 @@ See the Pen <input type="checkbox" switch> by 1000ch (@1000ch) on CodePen. ま�
 on <a href=https://codepen.io>CodePen</a>.</iframe><p>また <a href="https://developer.chrome.com/blog/css-i18n-features?hl=ja">CSS に 4 つの新しい国際化機能が導入された</a>。このブログでも英数字と日本語の混在を意識して半角スペースを含めたテキストにしているが、 <code>text-autospace</code> プロパティと <code>text-spacing-trim</code> プロパティによってタイポグラフィは改善される。それぞれのプロパティのデフォルトの挙動が改善されるので、実装を待つのみだが、もう1つ注目しているのが <code>word-break: auto-phrase;</code> である。</p><p><baseline-status featureid=word-break-auto-phrase></baseline-status></p><p>日本語や中国語といった言語は単語をスペースで区切らず、 <code>word-break</code> プロパティや <code>overflow-wrap</code> プロパティの値に応じて単語そのものが改行され、読みづらさを招く場合がある。<code>auto-phrase</code> 値は、日本語においては文節で改行することで可読性を改善してくれる。</p><p>このブログでも全般的に適用したが、改行位置が各行の日本語文章に依存するため、ブロック要素の右端で改行されずレイアウト上の違和感が残る。これはパラグラフの改行位置でレイアウトのリズムを揃えるのではなく、そのブロック要素そのものの UI を改善するべきだとは思うが、ひとまずダークモードと同様にオプトインで設定できるようにした。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2024/optin-auto-phrase.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2024/web-share-api/>👈 Web Share API を使った共有機能とフォールバック</a></div><div><a href=/posts/2024/tokyo-sakura-marathon/>👉 東京さくらマラソンで 10km を完走した</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -23,11 +23,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -45,11 +45,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

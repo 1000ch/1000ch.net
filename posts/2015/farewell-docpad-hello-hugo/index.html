@@ -15,7 +15,7 @@ OctopressからHugoへ移行した - SOTA Jekyllが許されるのは小学生�
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Farewell DocPad, Hello Hugo.</h1><p style=margin:0;text-align:right>Published at 2015-02-24</p><p>Hugoはじめました。</p><h2 id=docpadからhugoへ>DocPadからHugoへ</h2><p>1000ch.netというドメイン自体は2009年から持っていたけど、技術ブログを書くようになったのは2012年11月から。暫くはJekyll+GitHub Pagesでホストしていたけど、ビルドが重かったり、GitHub Flavored Markdownが使えなかったりの不満を感じて途中でDocPadに移行。</p><h2 id=jekyll時代>Jekyll時代</h2><p><img src=./jekyll.png alt=Jekyll></p><p><a href=http://jekyllrb.com/>Jekyll</a>はRuby製の静的サイトジェネレータ。GitHubの公式サポートが得られるっていうこともあったし、<a href=http://twitter.com/cssradar>@cssradar</a>氏が<a href=http://css.studiomohawk.com/jekyll/2011/06/11/jekyll/>Jekyll | CSS Radar | Little Books For Front End Developers</a>という記事を書いていたこともあって、スクラッチで書き始めた。それまでは、なんとなくレベルでWordPressを立てていた。</p><p>JekyllはGitHub製というだけでなく、GitHubの<code>username.github.com</code>というリポジトリ、もしくはその他リポジトリでも<code>gh-pages</code>ブランチであれば、Jekyllのプロジェクトソースをコミットすることで自動でコンパイル・デプロイが行われる。他の静的サイトジェネレータであれば手元でビルドした結果なり、CIサーバーでビルドした結果の静的リソースをそれらのリポジトリにコミットしないとGitHub Pagesとして公開されない。そんなに手間でもないけど、ブランチが汚れないしお手軽である。</p><p>移行はしたけど、決してモノが悪いというわけではない。実行速度も改善されてきたという噂もあるし、僕が移行したのは、重さに不満をもったというよりはNode.js製のCMSに変えてみようかなーと、その程度のものだったと思う。</p><h2 id=docpad時代>DocPad時代</h2><p><img src=./docpad.png alt=DocPad></p><p><a href=https://docpad.org/>DocPad</a>はNode.js製のJekyllリプレイスとも言われる静的サイトジェネレータ。巷ではOctpressとかも流行っていたけど、DocPadを選択。Jade・Stylus・RSS出力などなど、いろんな機能がプラガブルに追加できたし、使い勝手もそこそこ良い。ちなみに自分が構築周りをやった<a href=http://jsgirls.org>JS Girlsのサイト</a>では、DocPadを採用している。</p><p>しばらく不満のないブログ生活を送っていたけど、いつの間にかビルド時にDocPadがコマンドラインでプロジェクトに寄付を求めるログを出すようになってきたのと、パーシャル化したり記事が増えるに連れて（DocPadの仕事が増えるに連れて）ビルドに時間がかかるようになってきた。寄付はさておき。ビルド時間の短縮のために、JadeにしていたところをHTMLにしたり、パーシャル化していた部分をマージしたり、地道な工夫を凝らしていたんだけど、システム的な想像をツールに抑止されるのもアレだよなぁとか。</p><h2 id=hugoにした>Hugoにした</h2><p><img src=./hugo.png alt=Hugo></p><p><a href=http://gohugo.io/>Hugo</a>自体はもっと前から知っていた（きっかけはまたもや<a href=http://twitter.com/cssradar>@cssradar</a>氏なんだけど）けど、まだツールとして成熟していなくてあまり興味が向いていなかったところ、ちょろちょろと「Hugoに移行しました」という記事を見かけるようになった。</p><ul><li><a href=http://deeeet.com/writing/2014/12/25/hugo/>OctopressからHugoへ移行した</a> - SOTA</li><li><a href=http://t32k.me/mol/log/hugo/>Jekyllが許されるのは小学生までだよね</a> - Mol</li></ul><p>仕組み周りを移行する（しかも今回はデザインもそのまま移植する）のは腰の重い作業なんだけど、やってみたらビルドは速いのなんのって。30秒くらいかかっていたビルドが0.1~0.2秒で終わるもんで、最初はバグってるんじゃないかと思ったくらいだ。これを体感してしまうとそこまで重さを感じていなかったDocPadも余計に重さが相対的に気になってくる。</p><p>おおよその作業（デザイン移植とコンテンツ作成）は1時間くらいで終わったんだけど、ページングとかRSSの生成みたいな細かいところのデバッグにかなり時間（2時間くらい）を取られた。わからないところを手探りでやるのは、コレに限らず辛い作業だとは思うんだけど、たまにこういうことしないとダメだね。新しい技術を触るのってやっぱ大事なことだと思ったのでした。そして、終わってしまえばかなり快適。<a href=https://github.com/t32k/mol>t32k/mol</a>に習って、<a href=https://wercker.com>wercker</a>で<code>master</code>にプッシュしたら自動でデプロイされるようにした。</p><p>自分は完全移行を目指したから無駄に苦労した部分があるけど、Hugoにもデフォルトでよさ気なテーマがあるのでそれを使えば楽だし、それをちょっとずつカスタマイズするほうが良さそう。英語だけど、<a href=http://gohugo.io/overview/introduction/>ドキュメントもとても充実している</a>のでオススメ。成果物は<a href=https://github.com/1000ch/1000ch.net>1000ch/1000ch.net</a>。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2015/farewell-docpad-hello-hugo/index.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2015/wdpress-frontend-series-es6/>👈 WEB+DB PRESS Vol.85 Webフロントエンド最前線「ECMAScript 6とJavaScriptの未来」</a></div><div><a href=/posts/2015/service-worker-passive-cache/>👉 Service Workerを使った消極的なキャッシュ</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -28,11 +28,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -50,11 +50,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

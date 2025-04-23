@@ -28,7 +28,7 @@ manifest.jsonのサンプル 後述の公式ドキュメントに詳しく載っ
 </span></span></code></pre></div><p>実行される<code>main.js</code>の中でツールバーのアイコンがクリックされる瞬間をハンドリングし、履歴オブジェクトにアクセスして削除するという単純な造り。でもその指定を、<code>"background":...</code>に指定しなければならなかったり、履歴オブジェクトを操作するので、<code>"permissions": ["history"]</code>と記述しなければならなかったり。やはり<code>manifest.json</code>が肝な感じ。</p><h2 id=デバッグの取っ掛かり>デバッグの取っ掛かり</h2><p>使う手順の話で出たが、拡張機能の実装が配置された<code>manifest.json</code>があるディレクトリを、ディベロッパーモードにしてロードするだけ。実に簡単。<code>console.log</code>の出力もディベロッパーツールで確認することができる。</p><p>ただし、今回のような出力先のビューレイヤーがないbackgroundでの実行は、<code>chrome://extensions/</code>の、ロードした拡張機能のビューを調査で生成されている<code>background.html</code>で確認が可能。事前に作っておいても大丈夫。</p><h2 id=参考url>参考URL</h2><ul><li><a href=http://dotinstall.com/lessons/basic_chrome_v2/14001>Google Chrome拡張機能とはなにか？ - ドットインストール</a></li><li><a href=http://developer.chrome.com/extensions/manifest.html>Formats: Manifest Files - chrome extensions</a></li><li><a href=http://developer.chrome.com/extensions/api_index.html>chrome.*APIs - chrome extensions</a></li></ul><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2013/history-clear-chrome-extension.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2013/gruntjs-0-5-roadmap/>👈 Grunt ver0.5に向けてのロードマップ</a></div><div><a href=/posts/2013/jquery-2-0/>👉 jQuery 2.0がリリースされた</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -41,11 +41,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -63,11 +63,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

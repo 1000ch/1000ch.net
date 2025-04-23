@@ -20,7 +20,7 @@ feat(engine): add TextLintEngine#loadRule · azu/textlint@b23a91e resolve path w
 </span></span></code></pre></div><p>あとは、マークダウン形式を含めたプレーンテキストを開くだけ。</p><p><img src=./atom.png alt></p><p>このようにチェックしてくれる。</p><h2 id=atomで開いているワークスペースのプラグインをロードする>Atomで開いているワークスペースのプラグインをロードする</h2><p>textlintの基本的な作りとして、</p><ol><li>textlintが配置されているパスにあるプラグインを自動でロードする</li><li>textlintコマンドを実行しているパスの<code>.textlintrc</code>を読み込んで実施するルールを選ぶ</li></ol><p>のようになっている。プロジェクトディレクトリで各種コマンドを実行したり<a href=http://github.com/nakajmg/gulp-textlint>Gulpのプラグイン</a>を使う場合は、これで何の問題も無いがAtomのプラグインを作ろうとすると</p><ul><li>AtomがバンドルしているNode.jsの実行パス（<code>/Applications/Atom.app/Contents/Resources/app.asar</code>）にtextlintを配置する</li><li>Atomで開いているディレクトリにあるプラグインを自動でロードする</li><li>Atomで開いているディレクトリにある<code>.textlintrc</code>を自動でロードする</li></ul><p>という振る舞いを実装しなければならなそう。IssueやらPull Request投げたらazuさんが光速で対応してくれた。</p><ul><li><a href=https://github.com/azu/textlint/commit/b23a91e8aca3b2caf085faefbf1bd90d22d2f4fe>feat(engine): add <code>TextLintEngine#loadRule</code> · azu/textlint@b23a91e</a></li><li><a href=https://github.com/azu/textlint/commit/901fabe26158f0ca1fae53d01a8a3695a4a1e68e>resolve path with context if passed · azu/textlint@901fabe</a></li><li><a href=https://github.com/azu/textlint/pull/23>setRulesBaseDirectory() and addRule() #23</a></li></ul><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2015/linter-textlint/index.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2015/docker-introduction/>👈 Docker事始め作業ログ</a></div><div><a href=/posts/2015/update-mobile-phone/>👉 docomoからみおふぉんへ、iPhone 5sからiPhone 6sへ</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -33,11 +33,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -55,11 +55,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

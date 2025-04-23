@@ -8,7 +8,7 @@
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>WEB+DB PRESS総集編[Vol.1~120] に寄稿しました</h1><p style=margin:0;text-align:right>Published at 2021-08-01</p><p>WEB+DB PRESS総集編の書き下ろし特別企画「進化するプログラミング言語の魅力」で、JavaScript について寄稿しました。</p><blockquote class=twitter-tweet><p lang=ja dir=ltr>書き下ろし特別企画「進化するプログラミング言語の魅力」で、JavaScript の歴史や進化の変遷について寄稿しました。WEB+DB PRESS の総集編ということで、Vol.1~120 という <a href="https://twitter.com/hashtag/wdpress?src=hash&amp;ref_src=twsrc%5Etfw">#wdpress</a> の 20 年分が詰まった超お得な一冊です📚 <a href=https://t.co/sF98be039Q>https://t.co/sF98be039Q</a> <a href=https://t.co/9LgKqP5vFf>https://t.co/9LgKqP5vFf</a></p>&mdash; Shogo (@1000ch) <a href="https://twitter.com/1000ch/status/1422026776641896449?ref_src=twsrc%5Etfw">August 2, 2021</a></blockquote><p>特別企画だけでなく、WEB+DB PRESS の 20 年間(!)が DVD として PDF で同梱されているようです。特別企画ではいくつかのプログラミング言語の歴史と進化について書かれていると思いますが、それに加えて 20 年間で盛衰を繰り返してきた様々な技術の変遷についてインプットできる一冊なので、とてもお買い得な一冊だと思います。是非皆さんお買い求めください。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/51ZCoHhRNNS._SX352_BO1,204,203,200_.jpg href=https://www.amazon.co.jp/dp/4297122154 tag=1000ch-22 title="WEB+DB PRESS 総集編[Vol.1~120]">泉水 翔吾 (著), 櫻庭 祐一 (著), 宇佐美 健太 (著), 笹田 耕一 (著), 牧 大輔 (著), 末田 卓巳 (著), 池田 翔 (著), WEB+DB PRESS編集部 (編集)</affiliate-link></p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2021/wdpress-omnibus.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2021/interview-on-codezine/>👈 CodeZine にてインタビューして頂きました</a></div><div><a href=/posts/2021/bought-in-2021/>👉 2021年に買って良かったもの</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -21,11 +21,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -43,11 +43,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

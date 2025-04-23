@@ -7,7 +7,7 @@
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>珪藻土バスマット</h1><p style=margin:0;text-align:right>Published at 2016-08-01</p><p>布系のバスマットを利用していたが、珪藻土のバスマットを購入した。</p><p>従来のバスマットだと吸水力に限界があるし、一度使うと次に踏む時の不快感が拭えない。乾くのも遅いのでどうしても匂いがつくし、都度洗わないければならない。珪藻土のバスマットはこうした不満点を全て解消してくれる、かなり画期的なアイテムだった。</p><p><affiliate-link src=https://images-na.ssl-images-amazon.com/images/I/71bKmNGmqcL._SX425_.jpg href=https://www.amazon.co.jp/dp/B016BP854A/ tag=1000ch-22 title="ROOMMATE 珪藻土バスマット 約60cm×39cm EB-RM5000BM">素材・成分：珪藻土・植物繊維・その他。商品サイズ：約60cm×39cm。カラー：ホワイト。付属品：お手入用サンドペーパー付</affiliate-link></p><p>珪藻土のバスマットは1枚の板で、吸水力が高く乾くのも早いという特徴がある。まだ使用して間もないので、吸水力が落ちたという状況にはなっていないが、ヤスリで削るなどのメンテナンスで復活するそう。あとは割れやすいとのウワサもあるが、そんなに乱暴に踏んだりしなければ大丈夫だと思われる。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2016/keisodo-bath-mat.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2016/muji-led-bluetooth-speaker/>👈 無印良品のペンダントライトとLED電球型Bluetoothスピーカー</a></div><div><a href=/posts/2016/philips-display-43inch-4k/>👉 Philips 43型 4K ワイドディスプレイ</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -20,11 +20,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -42,11 +42,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

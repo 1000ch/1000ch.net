@@ -45,7 +45,7 @@ CSSLint こちらはNicole SullivanとNicholas C. Zakasが作った、CSSのlint
 </span></span></code></pre></div><p><code>gruntfile.js</code>への指定はこのあたりを参考に。</p><ul><li><a href=https://github.com/gruntjs/grunt-contrib-jshint#jshintrc>gruntjs/grunt-contrib-jshint - jshintrc</a></li></ul><h2 id=意義とか>意義とか</h2><p>テストなどにも同じ事が言えるが、こういったこと継続的にやることが重要かと思っている。その点、メンテナビリティとポータビリティなどを考えて<code>package.json</code>だけで済むGruntが最有力候補になるかと。</p><ul><li><a href=http://t32k.me/mol/log/the-perfect-css-i-thought/>ぼくのかんがえたさいきょうのしーえしゅえしゅ - MOL</a></li><li><a href=https://github.com/t32k/maple>t32k/maple</a></li></ul><p>こちら<a href=http://twitter.com/t32k>@t32k</a>氏が作成したフレームワークだけど、Grunt周りやcssの方針など参考になる（@t32k氏にはH:inspectorのアイコンを頂いた）。JSHint、CSSLintに加えて、<a href=https://github.com/JamieMason/grunt-imageoptim>grunt-imageoptim</a>や<a href=https://github.com/t32k/grunt-kss>grunt-kss</a>なども一緒に導入可能になっており、画像の最適化やスタイルガイドの作成も自動化できるようになっている。</p><p>業務でプロジェクトを幾つか経験したけど、最初の設計と継続的リファクタリングが如何に大事であるかを痛感していて、特に運用が大変なプロジェクトだと、どうしてもフロントエンドのコードが犠牲になりがち。それでも、 <strong>ディベロッパーは理性を保ってコードを清潔に保つ努力をしていかなければならない</strong> と、思う。</p><p>リファクタリングしてコードを修正するのは、スクラッチで開発していくこととは比較にならないくらい難しい。ましてや稼働中のサービスに一気に手を入れるのは非常に勇気のいる作業。ひとつひとつの蓄積（ある種我慢の蓄積かもしれないけど）が、</p><ul><li>Webのパフォーマンスにつながり</li><li>運用スピードの向上</li><li>ディベロッパーのスキルアップ</li></ul><p>につながると、思ってる。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2013/brush-up-your-coding.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2013/gist-slide/>👈 Gistを簡易スライドにするGistSlideを作った</a></div><div><a href=/posts/2013/github-travis-ci/>👉 Travis CIを使ったGitHubプロジェクトの継続的インテグレーション</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -58,11 +58,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -80,11 +80,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

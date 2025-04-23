@@ -7,7 +7,7 @@
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ES Modulesを優先的にロードするmodulepreload</h1><p style=margin:0;text-align:right>Published at 2017-11-26</p><p><code>&lt;link></code> 要素の <code>rel</code> 属性に、新しく <code>modulepreload</code> という値が ES Modules を先行してロードする仕様として追加され、<a href=https://www.chromestatus.com/feature/5762805915451392>Chrome 64 に実装された</a>。リソースを先行してロードする手段としては既に <code>&lt;link rel="preload"></code> があり、スクリプトファイルには <code>as="script"</code> を指定すれば良いが、ES Modules をロードするためにはいくつか問題があり、新しく <code>rel="modulepreload"</code> が検討されている。</p><h2 id=link-relpreload-asscript-ではダメなのか><code>&lt;link rel="preload" as="script"></code> ではダメなのか</h2><p>もとい <code>&lt;link rel="modulepreload"></code> にすべき理由が <a href=https://docs.google.com/document/d/1WebH4IOCswACUbaczx5cGQPVl5mnqcieOd4MRJM2syk/edit>Preload and Modules</a> に書かれている。</p><ul><li><code>&lt;link></code> 要素によるリクエストの credential が <code>&lt;script></code> 要素と一致している必要がある</li><li>事前に module なのかどうかわかっていないとパースに困る (v8 固有？)</li><li><code>&lt;link rel="preload"></code> は単一リソースをロードする仕様である</li><li>保存先が preload cache ではなく module map である必要がある (chrome 固有？)<ul><li><code>&lt;link rel="preload"></code> の保存先は preload cache/HTTP cache である</li></ul></li><li><code>as=""</code> で対応しようとすると <code>modulescript</code> / <code>moduleworker</code> / <code>modulesharedworker</code> / <code>moduleserviceworker</code> と、様々な値を定義しなくてはならない</li></ul><p>つまり Normal Script と Module Script を区別する必要アリということだ。</p><p>Module Preload は、Preload では実施しない Module Script が依存するモジュールの解決も行うことで、依存関係を探すレイテンシーを省ける。</p><h2 id=link-relmodulepreload-の振る舞い><code>&lt;link rel="modulepreload"></code> の振る舞い</h2><ol><li>Module Script をロードし module map に追加する</li><li>ゆくゆく必要になる依存モジュールのロードのために、ヒントとして記録する</li><li>ユーザーからは見えない</li></ol><h2 id=es-modulesが抱えるパフォーマンスの問題>ES Modulesが抱えるパフォーマンスの問題</h2><p>現時点で ES Modules は、モジュールの数が多かったり、依存が深かったりするとパフォーマンス上で劣るという課題がある。もちろん実装の最適化はされていくと思うが。</p><blockquote class=twitter-tweet data-lang=ja><p lang=ja dir=ltr>モジュール数100以上 or 深さが5以上ならbundleした方がいいとのこと "Loading Performance with (Many) Modules: Summary as of Oct 7, 2017 - Go…" <a href=https://t.co/8gZZBbejMn>https://t.co/8gZZBbejMn</a></p>&mdash; azu (@azu_re) <a href="https://twitter.com/azu_re/status/918675534632042496?ref_src=twsrc%5Etfw">2017年10月13日</a></blockquote><p>対策案はいくつかありそうだが、この <code>&lt;link rel="modulepreload"></code> を使って優先的に Module Script をリクエストしておけば、モジュールをバンドルせずとも改善が見込める。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2017/module-preload.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2017/hair-kurukuru-poi/>👈 髪の毛くるくるポイが革命的だった</a></div><div><a href=/posts/2017/muji-coffee-maker/>👉 無印良品 豆から挽けるコーヒーメーカー</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-anchor> 虹色アンカー</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -20,11 +20,11 @@ customElements.define('affiliate-link', AffiliateLink);
 
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
-const rainbowAnchor =  document.querySelector('#rainbow-anchor');
+const rainbowLink =  document.querySelector('#rainbow-link');
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
-rainbowAnchor.checked = localStorage.getItem('rainbow-anchor');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
 
 autoPhrase?.addEventListener('change', event => {
   if (event.target.checked) {
@@ -42,11 +42,11 @@ darkMode?.addEventListener('change', event => {
   }
 });
 
-rainbowAnchor.addEventListener('change', event => {
+rainbowLink.addEventListener('change', event => {
   if (event.target.checked) {
-    localStorage.setItem('rainbow-anchor', true);
+    localStorage.setItem('rainbow-link', true);
   } else {
-    localStorage.removeItem('rainbow-anchor');
+    localStorage.removeItem('rainbow-link');
   }
 });
 

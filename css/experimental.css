@@ -11,7 +11,7 @@ body:has(#auto-phrase:checked) {
   word-break: auto-phrase;
 }
 
-body:has(#rainbow-anchor:checked) {
+body:has(#rainbow-link:checked) {
   a:hover,
   .link:hover {
     background-clip: text;
