@@ -1,0 +1,91 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>obsidian-git で実現する Obsidian のプラットフォームを跨いだデータ同期 - EagleLand</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="Obsidian のデータ同期をクロスプラットフォームで実現するには、幾つかのアプローチがある。大きく括ると、「公式で提供されている Obsidian Sync という有料の機能を使う」か、「任意の Vault を何らかの方法で端末越しに同期する」である。
+自分は後者を幾つか試し、最初は Dropbox で Vault を同期していた。iOS や Android のモバイル端末ではファイルシステムの操作が制限されているが、Android であれば DropSync というアプリを使うことで、Android の任意のフォルダを Dropbox の同期対象として指定できる。これで、Android の Obsidian アプリで Vault を参照するときに任意のフォルダを作成・指定し、DropSync でそのフォルダを同期対象として指定する。あとは、PC の Obsidian でも Dropbox で同期されている Vault を参照すれば期待通りに動作する。
+どのように同期されているかのイメージしやすいし、セットアップしてしまえば自動で運用されるが、Dropbox の無料プランで同期対象の端末数に制限があったり、クラウド同期系のアプリのインストール制限がある場合に問題が出てくる。
+そこで、Obsidian のプラグインである obsidian-git を使った同期を紹介する。端末のファイルシステムを、Dropbox ではなく「リモートリポジトリを経由して git で同期する」というアプローチである。新たにセットアップする場合もそうでない場合も、Vault の取り扱いさえ注意すれば問題なく移行できる。移行する場合は Vault をバックアップしてから望むことをオススメする。
+1. 同期する git リポジトリを作成する この git リポジトリを元に、各端末が git pull/push することで同期を実現できる。私は GitHub を日常的に使っているので GitHub でリポジトリを作成した。
+ここでは https://github.com/yourname/obsidian とする。
+2. 作成した git リポジトリをデスクトップ端末でクローンし、.gitignore を追加する PC の任意の場所に、作成した git リポジトリをクローンする。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2025/obsidian-sync-across-platforms/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="obsidian-git で実現する Obsidian のプラットフォームを跨いだデータ同期"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2025/obsidian-sync-across-platforms/"><meta name=twitter:title content="obsidian-git で実現する Obsidian のプラットフォームを跨いだデータ同期"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
+<a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>obsidian-git で実現する Obsidian のプラットフォームを跨いだデータ同期</h1><p style=margin:0;text-align:right>Published at 2025-05-11</p><p>Obsidian のデータ同期をクロスプラットフォームで実現するには、幾つかのアプローチがある。大きく括ると、「公式で提供されている Obsidian Sync という有料の機能を使う」か、「任意の Vault を何らかの方法で端末越しに同期する」である。</p><p>自分は後者を幾つか試し、最初は Dropbox で Vault を同期していた。iOS や Android のモバイル端末ではファイルシステムの操作が制限されているが、Android であれば DropSync というアプリを使うことで、Android の任意のフォルダを Dropbox の同期対象として指定できる。これで、Android の Obsidian アプリで Vault を参照するときに任意のフォルダを作成・指定し、DropSync でそのフォルダを同期対象として指定する。あとは、PC の Obsidian でも Dropbox で同期されている Vault を参照すれば期待通りに動作する。</p><p>どのように同期されているかのイメージしやすいし、セットアップしてしまえば自動で運用されるが、Dropbox の無料プランで同期対象の端末数に制限があったり、クラウド同期系のアプリのインストール制限がある場合に問題が出てくる。</p><p>そこで、Obsidian のプラグインである <a href=https://github.com/Vinzent03/obsidian-git>obsidian-git</a> を使った同期を紹介する。端末のファイルシステムを、Dropbox ではなく「リモートリポジトリを経由して git で同期する」というアプローチである。新たにセットアップする場合もそうでない場合も、Vault の取り扱いさえ注意すれば問題なく移行できる。移行する場合は Vault をバックアップしてから望むことをオススメする。</p><h2 id=1-同期する-git-リポジトリを作成する>1. 同期する git リポジトリを作成する</h2><p>この git リポジトリを元に、各端末が git pull/push することで同期を実現できる。私は GitHub を日常的に使っているので GitHub でリポジトリを作成した。</p><p>ここでは <code>https://github.com/yourname/obsidian</code> とする。</p><h2 id=2-作成した-git-リポジトリをデスクトップ端末でクローンしgitignore-を追加する>2. 作成した git リポジトリをデスクトップ端末でクローンし、<code>.gitignore</code> を追加する</h2><p>PC の任意の場所に、作成した git リポジトリをクローンする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>git clone git@github.com: your name/obsidian.git
+</span></span></code></pre></div><p>そして、以下の <code>.gitignore</code> を追加してリモートに git push する。Obsidian はプラグインを含む設定を <code>.obsidian</code> フォルダ配下に作るため、同期する必要がないファイルを指定している。 <code>workspace.json</code> や <code>workspace-mobile.json</code> はプラグインの有効化状態などが保持されているが、端末に依って事情が異なることがあるため管理対象から除外している。</p><pre tabindex=0><code>.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/obsidian-git/data.json
+.obsidian/appearance.json
+</code></pre><h2 id=3-デスクトップ端末の-obsidian-で-obsidian-git-をセットアップする>3. デスクトップ端末の Obsidian で obsidian-git をセットアップする</h2><p>コミュニティプラグインから obsidian-git を検索しインストールする。インストールできたらプラグインを有効化し、obsidian-git の設定で、git のコミットに用いられるユーザー名とメールアドレスを入力する。ここまで完了すると、自動で同期が始まる。</p><p><code>.gitignore</code> しか同期されていないので、既にコンテンツがある場合は既存の Vault の内容をコピーする。新しくセットアップしている場合は不要な想定だが、プラグインの設定も <code>.obsidian</code> フォルダに含まれるため、JSON ファイルが作成されているかもしれない。</p><h2 id=4-モバイル端末の-obsidian-で-obsidian-git-をセットアップする>4. モバイル端末の Obsidian で obsidian-git をセットアップする</h2><p>先の通り、モバイル環境ではファイルシステムやターミナルに制限があるので工夫が必要になる。ここでは Android 端末を想定した説明になる。</p><p>モバイルの Obsidian アプリをインストールし起動すると、Vault を選択するよう要求される。ここで Obsidian Sync ではなく Create new vault で、アプリではない quota でファイルを管理するために Device Storage を選択し、任意の Vault name を入力してフォルダの作成先のディレクトリを指定する。どこでも良いはずだが、Vault name を <code>Obsidian-git</code> とし、Internal Storage の <code>/Documents</code> 配下に作成した。</p><img src=./create-directory-inside-device-storage.png alt width=160>
+<img src=./specify-where-to-put.png alt width=160>
+<img src=./use-created-vault.png alt width=160><p>これで、モバイル端末が「作成した <code>/Documents/Obsidian-git</code> が Vault として認識されているが、リモートの git リポジトリとは同期されていない状態」になった。次に、モバイル端末の Obsidian に <a href=https://github.com/Vinzent03/obsidian-git>obsidian-git</a> をインストールする。Settings から Community plugins を選択し、&ldquo;Git&rdquo; で検索すると obsidian-git が見つかるので、インストールして有効化する。</p><img src=./browse-community-plugins.png alt width=160>
+<img src=./search-obsidian-git.png alt width=160>
+<img src=./install-obsidian-git.png alt width=160>
+<img src=./enabled-obsidian-git.png alt width=160><h2 id=5-作成した-git-リポジトリをモバイル端末でクローンする>5. 作成した git リポジトリをモバイル端末でクローンする</h2><p>いよいよ GitHub で作成した <code>https://github.com/yourname/obsidian</code> をモバイルの Obsidian でクローンする。</p><p>obsidian-git で GitHub のリモートリポジトリとやりとりするためには、Personal Access Token が必要である。PAT の作成は、<a href=https://github.com/settings/personal-access-tokens>GitHub の Fine-grained personal access tokens</a> から可能で、Token name (例えば &ldquo;PAT for Obsidian mobile&rdquo; 等) と Expiration、Repository でトークンがアクセス可能なリポジトリと、Permissions で認める権限を指定する。アクセス可能なリポジトリは <strong>Only select repositories で <code>yourname/obsidian</code> を選択</strong> し、<strong>権限は Repository permissions の Contents のみを Read and Write</strong> とするのが良い。作成した PAT を、先程の obsidian-git の Options でユーザー名と一緒に入力する。</p><img src=./set-username-and-pat.png alt width=160>
+<img src=./clone-git-repository.png alt width=160>
+<img src=./set-repository-url.png alt width=160><p>ユーザー名と PAT を入力すれば、リモートリポジトリと疎通できるようになるので、 <strong>コマンドパレットから Git: Clone an existing remote repo</strong> を選択し、 <code>https://github.com/yourname/obsidian</code> を入力する。あとは「クローン先として作成した Vault を選択」し、「リモートリポジトリに <code>.obsidian</code> が既にある」を選べばクローンされる。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
+<a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2025/obsidian-sync-across-platforms/index.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2025/40000min-on-dmm-eikaiwa/>👈 オンライン英会話の学習時間が 40,000 分に到達した</a></div><div></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
+</label><label><input type=checkbox switch id=dark-mode> ダークモード
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
+
+document.querySelectorAll('pre code').forEach(element => {
+  hljs.highlightElement(element);
+});
+</script><script type=module>
+import AffiliateLink from '/js/affiliate-link.js';
+
+customElements.define('affiliate-link', AffiliateLink);
+
+const autoPhrase = document.querySelector('#auto-phrase');
+const darkMode =  document.querySelector('#dark-mode');
+const rainbowLink =  document.querySelector('#rainbow-link');
+
+autoPhrase.checked = localStorage.getItem('auto-phrase');
+darkMode.checked = localStorage.getItem('dark-mode');
+rainbowLink.checked = localStorage.getItem('rainbow-link');
+
+autoPhrase?.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('auto-phrase', true);
+  } else {
+    localStorage.removeItem('auto-phrase');
+  }
+});
+
+darkMode?.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('dark-mode', true);
+  } else {
+    localStorage.removeItem('dark-mode');
+  }
+});
+
+rainbowLink?.addEventListener('change', event => {
+  if (event.target.checked) {
+    localStorage.setItem('rainbow-link', true);
+  } else {
+    localStorage.removeItem('rainbow-link');
+  }
+});
+
+const shareButton = document.querySelector('#share-button');
+shareButton?.addEventListener('click', async event => {
+  event.preventDefault();
+
+  const data = {
+    title: document.title,
+    text: document.title,
+    url: location.href
+  };
+
+  if (navigator.canShare?.(data)) {
+    await navigator.share(data);
+  } else {
+    await navigator.clipboard?.writeText(`${data.title} ${data.url}`);
+    const popover = document.querySelector('#Popover');
+    popover.showPopover();
+
+    setTimeout(() => {
+      popover.hidePopover();
+    }, 2000);
+  }
+});
+</script></body></html>
