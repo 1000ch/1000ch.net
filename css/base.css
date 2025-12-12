@@ -9,7 +9,6 @@
 }
 
 html {
-  word-wrap: break-word;
   overflow-wrap: break-word;
   text-underline-offset: 0.3em;
 
@@ -99,7 +98,6 @@ a strong {
 
 pre {
   background-color: transparent !important;
-  word-wrap: normal;
   overflow-wrap: normal;
 }
 
