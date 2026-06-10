@@ -9,17 +9,17 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 22
+          - 24
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
       - uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.133.1'
+          hugo-version: '0.163.2'
       - run: hugo --minify
       - run: npm install
       - run: cp ./public/posts/index.xml ./public/rss.xml
