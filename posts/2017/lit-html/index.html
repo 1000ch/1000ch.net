@@ -1,13 +1,37 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>lit-html を調べたメモと考えたこと - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="PolymerLabs/lit-html という Polymer チームによる実験的プロジェクトがある。JavaScript のテンプレートリテラルを通して、<template> 要素を使いつつテンプレートの機能を実現するライブラリで、API ドキュメントを見たのでそのメモ。
-Tagged template literals のおさらい ES2015 の Tagged template literals が前提になるので、機能を振り返っておく。
-function tag(strings, ...values) { const str1 = strings[0]; const str2 = strings[1]; const val1 = values[0]; return str1 + val1 + str2; } const foo = '括弧内の文字列'; console.log(tag`「${foo}」`); Tagged template literals として使いたい関数を定義すると、関数の第一引数にはテンプレートリテラルで渡した文字列の配列が渡ってくる。第二引数以降は可変長で、テンプレートリテラル内で埋め込んだ変数が配列で渡され、それに分割された文字列が第一引数の配列になる。
-html() と render() lit-html は大きく分けて html() と render() という2つのパートに分かれている。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>lit-html を調べたメモと考えたこと - EagleLand</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="PolymerLabs/lit-html という Polymer チームによる実験的プロジェクトがある。JavaScript のテンプレートリテラルを通して、<template> 要素を使いつつテンプレートの機能を実現するライブラリで、API ドキュメントを見たのでそのメモ。
+Tagged template literals のおさらい
+ES2015 の Tagged template literals が前提になるので、機能を振り返っておく。
+function tag(strings, ...values) {
+  const str1 = strings[0];
+  const str2 = strings[1];
+  const val1 = values[0];
+
+  return str1 + val1 + str2;
+}
+
+const foo = '括弧内の文字列';
+console.log(tag`「${foo}」`);
+Tagged template literals として使いたい関数を定義すると、関数の第一引数にはテンプレートリテラルで渡した文字列の配列が渡ってくる。第二引数以降は可変長で、テンプレートリテラル内で埋め込んだ変数が配列で渡され、それに分割された文字列が第一引数の配列になる。
+html() と render()
+lit-html は大きく分けて html() と render() という2つのパートに分かれている。
 html() は Tagged template literals として使う関数で、実行すると TemplateResult というオブジェクトを返す。
-import { html } from '."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/lit-html/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="lit-html を調べたメモと考えたこと"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/lit-html/"><meta name=twitter:title content="lit-html を調べたメモと考えたこと"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+import { html } from './node_modules/lit-html/lit-html.js';
+
+// 引数をテンプレートリテラルに渡す関数を定義する
+const fn = value => html`<div>${value}</div>`;
+
+// TemplateResult を返す
+const result1 = html`<div>直接実行</div>`;
+const result2 = fn('valueに入る文字列');
+render() は、生成した関数が返す TemplateResult と挿入先の要素を渡して、HTML に反映する。
+import { html, render } from './node_modules/lit-html/lit-html.js';
+
+render(html`<input type=&#34;text&#34;>`, document.body);
+HTML in JavaScript、Web Components
+lit-html の良いところは、"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2017/lit-html/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="lit-html を調べたメモと考えたこと"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2017/lit-html/"><meta name=twitter:title content="lit-html を調べたメモと考えたこと"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
 <span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>lit-html を調べたメモと考えたこと</h1><p style=margin:0;text-align:right>Published at 2017-09-13</p><p><a href=https://github.com/PolymerLabs/lit-html>PolymerLabs/lit-html</a> という Polymer チームによる実験的プロジェクトがある。JavaScript のテンプレートリテラルを通して、<code>&lt;template></code> 要素を使いつつテンプレートの機能を実現するライブラリで、API ドキュメントを見たのでそのメモ。</p><h2 id=tagged-template-literals-のおさらい>Tagged template literals のおさらい</h2><p>ES2015 の <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>Tagged template literals</a> が前提になるので、機能を振り返っておく。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>tag</span>(<span style=color:#a6e22e>strings</span>, ...<span style=color:#a6e22e>values</span>) {
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>lit-html を調べたメモと考えたこと</h1><p style=margin:0;text-align:right>Published at 2017-09-13</p><p><a href=https://github.com/PolymerLabs/lit-html>PolymerLabs/lit-html</a> という Polymer チームによる実験的プロジェクトがある。JavaScript のテンプレートリテラルを通して、<code>&lt;template></code> 要素を使いつつテンプレートの機能を実現するライブラリで、API ドキュメントを見たのでそのメモ。</p><h2 id=tagged-template-literals-のおさらい>Tagged template literals のおさらい</h2><p>ES2015 の <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>Tagged template literals</a> が前提になるので、機能を振り返っておく。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>tag</span>(<span style=color:#a6e22e>strings</span>, ...<span style=color:#a6e22e>values</span>) {
 </span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>str1</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>strings</span>[<span style=color:#ae81ff>0</span>];
 </span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>str2</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>strings</span>[<span style=color:#ae81ff>1</span>];
 </span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>val1</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>values</span>[<span style=color:#ae81ff>0</span>];
@@ -17,18 +41,18 @@ import { html } from '."><meta property="og:image" content="https://1000ch.net//
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;括弧内の文字列&#39;</span>;
 </span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>tag</span><span style=color:#e6db74>`「</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>foo</span><span style=color:#e6db74>}</span><span style=color:#e6db74>」`</span>);
-</span></span></code></pre></div><p>Tagged template literals として使いたい関数を定義すると、関数の第一引数にはテンプレートリテラルで渡した文字列の配列が渡ってくる。第二引数以降は可変長で、テンプレートリテラル内で埋め込んだ変数が配列で渡され、それに分割された文字列が第一引数の配列になる。</p><h2 id=html-と-render><code>html()</code> と <code>render()</code></h2><p>lit-html は大きく分けて <a href=https://github.com/PolymerLabs/lit-html/blob/master/api.md#function-html><code>html()</code></a> と <a href=https://github.com/PolymerLabs/lit-html/blob/master/api.md#function-renderresult-templateresult-container-element-void><code>render()</code></a> という2つのパートに分かれている。</p><p><code>html()</code> は Tagged template literals として使う関数で、実行すると <a href=https://github.com/PolymerLabs/lit-html/blob/master/api.md#class-templateresult><code>TemplateResult</code></a> というオブジェクトを返す。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>html</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./node_modules/lit-html/lit-html.js&#39;</span>;
+</span></span></code></pre></div><p>Tagged template literals として使いたい関数を定義すると、関数の第一引数にはテンプレートリテラルで渡した文字列の配列が渡ってくる。第二引数以降は可変長で、テンプレートリテラル内で埋め込んだ変数が配列で渡され、それに分割された文字列が第一引数の配列になる。</p><h2 id=html-と-render><code>html()</code> と <code>render()</code></h2><p>lit-html は大きく分けて <a href=https://github.com/PolymerLabs/lit-html/blob/master/api.md#function-html><code>html()</code></a> と <a href=https://github.com/PolymerLabs/lit-html/blob/master/api.md#function-renderresult-templateresult-container-element-void><code>render()</code></a> という2つのパートに分かれている。</p><p><code>html()</code> は Tagged template literals として使う関数で、実行すると <a href=https://github.com/PolymerLabs/lit-html/blob/master/api.md#class-templateresult><code>TemplateResult</code></a> というオブジェクトを返す。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>html</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./node_modules/lit-html/lit-html.js&#39;</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// 引数をテンプレートリテラルに渡す関数を定義する
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fn</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>value</span> =&gt; <span style=color:#a6e22e>html</span><span style=color:#e6db74>`&lt;div&gt;</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>value</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&lt;/div&gt;`</span>;
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fn</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>value</span> =&gt; <span style=color:#a6e22e>html</span><span style=color:#e6db74>`&lt;div&gt;</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>value</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&lt;/div&gt;`</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// TemplateResult を返す
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result1</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>html</span><span style=color:#e6db74>`&lt;div&gt;直接実行&lt;/div&gt;`</span>;
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result1</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>html</span><span style=color:#e6db74>`&lt;div&gt;直接実行&lt;/div&gt;`</span>;
 </span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result2</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>fn</span>(<span style=color:#e6db74>&#39;valueに入る文字列&#39;</span>);
-</span></span></code></pre></div><p><code>render()</code> は、生成した関数が返す <code>TemplateResult</code> と挿入先の要素を渡して、HTML に反映する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>html</span>, <span style=color:#a6e22e>render</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./node_modules/lit-html/lit-html.js&#39;</span>;
+</span></span></code></pre></div><p><code>render()</code> は、生成した関数が返す <code>TemplateResult</code> と挿入先の要素を渡して、HTML に反映する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>html</span>, <span style=color:#a6e22e>render</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./node_modules/lit-html/lit-html.js&#39;</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#a6e22e>render</span>(<span style=color:#a6e22e>html</span><span style=color:#e6db74>`&lt;input type=&#34;text&#34;&gt;`</span>, document.<span style=color:#a6e22e>body</span>);
-</span></span></code></pre></div><h2 id=html-in-javascriptweb-components>HTML in JavaScript、Web Components</h2><p>lit-html の良いところは、</p><ul><li><code>TemplateResult</code> を通して vdom のような差分描画をしてくれる</li><li>JavaScript から HTML のテンプレート機能（つまり <code>&lt;template></code> 要素）を使いやすい</li><li>フットプリントが小さい</li></ul><p>である。これは Polymer チームが開発していることからお察しのように、Custom Elements で使うことを意識していると推測している。</p><p><a href=https://summit.polymer-project.org/>Polymer Summit 2017</a> で発表された通り、Polymer では ES2015 の <code>class</code> によるカスタム要素の宣言と、ES Modules によるモジュール管理をしていくに伴い、モジュール化されたファイルが HTML でなはなくなる。つまり JavaScript 中で HTML の雛形を書いていくことになる（インポート先で <code>&lt;template></code> 要素を書いておいて使うこともできるが、モジュール内に寄せておきたいところ）。</p><p>lit-html を使ってカスタム要素を宣言すると次のように（抜粋）なる、はず。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>html</span>, <span style=color:#a6e22e>render</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./node_modules/lit-html/lit-html.js&#39;</span>;
+</span></span></code></pre></div><h2 id=html-in-javascriptweb-components>HTML in JavaScript、Web Components</h2><p>lit-html の良いところは、</p><ul><li><code>TemplateResult</code> を通して vdom のような差分描画をしてくれる</li><li>JavaScript から HTML のテンプレート機能（つまり <code>&lt;template></code> 要素）を使いやすい</li><li>フットプリントが小さい</li></ul><p>である。これは Polymer チームが開発していることからお察しのように、Custom Elements で使うことを意識していると推測している。</p><p><a href=https://summit.polymer-project.org/>Polymer Summit 2017</a> で発表された通り、Polymer では ES2015 の <code>class</code> によるカスタム要素の宣言と、ES Modules によるモジュール管理をしていくに伴い、モジュール化されたファイルが HTML でなはなくなる。つまり JavaScript 中で HTML の雛形を書いていくことになる（インポート先で <code>&lt;template></code> 要素を書いておいて使うこともできるが、モジュール内に寄せておきたいところ）。</p><p>lit-html を使ってカスタム要素を宣言すると次のように（抜粋）なる、はず。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>html</span>, <span style=color:#a6e22e>render</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./node_modules/lit-html/lit-html.js&#39;</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyName</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>HTMLElement</span> {
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
@@ -56,7 +80,8 @@ import { html } from '."><meta property="og:image" content="https://1000ch.net//
 </span></span></code></pre></div><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2017/lit-html.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2017/webcomponents-specs/>👈 Web Components 周辺の仕様とか 2017年秋</a></div><div><a href=/posts/2017/akamai-edge-japan-2017/>👉 Akamai Edge Japan 2017 に出演します</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク
+</label><label><input type=checkbox switch id=translation> ブラウザ言語に翻訳</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -70,6 +95,8 @@ customElements.define('affiliate-link', AffiliateLink);
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
 const rainbowLink =  document.querySelector('#rainbow-link');
+const translation = document.querySelector('#translation');
+const targetLanguage = new Intl.Locale(navigator.language).language;
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
@@ -96,6 +123,101 @@ rainbowLink?.addEventListener('change', event => {
     localStorage.setItem('rainbow-link', true);
   } else {
     localStorage.removeItem('rainbow-link');
+  }
+});
+
+const originalTexts = new Map();
+let translator = null;
+
+function getTextNodes() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (node.nodeValue.trim() === '') {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      if (node.parentElement?.closest('pre, code, script, style')) {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const nodes = [];
+
+  while (walker.nextNode()) {
+    nodes.push(walker.currentNode);
+  }
+
+  return nodes;
+}
+
+async function translatePage() {
+  translator ??= await Translator.create({
+    sourceLanguage: 'ja',
+    targetLanguage
+  });
+
+  for (const node of getTextNodes()) {
+    if (!originalTexts.has(node)) {
+      originalTexts.set(node, node.nodeValue);
+    }
+
+    node.nodeValue = await translator.translate(originalTexts.get(node));
+  }
+
+  document.documentElement.lang = targetLanguage;
+}
+
+function restorePage() {
+  for (const [node, text] of originalTexts) {
+    node.nodeValue = text;
+  }
+
+  document.documentElement.lang = 'ja';
+}
+
+if (!('Translator' in self) || targetLanguage === 'ja') {
+  translation.disabled = true;
+} else {
+  Translator.availability({
+    sourceLanguage: 'ja',
+    targetLanguage
+  }).then(availability => {
+    if (availability === 'unavailable') {
+      translation.disabled = true;
+      return;
+    }
+
+    translation.checked = localStorage.getItem('translation');
+
+    if (translation.checked) {
+      translatePage().catch(() => {
+        translation.checked = false;
+        localStorage.removeItem('translation');
+      });
+    }
+  });
+}
+
+translation?.addEventListener('change', async event => {
+  translation.disabled = true;
+
+  try {
+    if (event.target.checked) {
+      await translatePage();
+      localStorage.setItem('translation', true);
+    } else {
+      restorePage();
+      localStorage.removeItem('translation');
+    }
+  } catch {
+    translation.checked = false;
+    restorePage();
+    localStorage.removeItem('translation');
+  } finally {
+    translation.disabled = false;
   }
 });
 

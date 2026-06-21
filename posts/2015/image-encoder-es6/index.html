@@ -1,11 +1,62 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>画像をdataURIに変換するライブラリをES6で書きなおす - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="だいぶ前に書いたコードを掘り当ててそれをES6で書き直したのと、エディタのバグらしき現象にぶつかった話。ライブラリはファイルパスを渡して、Canvasに突っ込んだ後、データをdataURIにして出力する。インターフェースがPromise。特に変わったことしてないです(｡-人-｡)ｺﾞﾒﾝﾅｻｲ
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>画像をdataURIに変換するライブラリをES6で書きなおす - EagleLand</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="だいぶ前に書いたコードを掘り当ててそれをES6で書き直したのと、エディタのバグらしき現象にぶつかった話。ライブラリはファイルパスを渡して、Canvasに突っ込んだ後、データをdataURIにして出力する。インターフェースがPromise。特に変わったことしてないです(｡-人-｡)ｺﾞﾒﾝﾅｻｲ
 ちなみに、リポジトリは1000ch/image-encoderです。
-ES5で書かれた実装 ES5と言っておきながらPromiseを使っている点には突っ込まないこと。
-(function (window) { function ImageEncoder(path, width, height) { this.path = path || ''; this.width = width || 1; this.height = height || 1; } // ... ImageEncoder.prototype.getDataURI = function () { var that = this; return new Promise(function (resolve, reject) { var image = new Image(); image.setAttribute('crossOrigin','anonymous'); var onLoad = function (e) { var canvas = document.createElement('canvas'); canvas.width = that.width ? that.width : image.width; canvas.height = that."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/image-encoder-es6/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="画像をdataURIに変換するライブラリをES6で書きなおす"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/image-encoder-es6/"><meta name=twitter:title content="画像をdataURIに変換するライブラリをES6で書きなおす"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+ES5で書かれた実装
+ES5と言っておきながらPromiseを使っている点には突っ込まないこと。
+(function (window) {
+
+  function ImageEncoder(path, width, height) {
+    this.path = path || '';
+    this.width = width || 1;
+    this.height = height || 1;
+  }
+
+  // ...
+
+  ImageEncoder.prototype.getDataURI = function () {
+
+    var that = this;
+
+    return new Promise(function (resolve, reject) {
+
+      var image = new Image();
+      image.setAttribute('crossOrigin','anonymous');
+
+      var onLoad = function (e) {
+
+        var canvas = document.createElement('canvas');
+        canvas.width = that.width ? that.width : image.width;
+        canvas.height = that.height ? that.height : image.height;
+
+        var context = canvas.getContext('2d');
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        image.removeEventListener('load', onLoad);
+        image.removeEventListener('error', onError);
+
+        resolve(canvas.toDataURL('image/png', 1));
+      };
+
+      var onError = function (e) {
+
+        image.removeEventListener('load', onLoad);
+        image.removeEventListener('error', onError);
+
+        reject(e);
+      };
+
+      image.addEventListener('load', onLoad);
+      image.addEventListener('error', onError);
+      image.src = that.path;
+    });
+  };
+
+  window.ImageEncoder = ImageEncoder;
+
+})(window);
+使うには、のような感じ。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2015/image-encoder-es6/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="画像をdataURIに変換するライブラリをES6で書きなおす"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2015/image-encoder-es6/"><meta name=twitter:title content="画像をdataURIに変換するライブラリをES6で書きなおす"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
 <span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>画像をdataURIに変換するライブラリをES6で書きなおす</h1><p style=margin:0;text-align:right>Published at 2015-01-06</p><p>だいぶ前に書いたコードを掘り当ててそれをES6で書き直したのと、エディタのバグらしき現象にぶつかった話。ライブラリはファイルパスを渡して、Canvasに突っ込んだ後、データをdataURIにして出力する。インターフェースがPromise。特に変わったことしてないです(｡-人-｡)ｺﾞﾒﾝﾅｻｲ</p><p>ちなみに、リポジトリは<a href=https://github.com/1000ch/image-encoder>1000ch/image-encoder</a>です。</p><h2 id=es5で書かれた実装>ES5で書かれた実装</h2><p>ES5と言っておきながらPromiseを使っている点には突っ込まないこと。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>(<span style=color:#66d9ef>function</span> (window) {
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>画像をdataURIに変換するライブラリをES6で書きなおす</h1><p style=margin:0;text-align:right>Published at 2015-01-06</p><p>だいぶ前に書いたコードを掘り当ててそれをES6で書き直したのと、エディタのバグらしき現象にぶつかった話。ライブラリはファイルパスを渡して、Canvasに突っ込んだ後、データをdataURIにして出力する。インターフェースがPromise。特に変わったことしてないです(｡-人-｡)ｺﾞﾒﾝﾅｻｲ</p><p>ちなみに、リポジトリは<a href=https://github.com/1000ch/image-encoder>1000ch/image-encoder</a>です。</p><h2 id=es5で書かれた実装>ES5で書かれた実装</h2><p>ES5と言っておきながらPromiseを使っている点には突っ込まないこと。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span>(<span style=color:#66d9ef>function</span> (window) {
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ImageEncoder</span>(<span style=color:#a6e22e>path</span>, <span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>) {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>||</span> <span style=color:#e6db74>&#39;&#39;</span>;
@@ -14,7 +65,7 @@ ES5で書かれた実装 ES5と言っておきながらPromiseを使っている
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#75715e>// ...
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>ImageEncoder</span>.<span style=color:#a6e22e>prototype</span>.<span style=color:#a6e22e>getDataURI</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> () {
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>that</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>;
@@ -56,10 +107,10 @@ ES5で書かれた実装 ES5と言っておきながらPromiseを使っている
 </span></span><span style=display:flex><span>  window.<span style=color:#a6e22e>ImageEncoder</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ImageEncoder</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>})(window);
-</span></span></code></pre></div><p>使うには、のような感じ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ImageEncoder</span>(<span style=color:#e6db74>&#39;image.png&#39;</span>).<span style=color:#a6e22e>getDataURI</span>().<span style=color:#a6e22e>then</span>(<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>onFulfilled</span>(<span style=color:#a6e22e>dataURI</span>) {
+</span></span></code></pre></div><p>使うには、のような感じ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ImageEncoder</span>(<span style=color:#e6db74>&#39;image.png&#39;</span>).<span style=color:#a6e22e>getDataURI</span>().<span style=color:#a6e22e>then</span>(<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>onFulfilled</span>(<span style=color:#a6e22e>dataURI</span>) {
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>dataURI</span>);
 </span></span><span style=display:flex><span>});
-</span></span></code></pre></div><h2 id=es6で書きなおした実装>ES6で書きなおした実装</h2><p>コンストラクタで引数をチェックしていたり、<code>var that = this;</code>はアロー記法の<code>this</code>キャプチャで無くせそうだなとか。<code>class</code>構文を使って書きなおしたクラスを<code>export</code>したり、<code>var</code>を<code>let</code>にしたり。色々妄想をしながら書き直す。</p><p>やや古いポストだけど、ES6の各種機能等は以下の記事が参考になるかも。</p><ul><li><a href=/posts/2013/es6-features-1/>ES6のシンタックスを予習復習(1) <del>let, const, Arrow Function, Generators, for of</del></a></li><li><a href=/posts/2013/es6-features-2/>ES6のシンタックスを予習復習(2) <del>Default Parameters, Rest Parameters, Array Spread, Destructuring</del></a></li></ul><p>以下がES6で書き直したコード。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ImageEncoder</span> {
+</span></span></code></pre></div><h2 id=es6で書きなおした実装>ES6で書きなおした実装</h2><p>コンストラクタで引数をチェックしていたり、<code>var that = this;</code>はアロー記法の<code>this</code>キャプチャで無くせそうだなとか。<code>class</code>構文を使って書きなおしたクラスを<code>export</code>したり、<code>var</code>を<code>let</code>にしたり。色々妄想をしながら書き直す。</p><p>やや古いポストだけど、ES6の各種機能等は以下の記事が参考になるかも。</p><ul><li><a href=/posts/2013/es6-features-1/>ES6のシンタックスを予習復習(1) <del>let, const, Arrow Function, Generators, for of</del></a></li><li><a href=/posts/2013/es6-features-2/>ES6のシンタックスを予習復習(2) <del>Default Parameters, Rest Parameters, Array Spread, Destructuring</del></a></li></ul><p>以下がES6で書き直したコード。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ImageEncoder</span> {
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>(<span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>, <span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>, <span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>) {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>path</span>;
@@ -68,7 +119,7 @@ ES5で書かれた実装 ES5と言っておきながらPromiseを使っている
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#75715e>// ...
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>getDataURI</span>() {
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Promise((<span style=color:#a6e22e>resolve</span>, <span style=color:#a6e22e>reject</span>) =&gt; {
@@ -103,17 +154,17 @@ ES5で書かれた実装 ES5と言っておきながらPromiseを使っている
 </span></span><span style=display:flex><span>    });
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>かなりJavaっぽく見える…(´･∀･`)</p><p><code>Image</code>オブジェクトの<code>load</code>イベントにバインドしている<code>onLoad</code>等はアロー関数で書いている。その手前の<code>Promise</code>のコンストラクタでもアロー関数を使うことで<code>getDataURI</code>の<code>this</code>をここでは2段構えで引き継いでいる。</p><p><code>Image</code>オブジェクトの<code>load</code>にバインドしていると、イベントハンドラの呼び出し元オブジェクトは<code>Image</code>になるはずなのに、こうやってアロー記法でキャプチャしてしまうのも見通しが良くないような気もする（ネストしていると尚更）。</p><h2 id=トランスパイル>トランスパイル</h2><p>ECMAScript 6から5へのトランスパイルだと<a href=https://github.com/google/traceur-compiler>google/traceur-compiler</a>か、<a href=https://github.com/6to5/6to5>6to5/6to5</a>がメジャーっぽい。</p><h3 id=google-traceur-compiler>Google Traceur Compiler</h3><p>traceurはプリビルド以外にも、ランタイムエンジンを入れればES6のコードをそのまま実行できたりするので、ES6のブラウザサポートが進んだ時にランタイムエンジンをロードするコードを外せばそのまま動く！みたいなことが可能（というか、それを想定してのランタイムエンジンかとは思う）。<a href=https://github.com/google/traceur-compiler/wiki/Building-custom-Traceur-runtimes>カスタムビルドしないと重い</a>けど。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://google.github.io/traceur-compiler/bin/traceur.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><p>かなりJavaっぽく見える…(´･∀･`)</p><p><code>Image</code>オブジェクトの<code>load</code>イベントにバインドしている<code>onLoad</code>等はアロー関数で書いている。その手前の<code>Promise</code>のコンストラクタでもアロー関数を使うことで<code>getDataURI</code>の<code>this</code>をここでは2段構えで引き継いでいる。</p><p><code>Image</code>オブジェクトの<code>load</code>にバインドしていると、イベントハンドラの呼び出し元オブジェクトは<code>Image</code>になるはずなのに、こうやってアロー記法でキャプチャしてしまうのも見通しが良くないような気もする（ネストしていると尚更）。</p><h2 id=トランスパイル>トランスパイル</h2><p>ECMAScript 6から5へのトランスパイルだと<a href=https://github.com/google/traceur-compiler>google/traceur-compiler</a>か、<a href=https://github.com/6to5/6to5>6to5/6to5</a>がメジャーっぽい。</p><h3 id=google-traceur-compiler>Google Traceur Compiler</h3><p>traceurはプリビルド以外にも、ランタイムエンジンを入れればES6のコードをそのまま実行できたりするので、ES6のブラウザサポートが進んだ時にランタイムエンジンをロードするコードを外せばそのまま動く！みたいなことが可能（というか、それを想定してのランタイムエンジンかとは思う）。<a href=https://github.com/google/traceur-compiler/wiki/Building-custom-Traceur-runtimes>カスタムビルドしないと重い</a>けど。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://google.github.io/traceur-compiler/bin/traceur.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
 </span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://google.github.io/traceur-compiler/src/bootstrap.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
 </span></span><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
 </span></span><span style=display:flex><span>  <span style=color:#75715e>// ES6のコード
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>&lt;/<span style=color:#f92672>script</span>&gt;
-</span></span></code></pre></div><h3 id=6to5>6to5</h3><p>こちらも有名所なES6→ES5のトランスパイラ。ES6で書きなおした<code>ImageEncoder</code>を6to5で変換してみる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 6to5をグローバルにインストールする</span>
+</span></span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span></code></pre></div><h3 id=6to5>6to5</h3><p>こちらも有名所なES6→ES5のトランスパイラ。ES6で書きなおした<code>ImageEncoder</code>を6to5で変換してみる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 6to5をグローバルにインストールする</span>
 </span></span><span style=display:flex><span>$ npm install -g 6to5
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># es6のコードをes5に変換する</span>
 </span></span><span style=display:flex><span>$ 6to5 src/image-encoder-es6.js &gt; transpiled.js
-</span></span></code></pre></div><p>変換結果は以下の様になる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#e6db74>&#34;use strict&#34;</span>;
+</span></span></code></pre></div><p>変換結果は以下の様になる。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#e6db74>&#34;use strict&#34;</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>ImageEncoder</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ImageEncoder</span>() {
 </span></span><span style=display:flex><span>  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>===</span> <span style=color:#66d9ef>undefined</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;&#34;</span> <span style=color:#f92672>:</span> <span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>0</span>];
@@ -125,7 +176,7 @@ ES5で書かれた実装 ES5と言っておきながらPromiseを使っている
 </span></span><span style=display:flex><span>};
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// ...
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#a6e22e>ImageEncoder</span>.<span style=color:#a6e22e>prototype</span>.<span style=color:#a6e22e>getDataURI</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> () {
 </span></span><span style=display:flex><span>  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>_this</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>;
 </span></span><span style=display:flex><span>
@@ -159,11 +210,12 @@ ES5で書かれた実装 ES5と言っておきながらPromiseを使っている
 </span></span><span style=display:flex><span>};
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#a6e22e>exports</span>.<span style=color:#a6e22e>ImageEncoder</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ImageEncoder</span>;
-</span></span></code></pre></div><p>とても綺麗に見える。綺麗に見えるどころか、元のコードに酷似している。この辺は<code>class</code>がシンタックスシュガーだなと改めて思わされるところ。</p><h2 id=変な改行コードが挿入される>変な改行コードが挿入される？</h2><p>Markdownは<a href=http://www.iawriter.com/mac/>iA Writer</a>を使って書いているけど、このエディタ内でコードを編集して再びWebStormに貼り付けると文法ミス等が無いのに注意される。</p><p><img src=./error-1.png alt></p><p>所々改行位置に謎のエラーが。これ、実は違う原稿を書いている時にも時折発生していた現象だったけどスルーしていた。</p><p><code>nkf</code>で正体を探る。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ nkf -Lu src/image-encoder-es6.js &gt; test.js
+</span></span></code></pre></div><p>とても綺麗に見える。綺麗に見えるどころか、元のコードに酷似している。この辺は<code>class</code>がシンタックスシュガーだなと改めて思わされるところ。</p><h2 id=変な改行コードが挿入される>変な改行コードが挿入される？</h2><p>Markdownは<a href=http://www.iawriter.com/mac/>iA Writer</a>を使って書いているけど、このエディタ内でコードを編集して再びWebStormに貼り付けると文法ミス等が無いのに注意される。</p><p><img src=./error-1.png alt></p><p>所々改行位置に謎のエラーが。これ、実は違う原稿を書いている時にも時折発生していた現象だったけどスルーしていた。</p><p><code>nkf</code>で正体を探る。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>$ nkf -Lu src/image-encoder-es6.js &gt; test.js
 </span></span></code></pre></div><p>すると、注意されている箇所で <strong>窶ィ</strong> という謎の呪文が現れた。</p><p><img src=./error-2.png alt></p><p>ググっても有益そうな情報が中々出てこない。<code>cat -e</code>でも正体不明な記号が表示されてよくわからない…。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2015/image-encoder-es6/index.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2014/service-worker-internals/>👈 Service Workerに関する仕様とか機能とか</a></div><div><a href=/posts/2015/centos-minimum-config/>👉 CentOS 6系に対して行う最低限の設定</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク
+</label><label><input type=checkbox switch id=translation> ブラウザ言語に翻訳</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -177,6 +229,8 @@ customElements.define('affiliate-link', AffiliateLink);
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
 const rainbowLink =  document.querySelector('#rainbow-link');
+const translation = document.querySelector('#translation');
+const targetLanguage = new Intl.Locale(navigator.language).language;
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
@@ -203,6 +257,101 @@ rainbowLink?.addEventListener('change', event => {
     localStorage.setItem('rainbow-link', true);
   } else {
     localStorage.removeItem('rainbow-link');
+  }
+});
+
+const originalTexts = new Map();
+let translator = null;
+
+function getTextNodes() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (node.nodeValue.trim() === '') {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      if (node.parentElement?.closest('pre, code, script, style')) {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const nodes = [];
+
+  while (walker.nextNode()) {
+    nodes.push(walker.currentNode);
+  }
+
+  return nodes;
+}
+
+async function translatePage() {
+  translator ??= await Translator.create({
+    sourceLanguage: 'ja',
+    targetLanguage
+  });
+
+  for (const node of getTextNodes()) {
+    if (!originalTexts.has(node)) {
+      originalTexts.set(node, node.nodeValue);
+    }
+
+    node.nodeValue = await translator.translate(originalTexts.get(node));
+  }
+
+  document.documentElement.lang = targetLanguage;
+}
+
+function restorePage() {
+  for (const [node, text] of originalTexts) {
+    node.nodeValue = text;
+  }
+
+  document.documentElement.lang = 'ja';
+}
+
+if (!('Translator' in self) || targetLanguage === 'ja') {
+  translation.disabled = true;
+} else {
+  Translator.availability({
+    sourceLanguage: 'ja',
+    targetLanguage
+  }).then(availability => {
+    if (availability === 'unavailable') {
+      translation.disabled = true;
+      return;
+    }
+
+    translation.checked = localStorage.getItem('translation');
+
+    if (translation.checked) {
+      translatePage().catch(() => {
+        translation.checked = false;
+        localStorage.removeItem('translation');
+      });
+    }
+  });
+}
+
+translation?.addEventListener('change', async event => {
+  translation.disabled = true;
+
+  try {
+    if (event.target.checked) {
+      await translatePage();
+      localStorage.setItem('translation', true);
+    } else {
+      restorePage();
+      localStorage.removeItem('translation');
+    }
+  } catch {
+    translation.checked = false;
+    restorePage();
+    localStorage.removeItem('translation');
+  } finally {
+    translation.disabled = false;
   }
 });
 

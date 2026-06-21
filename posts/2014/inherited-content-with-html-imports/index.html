@@ -1,28 +1,63 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>HTML Importsでインポート先に引き継がれる内容 - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html これってなんでdoc.registerElementになってるんだろう・・
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>HTML Importsでインポート先に引き継がれる内容 - EagleLand</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="
+https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html
+これってなんでdoc.registerElementになってるんだろう・・
+
 っていう質問をされたので調べたメモ。内容的にはHTML ImportsするHTMLのコンテキストになるdocumentの続きにあたるかも。
-registerElementの実行者とカスタム要素の登録先 以下の様なカスタム要素を作成し、ロードする場合を考える。
-sample-element.html <script> var doc = document.currentScript.ownerDocument; doc.variable = 'this is the variable in sample-element.html'; window.SampleElement = document.registerElement('sample-element', { prototype: Object.create(HTMLElement.prototype) }); </script> loader.html <html> <head> <meta charset=&#34;utf-8&#34;> <link rel=&#34;import&#34; href=&#34;sample-element.html&#34;> </head> <body> <sample-element>Sample</sample-element> </body> </html> document.currentScript.ownerDocumentをdocにキャッシュしないと、sample-element.html内に書いた要素を取得する時に困る話は前述のエントリでしてある。 document.registerElement('sample-element', {});しているのは、sample-element.htmlをインポートするHTMLのdocumentになる。
-でも<github-card>ではこの例で言うところのsample-element.htmlのdocumentでregisterElement()を実行している。 感覚的に言えばインポートする側のdocumentで登録を実行するほうがしっくりくるんだけどそうでもないんだろうか。
-HTML Importsでカスタム要素の定義もインポートされる 感覚の話はさておき、<github-card>を見る限りregisterElement()したカスタム要素は引き継がれるよう。 sample-element.htmlでわざとらしく宣言したvariableという変数も見てみる。引き継がれないだろうけど、一応。
+registerElementの実行者とカスタム要素の登録先
+以下の様なカスタム要素を作成し、ロードする場合を考える。
+sample-element.html
+<script>
+  var doc = document.currentScript.ownerDocument;
+  doc.variable = 'this is the variable in sample-element.html';
+  window.SampleElement = document.registerElement('sample-element', {
+    prototype: Object.create(HTMLElement.prototype)
+  });
+</script>
+loader.html
+<html>
+  <head>
+    <meta charset=&#34;utf-8&#34;>
+    <link rel=&#34;import&#34; href=&#34;sample-element.html&#34;>
+  </head>
+  <body>
+    <sample-element>Sample</sample-element>
+  </body>
+</html>
+document.currentScript.ownerDocumentをdocにキャッシュしないと、sample-element.html内に書いた要素を取得する時に困る話は前述のエントリでしてある。
+document.registerElement('sample-element', {});しているのは、sample-element.htmlをインポートするHTMLのdocumentになる。
+でも<github-card>ではこの例で言うところのsample-element.htmlのdocumentでregisterElement()を実行している。
+感覚的に言えばインポートする側のdocumentで登録を実行するほうがしっくりくるんだけどそうでもないんだろうか。
+HTML Importsでカスタム要素の定義もインポートされる
+感覚の話はさておき、<github-card>を見る限りregisterElement()したカスタム要素は引き継がれるよう。
+sample-element.htmlでわざとらしく宣言したvariableという変数も見てみる。引き継がれないだろうけど、一応。
+
 当然のごとくvariableはdocにしかない。が、document.createElement('sample-element')は両方とも成功している。
 Firefox Nightly 35.0a1でも試してみた。
+
 インポートしているsample-element.html内で宣言しているdocがundefinedになってしまっているんだけど、docに登録している<sample-element>はちゃんとインポート先のdocumentに登録されていた。
-スタイルシートも引き継がれる sample-element.html内でsample-element.cssをロードし、そのsample-element.htmlをインポートするとインポート先でsample-element.cssで定義しているクラスは利用出来る。
+スタイルシートも引き継がれる
+sample-element.html内でsample-element.cssをロードし、そのsample-element.htmlをインポートするとインポート先でsample-element.cssで定義しているクラスは利用出来る。
+
 このとき、sample-element.cssはdoc.styleSheetsにぶら下がっているけど、当然document.styleSheetsには属さない。
-HTML ImportsとCustom Elementsの仕様を見てみる http://www.w3.org/TR/html-imports/#loading-imports HTML Importはこんな感じでlink関係をツリー上に持つらしい。で、このHTML Importsのツリーは
+HTML ImportsとCustom Elementsの仕様を見てみる
+
+http://www.w3.org/TR/html-imports/#loading-imports
+
+
+HTML Importはこんな感じでlink関係をツリー上に持つらしい。で、このHTML Importsのツリーは
+
 The import tree order of a given custom element of an import tree is determined by tree order in an import tree that was flattened by replacing every import link with the content of its imported document."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/inherited-content-with-html-imports/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="HTML Importsでインポート先に引き継がれる内容"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/inherited-content-with-html-imports/"><meta name=twitter:title content="HTML Importsでインポート先に引き継がれる内容"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
 <span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>HTML Importsでインポート先に引き継がれる内容</h1><p style=margin:0;text-align:right>Published at 2014-10-07</p><blockquote><p><a href=https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html>https://github.com/pazguille/github-card/blob/master/webcomponent/github-card.html</a>
-これってなんで<code>doc.registerElement</code>になってるんだろう・・</p></blockquote><p>っていう質問をされたので調べたメモ。内容的には<a href=/posts/2014/html-imports-context/>HTML ImportsするHTMLのコンテキストになるdocument</a>の続きにあたるかも。</p><h2 id=registerelementの実行者とカスタム要素の登録先>registerElementの実行者とカスタム要素の登録先</h2><p>以下の様なカスタム要素を作成し、ロードする場合を考える。</p><h3 id=sample-elementhtml><code>sample-element.html</code></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
+これってなんで<code>doc.registerElement</code>になってるんだろう・・</p></blockquote><p>っていう質問をされたので調べたメモ。内容的には<a href=/posts/2014/html-imports-context/>HTML ImportsするHTMLのコンテキストになるdocument</a>の続きにあたるかも。</p><h2 id=registerelementの実行者とカスタム要素の登録先>registerElementの実行者とカスタム要素の登録先</h2><p>以下の様なカスタム要素を作成し、ロードする場合を考える。</p><h3 id=sample-elementhtml><code>sample-element.html</code></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>script</span>&gt;
 </span></span><span style=display:flex><span>  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>doc</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>currentScript</span>.<span style=color:#a6e22e>ownerDocument</span>;
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>doc</span>.<span style=color:#a6e22e>variable</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;this is the variable in sample-element.html&#39;</span>;
 </span></span><span style=display:flex><span>  window.<span style=color:#a6e22e>SampleElement</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>registerElement</span>(<span style=color:#e6db74>&#39;sample-element&#39;</span>, {
 </span></span><span style=display:flex><span>    <span style=color:#a6e22e>prototype</span><span style=color:#f92672>:</span> Object.<span style=color:#a6e22e>create</span>(<span style=color:#a6e22e>HTMLElement</span>.<span style=color:#a6e22e>prototype</span>)
 </span></span><span style=display:flex><span>  });
 </span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
-</span></span></code></pre></div><h3 id=loaderhtml><code>loader.html</code></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>html</span>&gt;
+</span></span></code></pre></div><h3 id=loaderhtml><code>loader.html</code></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>html</span>&gt;
 </span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>head</span>&gt;
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>&gt;
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;import&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sample-element.html&#34;</span>&gt;
@@ -37,7 +72,8 @@ The import tree order of a given custom element of an import tree is determined 
 <code>sample-element.html</code>でわざとらしく宣言した<code>variable</code>という変数も見てみる。引き継がれないだろうけど、一応。</p><p><img src=./console.png alt></p><p>当然のごとく<code>variable</code>は<code>doc</code>にしかない。が、<code>document.createElement('sample-element')</code>は両方とも成功している。</p><p>Firefox Nightly 35.0a1でも試してみた。</p><p><img src=./scratchpad.png alt></p><p>インポートしている<code>sample-element.html</code>内で宣言している<code>doc</code>が<code>undefined</code>になってしまっているんだけど、<code>doc</code>に登録している<code>&lt;sample-element></code>はちゃんとインポート先の<code>document</code>に登録されていた。</p><h2 id=スタイルシートも引き継がれる>スタイルシートも引き継がれる</h2><p><code>sample-element.html</code>内で<code>sample-element.css</code>をロードし、その<code>sample-element.html</code>をインポートするとインポート先で<code>sample-element.css</code>で定義しているクラスは利用出来る。</p><p><img src=./stylesheet.png alt></p><p>このとき、<code>sample-element.css</code>は<code>doc.styleSheets</code>にぶら下がっているけど、当然<code>document.styleSheets</code>には属さない。</p><h2 id=html-importsとcustom-elementsの仕様を見てみる>HTML ImportsとCustom Elementsの仕様を見てみる</h2><ul><li><a href=http://www.w3.org/TR/html-imports/#loading-imports>http://www.w3.org/TR/html-imports/#loading-imports</a></li></ul><img src=http://www.w3.org/TR/html-imports/import-link-list.png><p>HTML Importはこんな感じでlink関係をツリー上に持つらしい。で、このHTML Importsのツリーは</p><blockquote><p>The import tree order of a given custom element of an import tree is determined by tree order in an import tree that was flattened by replacing every import link with the content of its imported document.</p></blockquote><p>インポートしてくるドキュメントでリプレイスされ、ドキュメント達は構造上並列になる（と書いてあるように見える）。</p><ul><li><a href=http://w3c.github.io/webcomponents/spec/custom/#dfn-element-registration>http://w3c.github.io/webcomponents/spec/custom/#dfn-element-registration</a></li></ul><blockquote><p>Element registration is a process of adding an element definition to a registry. One element definition can only be registered with one registry.</p></blockquote><p>ひとつのドキュメントにつき、ひとつのレジストリが存在し、要素の定義はそのレジストリに定義される。</p><ul><li><a href=http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries>http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries</a></li></ul><p>色々読み漁ったけど、英語力足りなすぎて直接言及している場所がどこかわからなかった。かろうじて、</p><blockquote><p>When creating an import, use the registry of the master document.</p></blockquote><p>先程のスタイルシートの挙動から察するに、 <strong>HTML Importsのツリー上の子孫にいるカスタム要素のレジストリは親から参照出来る</strong> ってことなんだと思うが、HTML Importが発生した時点でインポート先のドキュメントにカスタム要素の宣言がマージされることを意味しているような気も。</p><p>詳しい人おしえて下さい。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2014/inherited-content-with-html-imports/index.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2014/philips-wide-display-23inch/>👈 PHILIPS 23型AH-IPSパネル採用ワイドディスプレイを買った</a></div><div><a href=/posts/2014/c-in-golang-with-cgo/>👉 cgoでGoのコードからCの関数を利用する</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク
+</label><label><input type=checkbox switch id=translation> ブラウザ言語に翻訳</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -51,6 +87,8 @@ customElements.define('affiliate-link', AffiliateLink);
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
 const rainbowLink =  document.querySelector('#rainbow-link');
+const translation = document.querySelector('#translation');
+const targetLanguage = new Intl.Locale(navigator.language).language;
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
@@ -77,6 +115,101 @@ rainbowLink?.addEventListener('change', event => {
     localStorage.setItem('rainbow-link', true);
   } else {
     localStorage.removeItem('rainbow-link');
+  }
+});
+
+const originalTexts = new Map();
+let translator = null;
+
+function getTextNodes() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (node.nodeValue.trim() === '') {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      if (node.parentElement?.closest('pre, code, script, style')) {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const nodes = [];
+
+  while (walker.nextNode()) {
+    nodes.push(walker.currentNode);
+  }
+
+  return nodes;
+}
+
+async function translatePage() {
+  translator ??= await Translator.create({
+    sourceLanguage: 'ja',
+    targetLanguage
+  });
+
+  for (const node of getTextNodes()) {
+    if (!originalTexts.has(node)) {
+      originalTexts.set(node, node.nodeValue);
+    }
+
+    node.nodeValue = await translator.translate(originalTexts.get(node));
+  }
+
+  document.documentElement.lang = targetLanguage;
+}
+
+function restorePage() {
+  for (const [node, text] of originalTexts) {
+    node.nodeValue = text;
+  }
+
+  document.documentElement.lang = 'ja';
+}
+
+if (!('Translator' in self) || targetLanguage === 'ja') {
+  translation.disabled = true;
+} else {
+  Translator.availability({
+    sourceLanguage: 'ja',
+    targetLanguage
+  }).then(availability => {
+    if (availability === 'unavailable') {
+      translation.disabled = true;
+      return;
+    }
+
+    translation.checked = localStorage.getItem('translation');
+
+    if (translation.checked) {
+      translatePage().catch(() => {
+        translation.checked = false;
+        localStorage.removeItem('translation');
+      });
+    }
+  });
+}
+
+translation?.addEventListener('change', async event => {
+  translation.disabled = true;
+
+  try {
+    if (event.target.checked) {
+      await translatePage();
+      localStorage.setItem('translation', true);
+    } else {
+      restorePage();
+      localStorage.removeItem('translation');
+    }
+  } catch {
+    translation.checked = false;
+    restorePage();
+    localStorage.removeItem('translation');
+  } finally {
+    translation.disabled = false;
   }
 });
 

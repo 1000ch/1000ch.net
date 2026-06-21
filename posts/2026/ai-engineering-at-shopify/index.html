@@ -1,18 +1,17 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Shopify の AI ファースト戦略に学ぶ、次世代開発組織 - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="多くの企業が AI ツールを導入しながらも、「期待したほどの成果が出ない」「エンジニアの役割がどう変わるのか不透明だ」という焦燥感に駆られている。しかし、EC プラットフォーム大手 Shopify CEO Tobi Lütke 氏は全く異なる次元にいる。彼は「過去3週間で、これまでの10年間よりも多くのコードを出荷した」と断言した。
-この劇的な進化の裏には、単なるツールの配布を超えた、組織の OS そのものの書き換えがある。Shopify のエンジニアリング責任者である Farhan Thawar 氏が明かした戦略は、AI 時代を生き抜くすべてのリーダーとエンジニアにとって、避けては通れないロードマップである。
-ツールを標準化するな、インフラを標準化せよ AI ツールの進化はあまりに速く、特定の製品を全社標準に固定することは、変化への適応力を自ら放棄することを意味する。Shopify はこの罠を避け、GitHub Copilot、Cursor、Claude Codeなど、複数のツールをエンジニアが自由に選べる体制を敷いている。その代わり、彼らが徹底して標準化したのは、その下層にある「インフラ層」である。
-LLM プロキシ: 自社構築したゲートウェイを経由させることでセキュリティとプライバシーを担保し、同時にトークン使用量をチーム・個人単位で可視化している 無制限トークン: 多くの企業がコストを懸念して制限を設ける中、Shopifyはエンジニアに「無制限のトークン」を提供する。予算を気にせず試行錯誤できる環境が、大規模なリファクタリングなどの野心的な実験を支える モデルの抽象化: プロキシ層があるため、裏側のモデル（OpenAI、Anthropic、Google等）をいつでも切り替え可能であり、特定のプロバイダーにロックインされるリスクを排除する 特定のAIツールを標準化するのではなく、ツールが動作するインフラ層を標準化した。これにより、摩擦を最小化し、モデルの進化を即座に享受できるようになった。
-非エンジニアが自分専用のソフトウェアを自作する Shopify では、開発の民主化がエンジニア以外の部署でも爆発的に進んでいる。営業、財務、人事といったチームがCursorを使いこなし、自らの業務に特化したソフトウェアを自作している。
-Vibe coding の実践: 厳密な設計よりも、AI との対話で形にする新しい開発スタイル 内部ツール「Quick」: JavaScript や HTML をドラッグ＆ドロップするだけで、社内用 URL が即座に発行・デプロイされる仕組み。これにより、エンジニアのリソースを待つ必要がなくなった データへの直接アクセス: MCP サーバーを介して、AI ツールを社内 wiki、製品管理ツール、データウェアハウスに接続。営業担当者が商談前に、自分専用のデータダッシュボードを5分で作成するような光景が日常化している ここで重要なのはリーダーの姿勢です。Farhan 氏は自身の AI 活用例を「私がどれほど賢いかではなく、どれほど『怠惰』になれるかのデモだ」として社内に共有している。リーダーが自ら AI のレバレッジを見せることで、組織全体に「AI を使うのが当たり前」という文化が浸透した。
-採用基準の逆説 Shopify の採用基準は、AI 時代の本質を突いている。ディレクターや VP といった高位の役職者であっても、採用時には必ずコーディング試験が課される。
-AI の利用は義務: 面接での AI 利用は禁止されるどころか、強く推奨される。Farhan 氏によれば「AI を使わない候補者は、使いこなす候補者に圧倒され不採用になる」のが現実である プロンプトの泥沼を避ける判断力: 面接官が見ているのは、AI が出した不完全なコードをどう扱うかである。延々とプロンプトを書き換えて AI に修正させようとするのではなく、「ここを1文字直せば済む」と判断して自らキーを叩けるかどうか 最大の敵は理解負債 AI が生成するコードを鵜呑みにすることは、長期的には組織の破滅を招く。Farhan 氏が最も警戒しているのが、システムの仕組みを理解しなくなる理解の負債である。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2026/ai-engineering-at-shopify/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Shopify の AI ファースト戦略に学ぶ、次世代開発組織"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2026/ai-engineering-at-shopify/"><meta name=twitter:title content="Shopify の AI ファースト戦略に学ぶ、次世代開発組織"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Shopify の AI ファースト戦略に学ぶ、次世代開発組織 - EagleLand</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="AI ツールを配ったものの「思ったほど成果が出ない」「エンジニアの役割がどう変わるのか見えない」という話はよく耳にする。そんな中で、Shopify のエンジニアリング責任者 Farhan Thawar 氏が語った社内の運用は、だいぶ違う段階にあるように見えた。CEO の Tobi Lütke 氏が「過去 3 週間で、これまでの 10 年間より多くのコードを出荷した」と言うほどである。背後にあるのは、単なるツールの配布ではなく、組織の動かし方そのものの書き換えだった。読みながら印象に残った点を整理しておきたい。
+まず納得したのは、標準化する対象をツールではなくインフラに置いている点である。AI ツールの進化は速く、特定の製品を全社標準に固定すると、変化への適応力を自分から手放すことになる。Shopify は GitHub Copilot、Cursor、Claude Code などをエンジニアが自由に選べるようにしておき、その代わり下層のインフラを徹底して標準化している。自社の LLM プロキシを経由させてセキュリティとトークン使用量を可視化し、コストを気にせず試行錯誤できるようトークンは無制限。プロキシ層があるおかげで裏側のモデルもいつでも切り替えられ、特定プロバイダへのロックインを避けている。ツールではなく、ツールが動く土台を揃える、という発想は理にかなっている。
+開発の民主化がエンジニア以外にも広がっているのも面白い。営業や財務、人事のチームが Cursor を使い、自分の業務に特化したツールを自作している。JavaScript や HTML をドラッグ＆ドロップすると社内 URL が即座に発行される「Quick」のような仕組みがあり、エンジニアのリソースを待たずに済む。MCP サーバー経由で AI を社内 wiki や製品管理ツール、データウェアハウスにつなぎ、営業担当が商談前に自分用のダッシュボードを数分で作る、といった光景が日常になっているという。ここで効いているのはリーダーの姿勢のようだ。Farhan 氏は自分の活用例を「どれほど賢いかではなく、どれほど怠惰になれるかのデモだ」と共有している。上が率先してレバレッジを見せることで、使うのが当たり前という空気が広がったのだろう。
+採用基準の話も示唆的だった。ディレクターや VP であっても採用時にコーディング試験を課し、面接での AI 利用はむしろ推奨される。Farhan 氏いわく「AI を使わない候補者は、使いこなす候補者に圧倒される」。見ているのは、AI が出した不完全なコードをどう扱うかだという。延々とプロンプトを書き換えて直させるのではなく、「ここを 1 文字直せば済む」と判断して自分でキーを叩けるか。そこに判断力が出る、という見立ては腑に落ちる。
+一方で最も警戒しているのが「理解負債」だというのが印象的だった。生成されたコードを鵜呑みにし、システムの仕組みを理解しなくなることである。Farhan 氏はエンジニアを F1 ドライバーに例える。一流のドライバーは運転だけでなくエンジンやブレーキの構造を理解しているから、異常時に即座に反応できる。エンジニアも自分が触っている層の 2〜3 層下までは理解していなければならない、と。AI は思考の丸投げ先ではなく検証のパートナーで、たとえば認可制御の不備を探るときに「シニアセキュリティ研究者として、ユーザー ID がデータベース参照時に適切に検証されているか分析せよ」と問い詰める、という使い方になる。自分の理解を深めるための AI の使い方そのものである。
+開発の主役が単一のプロンプトから自律的なエージェントのワークフローへ移りつつある、という観測もある。複数のエージェントに異なるアプローチで書かせて人間が選んでマージする、あるモデルの回答を別のモデルに批判させて時間をかけて洗練する、といった並列・批判のループである。エンジニアの役割は 1 行ずつ書く職人から、システムを指揮して出力を評価する側へ寄っていく、というのは現場感覚としても理解できる。
+Shopify が言う「生産性 20% 向上」は控えめな見積もりだそうだが、課題も残っている。出荷が速くなった分、人間によるレビューが新たなボトルネックになった。AI はコードを量産するが、それを承認する責任は依然として人間にある。Lütke 氏は全社員に、AI を日常的に使うことを基本的な期待値とし、人員増を求めるマネージャーには「なぜその仕事が AI では代替できないのかを証明せよ」と求めているという。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2026/ai-engineering-at-shopify/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="Shopify の AI ファースト戦略に学ぶ、次世代開発組織"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2026/ai-engineering-at-shopify/"><meta name=twitter:title content="Shopify の AI ファースト戦略に学ぶ、次世代開発組織"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
 <span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
-<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Shopify の AI ファースト戦略に学ぶ、次世代開発組織</h1><p style=margin:0;text-align:right>Published at 2026-04-16</p><p>多くの企業が AI ツールを導入しながらも、「期待したほどの成果が出ない」「エンジニアの役割がどう変わるのか不透明だ」という焦燥感に駆られている。しかし、EC プラットフォーム大手 Shopify CEO Tobi Lütke 氏は全く異なる次元にいる。彼は「過去3週間で、これまでの10年間よりも多くのコードを出荷した」と断言した。</p><p>この劇的な進化の裏には、単なるツールの配布を超えた、組織の OS そのものの書き換えがある。Shopify のエンジニアリング責任者である Farhan Thawar 氏が明かした戦略は、AI 時代を生き抜くすべてのリーダーとエンジニアにとって、避けては通れないロードマップである。</p><h2 id=ツールを標準化するなインフラを標準化せよ>ツールを標準化するな、インフラを標準化せよ</h2><p>AI ツールの進化はあまりに速く、特定の製品を全社標準に固定することは、変化への適応力を自ら放棄することを意味する。Shopify はこの罠を避け、GitHub Copilot、Cursor、Claude Codeなど、複数のツールをエンジニアが自由に選べる体制を敷いている。その代わり、彼らが徹底して標準化したのは、その下層にある「インフラ層」である。</p><ul><li>LLM プロキシ: 自社構築したゲートウェイを経由させることでセキュリティとプライバシーを担保し、同時にトークン使用量をチーム・個人単位で可視化している</li><li>無制限トークン: 多くの企業がコストを懸念して制限を設ける中、Shopifyはエンジニアに「無制限のトークン」を提供する。予算を気にせず試行錯誤できる環境が、大規模なリファクタリングなどの野心的な実験を支える</li><li>モデルの抽象化: プロキシ層があるため、裏側のモデル（OpenAI、Anthropic、Google等）をいつでも切り替え可能であり、特定のプロバイダーにロックインされるリスクを排除する</li></ul><p>特定のAIツールを標準化するのではなく、ツールが動作するインフラ層を標準化した。これにより、摩擦を最小化し、モデルの進化を即座に享受できるようになった。</p><h2 id=非エンジニアが自分専用のソフトウェアを自作する>非エンジニアが自分専用のソフトウェアを自作する</h2><p>Shopify では、開発の民主化がエンジニア以外の部署でも爆発的に進んでいる。営業、財務、人事といったチームがCursorを使いこなし、自らの業務に特化したソフトウェアを自作している。</p><ul><li>Vibe coding の実践: 厳密な設計よりも、AI との対話で形にする新しい開発スタイル</li><li>内部ツール「Quick」: JavaScript や HTML をドラッグ＆ドロップするだけで、社内用 URL が即座に発行・デプロイされる仕組み。これにより、エンジニアのリソースを待つ必要がなくなった</li><li>データへの直接アクセス: MCP サーバーを介して、AI ツールを社内 wiki、製品管理ツール、データウェアハウスに接続。営業担当者が商談前に、自分専用のデータダッシュボードを5分で作成するような光景が日常化している</li></ul><p>ここで重要なのはリーダーの姿勢です。Farhan 氏は自身の AI 活用例を「私がどれほど賢いかではなく、どれほど『怠惰』になれるかのデモだ」として社内に共有している。リーダーが自ら AI のレバレッジを見せることで、組織全体に「AI を使うのが当たり前」という文化が浸透した。</p><h2 id=採用基準の逆説>採用基準の逆説</h2><p>Shopify の採用基準は、AI 時代の本質を突いている。ディレクターや VP といった高位の役職者であっても、採用時には必ずコーディング試験が課される。</p><ul><li>AI の利用は義務: 面接での AI 利用は禁止されるどころか、強く推奨される。Farhan 氏によれば「AI を使わない候補者は、使いこなす候補者に圧倒され不採用になる」のが現実である</li><li>プロンプトの泥沼を避ける判断力: 面接官が見ているのは、AI が出した不完全なコードをどう扱うかである。延々とプロンプトを書き換えて AI に修正させようとするのではなく、「ここを1文字直せば済む」と判断して自らキーを叩けるかどうか</li></ul><h2 id=最大の敵は理解負債>最大の敵は理解負債</h2><p>AI が生成するコードを鵜呑みにすることは、長期的には組織の破滅を招く。Farhan 氏が最も警戒しているのが、システムの仕組みを理解しなくなる理解の負債である。</p><ul><li>F1 ドライバーの視点: 彼はエンジニアを F1 ドライバーに例える。超一流のドライバーは運転だけでなく、エンジンやブレーキの構造を深く理解している。だからこそ、異常時に即座に反応できる。エンジニアも同様に、自分が作業している層の2~3層下まで理解していなければならない</li><li>AI をセキュリティパートナーにする: AI は思考の丸投げ先ではなく、深い検証のパートナーである。例えば認可制御の不備の脆弱性を探る際、「シニアセキュリティ研究者として振る舞い、現在のユーザー ID がデータベース参照時に適切に検証されているか、多層的なチェックが行われているか分析せよ」といった高度なプロンプトでAIを問い詰め、自らの理解を深めるために使われる</li></ul><h2 id=エージェンティックハーネスの勝者が支配する>エージェンティック・ハーネスの勝者が支配する</h2><p>Farhan 氏は「2026年にエージェントを使いこなす術を見つけられなければ、取り残されることになる」と断言する。開発の主役は、単一のプロンプトから「自律的なエージェント・ワークフロー」へと移行している。</p><ul><li>並列実行: 10のエージェントに異なるアプローチでコードを書かせ、人間が最適なものを選別・マージする</li><li>深層批判ループ: 1つのモデルに回答を出させ、別のモデルでそれを批判させ、45分以上の「思考時間」をかけて洗練させる</li></ul><p>エンジニアの役割は1行ずつコードを書く職人から、インテリジェントなシステムを指揮し、出力を評価する「オーケストラの見識ある指揮者」へと進化しなければならない。</p><h2 id=未来に向けた問いかけ>未来に向けた問いかけ</h2><p>Shopify が達成した「生産性20%向上」という数字は、控えめな見積もりである。しかし、そこには課題もあり、出荷スピードが上がった一方で、人間によるレビューが新たなボトルネックになっている。AI はコードを量産するが、それを承認する「責任」は依然として人間にある。</p><p>Tobi Lütke 氏は全社員に向けたメモの中で、AI を日常的に使うことを基本的期待値とし、AI 活用を反射的に行うよう求めている。そして、新しい人員の追加を求めるマネージャーに対して、こう突きつけている。</p><p>「人員増を求める前に、なぜその仕事が AI では代替不可能なのかを証明せよ」</p><p>私たちは今、大きな分岐点に立っている。あなたは AI に思考を委ね、筋肉（脳）を退化させるか？ それとも AI という超広帯域のレバレッジを従え、思考の深淵へと潜るか？ Shopify が示したのは、技術への愛を持ち続け、細部にこだわりながら AI を使い倒す組織だけが、次の10年を支配するという冷徹なまでの真理である。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
+<a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>Shopify の AI ファースト戦略に学ぶ、次世代開発組織</h1><p style=margin:0;text-align:right>Published at 2026-04-16</p><p>AI ツールを配ったものの「思ったほど成果が出ない」「エンジニアの役割がどう変わるのか見えない」という話はよく耳にする。そんな中で、Shopify のエンジニアリング責任者 Farhan Thawar 氏が語った社内の運用は、だいぶ違う段階にあるように見えた。CEO の Tobi Lütke 氏が「過去 3 週間で、これまでの 10 年間より多くのコードを出荷した」と言うほどである。背後にあるのは、単なるツールの配布ではなく、組織の動かし方そのものの書き換えだった。読みながら印象に残った点を整理しておきたい。</p><p>まず納得したのは、標準化する対象をツールではなくインフラに置いている点である。AI ツールの進化は速く、特定の製品を全社標準に固定すると、変化への適応力を自分から手放すことになる。Shopify は GitHub Copilot、Cursor、Claude Code などをエンジニアが自由に選べるようにしておき、その代わり下層のインフラを徹底して標準化している。自社の LLM プロキシを経由させてセキュリティとトークン使用量を可視化し、コストを気にせず試行錯誤できるようトークンは無制限。プロキシ層があるおかげで裏側のモデルもいつでも切り替えられ、特定プロバイダへのロックインを避けている。ツールではなく、ツールが動く土台を揃える、という発想は理にかなっている。</p><p>開発の民主化がエンジニア以外にも広がっているのも面白い。営業や財務、人事のチームが Cursor を使い、自分の業務に特化したツールを自作している。JavaScript や HTML をドラッグ＆ドロップすると社内 URL が即座に発行される「Quick」のような仕組みがあり、エンジニアのリソースを待たずに済む。MCP サーバー経由で AI を社内 wiki や製品管理ツール、データウェアハウスにつなぎ、営業担当が商談前に自分用のダッシュボードを数分で作る、といった光景が日常になっているという。ここで効いているのはリーダーの姿勢のようだ。Farhan 氏は自分の活用例を「どれほど賢いかではなく、どれほど怠惰になれるかのデモだ」と共有している。上が率先してレバレッジを見せることで、使うのが当たり前という空気が広がったのだろう。</p><p>採用基準の話も示唆的だった。ディレクターや VP であっても採用時にコーディング試験を課し、面接での AI 利用はむしろ推奨される。Farhan 氏いわく「AI を使わない候補者は、使いこなす候補者に圧倒される」。見ているのは、AI が出した不完全なコードをどう扱うかだという。延々とプロンプトを書き換えて直させるのではなく、「ここを 1 文字直せば済む」と判断して自分でキーを叩けるか。そこに判断力が出る、という見立ては腑に落ちる。</p><p>一方で最も警戒しているのが「理解負債」だというのが印象的だった。生成されたコードを鵜呑みにし、システムの仕組みを理解しなくなることである。Farhan 氏はエンジニアを F1 ドライバーに例える。一流のドライバーは運転だけでなくエンジンやブレーキの構造を理解しているから、異常時に即座に反応できる。エンジニアも自分が触っている層の 2〜3 層下までは理解していなければならない、と。AI は思考の丸投げ先ではなく検証のパートナーで、たとえば認可制御の不備を探るときに「シニアセキュリティ研究者として、ユーザー ID がデータベース参照時に適切に検証されているか分析せよ」と問い詰める、という使い方になる。自分の理解を深めるための AI の使い方そのものである。</p><p>開発の主役が単一のプロンプトから自律的なエージェントのワークフローへ移りつつある、という観測もある。複数のエージェントに異なるアプローチで書かせて人間が選んでマージする、あるモデルの回答を別のモデルに批判させて時間をかけて洗練する、といった並列・批判のループである。エンジニアの役割は 1 行ずつ書く職人から、システムを指揮して出力を評価する側へ寄っていく、というのは現場感覚としても理解できる。</p><p>Shopify が言う「生産性 20% 向上」は控えめな見積もりだそうだが、課題も残っている。出荷が速くなった分、人間によるレビューが新たなボトルネックになった。AI はコードを量産するが、それを承認する責任は依然として人間にある。Lütke 氏は全社員に、AI を日常的に使うことを基本的な期待値とし、人員増を求めるマネージャーには「なぜその仕事が AI では代替できないのかを証明せよ」と求めているという。</p><p>通して読むと、結局は技術への関心を持ち続け、細部にこだわりながら AI を使い倒せるかどうか、という当たり前の話に行き着く気がした。ツールを配ること自体が組織を変えるわけではない、という点で、これも増幅の話と地続きなのだろう。</p><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2026/ai-engineering-at-shopify.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2026/ai-as-amplifier/>👈 AI 導入の成否を分ける増幅の法則</a></div><div></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク
+</label><label><input type=checkbox switch id=translation> ブラウザ言語に翻訳</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -26,6 +25,8 @@ customElements.define('affiliate-link', AffiliateLink);
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
 const rainbowLink =  document.querySelector('#rainbow-link');
+const translation = document.querySelector('#translation');
+const targetLanguage = new Intl.Locale(navigator.language).language;
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
@@ -52,6 +53,101 @@ rainbowLink?.addEventListener('change', event => {
     localStorage.setItem('rainbow-link', true);
   } else {
     localStorage.removeItem('rainbow-link');
+  }
+});
+
+const originalTexts = new Map();
+let translator = null;
+
+function getTextNodes() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (node.nodeValue.trim() === '') {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      if (node.parentElement?.closest('pre, code, script, style')) {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const nodes = [];
+
+  while (walker.nextNode()) {
+    nodes.push(walker.currentNode);
+  }
+
+  return nodes;
+}
+
+async function translatePage() {
+  translator ??= await Translator.create({
+    sourceLanguage: 'ja',
+    targetLanguage
+  });
+
+  for (const node of getTextNodes()) {
+    if (!originalTexts.has(node)) {
+      originalTexts.set(node, node.nodeValue);
+    }
+
+    node.nodeValue = await translator.translate(originalTexts.get(node));
+  }
+
+  document.documentElement.lang = targetLanguage;
+}
+
+function restorePage() {
+  for (const [node, text] of originalTexts) {
+    node.nodeValue = text;
+  }
+
+  document.documentElement.lang = 'ja';
+}
+
+if (!('Translator' in self) || targetLanguage === 'ja') {
+  translation.disabled = true;
+} else {
+  Translator.availability({
+    sourceLanguage: 'ja',
+    targetLanguage
+  }).then(availability => {
+    if (availability === 'unavailable') {
+      translation.disabled = true;
+      return;
+    }
+
+    translation.checked = localStorage.getItem('translation');
+
+    if (translation.checked) {
+      translatePage().catch(() => {
+        translation.checked = false;
+        localStorage.removeItem('translation');
+      });
+    }
+  });
+}
+
+translation?.addEventListener('change', async event => {
+  translation.disabled = true;
+
+  try {
+    if (event.target.checked) {
+      await translatePage();
+      localStorage.setItem('translation', true);
+    } else {
+      restorePage();
+      localStorage.removeItem('translation');
+    }
+  } catch {
+    translation.checked = false;
+    restorePage();
+    localStorage.removeItem('translation');
+  } finally {
+    translation.disabled = false;
   }
 });
 

@@ -1,36 +1,60 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ブラウザのNotification APIをWeb Components化した - EagleLand</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。 XMLHttpRequest部分を抽象化しているcore-ajaxとか、core-localstorageとか。 そんなわけで試しにNotification API周りをラップしたx-notificationを作ってみた。 これを使えば、今までJavaScriptから実行していた部分を、HTML内で宣言的に記述することが可能になる。有意義かどうかは、さておき。
-ダウンロード npmかbowerでどうぞ。もちろんリポジトリをクローンでも。
-$ npm install x-notification $ bower install x-notification 使い方 使いたいページで、x-notification.htmlをインポートする。
-<link rel='import' href='x-notification.html'> あとは<x-notification>タグを記述する。
-<x-notification autoshow title='バルーンのタイトル'>バルーンの本文</x-notification> 自動で表示したい場合はautoshow属性を付与することで自動で表示されて、 JavaScript側でコントロールしたい場合は対象の<x-notification>要素を取得し、show()を実行する。
-document.querySelector('x-notification').show(); 属性等の詳細はリポジトリを参照して下さい。
-環境とか NotificationのAPIが実装されていないとダメなのはもちろんのこと、 HTMLImportやらDocument#registerElement()やら、Web Components周りのAPIが無いと動きません。 ただ、Web Components側のAPI群に関してはPolymer/platform等でPolyfillすれば動きます。
-Re-designed x-notification landing page with Polymer including Paper Elements. http://1000ch.github.io/x-notification #Polymer #WebComponents #PaperElements
-&mdash; 1000ch (@1000ch_en) 2014, 7月 2 x-notification自体はピュアなWeb Componentsだけど、デモ用にx-notification-editorというPolymerを使ったWeb Componentsを作った。 x-notification-editor内にx-notificationを内包し、PaperElementsを駆使して動的にx-notificationの属性値をいじれるようにしている。
-http://1000ch.github.io/x-notification/ - デモページ https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html - x-notification-editor要素 Customize Example の所にソースコードを表示するようにしてあって、 そこはPolymerが提供している2-way bindingをたっぷり使っている。これは便利だと思った。
-CustomElements.io You can find x-notification on http://t."><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/x-notification/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ブラウザのNotification APIをWeb Components化した"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/x-notification/"><meta name=twitter:title content="ブラウザのNotification APIをWeb Components化した"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>ブラウザのNotification APIをWeb Components化した - EagleLand</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel="shortcut icon" href=/favicon.png><link rel="shortcut icon" href=/favicon.svg type=image/svg+xml sizes=any><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/a11y-dark.min.css><link rel=stylesheet href=/css/settings.css><link rel=stylesheet href=/css/base.css><link rel=stylesheet href=/css/layout.css><link rel=stylesheet href=/css/components.css><link rel=stylesheet href=/css/experiments.css><link rel=alternate href=/rss.xml title=1000ch.net type=application/rss+xml><meta name=author content="Shogo Sensui"><meta name=copyright content="Copyright (c) Shogo Sensui; Licensed under Creative Commons Attribution-Noncommercial-Share Japan"><meta property="og:description" content="巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。
+XMLHttpRequest部分を抽象化しているcore-ajaxとか、core-localstorageとか。
+そんなわけで試しにNotification API周りをラップしたx-notificationを作ってみた。
+これを使えば、今までJavaScriptから実行していた部分を、HTML内で宣言的に記述することが可能になる。有意義かどうかは、さておき。
+ダウンロード
+npmかbowerでどうぞ。もちろんリポジトリをクローンでも。
+$ npm install x-notification
+$ bower install x-notification
+使い方
+使いたいページで、x-notification.htmlをインポートする。
+<link rel='import' href='x-notification.html'>
+あとは<x-notification>タグを記述する。
+<x-notification autoshow title='バルーンのタイトル'>バルーンの本文</x-notification>
+自動で表示したい場合はautoshow属性を付与することで自動で表示されて、
+JavaScript側でコントロールしたい場合は対象の<x-notification>要素を取得し、show()を実行する。
+document.querySelector('x-notification').show();
+属性等の詳細はリポジトリを参照して下さい。
+環境とか
+NotificationのAPIが実装されていないとダメなのはもちろんのこと、
+HTMLImportやらDocument#registerElement()やら、Web Components周りのAPIが無いと動きません。
+ただ、Web Components側のAPI群に関してはPolymer/platform等でPolyfillすれば動きます。
+Re-designed x-notification landing page with Polymer including Paper Elements. http://1000ch.github.io/x-notification #Polymer #WebComponents #PaperElements&mdash; 1000ch (@1000ch_en) 2014, 7月 2
+x-notification自体はピュアなWeb Componentsだけど、デモ用にx-notification-editorというPolymerを使ったWeb Componentsを作った。
+x-notification-editor内にx-notificationを内包し、PaperElementsを駆使して動的にx-notificationの属性値をいじれるようにしている。
+
+http://1000ch.github.io/x-notification/ - デモページ
+https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html - x-notification-editor要素
+
+Customize Example の所にソースコードを表示するようにしてあって、
+そこはPolymerが提供している2-way bindingをたっぷり使っている。これは便利だと思った。
+CustomElements.io
+You can find x-notification on http://t.co/PbWp0Gxp0a #WebComponents #Notification #CustomElements&mdash; 1000ch (@1000ch_en) 2014, 7月 5
+CustomElements.ioはBowerで登録されているWeb Componentsのギャラリーサイト。
+サイトの上部にあたかも登録フォームがあるのでここから申請するのかと思ったら、
+bower.jsonのkeywordsに web-components が含まれていると自動で追加されるそう。"><meta property="og:image" content="https://1000ch.net//img/apple-touch-icon.png"><meta name=twitter:card content="summary"><meta property="og:type" content="article"><meta property="og:url" content="https://1000ch.net/posts/2014/x-notification/"><meta property="og:site_name" content="EagleLand"><meta property="og:title" content="ブラウザのNotification APIをWeb Components化した"><meta name=twitter:site content="@1000ch"><meta name=twitter:url content="https://1000ch.net/posts/2014/x-notification/"><meta name=twitter:title content="ブラウザのNotification APIをWeb Components化した"><meta name=google-site-verification content="BWewniqiBzRmrhpj51eLwug-F4hamFfyznl-ARb-Y4Y"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date,i=t.createElement(n),a=t.getElementsByTagName(n)[0],i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-49530352-1","1000ch.net"),ga("send","pageview")</script></head><body><div class=container><header class=header><h1 class=header-title><a href=/><img src=/img/icon.svg>
 <span>EagleLand</span></a></h1><nav><a href=/rss.xml>📻 RSS</a>
 <a href="https://www.google.co.jp/search?q=site%3A1000ch.net">🔍 検索</a>
 <a href=https://shogosensui.com>🌎 Author</a></nav></header><main class=main><h1>ブラウザのNotification APIをWeb Components化した</h1><p style=margin:0;text-align:right>Published at 2014-07-15</p><p>巷で話題のWeb Componentsですが、コンポーネント化していくのは所謂UIパーツだけに留まりません。
 XMLHttpRequest部分を抽象化している<a href=https://github.com/Polymer/core-ajax><code>core-ajax</code></a>とか、<a href=https://github.com/Polymer/core-localstorage><code>core-localstorage</code></a>とか。
 そんなわけで試しにNotification API周りをラップした<code>x-notification</code>を作ってみた。
-これを使えば、今までJavaScriptから実行していた部分を、HTML内で宣言的に記述することが可能になる。有意義かどうかは、さておき。</p><h2 id=ダウンロード>ダウンロード</h2><p><code>npm</code>か<code>bower</code>でどうぞ。もちろんリポジトリをクローンでも。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ npm install x-notification
+これを使えば、今までJavaScriptから実行していた部分を、HTML内で宣言的に記述することが可能になる。有意義かどうかは、さておき。</p><h2 id=ダウンロード>ダウンロード</h2><p><code>npm</code>か<code>bower</code>でどうぞ。もちろんリポジトリをクローンでも。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>$ npm install x-notification
 </span></span><span style=display:flex><span>$ bower install x-notification
-</span></span></code></pre></div><h2 id=使い方>使い方</h2><p>使いたいページで、<code>x-notification.html</code>をインポートする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#39;import&#39;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#39;x-notification.html&#39;</span>&gt;
-</span></span></code></pre></div><p>あとは<code>&lt;x-notification></code>タグを記述する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>x-notification</span> <span style=color:#a6e22e>autoshow</span> <span style=color:#a6e22e>title</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#39;バルーンのタイトル&#39;</span>&gt;バルーンの本文&lt;/<span style=color:#f92672>x-notification</span>&gt;
+</span></span></code></pre></div><h2 id=使い方>使い方</h2><p>使いたいページで、<code>x-notification.html</code>をインポートする。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#39;import&#39;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#39;x-notification.html&#39;</span>&gt;
+</span></span></code></pre></div><p>あとは<code>&lt;x-notification></code>タグを記述する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>x-notification</span> <span style=color:#a6e22e>autoshow</span> <span style=color:#a6e22e>title</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#39;バルーンのタイトル&#39;</span>&gt;バルーンの本文&lt;/<span style=color:#f92672>x-notification</span>&gt;
 </span></span></code></pre></div><p>自動で表示したい場合は<code>autoshow</code>属性を付与することで自動で表示されて、
-JavaScript側でコントロールしたい場合は対象の<code>&lt;x-notification></code>要素を取得し、<code>show()</code>を実行する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;x-notification&#39;</span>).<span style=color:#a6e22e>show</span>();
+JavaScript側でコントロールしたい場合は対象の<code>&lt;x-notification></code>要素を取得し、<code>show()</code>を実行する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span>document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#39;x-notification&#39;</span>).<span style=color:#a6e22e>show</span>();
 </span></span></code></pre></div><p>属性等の詳細は<a href=https://github.com/1000ch/x-notification>リポジトリ</a>を参照して下さい。</p><h2 id=環境とか>環境とか</h2><p>NotificationのAPIが実装されていないとダメなのはもちろんのこと、
 HTMLImportやら<code>Document#registerElement()</code>やら、Web Components周りのAPIが無いと動きません。
 ただ、Web Components側のAPI群に関しては<a href=https://github.com/Polymer/platform>Polymer/platform</a>等でPolyfillすれば動きます。</p><blockquote class=twitter-tweet lang=ja><p>Re-designed x-notification landing page with Polymer including Paper Elements. <a href=http://1000ch.github.io/x-notification>http://1000ch.github.io/x-notification</a> <a href="https://twitter.com/hashtag/Polymer?src=hash">#Polymer</a> <a href="https://twitter.com/hashtag/WebComponents?src=hash">#WebComponents</a> <a href="https://twitter.com/hashtag/PaperElements?src=hash">#PaperElements</a></p>&mdash; 1000ch (@1000ch_en) <a href=https://twitter.com/1000ch_en/statuses/484296238892720128>2014, 7月 2</a></blockquote><p><code>x-notification</code>自体はピュアなWeb Componentsだけど、デモ用に<code>x-notification-editor</code>というPolymerを使ったWeb Componentsを作った。
 <code>x-notification-editor</code>内に<code>x-notification</code>を内包し、PaperElementsを駆使して動的に<code>x-notification</code>の属性値をいじれるようにしている。</p><ul><li><a href=http://1000ch.github.io/x-notification/>http://1000ch.github.io/x-notification/</a> - デモページ</li><li><a href=https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html>https://github.com/1000ch/x-notification/blob/master/x-notification-editor.html</a> - x-notification-editor要素</li></ul><p><strong>Customize Example</strong> の所にソースコードを表示するようにしてあって、
-そこはPolymerが提供している2-way bindingをたっぷり使っている。これは便利だと思った。</p><h2 id=customelementsiohttpcustomelementsio><a href=http://customelements.io/>CustomElements.io</a></h2><blockquote class=twitter-tweet lang=ja><p>You can find x-notification on <a href=http://t.co/PbWp0Gxp0a>http://t.co/PbWp0Gxp0a</a> <a href="https://twitter.com/hashtag/WebComponents?src=hash">#WebComponents</a> <a href="https://twitter.com/hashtag/Notification?src=hash">#Notification</a> <a href="https://twitter.com/hashtag/CustomElements?src=hash">#CustomElements</a></p>&mdash; 1000ch (@1000ch_en) <a href=https://twitter.com/1000ch_en/statuses/485281852144381954>2014, 7月 5</a></blockquote><p>CustomElements.ioはBowerで登録されているWeb Componentsのギャラリーサイト。
+そこはPolymerが提供している2-way bindingをたっぷり使っている。これは便利だと思った。</p><h2 id=customelementsio><a href=http://customelements.io/>CustomElements.io</a></h2><blockquote class=twitter-tweet lang=ja><p>You can find x-notification on <a href=http://t.co/PbWp0Gxp0a>http://t.co/PbWp0Gxp0a</a> <a href="https://twitter.com/hashtag/WebComponents?src=hash">#WebComponents</a> <a href="https://twitter.com/hashtag/Notification?src=hash">#Notification</a> <a href="https://twitter.com/hashtag/CustomElements?src=hash">#CustomElements</a></p>&mdash; 1000ch (@1000ch_en) <a href=https://twitter.com/1000ch_en/statuses/485281852144381954>2014, 7月 5</a></blockquote><p>CustomElements.ioはBowerで登録されているWeb Componentsのギャラリーサイト。
 サイトの上部にあたかも登録フォームがあるのでここから申請するのかと思ったら、
 <code>bower.json</code>の<code>keywords</code>に <strong>web-components</strong> が含まれていると自動で追加されるそう。</p><ul><li><a href=https://github.com/webcomponents/customelements.io/issues/237>https://github.com/webcomponents/customelements.io/issues/237</a></li></ul><h2 id=参考資料>参考資料</h2><ul><li><a href=http://www.w3.org/TR/notifications/>Web Notifications</a></li><li><a href=https://developer.mozilla.org/ja/docs/Web/API/notification>Notification - Web API Interfaces | MDN</a></li><li><a href=http://www.html5rocks.com/en/tutorials/notifications/quick/>Using the Notifications API</a></li></ul><aside class=nav><button type=button class=link id=share-button>🔗 この記事をシェアする</button>
 <a href=https://github.com/1000ch/1000ch.net/edit/main/content/posts/2014/x-notification.md>🔗 この記事を GitHub で編集する</a><div><a href=/posts/2014/google-io-2014/>👈 Google I/O 2014</a></div><div><a href=/posts/2014/html5-and-other-vol49/>👉 HTML5とか勉強会でWeb ComponentsとPolymerについて話してきた</a></div></aside><div popover=auto id=popover>タイトルと URL をコピーしました</div></main><aside class=aside></aside><footer class=footer><h2>Preference</h2><div class=preference><label><input type=checkbox switch id=auto-phrase> 日本語のフレーズ改行
 </label><label><input type=checkbox switch id=dark-mode> ダークモード
-</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
+</label><label><input type=checkbox switch id=rainbow-link> 虹色リンク
+</label><label><input type=checkbox switch id=translation> ブラウザ言語に翻訳</label></div><h2>Notice</h2><ul class=notice><li>コンテンツの正確性や信頼性には配慮していますが、必ずしもそれらを保証はしません。意見や見解は、個人の立場において述べたものであり、所属組織等を代表するものではありません。コンテンツの利用およびその結果に対し、一切の責任を負いかねます</li><li>当サイトは amazon.co.jp を宣伝しリンクすることによって、サイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイト宣伝プログラムである、Amazon アソシエイト・プログラムの参加者です</li></ul></footer></div><script defer src=https://platform.twitter.com/widgets.js></script><script defer src=https://platform.instagram.com/en_US/embeds.js></script><script defer src=https://strava-embeds.com/embed.js></script><script defer src=https://embed.bsky.app/static/embed.js></script><script type=module src=https://unpkg.com/baseline-status@1.0.11/baseline-status.min.js></script><script type=module>
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es/highlight.min.js';
 
 document.querySelectorAll('pre code').forEach(element => {
@@ -44,6 +68,8 @@ customElements.define('affiliate-link', AffiliateLink);
 const autoPhrase = document.querySelector('#auto-phrase');
 const darkMode =  document.querySelector('#dark-mode');
 const rainbowLink =  document.querySelector('#rainbow-link');
+const translation = document.querySelector('#translation');
+const targetLanguage = new Intl.Locale(navigator.language).language;
 
 autoPhrase.checked = localStorage.getItem('auto-phrase');
 darkMode.checked = localStorage.getItem('dark-mode');
@@ -70,6 +96,101 @@ rainbowLink?.addEventListener('change', event => {
     localStorage.setItem('rainbow-link', true);
   } else {
     localStorage.removeItem('rainbow-link');
+  }
+});
+
+const originalTexts = new Map();
+let translator = null;
+
+function getTextNodes() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (node.nodeValue.trim() === '') {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      if (node.parentElement?.closest('pre, code, script, style')) {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const nodes = [];
+
+  while (walker.nextNode()) {
+    nodes.push(walker.currentNode);
+  }
+
+  return nodes;
+}
+
+async function translatePage() {
+  translator ??= await Translator.create({
+    sourceLanguage: 'ja',
+    targetLanguage
+  });
+
+  for (const node of getTextNodes()) {
+    if (!originalTexts.has(node)) {
+      originalTexts.set(node, node.nodeValue);
+    }
+
+    node.nodeValue = await translator.translate(originalTexts.get(node));
+  }
+
+  document.documentElement.lang = targetLanguage;
+}
+
+function restorePage() {
+  for (const [node, text] of originalTexts) {
+    node.nodeValue = text;
+  }
+
+  document.documentElement.lang = 'ja';
+}
+
+if (!('Translator' in self) || targetLanguage === 'ja') {
+  translation.disabled = true;
+} else {
+  Translator.availability({
+    sourceLanguage: 'ja',
+    targetLanguage
+  }).then(availability => {
+    if (availability === 'unavailable') {
+      translation.disabled = true;
+      return;
+    }
+
+    translation.checked = localStorage.getItem('translation');
+
+    if (translation.checked) {
+      translatePage().catch(() => {
+        translation.checked = false;
+        localStorage.removeItem('translation');
+      });
+    }
+  });
+}
+
+translation?.addEventListener('change', async event => {
+  translation.disabled = true;
+
+  try {
+    if (event.target.checked) {
+      await translatePage();
+      localStorage.setItem('translation', true);
+    } else {
+      restorePage();
+      localStorage.removeItem('translation');
+    }
+  } catch {
+    translation.checked = false;
+    restorePage();
+    localStorage.removeItem('translation');
+  } finally {
+    translation.disabled = false;
   }
 });
 
